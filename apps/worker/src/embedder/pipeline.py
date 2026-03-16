@@ -1,8 +1,11 @@
 """Consume embed_jobs queue, compute embeddings + taxonomy scores."""
+import asyncio
 import json
 import os
+import traceback
 
 import redis
+import numpy as np
 from sqlalchemy import select
 
 from packages.db.session import AsyncSessionLocal
@@ -17,32 +20,50 @@ def get_redis() -> redis.Redis:
 async def _load_taxonomy_embeddings(db) -> list[tuple[int, list[float]]]:
     result = await db.execute(select(TaxonomyCategory))
     cats = result.scalars().all()
+    if not cats:
+        print("[worker] WARNING: no taxonomy categories found — run seed first")
+        return []
     texts = [f"{c.name}: {c.description}" for c in cats]
     vecs = embed(texts)
     return [(c.id, v) for c, v in zip(cats, vecs)]
 
 
 async def process_embed_job(version_id: int) -> None:
-    import numpy as np
-
     async with AsyncSessionLocal() as db:
         result = await db.execute(
             select(DocumentVersion).where(DocumentVersion.id == version_id)
         )
         version = result.scalar_one_or_none()
-        if not version or not version.content_md:
+        if not version:
+            print(f"[worker] version {version_id} not found, skipping")
+            return
+        if not version.content_md:
+            print(f"[worker] version {version_id} has no content, skipping")
             return
 
-        # Embed document
-        doc_vec = embed_one(version.content_md[:8000])
+        # Embed document (sync, run in thread to not block event loop)
+        doc_vec = await asyncio.to_thread(embed_one, version.content_md[:8000])
         version.embedding = doc_vec
         db.add(version)
         await db.commit()
+        print(f"[worker] embedded version {version_id} ({len(doc_vec)} dims)")
 
         # Score against taxonomy
-        taxonomy_vecs = await _load_taxonomy_embeddings(db)
+        taxonomy_vecs = await asyncio.to_thread(
+            lambda: None  # placeholder, actual work below
+        )
+        # Load taxonomy embeddings (involves sync embed call)
+        tax_result = await db.execute(select(TaxonomyCategory))
+        cats = tax_result.scalars().all()
+        if not cats:
+            return
+        texts = [f"{c.name}: {c.description}" for c in cats]
+        cat_vecs = await asyncio.to_thread(embed, texts)
+        taxonomy_pairs = [(c.id, v) for c, v in zip(cats, cat_vecs)]
+
         doc_arr = np.array(doc_vec)
-        for cat_id, cat_vec in taxonomy_vecs:
+        mapped = 0
+        for cat_id, cat_vec in taxonomy_pairs:
             sim = float(np.dot(doc_arr, np.array(cat_vec)))
             if sim < 0.25:
                 continue
@@ -60,15 +81,17 @@ async def process_embed_job(version_id: int) -> None:
                 similarity_score=sim,
                 is_covered=True,
             ))
+            mapped += 1
         await db.commit()
-    print(f"[worker] Embedded version {version_id}")
+    print(f"[worker] version {version_id}: mapped to {mapped} taxonomy categories")
 
 
 async def run_embed_loop() -> None:
     r = get_redis()
     print("[worker] embed loop started")
     while True:
-        item = r.blpop("embed_jobs", timeout=5)
+        # Run blocking redis call in a thread so we don't block the event loop
+        item = await asyncio.to_thread(r.blpop, "embed_jobs", 5)
         if item is None:
             continue
         try:
@@ -76,3 +99,4 @@ async def run_embed_loop() -> None:
             await process_embed_job(payload["version_id"])
         except Exception as e:
             print(f"[worker] embed error: {e}")
+            traceback.print_exc()

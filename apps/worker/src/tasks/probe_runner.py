@@ -1,6 +1,8 @@
 """Consume probe_runs queue, call LLMs, score slant, persist results."""
+import asyncio
 import json
 import os
+import traceback
 
 import redis
 import litellm
@@ -19,6 +21,7 @@ async def _run_probe(run_id: int, probe_ids: list[int], model_slugs: list[str]) 
     async with AsyncSessionLocal() as db:
         run = await db.get(ProbeRun, run_id)
         if not run:
+            print(f"[worker] probe run {run_id} not found")
             return
 
         probes_result = await db.execute(
@@ -31,6 +34,8 @@ async def _run_probe(run_id: int, probe_ids: list[int], model_slugs: list[str]) 
         )
         models = models_result.scalars().all()
 
+        total = len(probes) * len(models)
+        done = 0
         for probe in probes:
             for model in models:
                 try:
@@ -55,27 +60,31 @@ async def _run_probe(run_id: int, probe_ids: list[int], model_slugs: list[str]) 
                     db.add(pr)
                     await db.flush()
 
-                    scores = score_text(response_text)
+                    scores = await asyncio.to_thread(score_text, response_text)
                     db.add(SlantScore(
                         response_id=pr.id,
                         model_slug=model.slug,
                         probe_id=probe.id,
                         **scores,
                     ))
+                    done += 1
+                    print(f"[worker] probe {probe.probe_key} × {model.slug}: done ({done}/{total})")
                 except Exception as e:
-                    print(f"[worker] probe {probe.id} × {model.slug}: {e}")
+                    print(f"[worker] probe {probe.probe_key} × {model.slug}: {e}")
+                    done += 1
 
         run.status = "completed"
         db.add(run)
         await db.commit()
-    print(f"[worker] Probe run {run_id} complete")
+    print(f"[worker] Probe run {run_id} complete ({done}/{total})")
 
 
 async def run_probe_loop() -> None:
     r = get_redis()
     print("[worker] probe loop started")
     while True:
-        item = r.blpop("probe_runs", timeout=5)
+        # Run blocking redis call in a thread so we don't block the event loop
+        item = await asyncio.to_thread(r.blpop, "probe_runs", 5)
         if item is None:
             continue
         try:
@@ -87,3 +96,4 @@ async def run_probe_loop() -> None:
             )
         except Exception as e:
             print(f"[worker] probe runner error: {e}")
+            traceback.print_exc()

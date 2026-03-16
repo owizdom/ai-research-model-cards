@@ -1,6 +1,6 @@
 """Worker entry point — runs embed and probe loops concurrently."""
 import asyncio
-import os
+import sys
 
 from packages.db.session import init_db
 from .embedder.pipeline import run_embed_loop
@@ -8,8 +8,9 @@ from .tasks.probe_runner import run_probe_loop
 
 
 async def main():
-    print("[worker] Starting")
+    print("[worker] Starting", flush=True)
     await init_db()
+    print("[worker] DB initialized", flush=True)
 
     await asyncio.gather(
         run_embed_loop(),
