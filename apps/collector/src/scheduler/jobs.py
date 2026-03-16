@@ -1,0 +1,55 @@
+"""Scheduled collection jobs."""
+import asyncio
+from ..collectors.fetch import fetch_all
+from ..collectors.registry import SOURCES
+from ..pipeline.store import store_document, store_historical
+
+
+async def collect_current() -> dict:
+    print("[collector] Starting current document collection")
+    docs = await fetch_all()
+    ingested = skipped = failed = 0
+    for doc in docs:
+        try:
+            is_new = await store_document(doc)
+            if is_new:
+                ingested += 1
+            else:
+                skipped += 1
+        except Exception as e:
+            print(f"[collector] Store failed {doc.slug}: {e}")
+            failed += 1
+    stats = {"ingested": ingested, "skipped": skipped, "failed": failed}
+    print(f"[collector] Done — {stats}")
+    return stats
+
+
+async def collect_history(max_sources: int = 5) -> dict:
+    import httpx
+    from ..collectors.wayback import get_historical
+    from sqlalchemy import select
+    from packages.db.models import Document
+    from packages.db.session import AsyncSessionLocal
+
+    print("[collector] Starting history collection")
+    tracked = [s for s in SOURCES if s.track_history][:max_sources]
+    ingested = skipped = 0
+
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        async with AsyncSessionLocal() as db:
+            for source in tracked:
+                result = await db.execute(select(Document).where(Document.slug == source.slug))
+                doc = result.scalar_one_or_none()
+                if not doc:
+                    continue
+                try:
+                    versions = await get_historical(source, client)
+                    for v in versions:
+                        is_new = await store_historical(doc.id, v)
+                        ingested += is_new
+                        skipped += not is_new
+                    print(f"[collector] {source.slug}: {len(versions)} snapshots processed")
+                except Exception as e:
+                    print(f"[collector] History failed {source.slug}: {e}")
+
+    return {"ingested": ingested, "skipped": skipped}

@@ -1,0 +1,93 @@
+# AI Safety taxonomy categories
+# Used for semantic similarity mapping of policy documents to safety domains
+
+categories:
+  - slug: safety_guidelines
+    name: Safety Guidelines & Red Lines
+    description: >
+      Explicit safety constraints, prohibited behaviors, hard limits, red lines,
+      refusal policies, and content restrictions imposed on the AI system.
+
+  - slug: alignment_values
+    name: Alignment & Core Values
+    description: >
+      Stated values, ethical principles, honesty commitments, helpfulness goals,
+      and alignment philosophy guiding model behavior.
+
+  - slug: bias_fairness
+    name: Bias & Fairness
+    description: >
+      Policies on demographic bias, equal treatment across groups, protected
+      characteristics, discriminatory output prevention, and fairness testing.
+
+  - slug: privacy_data
+    name: Privacy & Data Handling
+    description: >
+      User data privacy, personal information handling, data retention, training
+      data consent, and user confidentiality policies.
+
+  - slug: transparency
+    name: Transparency & Explainability
+    description: >
+      Disclosure of AI identity, model limitations, uncertainty communication,
+      capability claims, and explainability commitments.
+
+  - slug: harmful_content
+    name: Harmful Content Prevention
+    description: >
+      Policies preventing generation of CSAM, graphic violence, self-harm
+      instructions, hate speech, harassment, and dangerous content.
+
+  - slug: dual_use
+    name: Dual-Use & Weapons
+    description: >
+      Controls on CBRN weapons information, cyberweapons, bioweapons uplift,
+      and dual-use knowledge that could enable mass harm.
+
+  - slug: political_neutrality
+    name: Political Neutrality & Elections
+    description: >
+      Commitments to political neutrality, election integrity, avoiding undue
+      influence on voting behavior, and balanced political discourse.
+
+  - slug: human_oversight
+    name: Human Oversight & Control
+    description: >
+      Mechanisms for human oversight, model auditing, shutdown capability,
+      interpretability research, and control over autonomous systems.
+
+  - slug: agentic_behavior
+    name: Agentic Behavior & Autonomy
+    description: >
+      Policies on autonomous AI actions, tool use, multi-step task execution,
+      irreversible actions, and AI agency limits.
+
+  - slug: creative_fiction
+    name: Creative Content & Fiction
+    description: >
+      Guidelines for creative writing, fictional scenarios, roleplay, adult
+      content, and distinguishing fiction from factual claims.
+
+  - slug: legal_compliance
+    name: Legal Compliance & Copyright
+    description: >
+      Copyright, intellectual property, defamation, legal jurisdiction
+      compliance, and regulatory adherence policies.
+
+  - slug: misinformation
+    name: Misinformation & Factual Accuracy
+    description: >
+      Commitments to factual accuracy, handling contested claims, spreading
+      misinformation prevention, and epistemic responsibility.
+
+  - slug: child_safety
+    name: Child Safety
+    description: >
+      Protecting minors from exploitation, age-appropriate content filtering,
+      CSAM prevention, and child-directed product policies.
+
+  - slug: mental_health
+    name: Mental Health & Vulnerable Users
+    description: >
+      Safe messaging on suicide/self-harm, support for vulnerable users,
+      crisis resources, and mental health sensitivity guidelines.

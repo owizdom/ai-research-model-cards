@@ -1,0 +1,46 @@
+# Extends base compose for local dev — hot reload, exposed ports, RUN_ON_START
+
+services:
+  db:
+    ports:
+      - "5433:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      context: ../..
+      dockerfile: apps/api/Dockerfile
+    volumes:
+      - ../../apps/api/src:/app/apps/api/src:ro
+      - ../../packages:/app/packages:ro
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      DEBUG: "true"
+
+  collector:
+    volumes:
+      - ../../apps/collector/src:/app/apps/collector/src:ro
+      - ../../packages:/app/packages:ro
+    environment:
+      RUN_ON_START: "true"
+
+  worker:
+    volumes:
+      - ../../apps/worker/src:/app/apps/worker/src:ro
+      - ../../packages:/app/packages:ro
+      - ../../data:/app/data:ro
+
+  web:
+    build:
+      context: ../..
+      dockerfile: apps/web/Dockerfile
+      target: dev
+    volumes:
+      - ../../apps/web/src:/app/src
+      - ../../apps/web/public:/app/public
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8000"
+      API_INTERNAL_URL: "http://api:8000"
