@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gcc g++ && rm -
 # Install CPU-only PyTorch first (saves ~1.5GB vs full torch)
 RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 
+COPY data /app/data
 COPY packages/db /app/packages/db
 RUN pip install --no-cache-dir /app/packages/db
 
