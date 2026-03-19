@@ -33,6 +33,9 @@ out/
 data/raw/
 data/exports/
 
+# Generated reports
+reports/
+
 # OS
 .DS_Store
 Thumbs.db

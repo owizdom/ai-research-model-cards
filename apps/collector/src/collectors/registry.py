@@ -34,6 +34,11 @@ SOURCES: list[Source] = [
     Source("anthropic_core_views",     "anthropic", "Core Views on AI Safety",    "constitution",  "https://www.anthropic.com/news/core-views-on-ai-safety",                          "html"),
     Source("anthropic_claude_character","anthropic","Claude's Character",         "constitution",  "https://www.anthropic.com/research/claude-character",                             "html"),
     Source("anthropic_constitutional_ai","anthropic","Constitutional AI Paper",   "constitution",  "https://arxiv.org/abs/2212.08073",                                                "html"),
+    Source("anthropic_claude4_card",  "anthropic", "Claude 4 System Card",         "model_card",    "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",    "pdf"),
+    Source("anthropic_opus45_card",   "anthropic", "Claude Opus 4.5 System Card",  "model_card",    "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf","pdf"),
+    Source("anthropic_sonnet45_card", "anthropic", "Claude Sonnet 4.5 System Card","model_card",    "https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf", "pdf"),
+    Source("anthropic_35_addendum",   "anthropic", "Claude 3.5 Model Card Addendum","model_card",   "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model_Card_Claude_3_Addendum.pdf", "pdf"),
+    Source("anthropic_safeguards",    "anthropic", "Building Safeguards for Claude","constitution",  "https://www.anthropic.com/news/building-safeguards-for-claude",                   "html"),
 
     # ── OpenAI ────────────────────────────────────────────────────────────────
     Source("openai_model_spec",        "openai", "Model Spec",                    "constitution",  "https://cdn.openai.com/spec/model-spec-2024-05-08.html",                          "html"),
@@ -41,6 +46,10 @@ SOURCES: list[Source] = [
     Source("openai_preparedness",      "openai", "Preparedness Framework",        "constitution",  "https://cdn.openai.com/openai-preparedness-framework-beta.pdf",                   "pdf"),
     Source("openai_gpt4o_system_card",  "openai", "GPT-4o System Card",            "model_card",    "https://cdn.openai.com/gpt-4o-system-card.pdf",                                   "pdf"),
     Source("openai_agentic_governance", "openai", "Practices for Governing Agentic AI", "constitution", "https://cdn.openai.com/papers/practices-for-governing-agentic-ai-systems.pdf", "pdf"),
+    Source("openai_political_bias",     "openai", "Political Bias Evaluation",        "constitution", "https://openai.com/index/defining-and-evaluating-political-bias-in-llms/",     "html"),
+    Source("openai_mental_health",      "openai", "Mental Health Safety Update",       "usage_policy", "https://openai.com/index/update-on-mental-health-related-work/",               "html"),
+    Source("openai_gpt5_system_card",   "openai", "GPT-5 System Card",                "model_card",   "https://cdn.openai.com/gpt-5-system-card.pdf",                                  "pdf"),
+    Source("openai_gpt45_system_card",  "openai", "GPT-4.5 System Card",              "model_card",   "https://cdn.openai.com/gpt-4-5-system-card-2272025.pdf",                        "pdf"),
 
     # ── Google DeepMind ───────────────────────────────────────────────────────
     Source("google_ai_principles",     "google", "AI Principles",                 "constitution",  "https://ai.google/responsibility/principles/",                                    "html"),
@@ -48,6 +57,8 @@ SOURCES: list[Source] = [
     Source("google_gemini_report",     "google", "Gemini Technical Report",       "model_card",    "https://arxiv.org/abs/2312.11805",                                                "html"),
     Source("google_gemini_1_5_report", "google", "Gemini 1.5 Technical Report",   "model_card",    "https://arxiv.org/abs/2403.05530",                                                "html"),
     Source("google_prohibited_use",    "google", "Generative AI Prohibited Use", "usage_policy",  "https://policies.google.com/terms/generative-ai/use-policy",                      "html"),
+    Source("google_frontier_safety",   "google", "Frontier Safety Framework",    "constitution",  "https://deepmind.google/blog/updating-the-frontier-safety-framework/",            "html"),
+    Source("google_responsibility",    "google", "Responsibility & Safety",      "constitution",  "https://deepmind.google/responsibility-and-safety/",                              "html"),
 
     # ── Meta AI ───────────────────────────────────────────────────────────────
     Source("meta_llama_use_policy",    "meta", "Llama 3.3 Use Policy",            "usage_policy",  "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/USE_POLICY.md", "raw"),
@@ -56,15 +67,23 @@ SOURCES: list[Source] = [
     Source("meta_llama3_paper",        "meta", "Llama 3.1 Technical Paper",       "model_card",    "https://arxiv.org/abs/2407.21783",                                                "html"),
     Source("meta_llama_guard",         "meta", "Llama Guard Paper",               "model_card",    "https://arxiv.org/abs/2312.06674",                                                "html"),
     Source("meta_llama3_model_card",   "meta", "Llama 3 Model Card (GitHub)",    "model_card",    "https://raw.githubusercontent.com/meta-llama/llama3/main/README.md",             "raw"),
+    Source("meta_llama31_card",        "meta", "Llama 3.1 Model Card",           "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md", "raw"),
+    Source("meta_llamaguard_card",     "meta", "Llama Guard Model Card",         "model_card",    "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard/MODEL_CARD.md",     "raw"),
+    Source("meta_llamaguard3_card",    "meta", "Llama Guard 3 Vision Card",      "model_card",    "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard3/11B-vision/MODEL_CARD.md", "raw"),
 
     # ── Mistral ───────────────────────────────────────────────────────────────
     Source("mistral_guardrailing",     "mistral", "Guardrailing Docs",            "usage_policy",  "https://docs.mistral.ai/capabilities/guardrailing/",                              "html"),
     Source("mistral_mixtral_model_card","mistral","Mixtral 8x22B Model Card",     "model_card",    "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1/raw/main/README.md", "raw"),
     Source("mistral_7b_model_card",    "mistral", "Mistral 7B Model Card",        "model_card",    "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3/raw/main/README.md",    "raw"),
+    Source("mistral_usage_policy",     "mistral", "Usage Policy",                 "usage_policy",  "https://legal.mistral.ai/terms/usage-policy",                                      "html"),
+    Source("mistral_moderation",       "mistral", "Moderation API",               "constitution",  "https://mistral.ai/news/mistral-moderation",                                       "html"),
 
     # ── xAI ───────────────────────────────────────────────────────────────────
     Source("xai_grok_docs",            "xai", "Grok Documentation",               "model_card",    "https://docs.x.ai/docs",                                                          "html"),
     Source("xai_api_docs",             "xai", "xAI API Documentation",            "usage_policy",  "https://docs.x.ai/docs/api-reference",                                            "html"),
+    Source("xai_aup",                  "xai", "Acceptable Use Policy",            "usage_policy",  "https://x.ai/legal/acceptable-use-policy",                                        "html"),
+    Source("xai_grok4_card",           "xai", "Grok 4 Model Card",               "model_card",    "https://data.x.ai/2025-08-20-grok-4-model-card.pdf",                              "pdf"),
+    Source("xai_risk_framework",       "xai", "Risk Management Framework",        "constitution",  "https://data.x.ai/2025-08-20-xai-risk-management-framework.pdf",                  "pdf"),
 
     # ── Cohere ────────────────────────────────────────────────────────────────
     Source("cohere_responsibility",    "cohere", "Responsible Use",               "constitution",  "https://docs.cohere.com/docs/responsible-use",                                    "html"),

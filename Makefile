@@ -30,5 +30,14 @@ seed:
 collect:
 	$(DEV) run --rm collector python -m src.scheduler.runner
 
+LOCAL_DB = DATABASE_URL=postgresql+asyncpg://policy:policy@localhost:5433/policy_intel REDIS_URL=redis://localhost:6379
+
+probe:
+	@echo "Seeding new models into DB..."
+	$(DEV) exec db psql -U policy -d policy_intel -c "DELETE FROM ai_models;" > /dev/null 2>&1 || true
+	cd packages/db && $(LOCAL_DB) .venv/bin/python ../../scripts/seed_db.py
+	@echo "Triggering probe run..."
+	cd packages/db && $(LOCAL_DB) .venv/bin/python ../../scripts/trigger_probe.py
+
 test-api:
 	curl -s http://localhost:8000/api/v1/labs | python -m json.tool

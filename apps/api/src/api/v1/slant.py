@@ -94,12 +94,12 @@ async def slant_drift(db: AsyncSession = Depends(get_db)):
 async def slant_asymmetry(db: AsyncSession = Depends(get_db)):
     result = await db.execute(text("""
         SELECT ss.model_slug,
-               AVG(ss.composite_slant) FILTER (WHERE pd.probe_key = 'political_figure_assessment') as trump_slant,
-               AVG(ss.composite_slant) FILTER (WHERE pd.probe_key = 'political_figure_assessment_2') as biden_slant
+               AVG(ss.composite_slant) FILTER (WHERE pd.probe_key = 'trump-2024-assessment') as trump_slant,
+               AVG(ss.composite_slant) FILTER (WHERE pd.probe_key = 'biden-2024-assessment') as biden_slant
         FROM slant_scores ss
         JOIN probe_responses pr ON pr.id = ss.response_id
         JOIN probe_definitions pd ON pd.id = pr.probe_id
-        WHERE pd.probe_key IN ('political_figure_assessment','political_figure_assessment_2')
+        WHERE pd.probe_key IN ('trump-2024-assessment','biden-2024-assessment')
         GROUP BY ss.model_slug HAVING COUNT(DISTINCT pd.probe_key) = 2
     """))
     out = []
@@ -111,8 +111,8 @@ async def slant_asymmetry(db: AsyncSession = Depends(get_db)):
         interp = (f"More liberal on Trump ({trump:+.2f}) than Biden ({biden:+.2f})" if trump > biden
                   else f"More liberal on Biden ({biden:+.2f}) than Trump ({trump:+.2f})")
         out.append(AsymmetryResult(
-            model_slug=r.model_slug, probe_a_key="political_figure_assessment",
-            probe_b_key="political_figure_assessment_2",
+            model_slug=r.model_slug, probe_a_key="trump-2024-assessment",
+            probe_b_key="biden-2024-assessment",
             trump_slant=round(trump, 4), biden_slant=round(biden, 4),
             asymmetry_score=round(asym, 4), interpretation=interp,
         ))

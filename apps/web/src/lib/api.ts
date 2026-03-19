@@ -47,7 +47,7 @@ export const api = {
     intersection: (params?: { labs?: string; threshold?: number }) =>
       get<IntersectionMatrix>("/analysis/intersection", params as Record<string, string | number | boolean>),
     slantSummary: (params?: { probe_category?: string }) =>
-      get<SlantSummary[]>("/analysis/slant/summary", params as Record<string, string | number | boolean>),
+      get<SlantSummary>("/analysis/slant", params as Record<string, string | number | boolean>),
     slantSeries: (modelSlug: string, probeSlug?: string) =>
       get<SlantSeries[]>("/analysis/slant/series", { model: modelSlug, ...(probeSlug ? { probe: probeSlug } : {}) }),
   },

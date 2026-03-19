@@ -57,29 +57,37 @@ export interface SlantSeries {
   trend_p: number;
 }
 
-export interface SlantSummary {
+export interface ModelScore {
   model_slug: string;
-  model_name: string;
-  mean_slant: number;
-  std_slant: number;
-  trump_slant: number | null;
-  biden_slant: number | null;
-  asymmetry: number | null;
-  run_count: number;
+  mean_composite_slant: number;
+  std: number;
+  n_samples: number;
+}
+
+export interface ProbeScore {
+  probe_key: string;
+  category: string;
+  mean_slant_by_model: Record<string, number>;
+}
+
+export interface SlantSummary {
+  model_scores: ModelScore[];
+  probe_scores: ProbeScore[];
 }
 
 export interface Probe {
   id: number;
-  slug: string;
+  probe_key: string;
   category: string;
-  slant_axis: string;
-  prompt_text: string;
+  prompt: string;
+  is_active: boolean;
 }
 
 export interface ProbeRun {
   id: number;
-  status: "pending" | "running" | "completed" | "failed";
-  created_at: string;
-  probe_ids: number[];
-  model_slugs: string[];
+  status: "queued" | "running" | "completed" | "failed";
+  triggered_by: string;
+  started_at: string;
+  probe_count: number | null;
+  model_count: number | null;
 }
