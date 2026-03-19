@@ -27,9 +27,14 @@ async def _run_probe(run_id: int, probe_ids: list[int], model_slugs: list[str], 
         )
         probes = probes_result.scalars().all()
 
-        models_result = await db.execute(
-            select(AIModel).where(AIModel.slug.in_(model_slugs))
-        )
+        if model_slugs:
+            models_result = await db.execute(
+                select(AIModel).where(AIModel.slug.in_(model_slugs), AIModel.is_active == True)  # noqa
+            )
+        else:
+            models_result = await db.execute(
+                select(AIModel).where(AIModel.is_active == True)  # noqa
+            )
         models = models_result.scalars().all()
 
         total = len(probes) * len(models)
