@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const links = [
-  { href: "/", label: "Overview" },
+  { href: "/", label: "Home" },
   { href: "/documents", label: "Documents" },
-  { href: "/analysis", label: "Intersection" },
-  { href: "/probes", label: "Slant Monitor" },
+  { href: "/analysis", label: "Safety Coverage" },
+  { href: "/probes", label: "Bias Tracker" },
 ];
 
 export function Nav() {

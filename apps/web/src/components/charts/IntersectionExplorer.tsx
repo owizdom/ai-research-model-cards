@@ -56,7 +56,7 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
                 ? "border-b-2 border-accent text-white"
                 : "text-[var(--muted)] hover:text-white"
             }`}>
-            {tab === "heatmap" ? "Coverage Heatmap" : "Intersection Sets"}
+            {tab === "heatmap" ? "Coverage Table" : "Gaps & Overlaps"}
           </button>
         ))}
       </div>
@@ -128,12 +128,11 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
 
           {/* Legend */}
           <div className="flex flex-wrap gap-4 text-xs text-[var(--muted)]">
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-accent inline-block"/>≥ 0.70 strong</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-accent/60 inline-block"/>≥ 0.50 moderate</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-accent/30 inline-block"/>≥ 0.35 weak</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-surface-3 inline-block"/>≥ 0.15 trace</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-surface-2 inline-block"/>·  absent</span>
-            <span className="ml-auto text-[var(--muted)]/60">rows sorted by number of labs that cover them</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-accent inline-block"/>Strong</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-accent/60 inline-block"/>Moderate</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-accent/30 inline-block"/>Weak</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-surface-2 inline-block"/>Missing</span>
+            <span className="ml-auto text-[var(--muted)]/60">Sorted by most-covered topics first</span>
           </div>
         </div>
       )}
@@ -144,7 +143,7 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
           {matrix.covered_by_all.length > 0 && (
             <div className="p-4 rounded-xl border border-accent/40 bg-accent/5">
               <h3 className="text-sm font-semibold mb-2 text-accent">
-                All {labs.length} labs cover these ({matrix.covered_by_all.length})
+                Every lab has policy on these ({matrix.covered_by_all.length})
               </h3>
               <div className="flex flex-wrap gap-2">
                 {matrix.covered_by_all.map(c => (
@@ -165,7 +164,7 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
             if (partials.length === 0) return null;
             return (
               <div className="space-y-3">
-                <h3 className="text-xs uppercase tracking-wider text-[var(--muted)]">Partial intersections</h3>
+                <h3 className="text-xs uppercase tracking-wider text-[var(--muted)]">Shared by some labs</h3>
                 {partials.map(([labCombo, cats]) => {
                   const labList = labCombo.split(" + ");
                   return (
@@ -201,7 +200,7 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
             if (uniques.length === 0) return null;
             return (
               <div className="space-y-3">
-                <h3 className="text-xs uppercase tracking-wider text-[var(--muted)]">Unique to one lab only</h3>
+                <h3 className="text-xs uppercase tracking-wider text-[var(--muted)]">Only one lab covers these</h3>
                 {uniques.map(([labCombo, cats]) => (
                   <div key={labCombo} className="p-4 rounded-xl border border-[var(--border)] bg-surface-1">
                     <div className="flex items-center gap-2 mb-2">
@@ -226,7 +225,7 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
           {/* Covered by none */}
           {matrix.covered_by_none.length > 0 && (
             <div className="p-4 rounded-xl border border-red-900/40 bg-red-950/20">
-              <h3 className="text-sm font-semibold mb-2 text-red-400">No lab covers these ({matrix.covered_by_none.length})</h3>
+              <h3 className="text-sm font-semibold mb-2 text-red-400">Critical gaps &mdash; no lab has policy on these ({matrix.covered_by_none.length})</h3>
               <div className="flex flex-wrap gap-2">
                 {matrix.covered_by_none.map(c => (
                   <span key={c} className="px-2 py-0.5 rounded bg-red-900/20 text-xs text-red-400">
