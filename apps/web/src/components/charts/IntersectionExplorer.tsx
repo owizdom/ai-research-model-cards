@@ -18,7 +18,7 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
   const categories = Object.keys(matrix.category_names ?? {});
 
   if (labs.length === 0) {
-    return <p className="text-[var(--muted)]">No data yet — run a collection first.</p>;
+    return <p className="text-[var(--muted)]">No data yet. Run a collection first.</p>;
   }
 
   // Per-category: how many labs cover it (above threshold)
@@ -225,7 +225,7 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
           {/* Covered by none */}
           {matrix.covered_by_none.length > 0 && (
             <div className="p-4 rounded-xl border border-red-900/40 bg-red-950/20">
-              <h3 className="text-sm font-semibold mb-2 text-red-400">Critical gaps &mdash; no lab has policy on these ({matrix.covered_by_none.length})</h3>
+              <h3 className="text-sm font-semibold mb-2 text-red-400">Critical gaps: no lab has policy on these ({matrix.covered_by_none.length})</h3>
               <div className="flex flex-wrap gap-2">
                 {matrix.covered_by_none.map(c => (
                   <span key={c} className="px-2 py-0.5 rounded bg-red-900/20 text-xs text-red-400">

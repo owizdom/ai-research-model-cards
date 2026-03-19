@@ -13,8 +13,8 @@ export default async function HomePage() {
       <div className="mb-10">
         <h1 className="text-3xl font-bold mb-3">AI Policy Intelligence</h1>
         <p className="text-[var(--muted)] max-w-2xl text-base leading-relaxed">
-          We track what the biggest AI companies say they will and won&apos;t do &mdash; their safety
-          policies, model cards, and usage rules &mdash; and test whether their AI models
+          We track what the biggest AI companies say they will and won&apos;t do: their safety
+          policies, model cards, and usage rules. Then we test whether their AI models
           actually follow through.
         </p>
       </div>
@@ -42,16 +42,14 @@ export default async function HomePage() {
       {/* Two main features */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <a href="/analysis" className="block p-6 rounded-xl border border-[var(--border)] bg-surface-1 hover:bg-surface-2 transition-colors group">
-          <div className="text-accent text-2xl mb-3">&#x1F6E1;</div>
           <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">Safety Coverage</h3>
           <p className="text-sm text-[var(--muted)] leading-relaxed">
             Which safety topics does each AI lab actually write policies about?
-            See where the industry agrees &mdash; and where critical gaps exist.
+            See where the industry agrees, and where critical gaps exist.
           </p>
         </a>
         <a href="/probes" className="block p-6 rounded-xl border border-[var(--border)] bg-surface-1 hover:bg-surface-2 transition-colors group">
-          <div className="text-accent text-2xl mb-3">&#x2696;</div>
-          <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">Bias Tracker</h3>
+          <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">Model Bias Tracker</h3>
           <p className="text-sm text-[var(--muted)] leading-relaxed">
             We ask AI models the same politically sensitive questions and measure
             if they lean left, right, or stay neutral. See the results for yourself.
@@ -60,7 +58,7 @@ export default async function HomePage() {
       </section>
 
       {/* Labs grid */}
-      <section>
+      <section className="mb-12">
         <h2 className="text-sm font-semibold mb-4 text-[var(--muted)] uppercase tracking-wider">
           Labs We Track
         </h2>
@@ -68,6 +66,21 @@ export default async function HomePage() {
           {labs.map((lab) => <LabCard key={lab.slug} lab={lab} />)}
         </div>
       </section>
+
+      {/* Footer credit */}
+      <footer className="border-t border-[var(--border)] pt-6 mt-8">
+        <div className="flex items-center justify-between text-xs text-[var(--muted)]">
+          <span>
+            Built by{" "}
+            <a href="https://freesystems.substack.com/" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-white transition-colors">
+              Free Systems Lab
+            </a>
+          </span>
+          <a href="https://github.com/owizdom/ai-research-model-cards" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            GitHub
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

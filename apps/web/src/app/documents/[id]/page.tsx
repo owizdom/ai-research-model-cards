@@ -40,7 +40,7 @@ export default async function DocumentPage({ params }: { params: Promise<{ id: s
       {latest && (
         <div className="mt-4 p-6 rounded-xl border border-[var(--border)] bg-surface-1">
           <h2 className="text-sm uppercase tracking-wider text-[var(--muted)] mb-4">
-            Latest version — {formatDate(latest.version_date)}
+            Latest version: {formatDate(latest.version_date)}
             {latest.wayback_url && (
               <a href={latest.wayback_url} target="_blank" rel="noopener noreferrer"
                 className="ml-3 text-accent hover:underline normal-case">
