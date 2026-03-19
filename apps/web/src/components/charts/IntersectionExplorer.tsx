@@ -4,6 +4,14 @@ import { useState } from "react";
 
 const THRESHOLD = 0.35;
 
+function scoreLevel(score: number): string {
+  if (score >= 0.7) return "Strong coverage";
+  if (score >= 0.5) return "Moderate coverage";
+  if (score >= 0.35) return "Weak coverage";
+  if (score >= 0.15) return "Trace mention";
+  return "No coverage";
+}
+
 function scoreColor(score: number) {
   if (score >= 0.7) return "bg-accent text-white";
   if (score >= 0.5) return "bg-accent/60 text-white";
@@ -63,8 +71,8 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
 
       {activeTab === "heatmap" && (
         <div className="space-y-6">
-          <div className="overflow-x-auto">
-            <table className="text-xs border-separate border-spacing-0.5">
+          <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
+            <table className="text-xs border-separate border-spacing-0.5 w-full min-w-[700px]">
               <thead>
                 <tr>
                   <th className="w-48 text-left px-2 py-1 text-[var(--muted)]">Category</th>
@@ -102,7 +110,7 @@ export function IntersectionExplorer({ matrix }: { matrix: IntersectionMatrix })
                         return (
                           <td key={lab}
                             className={`px-3 py-1.5 rounded text-center font-mono ${scoreColor(score)}`}
-                            title={`${matrix.category_names[cat]} × ${lab}: ${score.toFixed(2)}`}>
+                            title={`${matrix.category_names[cat]} / ${lab}: ${scoreLevel(score)} (${score.toFixed(2)})`}>
                             {score > 0 ? score.toFixed(2) : "·"}
                           </td>
                         );

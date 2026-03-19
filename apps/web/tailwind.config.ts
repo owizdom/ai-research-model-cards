@@ -10,12 +10,15 @@ const config: Config = {
       },
       colors: {
         surface: {
-          0: "#0a0a0f",
-          1: "#111118",
-          2: "#18181f",
-          3: "#22222c",
+          0: "#09090b",
+          1: "#0f0f13",
+          2: "#16161d",
+          3: "#1e1e28",
         },
-        border: "#2a2a36",
+        border: {
+          DEFAULT: "#27272f",
+          light: "#32323e",
+        },
         accent: {
           DEFAULT: "#7c6af7",
           muted: "#7c6af740",
