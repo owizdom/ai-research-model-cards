@@ -22,9 +22,14 @@ async def _run_probe(run_id: int, probe_ids: list[int], model_slugs: list[str], 
             print(f"[worker] probe run {run_id} not found", flush=True)
             return
 
-        probes_result = await db.execute(
-            select(ProbeDefinition).where(ProbeDefinition.id.in_(probe_ids))
-        )
+        if probe_ids:
+            probes_result = await db.execute(
+                select(ProbeDefinition).where(ProbeDefinition.id.in_(probe_ids), ProbeDefinition.is_active == True)  # noqa
+            )
+        else:
+            probes_result = await db.execute(
+                select(ProbeDefinition).where(ProbeDefinition.is_active == True)  # noqa
+            )
         probes = probes_result.scalars().all()
 
         if model_slugs:
