@@ -91,3 +91,18 @@ export interface ProbeRun {
   probe_count: number | null;
   model_count: number | null;
 }
+
+export interface ProbeResponseDetail {
+  id: number;
+  model_slug: string;
+  prompt_text: string;
+  response_text: string;
+  recorded_at: string;
+  tokens: number | null;
+  slant_score: {
+    composite: number;
+    economic: number | null;
+    social: number | null;
+    authority: number | null;
+  } | null;
+}

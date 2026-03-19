@@ -1,6 +1,6 @@
 import type {
   Lab, Document, DocumentDetail, IntersectionMatrix,
-  SlantSeries, SlantSummary, Probe, ProbeRun,
+  SlantSeries, SlantSummary, Probe, ProbeRun, ProbeResponseDetail,
 } from "./types";
 
 // API_INTERNAL_URL is set server-side only (docker-compose env).
@@ -61,6 +61,6 @@ export const api = {
 
   responses: {
     list: (params: { run_id?: number; probe_id?: number; model_slug?: string }) =>
-      get<unknown[]>("/responses", params as Record<string, string | number | boolean>),
+      get<ProbeResponseDetail[]>("/responses", params as Record<string, string | number | boolean>),
   },
 };

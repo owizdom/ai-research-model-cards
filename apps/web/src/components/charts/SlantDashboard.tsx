@@ -1,7 +1,8 @@
 "use client";
-import type { SlantSummary, Probe, ModelScore, ProbeScore } from "@/lib/types";
+import type { SlantSummary, Probe, ModelScore, ProbeScore, ProbeResponseDetail } from "@/lib/types";
 import { slantLabel, slantColor } from "@/lib/utils";
 import { useState } from "react";
+import { ResponseModal } from "@/components/ui/ResponseModal";
 
 /** Friendly label for probe_key slugs: "trump-2024-assessment" -> "Trump 2024 Assessment" */
 function friendlyProbeKey(key: string) {
@@ -62,6 +63,31 @@ export function SlantDashboard({
   const [activeTab, setActiveTab] = useState<"models" | "probes">("models");
   const [runLoading, setRunLoading] = useState(false);
   const [runStatus, setRunStatus] = useState<{ ok: boolean; message: string } | null>(null);
+  const [modalData, setModalData] = useState<{ response: ProbeResponseDetail; modelName: string; probeTopic: string } | null>(null);
+  const [loadingCell, setLoadingCell] = useState<string | null>(null);
+
+  async function handleCellClick(modelSlug: string, probeKey: string) {
+    const cellKey = `${modelSlug}:${probeKey}`;
+    setLoadingCell(cellKey);
+    try {
+      const probe = probes.find(p => p.probe_key === probeKey);
+      if (!probe) return;
+      const res = await fetch(`/api/v1/responses?model_slug=${encodeURIComponent(modelSlug)}&probe_id=${probe.id}`);
+      if (!res.ok) throw new Error(`${res.status}`);
+      const data: ProbeResponseDetail[] = await res.json();
+      if (data.length > 0) {
+        setModalData({
+          response: data[0],
+          modelName: modelSlug,
+          probeTopic: friendlyProbeKey(probeKey),
+        });
+      }
+    } catch {
+      // silently fail - cell just stops loading
+    } finally {
+      setLoadingCell(null);
+    }
+  }
 
   const modelScores = summary?.model_scores ?? [];
   const probeScores = summary?.probe_scores ?? [];
@@ -211,9 +237,23 @@ export function SlantDashboard({
                         </td>
                         {models.map(m => {
                           const score = ps.mean_slant_by_model[m];
+                          const cellKey = `${m}:${ps.probe_key}`;
+                          const isLoading = loadingCell === cellKey;
                           return (
                             <td key={m} className="px-3 py-2.5 text-center">
-                              {score != null ? <ScoreCell score={score} /> : <span className="text-[var(--muted)]">-</span>}
+                              {score != null ? (
+                                <button
+                                  onClick={() => handleCellClick(m, ps.probe_key)}
+                                  className="cursor-pointer hover:bg-white/10 rounded px-1 py-0.5 transition-colors"
+                                  title="Click to view full response"
+                                >
+                                  {isLoading ? (
+                                    <span className="inline-block w-4 h-4 border-2 border-[var(--muted)] border-t-white rounded-full animate-spin" />
+                                  ) : (
+                                    <ScoreCell score={score} />
+                                  )}
+                                </button>
+                              ) : <span className="text-[var(--muted)]">-</span>}
                             </td>
                           );
                         })}
@@ -232,6 +272,15 @@ export function SlantDashboard({
             <span><span className="inline-block w-2 h-2 rounded-full mr-1" style={{ background: "#ef4444" }}/>Leans conservative</span>
           </div>
         </div>
+      )}
+
+      {modalData && (
+        <ResponseModal
+          response={modalData.response}
+          modelName={modalData.modelName}
+          probeTopic={modalData.probeTopic}
+          onClose={() => setModalData(null)}
+        />
       )}
     </div>
   );
