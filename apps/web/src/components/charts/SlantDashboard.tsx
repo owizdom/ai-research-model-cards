@@ -60,6 +60,8 @@ export function SlantDashboard({
   probes: Probe[];
 }) {
   const [activeTab, setActiveTab] = useState<"models" | "probes">("models");
+  const [runLoading, setRunLoading] = useState(false);
+  const [runStatus, setRunStatus] = useState<{ ok: boolean; message: string } | null>(null);
 
   const modelScores = summary?.model_scores ?? [];
   const probeScores = summary?.probe_scores ?? [];
@@ -74,8 +76,46 @@ export function SlantDashboard({
 
   const isEmpty = modelScores.length === 0;
 
+  async function handleRunProbe() {
+    setRunLoading(true);
+    setRunStatus(null);
+    try {
+      const probeIds = probes.map(p => p.id);
+      const modelSlugs = models.length > 0 ? models : [];
+      // Use relative URL so the browser hits the Next.js rewrite proxy -> backend API
+      const res = await fetch("/api/v1/probes/runs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ probe_ids: probeIds, model_slugs: modelSlugs }),
+      });
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
+      const result = await res.json();
+      setRunStatus({ ok: true, message: `Analysis queued (run #${result.run_id}). Refresh the page in a few minutes to see results.` });
+    } catch (err) {
+      setRunStatus({ ok: false, message: `Failed to start: ${err instanceof Error ? err.message : "Unknown error"}` });
+    } finally {
+      setRunLoading(false);
+    }
+  }
+
   return (
     <div className="space-y-6">
+      {/* Run Analysis */}
+      <div className="flex items-center gap-4">
+        <button
+          onClick={handleRunProbe}
+          disabled={runLoading}
+          className="px-4 py-2 text-sm font-medium rounded-lg bg-accent text-white hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {runLoading ? "Running..." : "Run New Analysis"}
+        </button>
+        {runStatus && (
+          <span className={`text-sm ${runStatus.ok ? "text-green-400" : "text-red-400"}`}>
+            {runStatus.message}
+          </span>
+        )}
+      </div>
+
       {/* Tabs */}
       <div className="flex gap-1 border-b border-[var(--border)]">
         {(["models", "probes"] as const).map(tab => (
