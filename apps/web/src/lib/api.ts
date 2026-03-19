@@ -56,7 +56,7 @@ export const api = {
     list: () => get<Probe[]>("/probes"),
     runs: () => get<ProbeRun[]>("/probes/runs"),
     triggerRun: (body: { probe_ids: number[]; model_slugs: string[] }) =>
-      post<ProbeRun>("/probes/runs", body),
+      post<{ run_id: number; status: string }>("/probes/runs", body),
   },
 
   responses: {
