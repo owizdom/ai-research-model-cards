@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import model_validator
 
 
 class APISettings(BaseSettings):
@@ -8,6 +9,12 @@ class APISettings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379"
     CORS_ORIGINS: list[str] = ["http://localhost:3000"]
     TAXONOMY_COVERAGE_THRESHOLD: float = 0.35
+
+    @model_validator(mode="after")
+    def normalize_db_url(self):
+        if self.DATABASE_URL.startswith("postgresql://"):
+            self.DATABASE_URL = self.DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+        return self
 
 
 settings = APISettings()
