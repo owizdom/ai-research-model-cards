@@ -41,7 +41,3 @@ class ModelGeneration(Base):
     family: Mapped["ModelFamily"] = relationship("ModelFamily", back_populates="generations")
     document: Mapped[Optional["Document"]] = relationship("Document")
     eval_results: Mapped[list["EvalResult"]] = relationship("EvalResult", back_populates="generation")
-
-
-# Avoid circular import
-from .eval import EvalResult  # noqa: E402
