@@ -1,0 +1,23 @@
+FROM python:3.11-slim
+WORKDIR /app
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+
+COPY data /app/data
+COPY packages/db /app/packages/db
+RUN pip install --no-cache-dir /app/packages/db
+
+# Lightweight install — only extraction deps, skip PyTorch/sentence-transformers
+RUN pip install --no-cache-dir \
+    redis>=5.0.0 \
+    litellm>=1.40.0 \
+    pyyaml>=6.0.1 \
+    numpy>=1.26.0 \
+    "sqlalchemy[asyncio]>=2.0.0" \
+    asyncpg>=0.29.0 \
+    python-dotenv>=1.0.0
+
+COPY apps/worker/src /app/apps/worker/src
+WORKDIR /app/apps/worker
+
+CMD ["python", "-m", "src.main"]
