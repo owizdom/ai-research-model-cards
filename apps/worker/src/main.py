@@ -1,4 +1,4 @@
-"""Worker entry point — runs embed and probe loops as separate threads."""
+"""Worker entry point — runs embed and extract loops as daemon threads."""
 import asyncio
 import json
 import os
@@ -47,34 +47,33 @@ def embed_thread():
             traceback.print_exc()
 
 
-def probe_thread():
-    """Blocking thread that consumes probe_runs."""
+def extract_thread():
+    """Blocking thread that consumes extract_jobs."""
     try:
-        from src.tasks.probe_runner import _run_probe
+        from src.extractor.eval_extractor import extract_evals_from_version
         SessionLocal = _make_session_factory()
-        print("[worker] probe thread ready", flush=True)
+        print("[worker] extract thread ready", flush=True)
     except Exception as e:
-        print(f"[worker] probe thread import error: {e}", flush=True)
+        print(f"[worker] extract thread import error: {e}", flush=True)
         traceback.print_exc()
         return
 
     r = _redis()
     while True:
-        item = r.blpop("probe_runs", timeout=5)
+        item = r.blpop("extract_jobs", timeout=5)
         if item is None:
             continue
         try:
             payload = json.loads(item[1])
-            print(f"[worker] starting probe run {payload['run_id']}: {len(payload['probe_ids'])} probes × {len(payload['model_slugs'])} models", flush=True)
-            asyncio.run(_run_probe(
-                payload["run_id"],
-                payload["probe_ids"],
-                payload["model_slugs"],
-                SessionLocal,
+            count = asyncio.run(extract_evals_from_version(
+                payload["version_id"], SessionLocal,
             ))
+            print(f"[worker] extracted {count} evals from version {payload['version_id']}", flush=True)
+            time.sleep(5)  # Rate limit delay between extractions
         except Exception as e:
-            print(f"[worker] probe error: {e}", flush=True)
+            print(f"[worker] extract error: {e}", flush=True)
             traceback.print_exc()
+            time.sleep(10)  # Longer delay on error
 
 
 def main():
@@ -85,11 +84,11 @@ def main():
     print("[worker] DB initialized", flush=True)
 
     t1 = threading.Thread(target=embed_thread, daemon=True, name="embed")
-    t2 = threading.Thread(target=probe_thread, daemon=True, name="probe")
+    t2 = threading.Thread(target=extract_thread, daemon=True, name="extract")
     t1.start()
     t2.start()
 
-    print("[worker] both threads started", flush=True)
+    print("[worker] embed + extract threads started", flush=True)
 
     try:
         while True:

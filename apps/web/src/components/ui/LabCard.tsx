@@ -2,11 +2,11 @@ import type { Lab } from "@/lib/types";
 import Link from "next/link";
 
 export function LabCard({ lab }: { lab: Lab }) {
-  const color = lab.color_hex ?? "#7c6af7";
+  const color = lab.color_hex ?? "#D97757";
   return (
     <Link
       href={`/labs/${lab.slug}`}
-      className="block p-5 rounded-xl border border-[var(--border)] bg-surface-1 hover:bg-surface-2 hover:border-[var(--border-light)] transition-all group"
+      className="block p-5 rounded-xl border border-[var(--border)] bg-white shadow-sm hover:shadow-md hover:border-[var(--border-light)] transition-all group"
     >
       <div className="flex items-center gap-3 mb-2">
         <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: color }} />

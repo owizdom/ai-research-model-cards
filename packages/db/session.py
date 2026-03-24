@@ -24,5 +24,5 @@ async def get_session():
 async def init_db():
     async with engine.begin() as conn:
         await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-        from .models import lab, document, taxonomy, probe, slant, ai_model  # noqa
+        from .models import lab, document, taxonomy, model_family, eval, eval_source  # noqa
         await conn.run_sync(Base.metadata.create_all)

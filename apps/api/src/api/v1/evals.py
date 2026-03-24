@@ -1,0 +1,268 @@
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy import select, func, text
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
+
+from src.core.deps import get_db
+from src.schemas.eval import (
+    BenchmarkRead, EvalResultRead, ComparisonResult, TimelinePoint, PerCardEvalPoint, ExtractionRunRead,
+)
+from packages.db.models import (
+    BenchmarkDefinition, EvalResult, ExtractionRun,
+    ModelFamily, ModelGeneration, DocumentVersion, Document, Lab,
+)
+
+import json
+import redis
+import os
+
+router = APIRouter()
+
+
+@router.get("/benchmarks", response_model=list[BenchmarkRead])
+async def list_benchmarks(
+    category: str | None = None,
+    db: AsyncSession = Depends(get_db),
+):
+    q = select(BenchmarkDefinition).order_by(BenchmarkDefinition.category, BenchmarkDefinition.name)
+    if category:
+        q = q.where(BenchmarkDefinition.category == category)
+    result = await db.execute(q)
+    return result.scalars().all()
+
+
+@router.get("/results", response_model=list[EvalResultRead])
+async def list_eval_results(
+    document_id: int | None = None,
+    generation_id: int | None = None,
+    benchmark_id: int | None = None,
+    lab_slug: str | None = None,
+    limit: int = Query(default=100, le=500),
+    offset: int = 0,
+    db: AsyncSession = Depends(get_db),
+):
+    q = (
+        select(EvalResult)
+        .options(selectinload(EvalResult.benchmark), selectinload(EvalResult.generation))
+        .order_by(EvalResult.extracted_at.desc())
+        .limit(limit)
+        .offset(offset)
+    )
+    if document_id:
+        q = q.join(DocumentVersion).where(DocumentVersion.document_id == document_id)
+    if generation_id:
+        q = q.where(EvalResult.generation_id == generation_id)
+    if benchmark_id:
+        q = q.where(EvalResult.benchmark_id == benchmark_id)
+    if lab_slug:
+        q = q.join(DocumentVersion, EvalResult.document_version_id == DocumentVersion.id).join(
+            Document, DocumentVersion.document_id == Document.id
+        ).join(Lab, Document.lab_id == Lab.id).where(Lab.slug == lab_slug)
+
+    result = await db.execute(q)
+    return result.scalars().all()
+
+
+@router.get("/results/by-document/{document_id}")
+async def evals_by_document(document_id: int, db: AsyncSession = Depends(get_db)):
+    doc = await db.get(Document, document_id)
+    if not doc:
+        return {"document_id": document_id, "title": None, "lab_name": None, "evals": []}
+
+    # Get latest version
+    version_q = (
+        select(DocumentVersion)
+        .where(DocumentVersion.document_id == document_id)
+        .order_by(DocumentVersion.version_date.desc())
+        .limit(1)
+    )
+    version_result = await db.execute(version_q)
+    version = version_result.scalar_one_or_none()
+    if not version:
+        return {"document_id": document_id, "title": doc.title, "lab_name": None, "evals": []}
+
+    evals_q = (
+        select(EvalResult)
+        .options(selectinload(EvalResult.benchmark), selectinload(EvalResult.generation))
+        .where(EvalResult.document_version_id == version.id)
+        .order_by(EvalResult.score.desc())
+    )
+    evals_result = await db.execute(evals_q)
+    evals = evals_result.scalars().all()
+
+    lab = await db.get(Lab, doc.lab_id) if doc.lab_id else None
+
+    return {
+        "document_id": document_id,
+        "title": doc.title,
+        "lab_name": lab.name if lab else None,
+        "version_id": version.id,
+        "evals": [EvalResultRead.model_validate(e) for e in evals],
+    }
+
+
+@router.get("/compare/generations", response_model=ComparisonResult)
+async def compare_generations(
+    family_slug: str,
+    benchmark_slugs: str | None = None,
+    db: AsyncSession = Depends(get_db),
+):
+    family_q = select(ModelFamily).where(ModelFamily.slug == family_slug)
+    family_result = await db.execute(family_q)
+    family = family_result.scalar_one_or_none()
+    if not family:
+        return ComparisonResult(
+            family_slug=family_slug, family_name="", benchmarks=[], generations=[], matrix={}
+        )
+
+    gens_q = select(ModelGeneration).where(ModelGeneration.family_id == family.id)
+    gens_result = await db.execute(gens_q)
+    generations = gens_result.scalars().all()
+
+    # Get all eval results for these generations
+    gen_ids = [g.id for g in generations]
+    if not gen_ids:
+        return ComparisonResult(
+            family_slug=family_slug, family_name=family.name,
+            benchmarks=[], generations=[], matrix={},
+        )
+
+    evals_q = (
+        select(EvalResult)
+        .options(selectinload(EvalResult.benchmark), selectinload(EvalResult.generation))
+        .where(EvalResult.generation_id.in_(gen_ids))
+    )
+    if benchmark_slugs:
+        slugs = [s.strip() for s in benchmark_slugs.split(",")]
+        evals_q = evals_q.join(BenchmarkDefinition).where(BenchmarkDefinition.slug.in_(slugs))
+
+    evals_result = await db.execute(evals_q)
+    evals = evals_result.scalars().all()
+
+    # Build matrix: {generation_slug: {benchmark_slug: score}}
+    matrix: dict[str, dict[str, float | None]] = {}
+    benchmark_set: set[str] = set()
+    gen_slugs: list[str] = [g.slug for g in generations]
+
+    for g in generations:
+        matrix[g.slug] = {}
+
+    for e in evals:
+        if e.generation and e.benchmark:
+            matrix.setdefault(e.generation.slug, {})[e.benchmark.slug] = e.score
+            benchmark_set.add(e.benchmark.slug)
+
+    return ComparisonResult(
+        family_slug=family_slug,
+        family_name=family.name,
+        benchmarks=sorted(benchmark_set),
+        generations=gen_slugs,
+        matrix=matrix,
+    )
+
+
+@router.get("/timeline", response_model=list[TimelinePoint])
+async def eval_timeline(
+    lab_slug: str | None = None,
+    db: AsyncSession = Depends(get_db),
+):
+    base = """
+        SELECT
+            l.slug AS lab_slug,
+            to_char(dv.version_date, 'YYYY-MM') AS period,
+            COUNT(DISTINCT er.id) AS eval_count,
+            COUNT(DISTINCT dv.document_id) AS document_count
+        FROM eval_results er
+        JOIN document_versions dv ON er.document_version_id = dv.id
+        JOIN documents d ON dv.document_id = d.id
+        JOIN labs l ON d.lab_id = l.id
+    """
+    suffix = " GROUP BY l.slug, to_char(dv.version_date, 'YYYY-MM') ORDER BY period, l.slug"
+    if lab_slug:
+        result = await db.execute(text(base + " WHERE l.slug = :lab_slug" + suffix), {"lab_slug": lab_slug})
+    else:
+        result = await db.execute(text(base + suffix))
+    rows = result.fetchall()
+    return [
+        TimelinePoint(
+            period=row.period, lab_slug=row.lab_slug,
+            eval_count=row.eval_count, document_count=row.document_count,
+        )
+        for row in rows
+    ]
+
+
+@router.get("/extraction-runs", response_model=list[ExtractionRunRead])
+async def list_extraction_runs(
+    status: str | None = None,
+    limit: int = Query(default=20, le=100),
+    db: AsyncSession = Depends(get_db),
+):
+    q = select(ExtractionRun).order_by(ExtractionRun.started_at.desc()).limit(limit)
+    if status:
+        q = q.where(ExtractionRun.status == status)
+    result = await db.execute(q)
+    return result.scalars().all()
+
+
+@router.get("/per-card", response_model=list[PerCardEvalPoint])
+async def eval_per_card(db: AsyncSession = Depends(get_db)):
+    """Per-card eval counts with dates — for the over-time trend chart."""
+    q = text("""
+        SELECT d.id AS document_id, d.title AS document_title,
+               l.slug AS lab_slug, dv.version_date::text AS version_date,
+               COUNT(er.id) AS eval_count
+        FROM eval_results er
+        JOIN document_versions dv ON er.document_version_id = dv.id
+        JOIN documents d ON dv.document_id = d.id
+        JOIN labs l ON d.lab_id = l.id
+        GROUP BY d.id, d.title, l.slug, dv.version_date
+        ORDER BY dv.version_date
+    """)
+    result = await db.execute(q)
+    return [
+        PerCardEvalPoint(
+            document_id=row.document_id, document_title=row.document_title,
+            lab_slug=row.lab_slug, version_date=row.version_date,
+            eval_count=row.eval_count,
+        )
+        for row in result.fetchall()
+    ]
+
+
+@router.get("/depth")
+async def eval_depth(db: AsyncSession = Depends(get_db)):
+    """Eval counts per benchmark category per lab — for the Eval Depth tab."""
+    q = text("""
+        SELECT
+            l.slug AS lab_slug,
+            bd.category AS benchmark_category,
+            COUNT(DISTINCT er.id) AS eval_count
+        FROM eval_results er
+        JOIN document_versions dv ON er.document_version_id = dv.id
+        JOIN documents d ON dv.document_id = d.id
+        JOIN labs l ON d.lab_id = l.id
+        JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
+        GROUP BY l.slug, bd.category
+        ORDER BY bd.category, l.slug
+    """)
+    result = await db.execute(q)
+    rows = result.fetchall()
+    # Build {category: {lab: count}}
+    depth: dict[str, dict[str, int]] = {}
+    for row in rows:
+        if row.benchmark_category not in depth:
+            depth[row.benchmark_category] = {}
+        depth[row.benchmark_category][row.lab_slug] = row.eval_count
+    return depth
+
+
+@router.post("/extract/{document_version_id}", status_code=202)
+async def trigger_extraction(document_version_id: int, db: AsyncSession = Depends(get_db)):
+    version = await db.get(DocumentVersion, document_version_id)
+    if not version:
+        return {"error": "Version not found"}
+
+    r = redis.Redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
+    r.rpush("extract_jobs", json.dumps({"version_id": document_version_id}))
+    return {"version_id": document_version_id, "status": "queued"}

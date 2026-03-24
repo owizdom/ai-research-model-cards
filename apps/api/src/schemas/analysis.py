@@ -23,32 +23,3 @@ class TemporalPoint(BaseModel):
     covered_by_all_count: int
     total_categories: int
     convergence_score: float
-
-
-class DriftResult(BaseModel):
-    model_slug: str
-    probe_id: int
-    n_samples: int
-    mean_slant: float
-    std_slant: float
-    trend: str
-    p_value: float
-    tau: float
-    is_significant: bool
-    direction: str
-    time_series: list[dict]
-
-
-class AsymmetryResult(BaseModel):
-    model_slug: str
-    probe_a_key: str
-    probe_b_key: str
-    trump_slant: float
-    biden_slant: float
-    asymmetry_score: float
-    interpretation: str
-
-
-class SlantSummary(BaseModel):
-    model_scores: list[dict]
-    probe_scores: list[dict]

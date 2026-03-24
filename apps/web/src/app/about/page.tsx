@@ -1,27 +1,27 @@
 export default function AboutPage() {
   return (
     <div className="max-w-3xl">
-      <h1 className="text-3xl font-bold mb-2">About</h1>
+      <h1 className="text-3xl font-bold font-serif mb-2">About</h1>
       <p className="text-[var(--muted)] mb-10 text-base leading-relaxed">
-        AI Policy Intelligence is an open research platform built by{" "}
+        Model Card Explorer is an open research platform built by{" "}
         <a href="https://freesystems.substack.com/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
           Free Systems Lab
         </a>{" "}
-        to bring transparency to AI safety policies and model behavior.
+        to bring transparency to AI model governance and safety documentation.
       </p>
 
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4">What We Do</h2>
         <div className="space-y-4 text-sm text-[var(--muted)] leading-relaxed">
           <p>
-            We systematically collect, analyze, and compare the safety policies published by
-            major AI laboratories. Then we test whether their AI models actually behave
-            consistently with those policies, focusing on political neutrality as a measurable proxy.
+            We systematically collect, version, and analyze the model cards and safety
+            documentation published by major AI laboratories. Our platform extracts structured
+            evaluation data from each card and enables cross-lab and cross-generation comparisons.
           </p>
           <p>
-            Our platform tracks two things: what AI companies <em>say</em> (their published policies,
-            model cards, usage guidelines) and what their models <em>do</em> (how they respond to
-            politically sensitive questions).
+            By tracking what AI companies disclose about their models&apos; capabilities,
+            limitations, and safety evaluations, we make it easier for researchers, policymakers,
+            and the public to understand the state of AI governance.
           </p>
         </div>
       </section>
@@ -30,7 +30,7 @@ export default function AboutPage() {
         <h2 className="text-xl font-semibold mb-4">Methodology</h2>
 
         <div className="space-y-8">
-          <div className="p-5 rounded-xl border border-[var(--border)] bg-surface-1">
+          <div className="p-5 rounded-xl border border-[var(--border)] bg-white shadow-sm">
             <h3 className="font-semibold mb-2">Safety Coverage Analysis</h3>
             <p className="text-sm text-[var(--muted)] leading-relaxed mb-3">
               We collect policy documents from each AI lab (model cards, usage policies, responsible
@@ -57,25 +57,25 @@ export default function AboutPage() {
             </ul>
           </div>
 
-          <div className="p-5 rounded-xl border border-[var(--border)] bg-surface-1">
-            <h3 className="font-semibold mb-2">Political Bias Measurement</h3>
+          <div className="p-5 rounded-xl border border-[var(--border)] bg-white shadow-sm">
+            <h3 className="font-semibold mb-2">Eval Extraction</h3>
             <p className="text-sm text-[var(--muted)] leading-relaxed mb-3">
-              We ask each AI model the same 25 politically sensitive questions spanning 11 categories
-              (elections, immigration, guns, economics, social policy, climate, foreign policy, tech
-              policy, criminal justice, healthcare, and free speech) and compute a composite bias score.
+              We use LLM-based extraction to identify every benchmark result, safety evaluation,
+              and capability assessment reported in each model card. Extracted data is structured
+              into a searchable, comparable format.
             </p>
             <ul className="text-sm text-[var(--muted)] space-y-2">
               <li className="flex gap-2">
-                <span className="text-accent shrink-0">50%</span>
-                <span><strong className="text-white">Embedding Distance</strong> : Response embeddings compared against liberal, conservative, and neutral anchor texts</span>
+                <span className="text-accent shrink-0">1.</span>
+                <span>Model card content is sent to Claude Sonnet for structured extraction</span>
               </li>
               <li className="flex gap-2">
-                <span className="text-accent shrink-0">30%</span>
-                <span><strong className="text-white">Political Valence Lexicon</strong> : ~70 politically charged terms scored on a liberal-to-conservative scale</span>
+                <span className="text-accent shrink-0">2.</span>
+                <span>Benchmark names, scores, variants, and metrics are normalized against a known benchmark registry</span>
               </li>
               <li className="flex gap-2">
-                <span className="text-accent shrink-0">20%</span>
-                <span><strong className="text-white">Moral Foundations</strong> : Scoring across Care, Fairness, Loyalty, Authority, and Purity dimensions</span>
+                <span className="text-accent shrink-0">3.</span>
+                <span>Results are linked to model families and generations for cross-generation comparison</span>
               </li>
             </ul>
           </div>
@@ -85,7 +85,7 @@ export default function AboutPage() {
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4">Data Sources</h2>
         <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">
-          We track 9 AI laboratories and collect their publicly available policy documentation:
+          We track 9 AI laboratories and collect their publicly available documentation:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
@@ -93,7 +93,7 @@ export default function AboutPage() {
             "Meta AI", "Mistral AI", "xAI",
             "Cohere", "Amazon (AWS)", "AI21 Labs",
           ].map(lab => (
-            <div key={lab} className="px-4 py-2.5 rounded-lg border border-[var(--border)] bg-surface-1 text-sm">
+            <div key={lab} className="px-4 py-2.5 rounded-lg border border-[var(--border)] bg-white shadow-sm text-sm">
               {lab}
             </div>
           ))}
@@ -105,19 +105,15 @@ export default function AboutPage() {
         <ul className="text-sm text-[var(--muted)] space-y-3 leading-relaxed">
           <li className="flex gap-2">
             <span className="text-[var(--muted)] shrink-0">1.</span>
-            <span>Bias measurement currently covers Meta Llama models via Groq. Expansion to GPT, Claude, and Gemini is planned.</span>
-          </li>
-          <li className="flex gap-2">
-            <span className="text-[var(--muted)] shrink-0">2.</span>
-            <span>The composite score weights (50/30/20) are manually calibrated. Different weightings would shift absolute values.</span>
-          </li>
-          <li className="flex gap-2">
-            <span className="text-[var(--muted)] shrink-0">3.</span>
             <span>Document-level embeddings may dilute brief mentions of a topic within longer documents.</span>
           </li>
           <li className="flex gap-2">
-            <span className="text-[var(--muted)] shrink-0">4.</span>
+            <span className="text-[var(--muted)] shrink-0">2.</span>
             <span>The 0.35 cosine similarity threshold for coverage is a judgment call based on empirical validation.</span>
+          </li>
+          <li className="flex gap-2">
+            <span className="text-[var(--muted)] shrink-0">3.</span>
+            <span>LLM-based eval extraction may miss or misinterpret results in unusual card formats.</span>
           </li>
         </ul>
       </section>

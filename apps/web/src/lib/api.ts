@@ -1,6 +1,7 @@
 import type {
   Lab, Document, DocumentDetail, IntersectionMatrix,
-  SlantSeries, SlantSummary, Probe, ProbeRun, ProbeResponseDetail,
+  Benchmark, EvalResult, GenerationComparison, EvalTimeline, PerCardEvalPoint,
+  ModelFamily, ModelFamilyDetail,
 } from "./types";
 
 // API_INTERNAL_URL is set server-side only (docker-compose env).
@@ -46,21 +47,25 @@ export const api = {
   analysis: {
     intersection: (params?: { labs?: string; threshold?: number }) =>
       get<IntersectionMatrix>("/analysis/intersection", params as Record<string, string | number | boolean>),
-    slantSummary: (params?: { probe_category?: string }) =>
-      get<SlantSummary>("/analysis/slant", params as Record<string, string | number | boolean>),
-    slantSeries: (modelSlug: string, probeSlug?: string) =>
-      get<SlantSeries[]>("/analysis/slant/series", { model: modelSlug, ...(probeSlug ? { probe: probeSlug } : {}) }),
   },
 
-  probes: {
-    list: () => get<Probe[]>("/probes"),
-    runs: () => get<ProbeRun[]>("/probes/runs"),
-    triggerRun: (body: { probe_ids: number[]; model_slugs: string[] }) =>
-      post<{ run_id: number; status: string }>("/probes/runs", body),
+  evals: {
+    benchmarks: (category?: string) =>
+      get<Benchmark[]>("/evals/benchmarks", category ? { category } : undefined),
+    byDocument: (docId: number) =>
+      get<{ document_id: number; title: string; lab_name: string; version_id: number; evals: EvalResult[] }>(`/evals/results/by-document/${docId}`),
+    compare: (familySlug: string, benchmarks?: string) =>
+      get<GenerationComparison>("/evals/compare/generations", { family_slug: familySlug, ...(benchmarks ? { benchmark_slugs: benchmarks } : {}) }),
+    timeline: (labSlug?: string) =>
+      get<EvalTimeline[]>("/evals/timeline", labSlug ? { lab_slug: labSlug } : undefined),
+    perCard: () =>
+      get<PerCardEvalPoint[]>("/evals/per-card"),
+    depth: () =>
+      get<Record<string, Record<string, number>>>("/evals/depth"),
   },
 
-  responses: {
-    list: (params: { run_id?: number; probe_id?: number; model_slug?: string }) =>
-      get<ProbeResponseDetail[]>("/responses", params as Record<string, string | number | boolean>),
+  families: {
+    list: () => get<ModelFamily[]>("/families"),
+    get: (slug: string) => get<ModelFamilyDetail>(`/families/${slug}`),
   },
 };

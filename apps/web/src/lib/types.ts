@@ -47,62 +47,81 @@ export interface IntersectionSet {
   size: number;
 }
 
-export interface SlantSeries {
-  model_slug: string;
-  model_name: string;
-  probe_slug: string;
-  dates: string[];
-  composite_slant: number[];
-  trend_direction: "increasing" | "decreasing" | "no_trend";
-  trend_p: number;
-}
-
-export interface ModelScore {
-  model_slug: string;
-  mean_composite_slant: number;
-  std: number;
-  n_samples: number;
-}
-
-export interface ProbeScore {
-  probe_key: string;
+// Eval types
+export interface Benchmark {
+  id: number;
+  slug: string;
+  name: string;
   category: string;
-  mean_slant_by_model: Record<string, number>;
+  description: string | null;
+  metric_name: string | null;
+  metric_unit: string | null;
+  higher_is_better: boolean;
 }
 
-export interface SlantSummary {
-  model_scores: ModelScore[];
-  probe_scores: ProbeScore[];
-}
-
-export interface Probe {
+export interface GenerationBrief {
   id: number;
-  probe_key: string;
-  category: string;
-  prompt: string;
-  is_active: boolean;
+  slug: string;
+  name: string;
+  version_label: string | null;
 }
 
-export interface ProbeRun {
+export interface EvalResult {
   id: number;
-  status: "queued" | "running" | "completed" | "failed";
-  triggered_by: string;
-  started_at: string;
-  probe_count: number | null;
-  model_count: number | null;
+  benchmark: Benchmark;
+  generation: GenerationBrief | null;
+  score: number;
+  variant: string;
+  score_details: Record<string, unknown> | null;
+  extraction_confidence: number | null;
+  is_self_reported: boolean;
+  source_type: string;
+  extracted_at: string;
 }
 
-export interface ProbeResponseDetail {
+export interface ModelFamily {
   id: number;
-  model_slug: string;
-  prompt_text: string;
-  response_text: string;
-  recorded_at: string;
-  tokens: number | null;
-  slant_score: {
-    composite: number;
-    economic: number | null;
-    social: number | null;
-    authority: number | null;
-  } | null;
+  slug: string;
+  name: string;
+  lab_slug: string;
+  generation_count: number;
 }
+
+export interface ModelGeneration {
+  id: number;
+  slug: string;
+  name: string;
+  version_label: string | null;
+  release_date: string | null;
+  parameter_count: string | null;
+  eval_count: number;
+  document_id: number | null;
+}
+
+export interface ModelFamilyDetail extends ModelFamily {
+  generations: ModelGeneration[];
+}
+
+export interface GenerationComparison {
+  family_slug: string;
+  family_name: string;
+  benchmarks: string[];
+  generations: string[];
+  matrix: Record<string, Record<string, number | null>>;
+}
+
+export interface EvalTimeline {
+  period: string;
+  lab_slug: string;
+  eval_count: number;
+  document_count: number;
+}
+
+export interface PerCardEvalPoint {
+  document_id: number;
+  document_title: string;
+  lab_slug: string;
+  version_date: string;
+  eval_count: number;
+}
+

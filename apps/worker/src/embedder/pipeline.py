@@ -7,7 +7,7 @@ import traceback
 import numpy as np
 from sqlalchemy import select
 
-from packages.db.models import DocumentVersion, TaxonomyCategory, DocumentTaxonomyMapping
+from packages.db.models import DocumentVersion, Document, TaxonomyCategory, DocumentTaxonomyMapping
 from .model import embed_one, embed
 
 
@@ -66,4 +66,16 @@ async def process_embed_job(version_id: int, SessionLocal=None) -> None:
             ))
             mapped += 1
         await db.commit()
+
+        # Auto-enqueue extraction for model cards
+        doc_result = await db.execute(
+            select(Document).where(Document.id == version.document_id)
+        )
+        doc = doc_result.scalar_one_or_none()
+        if doc and doc.doc_type == "model_card":
+            import redis as redis_lib
+            r = redis_lib.Redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
+            r.rpush("extract_jobs", json.dumps({"version_id": version_id}))
+            print(f"[worker] enqueued extract job for version {version_id}", flush=True)
+
     print(f"[worker] version {version_id}: mapped to {mapped} taxonomy categories", flush=True)

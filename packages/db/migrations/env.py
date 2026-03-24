@@ -8,7 +8,7 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 
 from packages.db.session import Base
-from packages.db.models import lab, document, taxonomy, probe, slant, ai_model  # noqa
+from packages.db.models import lab, document, taxonomy, model_family, eval, eval_source  # noqa
 
 config = context.config
 

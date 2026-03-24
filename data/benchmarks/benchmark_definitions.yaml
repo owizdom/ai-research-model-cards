@@ -1,0 +1,178 @@
+benchmarks:
+  # Knowledge
+  - slug: mmlu
+    name: MMLU
+    category: knowledge
+    description: Massive Multitask Language Understanding - 57 academic subjects
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+    aliases: ["MMLU (5-shot)", "MMLU 5-shot"]
+
+  - slug: mmlu_pro
+    name: MMLU-Pro
+    category: knowledge
+    description: Professional-level MMLU variant with harder questions
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  # Reasoning
+  - slug: gpqa
+    name: GPQA
+    category: reasoning
+    description: Graduate-level Google-Proof Q&A
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+    aliases: ["GPQA Diamond", "GPQA-Diamond"]
+
+  - slug: arc_challenge
+    name: ARC-Challenge
+    category: reasoning
+    description: AI2 Reasoning Challenge - Challenge Set
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+    aliases: ["ARC-C", "ARC Challenge"]
+
+  - slug: hellaswag
+    name: HellaSwag
+    category: reasoning
+    description: Commonsense natural language inference
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  - slug: winogrande
+    name: WinoGrande
+    category: reasoning
+    description: Commonsense reasoning dataset
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  - slug: drop
+    name: DROP
+    category: reasoning
+    description: Discrete Reasoning Over Paragraphs
+    metric_name: f1
+    metric_unit: "%"
+    higher_is_better: true
+
+  # Coding
+  - slug: humaneval
+    name: HumanEval
+    category: coding
+    description: OpenAI code generation benchmark
+    metric_name: pass@1
+    metric_unit: "%"
+    higher_is_better: true
+    aliases: ["HumanEval+"]
+
+  - slug: swe_bench
+    name: SWE-bench
+    category: coding
+    description: Real-world software engineering tasks
+    metric_name: resolve_rate
+    metric_unit: "%"
+    higher_is_better: true
+    aliases: ["SWE-bench Verified", "SWE-Bench"]
+
+  - slug: mbpp
+    name: MBPP
+    category: coding
+    description: Mostly Basic Python Problems
+    metric_name: pass@1
+    metric_unit: "%"
+    higher_is_better: true
+    aliases: ["MBPP+"]
+
+  # Math
+  - slug: gsm8k
+    name: GSM8K
+    category: math
+    description: Grade school math word problems
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  - slug: math
+    name: MATH
+    category: math
+    description: Competition mathematics problems
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+    aliases: ["MATH (hard)", "MATH-500", "MATH 500"]
+
+  - slug: aime
+    name: AIME
+    category: math
+    description: American Invitational Mathematics Examination
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+    aliases: ["AIME 2024", "AIME 2025", "AIME '24"]
+
+  # Safety
+  - slug: truthfulqa
+    name: TruthfulQA
+    category: safety
+    description: Measuring truthfulness in language models
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  - slug: bbq
+    name: BBQ
+    category: safety
+    description: Bias Benchmark for QA
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  - slug: toxigen
+    name: ToxiGen
+    category: safety
+    description: Toxic language generation benchmark
+    metric_name: toxicity_rate
+    metric_unit: "%"
+    higher_is_better: false
+
+  # Multilingual
+  - slug: mgsm
+    name: MGSM
+    category: multilingual
+    description: Multilingual Grade School Math
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  # Instruction following
+  - slug: ifeval
+    name: IFEval
+    category: instruction_following
+    description: Instruction Following Evaluation
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  # Vision
+  - slug: mmmu
+    name: MMMU
+    category: vision
+    description: Massive Multi-discipline Multimodal Understanding
+    metric_name: accuracy
+    metric_unit: "%"
+    higher_is_better: true
+
+  # Arena
+  - slug: chatbot_arena_elo
+    name: Chatbot Arena ELO
+    category: arena
+    description: LMSYS Chatbot Arena crowdsourced ranking
+    metric_name: elo
+    metric_unit: score
+    higher_is_better: true
+    aliases: ["Arena ELO", "LMSYS ELO"]

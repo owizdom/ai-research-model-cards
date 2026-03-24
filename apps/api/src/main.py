@@ -12,8 +12,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="AI Policy Intelligence API",
-    description="REST API for AI safety policy research platform",
+    title="Model Card Explorer API",
+    description="REST API for AI model card governance research platform",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -26,14 +26,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from src.api.v1 import documents, labs, intersection, probes, responses, slant  # noqa
+from src.api.v1 import documents, labs, intersection, evals, families  # noqa
 
 app.include_router(documents.router, prefix="/api/v1/documents", tags=["Documents"])
 app.include_router(labs.router, prefix="/api/v1/labs", tags=["Labs"])
 app.include_router(intersection.router, prefix="/api/v1/analysis/intersection", tags=["Intersection"])
-app.include_router(probes.router, prefix="/api/v1/probes", tags=["Probes"])
-app.include_router(responses.router, prefix="/api/v1/responses", tags=["Responses"])
-app.include_router(slant.router, prefix="/api/v1/analysis/slant", tags=["Slant"])
+app.include_router(evals.router, prefix="/api/v1/evals", tags=["Evals"])
+app.include_router(families.router, prefix="/api/v1/families", tags=["Model Families"])
 
 
 @app.get("/health", tags=["Meta"])

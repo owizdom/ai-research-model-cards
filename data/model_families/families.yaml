@@ -1,0 +1,85 @@
+families:
+  - slug: claude
+    lab_slug: anthropic
+    name: Claude
+    generations:
+      - slug: claude-3
+        name: Claude 3
+        version_label: "3"
+        document_slug: anthropic_model_card
+      - slug: claude-3.5
+        name: Claude 3.5
+        version_label: "3.5"
+        document_slug: anthropic_35_addendum
+      - slug: claude-4
+        name: Claude 4
+        version_label: "4"
+        document_slug: anthropic_claude4_card
+      - slug: claude-opus-4.5
+        name: Claude Opus 4.5
+        version_label: "4.5-opus"
+        document_slug: anthropic_opus45_card
+      - slug: claude-sonnet-4.5
+        name: Claude Sonnet 4.5
+        version_label: "4.5-sonnet"
+        document_slug: anthropic_sonnet45_card
+
+  - slug: gpt
+    lab_slug: openai
+    name: GPT
+    generations:
+      - slug: gpt-4
+        name: GPT-4
+        version_label: "4"
+        document_slug: openai_gpt4_system_card
+      - slug: gpt-4o
+        name: GPT-4o
+        version_label: "4o"
+        document_slug: openai_gpt4o_system_card
+      - slug: gpt-4.5
+        name: GPT-4.5
+        version_label: "4.5"
+        document_slug: openai_gpt45_system_card
+      - slug: gpt-5
+        name: GPT-5
+        version_label: "5"
+        document_slug: openai_gpt5_system_card
+
+  - slug: gemini
+    lab_slug: google
+    name: Gemini
+    generations:
+      - slug: gemini-1.0
+        name: Gemini 1.0
+        version_label: "1.0"
+        document_slug: google_gemini_report
+      - slug: gemini-1.5
+        name: Gemini 1.5
+        version_label: "1.5"
+        document_slug: google_gemini_1_5_report
+
+  - slug: llama
+    lab_slug: meta
+    name: Llama
+    generations:
+      - slug: llama-3
+        name: Llama 3
+        version_label: "3"
+        document_slug: meta_llama3_model_card
+      - slug: llama-3.1
+        name: Llama 3.1
+        version_label: "3.1"
+        document_slug: meta_llama31_card
+      - slug: llama-3.3
+        name: Llama 3.3
+        version_label: "3.3"
+        document_slug: meta_responsible_use
+
+  - slug: grok
+    lab_slug: xai
+    name: Grok
+    generations:
+      - slug: grok-4
+        name: Grok 4
+        version_label: "4"
+        document_slug: xai_grok4_card
