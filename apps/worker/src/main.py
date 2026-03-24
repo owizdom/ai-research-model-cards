@@ -69,11 +69,11 @@ def extract_thread():
                 payload["version_id"], SessionLocal,
             ))
             print(f"[worker] extracted {count} evals from version {payload['version_id']}", flush=True)
-            time.sleep(5)  # Rate limit delay between extractions
+            time.sleep(15)  # Rate limit delay between extractions
         except Exception as e:
             print(f"[worker] extract error: {e}", flush=True)
             traceback.print_exc()
-            time.sleep(10)  # Longer delay on error
+            time.sleep(30)  # Longer delay on error
 
 
 def main():
