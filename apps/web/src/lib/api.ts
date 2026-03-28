@@ -2,6 +2,7 @@ import type {
   Lab, Document, DocumentDetail, IntersectionMatrix,
   Benchmark, EvalResult, GenerationComparison, EvalTimeline, PerCardEvalPoint,
   ModelFamily, ModelFamilyDetail,
+  WordCountTimelinePoint, CategoryTimelinePoint,
 } from "./types";
 
 // API_INTERNAL_URL is set server-side only (docker-compose env).
@@ -39,6 +40,8 @@ export const api = {
   documents: {
     list: (params?: { lab?: string; doc_type?: string; search?: string; limit?: number; offset?: number }) =>
       get<Document[]>("/documents", params as Record<string, string | number | boolean>),
+    wordCountTimeline: () =>
+      get<WordCountTimelinePoint[]>("/documents/word-count-timeline"),
     get: (id: number) => get<DocumentDetail>(`/documents/${id}`),
     version: (id: number, versionId: number) =>
       get<{ content_md: string }>(`/documents/${id}/versions/${versionId}`),
@@ -62,6 +65,8 @@ export const api = {
       get<PerCardEvalPoint[]>("/evals/per-card"),
     depth: () =>
       get<Record<string, Record<string, number>>>("/evals/depth"),
+    categoryTimeline: () =>
+      get<CategoryTimelinePoint[]>("/evals/category-timeline"),
   },
 
   families: {

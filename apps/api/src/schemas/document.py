@@ -57,6 +57,15 @@ class DocumentDetail(DocumentSummary):
     versions: list[DocumentVersionSummary] = []
 
 
+class WordCountTimelinePoint(BaseModel):
+    lab_slug: str
+    lab_name: str
+    document_slug: str
+    document_title: str
+    version_date: str
+    word_count: int
+
+
 class DiffResult(BaseModel):
     version_a_id: int
     version_b_id: int

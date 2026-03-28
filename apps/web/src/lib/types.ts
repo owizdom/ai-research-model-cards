@@ -125,3 +125,19 @@ export interface PerCardEvalPoint {
   eval_count: number;
 }
 
+export interface WordCountTimelinePoint {
+  lab_slug: string;
+  lab_name: string;
+  document_slug: string;
+  document_title: string;
+  version_date: string;
+  word_count: number;
+}
+
+export interface CategoryTimelinePoint {
+  lab_slug: string;
+  lab_name: string;
+  benchmark_category: string;
+  eval_count: number;
+}
+

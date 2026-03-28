@@ -6,6 +6,7 @@ from sqlalchemy.orm import selectinload
 from src.core.deps import get_db
 from src.schemas.eval import (
     BenchmarkRead, EvalResultRead, ComparisonResult, TimelinePoint, PerCardEvalPoint, ExtractionRunRead,
+    CategoryTimelinePoint,
 )
 from packages.db.models import (
     BenchmarkDefinition, EvalResult, ExtractionRun,
@@ -255,6 +256,32 @@ async def eval_depth(db: AsyncSession = Depends(get_db)):
             depth[row.benchmark_category] = {}
         depth[row.benchmark_category][row.lab_slug] = row.eval_count
     return depth
+
+
+@router.get("/category-timeline", response_model=list[CategoryTimelinePoint])
+async def category_timeline(db: AsyncSession = Depends(get_db)):
+    """Eval counts per benchmark category per lab — for trend charts."""
+    q = text("""
+        SELECT l.slug AS lab_slug, l.name AS lab_name,
+               bd.category AS benchmark_category,
+               COUNT(DISTINCT er.id) AS eval_count
+        FROM eval_results er
+        JOIN document_versions dv ON er.document_version_id = dv.id
+        JOIN documents d ON dv.document_id = d.id
+        JOIN labs l ON d.lab_id = l.id
+        JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
+        GROUP BY l.slug, l.name, bd.category
+        ORDER BY l.slug, bd.category
+    """)
+    result = await db.execute(q)
+    return [
+        CategoryTimelinePoint(
+            lab_slug=r.lab_slug, lab_name=r.lab_name,
+            benchmark_category=r.benchmark_category,
+            eval_count=r.eval_count,
+        )
+        for r in result.fetchall()
+    ]
 
 
 @router.post("/extract/{document_version_id}", status_code=202)

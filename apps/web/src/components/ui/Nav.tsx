@@ -8,6 +8,7 @@ const links = [
   { href: "/documents", label: "Model Cards" },
   { href: "/evals", label: "Eval Explorer" },
   { href: "/families", label: "Families" },
+  { href: "/trends", label: "Trends" },
   { href: "/analysis", label: "Coverage" },
   { href: "/about", label: "About" },
 ];

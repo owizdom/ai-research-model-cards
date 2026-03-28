@@ -29,6 +29,7 @@ LAB_META: dict[str, dict] = {
 SOURCES: list[Source] = [
     # ── Anthropic ─────────────────────────────────────────────────────────────
     Source("anthropic_usage_policy",   "anthropic", "Acceptable Use Policy",      "usage_policy",  "https://www.anthropic.com/legal/aup",                                              "html"),
+    Source("anthropic_claude2_card",   "anthropic", "Claude 2 Model Card",        "model_card",    "https://www-cdn.anthropic.com/bd2a28d2535bfb0494cc8e2a3bf135d2e7523226/Model-Card-Claude-2.pdf", "pdf"),
     Source("anthropic_model_card",     "anthropic", "Claude 3 Model Card",        "model_card",    "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf", "pdf"),
     Source("anthropic_rsp",            "anthropic", "Responsible Scaling Policy", "constitution",  "https://www.anthropic.com/responsible-scaling-policy",                            "html"),
     Source("anthropic_core_views",     "anthropic", "Core Views on AI Safety",    "constitution",  "https://www.anthropic.com/news/core-views-on-ai-safety",                          "html"),
@@ -37,6 +38,7 @@ SOURCES: list[Source] = [
     Source("anthropic_claude4_card",  "anthropic", "Claude 4 System Card",         "model_card",    "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",    "pdf"),
     Source("anthropic_opus45_card",   "anthropic", "Claude Opus 4.5 System Card",  "model_card",    "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf","pdf"),
     Source("anthropic_sonnet45_card", "anthropic", "Claude Sonnet 4.5 System Card","model_card",    "https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf", "pdf"),
+    Source("anthropic_haiku45_card",  "anthropic", "Claude Haiku 4.5 System Card","model_card",    "https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf", "pdf"),
     Source("anthropic_35_addendum",   "anthropic", "Claude 3.5 Model Card Addendum","model_card",   "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model_Card_Claude_3_Addendum.pdf", "pdf"),
     Source("anthropic_safeguards",    "anthropic", "Building Safeguards for Claude","constitution",  "https://www.anthropic.com/news/building-safeguards-for-claude",                   "html"),
 
@@ -50,17 +52,22 @@ SOURCES: list[Source] = [
     Source("openai_mental_health",      "openai", "Mental Health Safety Update",       "usage_policy", "https://openai.com/index/update-on-mental-health-related-work/",               "html"),
     Source("openai_gpt5_system_card",   "openai", "GPT-5 System Card",                "model_card",   "https://cdn.openai.com/gpt-5-system-card.pdf",                                  "pdf"),
     Source("openai_gpt45_system_card",  "openai", "GPT-4.5 System Card",              "model_card",   "https://cdn.openai.com/gpt-4-5-system-card-2272025.pdf",                        "pdf"),
+    Source("openai_o1_system_card",     "openai", "o1 System Card",                   "model_card",   "https://cdn.openai.com/o1-system-card-20241205.pdf",                             "pdf"),
+    Source("openai_o3_system_card",     "openai", "o3 System Card",                   "model_card",   "https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf", "pdf"),
 
     # ── Google DeepMind ───────────────────────────────────────────────────────
     Source("google_ai_principles",     "google", "AI Principles",                 "constitution",  "https://ai.google/responsibility/principles/",                                    "html"),
     Source("google_responsible_ai",    "google", "Responsible AI Practices",      "usage_policy",  "https://ai.google/responsibility/responsible-ai-practices/",                      "html"),
     Source("google_gemini_report",     "google", "Gemini Technical Report",       "model_card",    "https://arxiv.org/abs/2312.11805",                                                "html"),
     Source("google_gemini_1_5_report", "google", "Gemini 1.5 Technical Report",   "model_card",    "https://arxiv.org/abs/2403.05530",                                                "html"),
+    Source("google_gemini_2_card",     "google", "Gemini 2.0 Flash Model Card",  "model_card",    "https://storage.googleapis.com/model-cards/documents/gemini-2-flash.pdf",         "pdf"),
+    Source("google_gemini_25_card",    "google", "Gemini 2.5 Flash Model Card",  "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Flash-Model-Card.pdf", "pdf"),
     Source("google_prohibited_use",    "google", "Generative AI Prohibited Use", "usage_policy",  "https://policies.google.com/terms/generative-ai/use-policy",                      "html"),
     Source("google_frontier_safety",   "google", "Frontier Safety Framework",    "constitution",  "https://deepmind.google/blog/updating-the-frontier-safety-framework/",            "html"),
     Source("google_responsibility",    "google", "Responsibility & Safety",      "constitution",  "https://deepmind.google/responsibility-and-safety/",                              "html"),
 
     # ── Meta AI ───────────────────────────────────────────────────────────────
+    Source("meta_llama2_card",          "meta", "Llama 2 Model Card",              "model_card",    "https://raw.githubusercontent.com/meta-llama/llama/main/MODEL_CARD.md",           "raw"),
     Source("meta_llama_use_policy",    "meta", "Llama 3.3 Use Policy",            "usage_policy",  "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/USE_POLICY.md", "raw"),
     Source("meta_responsible_use",     "meta", "Llama 3.3 Model Card",           "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md", "raw"),
     Source("meta_purple_llama",        "meta", "Purple Llama (Safety Tools)",     "constitution",  "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/README.md",         "raw"),
@@ -68,8 +75,10 @@ SOURCES: list[Source] = [
     Source("meta_llama_guard",         "meta", "Llama Guard Paper",               "model_card",    "https://arxiv.org/abs/2312.06674",                                                "html"),
     Source("meta_llama3_model_card",   "meta", "Llama 3 Model Card (GitHub)",    "model_card",    "https://raw.githubusercontent.com/meta-llama/llama3/main/README.md",             "raw"),
     Source("meta_llama31_card",        "meta", "Llama 3.1 Model Card",           "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md", "raw"),
+    Source("meta_llama32_card",        "meta", "Llama 3.2 Model Card",           "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_2/MODEL_CARD.md", "raw"),
     Source("meta_llamaguard_card",     "meta", "Llama Guard Model Card",         "model_card",    "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard/MODEL_CARD.md",     "raw"),
     Source("meta_llamaguard3_card",    "meta", "Llama Guard 3 Vision Card",      "model_card",    "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard3/11B-vision/MODEL_CARD.md", "raw"),
+    Source("meta_llama4_card",         "meta", "Llama 4 Model Card",             "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md", "raw"),
 
     # ── Mistral ───────────────────────────────────────────────────────────────
     Source("mistral_guardrailing",     "mistral", "Guardrailing Docs",            "usage_policy",  "https://docs.mistral.ai/capabilities/guardrailing/",                              "html"),

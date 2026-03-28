@@ -83,6 +83,13 @@ class PerCardEvalPoint(BaseModel):
     eval_count: int
 
 
+class CategoryTimelinePoint(BaseModel):
+    lab_slug: str
+    lab_name: str
+    benchmark_category: str
+    eval_count: int
+
+
 class ExtractionRunRead(BaseModel):
     model_config = {"from_attributes": True}
     id: int
