@@ -1,14 +1,17 @@
 """Fetch all sources concurrently."""
 import asyncio
 import httpx
-from .base import CollectedDocument, html_to_markdown, pdf_to_text, clean_markdown, compute_hash, word_count
+from .base import CollectedDocument, html_to_markdown, pdf_to_text, arxiv_pdf_to_text, clean_markdown, compute_hash, word_count
 from .registry import SOURCES, Source
 
 
 async def fetch_source(source: Source, client: httpx.AsyncClient) -> CollectedDocument | None:
     try:
         if source.method == "html":
-            content = await html_to_markdown(source.url, client, source.selector)
+            if "arxiv.org/abs/" in source.url:
+                content = await arxiv_pdf_to_text(source.url, client)
+            else:
+                content = await html_to_markdown(source.url, client, source.selector)
         elif source.method == "pdf":
             content = await pdf_to_text(source.url, client)
         elif source.method == "raw":

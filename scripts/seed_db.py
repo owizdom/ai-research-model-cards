@@ -96,7 +96,8 @@ async def seed_families(db) -> int:
             gen_result = await db.execute(
                 select(ModelGeneration).where(ModelGeneration.slug == gen["slug"])
             )
-            if not gen_result.scalar_one_or_none():
+            existing_gen = gen_result.scalar_one_or_none()
+            if not existing_gen:
                 # Try to find the linked document
                 doc_id = None
                 if doc_slug := gen.get("document_slug"):
@@ -115,6 +116,17 @@ async def seed_families(db) -> int:
                     document_id=doc_id,
                 ))
                 count += 1
+            elif existing_gen.document_id is None:
+                # Repair: re-link generation if document_id is NULL but document now exists
+                if doc_slug := gen.get("document_slug"):
+                    doc_result = await db.execute(
+                        select(Document).where(Document.slug == doc_slug)
+                    )
+                    doc = doc_result.scalar_one_or_none()
+                    if doc:
+                        existing_gen.document_id = doc.id
+                        db.add(existing_gen)
+                        count += 1
 
     await db.commit()
     return count

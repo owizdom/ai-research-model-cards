@@ -71,3 +71,11 @@ async def pdf_to_text(url: str, client: httpx.AsyncClient) -> str:
     r.raise_for_status()
     reader = PdfReader(BytesIO(r.content))
     return "\n\n".join(p.extract_text() for p in reader.pages if p.extract_text())
+
+
+async def arxiv_pdf_to_text(url: str, client: httpx.AsyncClient) -> str:
+    """Convert arxiv abstract URL to PDF URL and extract full paper text."""
+    pdf_url = url.replace("/abs/", "/pdf/")
+    if not pdf_url.endswith(".pdf"):
+        pdf_url += ".pdf"
+    return await pdf_to_text(pdf_url, client)

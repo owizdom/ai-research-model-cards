@@ -69,7 +69,7 @@ families:
       - slug: llama-3.1
         name: Llama 3.1
         version_label: "3.1"
-        document_slug: meta_llama31_card
+        document_slug: meta_llama3_paper
       - slug: llama-3.3
         name: Llama 3.3
         version_label: "3.3"
