@@ -36,12 +36,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 <div className="flex items-center gap-6">
                   <a href="/about" className="hover:text-[var(--text)] transition-colors">About</a>
-                  <a href="https://github.com/owizdom/ai-research-model-cards" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text)] transition-colors">
-                    GitHub
-                  </a>
-                  <a href="https://freesystems.substack.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text)] transition-colors">
-                    Substack
-                  </a>
                 </div>
               </div>
             </div>

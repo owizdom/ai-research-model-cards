@@ -42,14 +42,7 @@ export function Nav() {
             })}
           </nav>
         </div>
-        <a
-          href="https://freesystems.substack.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:block text-xs text-[var(--muted)] hover:text-[var(--text)] transition-colors"
-        >
-          by Free Systems Lab
-        </a>
+        <div className="hidden sm:block" />
         {/* Mobile menu button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
