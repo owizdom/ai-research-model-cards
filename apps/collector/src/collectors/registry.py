@@ -42,6 +42,9 @@ SOURCES: list[Source] = [
     Source("anthropic_opus41_card",   "anthropic", "Claude Opus 4.1 System Card","model_card",    "https://www-cdn.anthropic.com/9fa30625273bafdf5af82c93719d7ca606485a16.pdf", "pdf"),
     Source("anthropic_sonnet46_card", "anthropic", "Claude Sonnet 4.6 System Card","model_card",  "https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf", "pdf"),
     Source("anthropic_35_addendum",   "anthropic", "Claude 3.5 Model Card Addendum","model_card",   "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model_Card_Claude_3_Addendum.pdf", "pdf"),
+    Source("anthropic_35h_addendum", "anthropic", "Claude 3.5 Haiku Addendum",    "model_card",   "https://www-cdn.anthropic.com/c7822cdc35ad788ec87e14b3a9d45010f1f86c38.pdf", "pdf"),
+    Source("anthropic_37_card",      "anthropic", "Claude 3.7 Sonnet System Card","model_card",   "https://www-cdn.anthropic.com/9ff93dfa8f445c932415d335c88852ef47f1201e.pdf", "pdf"),
+    Source("anthropic_opus46_card",  "anthropic", "Claude Opus 4.6 System Card", "model_card",    "https://anthropic.com/claude-opus-4-6-system-card",                            "html"),
     Source("anthropic_safeguards",    "anthropic", "Building Safeguards for Claude","constitution",  "https://www.anthropic.com/news/building-safeguards-for-claude",                   "html"),
 
     # ── OpenAI ────────────────────────────────────────────────────────────────
@@ -56,17 +59,24 @@ SOURCES: list[Source] = [
     Source("openai_gpt45_system_card",  "openai", "GPT-4.5 System Card",              "model_card",   "https://cdn.openai.com/gpt-4-5-system-card-2272025.pdf",                        "pdf"),
     Source("openai_o1_system_card",     "openai", "o1 System Card",                   "model_card",   "https://cdn.openai.com/o1-system-card-20241205.pdf",                             "pdf"),
     Source("openai_o3_system_card",     "openai", "o3 System Card",                   "model_card",   "https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf", "pdf"),
+    Source("openai_o3mini_card",        "openai", "o3-mini System Card",              "model_card",   "https://cdn.openai.com/o3-mini-system-card-feb10.pdf",                           "pdf"),
+    Source("openai_operator_card",      "openai", "Operator System Card",             "model_card",   "https://cdn.openai.com/operator_system_card.pdf",                               "pdf"),
+    Source("openai_gpt51_system_card",  "openai", "GPT-5.1 System Card",              "model_card",   "https://cdn.openai.com/pdf/4173ec8d-1229-47db-96de-06d87147e07e/5_1_system_card.pdf", "pdf"),
+    Source("openai_gpt52_system_card",  "openai", "GPT-5.2 System Card",              "model_card",   "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "pdf"),
+    Source("openai_gpt53_codex_card",   "openai", "GPT-5.3 Codex System Card",        "model_card",   "https://cdn.openai.com/pdf/23eca107-a9b1-4d2c-b156-7deb4fbc697c/GPT-5-3-Codex-System-Card-02.pdf", "pdf"),
 
     # ── Google DeepMind ───────────────────────────────────────────────────────
     Source("google_ai_principles",     "google", "AI Principles",                 "constitution",  "https://ai.google/responsibility/principles/",                                    "html"),
     Source("google_responsible_ai",    "google", "Responsible AI Practices",      "usage_policy",  "https://ai.google/responsibility/responsible-ai-practices/",                      "html"),
     Source("google_gemini_report",     "google", "Gemini Technical Report",       "model_card",    "https://arxiv.org/abs/2312.11805",                                                "html"),
     Source("google_gemini_1_5_report", "google", "Gemini 1.5 Technical Report",   "model_card",    "https://arxiv.org/abs/2403.05530",                                                "html"),
-    Source("google_gemini_2_card",     "google", "Gemini 2.0 Flash Model Card",  "model_card",    "https://storage.googleapis.com/model-cards/documents/gemini-2-flash.pdf",         "pdf"),
+    Source("google_gemini_2_card",     "google", "Gemini 2.0 Flash Model Card",  "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-0-Flash-Model-Card.pdf", "pdf"),
     Source("google_gemini_25_card",    "google", "Gemini 2.5 Flash Model Card",  "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Flash-Model-Card.pdf", "pdf"),
     Source("google_gemini_25_pro_card","google", "Gemini 2.5 Pro Model Card",   "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Pro-Model-Card.pdf", "pdf"),
     Source("google_gemini_3_card",     "google", "Gemini 3 Flash Model Card",   "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Flash-Model-Card.pdf", "pdf"),
     Source("google_gemini_3_pro_card", "google", "Gemini 3 Pro Model Card",     "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf", "pdf"),
+    Source("google_gemini_25dt_card",  "google", "Gemini 2.5 Deep Think Card",  "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Deep-Think-Model-Card.pdf", "pdf"),
+    Source("google_gemini_31_pro_card","google", "Gemini 3.1 Pro Model Card",   "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Pro-Model-Card.pdf", "pdf"),
     Source("google_prohibited_use",    "google", "Generative AI Prohibited Use", "usage_policy",  "https://policies.google.com/terms/generative-ai/use-policy",                      "html"),
     Source("google_frontier_safety",   "google", "Frontier Safety Framework",    "constitution",  "https://deepmind.google/blog/updating-the-frontier-safety-framework/",            "html"),
     Source("google_responsibility",    "google", "Responsibility & Safety",      "constitution",  "https://deepmind.google/responsibility-and-safety/",                              "html"),
@@ -97,6 +107,8 @@ SOURCES: list[Source] = [
     Source("xai_api_docs",             "xai", "xAI API Documentation",            "usage_policy",  "https://docs.x.ai/docs/api-reference",                                            "html"),
     Source("xai_aup",                  "xai", "Acceptable Use Policy",            "usage_policy",  "https://x.ai/legal/acceptable-use-policy",                                        "html"),
     Source("xai_grok4_card",           "xai", "Grok 4 Model Card",               "model_card",    "https://data.x.ai/2025-08-20-grok-4-model-card.pdf",                              "pdf"),
+    Source("xai_grok4_fast_card",     "xai", "Grok 4 Fast Model Card",          "model_card",    "https://data.x.ai/2025-09-19-grok-4-fast-model-card.pdf",                         "pdf"),
+    Source("xai_grok41_card",         "xai", "Grok 4.1 Model Card",             "model_card",    "https://data.x.ai/2025-11-17-grok-4-1-model-card.pdf",                            "pdf"),
     Source("xai_risk_framework",       "xai", "Risk Management Framework",        "constitution",  "https://data.x.ai/2025-08-20-xai-risk-management-framework.pdf",                  "pdf"),
 
     # ── Cohere ────────────────────────────────────────────────────────────────

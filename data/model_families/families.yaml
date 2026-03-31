@@ -15,6 +15,10 @@ families:
         name: Claude 3.5
         version_label: "3.5"
         document_slug: anthropic_35_addendum
+      - slug: claude-3.7
+        name: Claude 3.7 Sonnet
+        version_label: "3.7"
+        document_slug: anthropic_37_card
       - slug: claude-4
         name: Claude 4
         version_label: "4"
@@ -64,6 +68,18 @@ families:
         name: o3
         version_label: "o3"
         document_slug: openai_o3_system_card
+      - slug: gpt-5.1
+        name: GPT-5.1
+        version_label: "5.1"
+        document_slug: openai_gpt51_system_card
+      - slug: gpt-5.2
+        name: GPT-5.2
+        version_label: "5.2"
+        document_slug: openai_gpt52_system_card
+      - slug: gpt-5.3
+        name: GPT-5.3 Codex
+        version_label: "5.3"
+        document_slug: openai_gpt53_codex_card
 
   - slug: gemini
     lab_slug: google
@@ -93,10 +109,18 @@ families:
         name: Gemini 3 Flash
         version_label: "3.0"
         document_slug: google_gemini_3_card
+      - slug: gemini-2.5-dt
+        name: Gemini 2.5 Deep Think
+        version_label: "2.5-dt"
+        document_slug: google_gemini_25dt_card
       - slug: gemini-3.0-pro
         name: Gemini 3 Pro
         version_label: "3.0-pro"
         document_slug: google_gemini_3_pro_card
+      - slug: gemini-3.1-pro
+        name: Gemini 3.1 Pro
+        version_label: "3.1-pro"
+        document_slug: google_gemini_31_pro_card
 
   - slug: llama
     lab_slug: meta
@@ -135,3 +159,11 @@ families:
         name: Grok 4
         version_label: "4"
         document_slug: xai_grok4_card
+      - slug: grok-4-fast
+        name: Grok 4 Fast
+        version_label: "4-fast"
+        document_slug: xai_grok4_fast_card
+      - slug: grok-4.1
+        name: Grok 4.1
+        version_label: "4.1"
+        document_slug: xai_grok41_card
