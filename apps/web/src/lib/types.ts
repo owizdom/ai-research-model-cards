@@ -135,6 +135,8 @@ export interface WordCountTimelinePoint {
 }
 
 export interface CategoryTimelinePoint {
+  document_slug: string;
+  document_title: string;
   lab_slug: string;
   lab_name: string;
   benchmark_category: string;

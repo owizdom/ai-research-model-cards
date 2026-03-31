@@ -84,6 +84,8 @@ class PerCardEvalPoint(BaseModel):
 
 
 class CategoryTimelinePoint(BaseModel):
+    document_slug: str
+    document_title: str
     lab_slug: str
     lab_name: str
     benchmark_category: str

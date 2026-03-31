@@ -53,20 +53,20 @@ export default async function TrendsPage() {
 
       {/* Chart A: Word Count */}
       <section className="mb-16">
-        <h2 className="text-xl font-semibold font-serif mb-2">Card Length by Model</h2>
+        <h2 className="text-xl font-semibold font-serif mb-2">Card Length Over Time</h2>
         <p className="text-sm text-[var(--muted)] mb-6">
-          Word count of each model card, showing how detailed safety documentation varies across labs and models.
-          Longer cards generally indicate more thorough safety analysis, evaluation reporting, and risk documentation.
+          How model card length has changed across successive releases for each lab.
+          Cards are ordered chronologically within each lab — click a lab to isolate its trend line.
         </p>
         <WordCountTrendChart data={wordCountData} />
       </section>
 
       {/* Chart B: Eval Categories */}
       <section>
-        <h2 className="text-xl font-semibold font-serif mb-2">Evaluation Disclosure by Topic</h2>
+        <h2 className="text-xl font-semibold font-serif mb-2">Evaluation Topics per Model Card</h2>
         <p className="text-sm text-[var(--muted)] mb-6">
-          How many evaluations each lab reports across different categories.
-          Stacked bars show the distribution of eval topics — reasoning, coding, safety, math, and more.
+          What topics each model card reports evaluations on, and how that coverage evolves across releases.
+          Stacked bars break down eval count by category — reasoning, coding, safety, math, and more.
         </p>
         <EvalCategoryTrendChart data={categoryData} />
       </section>

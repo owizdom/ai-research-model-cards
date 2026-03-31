@@ -2,8 +2,9 @@
 import { useState, useMemo } from "react";
 import {
   ResponsiveContainer,
-  BarChart,
+  ComposedChart,
   Bar,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -24,6 +25,24 @@ const labColors: Record<string, string> = {
   ai21: "#7A6850",
 };
 
+// Chronological generation order per lab (earlier models first)
+const GEN_ORDER: Record<string, number> = {
+  anthropic_claude2_card: 1, anthropic_model_card: 2, anthropic_35_addendum: 3,
+  anthropic_claude4_card: 4, anthropic_opus45_card: 5, anthropic_sonnet45_card: 6,
+  anthropic_haiku45_card: 7,
+  openai_gpt4_system_card: 1, openai_gpt4o_system_card: 2, openai_gpt45_system_card: 3,
+  openai_gpt5_system_card: 4, openai_o1_system_card: 5, openai_o3_system_card: 6,
+  google_gemini_report: 1, google_gemini_1_5_report: 2, google_gemini_2_card: 3,
+  google_gemini_25_card: 4,
+  meta_llama2_card: 1, meta_llama3_model_card: 2, meta_llama31_card: 3,
+  meta_llama3_paper: 3, meta_llama32_card: 4, meta_responsible_use: 5,
+  meta_llama4_card: 6, meta_llama_guard: 10, meta_llamaguard_card: 11,
+  meta_llamaguard3_card: 12,
+  xai_grok4_card: 1, xai_grok_docs: 2,
+  mistral_7b_model_card: 1, mistral_mixtral_model_card: 2,
+  cohere_command_r_card: 1, ai21_jamba_card: 1, amazon_bedrock_docs: 1,
+};
+
 export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }) {
   const [selectedLab, setSelectedLab] = useState<string | null>(null);
 
@@ -31,7 +50,7 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
     const filtered = selectedLab ? data.filter(d => d.lab_slug === selectedLab) : data;
 
     const shortenTitle = (title: string) =>
-      title
+      (title ?? "")
         .replace(" System Card", "")
         .replace(" Model Card", "")
         .replace(" Technical Report", "")
@@ -39,12 +58,14 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
         .replace(" Paper", "")
         .replace(" (GitHub)", "")
         .replace(" Addendum", "")
-        .replace(" Overview", "");
+        .replace(" Overview", "")
+        .replace(" Documentation", "");
 
+    // Sort by lab, then chronologically within each lab
     const sorted = [...filtered].sort((a, b) => {
       const labCmp = a.lab_slug.localeCompare(b.lab_slug);
       if (labCmp !== 0) return labCmp;
-      return a.version_date.localeCompare(b.version_date);
+      return (GEN_ORDER[a.document_slug] ?? 99) - (GEN_ORDER[b.document_slug] ?? 99);
     });
 
     const barData = sorted.map(d => ({
@@ -52,6 +73,7 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
       wordCount: d.word_count,
       lab: d.lab_slug,
       fullTitle: d.document_title,
+      slug: d.document_slug,
     }));
 
     const names: Record<string, string> = {};
@@ -71,6 +93,14 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
       </div>
     );
   }
+
+  // Build trend line data: for each bar position, store wordCount keyed by lab
+  const trendData = useMemo(() => {
+    return bars.map((b, i) => ({ idx: i, [b.lab]: b.wordCount }));
+  }, [bars]);
+
+  // Get unique labs in the current view for trend lines
+  const visibleLabs = useMemo(() => [...new Set(bars.map(b => b.lab))], [bars]);
 
   return (
     <div>
@@ -98,17 +128,17 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
       </div>
 
       <div className="border border-[var(--border)] rounded-xl p-4 sm:p-6 bg-white">
-        <ResponsiveContainer width="100%" height={380}>
-          <BarChart data={bars} margin={{ top: 20, right: 20, bottom: 80, left: 20 }}>
+        <ResponsiveContainer width="100%" height={400}>
+          <ComposedChart data={bars} margin={{ top: 20, right: 20, bottom: 90, left: 20 }}>
             <CartesianGrid stroke="rgba(0,0,0,0.06)" vertical={false} />
             <XAxis
               dataKey="name"
               tick={{ fill: "#737373", fontSize: 10 }}
               stroke="rgba(0,0,0,0.1)"
-              angle={-40}
+              angle={-45}
               textAnchor="end"
               interval={0}
-              height={90}
+              height={100}
             />
             <YAxis
               tick={{ fill: "#737373", fontSize: 11 }}
@@ -137,12 +167,23 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
                 return item ? `${item.fullTitle} (${labNames[item.lab] ?? item.lab})` : label;
               }}
             />
-            <Bar dataKey="wordCount" radius={[4, 4, 0, 0]} maxBarSize={50}>
+            <Bar dataKey="wordCount" radius={[4, 4, 0, 0]} maxBarSize={45}>
               {bars.map((entry, i) => (
                 <Cell key={i} fill={labColors[entry.lab] ?? "#78776E"} />
               ))}
             </Bar>
-          </BarChart>
+            {/* Trend line when viewing a single lab */}
+            {selectedLab && (
+              <Line
+                dataKey="wordCount"
+                stroke={labColors[selectedLab] ?? "#78776E"}
+                strokeWidth={2.5}
+                strokeDasharray="6 3"
+                dot={false}
+                type="monotone"
+              />
+            )}
+          </ComposedChart>
         </ResponsiveContainer>
       </div>
 
@@ -153,6 +194,12 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
             {labNames[slug] ?? slug}
           </div>
         ))}
+        {selectedLab && (
+          <div className="flex items-center gap-1.5 ml-auto">
+            <span className="w-6 border-t-2 border-dashed inline-block" style={{ borderColor: labColors[selectedLab] }} />
+            Trend
+          </div>
+        )}
       </div>
     </div>
   );

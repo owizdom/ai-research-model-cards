@@ -260,9 +260,10 @@ async def eval_depth(db: AsyncSession = Depends(get_db)):
 
 @router.get("/category-timeline", response_model=list[CategoryTimelinePoint])
 async def category_timeline(db: AsyncSession = Depends(get_db)):
-    """Eval counts per benchmark category per lab — for trend charts."""
+    """Eval counts per benchmark category per model card — for trend charts."""
     q = text("""
-        SELECT l.slug AS lab_slug, l.name AS lab_name,
+        SELECT d.slug AS document_slug, d.title AS document_title,
+               l.slug AS lab_slug, l.name AS lab_name,
                bd.category AS benchmark_category,
                COUNT(DISTINCT er.id) AS eval_count
         FROM eval_results er
@@ -270,12 +271,13 @@ async def category_timeline(db: AsyncSession = Depends(get_db)):
         JOIN documents d ON dv.document_id = d.id
         JOIN labs l ON d.lab_id = l.id
         JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
-        GROUP BY l.slug, l.name, bd.category
-        ORDER BY l.slug, bd.category
+        GROUP BY d.slug, d.title, l.slug, l.name, bd.category
+        ORDER BY l.slug, d.slug, bd.category
     """)
     result = await db.execute(q)
     return [
         CategoryTimelinePoint(
+            document_slug=r.document_slug, document_title=r.document_title,
             lab_slug=r.lab_slug, lab_name=r.lab_name,
             benchmark_category=r.benchmark_category,
             eval_count=r.eval_count,
