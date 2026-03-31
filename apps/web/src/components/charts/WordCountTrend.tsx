@@ -18,12 +18,10 @@ const labColors: Record<string, string> = {
   openai: "#2E7D5B",
   google: "#4A7FC1",
   meta: "#8B6CAF",
-  mistral: "#C17E2B",
   xai: "#1A7A6D",
-  cohere: "#C44343",
-  amazon: "#5B8A72",
-  ai21: "#7A6850",
 };
+
+const MAJOR_LABS = new Set(["anthropic", "openai", "google", "meta", "xai"]);
 
 // Chronological generation order per lab (earlier models first)
 const GEN_ORDER: Record<string, number> = {
@@ -49,7 +47,8 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
   const [selectedLab, setSelectedLab] = useState<string | null>(null);
 
   const { bars, labSlugs, labNames } = useMemo(() => {
-    const filtered = selectedLab ? data.filter(d => d.lab_slug === selectedLab) : data;
+    const majorOnly = data.filter(d => MAJOR_LABS.has(d.lab_slug));
+    const filtered = selectedLab ? majorOnly.filter(d => d.lab_slug === selectedLab) : majorOnly;
 
     const shortenTitle = (title: string) =>
       (title ?? "")
@@ -83,7 +82,7 @@ export function WordCountTrendChart({ data }: { data: WordCountTimelinePoint[] }
 
     return {
       bars: barData,
-      labSlugs: [...new Set(data.map(d => d.lab_slug))].sort(),
+      labSlugs: [...new Set(majorOnly.map(d => d.lab_slug))].sort(),
       labNames: names,
     };
   }, [data, selectedLab]);
