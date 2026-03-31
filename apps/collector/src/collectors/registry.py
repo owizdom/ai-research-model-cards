@@ -39,6 +39,8 @@ SOURCES: list[Source] = [
     Source("anthropic_opus45_card",   "anthropic", "Claude Opus 4.5 System Card",  "model_card",    "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf","pdf"),
     Source("anthropic_sonnet45_card", "anthropic", "Claude Sonnet 4.5 System Card","model_card",    "https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf", "pdf"),
     Source("anthropic_haiku45_card",  "anthropic", "Claude Haiku 4.5 System Card","model_card",    "https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf", "pdf"),
+    Source("anthropic_opus41_card",   "anthropic", "Claude Opus 4.1 System Card","model_card",    "https://www-cdn.anthropic.com/9fa30625273bafdf5af82c93719d7ca606485a16.pdf", "pdf"),
+    Source("anthropic_sonnet46_card", "anthropic", "Claude Sonnet 4.6 System Card","model_card",  "https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf", "pdf"),
     Source("anthropic_35_addendum",   "anthropic", "Claude 3.5 Model Card Addendum","model_card",   "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model_Card_Claude_3_Addendum.pdf", "pdf"),
     Source("anthropic_safeguards",    "anthropic", "Building Safeguards for Claude","constitution",  "https://www.anthropic.com/news/building-safeguards-for-claude",                   "html"),
 
@@ -62,6 +64,9 @@ SOURCES: list[Source] = [
     Source("google_gemini_1_5_report", "google", "Gemini 1.5 Technical Report",   "model_card",    "https://arxiv.org/abs/2403.05530",                                                "html"),
     Source("google_gemini_2_card",     "google", "Gemini 2.0 Flash Model Card",  "model_card",    "https://storage.googleapis.com/model-cards/documents/gemini-2-flash.pdf",         "pdf"),
     Source("google_gemini_25_card",    "google", "Gemini 2.5 Flash Model Card",  "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Flash-Model-Card.pdf", "pdf"),
+    Source("google_gemini_25_pro_card","google", "Gemini 2.5 Pro Model Card",   "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Pro-Model-Card.pdf", "pdf"),
+    Source("google_gemini_3_card",     "google", "Gemini 3 Flash Model Card",   "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Flash-Model-Card.pdf", "pdf"),
+    Source("google_gemini_3_pro_card", "google", "Gemini 3 Pro Model Card",     "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf", "pdf"),
     Source("google_prohibited_use",    "google", "Generative AI Prohibited Use", "usage_policy",  "https://policies.google.com/terms/generative-ai/use-policy",                      "html"),
     Source("google_frontier_safety",   "google", "Frontier Safety Framework",    "constitution",  "https://deepmind.google/blog/updating-the-frontier-safety-framework/",            "html"),
     Source("google_responsibility",    "google", "Responsibility & Safety",      "constitution",  "https://deepmind.google/responsibility-and-safety/",                              "html"),

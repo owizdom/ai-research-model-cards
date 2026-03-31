@@ -41,7 +41,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 # ── DB connection ────────────────────────────────────────────────────────────
 DB_URL = os.environ.get(
     "RAILWAY_DB_URL",
-    "postgresql+asyncpg://postgres:fncvFEcSwvsWiAbWRtleToglaXEqaVzF@shuttle.proxy.rlwy.net:59396/railway",
+    "postgresql+asyncpg://postgres:EhJrykdvTfzmimVtioekfVUYppGRowxm@hopper.proxy.rlwy.net:37555/railway",
 )
 
 GROQ_KEY = os.environ.get("GROQ_API_KEY", "")
