@@ -48,7 +48,7 @@ async def process_embed_job(version_id: int, SessionLocal=None) -> None:
         mapped = 0
         for cat_id, cat_vec in taxonomy_pairs:
             sim = float(np.dot(doc_arr, np.array(cat_vec)))
-            if sim < 0.25:
+            if sim < 0.20:
                 continue
             existing = await db.execute(
                 select(DocumentTaxonomyMapping).where(

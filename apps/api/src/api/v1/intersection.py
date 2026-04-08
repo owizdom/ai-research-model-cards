@@ -13,7 +13,7 @@ router = APIRouter()
 async def get_intersection(
     lab_slugs: Optional[str] = Query(None, description="Comma-separated lab slugs"),
     doc_types: Optional[str] = Query(None),
-    threshold: float = Query(0.35, ge=0.0, le=1.0),
+    threshold: float = Query(0.25, ge=0.0, le=1.0),
     db: AsyncSession = Depends(get_db),
 ):
     lab_list = lab_slugs.split(",") if lab_slugs else None
