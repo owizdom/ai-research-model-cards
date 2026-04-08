@@ -29,7 +29,7 @@ async def call_claude_cli(
     system_prompt: str,
     user_prompt: str,
     model: str = "sonnet",
-    timeout_s: float = 360.0,
+    timeout_s: float = 600.0,
     max_budget_usd: float = 1.0,
 ) -> ClaudeCLIResult:
     """Invoke `claude -p` as a subprocess. Inherits CLAUDE_CODE_OAUTH_TOKEN from env.
