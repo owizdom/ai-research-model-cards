@@ -11,6 +11,8 @@ import redis
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.pool import NullPool
 
+EXTRACT_WORKERS = int(os.getenv("EXTRACT_WORKERS", "3"))
+
 
 def _redis():
     return redis.Redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
@@ -69,7 +71,6 @@ def extract_thread():
                 payload["version_id"], SessionLocal,
             ))
             print(f"[worker] extracted {count} evals from version {payload['version_id']}", flush=True)
-            time.sleep(15)  # Rate limit delay between extractions
         except Exception as e:
             print(f"[worker] extract error: {e}", flush=True)
             traceback.print_exc()
@@ -84,11 +85,15 @@ def main():
     print("[worker] DB initialized", flush=True)
 
     t1 = threading.Thread(target=embed_thread, daemon=True, name="embed")
-    t2 = threading.Thread(target=extract_thread, daemon=True, name="extract")
     t1.start()
-    t2.start()
 
-    print("[worker] embed + extract threads started", flush=True)
+    extract_threads = []
+    for i in range(EXTRACT_WORKERS):
+        t = threading.Thread(target=extract_thread, daemon=True, name=f"extract-{i}")
+        t.start()
+        extract_threads.append(t)
+
+    print(f"[worker] embed + {EXTRACT_WORKERS} extract threads started", flush=True)
 
     try:
         while True:

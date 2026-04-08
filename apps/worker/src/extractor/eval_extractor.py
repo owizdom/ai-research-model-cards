@@ -10,7 +10,45 @@ import litellm
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-EXTRACTION_MODEL = os.getenv("EXTRACTION_MODEL", "groq/llama-3.3-70b-versatile")
+from .claude_cli import call_claude_cli
+
+EXTRACTION_MODEL = os.getenv("EXTRACTION_MODEL", "sonnet")
+
+CLAUDE_PREFIXES = ("claude", "sonnet", "opus", "haiku", "anthropic/")
+
+
+def _is_claude_model(model: str) -> bool:
+    m = model.lower()
+    return any(m.startswith(p) for p in CLAUDE_PREFIXES)
+
+
+def _normalize_claude_model(model: str) -> str:
+    """Map full Anthropic model IDs to claude CLI short names."""
+    m = model.lower().removeprefix("anthropic/")
+    if "opus" in m:
+        return "opus"
+    if "haiku" in m:
+        return "haiku"
+    return "sonnet"  # default for any sonnet variant or bare "claude"
+
+
+async def _llm_complete(system: str, user: str, model: str) -> str:
+    """Provider-agnostic completion. Routes Claude through the CLI subprocess
+    (because the Messages API rejects OAuth tokens) and everything else
+    through litellm."""
+    if _is_claude_model(model):
+        result = await call_claude_cli(system, user, model=_normalize_claude_model(model))
+        return result.content
+    response = await litellm.acompletion(
+        model=model,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        max_tokens=4096,
+        temperature=0.0,
+    )
+    return response.choices[0].message.content or "[]"
 
 EXTRACTION_SYSTEM_PROMPT = """You are a precise data extraction assistant. Your task is to extract ALL benchmark/evaluation results from a model card or technical report.
 
@@ -129,22 +167,18 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
             content = sections if sections else version.content_md[:16000]
 
             # Retry with backoff on rate limits
-            response = None
+            response_text = None
             for attempt in range(4):
                 try:
-                    response = await litellm.acompletion(
-                        model=EXTRACTION_MODEL,
-                        messages=[
-                            {"role": "system", "content": EXTRACTION_SYSTEM_PROMPT},
-                            {"role": "user", "content": EXTRACTION_USER_PROMPT.format(content=content)},
-                        ],
-                        max_tokens=4096,
-                        temperature=0.0,
+                    response_text = await _llm_complete(
+                        EXTRACTION_SYSTEM_PROMPT,
+                        EXTRACTION_USER_PROMPT.format(content=content),
+                        EXTRACTION_MODEL,
                     )
                     break
                 except Exception as e:
                     err = str(e).lower()
-                    if "rate" in err or "429" in err or "quota" in err:
+                    if any(s in err for s in ("rate", "429", "quota", "budget", "5h", "usage limit")):
                         wait = 30 * (attempt + 1)
                         print(f"[extractor] rate limited on v{version_id}, waiting {wait}s (attempt {attempt+1}/4)", flush=True)
                         await asyncio.sleep(wait)
@@ -153,10 +187,10 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     else:
                         raise
 
-            if not response:
+            if response_text is None:
                 raise RuntimeError("No response from LLM after retries")
 
-            raw_output = response.choices[0].message.content or "[]"
+            raw_output = response_text
             run.raw_output = raw_output
 
             # Parse results

@@ -73,7 +73,7 @@ Collector → Redis (embed_jobs) → Worker embeds + maps taxonomy
 | Queues | Redis 7 |
 | API | FastAPI, SQLAlchemy async, Pydantic |
 | Embeddings | sentence-transformers (`all-mpnet-base-v2`, local) |
-| Eval Extraction | litellm (Groq, Gemini, or Claude) |
+| Eval Extraction | Claude Sonnet 4.6 via `claude` CLI subprocess (OAuth/Max sub); litellm fallback for Groq/Gemini |
 | Scheduling | APScheduler |
 | Frontend | Next.js 15, React 19, Recharts, Tailwind CSS |
 | Typography | DM Sans + Source Serif 4 |
@@ -82,7 +82,7 @@ Collector → Redis (embed_jobs) → Worker embeds + maps taxonomy
 
 ### Prerequisites
 - Docker & Docker Compose
-- At least one LLM API key for eval extraction (Groq, Gemini, or Anthropic)
+- Claude Code installed locally (`npm i -g @anthropic-ai/claude-code`) and a `CLAUDE_CODE_OAUTH_TOKEN` minted via `claude setup-token` — calls bill against your Claude Max subscription quota. Or fall back to Groq via `GROQ_API_KEY` by setting `EXTRACTION_MODEL=groq/llama-3.3-70b-versatile`.
 
 ### Setup
 

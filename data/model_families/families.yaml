@@ -39,6 +39,18 @@ families:
         name: Claude Sonnet 4.6
         version_label: "4.6"
         document_slug: anthropic_sonnet46_card
+      - slug: claude-haiku-4.5
+        name: Claude Haiku 4.5
+        version_label: "4.5-haiku"
+        document_slug: anthropic_haiku45_card
+      - slug: claude-opus-4.6
+        name: Claude Opus 4.6
+        version_label: "4.6-opus"
+        document_slug: anthropic_opus46_card
+      - slug: claude-mythos-preview
+        name: Claude Mythos Preview
+        version_label: "mythos-preview"
+        document_slug: anthropic_mythos_card
 
   - slug: gpt
     lab_slug: openai
