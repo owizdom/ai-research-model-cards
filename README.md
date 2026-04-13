@@ -159,15 +159,15 @@ GET  /api/v1/families/{slug}                   Family detail with generations an
 
 | Lab | Count | Documents |
 |---|---|---|
-| **Anthropic** | 11 | Claude 3/3.5/4/4.5 system cards, usage policy, RSP, constitutional AI |
-| **OpenAI** | 9 | GPT-4/4o/4.5/5 system cards, model spec, preparedness framework |
-| **Google DeepMind** | 7 | Gemini 1.0/1.5 reports, AI principles, frontier safety framework |
-| **Meta AI** | 9 | Llama 3/3.1/3.3 cards, Purple Llama, Llama Guard cards |
+| **Anthropic** | 19 | Claude 2/3/3.5/3.7/4/4.5/4.6 system cards, Opus 4.1, Mythos Preview, RSP, constitutional AI, character, safeguards |
+| **OpenAI** | 16 | GPT-4/4o/4.5/5/5.1/5.2/5.3 system cards, o1/o3/o3-mini, Operator, model spec, preparedness framework |
+| **Google DeepMind** | 14 | Gemini 1.0/1.5/2.0/2.5/3.0/3.1 reports, AI principles, frontier safety framework, prohibited use |
+| **Meta AI** | 12 | Llama 2/3/3.1/3.2/3.3/4 cards, Purple Llama, Llama Guard 1/3 cards |
+| **xAI** | 7 | Grok 4/4 Fast/4.1 cards, risk framework, API docs, usage policy |
 | **Mistral AI** | 5 | Mixtral/7B cards, usage policy, guardrailing, moderation |
-| **xAI** | 5 | Grok 4 card, risk framework, API docs, usage policy |
 | **Cohere** | 3 | Command R+ card, responsible use, terms |
-| **Amazon** | 2 | Bedrock responsible ML, documentation |
-| **AI21** | 2 | Jamba card, terms |
+| **Amazon** | 2 | Bedrock responsible ML, acceptable use |
+| **AI21** | 2 | Jamba overview, terms |
 
 ## Database Schema
 
