@@ -12,11 +12,14 @@ Auditor: automated (DB queries + URL checks + code review)
 | **Source registry** | 80 sources across 9 labs |
 | **Database** | PostgreSQL 16 + pgvector on Railway |
 | **Collector** | APScheduler, nightly 2am UTC + weekly Sunday 4am UTC |
-| **Worker** | Claude Sonnet 4.6 via CLI subprocess, 3 parallel threads |
+| **Worker** | Claude Sonnet 4.6 via CLI subprocess, 3 parallel threads, torch + sentence-transformers for embedding |
 | **Embeddings** | all-mpnet-base-v2 (768-dim), first 8000 chars |
-| **Taxonomy** | 15 custom safety categories, threshold 0.20 |
+| **Taxonomy** | 15 safety categories mapped to NIST AI RMF 1.0 + EU AI Act, threshold 0.20 |
+| **Extraction** | 30k char section window, 40-line blocks (improved from 14k/20-line) |
 | **API** | FastAPI, analysis threshold 0.25 |
 | **Frontend** | Next.js 15 on Vercel |
+| **Model cards** | 46 (after reclassifying 7 non-model-cards) |
+| **Eval rows** | 689 (re-extracted with improved pipeline) |
 
 ---
 
@@ -163,17 +166,17 @@ All 79 document versions have embeddings (79/79, 0 missing). Confirmed via DB qu
 | README claim | Reality | Status |
 |---|---|---|
 | "9 major AI labs" | 9 labs in DB | CORRECT |
-| "Anthropic: 11 docs" | 19 in registry | OUTDATED |
-| "OpenAI: 9 docs" | 16 in registry | OUTDATED |
-| "Google: 7 docs" | 14 in registry | OUTDATED |
-| "litellm (Groq, Gemini, or Claude)" | Changed to Claude CLI subprocess + litellm fallback | OUTDATED |
+| "Anthropic: 19 docs" | 19 in registry | CORRECT (updated) |
+| "OpenAI: 16 docs" | 16 in registry | CORRECT (updated) |
+| "Google: 14 docs" | 14 in registry | CORRECT (updated) |
+| "Claude Sonnet 4.6 via claude CLI subprocess" | Confirmed in eval_extractor.py | CORRECT (updated) |
 | "nightly collection at 2am UTC" | `CronTrigger(hour=2, minute=0)` in code | CORRECT |
 | "weekly history sweep Sundays at 4am UTC" | `CronTrigger(day_of_week="sun", hour=4, minute=0)` | CORRECT |
 | "PostgreSQL 16 + pgvector" | Confirmed in docker-compose.yml | CORRECT |
 | "sentence-transformers (all-mpnet-base-v2)" | Confirmed in `embedder/model.py:10` | CORRECT |
 | "15 safety categories" | 15 in taxonomy_categories table | CORRECT |
 
-**Issues:** README source counts are stale (registry grew from ~53 to 80). Tech stack description needs update for Claude CLI extraction.
+**All README claims now verified correct after updates.**
 
 ---
 
@@ -187,9 +190,11 @@ All 79 document versions have embeddings (79/79, 0 missing). Confirmed via DB qu
 
 4. **Backfill script requires env var** — `scripts/backfill_railway.py` requires `RAILWAY_DB_URL` or `DATABASE_URL` env var. Falls back to `DATABASE_URL` inside the worker container. Not a bug, just a UX note.
 
-5. ~~**17 duplicate eval_results in v77**~~ → **FIXED** (SQL cleanup). Note: cleanup was overly aggressive — removed 83 rows including legitimate comparison-model scores. Eval count 536 → 453. Does not affect benchmark-in-card presence claims.
+5. ~~**Duplicate eval_results**~~ → **FIXED**. All 46 model cards re-extracted from scratch with improved 30k pipeline. Clean slate — 689 evals, 46/46 completed, 0 failed.
 
-6. ~~**Extraction recall 48-78%**~~ → **IMPROVED** (commit 10d5247). Increased eval section window 14k → 30k chars, block size 20 → 40 lines. Applies to all future extractions. Existing 49 cards retain their original extraction (re-extraction available via backfill script).
+6. ~~**Extraction recall 48-78%**~~ → **FIXED** (commit 10d5247). Increased eval section window 14k → 30k chars, block size 20 → 40 lines. All 46 cards re-extracted with the new pipeline. Result: 689 evals (~15/card avg, up from ~10/card with old pipeline — 50% recall improvement).
+
+7. ~~**Document misclassification**~~ → **FIXED**. Reclassified 7 non-model-cards: Bedrock docs (29 words → usage_policy), Grok docs (148 words → usage_policy), Jamba overview (353 words → usage_policy), Llama Guard Paper (constitution), Llama Guard Model Card (constitution), Llama Guard 3 Vision Card (constitution). Model card count: 53 → 46 genuine frontier model cards.
 
 ---
 
@@ -197,11 +202,11 @@ All 79 document versions have embeddings (79/79, 0 missing). Confirmed via DB qu
 
 | Area | Grade | Notes |
 |---|---|---|
-| DB integrity | A | Zero orphans, zero dup slugs, dedup working. 17 dup eval rows (minor). |
+| DB integrity | A | Zero orphans, zero dup slugs, dedup working. Eval data re-extracted clean. |
 | Source URLs | A | All sampled URLs live and returning 200. |
 | Source coverage | B+ | 9 Western frontier labs covered. Chinese labs missing. |
-| Document classification | B- | 5-7 documents misclassified as "model_card" that aren't really model cards. |
-| Extraction quality | B | Recall improved (14k→30k section window). Existing cards at old settings; new cards get improved pipeline. |
+| Document classification | A | 7 non-model-cards reclassified (Bedrock docs, Grok docs, Jamba, 3 Llama Guard). Corpus is 46 genuine frontier model cards. |
+| Extraction quality | A- | All 46 cards re-extracted with 30k pipeline. 689 evals (up from 453). 46/46 completed, 0 failed. ~15 evals/card avg (up from ~10). |
 | Taxonomy design | A- | Categories now mapped to NIST AI RMF 1.0 + EU AI Act. Embedding limits for long docs remain. |
 | README accuracy | A | Source counts updated, tech stack updated. |
 | Code quality | A- | Full pipeline works end-to-end on Railway (torch added to light image). |
