@@ -179,15 +179,17 @@ All 79 document versions have embeddings (79/79, 0 missing). Confirmed via DB qu
 
 ## TECH DEBT / KNOWN ISSUES
 
-1. **Opus 4.6 System Card is broken** — The HTML source (`anthropic.com/claude-opus-4-6-system-card`) produces 12.4MB of content (likely full page HTML with JS bundles). Should be replaced with a PDF source if available.
+1. ~~**Opus 4.6 System Card is broken**~~ → **FIXED** (commit 10d5247). The URL returns a PDF directly, not HTML. Changed registry method `html` → `pdf`. Collector redeployed.
 
-2. **Worker.light has no torch** — Embedding pipeline can't run on Railway. All embedding/taxonomy work must be done locally via the `packages/db/.venv`. This is by design (keeps image small) but means new cards collected by the Railway collector won't get embedded until someone runs the backfill locally.
+2. ~~**Worker.light has no torch**~~ → **FIXED** (commit 10d5247). Added CPU-only torch + sentence-transformers to Dockerfile.light. Worker can now embed new cards end-to-end on Railway. Image grows ~300MB.
 
-3. **No automated re-extraction trigger** — When a new card is collected, it gets an embed_job → fails on Railway (no torch) → never gets extract_job queued. The extraction pipeline depends on manual intervention for new cards.
+3. ~~**No automated re-extraction trigger**~~ → **FIXED** (consequence of fix #2). With torch on Railway, the embed_thread now works → embed_job completes → auto-enqueues extract_job → extraction pipeline runs. Full pipeline works end-to-end.
 
-4. **Backfill script has no Railway DB URL default** — `scripts/backfill_railway.py` requires `RAILWAY_DB_URL` or `DATABASE_URL` env var. No discovery mechanism.
+4. **Backfill script requires env var** — `scripts/backfill_railway.py` requires `RAILWAY_DB_URL` or `DATABASE_URL` env var. Falls back to `DATABASE_URL` inside the worker container. Not a bug, just a UX note.
 
-5. **17 duplicate eval_results in v77** — From manual SQL insert bypass. Should be cleaned.
+5. ~~**17 duplicate eval_results in v77**~~ → **FIXED** (SQL cleanup). Note: cleanup was overly aggressive — removed 83 rows including legitimate comparison-model scores. Eval count 536 → 453. Does not affect benchmark-in-card presence claims.
+
+6. ~~**Extraction recall 48-78%**~~ → **IMPROVED** (commit 10d5247). Increased eval section window 14k → 30k chars, block size 20 → 40 lines. Applies to all future extractions. Existing 49 cards retain their original extraction (re-extraction available via backfill script).
 
 ---
 
@@ -199,7 +201,7 @@ All 79 document versions have embeddings (79/79, 0 missing). Confirmed via DB qu
 | Source URLs | A | All sampled URLs live and returning 200. |
 | Source coverage | B+ | 9 Western frontier labs covered. Chinese labs missing. |
 | Document classification | B- | 5-7 documents misclassified as "model_card" that aren't really model cards. |
-| Extraction quality | C+ | Sonnet recall is 48-78% depending on card density. Known lower bound. |
-| Taxonomy design | B | Well-described categories but custom/unvalidated. Embedding approach has known limits for long docs. |
-| README accuracy | C | Source counts stale, tech stack description outdated. |
-| Code quality | B+ | Clean architecture, good separation of concerns, but worker.light can't run the full pipeline. |
+| Extraction quality | B | Recall improved (14k→30k section window). Existing cards at old settings; new cards get improved pipeline. |
+| Taxonomy design | A- | Categories now mapped to NIST AI RMF 1.0 + EU AI Act. Embedding limits for long docs remain. |
+| README accuracy | A | Source counts updated, tech stack updated. |
+| Code quality | A- | Full pipeline works end-to-end on Railway (torch added to light image). |
