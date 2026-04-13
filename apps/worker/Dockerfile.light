@@ -24,7 +24,11 @@ COPY data /app/data
 COPY packages/db /app/packages/db
 RUN pip install --no-cache-dir /app/packages/db
 
-# Lightweight install — only extraction deps, skip PyTorch/sentence-transformers
+# CPU-only PyTorch + sentence-transformers for embedding pipeline.
+# Previously skipped to keep image small, but this meant Railway worker couldn't
+# embed new cards — the embed_thread would crash on import and all new cards
+# collected by the Railway collector never got embedded or extracted.
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 RUN pip install --no-cache-dir \
     redis>=5.0.0 \
     litellm>=1.40.0 \
@@ -32,7 +36,9 @@ RUN pip install --no-cache-dir \
     numpy>=1.26.0 \
     "sqlalchemy[asyncio]>=2.0.0" \
     asyncpg>=0.29.0 \
-    python-dotenv>=1.0.0
+    python-dotenv>=1.0.0 \
+    sentence-transformers>=2.7.0 \
+    scipy>=1.13.0
 
 COPY apps/worker/src /app/apps/worker/src
 COPY scripts /app/scripts

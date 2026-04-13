@@ -86,12 +86,16 @@ EVAL_KEYWORDS = [
 ]
 
 
-def _extract_eval_sections(content: str, max_chars: int = 14000) -> str:
-    """Scan full document for sections likely containing benchmark results."""
+def _extract_eval_sections(content: str, max_chars: int = 30000) -> str:
+    """Scan full document for sections likely containing benchmark results.
+
+    Increased from 14k to 30k chars and 20→40 line blocks to improve recall
+    on dense comparison tables (audit showed 48% recall at the old settings).
+    """
     lines = content.split("\n")
     scored_blocks: list[tuple[int, int, str]] = []
 
-    block_size = 20
+    block_size = 40
     for i in range(0, len(lines), block_size // 2):
         block = "\n".join(lines[i : i + block_size])
         block_lower = block.lower()
@@ -164,7 +168,7 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
         try:
             # Smart section extraction — find eval-dense sections across full doc
             sections = _extract_eval_sections(version.content_md)
-            content = sections if sections else version.content_md[:16000]
+            content = sections if sections else version.content_md[:30000]
 
             # Retry with backoff on rate limits
             response_text = None
