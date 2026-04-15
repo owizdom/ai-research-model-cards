@@ -20,6 +20,13 @@ function scoreColor(score: number) {
   return "bg-data-missing text-gray-400";
 }
 
+function scoreGrade(score: number): string {
+  if (score >= 0.5) return "A";
+  if (score >= 0.35) return "B";
+  if (score >= 0.20) return "C";
+  return "—";
+}
+
 export function IntersectionExplorer({
   matrix,
   evalDepth,
@@ -117,11 +124,12 @@ export function IntersectionExplorer({
                       </td>
                       {labs.map(lab => {
                         const score = matrix.matrix[cat]?.[lab] ?? 0;
+                        const grade = scoreGrade(score);
                         return (
                           <td key={lab}
-                            className={`px-3 py-1.5 rounded text-center font-mono ${scoreColor(score)}`}
+                            className={`px-3 py-1.5 rounded text-center ${scoreColor(score)} cursor-default`}
                             title={`${matrix.category_names[cat]} / ${lab}: ${scoreLevel(score)} (${score.toFixed(2)})`}>
-                            {score > 0 ? score.toFixed(2) : "·"}
+                            <span className="text-xs font-semibold">{grade}</span>
                           </td>
                         );
                       })}
@@ -145,12 +153,12 @@ export function IntersectionExplorer({
           </div>
 
           {/* Legend */}
-          <div className="flex flex-wrap gap-4 text-xs text-[var(--muted)]">
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-data inline-block"/>Strong</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-data-moderate inline-block"/>Moderate</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-data-weak inline-block"/>Weak</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-surface-2 inline-block"/>Missing</span>
-            <span className="ml-auto text-[var(--muted)]/60">Sorted by most-covered topics first</span>
+          <div className="flex flex-wrap gap-5 text-xs text-[var(--muted)]">
+            <span className="flex items-center gap-1.5"><span className="w-5 h-5 flex items-center justify-center rounded bg-data text-white text-[10px] font-bold inline-flex">A</span> Strong</span>
+            <span className="flex items-center gap-1.5"><span className="w-5 h-5 flex items-center justify-center rounded bg-data-moderate text-[10px] font-bold inline-flex">B</span> Moderate</span>
+            <span className="flex items-center gap-1.5"><span className="w-5 h-5 flex items-center justify-center rounded bg-data-weak text-[10px] font-bold inline-flex">C</span> Weak</span>
+            <span className="flex items-center gap-1.5"><span className="w-5 h-5 flex items-center justify-center rounded bg-data-missing text-[10px] font-bold inline-flex">—</span> Not covered</span>
+            <span className="ml-auto text-[var(--muted)]/60 italic">Hover any cell for exact score</span>
           </div>
         </div>
       )}

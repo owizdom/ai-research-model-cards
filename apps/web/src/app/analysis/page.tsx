@@ -22,11 +22,12 @@ export default async function AnalysisPage() {
       <div className="mb-8 p-4 rounded-xl border border-[var(--border)] bg-white shadow-sm">
         <h3 className="text-sm font-semibold mb-2">How to read this</h3>
         <ul className="text-xs text-[var(--muted)] space-y-1.5 leading-relaxed">
-          <li><span className="inline-block w-3 h-3 rounded bg-data align-middle mr-1.5"></span><strong className="text-[var(--text)]">Strong (0.70+)</strong> = The lab has detailed, dedicated policy on this topic</li>
-          <li><span className="inline-block w-3 h-3 rounded bg-data-moderate align-middle mr-1.5"></span><strong className="text-[var(--text)]">Moderate (0.50+)</strong> = The lab addresses this topic meaningfully</li>
-          <li><span className="inline-block w-3 h-3 rounded bg-data-weak align-middle mr-1.5"></span><strong className="text-[var(--text)]">Weak (0.35+)</strong> = Brief mention, but not a focused policy</li>
-          <li><span className="inline-block w-3 h-3 rounded bg-data-missing align-middle mr-1.5"></span><strong className="text-[var(--text)]">Missing</strong> = No meaningful coverage found in their public documents</li>
+          <li><span className="inline-flex w-5 h-5 items-center justify-center rounded bg-data text-white text-[10px] font-bold align-middle mr-1.5">A</span><strong className="text-[var(--text)]">Strong</strong> — The lab has detailed, dedicated policy on this topic</li>
+          <li><span className="inline-flex w-5 h-5 items-center justify-center rounded bg-data-moderate text-[10px] font-bold align-middle mr-1.5">B</span><strong className="text-[var(--text)]">Moderate</strong> — The lab addresses this topic meaningfully</li>
+          <li><span className="inline-flex w-5 h-5 items-center justify-center rounded bg-data-weak text-[10px] font-bold align-middle mr-1.5">C</span><strong className="text-[var(--text)]">Weak</strong> — Brief mention, but not a focused policy</li>
+          <li><span className="inline-flex w-5 h-5 items-center justify-center rounded bg-data-missing text-[10px] font-bold align-middle mr-1.5">—</span><strong className="text-[var(--text)]">Not covered</strong> — No meaningful coverage found in their public documents</li>
         </ul>
+        <p className="text-[10px] text-[var(--muted)] mt-2 italic">Hover any cell for the exact similarity score.</p>
       </div>
 
       {matrix ? (
