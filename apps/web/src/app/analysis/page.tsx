@@ -35,6 +35,24 @@ export default async function AnalysisPage() {
       ) : (
         <p className="text-[var(--muted)]">No data yet. Run a collection first.</p>
       )}
+
+      {/* Export */}
+      <div className="flex gap-3 mt-8">
+        <a
+          href={`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/v1/export/taxonomy-coverage.csv`}
+          className="px-4 py-2 rounded-lg border border-[var(--border)] text-xs text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)] transition-colors"
+          download
+        >
+          Export coverage data (CSV)
+        </a>
+        <a
+          href={`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/v1/export/benchmark-coverage.csv`}
+          className="px-4 py-2 rounded-lg border border-[var(--border)] text-xs text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)] transition-colors"
+          download
+        >
+          Export benchmark matrix (CSV)
+        </a>
+      </div>
     </div>
   );
 }

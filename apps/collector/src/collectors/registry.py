@@ -88,12 +88,12 @@ SOURCES: list[Source] = [
     Source("meta_responsible_use",     "meta", "Llama 3.3 Model Card",           "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md", "raw"),
     Source("meta_purple_llama",        "meta", "Purple Llama (Safety Tools)",     "constitution",  "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/README.md",         "raw"),
     Source("meta_llama3_paper",        "meta", "Llama 3.1 Technical Paper",       "model_card",    "https://arxiv.org/abs/2407.21783",                                                "html"),
-    Source("meta_llama_guard",         "meta", "Llama Guard Paper",               "model_card",    "https://arxiv.org/abs/2312.06674",                                                "html"),
+    Source("meta_llama_guard",         "meta", "Llama Guard Paper",               "constitution",  "https://arxiv.org/abs/2312.06674",                                                "html"),
     Source("meta_llama3_model_card",   "meta", "Llama 3 Model Card (GitHub)",    "model_card",    "https://raw.githubusercontent.com/meta-llama/llama3/main/README.md",             "raw"),
     Source("meta_llama31_card",        "meta", "Llama 3.1 Model Card",           "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md", "raw"),
     Source("meta_llama32_card",        "meta", "Llama 3.2 Model Card",           "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_2/MODEL_CARD.md", "raw"),
-    Source("meta_llamaguard_card",     "meta", "Llama Guard Model Card",         "model_card",    "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard/MODEL_CARD.md",     "raw"),
-    Source("meta_llamaguard3_card",    "meta", "Llama Guard 3 Vision Card",      "model_card",    "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard3/11B-vision/MODEL_CARD.md", "raw"),
+    Source("meta_llamaguard_card",     "meta", "Llama Guard Model Card",         "constitution",  "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard/MODEL_CARD.md",     "raw"),
+    Source("meta_llamaguard3_card",    "meta", "Llama Guard 3 Vision Card",      "constitution",  "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard3/11B-vision/MODEL_CARD.md", "raw"),
     Source("meta_llama4_card",         "meta", "Llama 4 Model Card",             "model_card",    "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md", "raw"),
 
     # ── Mistral ───────────────────────────────────────────────────────────────
@@ -104,7 +104,7 @@ SOURCES: list[Source] = [
     Source("mistral_moderation",       "mistral", "Moderation API",               "constitution",  "https://mistral.ai/news/mistral-moderation",                                       "html"),
 
     # ── xAI ───────────────────────────────────────────────────────────────────
-    Source("xai_grok_docs",            "xai", "Grok Documentation",               "model_card",    "https://docs.x.ai/docs",                                                          "html"),
+    Source("xai_grok_docs",            "xai", "Grok Documentation",               "usage_policy",  "https://docs.x.ai/docs",                                                          "html"),
     Source("xai_api_docs",             "xai", "xAI API Documentation",            "usage_policy",  "https://docs.x.ai/docs/api-reference",                                            "html"),
     Source("xai_aup",                  "xai", "Acceptable Use Policy",            "usage_policy",  "https://x.ai/legal/acceptable-use-policy",                                        "html"),
     Source("xai_grok4_card",           "xai", "Grok 4 Model Card",               "model_card",    "https://data.x.ai/2025-08-20-grok-4-model-card.pdf",                              "pdf"),
@@ -119,9 +119,9 @@ SOURCES: list[Source] = [
 
     # ── Amazon (AWS Bedrock) ──────────────────────────────────────────────────
     Source("amazon_bedrock_aup",       "amazon", "Bedrock Acceptable Use",       "usage_policy",  "https://aws.amazon.com/machine-learning/responsible-machine-learning/",            "html"),
-    Source("amazon_bedrock_docs",      "amazon", "Bedrock Documentation",        "model_card",    "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",       "html"),
+    Source("amazon_bedrock_docs",      "amazon", "Bedrock Documentation",        "usage_policy",  "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",       "html"),
 
     # ── AI21 Labs ─────────────────────────────────────────────────────────────
     Source("ai21_terms",               "ai21", "AI21 Terms of Service",         "usage_policy",  "https://www.ai21.com/terms-of-use",                                               "html"),
-    Source("ai21_jamba_card",          "ai21", "Jamba Model Overview",          "model_card",    "https://www.ai21.com/jamba",                                                      "html"),
+    Source("ai21_jamba_card",          "ai21", "Jamba Model Overview",          "usage_policy",  "https://www.ai21.com/jamba",                                                      "html"),
 ]
