@@ -84,15 +84,25 @@ async def get_sector_coverage(sector: str, db: AsyncSession = Depends(get_db)):
     ))
     labs = [dict(r._mapping) for r in labs_result.fetchall()]
 
-    # Batch: aggregate content per lab, then check each benchmark with server-side regex
-    bench_cases = []
+    # Batch: for each lab, check if benchmark name appears AND if a numeric score
+    # is nearby (within 150 chars). This distinguishes "scored" from "citation reference".
+    # "mentioned" = name appears but no number nearby (likely a citation like "[71]")
+    # "scored" = name appears with a number nearby (like "75.8%" or "0.89")
+    bench_cases_present = []
+    bench_cases_scored = []
     for bench in benchmark_names:
         safe = bench.replace("'", "''")
-        bench_cases.append(
+        bench_cases_present.append(
             f"CASE WHEN lab_content ~* '\\m{safe}\\M' THEN '{safe}' END"
         )
+        # Check if a percentage or decimal score appears within 150 chars of the benchmark name
+        # Pattern: benchmark name followed (within 150 chars) by a number like 75.8, 0.89, 92%, etc.
+        bench_cases_scored.append(
+            f"CASE WHEN lab_content ~* '\\m{safe}\\M[^\\n]{{0,150}}\\d+\\.\\d' THEN '{safe}' END"
+        )
 
-    unnest_expr = ", ".join(bench_cases)
+    present_expr = ", ".join(bench_cases_present)
+    scored_expr = ", ".join(bench_cases_scored)
 
     result = await db.execute(text(f"""
         WITH lab_content AS (
@@ -104,27 +114,41 @@ async def get_sector_coverage(sector: str, db: AsyncSession = Depends(get_db)):
               AND LENGTH(dv.content_md) < 500000
             GROUP BY l.slug
         )
-        SELECT lab_slug, unnest(ARRAY[{unnest_expr}]) AS benchmark
+        SELECT lab_slug,
+               unnest(ARRAY[{present_expr}]) AS present_bench,
+               unnest(ARRAY[{scored_expr}]) AS scored_bench
         FROM lab_content
     """))
 
-    # Build lab → set of found benchmarks
+    # Build lab → present set + scored set
     lab_found = {}
+    lab_scored = {}
     for row in result.fetchall():
-        lab_slug, bench = row[0], row[1]
-        if bench is not None:
-            lab_found.setdefault(lab_slug, set()).add(bench)
+        lab_slug = row[0]
+        if row[1] is not None:
+            lab_found.setdefault(lab_slug, set()).add(row[1])
+        if row[2] is not None:
+            lab_scored.setdefault(lab_slug, set()).add(row[2])
 
-    # Build the response
+    # Build the response with scored/mentioned/absent distinction
     lab_coverage = []
     for lab in labs:
         found = lab_found.get(lab["slug"], set())
+        scored = lab_scored.get(lab["slug"], set())
         benchmarks_status = []
         for bench_info in sector_data["benchmarks"]:
+            name = bench_info["name"]
+            if name in scored:
+                status = "scored"
+            elif name in found:
+                status = "mentioned"
+            else:
+                status = "absent"
             benchmarks_status.append({
-                "name": bench_info["name"],
+                "name": name,
                 "description": bench_info["description"],
-                "reported": bench_info["name"] in found,
+                "status": status,
+                "reported": name in found,  # backward compat
                 "vals_url": bench_info.get("vals_url"),
             })
         lab_coverage.append({
@@ -132,6 +156,8 @@ async def get_sector_coverage(sector: str, db: AsyncSession = Depends(get_db)):
             "name": lab["name"],
             "color_hex": lab["color_hex"],
             "benchmarks": benchmarks_status,
+            "scored_count": sum(1 for b in benchmarks_status if b["status"] == "scored"),
+            "mentioned_count": sum(1 for b in benchmarks_status if b["status"] == "mentioned"),
             "reported_count": sum(1 for b in benchmarks_status if b["reported"]),
             "total_count": len(benchmarks_status),
         })

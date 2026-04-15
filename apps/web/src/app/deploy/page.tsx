@@ -6,6 +6,7 @@ const BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 interface BenchmarkStatus {
   name: string;
   description: string;
+  status: "scored" | "mentioned" | "absent";
   reported: boolean;
   vals_url: string | null;
 }
@@ -143,14 +144,18 @@ export default function DeployPage() {
                     <td className="p-3">
                       <span className="font-medium text-[var(--text)]">{lab.name}</span>
                     </td>
-                    {lab.benchmarks.map((b) => (
+                    {lab.benchmarks.map((b: BenchmarkStatus) => (
                       <td key={b.name} className="p-3 text-center">
-                        {b.reported ? (
-                          <span className="inline-flex w-7 h-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">
+                        {b.status === "scored" ? (
+                          <span className="inline-flex w-7 h-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold" title="Score reported in model card">
                             ✓
                           </span>
+                        ) : b.status === "mentioned" ? (
+                          <span className="inline-flex w-7 h-7 items-center justify-center rounded-full bg-amber-100 text-amber-600 text-xs font-bold" title="Referenced but no score reported">
+                            ~
+                          </span>
                         ) : (
-                          <span className="inline-flex w-7 h-7 items-center justify-center rounded-full bg-red-50 text-red-300 text-xs">
+                          <span className="inline-flex w-7 h-7 items-center justify-center rounded-full bg-red-50 text-red-300 text-xs" title="Not mentioned">
                             ✗
                           </span>
                         )}
@@ -158,16 +163,32 @@ export default function DeployPage() {
                     ))}
                     <td className="p-3 text-center">
                       <span className={`font-mono font-bold text-lg ${
-                        lab.reported_count === lab.total_count ? "text-emerald-600" :
-                        lab.reported_count > 0 ? "text-amber-600" : "text-red-400"
+                        lab.scored_count === lab.total_count ? "text-emerald-600" :
+                        lab.scored_count > 0 ? "text-amber-600" : "text-red-400"
                       }`}>
-                        {lab.reported_count}/{lab.total_count}
+                        {lab.scored_count}/{lab.total_count}
                       </span>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Legend */}
+          <div className="flex flex-wrap gap-5 text-xs text-[var(--muted)] mt-2">
+            <span className="flex items-center gap-1.5">
+              <span className="inline-flex w-5 h-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold">✓</span>
+              Score reported
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-flex w-5 h-5 items-center justify-center rounded-full bg-amber-100 text-amber-600 text-[10px] font-bold">~</span>
+              Referenced without score
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-flex w-5 h-5 items-center justify-center rounded-full bg-red-50 text-red-300 text-[10px]">✗</span>
+              Not mentioned
+            </span>
           </div>
 
           {/* Independent Evaluation Links */}
