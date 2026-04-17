@@ -105,6 +105,35 @@ def test_real_llama3_unclosed_fence_parses_to_225_items():
     assert "score" in first
 
 
+def test_missing_wrapper_comma_stream_recovers():
+    """Claude sometimes emits '```json\\n  {obj}, {obj}, ..., {obj}\\n]}'
+    — body of the results array without the opening {"results": [. The
+    greedy {...} fallback fails because comma-separated top-level
+    objects aren't a single JSON value; the final "]}" -> wrap fallback
+    rebuilds the missing wrapper."""
+    raw = (
+        "```json\n"
+        '  {"benchmark_name": "MMLU", "score": 86.8, "model_name": "A"},\n'
+        '  {"benchmark_name": "MMLU", "score": 88.1, "model_name": "B"},\n'
+        '  {"benchmark_name": "MMLU", "score": 89.4, "model_name": "C"}\n'
+        "]}\n"
+    )
+    out = _parse_extraction_json(raw)
+    assert isinstance(out, dict) and "results" in out
+    assert len(out["results"]) == 3
+    assert {r["model_name"] for r in out["results"]} == {"A", "B", "C"}
+
+
+def test_real_deepseek_v3_missing_wrapper_recovers():
+    """DeepSeek V3 paper extraction (2026-04-17) produced 24 KB output
+    missing the outer {\"results\": [ wrapper. Must recover to 128 items."""
+    fixture = FIXTURES / "deepseek_v3_missing_wrapper.txt"
+    raw = fixture.read_text()
+    out = _parse_extraction_json(raw)
+    assert isinstance(out, dict) and "results" in out
+    assert len(out["results"]) == 128, f"expected 128, got {len(out['results'])}"
+
+
 _NOISE_SAMPLES = [
     "", "   ", "not json at all",
     "```", "```json", "```json\n", "```json\n{", "```json\n{}",

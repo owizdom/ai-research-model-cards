@@ -60,4 +60,22 @@ def parse_extraction_json(raw: str) -> dict | list:
             if got is not None:
                 return got
 
+    # Last-ditch: Claude occasionally emits only the body of the results
+    # array — a comma-separated stream of objects that ends with "]}" but
+    # has no opening "{\"results\": [" wrapper. Rebuild the wrapper and
+    # retry. Same pattern with plain "]" suffix wraps as a bare list.
+    trimmed = raw.strip()
+    fence = re.match(r"^```(?:json)?\s*\n?", trimmed)
+    if fence:
+        trimmed = trimmed[fence.end():].rstrip()
+    if trimmed.endswith("```"):
+        trimmed = trimmed[:-3].rstrip()
+    for tail, rebuild in (("]}", lambda core: '{"results": [' + core + "]}"),
+                          ("]", lambda core: "[" + core + "]")):
+        if trimmed.endswith(tail):
+            core = trimmed[: -len(tail)].rstrip().rstrip(",")
+            got = _try_load(rebuild(core))
+            if got is not None:
+                return got
+
     return {"results": []}
