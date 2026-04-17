@@ -253,13 +253,19 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     benchmarks = await _load_benchmark_lookup(db)
 
                 variant = (item.get("variant") or "default").strip()
+                model_name = (item.get("model_name") or "").strip() or None
 
-                # Check for duplicate
+                # Dedup on the full uniqueness key (document_version_id,
+                # generation_id, benchmark_id, variant, model_name) — matches
+                # the DB uq_eval_result constraint. Papers that report a
+                # benchmark for multiple sizes (e.g. Llama 3.1 8B/70B/405B)
+                # correctly land as distinct rows because model_name differs.
                 existing_eval = await db.execute(
                     select(EvalResult).where(
                         EvalResult.document_version_id == version_id,
                         EvalResult.benchmark_id == benchmark_id,
                         EvalResult.variant == variant,
+                        EvalResult.model_name == model_name,
                     )
                 )
                 if existing_eval.scalar_one_or_none():
@@ -271,6 +277,7 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     generation_id=generation_id,
                     score=score,
                     variant=variant,
+                    model_name=model_name,
                     score_details={
                         "raw_text": item.get("context", ""),
                         "metric": item.get("metric", ""),

@@ -33,7 +33,7 @@ class EvalResult(Base):
     __tablename__ = "eval_results"
     __table_args__ = (
         UniqueConstraint(
-            "document_version_id", "generation_id", "benchmark_id", "variant",
+            "document_version_id", "generation_id", "benchmark_id", "variant", "model_name",
             name="uq_eval_result",
         ),
         Index("ix_eval_results_benchmark", "benchmark_id"),
@@ -53,6 +53,7 @@ class EvalResult(Base):
     )
     score: Mapped[float] = mapped_column(Float, nullable=False)
     variant: Mapped[str] = mapped_column(String, default="default", nullable=False)
+    model_name: Mapped[Optional[str]] = mapped_column(String)
     score_details: Mapped[Optional[dict]] = mapped_column(JSON)
     extraction_confidence: Mapped[Optional[float]] = mapped_column(Float)
     is_self_reported: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
