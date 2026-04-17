@@ -252,6 +252,13 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     benchmark_id = await _create_benchmark(db, benchmark_name, item)
                     benchmarks = await _load_benchmark_lookup(db)
 
+                # Reject scores outside the benchmark's declared range.
+                # Claude occasionally hallucinates numbers ("MMLU: 150") — when
+                # the ontology defines a range, enforce it. Benchmarks without
+                # a range pass through untouched.
+                if not await _score_in_range(db, benchmark_id, score):
+                    continue
+
                 variant = (item.get("variant") or "default").strip()
                 model_name = (item.get("model_name") or "").strip() or None
 
@@ -304,6 +311,27 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
             print(f"[extractor] failed for version {version_id}: {e}", flush=True)
             traceback.print_exc()
             return 0
+
+
+async def _score_in_range(db: AsyncSession, benchmark_id: int, score: float) -> bool:
+    """Return False if the score is outside the benchmark's declared range.
+
+    Benchmarks without a range (score_min/score_max NULL) always pass.
+    """
+    from packages.db.models import BenchmarkDefinition
+    b = await db.get(BenchmarkDefinition, benchmark_id)
+    if b is None or b.score_min is None or b.score_max is None:
+        return True
+    # Small tolerance for rounding (e.g. score_max 100 but Claude emits 100.01)
+    eps = 1e-3
+    if score < b.score_min - eps or score > b.score_max + eps:
+        print(
+            f"[extractor] rejecting out-of-range score {score} for {b.slug} "
+            f"(expected [{b.score_min}, {b.score_max}])",
+            flush=True,
+        )
+        return False
+    return True
 
 
 async def _load_benchmark_lookup(db: AsyncSession) -> dict:

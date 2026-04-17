@@ -18,6 +18,12 @@ class Document(Base):
     slug: Mapped[str] = mapped_column(String, unique=True, nullable=False, index=True)
     title: Mapped[str] = mapped_column(String, nullable=False)
     doc_type: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    # doc_scope classifies the document's role so "0 benchmarks" on a
+    # policy doc isn't a surprise. Values: capability_paper, safety_paper,
+    # technical_paper, model_card, system_card, policy_doc, license,
+    # usage_policy, constitution. Backfilled from doc_type + title heuristics
+    # on migration 0006; new sources can set explicitly via registry.
+    doc_scope: Mapped[Optional[str]] = mapped_column(String, index=True)
     source_url: Mapped[Optional[str]] = mapped_column(String)
     is_tracked: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

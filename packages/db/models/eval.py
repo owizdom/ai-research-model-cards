@@ -26,6 +26,8 @@ class BenchmarkDefinition(Base):
     higher_is_better: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     source_url: Mapped[Optional[str]] = mapped_column(String)
     aliases: Mapped[Optional[dict]] = mapped_column(JSON)
+    score_min: Mapped[Optional[float]] = mapped_column(Float)
+    score_max: Mapped[Optional[float]] = mapped_column(Float)
 
 
 class EvalResult(Base):
