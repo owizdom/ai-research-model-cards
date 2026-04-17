@@ -130,6 +130,51 @@ def _slugify(name: str) -> str:
     return s.strip("_")
 
 
+def _parse_extraction_json(raw: str) -> dict:
+    """Tolerant JSON extractor for LLM output.
+
+    Handles: plain JSON, fenced ```json blocks (closed OR unclosed — the CLI
+    has been observed to emit an opening ```json without a closing ```), and
+    prose wrappers by falling back to the outermost {...} or [...] span.
+    """
+    if not raw:
+        return {"results": []}
+
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        pass
+
+    m = re.search(r"```(?:json)?\s*([\s\S]*?)```", raw)
+    if m:
+        try:
+            return json.loads(m.group(1))
+        except json.JSONDecodeError:
+            pass
+
+    stripped = raw.strip()
+    fence = re.match(r"^```(?:json)?\s*\n?", stripped)
+    if fence:
+        stripped = stripped[fence.end():].rstrip()
+        if stripped.endswith("```"):
+            stripped = stripped[:-3].rstrip()
+        try:
+            return json.loads(stripped)
+        except json.JSONDecodeError:
+            pass
+
+    for open_ch, close_ch in (("{", "}"), ("[", "]")):
+        start = raw.find(open_ch)
+        end = raw.rfind(close_ch)
+        if start >= 0 and end > start:
+            try:
+                return json.loads(raw[start:end + 1])
+            except json.JSONDecodeError:
+                continue
+
+    return {"results": []}
+
+
 async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
     """Extract evals from a document version. Returns count of evals extracted."""
     if SessionLocal is None:
@@ -146,11 +191,14 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
         if not version or not version.content_md:
             return 0
 
-        # Check if already extracted successfully
+        # Skip only if an earlier completed run actually produced results.
+        # A completed run with 0 evals is a failure mode (e.g. malformed LLM
+        # output, parser fallback) that should be retried, not treated as done.
         existing = await db.execute(
             select(ExtractionRun).where(
                 ExtractionRun.document_version_id == version_id,
                 ExtractionRun.status == "completed",
+                ExtractionRun.evals_extracted > 0,
             )
         )
         if existing.scalar_one_or_none():
@@ -197,15 +245,7 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
             raw_output = response_text
             run.raw_output = raw_output
 
-            # Parse results
-            try:
-                parsed = json.loads(raw_output)
-            except json.JSONDecodeError:
-                match = re.search(r"```(?:json)?\s*([\s\S]*?)```", raw_output)
-                if match:
-                    parsed = json.loads(match.group(1))
-                else:
-                    parsed = {"results": []}
+            parsed = _parse_extraction_json(raw_output)
 
             if isinstance(parsed, dict) and "results" in parsed:
                 items = parsed["results"]
