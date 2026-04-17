@@ -24,6 +24,8 @@ LAB_META: dict[str, dict] = {
     "cohere":    {"name": "Cohere",           "website": "https://cohere.com",        "color_hex": "#39594D"},
     "amazon":    {"name": "Amazon (AWS)",     "website": "https://aws.amazon.com/bedrock", "color_hex": "#FF9900"},
     "ai21":      {"name": "AI21 Labs",        "website": "https://www.ai21.com",      "color_hex": "#6C3CE1"},
+    "deepseek":  {"name": "DeepSeek",         "website": "https://www.deepseek.com",  "color_hex": "#4D6BFE"},
+    "alibaba":   {"name": "Alibaba (Qwen)",   "website": "https://qwenlm.github.io",  "color_hex": "#FF6A00"},
 }
 
 SOURCES: list[Source] = [
@@ -122,6 +124,32 @@ SOURCES: list[Source] = [
     Source("amazon_bedrock_docs",      "amazon", "Bedrock Documentation",        "usage_policy",  "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",       "html"),
 
     # ── AI21 Labs ─────────────────────────────────────────────────────────────
-    Source("ai21_terms",               "ai21", "AI21 Terms of Service",         "usage_policy",  "https://www.ai21.com/terms-of-use",                                               "html"),
-    Source("ai21_jamba_card",          "ai21", "Jamba Model Overview",          "usage_policy",  "https://www.ai21.com/jamba",                                                      "html"),
+    Source("ai21_terms",                    "ai21", "AI21 Terms of Service",         "usage_policy",  "https://www.ai21.com/terms-of-use",                                      "html"),
+    Source("ai21_jamba_card",               "ai21", "Jamba Model Overview",          "usage_policy",  "https://www.ai21.com/jamba",                                             "html"),
+    Source("ai21_jamba_1_5_paper",          "ai21", "Jamba-1.5 Technical Report",    "technical_paper","https://arxiv.org/pdf/2408.12570",                                       "pdf"),
+    Source("ai21_jamba_family_announcement","ai21", "Jamba 1.5 Family Announcement", "model_card",    "https://www.ai21.com/blog/announcing-jamba-model-family/",               "html"),
+
+    # ── Cohere — additional ───────────────────────────────────────────────────
+    Source("cohere_command_a_paper",        "cohere", "Command A Technical Report",  "technical_paper","https://arxiv.org/pdf/2504.00698",                                       "pdf"),
+
+    # ── Mistral — additional ──────────────────────────────────────────────────
+    Source("mistral_large_2_blog",          "mistral", "Mistral Large 2 Release",    "model_card",    "https://mistral.ai/news/mistral-large-2407",                             "html"),
+    Source("mistral_small_3_blog",          "mistral", "Mistral Small 3 Release",    "model_card",    "https://mistral.ai/news/mistral-small-3",                                "html"),
+    Source("mistral_small_3_hf_card",       "mistral", "Mistral Small 24B Instruct 2501 Model Card","model_card","https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501/raw/main/README.md","raw"),
+    Source("mistral_codestral_blog",        "mistral", "Codestral Release",          "model_card",    "https://mistral.ai/news/codestral",                                      "html"),
+
+    # ── Amazon — additional ───────────────────────────────────────────────────
+    Source("amazon_nova_tech_report",       "amazon", "Amazon Nova Family Technical Report","technical_paper","https://arxiv.org/pdf/2506.12103",                               "pdf"),
+    Source("amazon_nova_premier_report",    "amazon", "Amazon Nova Premier Technical Report","technical_paper","https://assets.amazon.science/e5/e6/ccc5378c42dca467d1abe1628ec9/amazon-nova-premier-technical-report-and-model-card.pdf","pdf"),
+
+    # ── DeepSeek ──────────────────────────────────────────────────────────────
+    Source("deepseek_v3_paper",             "deepseek", "DeepSeek-V3 Technical Report","technical_paper","https://arxiv.org/pdf/2412.19437",                                     "pdf"),
+    Source("deepseek_r1_paper",             "deepseek", "DeepSeek-R1 Paper",          "technical_paper","https://arxiv.org/pdf/2501.12948",                                       "pdf"),
+
+    # ── Alibaba / Qwen ────────────────────────────────────────────────────────
+    Source("qwen_2_5_paper",                "alibaba", "Qwen2.5 Technical Report",   "technical_paper","https://arxiv.org/pdf/2412.15115",                                        "pdf"),
+    Source("qwen_2_5_vl_paper",             "alibaba", "Qwen2.5-VL Technical Report","technical_paper","https://arxiv.org/pdf/2502.13923",                                        "pdf"),
+    Source("qwen_2_5_coder_paper",          "alibaba", "Qwen2.5-Coder Technical Report","technical_paper","https://arxiv.org/pdf/2409.12186",                                     "pdf"),
+    Source("qwen_3_paper",                  "alibaba", "Qwen3 Technical Report",     "technical_paper","https://arxiv.org/pdf/2505.09388",                                        "pdf"),
+    Source("qwen_qwq_blog",                 "alibaba", "QwQ: Reflect Deeply",        "model_card",    "https://qwenlm.github.io/blog/qwq-32b-preview/",                          "html"),
 ]
