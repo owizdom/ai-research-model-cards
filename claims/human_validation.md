@@ -11,7 +11,7 @@ Not found in THIS card: SWE-bench, BBH/BIG-Bench-Hard, IFEval, AIME, ToxiGen, Tr
 
 Note: BBH ("BIG-Bench-Hard") IS in this card per independent audit (Claude 3 Table 1 p.6) but our regex for "BIG-Bench Hard" (space) doesn't match "BIG-Bench-Hard" (hyphen). ALIAS BUG — need to add hyphen variant to regex.
 
-Note: MedMCQA and USMLE are CITATION REFERENCES ("We use... USMLE [70], and MedMCQA [71]"), not scored benchmarks. The scored/mentioned distinction in the deploy API addresses this.
+Note: MedMCQA and USMLE are CITATION REFERENCES ("We use... USMLE [70], and MedMCQA [71]"), not scored benchmarks. A scored/mentioned distinction in the extraction layer would address this.
 
 ### Card 2: GPT-4o System Card (v11, OpenAI)
 Found 10/39: MMLU, MATH, SWE-bench, ARC, HellaSwag, TruthfulQA, MedQA, MedMCQA, USMLE, TriviaQA
