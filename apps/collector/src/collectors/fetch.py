@@ -1,7 +1,17 @@
 """Fetch all sources concurrently."""
 import asyncio
 import httpx
-from .base import CollectedDocument, html_to_markdown, pdf_to_text, arxiv_pdf_to_text, clean_markdown, compute_hash, word_count
+from .base import (
+    CollectedDocument,
+    ContentTypeMismatch,
+    arxiv_pdf_to_text,
+    clean_markdown,
+    compute_hash,
+    enforce_size_cap,
+    html_to_markdown,
+    pdf_to_text,
+    word_count,
+)
 from .registry import SOURCES, Source
 
 
@@ -23,11 +33,15 @@ async def fetch_source(source: Source, client: httpx.AsyncClient) -> CollectedDo
         content = clean_markdown(content)
         if not content.strip():
             return None
+        content = enforce_size_cap(content, slug=source.slug)
         return CollectedDocument(
             slug=source.slug, lab_slug=source.lab_slug, title=source.title,
             doc_type=source.doc_type, source_url=source.url,
             content_md=content, content_hash=compute_hash(content), word_count=word_count(content),
         )
+    except ContentTypeMismatch as e:
+        print(f"[fetch] {source.slug}: content-type mismatch — {e}", flush=True)
+        return None
     except Exception as e:
         print(f"[fetch] {source.slug}: {e}")
         return None

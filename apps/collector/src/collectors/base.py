@@ -12,6 +12,29 @@ from markdownify import markdownify as md
 USER_AGENT = "Mozilla/5.0 AI-Safety-Research-Bot/1.0"
 DEFAULT_HEADERS = {"User-Agent": USER_AGENT, "Accept-Language": "en-US,en;q=0.9"}
 
+MAX_CONTENT_BYTES = 500_000
+TRUNCATION_MARKER = "\n\n[... TRUNCATED BY COLLECTOR — content exceeded size cap ...]"
+PDF_MAGIC = b"%PDF-"
+
+
+class ContentTypeMismatch(Exception):
+    """Fetch bytes don't match the declared method (e.g. PDF on html)."""
+
+
+def looks_like_pdf(data: bytes) -> bool:
+    return data[:8].lstrip().startswith(PDF_MAGIC)
+
+
+def enforce_size_cap(content: str, slug: str = "<unknown>", limit: int = MAX_CONTENT_BYTES) -> str:
+    if len(content) <= limit:
+        return content
+    print(
+        f"[collector] WARNING {slug}: content exceeded cap — "
+        f"{len(content):,} chars > {limit:,}; truncating",
+        flush=True,
+    )
+    return content[:limit] + TRUNCATION_MARKER
+
 
 @dataclass
 class CollectedDocument:
@@ -50,6 +73,11 @@ def word_count(text: str) -> int:
 async def html_to_markdown(url: str, client: httpx.AsyncClient, selector: Optional[str] = None) -> str:
     r = await client.get(url, headers=DEFAULT_HEADERS, follow_redirects=True, timeout=30.0)
     r.raise_for_status()
+    if looks_like_pdf(r.content) or "application/pdf" in r.headers.get("content-type", "").lower():
+        raise ContentTypeMismatch(
+            f"{url} returned PDF content but source declared method=html; "
+            "re-register with method=pdf"
+        )
     soup = BeautifulSoup(r.text, "html.parser")
     for el in soup(["script", "style", "nav", "footer", "header", "aside"]):
         el.decompose()
