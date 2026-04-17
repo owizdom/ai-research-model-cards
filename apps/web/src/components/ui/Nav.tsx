@@ -10,7 +10,6 @@ const links = [
   { href: "/families", label: "Families" },
   { href: "/trends", label: "Trends" },
   { href: "/analysis", label: "Coverage" },
-  { href: "/deploy", label: "Deploy" },
   { href: "/about", label: "About" },
 ];
 
