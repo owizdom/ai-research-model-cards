@@ -7,7 +7,7 @@ import traceback
 from datetime import datetime, timezone
 
 import litellm
-from sqlalchemy import select
+from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .claude_cli import call_claude_cli
@@ -187,6 +187,17 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
     )
 
     async with SessionLocal() as db:
+        # Serialize concurrent extract jobs for the same version_id via a
+        # Postgres advisory lock scoped to this transaction. Different
+        # version_ids hash to different keys and do not block each other.
+        # Held for the duration of the LLM call — intentional: the point is
+        # that a second caller must wait for the first to finish (or fail)
+        # before deciding whether to re-run. Released on commit/rollback.
+        await db.execute(
+            text("SELECT pg_advisory_xact_lock(hashtext(:k))"),
+            {"k": f"extract:{version_id}"},
+        )
+
         version = await db.get(DocumentVersion, version_id)
         if not version or not version.content_md:
             return 0
