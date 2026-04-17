@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 from src.core.deps import get_db
-from src.schemas.analysis import IntersectionResult, TemporalPoint
+from src.schemas.analysis import IntersectionResult
 
 router = APIRouter()
 
@@ -75,19 +75,3 @@ async def get_intersection(
         matrix=matrix, covered_by_all=covered_by_all, covered_by_none=covered_by_none,
         unique_to=unique_to, intersection_sets=sets, lab_slugs=lab_list, category_names=category_names,
     )
-
-
-@router.get("/temporal", response_model=list[TemporalPoint])
-async def get_temporal(db: AsyncSession = Depends(get_db)):
-    r = await db.execute(text("SELECT MIN(version_date), MAX(version_date) FROM document_versions"))
-    row = r.fetchone()
-    if not row or not row[0]:
-        return []
-    result = await get_intersection(db=db)
-    total = len(result.matrix)
-    covered = len(result.covered_by_all)
-    return [TemporalPoint(
-        period_start=row[0].isoformat(), period_end=row[1].isoformat(),
-        covered_by_all_count=covered, total_categories=total,
-        convergence_score=round(covered / total, 4) if total > 0 else 0.0,
-    )]

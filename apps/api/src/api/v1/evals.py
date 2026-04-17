@@ -5,7 +5,7 @@ from sqlalchemy.orm import selectinload
 
 from src.core.deps import get_db
 from src.schemas.eval import (
-    BenchmarkRead, EvalResultRead, ComparisonResult, TimelinePoint, PerCardEvalPoint, ExtractionRunRead,
+    BenchmarkRead, EvalResultRead, ComparisonResult, TimelinePoint, PerCardEvalPoint,
     CategoryTimelinePoint,
 )
 from packages.db.models import (
@@ -28,38 +28,6 @@ async def list_benchmarks(
     q = select(BenchmarkDefinition).order_by(BenchmarkDefinition.category, BenchmarkDefinition.name)
     if category:
         q = q.where(BenchmarkDefinition.category == category)
-    result = await db.execute(q)
-    return result.scalars().all()
-
-
-@router.get("/results", response_model=list[EvalResultRead])
-async def list_eval_results(
-    document_id: int | None = None,
-    generation_id: int | None = None,
-    benchmark_id: int | None = None,
-    lab_slug: str | None = None,
-    limit: int = Query(default=100, le=500),
-    offset: int = 0,
-    db: AsyncSession = Depends(get_db),
-):
-    q = (
-        select(EvalResult)
-        .options(selectinload(EvalResult.benchmark), selectinload(EvalResult.generation))
-        .order_by(EvalResult.extracted_at.desc())
-        .limit(limit)
-        .offset(offset)
-    )
-    if document_id:
-        q = q.join(DocumentVersion).where(DocumentVersion.document_id == document_id)
-    if generation_id:
-        q = q.where(EvalResult.generation_id == generation_id)
-    if benchmark_id:
-        q = q.where(EvalResult.benchmark_id == benchmark_id)
-    if lab_slug:
-        q = q.join(DocumentVersion, EvalResult.document_version_id == DocumentVersion.id).join(
-            Document, DocumentVersion.document_id == Document.id
-        ).join(Lab, Document.lab_id == Lab.id).where(Lab.slug == lab_slug)
-
     result = await db.execute(q)
     return result.scalars().all()
 
@@ -191,19 +159,6 @@ async def eval_timeline(
         )
         for row in rows
     ]
-
-
-@router.get("/extraction-runs", response_model=list[ExtractionRunRead])
-async def list_extraction_runs(
-    status: str | None = None,
-    limit: int = Query(default=20, le=100),
-    db: AsyncSession = Depends(get_db),
-):
-    q = select(ExtractionRun).order_by(ExtractionRun.started_at.desc()).limit(limit)
-    if status:
-        q = q.where(ExtractionRun.status == status)
-    result = await db.execute(q)
-    return result.scalars().all()
 
 
 @router.get("/per-card", response_model=list[PerCardEvalPoint])

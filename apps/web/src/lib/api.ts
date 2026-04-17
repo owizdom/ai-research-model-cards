@@ -34,7 +34,6 @@ export const api = {
   labs: {
     list: () => get<Lab[]>("/labs"),
     get: (slug: string) => get<Lab>(`/labs/${slug}`),
-    documents: (slug: string) => get<Document[]>(`/labs/${slug}/documents`),
   },
 
   documents: {
@@ -43,8 +42,6 @@ export const api = {
     wordCountTimeline: () =>
       get<WordCountTimelinePoint[]>("/documents/word-count-timeline"),
     get: (id: number) => get<DocumentDetail>(`/documents/${id}`),
-    version: (id: number, versionId: number) =>
-      get<{ content_md: string }>(`/documents/${id}/versions/${versionId}`),
   },
 
   analysis: {
