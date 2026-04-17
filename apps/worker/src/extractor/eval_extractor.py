@@ -11,6 +11,7 @@ from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .claude_cli import call_claude_cli
+from .parse import parse_extraction_json as _parse_extraction_json
 
 EXTRACTION_MODEL = os.getenv("EXTRACTION_MODEL", "sonnet")
 
@@ -128,51 +129,6 @@ def _slugify(name: str) -> str:
     s = name.lower().strip()
     s = re.sub(r"[^a-z0-9]+", "_", s)
     return s.strip("_")
-
-
-def _parse_extraction_json(raw: str) -> dict:
-    """Tolerant JSON extractor for LLM output.
-
-    Handles: plain JSON, fenced ```json blocks (closed OR unclosed — the CLI
-    has been observed to emit an opening ```json without a closing ```), and
-    prose wrappers by falling back to the outermost {...} or [...] span.
-    """
-    if not raw:
-        return {"results": []}
-
-    try:
-        return json.loads(raw)
-    except json.JSONDecodeError:
-        pass
-
-    m = re.search(r"```(?:json)?\s*([\s\S]*?)```", raw)
-    if m:
-        try:
-            return json.loads(m.group(1))
-        except json.JSONDecodeError:
-            pass
-
-    stripped = raw.strip()
-    fence = re.match(r"^```(?:json)?\s*\n?", stripped)
-    if fence:
-        stripped = stripped[fence.end():].rstrip()
-        if stripped.endswith("```"):
-            stripped = stripped[:-3].rstrip()
-        try:
-            return json.loads(stripped)
-        except json.JSONDecodeError:
-            pass
-
-    for open_ch, close_ch in (("{", "}"), ("[", "]")):
-        start = raw.find(open_ch)
-        end = raw.rfind(close_ch)
-        if start >= 0 and end > start:
-            try:
-                return json.loads(raw[start:end + 1])
-            except json.JSONDecodeError:
-                continue
-
-    return {"results": []}
 
 
 async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
