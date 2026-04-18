@@ -66,7 +66,7 @@ For each benchmark reference, emit an object with these fields:
 - training_state (TEXT | null): "pretrained", "instruction-tuned", "RLHF", "base", or "unknown". null if paper does not indicate.
 - metric (TEXT | null): "accuracy", "pass@1", "F1", "BLEU", "ELO", "exact-match", etc.
 - model_name (TEXT | null): the specific model this row refers to, e.g. "Claude 3.5 Sonnet", "GPT-4o", "Llama 3.1 70B". null only for generic "cited" rows.
-- context (TEXT, required, max 120 chars): brief surrounding text for audit.
+- context (TEXT, required, max 300 chars): surrounding text WITH the model name, benchmark name, and score all included when possible. This is the evidence snippet for downstream audit — if you only include the table caption, the extraction is not self-verifiable. When extracting from tables, include the header row + the specific data row. When extracting from prose, include the full sentence.
 
 STATE RULES (critical distinction):
 
