@@ -508,15 +508,29 @@ BENCHMARKS = [
 
 
 MIGRATION_PLAN = {
-    # MultiPL-E rows are not a distinct benchmark — each variant maps to
-    # either humaneval or mbpp based on the suffix in the variant string.
+    # MultiPL-E per-language rows migrate into humaneval or mbpp with the
+    # language carried in the variant string. Aggregate rows — where a
+    # paper reports a single MultiPL-E mean across languages — stay under
+    # multipl_e because they can't be cleanly assigned to one sub-task.
+    # Applied 2026-04-17: 18/23 rows migrated, 5 aggregate rows kept.
     "multipl_e": {
-        "action": "delete",
-        "migrate_rows": "reassign_to_humaneval_or_mbpp_by_variant_suffix",
-        "notes": (
-            "Rows like multipl_e|variant=C++/HumanEval|... become "
-            "humaneval|variant=C++|... and multipl_e|variant=C#/MBPP become "
-            "mbpp|variant=C#. Same score, cleaner ontology."
-        ),
+        "action": "keep_as_aggregate",
+        "migrate_rows": "<lang>/HumanEval -> humaneval:<lang>; <lang>/MBPP -> mbpp:<lang>; bare HumanEval/MBPP -> humaneval/mbpp:default",
+        "keep_rule": "variant='default' with no sub-task suffix stays as multipl_e",
     },
 }
+
+
+# multipl_e stays in BENCHMARKS as an aggregate-only entry.
+BENCHMARKS.append({
+    "slug": "multipl_e", "name": "MultiPL-E (aggregate)", "category": "coding",
+    "description": (
+        "Aggregate coding score averaged across MultiPL-E languages and "
+        "tasks. Per-language numbers live under humaneval/mbpp with the "
+        "language as the variant."
+    ),
+    "metric_name": "pass_at_1", "metric_unit": "pass_at_k", "higher_is_better": True,
+    "score_min": 0.0, "score_max": 100.0,
+    "source_url": "https://arxiv.org/abs/2208.08227",
+    "aliases": ["MultiPL-E"],
+})
