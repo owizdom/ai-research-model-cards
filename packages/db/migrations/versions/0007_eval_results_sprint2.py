@@ -32,6 +32,9 @@ depends_on = None
 
 
 def upgrade() -> None:
+    # score becomes nullable — mentioned/cited rows don't have a number.
+    op.alter_column("eval_results", "score", nullable=True)
+
     # Eval_results — Sprint 2 structured columns
     op.add_column("eval_results", sa.Column("state", sa.String, nullable=True))
     op.add_column("eval_results", sa.Column("shot_count", sa.Integer, nullable=True))
