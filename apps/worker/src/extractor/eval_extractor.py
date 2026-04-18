@@ -334,17 +334,33 @@ async def _score_in_range(db: AsyncSession, benchmark_id: int, score: float) -> 
     return True
 
 
+def _normalize_bench_key(s: str) -> str:
+    """Aggressive normalization for benchmark-name matching.
+
+    Collapses spacing, punctuation, and case so that "BIG-Bench Hard",
+    "big_bench_hard", "BigBenchHard", and "bigbench-hard" all reduce to
+    the same key. Eliminates the primary driver of benchmark_definitions
+    bloat (Claude-emitted spelling variants landing as new rows).
+    """
+    return re.sub(r"[^a-z0-9]", "", (s or "").lower())
+
+
 async def _load_benchmark_lookup(db: AsyncSession) -> dict:
     from packages.db.models import BenchmarkDefinition
     result = await db.execute(select(BenchmarkDefinition))
     benchmarks = result.scalars().all()
     lookup = {}
     for b in benchmarks:
+        # Keep both literal-lowercase and aggressive-normalized entries so
+        # the fast path stays fast and we still catch spelling variants.
         lookup[b.slug.lower()] = b.id
         lookup[b.name.lower()] = b.id
+        lookup[_normalize_bench_key(b.slug)] = b.id
+        lookup[_normalize_bench_key(b.name)] = b.id
         if b.aliases:
             for alias in b.aliases:
                 lookup[alias.lower()] = b.id
+                lookup[_normalize_bench_key(alias)] = b.id
     return lookup
 
 
@@ -355,9 +371,11 @@ def _match_benchmark(name: str, lookup: dict) -> int | None:
     slug = _slugify(name)
     if slug in lookup:
         return lookup[slug]
-    for known, bid in lookup.items():
-        if key in known or known in key:
-            return bid
+    # Normalized fallback catches variants like "BIG-Bench Hard" vs
+    # "big_bench_hard" that literal matching misses.
+    norm = _normalize_bench_key(name)
+    if norm and norm in lookup:
+        return lookup[norm]
     return None
 
 
