@@ -24,8 +24,6 @@ LAB_META: dict[str, dict] = {
     "cohere":    {"name": "Cohere",           "website": "https://cohere.com",        "color_hex": "#39594D"},
     "amazon":    {"name": "Amazon (AWS)",     "website": "https://aws.amazon.com/bedrock", "color_hex": "#FF9900"},
     "ai21":      {"name": "AI21 Labs",        "website": "https://www.ai21.com",      "color_hex": "#6C3CE1"},
-    "deepseek":  {"name": "DeepSeek",         "website": "https://www.deepseek.com",  "color_hex": "#4D6BFE"},
-    "alibaba":   {"name": "Alibaba (Qwen)",   "website": "https://qwenlm.github.io",  "color_hex": "#FF6A00"},
 }
 
 SOURCES: list[Source] = [
@@ -142,14 +140,4 @@ SOURCES: list[Source] = [
     Source("amazon_nova_tech_report",       "amazon", "Amazon Nova Family Technical Report","technical_paper","https://arxiv.org/pdf/2506.12103",                               "pdf"),
     Source("amazon_nova_premier_report",    "amazon", "Amazon Nova Premier Technical Report","technical_paper","https://assets.amazon.science/e5/e6/ccc5378c42dca467d1abe1628ec9/amazon-nova-premier-technical-report-and-model-card.pdf","pdf"),
 
-    # ── DeepSeek ──────────────────────────────────────────────────────────────
-    Source("deepseek_v3_paper",             "deepseek", "DeepSeek-V3 Technical Report","technical_paper","https://arxiv.org/pdf/2412.19437",                                     "pdf"),
-    Source("deepseek_r1_paper",             "deepseek", "DeepSeek-R1 Paper",          "technical_paper","https://arxiv.org/pdf/2501.12948",                                       "pdf"),
-
-    # ── Alibaba / Qwen ────────────────────────────────────────────────────────
-    Source("qwen_2_5_paper",                "alibaba", "Qwen2.5 Technical Report",   "technical_paper","https://arxiv.org/pdf/2412.15115",                                        "pdf"),
-    Source("qwen_2_5_vl_paper",             "alibaba", "Qwen2.5-VL Technical Report","technical_paper","https://arxiv.org/pdf/2502.13923",                                        "pdf"),
-    Source("qwen_2_5_coder_paper",          "alibaba", "Qwen2.5-Coder Technical Report","technical_paper","https://arxiv.org/pdf/2409.12186",                                     "pdf"),
-    Source("qwen_3_paper",                  "alibaba", "Qwen3 Technical Report",     "technical_paper","https://arxiv.org/pdf/2505.09388",                                        "pdf"),
-    Source("qwen_qwq_blog",                 "alibaba", "QwQ: Reflect Deeply",        "model_card",    "https://qwenlm.github.io/blog/qwq-32b-preview/",                          "html"),
 ]
