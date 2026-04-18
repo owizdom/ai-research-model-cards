@@ -184,17 +184,19 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
         if not version or not version.content_md:
             return 0
 
-        # Skip only if an earlier completed run actually produced results.
-        # A completed run with 0 evals is a failure mode (e.g. malformed LLM
-        # output, parser fallback) that should be retried, not treated as done.
-        existing = await db.execute(
-            select(ExtractionRun).where(
-                ExtractionRun.document_version_id == version_id,
-                ExtractionRun.status == "completed",
-                ExtractionRun.evals_extracted > 0,
-            )
+        # Skip only if we already have eval_results at the CURRENT protocol
+        # version for this doc. Sprint-1 (protocol 1) rows don't block a
+        # Sprint-2 (protocol 2) re-extraction — they coexist so the UI can
+        # filter between them. A completed run with 0 evals at the current
+        # protocol is a failure mode that should be retried, not treated
+        # as done.
+        existing_v2 = await db.execute(
+            select(EvalResult).where(
+                EvalResult.document_version_id == version_id,
+                EvalResult.extraction_protocol_version == EXTRACTION_PROTOCOL_VERSION,
+            ).limit(1)
         )
-        if existing.scalar_one_or_none():
+        if existing_v2.scalar_one_or_none():
             return 0
 
         # Create extraction run
