@@ -59,6 +59,15 @@ def upgrade() -> None:
     # Backfill existing rows: state='scored' (all Sprint 1 rows are scored)
     op.execute("UPDATE eval_results SET state = 'scored' WHERE state IS NULL AND score IS NOT NULL")
 
+    # Unique constraint now includes extraction_protocol_version so v1 and
+    # v2 rows for the same (doc, gen, bench, variant, model) coexist.
+    op.drop_constraint("uq_eval_result", "eval_results", type_="unique")
+    op.create_unique_constraint(
+        "uq_eval_result", "eval_results",
+        ["document_version_id", "generation_id", "benchmark_id", "variant",
+         "model_name", "extraction_protocol_version"],
+    )
+
 
 def downgrade() -> None:
     op.drop_index("ix_benchmark_definitions_parent", table_name="benchmark_definitions")

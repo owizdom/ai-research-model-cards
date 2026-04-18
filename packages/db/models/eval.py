@@ -37,7 +37,8 @@ class EvalResult(Base):
     __tablename__ = "eval_results"
     __table_args__ = (
         UniqueConstraint(
-            "document_version_id", "generation_id", "benchmark_id", "variant", "model_name",
+            "document_version_id", "generation_id", "benchmark_id", "variant",
+            "model_name", "extraction_protocol_version",
             name="uq_eval_result",
         ),
         Index("ix_eval_results_benchmark", "benchmark_id"),
