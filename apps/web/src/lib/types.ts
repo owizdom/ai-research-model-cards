@@ -66,12 +66,21 @@ export interface GenerationBrief {
   version_label: string | null;
 }
 
+export type EvalState = "scored" | "mentioned" | "cited";
+
 export interface EvalResult {
   id: number;
   benchmark: Benchmark;
   generation: GenerationBrief | null;
-  score: number;
+  score: number | null;
   variant: string;
+  model_name: string | null;
+  state: EvalState | null;
+  shot_count: number | null;
+  method: string | null;
+  language: string | null;
+  training_state: string | null;
+  extraction_protocol_version: number;
   score_details: Record<string, unknown> | null;
   extraction_confidence: number | null;
   is_self_reported: boolean;

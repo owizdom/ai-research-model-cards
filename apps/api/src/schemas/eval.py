@@ -28,8 +28,15 @@ class EvalResultRead(BaseModel):
     id: int
     benchmark: BenchmarkRead
     generation: Optional[GenerationBrief] = None
-    score: float
+    score: Optional[float] = None
     variant: str
+    model_name: Optional[str] = None
+    state: Optional[str] = None
+    shot_count: Optional[int] = None
+    method: Optional[str] = None
+    language: Optional[str] = None
+    training_state: Optional[str] = None
+    extraction_protocol_version: int = 1
     score_details: Optional[dict] = None
     extraction_confidence: Optional[float] = None
     is_self_reported: bool
