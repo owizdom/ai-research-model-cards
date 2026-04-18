@@ -28,6 +28,8 @@ class BenchmarkDefinition(Base):
     aliases: Mapped[Optional[dict]] = mapped_column(JSON)
     score_min: Mapped[Optional[float]] = mapped_column(Float)
     score_max: Mapped[Optional[float]] = mapped_column(Float)
+    parent_slug: Mapped[Optional[str]] = mapped_column(String, index=True)
+    industry_domain: Mapped[Optional[str]] = mapped_column(String, index=True)
 
 
 class EvalResult(Base):
@@ -53,9 +55,15 @@ class EvalResult(Base):
     benchmark_id: Mapped[int] = mapped_column(
         ForeignKey("benchmark_definitions.id", ondelete="CASCADE"), nullable=False,
     )
-    score: Mapped[float] = mapped_column(Float, nullable=False)
+    score: Mapped[Optional[float]] = mapped_column(Float)
     variant: Mapped[str] = mapped_column(String, default="default", nullable=False)
     model_name: Mapped[Optional[str]] = mapped_column(String)
+    state: Mapped[Optional[str]] = mapped_column(String, index=True)
+    shot_count: Mapped[Optional[int]] = mapped_column(Integer)
+    method: Mapped[Optional[str]] = mapped_column(String)
+    language: Mapped[Optional[str]] = mapped_column(String)
+    training_state: Mapped[Optional[str]] = mapped_column(String)
+    extraction_protocol_version: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
     score_details: Mapped[Optional[dict]] = mapped_column(JSON)
     extraction_confidence: Mapped[Optional[float]] = mapped_column(Float)
     is_self_reported: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)

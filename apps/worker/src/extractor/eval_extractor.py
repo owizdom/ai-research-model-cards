@@ -51,27 +51,53 @@ async def _llm_complete(system: str, user: str, model: str) -> str:
     )
     return response.choices[0].message.content or "[]"
 
-EXTRACTION_SYSTEM_PROMPT = """You are a precise data extraction assistant. Your task is to extract ALL benchmark/evaluation results from a model card or technical report.
+EXTRACTION_PROTOCOL_VERSION = 2
 
-For each benchmark result found, extract:
-- benchmark_name: The exact benchmark name (e.g., "MMLU", "HumanEval", "GSM8K")
-- score: The numerical score as a float
-- variant: Any variant info like shot count or method (e.g., "5-shot", "CoT", "0-shot", "pass@1"). Use "default" if none specified.
-- metric: The metric type if mentioned (e.g., "accuracy", "pass@1", "elo")
-- model_name: Which specific model the score belongs to (e.g., "Claude 3.5 Sonnet", "GPT-4o")
-- context: Brief surrounding text for verification (max 80 chars)
+EXTRACTION_SYSTEM_PROMPT = """You are a precise data extraction assistant. Extract EVERY benchmark/evaluation reference from a model card or technical report, regardless of whether it was actually run.
 
-Return a JSON object with a "results" key containing an array. If no benchmarks are found, return {"results": []}.
-Do NOT hallucinate scores. Only extract scores explicitly stated in the text.
-Extract scores for ALL models mentioned (the primary model and comparison models).
+For each benchmark reference, emit an object with these fields:
 
-Example output:
-{"results": [
-  {"benchmark_name": "MMLU", "score": 86.8, "variant": "5-shot", "metric": "accuracy", "model_name": "Claude 3.5 Sonnet", "context": "Claude 3.5 Sonnet achieves 86.8% on MMLU"},
-  {"benchmark_name": "HumanEval", "score": 92.0, "variant": "pass@1", "metric": "pass@1", "model_name": "Claude 3.5 Sonnet", "context": "92.0% pass@1 on HumanEval"}
-]}"""
+- benchmark_name (TEXT, required): exact benchmark name, e.g. "MMLU", "HumanEval", "GSM8K", "MMLU-Pro", "SWE-bench Verified".
+- score (FLOAT | null): the numerical score. null if state != "scored".
+- state (TEXT, required, one of): "scored" | "mentioned" | "cited".
+- shot_count (INT | null): 0 for zero-shot, 5 for 5-shot, etc. null if not stated.
+- method (TEXT | null): evaluation method. Allowed: "CoT", "self-consistency", "RAG", "extended-thinking", "majority-voting", "none". null if unspecified.
+- language (TEXT | null): for multilingual benchmarks, the evaluation language or "Average". "English" if explicitly English-only. null if not applicable.
+- training_state (TEXT | null): "pretrained", "instruction-tuned", "RLHF", "base", or "unknown". null if paper does not indicate.
+- metric (TEXT | null): "accuracy", "pass@1", "F1", "BLEU", "ELO", "exact-match", etc.
+- model_name (TEXT | null): the specific model this row refers to, e.g. "Claude 3.5 Sonnet", "GPT-4o", "Llama 3.1 70B". null only for generic "cited" rows.
+- context (TEXT, required, max 120 chars): brief surrounding text for audit.
 
-EXTRACTION_USER_PROMPT = """Extract all benchmark/evaluation results from this model card content. Return ONLY the JSON object with a "results" key.
+STATE RULES (critical distinction):
+
+1) "scored" = document contains an EXPLICIT NUMERIC value for this model on this benchmark. Table cells, figure annotations, inline claims like "86.8%", "0.742 F1", "pass@1 of 92.0".
+2) "mentioned" = benchmark discussed in PROSE as something authors evaluated/plan-to/declined-to — but NO number attached here. E.g. "We also tested on X but results are forthcoming", "X is left to future work".
+3) "cited" = benchmark appears ONLY as a reference marker, bibliography entry, or methodological pointer WITHOUT being the subject of evaluative discussion. E.g. bare "[Hendrycks et al. 2021]".
+
+Disambiguation heuristic:
+- Is there a number? → scored.
+- Is the benchmark the subject of a sentence about THIS model's evaluation? → mentioned.
+- Otherwise → cited.
+
+Priority when same (benchmark, model) appears in multiple states: scored > mentioned > cited. Emit only the highest.
+
+OUTPUT RULES:
+- Return {"results": [...]}. No prose, no markdown fences.
+- One row per (model_name, benchmark_name, variant) tuple.
+- For "cited" rows without model attribution, set model_name=null.
+- Do NOT hallucinate scores. If no number, emit state="mentioned" or "cited" with score=null.
+- Extract rows for ALL models in comparison tables.
+- Normalize: "5-shot"→5, "zero-shot"/"0-shot"→0, "few-shot" w/o number→null. "chain-of-thought"→"CoT", "extended thinking"→"extended-thinking".
+- If no benchmarks present, return {"results": []}.
+
+EXAMPLES:
+- "MMLU (5-shot) | 88.7" → {"benchmark_name":"MMLU","score":88.7,"state":"scored","shot_count":5,"method":"none","metric":"accuracy",...}
+- "We also ran preliminary evaluations on MMLU-Pro; full results forthcoming." → {"benchmark_name":"MMLU-Pro","score":null,"state":"mentioned",...}
+- "Prior work includes BIG-Bench [Srivastava 2022]" → {"benchmark_name":"BIG-Bench","score":null,"state":"cited","model_name":null,...}
+- "On MGSM avg: 91.6; Swahili: 83.4" → emit two rows with language="Average" and language="Swahili".
+"""
+
+EXTRACTION_USER_PROMPT = """Extract every benchmark/evaluation reference (scored, mentioned, or cited) from the model card content below. Return ONLY the JSON object with a "results" key.
 
 MODEL CARD CONTENT:
 {content}"""
@@ -238,41 +264,59 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
             count = 0
             for item in items:
                 benchmark_name = item.get("benchmark_name", "").strip()
-                score = item.get("score")
-                if not benchmark_name or score is None:
+                if not benchmark_name:
                     continue
 
-                try:
-                    score = float(score)
-                except (ValueError, TypeError):
-                    continue
+                state = (item.get("state") or "scored").strip().lower()
+                if state not in ("scored", "mentioned", "cited"):
+                    state = "scored" if item.get("score") is not None else "mentioned"
+
+                raw_score = item.get("score")
+                score: float | None = None
+                if state == "scored":
+                    if raw_score is None:
+                        continue  # scored rows must have a number
+                    try:
+                        score = float(raw_score)
+                    except (ValueError, TypeError):
+                        continue
 
                 benchmark_id = _match_benchmark(benchmark_name, benchmarks)
                 if not benchmark_id:
                     benchmark_id = await _create_benchmark(db, benchmark_name, item)
                     benchmarks = await _load_benchmark_lookup(db)
 
-                # Reject scores outside the benchmark's declared range.
-                # Claude occasionally hallucinates numbers ("MMLU: 150") — when
-                # the ontology defines a range, enforce it. Benchmarks without
-                # a range pass through untouched.
-                if not await _score_in_range(db, benchmark_id, score):
+                if score is not None and not await _score_in_range(db, benchmark_id, score):
                     continue
 
-                variant = (item.get("variant") or "default").strip()
+                # Compose a variant string for backwards-compat + DB uniqueness.
+                # Structured fields (shot_count, method, language, training_state)
+                # are stored in their own columns; `variant` is the legacy
+                # composite key used by the existing uq_eval_result constraint.
+                shot_count = item.get("shot_count")
+                method = (item.get("method") or "").strip().lower() or None
+                language = (item.get("language") or "").strip() or None
+                training_state = (item.get("training_state") or "").strip().lower() or None
                 model_name = (item.get("model_name") or "").strip() or None
 
-                # Dedup on the full uniqueness key (document_version_id,
-                # generation_id, benchmark_id, variant, model_name) — matches
-                # the DB uq_eval_result constraint. Papers that report a
-                # benchmark for multiple sizes (e.g. Llama 3.1 8B/70B/405B)
-                # correctly land as distinct rows because model_name differs.
+                legacy_variant_parts = []
+                if shot_count is not None:
+                    legacy_variant_parts.append(f"{shot_count}-shot")
+                if method and method != "none":
+                    legacy_variant_parts.append(method)
+                if language and language != "English":
+                    legacy_variant_parts.append(language)
+                if training_state and training_state != "unknown":
+                    legacy_variant_parts.append(training_state)
+                variant = ", ".join(legacy_variant_parts) if legacy_variant_parts else "default"
+
                 existing_eval = await db.execute(
                     select(EvalResult).where(
                         EvalResult.document_version_id == version_id,
                         EvalResult.benchmark_id == benchmark_id,
                         EvalResult.variant == variant,
                         EvalResult.model_name == model_name,
+                        EvalResult.extraction_protocol_version == EXTRACTION_PROTOCOL_VERSION,
                     )
                 )
                 if existing_eval.scalar_one_or_none():
@@ -285,6 +329,12 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     score=score,
                     variant=variant,
                     model_name=model_name,
+                    state=state,
+                    shot_count=shot_count if isinstance(shot_count, int) else None,
+                    method=method,
+                    language=language,
+                    training_state=training_state,
+                    extraction_protocol_version=EXTRACTION_PROTOCOL_VERSION,
                     score_details={
                         "raw_text": item.get("context", ""),
                         "metric": item.get("metric", ""),
