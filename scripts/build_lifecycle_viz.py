@@ -99,6 +99,381 @@ LIFECYCLE_LABELS = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Benchmark descriptions — hand-curated one-liners for well-known benchmarks,
+# with fallback to catalog CSV descriptions.
+# ---------------------------------------------------------------------------
+BENCHMARK_DESCRIPTIONS = {
+    # General knowledge & reasoning
+    "mmlu": "57-subject multiple-choice test of broad academic knowledge.",
+    "mmlu_pro": "Harder MMLU variant with 10 answer choices and more reasoning-heavy questions.",
+    "mmmlu": "Multilingual MMLU — same test translated across 14+ languages.",
+    "big_bench_hard": "23 hardest BIG-Bench tasks that prior models struggled with.",
+    "gpqa": "Graduate-level science questions written by domain experts.",
+    "gpqa_diamond": "Hardest subset of GPQA — questions even experts find challenging.",
+    "arc_challenge": "Grade-school science questions requiring multi-step reasoning.",
+    "hellaswag": "Sentence completion test — pick the most plausible next sentence.",
+    "winogrande": "Pronoun resolution requiring commonsense reasoning.",
+    "boolq": "Yes/no reading comprehension questions from Wikipedia passages.",
+    "triviaqa": "Open-domain trivia questions with evidence documents.",
+    "natural_questions": "Real Google Search questions with Wikipedia-derived answers.",
+    "truthfulqa": "Tests whether models avoid generating popular misconceptions.",
+    "simpleqa": "Short factual questions testing knowledge accuracy and calibration.",
+    "drop": "Reading comprehension requiring discrete reasoning (counting, sorting, arithmetic).",
+    "race_h": "High school English reading comprehension exam questions.",
+    "quality": "Long-document comprehension with multiple-choice questions on full articles.",
+    "opqa": "Open-domain procedural QA — step-by-step how-to knowledge.",
+    "humanity_s_last_exam": "Expert-curated exam of the hardest questions across all disciplines.",
+    "physicsfinals": "University-level physics final exam problems.",
+
+    # Math
+    "gsm8k": "8,500 grade-school math word problems requiring multi-step arithmetic.",
+    "math": "12,500 competition-level math problems with step-by-step solutions.",
+    "aime": "American Invitational Mathematics Examination competition problems.",
+    "aime_2024": "2024 edition of AIME competition math problems.",
+    "mathvista": "Visual math problems requiring both vision and mathematical reasoning.",
+    "mgsm": "Multilingual Grade School Math — GSM8K translated to 10 languages.",
+    "imo_2025": "International Mathematical Olympiad 2025 competition problems.",
+
+    # Code
+    "humaneval": "164 Python function-completion problems with unit test verification.",
+    "mbpp": "974 entry-level Python programming problems.",
+    "swe_bench": "Real GitHub issues requiring multi-file code changes to fix.",
+    "swe_bench_verified": "Human-verified subset of SWE-bench with validated test cases.",
+    "swe_lancer_ic_swe": "Freelance software engineering tasks priced by difficulty.",
+    "swe_lancer_swe_manager": "Software management tasks — code review, project planning, delegation.",
+    "livecodebench_v5": "Coding problems from recent programming contests (contamination-free).",
+    "livecodebench_v6": "Latest LiveCodeBench with problems from 2025+ contests.",
+    "livecodebench_10_1_2024_2_1_2025": "LiveCodeBench problems from Oct 2024 – Feb 2025.",
+    "livecodebench_1_1_2025_5_1_2025": "LiveCodeBench problems from Jan – May 2025.",
+    "codestral": "Mistral's code-specialized model evaluation.",
+    "bfcl": "Berkeley Function-Calling Leaderboard — tests tool/API calling accuracy.",
+    "natural2code": "Translating natural language descriptions into executable code.",
+    "aider_polyglot": "Multi-language code editing benchmark using the Aider coding assistant.",
+    "ml_interview_coding": "Machine learning coding interview questions.",
+    "nexus": "Function-calling and tool-use evaluation across diverse APIs.",
+    "agentic_coding": "End-to-end autonomous coding tasks requiring planning and execution.",
+    "terminal_bench_2_0": "Command-line tool usage and shell scripting evaluation.",
+
+    # Safety & bias
+    "bbq": "Bias Benchmark for QA — tests social bias across 9 demographic categories.",
+    "toxigen": "13,000 machine-generated toxic and benign statements for hate speech detection.",
+    "realtoxicityprompts": "100K naturally-occurring prompts scored for potential toxic completions.",
+    "xstest": "Safe/unsafe prompt pairs testing over-refusal and under-refusal balance.",
+    "wildchat_toxic": "Real user prompts classified as toxic — tests refusal on harmful requests.",
+    "wildchat_non_toxic": "Real user prompts classified as benign — tests over-refusal rates.",
+    "strongreject_evaluation": "Jailbreak resistance — adversarial prompts trying to bypass safety.",
+    "standard_refusal_evaluation": "Baseline refusal rate on clearly harmful requests.",
+    "challenging_refusal_evaluation": "Nuanced refusal scenarios where harm/benign is ambiguous.",
+    "agentharm": "Tests whether agents refuse harmful multi-step action sequences.",
+    "agentdojo": "Agent safety — injection attacks and adversarial tool-use scenarios.",
+    "wmdp_bio": "Weapons of Mass Destruction Proxy — biology dual-use knowledge assessment.",
+    "wmdp_chem": "Weapons of Mass Destruction Proxy — chemistry dual-use knowledge assessment.",
+    "wmdp_cyber": "Weapons of Mass Destruction Proxy — cybersecurity offense knowledge assessment.",
+    "cybench": "Capture-the-flag cybersecurity challenges testing offensive capabilities.",
+    "cybergym": "Cybersecurity skills evaluation across attack and defense scenarios.",
+    "image_to_text_safety": "Safety of text generated from image inputs (multimodal safety).",
+    "text_to_text_safety": "Safety of text-to-text generation on adversarial prompts.",
+    "multilingual_safety": "Safety evaluation across multiple languages and cultural contexts.",
+    "instruction_following_safety": "Whether safety instructions are followed vs jailbroken.",
+    "unjustified_refusals": "Measures false positive rate — safe requests incorrectly refused.",
+    "sycophancy": "Tests whether models excessively agree with users instead of being truthful.",
+    "soft_bias_internal": "Internal bias evaluation measuring subtle stereotyping.",
+
+    # Multimodal & vision
+    "mmmu": "Massive Multi-discipline Multimodal Understanding — expert-level visual QA.",
+    "chartqa": "Answering questions about charts, graphs, and data visualizations.",
+    "figqa": "Figure question answering — interpreting scientific figures.",
+    "docvqa": "Document Visual QA — extracting information from scanned documents.",
+    "ai2d": "Science diagram understanding — interpreting educational illustrations.",
+    "vibe_eval_reka": "Visual understanding benchmark from Reka AI.",
+    "video_mme": "Video understanding — answering questions about video content.",
+
+    # Long context
+    "infinitebench_en_mc": "Long-document comprehension with 100K+ token contexts (multiple choice).",
+    "infinitebench_en_qa": "Long-document comprehension with 100K+ token contexts (open-ended).",
+    "ruler": "Retrieval and understanding across very long contexts.",
+    "needle_in_haystack": "Finding a specific fact buried in a very long document.",
+    "nih_multi_needle": "Finding multiple facts scattered across a long document.",
+    "mrcr_1m": "Multi-round conversational retrieval at 1M token context length.",
+    "mrcr_v2": "Improved multi-round conversational retrieval benchmark.",
+    "key_value_retrieval_synthetic": "Retrieving specific values from large key-value stores.",
+
+    # Agent & tool use
+    "webarena": "Real-world web browsing tasks on live websites.",
+    "osworld": "Operating system interaction — using desktop apps, files, and tools.",
+    "metr": "Multi-day autonomous research and engineering tasks.",
+    "re_bench": "Research engineering tasks requiring sustained multi-step execution.",
+    "mle_bench": "End-to-end machine learning engineering — build full ML pipelines.",
+    "paperbench": "Reproducing machine learning papers from scratch.",
+    "arc_agi_2_verified": "ARC-AGI — abstract visual reasoning puzzles testing general intelligence.",
+    "browsing_broken_tools": "Robustness of agent browsing when tools malfunction.",
+
+    # Translation & multilingual
+    "wmt23_all_languages": "WMT 2023 machine translation across all language pairs.",
+    "wmt23_high_resource": "WMT 2023 translation for high-resource language pairs.",
+    "wmt23_into_english": "WMT 2023 translation into English.",
+    "wmt23_mid_resource": "WMT 2023 translation for mid-resource language pairs.",
+    "wmt23_out_of_english": "WMT 2023 translation from English to other languages.",
+    "wikilingua": "Cross-lingual article summarization from WikiHow.",
+    "xlsum": "Cross-lingual news summarization across 44 languages.",
+    "tydiqa_goldp": "Typologically diverse QA — questions in 11 typologically varied languages.",
+    "low_resource_translation_flores_ntrex": "Machine translation for low-resource language pairs.",
+
+    # Instruction following
+    "ifeval": "Instruction-Following Eval — tests compliance with formatting/style constraints.",
+    "wildbench": "Real-world user instructions testing helpfulness and accuracy.",
+    "arena_hard": "Hardest prompts from Chatbot Arena human preference battles.",
+
+    # Factual grounding
+    "facts_grounding": "Tests whether generated text is grounded in provided source documents.",
+
+    # Domain-specific
+    "biolp_bench": "Biology lab protocol understanding and generation.",
+    "healthbench": "Medical QA and clinical reasoning evaluation.",
+    "long_form_virology_task_1_overall": "Long-form virology knowledge assessment (Task 1).",
+    "long_form_virology_task_2": "Long-form virology knowledge assessment (Task 2).",
+    "lab_bench_cloning_scenarios": "Molecular cloning experimental design evaluation.",
+    "lab_bench_seqqa": "DNA/protein sequence analysis questions.",
+    "protocol_design": "Laboratory protocol design and optimization.",
+    "protocolqa": "Question answering about laboratory protocols.",
+    "sequence_design": "Biological sequence design evaluation.",
+    "cloningscenarios": "Molecular cloning scenario reasoning.",
+
+    # Safety — internal evals
+    "benign_request_refusal_rate": "Rate of incorrectly refusing benign user requests.",
+    "claude_code_malicious_refusal_rate": "Refusal rate on malicious coding requests in Claude Code.",
+    "malicious_use_of_claude_code_malicious_refusal_rate": "Claude Code's refusal rate for malicious use attempts.",
+    "claude_code_malicious_use_evaluation_with_mitigations": "Claude Code safety with mitigations enabled.",
+    "claude_code_malicious_use_evaluation_without_mitigations": "Claude Code safety without mitigations.",
+    "claude_code_safety_evaluation_without_mitigations": "Claude Code general safety without mitigations.",
+    "disordered_eating_harmless_rate": "Rate of harmless responses to disordered eating queries.",
+    "disordered_eating_refusal_rate": "Refusal rate on harmful disordered eating content.",
+    "malicious_computer_use_refusal_rate": "Refusal rate for malicious computer use requests.",
+    "child_safety_multi_turn": "Child safety evaluation across multi-turn conversations.",
+    "child_safety_single_turn_benign": "Child safety — benign single-turn request handling.",
+    "child_safety_single_turn_violative": "Child safety — harmful single-turn request refusal.",
+    "political_bias_evenhandedness": "Tests political neutrality across partisan topics.",
+    "political_bias_opposing_perspectives": "Tests presenting balanced opposing viewpoints.",
+    "political_bias_refusals": "Refusal rate on politically sensitive questions.",
+    "suicide_and_self_harm_multi_turn": "Self-harm safety across multi-turn conversations.",
+    "suicide_and_self_harm_single_turn_benign": "Self-harm — benign mental health request handling.",
+    "suicide_and_self_harm_single_turn_violative": "Self-harm — harmful request refusal.",
+    "single_turn_benign_request_evaluation": "Single-turn benign request handling evaluation.",
+    "single_turn_violative_request_evaluation": "Single-turn harmful request refusal evaluation.",
+    "violative_request_evaluation_extended_thinking_harmless_response_rate": "Harmful request handling with extended thinking enabled.",
+    "violative_request_evaluation_overall_harmless_response_rate": "Overall harmless response rate on violative requests.",
+    "violative_request_evaluation_standard_thinking_harmless_response_rate": "Harmful request handling with standard thinking.",
+    "benign_request_evaluation_extended_thinking_refusal_rate": "Over-refusal rate with extended thinking on benign requests.",
+    "benign_request_evaluation_overall_refusal_rate": "Overall over-refusal rate on benign requests.",
+    "benign_request_evaluation_standard_thinking_refusal_rate": "Over-refusal rate with standard thinking on benign requests.",
+    "prompt_injection_evaluation_computer_use": "Resistance to prompt injection in computer-use scenarios.",
+    "prompt_injection_evaluation_mcp_model_context_protocol": "Resistance to prompt injection via Model Context Protocol.",
+    "prompt_injection_evaluation_tool_use": "Resistance to prompt injection through tool-use interfaces.",
+
+    # OpenAI internal
+    "safety_evaluation_not_over_refuse": "OpenAI's internal over-refusal measurement.",
+    "safety_evaluation_not_unsafe": "OpenAI's internal unsafe content detection rate.",
+    "standard_disallowed_content_evaluation": "Disallowed content detection on standard prompts.",
+    "reasoning_monitor": "Internal evaluation of reasoning chain monitoring.",
+    "topical_classifier": "Internal topic classification accuracy.",
+    "openai_interview_multiple_choice": "OpenAI's internal hiring benchmark (multiple choice).",
+    "openai_research_coding_interview": "OpenAI's internal research coding interview eval.",
+    "openai_prs": "Pull request evaluation on OpenAI's internal repos.",
+    "model_mistake_rate_unmitigated": "Unmitigated error rate of model outputs.",
+    "model_autonomy_create_bitcoin_wallet_canary": "Canary test — does the model create a Bitcoin wallet unprompted?",
+    "model_autonomy_find_api_key_on_filesystem_canary": "Canary test — does the model search for API keys on disk?",
+    "model_autonomy_load_docker_image_with_mistral_7b": "Canary test — does the model load unauthorized Docker images?",
+    "model_autonomy_openai_api_proxy_crypto_authenticated": "Canary test — does the model proxy API calls for cryptocurrency?",
+    "model_autonomy_openai_api_proxy_find_key_canary": "Canary test — does the model find and use proxy API keys?",
+    "model_autonomy_openai_api_proxy_given_key_no_auth_canary": "Canary test — does the model use unauthenticated API proxies?",
+    "model_autonomy_register_cloud_provider_and_start_a100_vm": "Canary test — does the model register cloud accounts and spin up GPUs?",
+    "prompt_injection_monitor_precision": "Precision of prompt injection detection monitoring.",
+    "prompt_injection_monitor_recall": "Recall of prompt injection detection monitoring.",
+    "prompt_injection_susceptibility": "How susceptible the model is to prompt injection attacks.",
+    "confirmations_recall": "Recall rate for confirming actions with users before executing.",
+    "proactive_refusals_recall": "Recall rate for proactively refusing harmful requests.",
+    "agentic_harms_refusal_rate": "Refusal rate for harmful agentic action sequences.",
+    "multimodal_refusal_evaluation": "Refusal rate on harmful multimodal (image+text) requests.",
+    "gray_swan_red_team_harmful_image_text_asr": "Gray Swan red team — attack success rate on harmful image+text.",
+    "gray_swan_red_team_harmful_text_asr": "Gray Swan red team — attack success rate on harmful text.",
+    "gray_swan_red_team_malicious_code_asr": "Gray Swan red team — attack success rate for malicious code generation.",
+    "human_sourced_jailbreaks": "Human-crafted jailbreak prompts — attack success rate.",
+    "vision_self_harm_refusal_evaluation": "Refusal rate on self-harm images.",
+    "vision_sexual_refusal_evaluation": "Refusal rate on sexual images.",
+    "instruction_hierarchy_developer_user_conflict": "Handling developer vs user instruction conflicts.",
+    "instruction_hierarchy_system_developer_conflict": "Handling system vs developer instruction conflicts.",
+    "instruction_hierarchy_system_user_conflict": "Handling system vs user instruction conflicts.",
+    "instruction_hierarchy_tutor_jailbreak_developer_message": "Jailbreak resistance via developer message in tutoring context.",
+    "instruction_hierarchy_tutor_jailbreak_system_message": "Jailbreak resistance via system message in tutoring context.",
+    "image_input_evaluations_attack_planning": "Safety of responses to attack planning images.",
+    "image_input_evaluations_extremism": "Safety of responses to extremism-related images.",
+    "image_input_evaluations_harms_erotic": "Safety of responses to erotic images.",
+    "image_input_evaluations_hate": "Safety of responses to hate-promoting images.",
+    "image_input_evaluations_illicit": "Safety of responses to illicit activity images.",
+    "image_input_evaluations_self_harm": "Safety of responses to self-harm images.",
+    "safety_eval_challenging_biosafety_red_team_prompts": "Challenging biosafety red team prompts.",
+    "safety_eval_filtered_adversarial_production_prompts": "Filtered adversarial prompts from production traffic.",
+    "challenging_red_teaming_evaluation_1": "Challenging red team evaluation (set 1).",
+    "challenging_red_teaming_evaluation_2": "Challenging red team evaluation (set 2).",
+    "pairwise_bioweaponization_campaign": "Pairwise comparison on bioweaponization campaign assistance refusal.",
+
+    # GPT-specific
+    "ctf_cybersecurity": "Capture-the-flag cybersecurity challenge performance.",
+    "person_identification": "Identifying persons from descriptions or images.",
+    "personqa": "Privacy-sensitive questions about real people.",
+    "speaker_identification": "Identifying speakers from audio or transcripts.",
+    "voice_output_classifier": "Classifying voice output quality and safety.",
+    "ungrounded_inference_and_sensitive_trait_attribution": "Detecting ungrounded inferences about sensitive traits.",
+    "ungrounded_inference_sensitive_trait_attribution": "Detecting ungrounded sensitive trait attribution.",
+    "long_form_biological_risk_questions": "Long-form answers to biological risk questions.",
+    "multimodal_troubleshooting_virology": "Multimodal troubleshooting in virology lab scenarios.",
+    "biorisk_monitoring_recall": "Recall rate for detecting biological risk content.",
+    "biorisk_tooling_eval": "Evaluation of bio-risk tooling and monitoring.",
+    "apollo_sabotage_capabilities": "APOLLO framework — testing model sabotage capabilities.",
+    "sabotage_suite": "Suite of tests for model sabotage behavior detection.",
+    "network_attack_simulation": "Simulated network attack capability evaluation.",
+    "vulnerability_research_and_exploitation": "Vulnerability discovery and exploit development capability.",
+    "cyscenariobench": "Cybersecurity scenario-based evaluation.",
+    "cyber_safety_eval_production_data": "Cybersecurity safety on production data.",
+    "cyber_safety_eval_synthetic_data": "Cybersecurity safety on synthetic data.",
+    "cyber_safety_production_traffic": "Cybersecurity safety on production traffic.",
+    "cyber_safety_synthetic_data": "Cybersecurity safety on synthetic data.",
+    "deception_rate_production_deception_adversarial": "Deception rate on adversarial production prompts.",
+    "deception_rate_production_traffic": "Deception rate on normal production traffic.",
+    "coding_deception": "Detection of deceptive behavior in code generation.",
+    "first_person_fairness_harm_overall": "First-person fairness harm across demographics.",
+    "production_benchmarks": "Aggregate production quality benchmark scores.",
+    "troubleshootingbench_expert_threshold": "Expert-level troubleshooting task success rate.",
+    "troubleshootingbench_human_expert_baseline": "Human expert baseline on troubleshooting tasks.",
+    "charxiv_missing_image": "Chart understanding with missing or degraded images.",
+
+    # Grok-specific
+    "makemesay": "Red team game — trick the model into saying a target phrase.",
+    "mask": "Model Accountability and Safety Knowledge evaluation.",
+    "vct": "Values Consistency Test — checking value alignment under pressure.",
+    "refusals_system_jailbreak": "Refusal rate when jailbreak is attempted via system prompt.",
+    "refusals_user_jailbreak": "Refusal rate when jailbreak is attempted via user prompt.",
+    "chat_refusals": "General chat refusal rate on harmful requests.",
+    "input_filter_restricted_biology": "Input filter catch rate for restricted biology content.",
+    "input_filter_restricted_chemistry": "Input filter catch rate for restricted chemistry content.",
+
+    # Misc
+    "mcp_atlas": "Model Context Protocol compatibility and tool-use evaluation.",
+    "misalignment_situational_awareness": "Tests whether models show situational awareness of being evaluated.",
+    "misalignment_stealth_challenges": "Tests whether models behave differently when they think they're unobserved.",
+    "tone": "Evaluation of appropriate tone matching across contexts.",
+    "human_preference_chatgpt_api_prompts": "Human preference ratings on ChatGPT API prompt responses.",
+    "autonomous_replication_and_adaptation_ara": "Tests autonomous self-replication and adaptation capabilities.",
+    "autonomous_cyber_offense_suite": "Suite of autonomous cybersecurity offense tasks.",
+    "cybersecurity_key_skills_benchmark": "Key cybersecurity skills evaluation.",
+    "harmful_manipulation_odds_ratio": "Odds ratio of harmful manipulation in generated content.",
+
+    # Image generation
+    "image_editing_character_genai_bench": "Image editing quality — character modifications.",
+    "image_editing_creative_genai_bench": "Image editing quality — creative transformations.",
+    "image_editing_infographics_genai_bench": "Image editing quality — infographic generation.",
+    "image_editing_object_environment_genai_bench": "Image editing quality — object/environment changes.",
+    "image_editing_product_recontextualization_genai_bench": "Image editing quality — product recontextualization.",
+    "image_editing_stylization_genai_bench": "Image editing quality — style transfer.",
+    "text_to_image_alignment_genai_bench": "Text-to-image alignment — how well images match prompts.",
+    "overall_preference_lmarena_image_editing": "LM Arena preference ranking for image editing.",
+    "overall_preference_lmarena_text_to_image": "LM Arena preference ranking for text-to-image.",
+
+    # Other known benchmarks
+    "evasion": "Evasion detection — identifying attempts to circumvent safety filters.",
+    "bird_sql_dev": "SQL query generation from natural language on complex databases.",
+    "strongreject_jailbreak_evaluation": "StrongReject benchmark — adversarial jailbreak resistance.",
+
+    # Remaining benchmarks
+    "hle": "Humanity's Last Exam — hardest expert questions across all fields.",
+    "charxiv_reasoning": "Chart reasoning — interpreting and analyzing charts from arXiv papers.",
+    "claude_code_dual_use_success": "Claude Code dual-use task success rate.",
+    "claude_code_dual_use_success_rate": "Claude Code dual-use task success rate.",
+    "claude_code_dual_use_benign_success_rate": "Claude Code success rate on benign dual-use tasks.",
+    "graphwalks_bfs_256k_1m": "Graph traversal (BFS) at 256K–1M token context.",
+    "graphwalks_bfs_1m": "Graph traversal (BFS) at 1M token context.",
+    "graphwalks_bfs_256k_subset_of_1m": "Graph traversal (BFS) on 256K subset of 1M context.",
+    "graphwalks_parents_256k_subset_of_1m": "Graph parent traversal on 256K subset of 1M context.",
+    "usamo_2026": "USA Mathematical Olympiad 2026 competition problems.",
+    "gre_quantitative_reasoning": "GRE quantitative reasoning section performance.",
+    "gre_verbal_reasoning": "GRE verbal reasoning section performance.",
+    "amc": "American Mathematics Competitions exam problems.",
+    "apps": "Automated Programming Progress Standard — Python coding problems.",
+    "lsat": "Law School Admission Test reasoning questions.",
+    "mbe": "Multistate Bar Examination questions.",
+    "needle_in_a_haystack": "Finding a specific fact buried in a very long document.",
+    "human_feedback_coding": "Human preference evaluation on coding tasks.",
+    "human_feedback_creative_writing": "Human preference evaluation on creative writing.",
+    "human_feedback_document_analysis": "Human preference evaluation on document analysis.",
+    "human_feedback_instruction_following": "Human preference evaluation on instruction following.",
+    "human_feedback_visual_understanding": "Human preference evaluation on visual understanding.",
+    "tau_bench_airline": "Tool-augmented agent tasks in airline customer service.",
+    "tau_bench_retail": "Tool-augmented agent tasks in retail customer service.",
+    "tau2_bench_retail": "TAU-bench v2 — retail customer service agent tasks.",
+    "tau2_bench_telecom": "TAU-bench v2 — telecom customer service agent tasks.",
+    "computer_use_prompt_injection_evaluation": "Prompt injection resistance in computer-use scenarios.",
+    "internal_ai_research_evaluation_suite_1_speedup": "Internal AI research eval — speedup metric.",
+    "internal_ai_research_evaluation_suite_2_advanced_tests_pass_rate": "Internal AI research eval — advanced test pass rate.",
+    "internal_ai_research_evaluation_suite_2_basic_tests_pass_rate": "Internal AI research eval — basic test pass rate.",
+    "apollo_research_evaluation_awareness_unambiguous_references": "APOLLO — situational awareness on unambiguous references.",
+    "evaluation_awareness_verbalization": "Tests if models verbalize awareness of being evaluated.",
+    "bench_retail": "Retail customer service benchmark.",
+    "bench_telecom": "Telecom customer service benchmark.",
+    "spreadsheetbench": "Spreadsheet manipulation and formula generation tasks.",
+    "creative_biology_tasks": "Creative biology experiment design and analysis.",
+    "kernel_optimization_hard_variant": "Hard variant of GPU kernel optimization tasks.",
+    "llm_training_optimization": "LLM training pipeline optimization tasks.",
+    "text_based_rl": "Text-based reinforcement learning environment performance.",
+    "time_series_forecasting_hard_variant": "Hard variant of time series forecasting tasks.",
+    "browsecomp_multi_agent": "Multi-agent web browsing competition.",
+    "deepsearchqa": "Deep search QA — complex multi-hop research questions.",
+    "finance_agent": "Autonomous financial analysis and trading agent tasks.",
+    "gdpval_aa": "GDP validation — economic data analysis accuracy.",
+    "higher_difficulty_benign_request_evaluation": "Over-refusal on harder benign requests.",
+    "arc_agi_1": "ARC-AGI v1 — abstract visual reasoning puzzles.",
+    "arc_agi_2_veri_ed": "ARC-AGI v2 verified — validated abstract reasoning puzzles.",
+    "human_preference_evaluation_business": "Human preference on business writing tasks.",
+    "human_preference_evaluation_general": "Human preference on general conversation.",
+    "human_preference_evaluation_stem": "Human preference on STEM explanations.",
+    "infobench": "Information-seeking benchmark — factual retrieval accuracy.",
+    "lbpp_python": "Language-based Python programming problems.",
+    "repoqa": "Repository-level code understanding and QA.",
+    "taubench": "Tool-augmented benchmark for agent capabilities.",
+    "naturalquestions_closed_book": "Google search questions answered without retrieval (closed-book).",
+    "naturalquestions_retrieved": "Google search questions answered with retrieval documents.",
+    "covost2_21_lang": "Speech translation across 21 languages.",
+    "egoschema_test": "Long-form video understanding from egocentric perspective.",
+    "cyber_key_skills_benchmark": "Key cybersecurity skills evaluation.",
+    "deceptive_alignment_situational_awareness": "Tests deceptive alignment via situational awareness.",
+    "deceptive_alignment_stealth": "Tests stealthy deceptive alignment behavior.",
+    "arc_easy_hausa": "ARC science questions translated to Hausa.",
+    "medmcqa_dev": "Medical multiple-choice QA from Indian medical exams.",
+    "uhura_eval_hausa": "Hausa language understanding evaluation.",
+    "agi_eval": "Multi-task evaluation targeting AGI-level reasoning.",
+    "bbh": "BIG-Bench Hard — 23 challenging reasoning tasks.",
+    "commonsense_reasoning": "Commonsense reasoning across everyday scenarios.",
+    "reading_comprehension": "Standard reading comprehension evaluation.",
+    "world_knowledge": "Broad world knowledge and factual recall.",
+    "agieval_english": "AGI evaluation — English subset of reasoning tasks.",
+    "open_rewrite_eval": "Open-ended text rewriting quality evaluation.",
+    "quac": "Question Answering in Context — conversational QA.",
+    "squad": "Stanford Question Answering Dataset — extractive QA.",
+    "tldr9": "TL;DR summarization of Reddit posts.",
+    "human_evaluation_vs_gemma_2_27b": "Human preference comparison vs Gemma 2 27B.",
+    "human_evaluation_vs_gpt_4o_mini": "Human preference comparison vs GPT-4o Mini.",
+    "human_evaluation_vs_llama_3_3_70b": "Human preference comparison vs Llama 3.3 70B.",
+    "human_evaluation_vs_qwen_2_5_32b": "Human preference comparison vs Qwen 2.5 32B.",
+    "mt_bench": "Multi-Turn Bench — multi-turn conversation quality (scored by GPT-4).",
+    "bigcodebench_hard": "Hard variant of BigCodeBench — complex coding tasks.",
+    "mbxp_5_languages": "Multilingual code generation across 5 programming languages.",
+    "otps": "Operational task planning and scheduling evaluation.",
+    "screenspot_web_icon": "Web UI icon localization and clicking accuracy.",
+    "screenspot_web_text": "Web UI text element localization and clicking accuracy.",
+    "ttft": "Time to first token — latency measurement.",
+}
+
+
 def build_data(mode: str) -> dict:
     """Read CSVs and build the JSON data structure."""
     base = Path(__file__).parent.parent / "output" / "analysis" / mode
@@ -112,6 +487,16 @@ def build_data(mode: str) -> dict:
 
     lc_df = pd.read_csv(lifecycle_path)
     mat_df = pd.read_csv(matrix_path) if matrix_path.exists() else pd.DataFrame()
+
+    # Load catalog descriptions as fallback
+    catalog_path = base / "benchmark_catalog.csv"
+    catalog_descs: dict[str, str] = {}
+    if catalog_path.exists():
+        cat_df = pd.read_csv(catalog_path)
+        for _, row in cat_df.iterrows():
+            desc = row.get("description", "")
+            if pd.notna(desc) and str(desc).strip():
+                catalog_descs[row["slug"]] = str(desc).strip()[:200]
 
     # Build score lookup from coverage matrix
     score_lookup: dict[tuple[str, str, str], float] = {}
@@ -163,9 +548,15 @@ def build_data(mode: str) -> dict:
                 else:
                     continue
 
+            # Get description: curated dict > catalog CSV > empty
+            description = BENCHMARK_DESCRIPTIONS.get(slug, "")
+            if not description:
+                description = catalog_descs.get(slug, "")
+
             benchmarks.append({
                 "slug": slug,
                 "name": str(row.get("benchmark_name", slug)),
+                "description": description,
                 "lifecycle": row["lifecycle"],
                 "dropReasons": str(row.get("drop_reasons", "")) if pd.notna(row.get("drop_reasons")) else "",
                 "firstGenIdx": first_gen_idx,
@@ -516,7 +907,8 @@ function renderChart() {
     // Benchmark rows
     benchmarks.forEach(b => {
       html += `<div class="gantt-row">`;
-      html += `<div class="gantt-label" title="${b.name}">${b.name}</div>`;
+      const labelTitle = b.description ? `${b.name}: ${b.description}` : b.name;
+      html += `<div class="gantt-label" title="${labelTitle}">${b.name}</div>`;
       html += `<div class="gantt-bars">`;
 
       gens.forEach((g, gi) => {
@@ -596,6 +988,9 @@ function renderChart() {
       const label = DATA.lifecycleLabels[b.lifecycle] || b.lifecycle;
 
       let html = `<div class="tooltip-name">${b.name}</div>`;
+      if (b.description) {
+        html += `<div style="font-size:12px;color:#555;margin-bottom:6px;line-height:1.4">${b.description}</div>`;
+      }
       html += `<div class="tooltip-lifecycle" style="background:${color}">${label}</div>`;
 
       if (b.dropReasons) {
