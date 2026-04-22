@@ -828,31 +828,59 @@ const REASON_LABELS = {
 function renderHero() {
   const hero = document.getElementById('heroSection');
 
-  // Count across ALL benchmarks (unfiltered, excluding noise)
-  let total = 0, active = 0, droppedExplained = 0, droppedUnexplained = 0, noise = 0;
-  const reasonCounts = {};
+  // Aggregate by UNIQUE benchmark slug across all labs.
+  // For each unique slug, pick the "worst" lifecycle (most-dropped status wins)
+  // so a benchmark dropped by any lab counts as dropped.
+  const slugMap = {};  // slug -> { lifecycle, labCount, labs: Set }
+  const STATUS_SEVERITY = {};
+  LIFECYCLE_ORDER.forEach((s, i) => STATUS_SEVERITY[s] = i);
 
+  let noise = 0;
   DATA.labs.forEach(lab => {
     lab.benchmarks.forEach(b => {
       if (NOISE_STATUSES.has(b.lifecycle)) { noise++; return; }
-      total++;
-      if (ACTIVE_STATUSES.has(b.lifecycle)) active++;
-      else if (DROPPED_EXPLAINED.has(b.lifecycle)) {
-        droppedExplained++;
-        reasonCounts[b.lifecycle] = (reasonCounts[b.lifecycle] || 0) + 1;
-      }
-      else if (DROPPED_UNEXPLAINED.has(b.lifecycle)) {
-        droppedUnexplained++;
-        reasonCounts[b.lifecycle] = (reasonCounts[b.lifecycle] || 0) + 1;
+      if (!slugMap[b.slug]) {
+        slugMap[b.slug] = { lifecycle: b.lifecycle, labs: new Set([lab.slug]) };
+      } else {
+        slugMap[b.slug].labs.add(lab.slug);
+        // Keep the most "dropped" status — higher severity = more concerning
+        const cur = STATUS_SEVERITY[slugMap[b.slug].lifecycle] || 0;
+        const nxt = STATUS_SEVERITY[b.lifecycle] || 0;
+        // For unique benchmark: if ANY lab dropped it with a reason, use that reason
+        // But prioritize: active < explained drop < suspicious
+        if (DROPPED_UNEXPLAINED.has(b.lifecycle)) {
+          slugMap[b.slug].lifecycle = b.lifecycle; // suspicious always wins
+        } else if (DROPPED_EXPLAINED.has(b.lifecycle) && ACTIVE_STATUSES.has(slugMap[b.slug].lifecycle)) {
+          slugMap[b.slug].lifecycle = b.lifecycle; // drop reason beats active
+        }
       }
     });
   });
 
+  const uniqueBenchmarks = Object.entries(slugMap);
+  const totalUnique = uniqueBenchmarks.length;
+  let active = 0, droppedExplained = 0, droppedUnexplained = 0;
+  const reasonCounts = {};
+  let multiLab = 0; // used by 3+ labs
+
+  uniqueBenchmarks.forEach(([slug, info]) => {
+    if (ACTIVE_STATUSES.has(info.lifecycle)) active++;
+    else if (DROPPED_EXPLAINED.has(info.lifecycle)) {
+      droppedExplained++;
+      reasonCounts[info.lifecycle] = (reasonCounts[info.lifecycle] || 0) + 1;
+    } else if (DROPPED_UNEXPLAINED.has(info.lifecycle)) {
+      droppedUnexplained++;
+      reasonCounts[info.lifecycle] = (reasonCounts[info.lifecycle] || 0) + 1;
+    }
+    if (info.labs.size >= 3) multiLab++;
+  });
+
   const totalDropped = droppedExplained + droppedUnexplained;
-  const dropPct = total > 0 ? Math.round(100 * totalDropped / total) : 0;
-  const activePct = total > 0 ? Math.round(100 * active / total) : 0;
+  const dropPct = totalUnique > 0 ? Math.round(100 * totalDropped / totalUnique) : 0;
+  const activePct = totalUnique > 0 ? Math.round(100 * active / totalUnique) : 0;
   const explainedPct = totalDropped > 0 ? Math.round(100 * droppedExplained / totalDropped) : 0;
   const unexplainedPct = totalDropped > 0 ? Math.round(100 * droppedUnexplained / totalDropped) : 0;
+  const numLabs = DATA.labs.length;
 
   // Build breakdown bar segments (sorted by count descending)
   const reasons = Object.entries(reasonCounts).sort((a, b) => b[1] - a[1]);
@@ -876,11 +904,11 @@ function renderHero() {
   ).join('');
 
   hero.innerHTML = `
-    <div class="hero-title">Benchmark Lifecycle at a Glance</div>
+    <div class="hero-title">Benchmark Lifecycle Across ${numLabs} AI Labs</div>
     <div class="hero-cards">
       <div class="hero-card total">
-        <div class="hero-big">${total}</div>
-        <div class="hero-label">Multi-gen benchmarks tracked</div>
+        <div class="hero-big">${totalUnique}</div>
+        <div class="hero-label">Unique benchmarks tracked</div>
       </div>
       <div class="hero-card active">
         <div class="hero-big" style="color:#2ecc71">${activePct}%</div>
@@ -904,11 +932,14 @@ function renderHero() {
       <div class="breakdown-legend">${legendHtml}</div>
     </div>
     <div class="hero-insight">
-      Of the <strong>${totalDropped}</strong> benchmarks dropped across all labs,
-      <strong>${explainedPct}%</strong> have a clear technical reason (saturation, contamination, supersession, etc.).
-      Only <strong>${droppedUnexplained}</strong> drops (${unexplainedPct}%) remain unexplained — suggesting most benchmark churn
-      is driven by legitimate evaluation evolution, not selective reporting.
-      <em>Note: ${noise} one-time and internal benchmarks are excluded from these figures.</em>
+      Across <strong>${numLabs} labs</strong> and <strong>${totalUnique}</strong> unique benchmarks,
+      <strong>${explainedPct}%</strong> of drops have a clear technical reason
+      (saturation, contamination, supersession, etc.).
+      Only <strong>${droppedUnexplained}</strong> (${unexplainedPct}% of drops) remain unexplained.
+      <strong>${multiLab}</strong> benchmarks are used by 3+ labs, suggesting some cross-industry convergence.
+      <em style="display:block;margin-top:6px;color:#998800">
+        ${noise} one-time/internal benchmark×lab pairs excluded. Scroll down for per-lab detail.
+      </em>
     </div>
   `;
 }
