@@ -685,6 +685,33 @@ h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
 
 /* No results */
 .no-results { padding: 40px; text-align: center; color: #aaa; font-size: 14px; }
+
+/* Hero section */
+.hero { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; }
+.hero-title { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 20px; }
+.hero-cards { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.hero-card { flex: 1; min-width: 140px; padding: 16px 20px; border-radius: 10px; text-align: center; }
+.hero-card.total { background: #f0f4ff; border: 1px solid #d0d8f0; }
+.hero-card.active { background: #e8f8ef; border: 1px solid #b8e6c8; }
+.hero-card.dropped { background: #fef3e8; border: 1px solid #f0d8b0; }
+.hero-card.suspicious { background: #fde8e8; border: 1px solid #f0b8b8; }
+.hero-big { font-size: 36px; font-weight: 800; line-height: 1.1; }
+.hero-pct { font-size: 14px; font-weight: 600; color: #666; }
+.hero-label { font-size: 12px; color: #888; margin-top: 4px; }
+
+.hero-breakdown { margin-top: 8px; }
+.hero-breakdown-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #999; margin-bottom: 12px; }
+.breakdown-bar-container { display: flex; height: 32px; border-radius: 6px; overflow: hidden; margin-bottom: 12px; }
+.breakdown-segment { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #fff; min-width: 2px; transition: all 0.3s; cursor: pointer; position: relative; }
+.breakdown-segment:hover { opacity: 0.85; }
+.breakdown-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.breakdown-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #555; }
+.breakdown-legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.breakdown-legend-count { font-weight: 700; }
+.breakdown-legend-pct { color: #999; }
+
+.hero-insight { margin-top: 20px; padding: 12px 16px; background: #fffbe6; border: 1px solid #f0e6a0; border-radius: 8px; font-size: 13px; line-height: 1.5; color: #665500; }
+.hero-insight strong { color: #333; }
 </style>
 </head>
 <body>
@@ -722,6 +749,7 @@ h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
   </aside>
 
   <div class="main">
+    <div class="hero" id="heroSection"></div>
     <div class="stats-bar" id="statsBar"></div>
     <div id="chartArea"></div>
   </div>
@@ -776,6 +804,113 @@ function getFilteredBenchmarks(lab) {
   };
   benchmarks.sort(sortFn[state.sort] || sortFn.lifecycle);
   return benchmarks;
+}
+
+// Lifecycle groupings for hero stats
+const ACTIVE_STATUSES = new Set(['ACTIVE', 'EMERGING']);
+const DROPPED_EXPLAINED = new Set(['SATURATED', 'SUPERSEDED', 'CONTAMINATED', 'FLAWED', 'FORMAT_AGED', 'CAP_SHIFT', 'METRIC_CHANGE', 'COST_PROHIBITIVE']);
+const DROPPED_UNEXPLAINED = new Set(['SUSPICIOUS']);
+const NOISE_STATUSES = new Set(['ONE-TIME', 'INTERNAL']);
+
+// Friendly reason labels for breakdown
+const REASON_LABELS = {
+  'SATURATED': 'Saturated',
+  'SUPERSEDED': 'Superseded',
+  'CONTAMINATED': 'Contaminated',
+  'FLAWED': 'Flawed methodology',
+  'FORMAT_AGED': 'Format aged',
+  'CAP_SHIFT': 'Capability shift',
+  'METRIC_CHANGE': 'Metric rescaled',
+  'COST_PROHIBITIVE': 'Cost prohibitive',
+  'SUSPICIOUS': 'Unexplained',
+};
+
+function renderHero() {
+  const hero = document.getElementById('heroSection');
+
+  // Count across ALL benchmarks (unfiltered, excluding noise)
+  let total = 0, active = 0, droppedExplained = 0, droppedUnexplained = 0, noise = 0;
+  const reasonCounts = {};
+
+  DATA.labs.forEach(lab => {
+    lab.benchmarks.forEach(b => {
+      if (NOISE_STATUSES.has(b.lifecycle)) { noise++; return; }
+      total++;
+      if (ACTIVE_STATUSES.has(b.lifecycle)) active++;
+      else if (DROPPED_EXPLAINED.has(b.lifecycle)) {
+        droppedExplained++;
+        reasonCounts[b.lifecycle] = (reasonCounts[b.lifecycle] || 0) + 1;
+      }
+      else if (DROPPED_UNEXPLAINED.has(b.lifecycle)) {
+        droppedUnexplained++;
+        reasonCounts[b.lifecycle] = (reasonCounts[b.lifecycle] || 0) + 1;
+      }
+    });
+  });
+
+  const totalDropped = droppedExplained + droppedUnexplained;
+  const dropPct = total > 0 ? Math.round(100 * totalDropped / total) : 0;
+  const activePct = total > 0 ? Math.round(100 * active / total) : 0;
+  const explainedPct = totalDropped > 0 ? Math.round(100 * droppedExplained / totalDropped) : 0;
+  const unexplainedPct = totalDropped > 0 ? Math.round(100 * droppedUnexplained / totalDropped) : 0;
+
+  // Build breakdown bar segments (sorted by count descending)
+  const reasons = Object.entries(reasonCounts).sort((a, b) => b[1] - a[1]);
+  const barSegments = reasons.map(([status, count]) => {
+    const pct = (100 * count / totalDropped).toFixed(1);
+    const color = DATA.lifecycleColors[status];
+    const label = REASON_LABELS[status] || status;
+    return { status, count, pct: parseFloat(pct), color, label };
+  });
+
+  let barHtml = barSegments.map(s =>
+    `<div class="breakdown-segment" style="width:${Math.max(s.pct, 2)}%;background:${s.color}" title="${s.label}: ${s.count} (${s.pct}%)">${s.pct >= 8 ? s.count : ''}</div>`
+  ).join('');
+
+  let legendHtml = barSegments.map(s =>
+    `<div class="breakdown-legend-item">
+      <div class="breakdown-legend-dot" style="background:${s.color}"></div>
+      <span class="breakdown-legend-count">${s.count}</span> ${s.label}
+      <span class="breakdown-legend-pct">(${s.pct}%)</span>
+    </div>`
+  ).join('');
+
+  hero.innerHTML = `
+    <div class="hero-title">Benchmark Lifecycle at a Glance</div>
+    <div class="hero-cards">
+      <div class="hero-card total">
+        <div class="hero-big">${total}</div>
+        <div class="hero-label">Multi-gen benchmarks tracked</div>
+      </div>
+      <div class="hero-card active">
+        <div class="hero-big" style="color:#2ecc71">${activePct}%</div>
+        <div class="hero-pct">${active} benchmarks</div>
+        <div class="hero-label">Still active or emerging</div>
+      </div>
+      <div class="hero-card dropped">
+        <div class="hero-big" style="color:#e67e22">${dropPct}%</div>
+        <div class="hero-pct">${totalDropped} benchmarks</div>
+        <div class="hero-label">Dropped from reporting</div>
+      </div>
+      <div class="hero-card suspicious">
+        <div class="hero-big" style="color:#e74c3c">${droppedUnexplained}</div>
+        <div class="hero-pct">${unexplainedPct}% of drops</div>
+        <div class="hero-label">Unexplained / suspicious</div>
+      </div>
+    </div>
+    <div class="hero-breakdown">
+      <div class="hero-breakdown-title">Why benchmarks get dropped</div>
+      <div class="breakdown-bar-container">${barHtml}</div>
+      <div class="breakdown-legend">${legendHtml}</div>
+    </div>
+    <div class="hero-insight">
+      Of the <strong>${totalDropped}</strong> benchmarks dropped across all labs,
+      <strong>${explainedPct}%</strong> have a clear technical reason (saturation, contamination, supersession, etc.).
+      Only <strong>${droppedUnexplained}</strong> drops (${unexplainedPct}%) remain unexplained — suggesting most benchmark churn
+      is driven by legitimate evaluation evolution, not selective reporting.
+      <em>Note: ${noise} one-time and internal benchmarks are excluded from these figures.</em>
+    </div>
+  `;
 }
 
 function renderStats() {
@@ -1075,6 +1210,7 @@ document.getElementById('qfAll').addEventListener('click', () => applyPreset('al
 document.getElementById('qfDrops').addEventListener('click', () => applyPreset('drops'));
 document.getElementById('qfSuspicious').addEventListener('click', () => applyPreset('suspicious'));
 
+renderHero();
 renderSidebar();
 renderStats();
 renderChart();
