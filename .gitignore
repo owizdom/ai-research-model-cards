@@ -35,6 +35,7 @@ data/exports/
 
 # Generated reports
 reports/
+output/
 
 # OS
 .DS_Store
