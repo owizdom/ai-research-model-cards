@@ -19,6 +19,97 @@ import redis
 import os
 
 
+# Heuristic category classifier. The DB category column is mostly "other"
+# (277/319) because seeding never caught up with extraction. This gives us
+# usable buckets for the homepage view. Rules are ordered — first match wins.
+_CATEGORY_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("safety", (
+        "safety", "harm", "refusal", "bias", "toxic", "jailbreak", "guard",
+        "misuse", "sandbag", "deception", "scheming", "alignment", "apollo",
+        "child ", "cbrn", "bio ", "biolp", "chem ", "cyber", "violation",
+        "violative", "evasion", "unjustified", "wildchat", "xstest", "bbq",
+        "protocolqa", "agentharm", "strongreject", "stereotype", "hate",
+        "benign request", "prompt injection", "virology", "sequence design",
+        "protocol design", "lab_bench", "lab-bench", "lab bench",
+        "creative biology", "evaluation awareness", "dual-use", "dual use",
+        "malicious", "refuse",
+        "red team", "red-team", "redteam", "biorisk", "biological risk",
+        "bioweapon", "pairwise bio", "cyscenario", "network attack",
+        "sabotage", "disallowed content", "reasoning monitor",
+        "autonomous replication", "adaptation (ara)", " ara ",
+        "ungrounded inference", "sensitive trait", "speaker identif",
+        "person identif", "personqa", "model mistake", "voice output classif",
+        "topical classif", "confirmation recall", "confirmations recall",
+        "vulnerability research", "exploitation", "facts grounding",
+        "troubleshootingbench", "troubleshooting bench",
+        "cloning", "input filter", "makemesay", "make me say",
+        "sycophancy", "mask",
+    )),
+    ("coding", (
+        "code", "swe", "humaneval", "mbpp", "apps", "livecodebench",
+        "programming", "bugfix", "lcb", "spreadsheet", "aider",
+        "bird-sql", "bird sql", "paperbench", "openai prs",
+        "interview coding", "ml interview", "re-bench", "re bench",
+        "production benchmark", "interview", "open-rewrite",
+    )),
+    ("math", (
+        "math", "aime", "gsm", "amc", "olympiad", "arithmetic",
+        "usamo", "putnam", "imo 202", "physicsfinals",
+    )),
+    ("multimodal", (
+        "vision", "mmmu", "chart", "diagram", "visual", "ai2d", "docvqa",
+        "mathvista", "figqa", "image", "ocr", "video", "charxiv",
+        "egoschema", "vibe-eval",
+    )),
+    ("multilingual", (
+        "multilingual", "mgsm", "mmmlu", "tydiqa", "xlingual", "translation",
+        "xcopa", "xnli", "xquad", "wmt", "wikilingua", "xlsum",
+        "covost", "hausa", "uhura",
+    )),
+    ("reasoning", (
+        "gpqa", "arc_challenge", "arc-agi", "arc-c", "hellaswag", "winogrande",
+        "drop", "bbh", "big_bench", "boolq", "piqa", "siqa", "commonsense",
+        "graphwalk", "time series", "forecast", "agi eval", "agieval",
+    )),
+    ("knowledge", (
+        "mmlu", "simpleqa", "browsecomp", "triviaqa", "naturalquestions",
+        "trivia", "quality", "gre ", "lsat", "mbe", "race-h", "race_h",
+        "hle", "humanity", "deepsearch", "opqa", "medmcqa",
+        "world knowledge", "reading comprehension", "quac", "squad",
+    )),
+    ("agentic", (
+        "agent", "tool", "browser", "computer", "osworld", "metr",
+        "webarena", "autonomy", "operator", "mle", "task completion",
+        "terminal", "tau-bench", "tau bench", "tau2", "τ²", "mcp",
+        "kernel optimization", "training optimization", "text-based rl",
+        "internal ai research", "gdpval",
+    )),
+    ("instruction_following", (
+        "ifeval", "instruction",
+    )),
+    ("long_context", (
+        "long_context", "longcontext", "long context", "needle", "haystack",
+        "ruler", "mrcr", "infinitebench", "key-value retrieval",
+    )),
+    ("arena", (
+        "arena", "mt-bench", "mt bench", "wildbench", "human preference",
+        "human evaluation", "human feedback",
+    )),
+]
+
+
+def _classify(slug: str, name: str, db_category: str | None) -> str:
+    """Pick a display category. Prefer DB category if not 'other'."""
+    if db_category and db_category not in ("other", "general_knowledge"):
+        # Map some DB categories to shared display buckets
+        return {"multimodal": "multimodal", "agent": "agentic"}.get(db_category, db_category)
+    hay = f"{slug} {name}".lower()
+    for cat, keywords in _CATEGORY_RULES:
+        if any(k in hay for k in keywords):
+            return cat
+    return "other"
+
+
 # Benchmark family canonicalization.
 # Collapses variant names (mmlu_pro, gpqa_diamond, swe_bench_verified) onto a
 # shared family so the fragmentation stat isn't inflated by naming variants.
@@ -280,6 +371,7 @@ async def fragmentation(db: AsyncSession = Depends(get_db)):
         SELECT DISTINCT
             bd.slug AS slug,
             bd.name AS name,
+            bd.category AS category,
             {FAMILY_SQL_EXPR} AS family,
             l.slug AS lab_slug,
             l.name AS lab_name
@@ -293,9 +385,11 @@ async def fragmentation(db: AsyncSession = Depends(get_db)):
     # Build raw view: slug → set[lab]
     raw_benchmark_labs: dict[str, set[str]] = {}
     raw_names: dict[str, str] = {}
+    raw_categories: dict[str, str] = {}
     for r in rows:
         raw_benchmark_labs.setdefault(r.slug, set()).add(r.lab_slug)
         raw_names[r.slug] = r.name
+        raw_categories[r.slug] = _classify(r.slug, r.name, r.category)
 
     # Build family view: family → set[lab], family → set[member_slugs]
     family_labs: dict[str, set[str]] = {}
@@ -356,7 +450,10 @@ async def fragmentation(db: AsyncSession = Depends(get_db)):
             lab_name=lab_names[lab_slug],
             total_reported=total,
             only_them_count=len(uniques),
-            only_them=[{"slug": s, "name": raw_names.get(s, s)} for s in uniques],
+            only_them=[
+                {"slug": s, "name": raw_names.get(s, s), "category": raw_categories.get(s, "other")}
+                for s in uniques
+            ],
         ))
     by_lab.sort(key=lambda x: x.total_reported, reverse=True)
 

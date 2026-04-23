@@ -162,7 +162,7 @@ export interface LabUniqueness {
   lab_name: string;
   total_reported: number;
   only_them_count: number;
-  only_them: { slug: string; name: string }[];
+  only_them: { slug: string; name: string; category: string }[];
 }
 
 export interface FragmentationResponse {

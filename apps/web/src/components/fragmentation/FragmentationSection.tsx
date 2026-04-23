@@ -215,6 +215,40 @@ function FragmentationHistogram({
   );
 }
 
+const CATEGORY_LABELS: Record<string, string> = {
+  safety: "Safety",
+  agentic: "Agentic",
+  coding: "Coding",
+  math: "Math",
+  reasoning: "Reasoning",
+  knowledge: "Knowledge",
+  multimodal: "Multimodal",
+  multilingual: "Multilingual",
+  vision: "Vision",
+  long_context: "Long Context",
+  instruction_following: "Instruction Following",
+  arena: "Arena / Preference",
+  medical: "Medical",
+  other: "Other",
+};
+
+const CATEGORY_COLORS: Record<string, string> = {
+  safety: "#C44343",
+  agentic: "#2E7D5B",
+  coding: "#D97757",
+  math: "#8B6CAF",
+  reasoning: "#4A7FC1",
+  knowledge: "#2E7D5B",
+  multimodal: "#5B8A72",
+  multilingual: "#1A7A6D",
+  vision: "#5B8A72",
+  long_context: "#4A7FC1",
+  instruction_following: "#C17E2B",
+  arena: "#7A6850",
+  medical: "#A8446B",
+  other: "#B0AFA8",
+};
+
 function OnlyLabWidget({
   byLab, selectedLab, setSelectedLab, selectedLabData,
 }: {
@@ -223,8 +257,35 @@ function OnlyLabWidget({
   setSelectedLab: (s: string) => void;
   selectedLabData: LabUniqueness | undefined;
 }) {
+  const [expandedCats, setExpandedCats] = useState<Set<string>>(new Set());
+
   if (!selectedLabData) return null;
   const pctUnique = Math.round((selectedLabData.only_them_count / selectedLabData.total_reported) * 100);
+
+  // Group benchmarks by category
+  const grouped = new Map<string, { slug: string; name: string; category: string }[]>();
+  for (const b of selectedLabData.only_them) {
+    const cat = b.category || "other";
+    if (!grouped.has(cat)) grouped.set(cat, []);
+    grouped.get(cat)!.push(b);
+  }
+
+  // Sort categories by size (descending), sort benchmarks alphabetically within each
+  const categoryRows = Array.from(grouped.entries())
+    .map(([cat, benches]) => ({
+      cat,
+      benches: [...benches].sort((a, b) => a.name.localeCompare(b.name)),
+    }))
+    .sort((a, b) => b.benches.length - a.benches.length);
+
+  const maxCount = categoryRows[0]?.benches.length ?? 1;
+  const PREVIEW_N = 4;
+
+  const toggleCat = (cat: string) => {
+    const next = new Set(expandedCats);
+    if (next.has(cat)) next.delete(cat); else next.add(cat);
+    setExpandedCats(next);
+  };
 
   return (
     <div className="border border-[var(--border)] rounded-xl bg-white p-6 sm:p-8">
@@ -234,11 +295,11 @@ function OnlyLabWidget({
           Each lab picks benchmarks no one else discloses — often chosen to showcase strengths.
         </p>
       </div>
-      <div className="flex flex-wrap items-center gap-2 mb-5">
+      <div className="flex flex-wrap items-center gap-2 mb-6">
         {byLab.map(l => (
           <button
             key={l.lab_slug}
-            onClick={() => setSelectedLab(l.lab_slug)}
+            onClick={() => { setSelectedLab(l.lab_slug); setExpandedCats(new Set()); }}
             className={`text-xs px-3 py-1.5 rounded-full transition-colors ${
               selectedLab === l.lab_slug
                 ? "bg-[var(--accent)] text-white"
@@ -249,7 +310,7 @@ function OnlyLabWidget({
           </button>
         ))}
       </div>
-      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-4">
+      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-6">
         <span className="font-serif text-3xl font-bold text-[var(--text)]">
           {selectedLabData.only_them_count}
         </span>
@@ -258,16 +319,49 @@ function OnlyLabWidget({
           <span className="text-[var(--text)] font-medium">{selectedLabData.lab_name}</span> alone.
         </span>
       </div>
-      <div className="flex flex-wrap gap-1.5 max-h-60 overflow-y-auto pr-2">
-        {selectedLabData.only_them.map(b => (
-          <span
-            key={b.slug}
-            className="text-xs px-2 py-1 rounded bg-[var(--surface-2)] text-[var(--muted)] font-mono"
-            title={b.name}
-          >
-            {b.name}
-          </span>
-        ))}
+
+      <div className="divide-y divide-[var(--border)]">
+        {categoryRows.map(({ cat, benches }) => {
+          const expanded = expandedCats.has(cat);
+          const visible = expanded ? benches : benches.slice(0, PREVIEW_N);
+          const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
+          const label = CATEGORY_LABELS[cat] ?? cat.replace(/_/g, " ");
+          const barWidth = (benches.length / maxCount) * 100;
+          return (
+            <div key={cat} className="py-4 first:pt-0">
+              <div className="flex items-center gap-4 mb-2">
+                <div className="w-32 shrink-0 text-sm font-medium text-[var(--text)]">
+                  {label}
+                </div>
+                <div className="w-10 text-sm tabular-nums font-semibold text-[var(--text)] text-right">
+                  {benches.length}
+                </div>
+                <div className="flex-1 h-2 bg-[var(--surface-2)] rounded-sm overflow-hidden">
+                  <div
+                    className="h-full rounded-sm"
+                    style={{ width: `${barWidth}%`, background: color }}
+                  />
+                </div>
+              </div>
+              <div className="ml-36 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[var(--muted)]">
+                {visible.map((b, i) => (
+                  <span key={b.slug}>
+                    <span className="text-[var(--text)]">{b.name}</span>
+                    {i < visible.length - 1 ? <span className="text-[var(--border-light)]">·</span> : null}
+                  </span>
+                ))}
+                {benches.length > PREVIEW_N && (
+                  <button
+                    onClick={() => toggleCat(cat)}
+                    className="text-xs text-[var(--accent)] hover:underline ml-1"
+                  >
+                    {expanded ? "show less" : `+${benches.length - PREVIEW_N} more`}
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
