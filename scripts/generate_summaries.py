@@ -157,10 +157,31 @@ async def generate_one(
     raw = result.content.strip()
     if raw.startswith("```"):
         raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE)
+    # Find the first `{` and last `}` — Claude sometimes wraps output in prose.
+    first_brace = raw.find("{")
+    last_brace = raw.rfind("}")
+    if first_brace >= 0 and last_brace > first_brace:
+        candidate = raw[first_brace : last_brace + 1]
+    else:
+        candidate = raw
+    # Tolerate common minor mistakes: trailing commas, smart quotes in keys,
+    # unescaped newlines inside strings are rarer but possible.
+    candidate = re.sub(r",\s*([}\]])", r"\1", candidate)  # trailing commas
     try:
-        payload = json.loads(raw)
+        payload = json.loads(candidate)
     except json.JSONDecodeError as e:
-        return {"doc_id": doc_id, "status": "bad_json", "error": str(e)[:200]}
+        # Last-ditch: try to extract chapters one at a time via regex.
+        chapter_matches = re.findall(
+            r'\{\s*"title"\s*:\s*"([^"]+)"\s*,\s*"prose"\s*:\s*"((?:[^"\\]|\\.)*)"\s*\}',
+            candidate, re.DOTALL,
+        )
+        if chapter_matches:
+            payload = {"chapters": [
+                {"title": t, "prose": p.encode().decode("unicode_escape")}
+                for t, p in chapter_matches
+            ]}
+        else:
+            return {"doc_id": doc_id, "status": "bad_json", "error": str(e)[:200]}
 
     chapters = payload.get("chapters", [])
     total_words = sum(len((c.get("prose") or "").split()) for c in chapters)
