@@ -72,6 +72,26 @@ class DocumentOutlineItem(BaseModel):
     anchor: str
 
 
+class GistFields(BaseModel):
+    title: str
+    overview: Optional[str] = None
+    capability_claim: Optional[str] = None
+    capability_offset: Optional[int] = None
+    sharpest_risk: Optional[str] = None
+    sharpest_risk_offset: Optional[int] = None
+    deployment_scope: Optional[str] = None
+    deployment_offset: Optional[int] = None
+
+
+class HeatstripSegment(BaseModel):
+    index: int
+    start: int
+    end: int
+    dominant: str
+    scores: dict[str, int]
+    intensity: int
+
+
 class DocumentContent(BaseModel):
     document_id: int
     version_id: int
@@ -81,6 +101,8 @@ class DocumentContent(BaseModel):
     has_headers: bool
     outline: list[DocumentOutlineItem]
     content_md: str
+    gist: Optional[GistFields] = None
+    heatstrip: list[HeatstripSegment] = []
 
 
 class DiffResult(BaseModel):

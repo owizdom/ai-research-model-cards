@@ -3,6 +3,8 @@ import { formatDate } from "@/lib/utils";
 import { VersionTimeline } from "@/components/ui/VersionTimeline";
 import { EvalTable } from "@/components/charts/EvalTable";
 import { DocumentReader } from "@/components/doc-reader/DocumentReader";
+import { GistCard } from "@/components/doc-reader/GistCard";
+import { Heatstrip } from "@/components/doc-reader/Heatstrip";
 import { notFound } from "next/navigation";
 
 export default async function DocumentPage({ params }: { params: Promise<{ id: string }> }) {
@@ -85,6 +87,14 @@ export default async function DocumentPage({ params }: { params: Promise<{ id: s
           </div>
         )}
       </div>
+
+      {/* Phase 2: Gist + Heatstrip above the fold */}
+      {content && (
+        <div className="max-w-5xl mb-8">
+          {content.gist && <GistCard gist={content.gist} />}
+          {content.heatstrip.length > 0 && <Heatstrip segments={content.heatstrip} />}
+        </div>
+      )}
 
       {/* Document body + sidebar */}
       {content ? (

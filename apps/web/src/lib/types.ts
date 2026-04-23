@@ -37,6 +37,26 @@ export interface DocumentOutlineItem {
   anchor: string;
 }
 
+export interface GistFields {
+  title: string;
+  overview: string | null;
+  capability_claim: string | null;
+  capability_offset: number | null;
+  sharpest_risk: string | null;
+  sharpest_risk_offset: number | null;
+  deployment_scope: string | null;
+  deployment_offset: number | null;
+}
+
+export interface HeatstripSegment {
+  index: number;
+  start: number;
+  end: number;
+  dominant: string;
+  scores: Record<string, number>;
+  intensity: number;
+}
+
 export interface DocumentContent {
   document_id: number;
   version_id: number;
@@ -46,6 +66,8 @@ export interface DocumentContent {
   has_headers: boolean;
   outline: DocumentOutlineItem[];
   content_md: string;
+  gist: GistFields | null;
+  heatstrip: HeatstripSegment[];
 }
 
 export interface IntersectionMatrix {

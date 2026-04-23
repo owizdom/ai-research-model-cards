@@ -84,6 +84,115 @@ def _clean_content(md: str) -> str:
     return _MULTI_NEWLINE_RE.sub("\n\n", out).strip()
 
 
+# --- Phase 2: Gist + heatstrip heuristics (no external API calls) ---
+
+_SECTION_KEYWORDS: dict[str, tuple[str, ...]] = {
+    "safety": (
+        "safety", "harm", "toxic", "bias", "refusal", "violative", "jailbreak",
+        "misuse", "red team", "red-team", "redteam", "cbrn", "bio", "cyber",
+        "weapon", "disallowed", "alignment", "scheming", "deception",
+        "sycophancy", "sandbag", "guard",
+    ),
+    "evals": (
+        "benchmark", "evaluation", "eval ", "mmlu", "humaneval", "gpqa",
+        "accuracy", "pass rate", "score", "test set", "capability test",
+    ),
+    "risks": (
+        "risk", "threat", "threshold", "uplift", "catastrophic", "concern",
+        "dangerous capability", "autonomy", "self-exfiltrat",
+    ),
+    "mitigations": (
+        "mitigation", "we decided not to", "crossed our threshold", "refused to",
+        "did not release", "withheld", "guard", "filter", "classifier",
+        "policy", "deployment restriction",
+    ),
+    "deployment": (
+        "deploy", "available", "release", "api", "product", "rollout", "rollout",
+        "launch", "shipping",
+    ),
+}
+
+_REFUSAL_PATTERNS = re.compile(
+    r"(we (?:decided|elected) not to|we have not|we did not (?:release|deploy)|"
+    r"not (?:release|deploy|make available)|crossed our (?:threshold|trigger)|"
+    r"elicited (?:harmful|dangerous|unsafe)|would not release|withheld|"
+    r"refused to (?:release|deploy))[^.]{0,200}\.",
+    re.IGNORECASE,
+)
+_CAPABILITY_PATTERNS = re.compile(
+    r"(we (?:are releasing|release|have trained|trained|introduce|present) "
+    r"[^.]{10,200})\.",
+    re.IGNORECASE,
+)
+_DEPLOYMENT_PATTERNS = re.compile(
+    r"(available (?:via|on|through)|deployed (?:to|via|through)|"
+    r"accessible (?:via|through)|rolling out|launching) [^.]{5,150}\.",
+    re.IGNORECASE,
+)
+
+
+def _build_gist(md: str, title: str) -> dict:
+    """Extract Gist fields heuristically. Each field carries a verbatim quote
+    (or None) and a char offset so the UI can anchor back to the prose."""
+    def first_match(pattern: re.Pattern) -> tuple[str | None, int | None]:
+        m = pattern.search(md)
+        if not m:
+            return None, None
+        return m.group(0).strip(), m.start()
+
+    # Overview = first 1-3 sentences of the first substantial paragraph
+    first_para = next(
+        (p for p in md.split("\n\n") if len(p) > 80 and not _MD_HEADER_RE.match(p)),
+        "",
+    )
+    overview_sentences = re.split(r"(?<=[\.!?])\s+(?=[A-Z])", first_para)[:3]
+    overview = " ".join(overview_sentences)[:500]
+
+    refusal, refusal_idx = first_match(_REFUSAL_PATTERNS)
+    capability, capability_idx = first_match(_CAPABILITY_PATTERNS)
+    deployment, deployment_idx = first_match(_DEPLOYMENT_PATTERNS)
+
+    return {
+        "overview": overview,
+        "capability_claim": capability,
+        "capability_offset": capability_idx,
+        "sharpest_risk": refusal,
+        "sharpest_risk_offset": refusal_idx,
+        "deployment_scope": deployment,
+        "deployment_offset": deployment_idx,
+        "title": title,
+    }
+
+
+def _build_heatstrip(md: str) -> list[dict]:
+    """Segment the document into ~20 equal chunks; score each chunk's
+    keyword density per category. Returns segments with their dominant
+    category + counts, suitable for a horizontal heatstrip."""
+    if not md:
+        return []
+    N_SEGMENTS = 20
+    seg_len = max(1, len(md) // N_SEGMENTS)
+    segments = []
+    for i in range(N_SEGMENTS):
+        start = i * seg_len
+        end = start + seg_len if i < N_SEGMENTS - 1 else len(md)
+        chunk = md[start:end].lower()
+        scores = {}
+        for cat, keywords in _SECTION_KEYWORDS.items():
+            scores[cat] = sum(chunk.count(k) for k in keywords)
+        total = sum(scores.values())
+        dominant = max(scores, key=scores.get) if total > 0 else "other"
+        segments.append({
+            "index": i,
+            "start": start,
+            "end": end,
+            "dominant": dominant,
+            "scores": scores,
+            "intensity": total,
+        })
+    return segments
+
+
 def _extract_outline(md: str) -> list[DocumentOutlineItem]:
     """Extract H1-H6 headers as a flat list with anchor slugs."""
     items: list[DocumentOutlineItem] = []
@@ -203,6 +312,8 @@ async def get_document_content(
         has_headers=len(outline) >= 3,
         outline=outline,
         content_md=cleaned,
+        gist=_build_gist(cleaned, doc.title),
+        heatstrip=_build_heatstrip(cleaned),
     )
 
 
