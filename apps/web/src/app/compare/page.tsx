@@ -47,39 +47,32 @@ export default async function ComparePage({
         <CompareColumnHeader doc={docB} content={contentB} />
       </div>
 
-      {/* Gist comparison — paired rows */}
-      <div className="mb-10">
-        <h2 className="text-xs uppercase tracking-wide text-[var(--muted)] mb-3">
-          Research brief
-        </h2>
-        <div className="border border-[var(--border)] rounded-xl bg-white overflow-hidden">
-          <GistCompareRow
-            label="TL;DR"
-            a={contentA?.gist?.tldr}
-            b={contentB?.gist?.tldr}
-          />
-          <GistCompareRow
-            label="Capability claim"
-            a={contentA?.gist?.capability_claims?.[0] ?? null}
-            b={contentB?.gist?.capability_claims?.[0] ?? null}
-          />
-          <GistCompareRow
-            label="Sharpest safety finding"
-            a={contentA?.gist?.safety_findings?.[0] ?? null}
-            b={contentB?.gist?.safety_findings?.[0] ?? null}
-          />
-          <GistCompareRow
-            label="Mitigation"
-            a={contentA?.gist?.mitigations?.[0] ?? null}
-            b={contentB?.gist?.mitigations?.[0] ?? null}
-          />
-          <GistCompareRow
-            label="Deployment scope"
-            a={contentA?.gist?.deployment_scope?.[0] ?? null}
-            b={contentB?.gist?.deployment_scope?.[0] ?? null}
-          />
+      {/* Chapter-by-chapter comparison from the Claude-written summaries.
+          If a chapter is only present in one doc, the other column shows
+          a soft "not covered" placeholder. Regex-gist fallback only if
+          neither doc has a summary yet. */}
+      {(contentA?.summary || contentB?.summary) ? (
+        <div className="mb-10">
+          <h2 className="text-xs uppercase tracking-wide text-[var(--muted)] mb-3">
+            Chapter-by-chapter
+          </h2>
+          <div className="border border-[var(--border)] rounded-xl bg-white overflow-hidden">
+            {pairedChapters(contentA?.summary?.chapters ?? [], contentB?.summary?.chapters ?? [])
+              .map(([title, a, b], i) => (
+                <ChapterCompareRow
+                  key={title + i}
+                  label={title}
+                  a={a}
+                  b={b}
+                />
+              ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="mb-10 p-4 rounded-lg bg-[var(--surface-2)] text-sm text-[var(--muted)]">
+          Chaptered summaries are still being generated for one or both of these documents.
+        </div>
+      )}
 
       {/* Heatstrip comparison */}
       <div className="mb-10">
@@ -177,6 +170,55 @@ function GistCompareRow({
       </div>
     </div>
   );
+}
+
+function ChapterCompareRow({
+  label, a, b,
+}: {
+  label: string;
+  a: string | null;
+  b: string | null;
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-[180px_1fr_1fr] border-b border-[var(--border)] last:border-b-0">
+      <div className="p-4 text-sm font-semibold bg-[var(--surface-2)]/30 md:sticky md:top-0">
+        {label}
+      </div>
+      <div className="p-4 text-sm text-[var(--text)] border-r border-[var(--border)] leading-[1.7]">
+        {a ?? <span className="text-[var(--border-light)] italic">Chapter not covered</span>}
+      </div>
+      <div className="p-4 text-sm text-[var(--text)] leading-[1.7]">
+        {b ?? <span className="text-[var(--border-light)] italic">Chapter not covered</span>}
+      </div>
+    </div>
+  );
+}
+
+// Pair chapters by title. Chapters only in one doc still appear as rows
+// with the other side blank. Preserves the order of doc A, then appends
+// any doc-B-only chapters at the end.
+function pairedChapters(
+  a: Array<{ title: string; prose: string }>,
+  b: Array<{ title: string; prose: string }>,
+): Array<[string, string | null, string | null]> {
+  const bByTitle = new Map<string, string>(b.map(c => [normTitle(c.title), c.prose]));
+  const seen = new Set<string>();
+  const rows: Array<[string, string | null, string | null]> = [];
+  for (const ca of a) {
+    const k = normTitle(ca.title);
+    rows.push([ca.title, ca.prose, bByTitle.get(k) ?? null]);
+    seen.add(k);
+  }
+  for (const cb of b) {
+    if (!seen.has(normTitle(cb.title))) {
+      rows.push([cb.title, null, cb.prose]);
+    }
+  }
+  return rows;
+}
+
+function normTitle(t: string): string {
+  return t.toLowerCase().replace(/[^a-z0-9]+/g, "").trim();
 }
 
 function StatRow({ label, a, b }: { label: string; a: string; b: string }) {
