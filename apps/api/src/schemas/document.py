@@ -66,6 +66,23 @@ class WordCountTimelinePoint(BaseModel):
     word_count: int
 
 
+class DocumentOutlineItem(BaseModel):
+    level: int
+    title: str
+    anchor: str
+
+
+class DocumentContent(BaseModel):
+    document_id: int
+    version_id: int
+    version_date: date
+    word_count: int
+    read_minutes: int
+    has_headers: bool
+    outline: list[DocumentOutlineItem]
+    content_md: str
+
+
 class DiffResult(BaseModel):
     version_a_id: int
     version_b_id: int

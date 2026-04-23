@@ -31,6 +31,23 @@ export interface DocumentDetail extends Document {
   versions: DocumentVersion[];
 }
 
+export interface DocumentOutlineItem {
+  level: number;
+  title: string;
+  anchor: string;
+}
+
+export interface DocumentContent {
+  document_id: number;
+  version_id: number;
+  version_date: string;
+  word_count: number;
+  read_minutes: number;
+  has_headers: boolean;
+  outline: DocumentOutlineItem[];
+  content_md: string;
+}
+
 export interface IntersectionMatrix {
   lab_slugs: string[];
   category_names: Record<string, string>;

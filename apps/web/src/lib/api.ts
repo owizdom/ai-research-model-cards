@@ -1,5 +1,5 @@
 import type {
-  Lab, Document, DocumentDetail, IntersectionMatrix,
+  Lab, Document, DocumentDetail, DocumentContent, IntersectionMatrix,
   Benchmark, EvalResult, GenerationComparison, EvalTimeline, PerCardEvalPoint,
   ModelFamily, ModelFamilyDetail,
   WordCountTimelinePoint, CategoryTimelinePoint,
@@ -43,6 +43,11 @@ export const api = {
     wordCountTimeline: () =>
       get<WordCountTimelinePoint[]>("/documents/word-count-timeline"),
     get: (id: number) => get<DocumentDetail>(`/documents/${id}`),
+    content: (id: number, versionId?: number) =>
+      get<DocumentContent>(
+        `/documents/${id}/content`,
+        versionId ? { version_id: versionId } : undefined,
+      ),
   },
 
   analysis: {
