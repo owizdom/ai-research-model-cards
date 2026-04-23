@@ -73,7 +73,7 @@ function FragmentationHero({
   return (
     <div className="mb-10 pt-4">
       <p className="text-[var(--accent)] text-sm font-medium mb-4 tracking-wide uppercase">
-        Model Card Explorer — the finding
+        Model Card Explorer
       </p>
       <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 max-w-4xl">
         <span className="text-[var(--accent)]">{current.pct_unique}%</span> of frontier benchmarks
