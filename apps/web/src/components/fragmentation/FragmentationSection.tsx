@@ -232,21 +232,22 @@ const CATEGORY_LABELS: Record<string, string> = {
   other: "Other",
 };
 
+// Palette tuned to the site's warm/muted theme (terracotta accent + earthy greens).
 const CATEGORY_COLORS: Record<string, string> = {
-  safety: "#C44343",
-  agentic: "#2E7D5B",
-  coding: "#D97757",
-  math: "#8B6CAF",
-  reasoning: "#4A7FC1",
-  knowledge: "#2E7D5B",
-  multimodal: "#5B8A72",
-  multilingual: "#1A7A6D",
+  safety: "#D97757",              // terracotta — the site's primary accent
+  agentic: "#2E7D5B",             // forest green
+  coding: "#4A7FC1",              // steel blue
+  math: "#8B6CAF",                // muted purple
+  reasoning: "#1A7A6D",           // teal
+  knowledge: "#C17E2B",           // amber
+  multimodal: "#5B8A72",          // sage
+  multilingual: "#7A6850",        // warm taupe
+  long_context: "#426888",        // deep blue
+  instruction_following: "#A8446B", // mauve
+  arena: "#9B7B3A",               // ochre
+  medical: "#6B4E71",             // plum
   vision: "#5B8A72",
-  long_context: "#4A7FC1",
-  instruction_following: "#C17E2B",
-  arena: "#7A6850",
-  medical: "#A8446B",
-  other: "#B0AFA8",
+  other: "#B0AFA8",               // neutral
 };
 
 function OnlyLabWidget({
@@ -276,8 +277,6 @@ function OnlyLabWidget({
     }))
     .sort((a, b) => b.benches.length - a.benches.length);
 
-  const maxCount = categoryRows[0]?.benches.length ?? 1;
-  const PREVIEW_N = 4;
 
   return (
     <div className="border border-[var(--border)] rounded-xl bg-white p-6 sm:p-8">
@@ -312,48 +311,63 @@ function OnlyLabWidget({
         </span>
       </div>
 
-      <div className="divide-y divide-[var(--border)]">
-        {categoryRows.map(({ cat, benches }) => {
-          const visible = benches.slice(0, PREVIEW_N);
-          const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
-          const label = CATEGORY_LABELS[cat] ?? cat.replace(/_/g, " ");
-          const barWidth = (benches.length / maxCount) * 100;
-          const remaining = benches.length - PREVIEW_N;
-          return (
-            <div key={cat} className="py-4 first:pt-0">
-              <div className="flex items-center gap-4 mb-2">
-                <div
-                  className="w-36 shrink-0 text-sm font-semibold"
-                  style={{ color }}
-                >
-                  {label}
-                </div>
-                <div className="w-10 text-sm tabular-nums font-semibold text-[var(--text)] text-right">
-                  {benches.length}
-                </div>
-                <div className="flex-1 h-2 bg-[var(--surface-2)] rounded-sm overflow-hidden">
-                  <div
-                    className="h-full rounded-sm"
-                    style={{ width: `${barWidth}%`, background: color }}
-                  />
-                </div>
+      {/* Stacked bar: one row, segments colored by category */}
+      <div className="mb-6">
+        <div className="flex h-3 rounded-md overflow-hidden border border-[var(--border)] bg-[var(--surface-2)]">
+          {categoryRows.map(({ cat, benches }) => {
+            const pct = (benches.length / selectedLabData.only_them_count) * 100;
+            const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
+            const label = CATEGORY_LABELS[cat] ?? cat;
+            return (
+              <div
+                key={cat}
+                style={{ width: `${pct}%`, background: color }}
+                title={`${label}: ${benches.length} (${Math.round(pct)}%)`}
+              />
+            );
+          })}
+        </div>
+        {/* Legend */}
+        <div className="flex flex-wrap gap-x-5 gap-y-1.5 mt-3 text-xs text-[var(--muted)]">
+          {categoryRows.map(({ cat, benches }) => {
+            const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
+            const label = CATEGORY_LABELS[cat] ?? cat.replace(/_/g, " ");
+            return (
+              <div key={cat} className="flex items-center gap-1.5">
+                <span
+                  className="w-2.5 h-2.5 rounded-sm shrink-0"
+                  style={{ background: color }}
+                />
+                <span className="font-medium text-[var(--text)]">{label}</span>
+                <span className="tabular-nums">{benches.length}</span>
               </div>
-              <div className="ml-40 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[var(--muted)]">
-                {visible.map((b, i) => (
-                  <span key={b.slug}>
-                    <span className="text-[var(--text)]">{b.name}</span>
-                    {i < visible.length - 1 ? <span className="text-[var(--border-light)]">·</span> : null}
-                  </span>
-                ))}
-                {remaining > 0 && (
-                  <span className="text-xs text-[var(--muted)] ml-1">
-                    +{remaining} more
-                  </span>
-                )}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Benchmarks — each colored by its category, no category headers */}
+      <div className="pt-4 border-t border-[var(--border)]">
+        <div className="text-xs uppercase tracking-wide text-[var(--muted)] mb-3">
+          All {selectedLabData.only_them_count} benchmarks
+        </div>
+        <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5 text-sm leading-relaxed">
+          {categoryRows.flatMap(({ cat, benches }) => {
+            const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
+            return benches.map((b, i) => (
+              <span
+                key={b.slug}
+                style={{ color }}
+                title={CATEGORY_LABELS[cat] ?? cat}
+              >
+                {b.name}
+                {i < benches.length - 1 || cat !== categoryRows[categoryRows.length - 1].cat ? (
+                  <span className="text-[var(--border-light)] ml-2.5">·</span>
+                ) : null}
+              </span>
+            ));
+          })}
+        </div>
       </div>
     </div>
   );
