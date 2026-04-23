@@ -5,15 +5,17 @@ import { EvalTable } from "@/components/charts/EvalTable";
 import { DocumentReader } from "@/components/doc-reader/DocumentReader";
 import { GistCard } from "@/components/doc-reader/GistCard";
 import { Heatstrip } from "@/components/doc-reader/Heatstrip";
+import { CompareDropdown } from "@/components/doc-reader/CompareDropdown";
 import { notFound } from "next/navigation";
 
 export default async function DocumentPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const docId = Number(id);
-  const [doc, content, evalsData] = await Promise.all([
+  const [doc, content, evalsData, allDocs] = await Promise.all([
     api.documents.get(docId).catch(() => null) as any,
     api.documents.content(docId).catch(() => null),
     api.evals.byDocument(docId).catch(() => null),
+    api.documents.list({ limit: 200 }).catch(() => []),
   ]);
   if (!doc) notFound();
 
@@ -76,6 +78,10 @@ export default async function DocumentPage({ params }: { params: Promise<{ id: s
               </a>
             </>
           )}
+        </div>
+
+        <div className="mb-6">
+          <CompareDropdown currentDocId={docId} allDocs={allDocs} />
         </div>
 
         {versions.length > 1 && (
