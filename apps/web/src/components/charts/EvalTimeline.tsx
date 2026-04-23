@@ -30,9 +30,6 @@ export function EvalTimelineChart({
     meta:      "#8B6CAF",  // muted purple
     mistral:   "#C17E2B",  // amber
     xai:       "#1A7A6D",  // teal
-    cohere:    "#C44343",  // warm red
-    amazon:    "#5B8A72",  // sage
-    ai21:      "#7A6850",  // warm brown
   };
   const labColors: Record<string, string> = {};
   for (const lab of labs) {

@@ -19,9 +19,6 @@ const labColors: Record<string, string> = {
   meta: "#8B6CAF",
   xai: "#1A7A6D",
   mistral: "#FF7000",
-  cohere: "#39594D",
-  amazon: "#FF9900",
-  ai21: "#6C3CE1",
 };
 
 const categoryColors: Record<string, string> = {
@@ -70,7 +67,6 @@ const GEN_ORDER: Record<string, number> = {
   meta_llamaguard3_card: 12,
   xai_grok4_card: 1, xai_grok4_fast_card: 2, xai_grok41_card: 3, xai_grok_docs: 10,
   mistral_7b_model_card: 1, mistral_mixtral_model_card: 2,
-  cohere_command_r_card: 1, ai21_jamba_card: 1, amazon_bedrock_docs: 1,
 };
 
 export function EvalCategoryTrendChart({ data }: { data: CategoryTimelinePoint[] }) {
