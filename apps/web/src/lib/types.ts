@@ -57,6 +57,19 @@ export interface HeatstripSegment {
   intensity: number;
 }
 
+export interface SummaryChapter {
+  title: string;
+  prose: string;
+}
+
+export interface DocumentSummaryRead {
+  model_used: string;
+  total_words: number;
+  chapters: SummaryChapter[];
+  generated_at: string;
+  source_hash: string;
+}
+
 export interface DocumentContent {
   document_id: number;
   version_id: number;
@@ -69,6 +82,7 @@ export interface DocumentContent {
   gist: GistFields | null;
   heatstrip: HeatstripSegment[];
   source_hash: string | null;
+  summary: DocumentSummaryRead | null;
 }
 
 export interface IntersectionMatrix {

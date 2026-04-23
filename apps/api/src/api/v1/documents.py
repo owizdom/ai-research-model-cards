@@ -572,6 +572,24 @@ async def get_document_content(
     read_minutes = max(1, round(word_count / 230)) if word_count else 0
 
     source_hash = hashlib.sha256(cleaned.encode("utf-8")).hexdigest()[:12]
+
+    # Pre-generated chaptered summary (Claude Sonnet, run nightly).
+    summary = None
+    row = (await db.execute(text("""
+        SELECT model_used, total_words, chapters, generated_at, source_hash, error
+        FROM document_summaries
+        WHERE document_version_id = :vid AND (error IS NULL OR error = '')
+    """), {"vid": version.id})).fetchone()
+    if row and row.total_words > 0:
+        from src.schemas.document import DocumentSummaryRead, SummaryChapter
+        summary = DocumentSummaryRead(
+            model_used=row.model_used,
+            total_words=row.total_words,
+            chapters=[SummaryChapter(**c) for c in row.chapters],
+            generated_at=row.generated_at,
+            source_hash=row.source_hash,
+        )
+
     return DocumentContent(
         document_id=document_id,
         version_id=version.id,
@@ -584,6 +602,7 @@ async def get_document_content(
         gist=_build_gist(cleaned, doc.title),
         heatstrip=_build_heatstrip(cleaned),
         source_hash=source_hash,
+        summary=summary,
     )
 
 

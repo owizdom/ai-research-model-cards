@@ -4,6 +4,7 @@ import { VersionTimeline } from "@/components/ui/VersionTimeline";
 import { EvalTable } from "@/components/charts/EvalTable";
 import { DocumentReader } from "@/components/doc-reader/DocumentReader";
 import { DocumentSummary } from "@/components/doc-reader/DocumentSummary";
+import { ChapteredSummary } from "@/components/doc-reader/ChapteredSummary";
 import { FullDocToggle } from "@/components/doc-reader/FullDocToggle";
 import { Heatstrip } from "@/components/doc-reader/Heatstrip";
 import { CompareDropdown } from "@/components/doc-reader/CompareDropdown";
@@ -95,9 +96,23 @@ export default async function DocumentPage({ params }: { params: Promise<{ id: s
         )}
       </div>
 
-      {/* Summary (primary view) */}
-      {content && content.gist && (
+      {/* Summary (primary view). Use the Claude-written chaptered summary
+          when available; fall back to the regex heuristic brief while
+          generation is still in progress for that doc. */}
+      {content?.summary ? (
+        <ChapteredSummary
+          summary={content.summary}
+          docTitle={doc.title}
+          labName={doc.lab?.name ?? doc.lab_name ?? null}
+          versionDate={content.version_date}
+          sourceUrl={doc.source_url}
+          sourceWordCount={content.word_count}
+        />
+      ) : content?.gist ? (
         <div className="max-w-4xl">
+          <div className="mb-3 px-3 py-2 rounded-md bg-[var(--surface-2)] text-xs text-[var(--muted)]">
+            Chaptered summary is still being generated for this document. Showing a heuristic brief in the meantime.
+          </div>
           <DocumentSummary
             content={content}
             docTitle={doc.title}
@@ -107,18 +122,11 @@ export default async function DocumentPage({ params }: { params: Promise<{ id: s
             evals={evals}
           />
         </div>
-      )}
-
-      {/* Heatstrip — doc composition at a glance */}
-      {content && content.heatstrip.length > 0 && (
-        <div className="max-w-4xl">
-          <Heatstrip segments={content.heatstrip} />
-        </div>
-      )}
+      ) : null}
 
       {/* Full document reader — collapsed by default */}
       {content && (
-        <div className="max-w-6xl">
+        <div className="max-w-6xl mt-12">
           <FullDocToggle>
             <DocumentReader content={content} />
           </FullDocToggle>

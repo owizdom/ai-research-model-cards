@@ -92,6 +92,19 @@ class HeatstripSegment(BaseModel):
     intensity: int
 
 
+class SummaryChapter(BaseModel):
+    title: str
+    prose: str
+
+
+class DocumentSummaryRead(BaseModel):
+    model_used: str
+    total_words: int
+    chapters: list[SummaryChapter]
+    generated_at: datetime
+    source_hash: str
+
+
 class DocumentContent(BaseModel):
     document_id: int
     version_id: int
@@ -104,6 +117,7 @@ class DocumentContent(BaseModel):
     gist: Optional[GistFields] = None
     heatstrip: list[HeatstripSegment] = []
     source_hash: Optional[str] = None
+    summary: Optional[DocumentSummaryRead] = None
 
 
 class DiffResult(BaseModel):

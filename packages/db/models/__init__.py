@@ -4,6 +4,7 @@ from .taxonomy import TaxonomyCategory, DocumentTaxonomyMapping
 from .model_family import ModelFamily, ModelGeneration
 from .eval import BenchmarkDefinition, EvalResult, ExtractionRun
 from .eval_source import ExternalEvalSource
+from .summary import DocumentSummary
 
 DocumentTaxonomyMap = DocumentTaxonomyMapping
 
@@ -13,4 +14,5 @@ __all__ = [
     "ModelFamily", "ModelGeneration",
     "BenchmarkDefinition", "EvalResult", "ExtractionRun",
     "ExternalEvalSource",
+    "DocumentSummary",
 ]
