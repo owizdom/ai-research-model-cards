@@ -62,6 +62,7 @@ SOURCES: list[Source] = [
     Source("openai_gpt51_system_card",  "openai", "GPT-5.1 System Card",              "model_card",   "https://cdn.openai.com/pdf/4173ec8d-1229-47db-96de-06d87147e07e/5_1_system_card.pdf", "pdf"),
     Source("openai_gpt52_system_card",  "openai", "GPT-5.2 System Card",              "model_card",   "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "pdf"),
     Source("openai_gpt53_codex_card",   "openai", "GPT-5.3 Codex System Card",        "model_card",   "https://cdn.openai.com/pdf/23eca107-a9b1-4d2c-b156-7deb4fbc697c/GPT-5-3-Codex-System-Card-02.pdf", "pdf"),
+    Source("openai_gpt55_system_card",  "openai", "GPT-5.5 System Card",              "model_card",   "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",                       "pdf"),
 
     # ── Google DeepMind ───────────────────────────────────────────────────────
     Source("google_ai_principles",     "google", "AI Principles",                 "constitution",  "https://ai.google/responsibility/principles/",                                    "html"),
