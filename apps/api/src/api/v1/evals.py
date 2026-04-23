@@ -6,7 +6,8 @@ from sqlalchemy.orm import selectinload
 from src.core.deps import get_db
 from src.schemas.eval import (
     BenchmarkRead, EvalResultRead, ComparisonResult, TimelinePoint, PerCardEvalPoint,
-    CategoryTimelinePoint,
+    CategoryTimelinePoint, FragmentationResponse, FragmentationBucket, LabUniqueness,
+    FragmentationView,
 )
 from packages.db.models import (
     BenchmarkDefinition, EvalResult, ExtractionRun,
@@ -16,6 +17,27 @@ from packages.db.models import (
 import json
 import redis
 import os
+
+
+# Benchmark family canonicalization.
+# Collapses variant names (mmlu_pro, gpqa_diamond, swe_bench_verified) onto a
+# shared family so the fragmentation stat isn't inflated by naming variants.
+# Rule is SQL-side to keep the histogram query a single round trip.
+FAMILY_SQL_EXPR = """
+  CASE
+    WHEN bd.slug = 'mmlu' OR bd.slug LIKE 'mmlu\\_%' OR bd.slug = 'mmmlu' THEN 'mmlu'
+    WHEN bd.slug LIKE 'humaneval%' THEN 'humaneval'
+    WHEN bd.slug LIKE 'gpqa%' THEN 'gpqa'
+    WHEN bd.slug LIKE 'swe\\_bench%' THEN 'swe_bench'
+    WHEN bd.slug = 'math' OR bd.slug LIKE 'math\\_%' THEN 'math'
+    WHEN bd.slug = 'gsm8k' OR bd.slug LIKE 'gsm\\_%' THEN 'gsm'
+    WHEN bd.slug LIKE 'big\\_bench%' THEN 'big_bench'
+    WHEN bd.slug LIKE 'livecodebench%' THEN 'livecodebench'
+    WHEN bd.slug LIKE 'arc\\_%' THEN 'arc'
+    WHEN bd.slug LIKE 'aime%' THEN 'aime'
+    ELSE bd.slug
+  END
+"""
 
 router = APIRouter()
 
@@ -239,6 +261,111 @@ async def category_timeline(db: AsyncSession = Depends(get_db)):
         )
         for r in result.fetchall()
     ]
+
+
+@router.get("/fragmentation", response_model=FragmentationResponse)
+async def fragmentation(db: AsyncSession = Depends(get_db)):
+    """
+    How fragmented is benchmark reporting across frontier labs?
+
+    Returns two views:
+      - raw: one row per distinct benchmark slug
+      - families: collapses naming variants (mmlu_pro→mmlu, gpqa_diamond→gpqa, etc.)
+
+    Each view has a histogram (# benchmarks × # labs reporting) with the benchmark
+    slugs per bucket, so the UI can render "click a column to see the benchmarks."
+    """
+    # One base query: (benchmark_slug, family_slug, lab_slug) distinct tuples.
+    rows = (await db.execute(text(f"""
+        SELECT DISTINCT
+            bd.slug AS slug,
+            bd.name AS name,
+            {FAMILY_SQL_EXPR} AS family,
+            l.slug AS lab_slug,
+            l.name AS lab_name
+        FROM eval_results er
+        JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
+        JOIN document_versions dv ON er.document_version_id = dv.id
+        JOIN documents d ON dv.document_id = d.id
+        JOIN labs l ON d.lab_id = l.id
+    """))).fetchall()
+
+    # Build raw view: slug → set[lab]
+    raw_benchmark_labs: dict[str, set[str]] = {}
+    raw_names: dict[str, str] = {}
+    for r in rows:
+        raw_benchmark_labs.setdefault(r.slug, set()).add(r.lab_slug)
+        raw_names[r.slug] = r.name
+
+    # Build family view: family → set[lab], family → set[member_slugs]
+    family_labs: dict[str, set[str]] = {}
+    family_members: dict[str, set[str]] = {}
+    for r in rows:
+        family_labs.setdefault(r.family, set()).add(r.lab_slug)
+        family_members.setdefault(r.family, set()).add(r.slug)
+
+    def build_view(benchmark_labs: dict[str, set[str]], name_lookup) -> FragmentationView:
+        bucket_slugs: dict[int, list[str]] = {}
+        for slug, labs in benchmark_labs.items():
+            bucket_slugs.setdefault(len(labs), []).append(slug)
+
+        histogram = [
+            FragmentationBucket(
+                n_labs=n,
+                count=len(sorted_slugs := sorted(bucket_slugs[n])),
+                slugs=sorted_slugs,
+                names={s: name_lookup(s) for s in sorted_slugs},
+            )
+            for n in sorted(bucket_slugs.keys())
+        ]
+        total = len(benchmark_labs)
+        one_lab = len(bucket_slugs.get(1, []))
+        return FragmentationView(
+            total=total,
+            one_lab_count=one_lab,
+            pct_unique=round(one_lab / total * 100) if total else 0,
+            histogram=histogram,
+        )
+
+    def family_name(fam: str) -> str:
+        # If family == a real slug, use that benchmark's display name.
+        # Otherwise it's already a canonical lowercase family id.
+        return raw_names.get(fam, fam.replace("_", " ").upper())
+
+    raw_view = build_view(raw_benchmark_labs, lambda s: raw_names.get(s, s))
+    family_view = build_view(family_labs, family_name)
+
+    # Per-lab uniqueness (raw view — clearer story for "what only Lab X reports")
+    lab_totals: dict[str, set[str]] = {}
+    lab_names: dict[str, str] = {}
+    for r in rows:
+        lab_totals.setdefault(r.lab_slug, set()).add(r.slug)
+        lab_names[r.lab_slug] = r.lab_name
+
+    unique_to: dict[str, list[str]] = {}
+    for slug, labs in raw_benchmark_labs.items():
+        if len(labs) == 1:
+            unique_to.setdefault(next(iter(labs)), []).append(slug)
+
+    by_lab = []
+    for lab_slug in sorted(lab_totals.keys()):
+        uniques = sorted(unique_to.get(lab_slug, []))
+        total = len(lab_totals[lab_slug])
+        by_lab.append(LabUniqueness(
+            lab_slug=lab_slug,
+            lab_name=lab_names[lab_slug],
+            total_reported=total,
+            only_them_count=len(uniques),
+            only_them=[{"slug": s, "name": raw_names.get(s, s)} for s in uniques],
+        ))
+    by_lab.sort(key=lambda x: x.total_reported, reverse=True)
+
+    return FragmentationResponse(
+        labs=sorted(lab_totals.keys()),
+        raw=raw_view,
+        families=family_view,
+        by_lab=by_lab,
+    )
 
 
 @router.post("/extract/{document_version_id}", status_code=202)

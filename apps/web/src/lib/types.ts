@@ -143,6 +143,35 @@ export interface WordCountTimelinePoint {
   word_count: number;
 }
 
+export interface FragmentationBucket {
+  n_labs: number;
+  count: number;
+  slugs: string[];
+  names: Record<string, string>;
+}
+
+export interface FragmentationView {
+  total: number;
+  one_lab_count: number;
+  pct_unique: number;
+  histogram: FragmentationBucket[];
+}
+
+export interface LabUniqueness {
+  lab_slug: string;
+  lab_name: string;
+  total_reported: number;
+  only_them_count: number;
+  only_them: { slug: string; name: string }[];
+}
+
+export interface FragmentationResponse {
+  labs: string[];
+  raw: FragmentationView;
+  families: FragmentationView;
+  by_lab: LabUniqueness[];
+}
+
 export interface CategoryTimelinePoint {
   document_slug: string;
   document_title: string;

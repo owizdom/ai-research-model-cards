@@ -99,6 +99,35 @@ class CategoryTimelinePoint(BaseModel):
     eval_count: int
 
 
+class FragmentationBucket(BaseModel):
+    n_labs: int
+    count: int
+    slugs: list[str]
+    names: dict[str, str]
+
+
+class FragmentationView(BaseModel):
+    total: int
+    one_lab_count: int
+    pct_unique: int
+    histogram: list[FragmentationBucket]
+
+
+class LabUniqueness(BaseModel):
+    lab_slug: str
+    lab_name: str
+    total_reported: int
+    only_them_count: int
+    only_them: list[dict]
+
+
+class FragmentationResponse(BaseModel):
+    labs: list[str]
+    raw: FragmentationView
+    families: FragmentationView
+    by_lab: list[LabUniqueness]
+
+
 class ExtractionRunRead(BaseModel):
     model_config = {"from_attributes": True}
     id: int

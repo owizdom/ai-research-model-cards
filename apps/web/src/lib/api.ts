@@ -3,6 +3,7 @@ import type {
   Benchmark, EvalResult, GenerationComparison, EvalTimeline, PerCardEvalPoint,
   ModelFamily, ModelFamilyDetail,
   WordCountTimelinePoint, CategoryTimelinePoint,
+  FragmentationResponse,
 } from "./types";
 
 // API_INTERNAL_URL is set server-side only (docker-compose env).
@@ -64,6 +65,8 @@ export const api = {
       get<Record<string, Record<string, number>>>("/evals/depth"),
     categoryTimeline: () =>
       get<CategoryTimelinePoint[]>("/evals/category-timeline"),
+    fragmentation: () =>
+      get<FragmentationResponse>("/evals/fragmentation"),
   },
 
   families: {
