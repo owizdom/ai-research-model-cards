@@ -181,14 +181,14 @@ function ChapterCompareRow({
 }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[180px_1fr_1fr] border-b border-[var(--border)] last:border-b-0">
-      <div className="p-4 text-sm font-semibold bg-[var(--surface-2)]/30 md:sticky md:top-0">
+      <div className="p-4 text-sm font-serif font-semibold bg-[var(--surface-2)]/30 md:sticky md:top-0 leading-tight">
         {label}
       </div>
-      <div className="p-4 text-sm text-[var(--text)] border-r border-[var(--border)] leading-[1.7]">
-        {a ?? <span className="text-[var(--border-light)] italic">Chapter not covered</span>}
+      <div className="p-4 text-[14px] text-[var(--text)] border-r border-[var(--border)] leading-[1.65]">
+        {a ?? <span className="text-[var(--muted)] italic text-xs">Not disclosed in this document.</span>}
       </div>
-      <div className="p-4 text-sm text-[var(--text)] leading-[1.7]">
-        {b ?? <span className="text-[var(--border-light)] italic">Chapter not covered</span>}
+      <div className="p-4 text-[14px] text-[var(--text)] leading-[1.65]">
+        {b ?? <span className="text-[var(--muted)] italic text-xs">Not disclosed in this document.</span>}
       </div>
     </div>
   );

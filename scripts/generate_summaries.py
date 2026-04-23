@@ -22,36 +22,53 @@ from sqlalchemy import text, select
 from apps.api.src.api.v1.documents import _clean_content
 from apps.worker.src.extractor.claude_cli import call_claude_cli
 
-SYSTEM_PROMPT = """You are a neutral research summarizer producing chaptered briefs of AI model cards.
+SYSTEM_PROMPT = """You are a neutral research summarizer producing tight chaptered briefs of AI model cards — the kind a busy researcher skims in 90 seconds.
 
-Your output is consumed by researchers who need a faithful, concise rendering of what the lab claims — not what the reader hopes or worries about.
+Your output is consumed by researchers who need a faithful, scannable rendering of what the lab claims — not what the reader hopes or worries about.
 
-Rules:
-1. Total length: 1500-2000 words across all chapters combined.
-2. Output 5-8 chapters. Each chapter is 200-350 words of flowing prose (not bullet points).
-3. Write in third person, present tense, neutral tone. Never editorialize.
-4. Preserve the lab's hedging language verbatim inside double quotes when it carries signal — phrases like "we believe", "we cannot rule out", "approached our threshold", "elicited harmful", "crossed our threshold", "we decided not to release", "limitations include". Do NOT paraphrase hedges into confident claims.
-5. Inline short verbatim quotes (5-40 words) sparingly when the exact phrasing matters (thresholds, refusals, policy commitments, safety findings). Wrap them in double quotes.
-6. Use concrete numbers whenever the source provides them: dates, scores, percentages, parameter counts, token counts, threshold levels.
-7. Never invent a fact. If the source doesn't state X, don't include X. If a chapter has no source material, omit the chapter entirely.
-8. Do NOT quote the Table of Contents or changelog entries as safety findings.
+## Hard rules
+1. ALWAYS produce EXACTLY these 8 chapters in this exact order, even when material is thin:
+   - "What this is"
+   - "Capabilities"
+   - "Evaluation methodology"
+   - "Safety testing"
+   - "Mitigations"
+   - "Deployment and access"
+   - "Limitations"
+   - "What's new"
+2. Each chapter is 2-5 sentences. Never more than 5. Never a wall of text. If you can say it in 2 sentences, say it in 2.
+3. Total across all 8 chapters: 400-800 words. Lean short.
+4. If the source truly says nothing about a chapter's topic, write one short sentence: "Not disclosed in this document." or "The card does not discuss X." — whichever is accurate. Never omit a chapter.
+5. Third person, present tense, neutral tone. No editorializing. No "This is exciting" / "importantly" / "notably".
+6. Preserve hedging language verbatim in double quotes when it carries signal: "we believe", "we cannot rule out", "approached our threshold", "elicited harmful", "crossed our threshold", "we decided not to release". Never paraphrase hedges into confident claims.
+7. Inline short verbatim quotes (5-30 words) when exact phrasing matters. Wrap in double quotes.
+8. Use concrete numbers whenever the source has them: dates, scores, percentages, parameter counts, thresholds.
+9. Never invent a fact. If the source doesn't state X, don't include X.
+10. Do NOT quote the Table of Contents or changelog entries as safety findings.
 
-Chapters (include only those with source material, in this order):
-- "What this is" — model name, lab, release date, version deltas vs predecessor, the single-sentence purpose
-- "Capabilities" — what the model can do, headline benchmark scores in context, modalities, context window
-- "Evaluation methodology" — how the lab tested capabilities; any contamination controls, prompting regimes, elicitation notes
-- "Safety testing" — red-team process, catastrophic-risk evals (CBRN, cyber, autonomy), what crossed and what did not; preserve hedging language
-- "Mitigations" — deployed safeguards, classifier thresholds, refusal training, access controls
-- "Deployment and access" — license, API/product surface, restrictions, availability, who gets access
-- "Limitations" — what the lab itself flags as unknown, unsolved, or explicitly untested
-- "What's new" — version deltas and changelog entries if present
+## Chapter content guide
+- "What this is" — model name, lab, release date, what it supersedes, one-sentence purpose.
+- "Capabilities" — top 2-3 benchmark scores with context, modalities, context window.
+- "Evaluation methodology" — how they tested (prompting, trials, external evaluators), contamination controls.
+- "Safety testing" — red-team scope, catastrophic-risk evals (CBRN / cyber / autonomy), what crossed and what didn't. Preserve hedges verbatim.
+- "Mitigations" — deployed safeguards, classifier thresholds, refusal training, access controls, ASL/FSF tier invoked.
+- "Deployment and access" — license, API/product surface, restrictions, who gets access.
+- "Limitations" — what the lab itself flags as unknown, unsolved, or untested.
+- "What's new" — version deltas and changelog entries; if none, say so.
 
-Output format — valid JSON only, no prose outside the JSON, no code fences:
+## Output format
+Valid JSON only. No prose outside the JSON. No code fences. Exactly 8 chapters.
+
 {
   "chapters": [
-    {"title": "What this is", "prose": "200-350 words of flowing prose..."},
+    {"title": "What this is", "prose": "2-5 sentences."},
     {"title": "Capabilities", "prose": "..."},
-    ...
+    {"title": "Evaluation methodology", "prose": "..."},
+    {"title": "Safety testing", "prose": "..."},
+    {"title": "Mitigations", "prose": "..."},
+    {"title": "Deployment and access", "prose": "..."},
+    {"title": "Limitations", "prose": "..."},
+    {"title": "What's new", "prose": "..."}
   ]
 }
 """
@@ -92,6 +109,7 @@ async def generate_one(
     version_date: str,
     raw_md: str,
     force: bool = False,
+    timeout_s: float = 300.0,
 ) -> dict:
     cleaned = _clean_content(raw_md)
     source_hash = hashlib.sha256(cleaned.encode("utf-8")).hexdigest()[:12]
@@ -119,7 +137,7 @@ async def generate_one(
             system_prompt=SYSTEM_PROMPT,
             user_prompt=user_prompt,
             model="sonnet",
-            timeout_s=300,
+            timeout_s=timeout_s,
             max_budget_usd=2.0,
         )
     except Exception as e:
@@ -167,7 +185,7 @@ async def generate_one(
     }
 
 
-async def main(only: int | None, force: bool, parallel: int):
+async def main(only: int | None, force: bool, parallel: int, retry_errors: bool, timeout_s: float):
     dsn = os.getenv("DATABASE_URL")
     if not dsn:
         print("DATABASE_URL not set", file=sys.stderr)
@@ -190,8 +208,16 @@ async def main(only: int | None, force: bool, parallel: int):
         if only:
             q += " AND d.id = :only"
             params["only"] = only
+        if retry_errors:
+            q += """ AND EXISTS (
+                SELECT 1 FROM document_summaries ds
+                WHERE ds.document_version_id = dv.id
+                  AND ds.error IS NOT NULL AND ds.error != ''
+            )"""
         q += " ORDER BY d.id, dv.version_date DESC"
         rows = (await db.execute(text(q), params)).fetchall()
+        if retry_errors:
+            force = True  # retry always overwrites
 
     print(f"→ {len(rows)} documents to process")
     sem = asyncio.Semaphore(parallel)
@@ -202,7 +228,7 @@ async def main(only: int | None, force: bool, parallel: int):
                 return await generate_one(
                     db_local, row.doc_id, row.title, row.lab_name,
                     row.version_id, row.version_date, row.content_md,
-                    force=force,
+                    force=force, timeout_s=timeout_s,
                 )
 
     results = []
@@ -233,5 +259,7 @@ if __name__ == "__main__":
     p.add_argument("--only", type=int, help="Run for only this document id")
     p.add_argument("--force", action="store_true", help="Regenerate even if cached")
     p.add_argument("--parallel", type=int, default=3, help="How many Claude calls in parallel")
+    p.add_argument("--retry-errors", action="store_true", help="Only retry rows with a stored error")
+    p.add_argument("--timeout", type=float, default=300.0, help="Claude CLI timeout seconds")
     args = p.parse_args()
-    asyncio.run(main(args.only, args.force, args.parallel))
+    asyncio.run(main(args.only, args.force, args.parallel, args.retry_errors, args.timeout))

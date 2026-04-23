@@ -32,22 +32,22 @@ export function ChapteredSummary({
         </div>
       </div>
 
-      {/* Chapters */}
-      <div className="space-y-10">
+      {/* Chapters — compact grid so short per-chapter prose doesn't feel sparse */}
+      <div className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-y-8 gap-x-8">
         {summary.chapters.map((ch, i) => (
-          <section key={i}>
-            <div className="flex items-baseline gap-3 mb-3">
-              <span className="text-xs tabular-nums text-[var(--muted)] font-mono">
+          <section key={i} className="contents">
+            <div>
+              <div className="text-[11px] tabular-nums text-[var(--muted)] font-mono mb-1">
                 {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight">
+              </div>
+              <h3 className="font-serif text-lg font-bold leading-tight text-[var(--text)] sticky top-4">
                 {ch.title}
               </h3>
             </div>
-            <div className="prose-chapter text-[15px] leading-[1.8] text-[var(--text)]">
+            <div className="text-[15px] leading-[1.7] text-[var(--text)]">
               <ReactMarkdown
                 components={{
-                  p: ({ children }) => <p className="mb-4">{children}</p>,
+                  p: ({ children }) => <p className="mb-3 last:mb-0">{children}</p>,
                   strong: ({ children }) => (
                     <strong className="font-semibold text-[var(--text)]">{children}</strong>
                   ),
