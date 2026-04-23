@@ -346,29 +346,6 @@ function OnlyLabWidget({
         </div>
       </div>
 
-      {/* Benchmarks — each colored by its category, no category headers */}
-      <div className="pt-4 border-t border-[var(--border)]">
-        <div className="text-xs uppercase tracking-wide text-[var(--muted)] mb-3">
-          All {selectedLabData.only_them_count} benchmarks
-        </div>
-        <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5 text-sm leading-relaxed">
-          {categoryRows.flatMap(({ cat, benches }) => {
-            const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
-            return benches.map((b, i) => (
-              <span
-                key={b.slug}
-                style={{ color }}
-                title={CATEGORY_LABELS[cat] ?? cat}
-              >
-                {b.name}
-                {i < benches.length - 1 || cat !== categoryRows[categoryRows.length - 1].cat ? (
-                  <span className="text-[var(--border-light)] ml-2.5">·</span>
-                ) : null}
-              </span>
-            ));
-          })}
-        </div>
-      </div>
     </div>
   );
 }
