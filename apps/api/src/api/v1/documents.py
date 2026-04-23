@@ -22,66 +22,247 @@ _MULTI_WHITESPACE_RE = re.compile(r"[ \t]+")
 _MULTI_NEWLINE_RE = re.compile(r"\n{3,}")
 
 
-def _clean_content(md: str) -> str:
-    """Normalize PDF-extracted markdown for display.
+_BULLET_RE = re.compile(r"^[•●○■□▪▸►]\s*")
+_NUMBERED_LIST_RE = re.compile(r"^(\d+[\.\)]|[a-z][\.\)])\s")
+_SHORT_HEADING_RE = re.compile(r"^[A-Z][A-Za-z0-9 ,/\-&()']{2,60}$")
+_DATE_LINE_RE = re.compile(
+    r"^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}$"
+)
+# Section heading like "1 Introduction", "2.1 Pretraining data", "1.2.3 Foo bar"
+# May have a trailing page number: "2 Capabilities 17" → strip the " 17".
+_SECTION_NUM_RE = re.compile(
+    r"^(\d+(?:\.\d+){0,3})\s+([A-Z][A-Za-z][^\n]{0,80}?)(?:\s+\d+)?$"
+)
+# Common model-card top-level section names — always promote to H2
+_KNOWN_SECTION_HEADINGS = {
+    "abstract", "introduction", "contents", "changelog", "executive summary",
+    "overview", "conclusion", "conclusions", "limitations", "references",
+    "acknowledgments", "acknowledgements", "appendix", "bibliography",
+    "methodology", "methods", "results", "discussion", "background",
+    "related work", "capabilities", "evaluations", "safety", "deployment",
+    "risks", "mitigations", "red teaming", "red-teaming",
+}
 
-    PDF→text extraction from these model cards commonly produces
-    one-word-per-line output with blank lines between every word.
-    Heuristic: if most non-empty lines are shorter than a sentence,
-    treat the whole blob as flowing prose and re-paragraph it on
-    sentence boundaries. Otherwise keep the native paragraph structure.
+
+def _clean_content(md: str) -> str:
+    """Normalize content for display across three common input styles:
+
+    1. Word-per-line PDF dumps (Opus 4.5 etc.) — avg line length ~5-10 chars,
+       blank line between every word. Rejoin as flowing prose.
+    2. Visual-line-per-item PDF dumps (Opus 4.6, GPT-5 etc.) — each visual
+       line from the PDF is on its own line, ~30-80 chars, bullets preserved
+       but no native paragraph structure. Join continuation lines; keep
+       bullets and short headings as their own paragraphs.
+    3. Native markdown / wrapped prose (Gemini reports etc.) — already has
+       blank-line-separated paragraphs. Preserve structure, collapse
+       intra-paragraph whitespace.
     """
     if not md:
         return ""
     md = _NOISE_CHARS_RE.sub("", md)
-    lines = [l.strip() for l in md.split("\n")]
-    substantive = [l for l in lines if l]
+    raw_lines = [l.strip() for l in md.split("\n")]
+    substantive = [l for l in raw_lines if l]
     if not substantive:
         return ""
 
-    short_ratio = sum(1 for l in substantive if len(l) < 30) / len(substantive)
-    if short_ratio > 0.6:
-        # Broken PDF extraction — rejoin as flowing prose and chunk on sentences.
+    mean_line_len = sum(len(l) for l in substantive) / len(substantive)
+
+    # ── Case 1: word-per-line broken. Very short mean line length.
+    if mean_line_len < 15:
         blob = _MULTI_WHITESPACE_RE.sub(" ", " ".join(substantive)).strip()
-        # Split on sentence enders; re-assemble 3-5 sentences per paragraph.
-        sentences = re.split(r"(?<=[\.!?])\s+(?=[A-Z0-9•\-])", blob)
+        # Split on bullet markers so changelog-style lists keep structure.
+        blob = re.sub(r"\s*[•●○■□▪▸]\s+", "\n\n- ", blob)
+        # Insert section breaks before known top-level headings.
+        for section in _KNOWN_SECTION_HEADINGS:
+            # whole-word match, bounded to avoid mid-word collisions
+            blob = re.sub(
+                r"(?<![A-Za-z])" + re.escape(section.title()) + r"(?![A-Za-z])",
+                f"\n\n## {section.title()}\n\n",
+                blob,
+                count=1,
+                flags=re.IGNORECASE,
+            )
+        # Split into paragraphs.
         paragraphs: list[str] = []
-        buf: list[str] = []
-        chars = 0
-        for s in sentences:
-            buf.append(s)
-            chars += len(s)
-            if chars > 600 and s.endswith((".", "!", "?")):
+        for block in blob.split("\n\n"):
+            block = block.strip()
+            if not block:
+                continue
+            if block.startswith(("- ", "## ", "### ")):
+                paragraphs.append(block)
+                continue
+            sentences = re.split(r"(?<=[\.!?])\s+(?=[A-Z0-9])", block)
+            buf: list[str] = []
+            chars = 0
+            for s in sentences:
+                buf.append(s)
+                chars += len(s)
+                if chars > 500 and s.endswith((".", "!", "?")):
+                    paragraphs.append(" ".join(buf))
+                    buf = []
+                    chars = 0
+            if buf:
                 paragraphs.append(" ".join(buf))
-                buf = []
-                chars = 0
-        if buf:
-            paragraphs.append(" ".join(buf))
         return "\n\n".join(paragraphs).strip()
 
-    # Native prose — preserve paragraph breaks (blank-line-separated).
+    # ── Cases 2 & 3: line structure is meaningful. Walk lines, assembling
+    # paragraphs by joining continuation lines and breaking on:
+    #   • a blank line
+    #   • a markdown header
+    #   • a bullet/numbered list marker (starts a new item)
+    #   • a short heading-like line (capitalized, no terminal punctuation)
+    #   • a line ending in . ! ? (closes a sentence → start new block if next
+    #     line starts with a capital or a bullet)
+
     paragraphs: list[str] = []
     buf: list[str] = []
+    buf_is_bullet = False
 
     def flush():
         if buf:
             joined = _MULTI_WHITESPACE_RE.sub(" ", " ".join(buf)).strip()
             if joined:
-                paragraphs.append(joined)
+                paragraphs.append(("- " if buf_is_bullet else "") + joined)
             buf.clear()
 
-    for line in lines:
-        if _MD_HEADER_RE.match(line) or line.startswith(("- ", "* ", "> ")):
+    for line in raw_lines:
+        if not line:
             flush()
-            paragraphs.append(line)
-        elif not line:
-            flush()
-        else:
-            buf.append(line)
-    flush()
+            buf_is_bullet = False
+            continue
 
+        if _MD_HEADER_RE.match(line):
+            flush()
+            buf_is_bullet = False
+            paragraphs.append(line)
+            continue
+
+        # Skip table-of-contents entries (contain dot leader ". . ." or
+        # end with a page number after lots of dots). These look identical
+        # to section headings but appear in a TOC block we don't want to
+        # render as real headers.
+        if ". . ." in line or re.search(r"\.{3,}\s*\d+\s*$", line):
+            # Keep as regular paragraph continuation; strip the noise.
+            cleaned_toc = re.sub(r"\.{2,}", " ", line)
+            buf.append(cleaned_toc)
+            continue
+
+        # Numbered section heading like "1 Introduction", "2.1 Pretraining"
+        # → promote to markdown header (level = dots + 2, capped at 5).
+        sec_match = _SECTION_NUM_RE.match(line)
+        if sec_match and len(line) < 90:
+            num, title = sec_match.group(1), sec_match.group(2).strip()
+            # Reject if it's actually a figure label or axis caption like
+            # "100 Depth (%)" — the first number should be a reasonable
+            # section index (≤ 20) and the title should be substantive.
+            first_num = int(num.split(".")[0]) if num.split(".")[0].isdigit() else 0
+            if (
+                title
+                and title[0].isupper()
+                and first_num <= 20
+                and len(title) >= 4
+            ):
+                level = min(2 + num.count("."), 5)
+                flush()
+                buf_is_bullet = False
+                paragraphs.append(f"{'#' * level} {num} {title}")
+                continue
+
+        # Known top-level section label standing alone ("Abstract", "Contents",
+        # "Introduction") → promote to H2.
+        lower_line = line.lower().strip()
+        if lower_line in _KNOWN_SECTION_HEADINGS and len(line) < 40:
+            flush()
+            buf_is_bullet = False
+            paragraphs.append(f"## {line}")
+            continue
+
+        # Bullet or numbered list item → new paragraph
+        bullet_match = _BULLET_RE.match(line)
+        numbered_match = _NUMBERED_LIST_RE.match(line)
+        if bullet_match or numbered_match:
+            flush()
+            buf_is_bullet = bool(bullet_match)
+            cleaned_line = _BULLET_RE.sub("", line).strip() if bullet_match else line
+            buf.append(cleaned_line)
+            continue
+
+        # Short heading-like line → emit as own paragraph when it's
+        # probably metadata rather than a prose continuation. Heading
+        # pattern (all caps / dates / short capitalized label) AND the
+        # previous line is either empty, another short heading, or ended
+        # with terminal punctuation (so we're not cutting a sentence).
+        is_heading_like = (
+            len(line) < 60
+            and (_SHORT_HEADING_RE.match(line) or _DATE_LINE_RE.match(line))
+            and not line.endswith((".", ","))
+        )
+        if is_heading_like:
+            prev = buf[-1].rstrip() if buf else ""
+            prev_is_short = len(prev) < 60
+            prev_closed = prev.endswith((".", "!", "?", ":"))
+            if not prev or prev_is_short or prev_closed:
+                flush()
+                buf_is_bullet = False
+                paragraphs.append(line)
+                continue
+
+        # Otherwise, append as a continuation of current paragraph.
+        buf.append(line)
+
+    flush()
     out = "\n\n".join(paragraphs)
-    return _MULTI_NEWLINE_RE.sub("\n\n", out).strip()
+    out = _MULTI_NEWLINE_RE.sub("\n\n", out).strip()
+
+    # Post-pass: strip the table-of-contents block. When we see "## Contents"
+    # followed by a dense cluster of short headings / numbered entries, most
+    # of those entries will re-appear later in the body (duplicated). Replace
+    # the TOC cluster with a single placeholder so the real body headings
+    # stay authoritative.
+    out = _strip_toc_block(out)
+    return out
+
+
+def _strip_toc_block(md: str) -> str:
+    """If we detect a TOC block after '## Contents', walk past the cluster of
+    short heading-only paragraphs and replace the TOC with a small stub.
+    Body headings then remain authoritative.
+    """
+    m = re.search(r"^## Contents\s*$", md, re.MULTILINE)
+    if not m:
+        return md
+
+    blocks = md[m.end():].split("\n\n")
+    toc_end_offset = 0
+    for i, b in enumerate(blocks):
+        b_stripped = b.strip()
+        if not b_stripped:
+            toc_end_offset += len(b) + 2
+            continue
+        is_heading = b_stripped.startswith("#")
+        has_dot_leader = bool(re.search(r"\.{2,}", b_stripped))
+        # TOC entry fingerprint: either a heading, a dot-leader line, or a
+        # short/medium sequence of "N.N Title ... N" patterns.
+        looks_like_toc_section_heading = bool(
+            re.match(r"^(?:## |### |#### )?\d+(?:\.\d+)*\s+[A-Z]", b_stripped)
+        )
+        if is_heading or has_dot_leader or (
+            len(b_stripped) < 300 and looks_like_toc_section_heading
+        ):
+            toc_end_offset += len(b) + 2
+            continue
+        # Hit real prose → stop.
+        break
+
+    if toc_end_offset == 0:
+        return md
+
+    toc_absolute_end = m.end() + toc_end_offset
+    return (
+        md[: m.end()]
+        + "\n\n_(Table of contents — see sections below.)_\n\n"
+        + md[toc_absolute_end:].lstrip()
+    )
 
 
 # --- Phase 2: Gist + heatstrip heuristics (no external API calls) ---
