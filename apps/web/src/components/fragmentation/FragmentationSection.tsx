@@ -257,8 +257,6 @@ function OnlyLabWidget({
   setSelectedLab: (s: string) => void;
   selectedLabData: LabUniqueness | undefined;
 }) {
-  const [expandedCats, setExpandedCats] = useState<Set<string>>(new Set());
-
   if (!selectedLabData) return null;
   const pctUnique = Math.round((selectedLabData.only_them_count / selectedLabData.total_reported) * 100);
 
@@ -281,12 +279,6 @@ function OnlyLabWidget({
   const maxCount = categoryRows[0]?.benches.length ?? 1;
   const PREVIEW_N = 4;
 
-  const toggleCat = (cat: string) => {
-    const next = new Set(expandedCats);
-    if (next.has(cat)) next.delete(cat); else next.add(cat);
-    setExpandedCats(next);
-  };
-
   return (
     <div className="border border-[var(--border)] rounded-xl bg-white p-6 sm:p-8">
       <div className="mb-6">
@@ -299,7 +291,7 @@ function OnlyLabWidget({
         {byLab.map(l => (
           <button
             key={l.lab_slug}
-            onClick={() => { setSelectedLab(l.lab_slug); setExpandedCats(new Set()); }}
+            onClick={() => setSelectedLab(l.lab_slug)}
             className={`text-xs px-3 py-1.5 rounded-full transition-colors ${
               selectedLab === l.lab_slug
                 ? "bg-[var(--accent)] text-white"
@@ -322,15 +314,18 @@ function OnlyLabWidget({
 
       <div className="divide-y divide-[var(--border)]">
         {categoryRows.map(({ cat, benches }) => {
-          const expanded = expandedCats.has(cat);
-          const visible = expanded ? benches : benches.slice(0, PREVIEW_N);
+          const visible = benches.slice(0, PREVIEW_N);
           const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
           const label = CATEGORY_LABELS[cat] ?? cat.replace(/_/g, " ");
           const barWidth = (benches.length / maxCount) * 100;
+          const remaining = benches.length - PREVIEW_N;
           return (
             <div key={cat} className="py-4 first:pt-0">
               <div className="flex items-center gap-4 mb-2">
-                <div className="w-32 shrink-0 text-sm font-medium text-[var(--text)]">
+                <div
+                  className="w-36 shrink-0 text-sm font-semibold"
+                  style={{ color }}
+                >
                   {label}
                 </div>
                 <div className="w-10 text-sm tabular-nums font-semibold text-[var(--text)] text-right">
@@ -343,20 +338,17 @@ function OnlyLabWidget({
                   />
                 </div>
               </div>
-              <div className="ml-36 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[var(--muted)]">
+              <div className="ml-40 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[var(--muted)]">
                 {visible.map((b, i) => (
                   <span key={b.slug}>
                     <span className="text-[var(--text)]">{b.name}</span>
                     {i < visible.length - 1 ? <span className="text-[var(--border-light)]">·</span> : null}
                   </span>
                 ))}
-                {benches.length > PREVIEW_N && (
-                  <button
-                    onClick={() => toggleCat(cat)}
-                    className="text-xs text-[var(--accent)] hover:underline ml-1"
-                  >
-                    {expanded ? "show less" : `+${benches.length - PREVIEW_N} more`}
-                  </button>
+                {remaining > 0 && (
+                  <span className="text-xs text-[var(--muted)] ml-1">
+                    +{remaining} more
+                  </span>
                 )}
               </div>
             </div>
