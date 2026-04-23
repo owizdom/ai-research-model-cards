@@ -3,7 +3,8 @@ import { formatDate } from "@/lib/utils";
 import { VersionTimeline } from "@/components/ui/VersionTimeline";
 import { EvalTable } from "@/components/charts/EvalTable";
 import { DocumentReader } from "@/components/doc-reader/DocumentReader";
-import { GistCard } from "@/components/doc-reader/GistCard";
+import { DocumentSummary } from "@/components/doc-reader/DocumentSummary";
+import { FullDocToggle } from "@/components/doc-reader/FullDocToggle";
 import { Heatstrip } from "@/components/doc-reader/Heatstrip";
 import { CompareDropdown } from "@/components/doc-reader/CompareDropdown";
 import { notFound } from "next/navigation";
@@ -94,19 +95,38 @@ export default async function DocumentPage({ params }: { params: Promise<{ id: s
         )}
       </div>
 
-      {/* Phase 2: Gist + Heatstrip above the fold */}
-      {content && (
-        <div className="max-w-5xl mb-8">
-          {content.gist && <GistCard gist={content.gist} />}
-          {content.heatstrip.length > 0 && <Heatstrip segments={content.heatstrip} />}
+      {/* Summary (primary view) */}
+      {content && content.gist && (
+        <div className="max-w-4xl">
+          <DocumentSummary
+            content={content}
+            docTitle={doc.title}
+            labName={doc.lab?.name ?? doc.lab_name ?? null}
+            docType={doc.doc_type}
+            sourceUrl={doc.source_url}
+            evals={evals}
+          />
         </div>
       )}
 
-      {/* Document body + sidebar */}
-      {content ? (
-        <DocumentReader content={content} />
-      ) : (
-        <div className="p-8 text-center text-[var(--muted)] border border-[var(--border)] rounded-xl bg-white">
+      {/* Heatstrip — doc composition at a glance */}
+      {content && content.heatstrip.length > 0 && (
+        <div className="max-w-4xl">
+          <Heatstrip segments={content.heatstrip} />
+        </div>
+      )}
+
+      {/* Full document reader — collapsed by default */}
+      {content && (
+        <div className="max-w-6xl">
+          <FullDocToggle>
+            <DocumentReader content={content} />
+          </FullDocToggle>
+        </div>
+      )}
+
+      {!content && (
+        <div className="p-8 text-center text-[var(--muted)] border border-[var(--border)] rounded-xl bg-white max-w-4xl">
           Document content is still being processed.
         </div>
       )}

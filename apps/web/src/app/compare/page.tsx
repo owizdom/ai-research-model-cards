@@ -1,5 +1,4 @@
 import { api } from "@/lib/api";
-import { GistCard } from "@/components/doc-reader/GistCard";
 import { Heatstrip } from "@/components/doc-reader/Heatstrip";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
@@ -51,28 +50,33 @@ export default async function ComparePage({
       {/* Gist comparison — paired rows */}
       <div className="mb-10">
         <h2 className="text-xs uppercase tracking-wide text-[var(--muted)] mb-3">
-          60-second brief
+          Research brief
         </h2>
         <div className="border border-[var(--border)] rounded-xl bg-white overflow-hidden">
           <GistCompareRow
-            label="Overview"
-            a={contentA?.gist?.overview}
-            b={contentB?.gist?.overview}
+            label="TL;DR"
+            a={contentA?.gist?.tldr}
+            b={contentB?.gist?.tldr}
           />
           <GistCompareRow
             label="Capability claim"
-            a={contentA?.gist?.capability_claim ?? null}
-            b={contentB?.gist?.capability_claim ?? null}
+            a={contentA?.gist?.capability_claims?.[0] ?? null}
+            b={contentB?.gist?.capability_claims?.[0] ?? null}
           />
           <GistCompareRow
-            label="Sharpest risk"
-            a={contentA?.gist?.sharpest_risk ?? null}
-            b={contentB?.gist?.sharpest_risk ?? null}
+            label="Sharpest safety finding"
+            a={contentA?.gist?.safety_findings?.[0] ?? null}
+            b={contentB?.gist?.safety_findings?.[0] ?? null}
+          />
+          <GistCompareRow
+            label="Mitigation"
+            a={contentA?.gist?.mitigations?.[0] ?? null}
+            b={contentB?.gist?.mitigations?.[0] ?? null}
           />
           <GistCompareRow
             label="Deployment scope"
-            a={contentA?.gist?.deployment_scope ?? null}
-            b={contentB?.gist?.deployment_scope ?? null}
+            a={contentA?.gist?.deployment_scope?.[0] ?? null}
+            b={contentB?.gist?.deployment_scope?.[0] ?? null}
           />
         </div>
       </div>

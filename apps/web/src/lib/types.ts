@@ -39,13 +39,13 @@ export interface DocumentOutlineItem {
 
 export interface GistFields {
   title: string;
-  overview: string | null;
-  capability_claim: string | null;
-  capability_offset: number | null;
-  sharpest_risk: string | null;
-  sharpest_risk_offset: number | null;
-  deployment_scope: string | null;
-  deployment_offset: number | null;
+  tldr: string | null;
+  capability_claims: string[];
+  safety_findings: string[];
+  mitigations: string[];
+  deployment_scope: string[];
+  limitations: string[];
+  whats_new: string[];
 }
 
 export interface HeatstripSegment {
@@ -68,6 +68,7 @@ export interface DocumentContent {
   content_md: string;
   gist: GistFields | null;
   heatstrip: HeatstripSegment[];
+  source_hash: string | null;
 }
 
 export interface IntersectionMatrix {

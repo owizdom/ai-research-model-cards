@@ -1,3 +1,4 @@
+import hashlib
 import re
 from typing import Optional
 from fastapi import APIRouter, Depends, Query, HTTPException
@@ -293,55 +294,141 @@ _SECTION_KEYWORDS: dict[str, tuple[str, ...]] = {
     ),
 }
 
+# A "sentence boundary" is a ./!/? followed by a space + capital, or a
+# newline, or end of text. This avoids truncating at "v1.5" or "Sec. 3.2".
+_SENT_END = r"(?:[.!?](?=\s+[A-Z0-9]|\s*\n|\s*$))"
+
 _REFUSAL_PATTERNS = re.compile(
-    r"(we (?:decided|elected) not to|we have not|we did not (?:release|deploy)|"
+    r"((?:we (?:decided|elected) not to|we have not been able to|"
+    r"we did not (?:release|deploy)|"
     r"not (?:release|deploy|make available)|crossed our (?:threshold|trigger)|"
     r"elicited (?:harmful|dangerous|unsafe)|would not release|withheld|"
-    r"refused to (?:release|deploy))[^.]{0,200}\.",
+    r"refused to (?:release|deploy)|approaching (?:our )?threshold|"
+    r"cannot rule out|we cannot exclude|we believe[^\n]{10,200}risk)"
+    r"[^\n]{0,300}?)" + _SENT_END,
     re.IGNORECASE,
 )
 _CAPABILITY_PATTERNS = re.compile(
-    r"(we (?:are releasing|release|have trained|trained|introduce|present) "
-    r"[^.]{10,200})\.",
+    r"(we (?:are releasing|release|are introducing|have trained|trained|"
+    r"introduce|present) [^\n]{10,400}?)" + _SENT_END,
     re.IGNORECASE,
 )
 _DEPLOYMENT_PATTERNS = re.compile(
-    r"(available (?:via|on|through)|deployed (?:to|via|through)|"
-    r"accessible (?:via|through)|rolling out|launching) [^.]{5,150}\.",
+    r"((?:available|accessible) (?:via|on|through|at|to)[^\n]{5,200}?"
+    r"|deployed (?:to|via|through)[^\n]{5,200}?"
+    r"|rolling out[^\n]{5,200}?"
+    r"|released under[^\n]{5,200}?)" + _SENT_END,
+    re.IGNORECASE,
+)
+_MITIGATION_PATTERNS = re.compile(
+    r"((?:mitigations? include|we (?:have )?deployed|classifier (?:trained|deployed)|"
+    r"we (?:trained|finetuned) [A-Za-z\-\d.]+ to (?:follow|refuse|avoid|decline))"
+    r"[^\n]{0,300}?)" + _SENT_END,
+    re.IGNORECASE,
+)
+_LIMITATION_PATTERNS = re.compile(
+    r"((?:limitations? include|we did not evaluate|we have not evaluated|"
+    r"we do not (?:yet|currently) (?:know|understand|measure|evaluate)|"
+    r"future work|remain(?:s|ing) (?:open|uncertain)|open questions?|"
+    r"still limited|not (?:yet )?well understood|further research)"
+    r"[^\n]{10,300}?)" + _SENT_END,
     re.IGNORECASE,
 )
 
 
+def _verify_verbatim(source: str, quote: str | None) -> str | None:
+    """Return the quote only if it's a verbatim substring of source.
+    This is the substring-check rule from the LLM-native agent: never let
+    a paraphrase masquerade as a quote. Whitespace is normalized for the
+    check only; the returned quote is the original-as-extracted.
+    """
+    if not quote:
+        return None
+    norm_source = re.sub(r"\s+", " ", source)
+    norm_quote = re.sub(r"\s+", " ", quote).strip()
+    if len(norm_quote) < 10:
+        return None
+    if norm_quote in norm_source:
+        return quote.strip()
+    return None
+
+
+def _find_all_matches(pattern: re.Pattern, md: str, max_results: int = 3) -> list[str]:
+    """Find up to N non-overlapping matches of pattern in md."""
+    results: list[str] = []
+    for m in pattern.finditer(md):
+        quote = m.group(0).strip()
+        if len(quote) >= 20 and quote not in results:
+            results.append(quote)
+            if len(results) >= max_results:
+                break
+    return results
+
+
+def _extract_whats_new(md: str) -> list[str]:
+    """Pull the first 3 bullets under a Changelog section if present."""
+    m = re.search(r"^##\s+Changelog\s*$", md, re.MULTILINE | re.IGNORECASE)
+    if not m:
+        return []
+    tail = md[m.end() : m.end() + 4000]
+    # Stop at next H2/H3
+    next_h = re.search(r"^##\s+[A-Z0-9]", tail, re.MULTILINE)
+    if next_h:
+        tail = tail[: next_h.start()]
+    bullets = re.findall(r"^-\s+(.+?)$", tail, re.MULTILINE)
+    return [b.strip() for b in bullets[:3] if len(b.strip()) > 10]
+
+
 def _build_gist(md: str, title: str) -> dict:
-    """Extract Gist fields heuristically. Each field carries a verbatim quote
-    (or None) and a char offset so the UI can anchor back to the prose."""
-    def first_match(pattern: re.Pattern) -> tuple[str | None, int | None]:
-        m = pattern.search(md)
-        if not m:
-            return None, None
-        return m.group(0).strip(), m.start()
+    """Extract an 8-field gist heuristically. Every string field is either
+    a verbatim snippet from md (verified via substring check) or None.
+    """
+    # Overview: 1-3 sentences of the first substantial paragraph (skip
+    # title/metadata blocks and skip the Changelog section if it appears
+    # before the real body).
+    tldr: str | None = None
+    for p in md.split("\n\n"):
+        stripped = p.strip()
+        # Skip: empty, headings, list items, metadata, TOC stub, dot-leader
+        # clusters, and anything that looks like a section-number list.
+        if len(stripped) < 120:
+            continue
+        if _MD_HEADER_RE.match(stripped) or stripped.startswith(("- ", "_(", ">")):
+            continue
+        if ". ." in stripped or re.search(r"\d+(?:\.\d+)+\s+[A-Z][^.\n]{2,40}\s+\d+", stripped):
+            continue  # TOC-ish or dot-leader line
+        low = stripped.lower()
+        if low.startswith(("changelog", "contents", "table of", "version", "copyright")):
+            continue
+        sentences = re.split(r"(?<=[\.!?])\s+(?=[A-Z])", stripped)[:2]
+        tldr = " ".join(sentences)[:400].strip()
+        break
 
-    # Overview = first 1-3 sentences of the first substantial paragraph
-    first_para = next(
-        (p for p in md.split("\n\n") if len(p) > 80 and not _MD_HEADER_RE.match(p)),
-        "",
-    )
-    overview_sentences = re.split(r"(?<=[\.!?])\s+(?=[A-Z])", first_para)[:3]
-    overview = " ".join(overview_sentences)[:500]
+    capability_quotes = _find_all_matches(_CAPABILITY_PATTERNS, md, max_results=1)
+    safety_quotes = _find_all_matches(_REFUSAL_PATTERNS, md, max_results=3)
+    deployment_quotes = _find_all_matches(_DEPLOYMENT_PATTERNS, md, max_results=1)
+    mitigation_quotes = _find_all_matches(_MITIGATION_PATTERNS, md, max_results=2)
+    limitation_quotes = _find_all_matches(_LIMITATION_PATTERNS, md, max_results=2)
 
-    refusal, refusal_idx = first_match(_REFUSAL_PATTERNS)
-    capability, capability_idx = first_match(_CAPABILITY_PATTERNS)
-    deployment, deployment_idx = first_match(_DEPLOYMENT_PATTERNS)
+    # Verify every quote is a verbatim substring (substring-check rule).
+    def _verify_list(quotes: list[str]) -> list[str]:
+        return [q for q in (_verify_verbatim(md, q) for q in quotes) if q]
+
+    capability_quotes = _verify_list(capability_quotes)
+    safety_quotes = _verify_list(safety_quotes)
+    deployment_quotes = _verify_list(deployment_quotes)
+    mitigation_quotes = _verify_list(mitigation_quotes)
+    limitation_quotes = _verify_list(limitation_quotes)
 
     return {
-        "overview": overview,
-        "capability_claim": capability,
-        "capability_offset": capability_idx,
-        "sharpest_risk": refusal,
-        "sharpest_risk_offset": refusal_idx,
-        "deployment_scope": deployment,
-        "deployment_offset": deployment_idx,
         "title": title,
+        "tldr": tldr,
+        "capability_claims": capability_quotes,
+        "safety_findings": safety_quotes,
+        "mitigations": mitigation_quotes,
+        "deployment_scope": deployment_quotes,
+        "limitations": limitation_quotes,
+        "whats_new": _extract_whats_new(md),
     }
 
 
@@ -484,6 +571,7 @@ async def get_document_content(
     # Reading speed ~230 wpm for dense research prose
     read_minutes = max(1, round(word_count / 230)) if word_count else 0
 
+    source_hash = hashlib.sha256(cleaned.encode("utf-8")).hexdigest()[:12]
     return DocumentContent(
         document_id=document_id,
         version_id=version.id,
@@ -495,6 +583,7 @@ async def get_document_content(
         content_md=cleaned,
         gist=_build_gist(cleaned, doc.title),
         heatstrip=_build_heatstrip(cleaned),
+        source_hash=source_hash,
     )
 
 

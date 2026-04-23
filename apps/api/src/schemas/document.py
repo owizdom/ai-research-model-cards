@@ -74,13 +74,13 @@ class DocumentOutlineItem(BaseModel):
 
 class GistFields(BaseModel):
     title: str
-    overview: Optional[str] = None
-    capability_claim: Optional[str] = None
-    capability_offset: Optional[int] = None
-    sharpest_risk: Optional[str] = None
-    sharpest_risk_offset: Optional[int] = None
-    deployment_scope: Optional[str] = None
-    deployment_offset: Optional[int] = None
+    tldr: Optional[str] = None
+    capability_claims: list[str] = []
+    safety_findings: list[str] = []
+    mitigations: list[str] = []
+    deployment_scope: list[str] = []
+    limitations: list[str] = []
+    whats_new: list[str] = []
 
 
 class HeatstripSegment(BaseModel):
@@ -103,6 +103,7 @@ class DocumentContent(BaseModel):
     content_md: str
     gist: Optional[GistFields] = None
     heatstrip: list[HeatstripSegment] = []
+    source_hash: Optional[str] = None
 
 
 class DiffResult(BaseModel):
