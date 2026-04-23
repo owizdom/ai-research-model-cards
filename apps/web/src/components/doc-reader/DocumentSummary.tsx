@@ -1,9 +1,5 @@
-"use client";
-import { useState } from "react";
 import type { DocumentContent, EvalResult } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
-
-type ReaderMode = "overview" | "researcher" | "safety" | "journalist";
 
 interface Props {
   content: DocumentContent;
@@ -14,25 +10,14 @@ interface Props {
   evals: EvalResult[];
 }
 
-// Each mode reorders which sections render first. Same underlying data.
-const MODE_ORDER: Record<ReaderMode, string[]> = {
-  overview: ["tldr", "evals", "capability", "safety", "deployment", "limitations", "whats_new"],
-  researcher: ["tldr", "capability", "evals", "safety", "mitigations", "limitations", "whats_new"],
-  safety: ["safety", "mitigations", "limitations", "tldr", "evals", "whats_new"],
-  journalist: ["tldr", "whats_new", "safety", "capability", "evals", "limitations"],
-};
-
-const MODE_LABEL: Record<ReaderMode, string> = {
-  overview: "Overview",
-  researcher: "Researcher",
-  safety: "Safety",
-  journalist: "Journalist",
-};
+const SECTION_ORDER = [
+  "tldr", "evals", "capability", "safety",
+  "mitigations", "deployment", "limitations", "whats_new",
+];
 
 export function DocumentSummary({
   content, docTitle, labName, docType, sourceUrl, evals,
 }: Props) {
-  const [mode, setMode] = useState<ReaderMode>("overview");
   const g = content.gist;
   if (!g) return null;
 
@@ -130,39 +115,21 @@ export function DocumentSummary({
     },
   };
 
-  const ordered = MODE_ORDER[mode]
+  const ordered = SECTION_ORDER
     .map(key => sections[key])
     .filter(s => s && s.hasContent);
 
   return (
     <div className="border border-[var(--border)] rounded-xl bg-white p-6 sm:p-8 mb-8">
-      <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
-        <div>
-          <div className="text-xs uppercase tracking-wide text-[var(--muted)] mb-1">
-            Research brief
-          </div>
-          <div className="text-sm text-[var(--muted)]">
-            {content.word_count.toLocaleString()}-word card compressed to{" "}
-            {estimateBriefWords(g, evals)} words.{" "}
-            <span className="text-[var(--text)]">{labName ?? ""}</span>
-            {labName && " · "}
-            {formatDate(content.version_date)}
-          </div>
+      <div className="mb-5">
+        <div className="text-xs uppercase tracking-wide text-[var(--muted)] mb-1">
+          Summary
         </div>
-        <div className="inline-flex rounded-full border border-[var(--border)] bg-[var(--surface-2)]/30 p-0.5">
-          {(["overview", "researcher", "safety", "journalist"] as ReaderMode[]).map(m => (
-            <button
-              key={m}
-              onClick={() => setMode(m)}
-              className={`px-3 py-1 rounded-full text-xs transition-colors ${
-                mode === m
-                  ? "bg-[var(--accent)] text-white"
-                  : "text-[var(--muted)] hover:text-[var(--text)]"
-              }`}
-            >
-              {MODE_LABEL[m]}
-            </button>
-          ))}
+        <div className="text-sm text-[var(--muted)]">
+          {content.word_count.toLocaleString()}-word document condensed to{" "}
+          {estimateBriefWords(g, evals)} words.{" "}
+          {labName && <><span className="text-[var(--text)]">{labName}</span> · </>}
+          {formatDate(content.version_date)}
         </div>
       </div>
 
