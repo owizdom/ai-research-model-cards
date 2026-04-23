@@ -19,13 +19,10 @@ export function FragmentationSection({
 }) {
   const [view, setView] = useState<ViewMode>("raw");
   const [selectedBucket, setSelectedBucket] = useState<number | null>(null);
-  const [selectedLab, setSelectedLab] = useState<string>(data.by_lab[0]?.lab_slug ?? "");
 
   const current = view === "raw" ? data.raw : data.families;
   const otherView = view === "raw" ? data.families : data.raw;
   const otherLabel = view === "raw" ? "families" : "raw names";
-
-  const selectedLabData = data.by_lab.find(l => l.lab_slug === selectedLab);
 
   return (
     <section className="mb-24">
@@ -42,12 +39,7 @@ export function FragmentationSection({
         selectedBucket={selectedBucket}
         setSelectedBucket={setSelectedBucket}
       />
-      <OnlyLabWidget
-        byLab={data.by_lab}
-        selectedLab={selectedLab}
-        setSelectedLab={setSelectedLab}
-        selectedLabData={selectedLabData}
-      />
+      <SelectionPatternWidget byLab={data.by_lab} />
       <p className="text-xs text-[var(--muted)] mt-10 leading-relaxed max-w-3xl">
         We measure what labs publicly <em>report</em> in their model cards — not what they privately evaluate.
         Fragmentation of reporting does not imply concealment.
@@ -250,102 +242,109 @@ const CATEGORY_COLORS: Record<string, string> = {
   other: "#B0AFA8",               // neutral
 };
 
-function OnlyLabWidget({
-  byLab, selectedLab, setSelectedLab, selectedLabData,
-}: {
-  byLab: LabUniqueness[];
-  selectedLab: string;
-  setSelectedLab: (s: string) => void;
-  selectedLabData: LabUniqueness | undefined;
-}) {
-  if (!selectedLabData) return null;
-  const pctUnique = Math.round((selectedLabData.only_them_count / selectedLabData.total_reported) * 100);
+function SelectionPatternWidget({ byLab }: { byLab: LabUniqueness[] }) {
+  // Sort labs by count (largest first) to make the rank order obvious
+  const labs = [...byLab].sort((a, b) => b.only_them_count - a.only_them_count);
+  const maxCount = Math.max(...labs.map(l => l.only_them_count), 1);
 
-  // Group benchmarks by category
-  const grouped = new Map<string, { slug: string; name: string; category: string }[]>();
-  for (const b of selectedLabData.only_them) {
-    const cat = b.category || "other";
-    if (!grouped.has(cat)) grouped.set(cat, []);
-    grouped.get(cat)!.push(b);
+  // Build (lab → ordered [category, count] list) with categories sorted by count desc
+  const labRows = labs.map(lab => {
+    const catCounts = new Map<string, number>();
+    for (const b of lab.only_them) {
+      const cat = b.category || "other";
+      catCounts.set(cat, (catCounts.get(cat) ?? 0) + 1);
+    }
+    const segments = Array.from(catCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .map(([cat, count]) => ({ cat, count }));
+    return { lab, segments };
+  });
+
+  // Global category ordering for the shared legend (sorted by total volume across all labs)
+  const globalCatTotals = new Map<string, number>();
+  for (const { segments } of labRows) {
+    for (const s of segments) {
+      globalCatTotals.set(s.cat, (globalCatTotals.get(s.cat) ?? 0) + s.count);
+    }
   }
-
-  // Sort categories by size (descending), sort benchmarks alphabetically within each
-  const categoryRows = Array.from(grouped.entries())
-    .map(([cat, benches]) => ({
-      cat,
-      benches: [...benches].sort((a, b) => a.name.localeCompare(b.name)),
-    }))
-    .sort((a, b) => b.benches.length - a.benches.length);
-
+  const legendCats = Array.from(globalCatTotals.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([cat]) => cat);
 
   return (
     <div className="border border-[var(--border)] rounded-xl bg-white p-6 sm:p-8">
       <div className="mb-6">
-        <h3 className="font-semibold text-base mb-1">What only one lab reports</h3>
+        <h3 className="font-semibold text-base mb-1">What each lab uniquely emphasizes</h3>
         <p className="text-sm text-[var(--muted)]">
-          Each lab picks benchmarks no one else discloses — often chosen to showcase strengths.
+          Benchmarks reported by only one lab, grouped by type. Bar length shows total count;
+          segment colors show the category mix.
         </p>
       </div>
-      <div className="flex flex-wrap items-center gap-2 mb-6">
-        {byLab.map(l => (
-          <button
-            key={l.lab_slug}
-            onClick={() => setSelectedLab(l.lab_slug)}
-            className={`text-xs px-3 py-1.5 rounded-full transition-colors ${
-              selectedLab === l.lab_slug
-                ? "bg-[var(--accent)] text-white"
-                : "bg-[var(--surface-2)] text-[var(--muted)] hover:text-[var(--text)]"
-            }`}
-          >
-            {l.lab_name}
-          </button>
+
+      {/* Shared legend */}
+      <div className="flex flex-wrap gap-x-4 gap-y-1.5 mb-6 text-xs text-[var(--muted)]">
+        {legendCats.map(cat => (
+          <div key={cat} className="flex items-center gap-1.5">
+            <span
+              className="w-2.5 h-2.5 rounded-sm shrink-0"
+              style={{ background: CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other }}
+            />
+            <span>{CATEGORY_LABELS[cat] ?? cat.replace(/_/g, " ")}</span>
+          </div>
         ))}
       </div>
-      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-6">
-        <span className="font-serif text-3xl font-bold text-[var(--text)]">
-          {selectedLabData.only_them_count}
-        </span>
-        <span className="text-[var(--muted)] text-sm">
-          of {selectedLabData.total_reported} benchmarks ({pctUnique}%) are reported by{" "}
-          <span className="text-[var(--text)] font-medium">{selectedLabData.lab_name}</span> alone.
-        </span>
-      </div>
 
-      {/* Stacked bar: one row, segments colored by category */}
-      <div className="mb-6">
-        <div className="flex h-3 rounded-md overflow-hidden border border-[var(--border)] bg-[var(--surface-2)]">
-          {categoryRows.map(({ cat, benches }) => {
-            const pct = (benches.length / selectedLabData.only_them_count) * 100;
-            const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
-            const label = CATEGORY_LABELS[cat] ?? cat;
-            return (
-              <div
-                key={cat}
-                style={{ width: `${pct}%`, background: color }}
-                title={`${label}: ${benches.length} (${Math.round(pct)}%)`}
-              />
-            );
-          })}
-        </div>
-        {/* Legend */}
-        <div className="flex flex-wrap gap-x-5 gap-y-1.5 mt-3 text-xs text-[var(--muted)]">
-          {categoryRows.map(({ cat, benches }) => {
-            const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
-            const label = CATEGORY_LABELS[cat] ?? cat.replace(/_/g, " ");
-            return (
-              <div key={cat} className="flex items-center gap-1.5">
-                <span
-                  className="w-2.5 h-2.5 rounded-sm shrink-0"
-                  style={{ background: color }}
-                />
-                <span className="font-medium text-[var(--text)]">{label}</span>
-                <span className="tabular-nums">{benches.length}</span>
+      {/* Small multiples: one row per lab */}
+      <div className="space-y-3">
+        {labRows.map(({ lab, segments }) => {
+          const widthPct = (lab.only_them_count / maxCount) * 100;
+          const topCat = segments[0];
+          const topLabel = topCat
+            ? `${CATEGORY_LABELS[topCat.cat] ?? topCat.cat} ${Math.round((topCat.count / lab.only_them_count) * 100)}%`
+            : "";
+          return (
+            <div key={lab.lab_slug} className="flex items-center gap-3 text-sm">
+              <div className="w-32 shrink-0 font-medium text-[var(--text)] truncate">
+                {lab.lab_name}
               </div>
-            );
-          })}
-        </div>
+              <div className="w-10 text-right tabular-nums text-[var(--muted)] shrink-0">
+                {lab.only_them_count}
+              </div>
+              <div className="flex-1 h-5 relative">
+                {/* Track background */}
+                <div className="absolute inset-0 bg-[var(--surface-2)] rounded-sm" />
+                {/* The stacked bar, width-scaled to maxCount so you see size AND mix */}
+                <div
+                  className="absolute left-0 top-0 bottom-0 flex rounded-sm overflow-hidden"
+                  style={{ width: `${widthPct}%` }}
+                >
+                  {segments.map(({ cat, count }) => {
+                    const segPct = (count / lab.only_them_count) * 100;
+                    const color = CATEGORY_COLORS[cat] ?? CATEGORY_COLORS.other;
+                    const label = CATEGORY_LABELS[cat] ?? cat;
+                    return (
+                      <div
+                        key={cat}
+                        style={{ width: `${segPct}%`, background: color }}
+                        title={`${label}: ${count}`}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="w-40 shrink-0 text-xs text-[var(--muted)] truncate">
+                {topLabel}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
+      <p className="text-xs text-[var(--muted)] mt-6 leading-relaxed">
+        Anthropic and OpenAI concentrate their unique benchmarks on safety; Google spreads across
+        multimodal and multilingual; Mistral reports only human-preference comparisons. No lab is
+        grading itself on a scoreboard another lab uses.
+      </p>
     </div>
   );
 }
