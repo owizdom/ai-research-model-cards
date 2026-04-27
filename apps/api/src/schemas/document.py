@@ -66,6 +66,60 @@ class WordCountTimelinePoint(BaseModel):
     word_count: int
 
 
+class DocumentOutlineItem(BaseModel):
+    level: int
+    title: str
+    anchor: str
+
+
+class GistFields(BaseModel):
+    title: str
+    tldr: Optional[str] = None
+    capability_claims: list[str] = []
+    safety_findings: list[str] = []
+    mitigations: list[str] = []
+    deployment_scope: list[str] = []
+    limitations: list[str] = []
+    whats_new: list[str] = []
+
+
+class HeatstripSegment(BaseModel):
+    index: int
+    start: int
+    end: int
+    dominant: str
+    scores: dict[str, int]
+    intensity: int
+
+
+class SummaryChapter(BaseModel):
+    title: str
+    prose: str
+
+
+class DocumentSummaryRead(BaseModel):
+    model_used: str
+    total_words: int
+    chapters: list[SummaryChapter]
+    generated_at: datetime
+    source_hash: str
+
+
+class DocumentContent(BaseModel):
+    document_id: int
+    version_id: int
+    version_date: date
+    word_count: int
+    read_minutes: int
+    has_headers: bool
+    outline: list[DocumentOutlineItem]
+    content_md: str
+    gist: Optional[GistFields] = None
+    heatstrip: list[HeatstripSegment] = []
+    source_hash: Optional[str] = None
+    summary: Optional[DocumentSummaryRead] = None
+
+
 class DiffResult(BaseModel):
     version_a_id: int
     version_b_id: int

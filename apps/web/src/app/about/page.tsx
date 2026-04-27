@@ -85,13 +85,12 @@ export default function AboutPage() {
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4">Data Sources</h2>
         <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">
-          We track 9 AI laboratories and collect their publicly available documentation:
+          We track 6 frontier AI laboratories and collect their publicly available documentation:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             "Anthropic", "OpenAI", "Google DeepMind",
             "Meta AI", "Mistral AI", "xAI",
-            "Cohere", "Amazon (AWS)", "AI21 Labs",
           ].map(lab => (
             <div key={lab} className="px-4 py-2.5 rounded-lg border border-[var(--border)] bg-white shadow-sm text-sm">
               {lab}

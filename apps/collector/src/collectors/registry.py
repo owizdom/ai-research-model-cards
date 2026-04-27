@@ -21,9 +21,6 @@ LAB_META: dict[str, dict] = {
     "meta":      {"name": "Meta AI",          "website": "https://ai.meta.com",       "color_hex": "#0866FF"},
     "mistral":   {"name": "Mistral AI",       "website": "https://mistral.ai",        "color_hex": "#FF7000"},
     "xai":       {"name": "xAI",              "website": "https://x.ai",              "color_hex": "#1DA1F2"},
-    "cohere":    {"name": "Cohere",           "website": "https://cohere.com",        "color_hex": "#39594D"},
-    "amazon":    {"name": "Amazon (AWS)",     "website": "https://aws.amazon.com/bedrock", "color_hex": "#FF9900"},
-    "ai21":      {"name": "AI21 Labs",        "website": "https://www.ai21.com",      "color_hex": "#6C3CE1"},
 }
 
 SOURCES: list[Source] = [
@@ -65,6 +62,7 @@ SOURCES: list[Source] = [
     Source("openai_gpt51_system_card",  "openai", "GPT-5.1 System Card",              "model_card",   "https://cdn.openai.com/pdf/4173ec8d-1229-47db-96de-06d87147e07e/5_1_system_card.pdf", "pdf"),
     Source("openai_gpt52_system_card",  "openai", "GPT-5.2 System Card",              "model_card",   "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "pdf"),
     Source("openai_gpt53_codex_card",   "openai", "GPT-5.3 Codex System Card",        "model_card",   "https://cdn.openai.com/pdf/23eca107-a9b1-4d2c-b156-7deb4fbc697c/GPT-5-3-Codex-System-Card-02.pdf", "pdf"),
+    Source("openai_gpt55_system_card",  "openai", "GPT-5.5 System Card",              "model_card",   "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",                       "pdf"),
 
     # ── Google DeepMind ───────────────────────────────────────────────────────
     Source("google_ai_principles",     "google", "AI Principles",                 "constitution",  "https://ai.google/responsibility/principles/",                                    "html"),
@@ -112,32 +110,10 @@ SOURCES: list[Source] = [
     Source("xai_grok41_card",         "xai", "Grok 4.1 Model Card",             "model_card",    "https://data.x.ai/2025-11-17-grok-4-1-model-card.pdf",                            "pdf"),
     Source("xai_risk_framework",       "xai", "Risk Management Framework",        "constitution",  "https://data.x.ai/2025-08-20-xai-risk-management-framework.pdf",                  "pdf"),
 
-    # ── Cohere ────────────────────────────────────────────────────────────────
-    Source("cohere_responsibility",    "cohere", "Responsible Use",               "constitution",  "https://docs.cohere.com/docs/responsible-use",                                    "html"),
-    Source("cohere_terms",             "cohere", "Terms of Use",                  "usage_policy",  "https://cohere.com/terms-of-use",                                                 "html"),
-    Source("cohere_command_r_card",    "cohere", "Command R+ Model Card",        "model_card",    "https://docs.cohere.com/docs/command-r-plus",                                     "html"),
-
-    # ── Amazon (AWS Bedrock) ──────────────────────────────────────────────────
-    Source("amazon_bedrock_aup",       "amazon", "Bedrock Acceptable Use",       "usage_policy",  "https://aws.amazon.com/machine-learning/responsible-machine-learning/",            "html"),
-    Source("amazon_bedrock_docs",      "amazon", "Bedrock Documentation",        "usage_policy",  "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",       "html"),
-
-    # ── AI21 Labs ─────────────────────────────────────────────────────────────
-    Source("ai21_terms",                    "ai21", "AI21 Terms of Service",         "usage_policy",  "https://www.ai21.com/terms-of-use",                                      "html"),
-    Source("ai21_jamba_card",               "ai21", "Jamba Model Overview",          "usage_policy",  "https://www.ai21.com/jamba",                                             "html"),
-    Source("ai21_jamba_1_5_paper",          "ai21", "Jamba-1.5 Technical Report",    "technical_paper","https://arxiv.org/pdf/2408.12570",                                       "pdf"),
-    Source("ai21_jamba_family_announcement","ai21", "Jamba 1.5 Family Announcement", "model_card",    "https://www.ai21.com/blog/announcing-jamba-model-family/",               "html"),
-
-    # ── Cohere — additional ───────────────────────────────────────────────────
-    Source("cohere_command_a_paper",        "cohere", "Command A Technical Report",  "technical_paper","https://arxiv.org/pdf/2504.00698",                                       "pdf"),
-
     # ── Mistral — additional ──────────────────────────────────────────────────
     Source("mistral_large_2_blog",          "mistral", "Mistral Large 2 Release",    "model_card",    "https://mistral.ai/news/mistral-large-2407",                             "html"),
     Source("mistral_small_3_blog",          "mistral", "Mistral Small 3 Release",    "model_card",    "https://mistral.ai/news/mistral-small-3",                                "html"),
     Source("mistral_small_3_hf_card",       "mistral", "Mistral Small 24B Instruct 2501 Model Card","model_card","https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501/raw/main/README.md","raw"),
     Source("mistral_codestral_blog",        "mistral", "Codestral Release",          "model_card",    "https://mistral.ai/news/codestral",                                      "html"),
-
-    # ── Amazon — additional ───────────────────────────────────────────────────
-    Source("amazon_nova_tech_report",       "amazon", "Amazon Nova Family Technical Report","technical_paper","https://arxiv.org/pdf/2506.12103",                               "pdf"),
-    Source("amazon_nova_premier_report",    "amazon", "Amazon Nova Premier Technical Report","technical_paper","https://assets.amazon.science/e5/e6/ccc5378c42dca467d1abe1628ec9/amazon-nova-premier-technical-report-and-model-card.pdf","pdf"),
 
 ]

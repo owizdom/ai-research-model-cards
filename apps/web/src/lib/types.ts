@@ -31,6 +31,60 @@ export interface DocumentDetail extends Document {
   versions: DocumentVersion[];
 }
 
+export interface DocumentOutlineItem {
+  level: number;
+  title: string;
+  anchor: string;
+}
+
+export interface GistFields {
+  title: string;
+  tldr: string | null;
+  capability_claims: string[];
+  safety_findings: string[];
+  mitigations: string[];
+  deployment_scope: string[];
+  limitations: string[];
+  whats_new: string[];
+}
+
+export interface HeatstripSegment {
+  index: number;
+  start: number;
+  end: number;
+  dominant: string;
+  scores: Record<string, number>;
+  intensity: number;
+}
+
+export interface SummaryChapter {
+  title: string;
+  prose: string;
+}
+
+export interface DocumentSummaryRead {
+  model_used: string;
+  total_words: number;
+  chapters: SummaryChapter[];
+  generated_at: string;
+  source_hash: string;
+}
+
+export interface DocumentContent {
+  document_id: number;
+  version_id: number;
+  version_date: string;
+  word_count: number;
+  read_minutes: number;
+  has_headers: boolean;
+  outline: DocumentOutlineItem[];
+  content_md: string;
+  gist: GistFields | null;
+  heatstrip: HeatstripSegment[];
+  source_hash: string | null;
+  summary: DocumentSummaryRead | null;
+}
+
 export interface IntersectionMatrix {
   lab_slugs: string[];
   category_names: Record<string, string>;
@@ -141,6 +195,35 @@ export interface WordCountTimelinePoint {
   document_title: string;
   version_date: string;
   word_count: number;
+}
+
+export interface FragmentationBucket {
+  n_labs: number;
+  count: number;
+  slugs: string[];
+  names: Record<string, string>;
+}
+
+export interface FragmentationView {
+  total: number;
+  one_lab_count: number;
+  pct_unique: number;
+  histogram: FragmentationBucket[];
+}
+
+export interface LabUniqueness {
+  lab_slug: string;
+  lab_name: string;
+  total_reported: number;
+  only_them_count: number;
+  only_them: { slug: string; name: string; category: string }[];
+}
+
+export interface FragmentationResponse {
+  labs: string[];
+  raw: FragmentationView;
+  families: FragmentationView;
+  by_lab: LabUniqueness[];
 }
 
 export interface CategoryTimelinePoint {

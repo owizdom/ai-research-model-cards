@@ -1,13 +1,486 @@
+import hashlib
+import re
 from typing import Optional
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, text
 from sqlalchemy.orm import selectinload
 from src.core.deps import get_db
-from src.schemas.document import DocumentSummary, DocumentDetail, WordCountTimelinePoint
+from src.schemas.document import (
+    DocumentSummary, DocumentDetail, WordCountTimelinePoint,
+    DocumentContent, DocumentOutlineItem,
+)
 from packages.db.models import Document, DocumentVersion, Lab
 
 router = APIRouter()
+
+
+# --- Content cleanup helpers ---
+
+_MD_HEADER_RE = re.compile(r"^(#{1,6})\s+(.{1,200})$", re.MULTILINE)
+_NOISE_CHARS_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]")
+_MULTI_WHITESPACE_RE = re.compile(r"[ \t]+")
+_MULTI_NEWLINE_RE = re.compile(r"\n{3,}")
+
+
+_BULLET_RE = re.compile(r"^[•●○■□▪▸►]\s*")
+_NUMBERED_LIST_RE = re.compile(r"^(\d+[\.\)]|[a-z][\.\)])\s")
+_SHORT_HEADING_RE = re.compile(r"^[A-Z][A-Za-z0-9 ,/\-&()']{2,60}$")
+_DATE_LINE_RE = re.compile(
+    r"^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}$"
+)
+# Section heading like "1 Introduction", "2.1 Pretraining data", "1.2.3 Foo bar"
+# May have a trailing page number: "2 Capabilities 17" → strip the " 17".
+_SECTION_NUM_RE = re.compile(
+    r"^(\d+(?:\.\d+){0,3})\s+([A-Z][A-Za-z][^\n]{0,80}?)(?:\s+\d+)?$"
+)
+# Common model-card top-level section names — always promote to H2
+_KNOWN_SECTION_HEADINGS = {
+    "abstract", "introduction", "contents", "changelog", "executive summary",
+    "overview", "conclusion", "conclusions", "limitations", "references",
+    "acknowledgments", "acknowledgements", "appendix", "bibliography",
+    "methodology", "methods", "results", "discussion", "background",
+    "related work", "capabilities", "evaluations", "safety", "deployment",
+    "risks", "mitigations", "red teaming", "red-teaming",
+}
+
+
+def _clean_content(md: str) -> str:
+    """Normalize content for display across three common input styles:
+
+    1. Word-per-line PDF dumps (Opus 4.5 etc.) — avg line length ~5-10 chars,
+       blank line between every word. Rejoin as flowing prose.
+    2. Visual-line-per-item PDF dumps (Opus 4.6, GPT-5 etc.) — each visual
+       line from the PDF is on its own line, ~30-80 chars, bullets preserved
+       but no native paragraph structure. Join continuation lines; keep
+       bullets and short headings as their own paragraphs.
+    3. Native markdown / wrapped prose (Gemini reports etc.) — already has
+       blank-line-separated paragraphs. Preserve structure, collapse
+       intra-paragraph whitespace.
+    """
+    if not md:
+        return ""
+    md = _NOISE_CHARS_RE.sub("", md)
+    raw_lines = [l.strip() for l in md.split("\n")]
+    substantive = [l for l in raw_lines if l]
+    if not substantive:
+        return ""
+
+    mean_line_len = sum(len(l) for l in substantive) / len(substantive)
+
+    # ── Case 1: word-per-line broken. Very short mean line length.
+    if mean_line_len < 15:
+        blob = _MULTI_WHITESPACE_RE.sub(" ", " ".join(substantive)).strip()
+        # Split on bullet markers so changelog-style lists keep structure.
+        blob = re.sub(r"\s*[•●○■□▪▸]\s+", "\n\n- ", blob)
+        # Insert section breaks before known top-level headings.
+        for section in _KNOWN_SECTION_HEADINGS:
+            # whole-word match, bounded to avoid mid-word collisions
+            blob = re.sub(
+                r"(?<![A-Za-z])" + re.escape(section.title()) + r"(?![A-Za-z])",
+                f"\n\n## {section.title()}\n\n",
+                blob,
+                count=1,
+                flags=re.IGNORECASE,
+            )
+        # Split into paragraphs.
+        paragraphs: list[str] = []
+        for block in blob.split("\n\n"):
+            block = block.strip()
+            if not block:
+                continue
+            if block.startswith(("- ", "## ", "### ")):
+                paragraphs.append(block)
+                continue
+            sentences = re.split(r"(?<=[\.!?])\s+(?=[A-Z0-9])", block)
+            buf: list[str] = []
+            chars = 0
+            for s in sentences:
+                buf.append(s)
+                chars += len(s)
+                if chars > 500 and s.endswith((".", "!", "?")):
+                    paragraphs.append(" ".join(buf))
+                    buf = []
+                    chars = 0
+            if buf:
+                paragraphs.append(" ".join(buf))
+        return "\n\n".join(paragraphs).strip()
+
+    # ── Cases 2 & 3: line structure is meaningful. Walk lines, assembling
+    # paragraphs by joining continuation lines and breaking on:
+    #   • a blank line
+    #   • a markdown header
+    #   • a bullet/numbered list marker (starts a new item)
+    #   • a short heading-like line (capitalized, no terminal punctuation)
+    #   • a line ending in . ! ? (closes a sentence → start new block if next
+    #     line starts with a capital or a bullet)
+
+    paragraphs: list[str] = []
+    buf: list[str] = []
+    buf_is_bullet = False
+
+    def flush():
+        if buf:
+            joined = _MULTI_WHITESPACE_RE.sub(" ", " ".join(buf)).strip()
+            if joined:
+                paragraphs.append(("- " if buf_is_bullet else "") + joined)
+            buf.clear()
+
+    for line in raw_lines:
+        if not line:
+            flush()
+            buf_is_bullet = False
+            continue
+
+        if _MD_HEADER_RE.match(line):
+            flush()
+            buf_is_bullet = False
+            paragraphs.append(line)
+            continue
+
+        # Skip table-of-contents entries (contain dot leader ". . ." or
+        # end with a page number after lots of dots). These look identical
+        # to section headings but appear in a TOC block we don't want to
+        # render as real headers.
+        if ". . ." in line or re.search(r"\.{3,}\s*\d+\s*$", line):
+            # Keep as regular paragraph continuation; strip the noise.
+            cleaned_toc = re.sub(r"\.{2,}", " ", line)
+            buf.append(cleaned_toc)
+            continue
+
+        # Numbered section heading like "1 Introduction", "2.1 Pretraining"
+        # → promote to markdown header (level = dots + 2, capped at 5).
+        sec_match = _SECTION_NUM_RE.match(line)
+        if sec_match and len(line) < 90:
+            num, title = sec_match.group(1), sec_match.group(2).strip()
+            # Reject if it's actually a figure label or axis caption like
+            # "100 Depth (%)" — the first number should be a reasonable
+            # section index (≤ 20) and the title should be substantive.
+            first_num = int(num.split(".")[0]) if num.split(".")[0].isdigit() else 0
+            if (
+                title
+                and title[0].isupper()
+                and first_num <= 20
+                and len(title) >= 4
+            ):
+                level = min(2 + num.count("."), 5)
+                flush()
+                buf_is_bullet = False
+                paragraphs.append(f"{'#' * level} {num} {title}")
+                continue
+
+        # Known top-level section label standing alone ("Abstract", "Contents",
+        # "Introduction") → promote to H2.
+        lower_line = line.lower().strip()
+        if lower_line in _KNOWN_SECTION_HEADINGS and len(line) < 40:
+            flush()
+            buf_is_bullet = False
+            paragraphs.append(f"## {line}")
+            continue
+
+        # Bullet or numbered list item → new paragraph
+        bullet_match = _BULLET_RE.match(line)
+        numbered_match = _NUMBERED_LIST_RE.match(line)
+        if bullet_match or numbered_match:
+            flush()
+            buf_is_bullet = bool(bullet_match)
+            cleaned_line = _BULLET_RE.sub("", line).strip() if bullet_match else line
+            buf.append(cleaned_line)
+            continue
+
+        # Short heading-like line → emit as own paragraph when it's
+        # probably metadata rather than a prose continuation. Heading
+        # pattern (all caps / dates / short capitalized label) AND the
+        # previous line is either empty, another short heading, or ended
+        # with terminal punctuation (so we're not cutting a sentence).
+        is_heading_like = (
+            len(line) < 60
+            and (_SHORT_HEADING_RE.match(line) or _DATE_LINE_RE.match(line))
+            and not line.endswith((".", ","))
+        )
+        if is_heading_like:
+            prev = buf[-1].rstrip() if buf else ""
+            prev_is_short = len(prev) < 60
+            prev_closed = prev.endswith((".", "!", "?", ":"))
+            if not prev or prev_is_short or prev_closed:
+                flush()
+                buf_is_bullet = False
+                paragraphs.append(line)
+                continue
+
+        # Otherwise, append as a continuation of current paragraph.
+        buf.append(line)
+
+    flush()
+    out = "\n\n".join(paragraphs)
+    out = _MULTI_NEWLINE_RE.sub("\n\n", out).strip()
+
+    # Post-pass: strip the table-of-contents block. When we see "## Contents"
+    # followed by a dense cluster of short headings / numbered entries, most
+    # of those entries will re-appear later in the body (duplicated). Replace
+    # the TOC cluster with a single placeholder so the real body headings
+    # stay authoritative.
+    out = _strip_toc_block(out)
+    return out
+
+
+def _strip_toc_block(md: str) -> str:
+    """If we detect a TOC block after '## Contents', walk past the cluster of
+    short heading-only paragraphs and replace the TOC with a small stub.
+    Body headings then remain authoritative.
+    """
+    m = re.search(r"^## Contents\s*$", md, re.MULTILINE)
+    if not m:
+        return md
+
+    blocks = md[m.end():].split("\n\n")
+    toc_end_offset = 0
+    for i, b in enumerate(blocks):
+        b_stripped = b.strip()
+        if not b_stripped:
+            toc_end_offset += len(b) + 2
+            continue
+        is_heading = b_stripped.startswith("#")
+        has_dot_leader = bool(re.search(r"\.{2,}", b_stripped))
+        # TOC entry fingerprint: either a heading, a dot-leader line, or a
+        # short/medium sequence of "N.N Title ... N" patterns.
+        looks_like_toc_section_heading = bool(
+            re.match(r"^(?:## |### |#### )?\d+(?:\.\d+)*\s+[A-Z]", b_stripped)
+        )
+        if is_heading or has_dot_leader or (
+            len(b_stripped) < 300 and looks_like_toc_section_heading
+        ):
+            toc_end_offset += len(b) + 2
+            continue
+        # Hit real prose → stop.
+        break
+
+    if toc_end_offset == 0:
+        return md
+
+    toc_absolute_end = m.end() + toc_end_offset
+    return (
+        md[: m.end()]
+        + "\n\n_(Table of contents — see sections below.)_\n\n"
+        + md[toc_absolute_end:].lstrip()
+    )
+
+
+# --- Phase 2: Gist + heatstrip heuristics (no external API calls) ---
+
+_SECTION_KEYWORDS: dict[str, tuple[str, ...]] = {
+    "safety": (
+        "safety", "harm", "toxic", "bias", "refusal", "violative", "jailbreak",
+        "misuse", "red team", "red-team", "redteam", "cbrn", "bio", "cyber",
+        "weapon", "disallowed", "alignment", "scheming", "deception",
+        "sycophancy", "sandbag", "guard",
+    ),
+    "evals": (
+        "benchmark", "evaluation", "eval ", "mmlu", "humaneval", "gpqa",
+        "accuracy", "pass rate", "score", "test set", "capability test",
+    ),
+    "risks": (
+        "risk", "threat", "threshold", "uplift", "catastrophic", "concern",
+        "dangerous capability", "autonomy", "self-exfiltrat",
+    ),
+    "mitigations": (
+        "mitigation", "we decided not to", "crossed our threshold", "refused to",
+        "did not release", "withheld", "guard", "filter", "classifier",
+        "policy", "deployment restriction",
+    ),
+    "deployment": (
+        "deploy", "available", "release", "api", "product", "rollout", "rollout",
+        "launch", "shipping",
+    ),
+}
+
+# A "sentence boundary" is a ./!/? followed by a space + capital, or a
+# newline, or end of text. This avoids truncating at "v1.5" or "Sec. 3.2".
+_SENT_END = r"(?:[.!?](?=\s+[A-Z0-9]|\s*\n|\s*$))"
+
+_REFUSAL_PATTERNS = re.compile(
+    r"((?:we (?:decided|elected) not to|we have not been able to|"
+    r"we did not (?:release|deploy)|"
+    r"not (?:release|deploy|make available)|crossed our (?:threshold|trigger)|"
+    r"elicited (?:harmful|dangerous|unsafe)|would not release|withheld|"
+    r"refused to (?:release|deploy)|approaching (?:our )?threshold|"
+    r"cannot rule out|we cannot exclude|we believe[^\n]{10,200}risk)"
+    r"[^\n]{0,300}?)" + _SENT_END,
+    re.IGNORECASE,
+)
+_CAPABILITY_PATTERNS = re.compile(
+    r"(we (?:are releasing|release|are introducing|have trained|trained|"
+    r"introduce|present) [^\n]{10,400}?)" + _SENT_END,
+    re.IGNORECASE,
+)
+_DEPLOYMENT_PATTERNS = re.compile(
+    r"((?:available|accessible) (?:via|on|through|at|to)[^\n]{5,200}?"
+    r"|deployed (?:to|via|through)[^\n]{5,200}?"
+    r"|rolling out[^\n]{5,200}?"
+    r"|released under[^\n]{5,200}?)" + _SENT_END,
+    re.IGNORECASE,
+)
+_MITIGATION_PATTERNS = re.compile(
+    r"((?:mitigations? include|we (?:have )?deployed|classifier (?:trained|deployed)|"
+    r"we (?:trained|finetuned) [A-Za-z\-\d.]+ to (?:follow|refuse|avoid|decline))"
+    r"[^\n]{0,300}?)" + _SENT_END,
+    re.IGNORECASE,
+)
+_LIMITATION_PATTERNS = re.compile(
+    r"((?:limitations? include|we did not evaluate|we have not evaluated|"
+    r"we do not (?:yet|currently) (?:know|understand|measure|evaluate)|"
+    r"future work|remain(?:s|ing) (?:open|uncertain)|open questions?|"
+    r"still limited|not (?:yet )?well understood|further research)"
+    r"[^\n]{10,300}?)" + _SENT_END,
+    re.IGNORECASE,
+)
+
+
+def _verify_verbatim(source: str, quote: str | None) -> str | None:
+    """Return the quote only if it's a verbatim substring of source.
+    This is the substring-check rule from the LLM-native agent: never let
+    a paraphrase masquerade as a quote. Whitespace is normalized for the
+    check only; the returned quote is the original-as-extracted.
+    """
+    if not quote:
+        return None
+    norm_source = re.sub(r"\s+", " ", source)
+    norm_quote = re.sub(r"\s+", " ", quote).strip()
+    if len(norm_quote) < 10:
+        return None
+    if norm_quote in norm_source:
+        return quote.strip()
+    return None
+
+
+def _find_all_matches(pattern: re.Pattern, md: str, max_results: int = 3) -> list[str]:
+    """Find up to N non-overlapping matches of pattern in md."""
+    results: list[str] = []
+    for m in pattern.finditer(md):
+        quote = m.group(0).strip()
+        if len(quote) >= 20 and quote not in results:
+            results.append(quote)
+            if len(results) >= max_results:
+                break
+    return results
+
+
+def _extract_whats_new(md: str) -> list[str]:
+    """Pull the first 3 bullets under a Changelog section if present."""
+    m = re.search(r"^##\s+Changelog\s*$", md, re.MULTILINE | re.IGNORECASE)
+    if not m:
+        return []
+    tail = md[m.end() : m.end() + 4000]
+    # Stop at next H2/H3
+    next_h = re.search(r"^##\s+[A-Z0-9]", tail, re.MULTILINE)
+    if next_h:
+        tail = tail[: next_h.start()]
+    bullets = re.findall(r"^-\s+(.+?)$", tail, re.MULTILINE)
+    return [b.strip() for b in bullets[:3] if len(b.strip()) > 10]
+
+
+def _build_gist(md: str, title: str) -> dict:
+    """Extract an 8-field gist heuristically. Every string field is either
+    a verbatim snippet from md (verified via substring check) or None.
+    """
+    # Overview: 1-3 sentences of the first substantial paragraph (skip
+    # title/metadata blocks and skip the Changelog section if it appears
+    # before the real body).
+    tldr: str | None = None
+    for p in md.split("\n\n"):
+        stripped = p.strip()
+        # Skip: empty, headings, list items, metadata, TOC stub, dot-leader
+        # clusters, and anything that looks like a section-number list.
+        if len(stripped) < 120:
+            continue
+        if _MD_HEADER_RE.match(stripped) or stripped.startswith(("- ", "_(", ">")):
+            continue
+        if ". ." in stripped or re.search(r"\d+(?:\.\d+)+\s+[A-Z][^.\n]{2,40}\s+\d+", stripped):
+            continue  # TOC-ish or dot-leader line
+        low = stripped.lower()
+        if low.startswith(("changelog", "contents", "table of", "version", "copyright")):
+            continue
+        sentences = re.split(r"(?<=[\.!?])\s+(?=[A-Z])", stripped)[:2]
+        tldr = " ".join(sentences)[:400].strip()
+        break
+
+    capability_quotes = _find_all_matches(_CAPABILITY_PATTERNS, md, max_results=1)
+    safety_quotes = _find_all_matches(_REFUSAL_PATTERNS, md, max_results=3)
+    deployment_quotes = _find_all_matches(_DEPLOYMENT_PATTERNS, md, max_results=1)
+    mitigation_quotes = _find_all_matches(_MITIGATION_PATTERNS, md, max_results=2)
+    limitation_quotes = _find_all_matches(_LIMITATION_PATTERNS, md, max_results=2)
+
+    # Verify every quote is a verbatim substring (substring-check rule).
+    def _verify_list(quotes: list[str]) -> list[str]:
+        return [q for q in (_verify_verbatim(md, q) for q in quotes) if q]
+
+    capability_quotes = _verify_list(capability_quotes)
+    safety_quotes = _verify_list(safety_quotes)
+    deployment_quotes = _verify_list(deployment_quotes)
+    mitigation_quotes = _verify_list(mitigation_quotes)
+    limitation_quotes = _verify_list(limitation_quotes)
+
+    return {
+        "title": title,
+        "tldr": tldr,
+        "capability_claims": capability_quotes,
+        "safety_findings": safety_quotes,
+        "mitigations": mitigation_quotes,
+        "deployment_scope": deployment_quotes,
+        "limitations": limitation_quotes,
+        "whats_new": _extract_whats_new(md),
+    }
+
+
+def _build_heatstrip(md: str) -> list[dict]:
+    """Segment the document into ~20 equal chunks; score each chunk's
+    keyword density per category. Returns segments with their dominant
+    category + counts, suitable for a horizontal heatstrip."""
+    if not md:
+        return []
+    N_SEGMENTS = 20
+    seg_len = max(1, len(md) // N_SEGMENTS)
+    segments = []
+    for i in range(N_SEGMENTS):
+        start = i * seg_len
+        end = start + seg_len if i < N_SEGMENTS - 1 else len(md)
+        chunk = md[start:end].lower()
+        scores = {}
+        for cat, keywords in _SECTION_KEYWORDS.items():
+            scores[cat] = sum(chunk.count(k) for k in keywords)
+        total = sum(scores.values())
+        dominant = max(scores, key=scores.get) if total > 0 else "other"
+        segments.append({
+            "index": i,
+            "start": start,
+            "end": end,
+            "dominant": dominant,
+            "scores": scores,
+            "intensity": total,
+        })
+    return segments
+
+
+def _extract_outline(md: str) -> list[DocumentOutlineItem]:
+    """Extract H1-H6 headers as a flat list with anchor slugs."""
+    items: list[DocumentOutlineItem] = []
+    seen: set[str] = set()
+    for i, m in enumerate(_MD_HEADER_RE.finditer(md)):
+        level = len(m.group(1))
+        title = m.group(2).strip()
+        # Skip headers that are obviously garbage (non-ASCII printable density)
+        printable_ratio = sum(1 for c in title if c.isascii() and c.isprintable()) / max(len(title), 1)
+        if printable_ratio < 0.7:
+            continue
+        slug_base = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:64] or f"sec-{i}"
+        slug = slug_base
+        k = 2
+        while slug in seen:
+            slug = f"{slug_base}-{k}"
+            k += 1
+        seen.add(slug)
+        items.append(DocumentOutlineItem(level=level, title=title, anchor=slug))
+    return items
 
 
 @router.get("", response_model=list[DocumentSummary])
@@ -66,5 +539,70 @@ async def get_document(document_id: int, db: AsyncSession = Depends(get_db)):
     if not doc:
         raise HTTPException(404, "Document not found")
     return doc
+
+
+@router.get("/{document_id}/content", response_model=DocumentContent)
+async def get_document_content(
+    document_id: int,
+    version_id: Optional[int] = None,
+    db: AsyncSession = Depends(get_db),
+):
+    """Return cleaned markdown body + extracted outline for the latest version
+    (or a specific version when `version_id` is provided)."""
+    doc = await db.get(Document, document_id)
+    if not doc:
+        raise HTTPException(404, "Document not found")
+
+    q = (
+        select(DocumentVersion)
+        .where(DocumentVersion.document_id == document_id)
+        .order_by(DocumentVersion.version_date.desc())
+    )
+    if version_id is not None:
+        q = q.where(DocumentVersion.id == version_id)
+    res = await db.execute(q.limit(1))
+    version = res.scalar_one_or_none()
+    if not version:
+        raise HTTPException(404, "No version available")
+
+    cleaned = _clean_content(version.content_md or "")
+    outline = _extract_outline(cleaned)
+    word_count = len(cleaned.split()) if cleaned else 0
+    # Reading speed ~230 wpm for dense research prose
+    read_minutes = max(1, round(word_count / 230)) if word_count else 0
+
+    source_hash = hashlib.sha256(cleaned.encode("utf-8")).hexdigest()[:12]
+
+    # Pre-generated chaptered summary (Claude Sonnet, run nightly).
+    summary = None
+    row = (await db.execute(text("""
+        SELECT model_used, total_words, chapters, generated_at, source_hash, error
+        FROM document_summaries
+        WHERE document_version_id = :vid AND (error IS NULL OR error = '')
+    """), {"vid": version.id})).fetchone()
+    if row and row.total_words > 0:
+        from src.schemas.document import DocumentSummaryRead, SummaryChapter
+        summary = DocumentSummaryRead(
+            model_used=row.model_used,
+            total_words=row.total_words,
+            chapters=[SummaryChapter(**c) for c in row.chapters],
+            generated_at=row.generated_at,
+            source_hash=row.source_hash,
+        )
+
+    return DocumentContent(
+        document_id=document_id,
+        version_id=version.id,
+        version_date=version.version_date,
+        word_count=word_count,
+        read_minutes=read_minutes,
+        has_headers=len(outline) >= 3,
+        outline=outline,
+        content_md=cleaned,
+        gist=_build_gist(cleaned, doc.title),
+        heatstrip=_build_heatstrip(cleaned),
+        source_hash=source_hash,
+        summary=summary,
+    )
 
 
