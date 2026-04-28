@@ -1,0 +1,53 @@
+document_slug,release_date,source,confidence,notes
+anthropic_claude2_card,2023-07-11,public_announcement,high,Claude 2 release
+anthropic_model_card,2024-03-04,public_announcement,high,Claude 3 family release
+anthropic_35_addendum,2024-06-20,public_announcement,high,Claude 3.5 Sonnet release
+anthropic_35h_addendum,2024-10-22,public_announcement,high,Claude 3.5 Haiku + computer use release
+anthropic_37_card,2025-02-24,public_announcement,high,Claude 3.7 Sonnet release
+anthropic_claude4_card,2025-05-22,public_announcement,high,Claude 4 release (Opus 4 + Sonnet 4)
+anthropic_opus41_card,2025-08-05,public_announcement,high,Claude Opus 4.1 release
+anthropic_sonnet45_card,2025-09-29,public_announcement,high,Claude Sonnet 4.5 release
+anthropic_haiku45_card,2025-10-15,public_announcement,high,Claude Haiku 4.5 release
+anthropic_opus45_card,2025-11-24,public_announcement,high,Claude Opus 4.5 release
+anthropic_sonnet46_card,2026-02-15,estimated,low,Claude Sonnet 4.6; post training cutoff; estimated to Q1 2026
+anthropic_opus46_card,2026-03-20,estimated,low,Claude Opus 4.6; estimated to late Q1 2026
+anthropic_mythos_card,2026-04-08,inferred_from_version_date,med,Mythos preview; mythos_card has 2026-04-08 version_date suggesting recent ingest
+openai_gpt4_system_card,2023-03-14,public_announcement,high,GPT-4 launch system card
+openai_gpt4o_system_card,2024-08-08,public_announcement,high,GPT-4o full system card published
+openai_o1_system_card,2024-12-05,url,high,URL contains 20241205
+openai_operator_card,2025-01-23,public_announcement,high,Operator launch
+openai_o3mini_card,2025-02-10,url,high,URL contains feb10 (Feb 10 2025)
+openai_gpt45_system_card,2025-02-27,url,high,URL contains 2272025
+openai_o3_system_card,2025-04-16,public_announcement,high,o3 + o4-mini joint system card
+openai_gpt5_system_card,2025-08-07,public_announcement,high,GPT-5 launch
+openai_gpt51_system_card,2025-11-12,estimated,med,GPT-5.1 release; estimated to Q4 2025
+openai_gpt52_system_card,2025-12-15,estimated,low,GPT-5.2 release; estimated to late Q4 2025
+openai_gpt53_codex_card,2026-01-20,estimated,low,GPT-5.3 Codex; estimated to early Q1 2026
+openai_gpt55_system_card,2026-04-23,methodology_log,high,Methodology notes added 2026-04-23
+google_gemini_report,2023-12-06,public_announcement,high,Gemini 1.0 announcement
+google_gemini_1_5_report,2024-02-15,public_announcement,high,Gemini 1.5 Pro paper announcement
+google_gemini_2_card,2024-12-11,public_announcement,high,Gemini 2.0 Flash announcement
+google_gemini_25_pro_card,2025-03-25,public_announcement,high,Gemini 2.5 Pro experimental release
+google_gemini_25_card,2025-04-09,public_announcement,high,Gemini 2.5 Flash release
+google_gemini_25dt_card,2025-08-01,estimated,med,Gemini 2.5 Deep Think announced summer 2025
+google_gemini_3_pro_card,2025-11-18,public_announcement,high,Gemini 3 Pro release
+google_gemini_3_card,2025-12-15,estimated,med,Gemini 3 Flash; estimated late 2025
+google_gemini_31_pro_card,2026-02-20,estimated,low,Gemini 3.1 Pro; estimated to Q1 2026
+meta_llama2_card,2023-07-18,public_announcement,high,Llama 2 release
+meta_llamaguard_card,2023-12-07,public_announcement,high,Llama Guard paper release
+meta_llama3_model_card,2024-04-18,public_announcement,high,Llama 3 release
+meta_llama3_paper,2024-07-23,public_announcement,high,Llama 3.1 technical paper
+meta_llama31_card,2024-07-23,public_announcement,high,Llama 3.1 release (same day as paper)
+meta_llama32_card,2024-09-25,public_announcement,high,Llama 3.2 release
+meta_llamaguard3_card,2024-09-25,public_announcement,high,Llama Guard 3 Vision (released with Llama 3.2)
+meta_responsible_use,2024-12-06,public_announcement,high,Llama 3.3 release
+meta_llama4_card,2025-04-05,public_announcement,high,Llama 4 release
+mistral_7b_model_card,2023-09-27,public_announcement,high,Mistral 7B release
+mistral_mixtral_model_card,2024-04-17,public_announcement,high,Mixtral 8x22B release
+mistral_codestral_blog,2024-05-29,public_announcement,high,Codestral release
+mistral_large_2_blog,2024-07-24,public_announcement,high,Mistral Large 2 release
+mistral_small_3_blog,2025-01-30,public_announcement,high,Mistral Small 3 release
+mistral_small_3_hf_card,2025-01-30,public_announcement,high,Mistral Small 24B Instruct 2501 (same release)
+xai_grok4_card,2025-08-20,url,high,URL contains 2025-08-20
+xai_grok4_fast_card,2025-09-19,url,high,URL contains 2025-09-19
+xai_grok41_card,2025-11-17,url,high,URL contains 2025-11-17
