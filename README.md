@@ -11,6 +11,11 @@
 
 Model Card Explorer collects, versions, and analyzes model cards and safety documentation from 9 major AI labs. It extracts structured benchmark data from each card and enables cross-lab, cross-generation comparisons — making it easy to see what companies disclose, what they don't, and how transparency is evolving over time.
 
+## Live deployments
+
+- **[model-card.vercel.app](https://model-card.vercel.app)** — cross-lab card explorer (documents, families, coverage matrix, evals)
+- **[benchmark-lifecycle.vercel.app](https://benchmark-lifecycle.vercel.app)** — what happens to individual benchmarks over time, including the *Suspicious only* filter for benchmarks labs quietly stopped reporting
+
 ## Features
 
 ### Document Collection
@@ -34,6 +39,18 @@ Model Card Explorer collects, versions, and analyzes model cards and safety docu
 - Cross-generation benchmark tables showing score progression
 - Side-by-side comparison within families (e.g., all Claude generations)
 - Delta tracking between consecutive generations
+
+## Research outputs
+
+Analyses produced from the platform's data, with provenance and regeneration scripts:
+
+- **Benchmark overlap analyses** ([`charts/`](charts/)) — 2026 cross-lab Jaccard heatmap and the trailing-quarter divergence chart. Documents the decline of cross-lab benchmark agreement from ~24% in 2024-Q1 to ~6% in 2026-Q2.
+
+### Headline findings
+
+- **89%** of frontier benchmarks are reported by only one lab. Of 311 distinct family-collapsed benchmark names across 50 cards, 276 appear in just one lab's cards. Five labs agree on MMLU. No benchmark is reported by all six.
+- **Roughly 100× spread** in model-card length, from Mistral 7B (~750 words) to Anthropic's Claude Mythos Preview (~68,000). The disclosure gap is not just substantive — it is two orders of magnitude in surface area.
+- **Hedging language has gone from 17% to 83%** of cards over 2023 – 2026. Phrases like *"cannot rule out"*, *"could not verify"*, and *"saturated"* appeared in 1 of 6 cards in 2023; by 2026 they appear in 5 of 6. Labs are increasingly admitting they cannot bound the risk.
 
 ## Architecture
 
