@@ -51,6 +51,11 @@ families:
         name: Claude Mythos Preview
         version_label: "mythos-preview"
         document_slug: anthropic_mythos_card
+      - slug: claude-opus-4.7
+        name: Claude Opus 4.7
+        version_label: "4.7-opus"
+        release_date: 2026-04-16
+        document_slug: anthropic_opus47_card
 
   - slug: gpt
     lab_slug: openai

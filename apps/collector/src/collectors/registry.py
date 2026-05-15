@@ -43,6 +43,7 @@ SOURCES: list[Source] = [
     Source("anthropic_37_card",      "anthropic", "Claude 3.7 Sonnet System Card","model_card",   "https://www-cdn.anthropic.com/9ff93dfa8f445c932415d335c88852ef47f1201e.pdf", "pdf"),
     Source("anthropic_opus46_card",  "anthropic", "Claude Opus 4.6 System Card", "model_card",    "https://anthropic.com/claude-opus-4-6-system-card",                            "pdf"),
     Source("anthropic_mythos_card",  "anthropic", "Claude Mythos Preview System Card", "model_card", "https://www-cdn.anthropic.com/8b8380204f74670be75e81c820ca8dda846ab289.pdf", "pdf"),
+    Source("anthropic_opus47_card",  "anthropic", "Claude Opus 4.7 System Card", "model_card",    "https://anthropic.com/claude-opus-4-7-system-card",                            "pdf"),
     Source("anthropic_safeguards",    "anthropic", "Building Safeguards for Claude","constitution",  "https://www.anthropic.com/news/building-safeguards-for-claude",                   "html"),
 
     # ── OpenAI ────────────────────────────────────────────────────────────────
