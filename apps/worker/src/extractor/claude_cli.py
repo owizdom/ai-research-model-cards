@@ -8,7 +8,14 @@ Claude Max subscription.
 """
 import asyncio
 import json
+import os
 from dataclasses import dataclass
+
+# Long docs (62k-word Opus 4.7 system card, etc.) regularly exceed the
+# original 600s ceiling — runs 283-285 and 290 all timed out at exactly
+# 10 minutes. Default to 1200s and let ops override via env without a code
+# change next time a denser card lands.
+DEFAULT_CLI_TIMEOUT_S = float(os.getenv("CLAUDE_CLI_TIMEOUT_S", "1200"))
 
 # Block every tool — the extractor only needs JSON text output, and the worker
 # container should never let the model touch the filesystem or network.
@@ -29,7 +36,7 @@ async def call_claude_cli(
     system_prompt: str,
     user_prompt: str,
     model: str = "sonnet",
-    timeout_s: float = 600.0,
+    timeout_s: float = DEFAULT_CLI_TIMEOUT_S,
     max_budget_usd: float = 1.0,
 ) -> ClaudeCLIResult:
     """Invoke `claude -p` as a subprocess. Inherits CLAUDE_CODE_OAUTH_TOKEN from env.
