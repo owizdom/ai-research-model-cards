@@ -26,7 +26,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from src.api.v1 import documents, labs, intersection, evals, families, export  # noqa
+from src.api.v1 import documents, labs, intersection, evals, families, export, admin  # noqa
 
 app.include_router(documents.router, prefix="/api/v1/documents", tags=["Documents"])
 app.include_router(labs.router, prefix="/api/v1/labs", tags=["Labs"])
@@ -34,6 +34,7 @@ app.include_router(intersection.router, prefix="/api/v1/analysis/intersection", 
 app.include_router(evals.router, prefix="/api/v1/evals", tags=["Evals"])
 app.include_router(families.router, prefix="/api/v1/families", tags=["Model Families"])
 app.include_router(export.router, prefix="/api/v1/export", tags=["Export"])
+app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
 
 
 @app.get("/health", tags=["Meta"])

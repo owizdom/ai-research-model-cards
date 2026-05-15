@@ -114,37 +114,96 @@ EVAL_KEYWORDS = [
     "mgsm", "mmmu", "multilingual", "vision", "instruction following",
 ]
 
+# Strong anchors for canonical capability tables. A block containing any of
+# these gets a big score bonus, which guarantees the comparison table beats
+# out keyword-dense narrative (e.g. CBRN safety prose in long Anthropic cards).
+# The 232-page Opus 4.7 card put its capability summary at char 368k, past
+# the 30k extraction window, because the safety section was keyword-denser —
+# these anchors fix that without growing the window.
+CAPABILITY_ANCHORS = [
+    "capability evaluation summary",
+    "benchmark results",
+    "performance overview",
+    "swe-bench verified",
+    "gpqa diamond",
+    "mmlu-pro",
+    "humaneval+",
+    "livecodebench",
+    "evaluation summary",
+]
+ANCHOR_BOOST = 10  # added to the keyword score when an anchor matches
+
+# Numbered section headers like "8.1 Capability evaluation summary" or
+# "## 5 Capabilities" — common in Anthropic/OpenAI system cards.
+import re as _re
+_SECTION_HEADER_RE = _re.compile(
+    r"^(?:#+\s*)?\d+(?:\.\d+)*\s+(reasoning|coding|math|safety|capabilities?|benchmarks?|evaluations?|performance)\b",
+    _re.IGNORECASE | _re.MULTILINE,
+)
+
+# Above this length, split the budget across two windows (first-half +
+# second-half) so we catch both methodology/safety narratives (typically
+# early-doc) and capability comparison tables (typically late-doc).
+LONG_DOC_THRESHOLD = 80_000
+
+
+def _score_block(block: str) -> int:
+    """Score a block by EVAL_KEYWORDS density plus capability-anchor bonus."""
+    block_lower = block.lower()
+    score = sum(1 for kw in EVAL_KEYWORDS if kw in block_lower)
+    for anchor in CAPABILITY_ANCHORS:
+        if anchor in block_lower:
+            score += ANCHOR_BOOST
+    if _SECTION_HEADER_RE.search(block):
+        score += ANCHOR_BOOST
+    return score
+
+
+def _select_top_blocks(lines: list[str], char_budget: int, line_offset: int = 0):
+    """Score 40-line blocks in `lines`, return non-overlapping top picks up to
+    `char_budget` chars. Returns list of (original_line_index, block_text).
+    line_offset is added to indices so callers can stitch multiple ranges.
+    """
+    block_size = 40
+    scored = []
+    for i in range(0, len(lines), block_size // 2):
+        block = "\n".join(lines[i : i + block_size])
+        s = _score_block(block)
+        if s > 0:
+            scored.append((s, i + line_offset, block))
+    scored.sort(key=lambda x: -x[0])
+
+    selected = []
+    total = 0
+    seen = set()
+    for s, idx, block in scored:
+        if idx in seen:
+            continue
+        if total + len(block) > char_budget:
+            break
+        selected.append((idx, block))
+        seen.add(idx)
+        total += len(block)
+    return selected
+
 
 def _extract_eval_sections(content: str, max_chars: int = 30000) -> str:
     """Scan full document for sections likely containing benchmark results.
 
-    Increased from 14k to 30k chars and 20→40 line blocks to improve recall
-    on dense comparison tables (audit showed 48% recall at the old settings).
+    Two-window split for long docs (>80k chars): allocate half the budget to
+    the first half of the doc and half to the second half. This catches both
+    early-doc methodology/safety content AND late-doc capability tables
+    (which can sit at char 350k+ in long system cards).
     """
     lines = content.split("\n")
-    scored_blocks: list[tuple[int, int, str]] = []
 
-    block_size = 40
-    for i in range(0, len(lines), block_size // 2):
-        block = "\n".join(lines[i : i + block_size])
-        block_lower = block.lower()
-        score = sum(1 for kw in EVAL_KEYWORDS if kw in block_lower)
-        if score > 0:
-            scored_blocks.append((score, i, block))
-
-    scored_blocks.sort(key=lambda x: -x[0])
-
-    selected: list[tuple[int, str]] = []
-    total = 0
-    seen_indices: set[int] = set()
-    for score, idx, block in scored_blocks:
-        if idx in seen_indices:
-            continue
-        if total + len(block) > max_chars:
-            break
-        selected.append((idx, block))
-        seen_indices.add(idx)
-        total += len(block)
+    if len(content) > LONG_DOC_THRESHOLD:
+        half = len(lines) // 2
+        front = _select_top_blocks(lines[:half], max_chars // 2, line_offset=0)
+        back = _select_top_blocks(lines[half:], max_chars // 2, line_offset=half)
+        selected = front + back
+    else:
+        selected = _select_top_blocks(lines, max_chars, line_offset=0)
 
     if not selected:
         return ""
@@ -266,6 +325,7 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     generation_id = gen.id
 
             count = 0
+            skipped_dup = 0
             for item in items:
                 benchmark_name = item.get("benchmark_name", "").strip()
                 if not benchmark_name:
@@ -314,19 +374,12 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     legacy_variant_parts.append(training_state)
                 variant = ", ".join(legacy_variant_parts) if legacy_variant_parts else "default"
 
-                existing_eval = await db.execute(
-                    select(EvalResult).where(
-                        EvalResult.document_version_id == version_id,
-                        EvalResult.benchmark_id == benchmark_id,
-                        EvalResult.variant == variant,
-                        EvalResult.model_name == model_name,
-                        EvalResult.extraction_protocol_version == EXTRACTION_PROTOCOL_VERSION,
-                    )
-                )
-                if existing_eval.scalar_one_or_none():
-                    continue
-
-                eval_result = EvalResult(
+                # Idempotent insert via ON CONFLICT DO NOTHING — handles concurrent
+                # extractions, retried jobs, and duplicate rows from the same model
+                # output without rolling back the whole transaction. Returns the
+                # new id, or None if the conflict was suppressed.
+                from sqlalchemy.dialects.postgresql import insert as pg_insert
+                ins = pg_insert(EvalResult).values(
                     document_version_id=version_id,
                     benchmark_id=benchmark_id,
                     generation_id=generation_id,
@@ -347,15 +400,18 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     extraction_confidence=0.85,
                     is_self_reported=True,
                     source_type="model_card",
-                )
-                db.add(eval_result)
-                count += 1
+                ).on_conflict_do_nothing(constraint="uq_eval_result").returning(EvalResult.id)
+                ins_result = await db.execute(ins)
+                if ins_result.first():
+                    count += 1
+                else:
+                    skipped_dup += 1
 
             run.status = "completed"
             run.evals_extracted = count
             run.completed_at = datetime.now(timezone.utc)
             await db.commit()
-            print(f"[extractor] extracted {count} evals from version {version_id} (gen={generation_id})", flush=True)
+            print(f"[extractor] extracted {count} evals (skipped {skipped_dup} dup) from version {version_id} (gen={generation_id})", flush=True)
             return count
 
         except Exception as e:
@@ -434,17 +490,20 @@ def _match_benchmark(name: str, lookup: dict) -> int | None:
 
 
 async def _create_benchmark(db: AsyncSession, name: str, item: dict) -> int:
+    """Idempotent benchmark upsert. If the slug already exists (from a prior
+    extraction of any doc), reuse its id rather than raising UniqueViolationError
+    and rolling back the whole eval transaction.
+    """
     from packages.db.models import BenchmarkDefinition
+    from sqlalchemy.dialects.postgresql import insert as pg_insert
     slug = _slugify(name)
-    existing = await db.execute(
-        select(BenchmarkDefinition).where(BenchmarkDefinition.slug == slug)
-    )
-    if row := existing.scalar_one_or_none():
-        return row.id
-    benchmark = BenchmarkDefinition(
+    ins = pg_insert(BenchmarkDefinition).values(
         slug=slug, name=name, category="other",
         metric_name=item.get("metric"), higher_is_better=True,
+    ).on_conflict_do_nothing(index_elements=["slug"])
+    await db.execute(ins)
+    # Re-select to get the id (either freshly inserted or pre-existing).
+    res = await db.execute(
+        select(BenchmarkDefinition.id).where(BenchmarkDefinition.slug == slug)
     )
-    db.add(benchmark)
-    await db.flush()
-    return benchmark.id
+    return res.scalar_one()

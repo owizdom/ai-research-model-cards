@@ -3,7 +3,8 @@ import asyncio
 import os
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
-from .jobs import collect_current, collect_history
+from apscheduler.triggers.interval import IntervalTrigger
+from .jobs import collect_current, collect_history, reap_stuck_runs
 
 
 def create_scheduler() -> AsyncIOScheduler:
@@ -21,6 +22,15 @@ def create_scheduler() -> AsyncIOScheduler:
         id="weekly_history",
         replace_existing=True,
         misfire_grace_time=7200,
+    )
+    # Reap orphaned extraction runs every 10 min. Cheap UPDATE that flips any
+    # row in 'running' state older than the threshold to 'failed'.
+    scheduler.add_job(
+        lambda: asyncio.create_task(reap_stuck_runs()),
+        IntervalTrigger(minutes=10),
+        id="reap_stuck_runs",
+        replace_existing=True,
+        misfire_grace_time=600,
     )
     return scheduler
 

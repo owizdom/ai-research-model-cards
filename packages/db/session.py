@@ -4,7 +4,11 @@ from sqlalchemy import text
 from .config import settings
 
 engine = create_async_engine(
-    settings.DATABASE_URL, echo=False, pool_pre_ping=True, pool_size=10, max_overflow=20
+    settings.DATABASE_URL, echo=False, pool_pre_ping=True, pool_size=10, max_overflow=20,
+    # Postgres auto-aborts any transaction that sits idle this long, which
+    # releases held advisory locks if a worker thread crashes mid-extraction.
+    # Set in milliseconds; 30 min covers the longest legitimate Claude CLI call.
+    connect_args={"server_settings": {"idle_in_transaction_session_timeout": "1800000"}},
 )
 AsyncSessionLocal = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
