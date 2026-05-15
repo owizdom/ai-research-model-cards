@@ -1,4 +1,6 @@
 """Extract structured eval/benchmark data from model card markdown using LLM."""
+from __future__ import annotations
+
 import asyncio
 import json
 import os
