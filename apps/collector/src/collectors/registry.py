@@ -1,5 +1,6 @@
 """Central source registry — single source of truth for all tracked documents."""
 from dataclasses import dataclass
+from typing import Optional
 
 
 @dataclass
@@ -10,7 +11,7 @@ class Source:
     doc_type: str   # model_card | usage_policy | constitution | system_prompt
     url: str
     method: str     # html | pdf | raw
-    selector: str | None = None
+    selector: Optional[str] = None
     track_history: bool = True
 
 
