@@ -1,14 +1,9 @@
 """Scheduled collection jobs."""
 import asyncio
+from packages.pipeline_config import STUCK_RUN_THRESHOLD_MIN
 from ..collectors.fetch import fetch_all
 from ..collectors.registry import SOURCES
 from ..pipeline.store import store_document, store_historical
-
-
-# Any extraction_runs row in 'running' state older than this is considered
-# orphaned (worker died, OOM, deploy mid-flight, etc.) and gets reaped.
-# 25 min covers our 1500s CLI ceiling + insert/commit time + slack.
-STUCK_RUN_THRESHOLD_MIN = 25
 
 
 async def collect_current() -> dict:

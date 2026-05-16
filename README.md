@@ -11,6 +11,8 @@
 
 Model Card Explorer collects, versions, and analyzes model cards and safety documentation from 9 major AI labs. It extracts structured benchmark data from each card and enables cross-lab, cross-generation comparisons — making it easy to see what companies disclose, what they don't, and how transparency is evolving over time.
 
+**Maintainers:** [ARCHITECTURE.md](ARCHITECTURE.md) explains how the pipeline works; [docs/RUNBOOK.md](docs/RUNBOOK.md) is the ops procedure for adding a card and recovering from failures.
+
 ## Live deployments
 
 - **[model-card.vercel.app](https://model-card.vercel.app)** — cross-lab card explorer (documents, families, coverage matrix, evals)

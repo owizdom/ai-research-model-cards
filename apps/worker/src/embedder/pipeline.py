@@ -8,6 +8,7 @@ import numpy as np
 from sqlalchemy import select
 
 from packages.db.models import DocumentVersion, Document, TaxonomyCategory, DocumentTaxonomyMapping
+from packages.pipeline_config import TAXONOMY_SIMILARITY_FLOOR
 from .model import embed_one, embed
 
 
@@ -48,7 +49,7 @@ async def process_embed_job(version_id: int, SessionLocal=None) -> None:
         mapped = 0
         for cat_id, cat_vec in taxonomy_pairs:
             sim = float(np.dot(doc_arr, np.array(cat_vec)))
-            if sim < 0.20:
+            if sim < TAXONOMY_SIMILARITY_FLOOR:
                 continue
             existing = await db.execute(
                 select(DocumentTaxonomyMapping).where(

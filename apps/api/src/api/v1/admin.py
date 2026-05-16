@@ -16,8 +16,15 @@ from fastapi import APIRouter, Depends, Header, HTTPException, Query
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from packages.pipeline_config import STUCK_RUN_THRESHOLD_MIN
+
 from src.core.config import settings
 from src.core.deps import get_db
+
+# Postgres `idle in transaction` cutoff for the "zombie connection" detector.
+# Shorter than the pipeline_config IDLE_TXN_TIMEOUT_MS (30 min) because we
+# want to surface stuck connections in /health before Postgres auto-aborts.
+_ZOMBIE_CONNECTION_MIN_AGE_S = 300
 
 
 router = APIRouter()
@@ -94,12 +101,12 @@ async def health(db: AsyncSession = Depends(get_db)):
     r = _redis()
     queues = {"embed_jobs": r.llen("embed_jobs"), "extract_jobs": r.llen("extract_jobs")}
 
-    # Stuck runs: status='running' older than 25 min (the reaper threshold).
+    # Stuck runs: status='running' older than the reaper threshold.
     stuck = (await db.execute(text("""
         SELECT COUNT(*) FROM extraction_runs
         WHERE status = 'running'
-          AND started_at < NOW() - INTERVAL '25 minutes'
-    """))).scalar()
+          AND started_at < NOW() - make_interval(mins => :mins)
+    """), {"mins": STUCK_RUN_THRESHOLD_MIN})).scalar()
 
     # In-flight runs (any 'running', regardless of age).
     in_flight = (await db.execute(text("""
@@ -111,11 +118,11 @@ async def health(db: AsyncSession = Depends(get_db)):
     zombie = (await db.execute(text("""
         SELECT COUNT(*) FROM pg_stat_activity a
         WHERE a.state = 'idle in transaction'
-          AND EXTRACT(EPOCH FROM (NOW() - a.state_change)) > 300
+          AND EXTRACT(EPOCH FROM (NOW() - a.state_change)) > :min_age_s
           AND a.pid IN (
               SELECT pid FROM pg_locks WHERE locktype = 'advisory' AND granted = true
           )
-    """))).scalar()
+    """), {"min_age_s": _ZOMBIE_CONNECTION_MIN_AGE_S})).scalar()
 
     # Last 5 runs for context.
     recent = (await db.execute(text("""
@@ -143,12 +150,12 @@ async def reap_stuck_runs(db: AsyncSession = Depends(get_db)):
     result = await db.execute(text("""
         UPDATE extraction_runs
         SET status = 'failed',
-            error = COALESCE(error, '') || ' [reaped: exceeded 25 min runtime]',
+            error = COALESCE(error, '') || ' [reaped: exceeded ' || :mins || ' min runtime]',
             completed_at = NOW()
         WHERE status = 'running'
-          AND started_at < NOW() - INTERVAL '25 minutes'
+          AND started_at < NOW() - make_interval(mins => :mins)
         RETURNING id, document_version_id
-    """))
+    """), {"mins": STUCK_RUN_THRESHOLD_MIN})
     rows = result.fetchall()
     await db.commit()
     return {"reaped": len(rows), "run_ids": [r.id for r in rows]}
@@ -163,11 +170,11 @@ async def kill_zombie_connections(db: AsyncSession = Depends(get_db)):
     pids = (await db.execute(text("""
         SELECT a.pid FROM pg_stat_activity a
         WHERE a.state = 'idle in transaction'
-          AND EXTRACT(EPOCH FROM (NOW() - a.state_change)) > 300
+          AND EXTRACT(EPOCH FROM (NOW() - a.state_change)) > :min_age_s
           AND a.pid IN (
               SELECT pid FROM pg_locks WHERE locktype = 'advisory' AND granted = true
           )
-    """))).scalars().all()
+    """), {"min_age_s": _ZOMBIE_CONNECTION_MIN_AGE_S})).scalars().all()
 
     killed = []
     for pid in pids:

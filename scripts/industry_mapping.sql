@@ -1,6 +1,6 @@
 -- Industry-domain classification for benchmark_definitions
 -- Source of truth:
---   (1) packages/db/seed/benchmark_ontology.py (56 curated slugs)
+--   (1) data/benchmarks/benchmark_definitions.yaml (56 curated slugs)
 --   (2) data/exports/groq_baseline_20260408_224114.csv (209 extracted eval rows
 --       covering every benchmark NAME the extractor has minted through 2026-04-08)
 --   (3) user's 8-domain taxonomy (general_academic default)

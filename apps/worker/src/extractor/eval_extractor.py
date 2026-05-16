@@ -12,6 +12,15 @@ import litellm
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from packages.pipeline_config import (
+    ANCHOR_BOOST,
+    CLI_RETRY_ATTEMPTS,
+    CLI_RETRY_BASE_BACKOFF_S,
+    EXTRACTION_PROTOCOL_VERSION,
+    LONG_DOC_THRESHOLD,
+    WINDOW_SIZE_DEFAULT,
+)
+
 from .claude_cli import call_claude_cli
 from .parse import parse_extraction_json as _parse_extraction_json
 
@@ -53,7 +62,6 @@ async def _llm_complete(system: str, user: str, model: str) -> str:
     )
     return response.choices[0].message.content or "[]"
 
-EXTRACTION_PROTOCOL_VERSION = 2
 
 EXTRACTION_SYSTEM_PROMPT = """You are a precise data extraction assistant. Extract EVERY benchmark/evaluation reference from a model card or technical report, regardless of whether it was actually run.
 
@@ -131,20 +139,19 @@ CAPABILITY_ANCHORS = [
     "livecodebench",
     "evaluation summary",
 ]
-ANCHOR_BOOST = 10  # added to the keyword score when an anchor matches
 
-# Numbered section headers like "8.1 Capability evaluation summary" or
-# "## 5 Capabilities" — common in Anthropic/OpenAI system cards.
-import re as _re
-_SECTION_HEADER_RE = _re.compile(
-    r"^(?:#+\s*)?\d+(?:\.\d+)*\s+(reasoning|coding|math|safety|capabilities?|benchmarks?|evaluations?|performance)\b",
-    _re.IGNORECASE | _re.MULTILINE,
+# Numbered section headers like "8.1 Capability evaluation summary",
+# "## 5 Capabilities", or "8 Capability" — common in Anthropic/OpenAI
+# system cards. Match the singular "capability" AND the plural; same for
+# "benchmark/benchmarks", "evaluation/evaluations".
+_SECTION_HEADER_RE = re.compile(
+    r"^(?:#+\s*)?\d+(?:\.\d+)*\s+"
+    r"(reasoning|coding|math|safety|capability|capabilities|"
+    r"benchmark|benchmarks|evaluation|evaluations|performance)\b",
+    re.IGNORECASE | re.MULTILINE,
 )
 
-# Above this length, split the budget across two windows (first-half +
-# second-half) so we catch both methodology/safety narratives (typically
-# early-doc) and capability comparison tables (typically late-doc).
-LONG_DOC_THRESHOLD = 80_000
+# ANCHOR_BOOST and LONG_DOC_THRESHOLD live in packages/pipeline_config.
 
 
 def _score_block(block: str) -> int:
@@ -187,7 +194,7 @@ def _select_top_blocks(lines: list[str], char_budget: int, line_offset: int = 0)
     return selected
 
 
-def _extract_eval_sections(content: str, max_chars: int = 30000) -> str:
+def _extract_eval_sections(content: str, max_chars: int = WINDOW_SIZE_DEFAULT) -> str:
     """Scan full document for sections likely containing benchmark results.
 
     Two-window split for long docs (>80k chars): allocate half the budget to
@@ -272,11 +279,11 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
         try:
             # Smart section extraction — find eval-dense sections across full doc
             sections = _extract_eval_sections(version.content_md)
-            content = sections if sections else version.content_md[:30000]
+            content = sections if sections else version.content_md[:WINDOW_SIZE_DEFAULT]
 
             # Retry with backoff on rate limits
             response_text = None
-            for attempt in range(4):
+            for attempt in range(CLI_RETRY_ATTEMPTS):
                 try:
                     response_text = await _llm_complete(
                         EXTRACTION_SYSTEM_PROMPT,
@@ -287,10 +294,10 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                 except Exception as e:
                     err = str(e).lower()
                     if any(s in err for s in ("rate", "429", "quota", "budget", "5h", "usage limit")):
-                        wait = 30 * (attempt + 1)
-                        print(f"[extractor] rate limited on v{version_id}, waiting {wait}s (attempt {attempt+1}/4)", flush=True)
+                        wait = CLI_RETRY_BASE_BACKOFF_S * (attempt + 1)
+                        print(f"[extractor] rate limited on v{version_id}, waiting {wait}s (attempt {attempt+1}/{CLI_RETRY_ATTEMPTS})", flush=True)
                         await asyncio.sleep(wait)
-                        if attempt == 3:
+                        if attempt == CLI_RETRY_ATTEMPTS - 1:
                             raise
                     else:
                         raise

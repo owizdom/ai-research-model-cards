@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, text
 from sqlalchemy.orm import selectinload
+from packages.pipeline_config import READ_WPM
 from src.core.deps import get_db
 from src.schemas.document import (
     DocumentSummary, DocumentDetail, WordCountTimelinePoint,
@@ -568,8 +569,7 @@ async def get_document_content(
     cleaned = _clean_content(version.content_md or "")
     outline = _extract_outline(cleaned)
     word_count = len(cleaned.split()) if cleaned else 0
-    # Reading speed ~230 wpm for dense research prose
-    read_minutes = max(1, round(word_count / 230)) if word_count else 0
+    read_minutes = max(1, round(word_count / READ_WPM)) if word_count else 0
 
     source_hash = hashlib.sha256(cleaned.encode("utf-8")).hexdigest()[:12]
 

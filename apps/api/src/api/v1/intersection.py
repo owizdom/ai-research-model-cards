@@ -3,6 +3,7 @@ from itertools import combinations
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
+from packages.pipeline_config import COVERAGE_ANALYSIS_THRESHOLD
 from src.core.deps import get_db
 from src.schemas.analysis import IntersectionResult
 
@@ -13,7 +14,7 @@ router = APIRouter()
 async def get_intersection(
     lab_slugs: Optional[str] = Query(None, description="Comma-separated lab slugs"),
     doc_types: Optional[str] = Query(None),
-    threshold: float = Query(0.25, ge=0.0, le=1.0),
+    threshold: float = Query(COVERAGE_ANALYSIS_THRESHOLD, ge=0.0, le=1.0),
     db: AsyncSession = Depends(get_db),
 ):
     lab_list = lab_slugs.split(",") if lab_slugs else None

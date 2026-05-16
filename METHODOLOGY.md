@@ -126,7 +126,7 @@ The LLM output parser (`apps/worker/src/extractor/parse.py::parse_extraction_jso
 
 ### 5.1 Canonical entries
 
-57 benchmarks are curated with full metadata in `packages/db/seed/benchmark_ontology.py`:
+57 benchmarks are curated with full metadata in `data/benchmarks/benchmark_definitions.yaml` (seeded by `scripts/seed_db.py`):
 - `slug`, `name`, `category` (12-way academic taxonomy: `reasoning`, `coding`, `math`, `multimodal`, `safety`, `medical`, `legal`, `finance`, `multilingual`, `agent`, `long_context`, `general_knowledge`)
 - `industry_domain` (8-way: `general_academic`, `software_engineering`, `healthcare_medical`, `education_exams`, `crm_enterprise`, `cybersecurity`, `legal`, `finance_tax`)
 - `metric_name`, `metric_unit`, `higher_is_better`

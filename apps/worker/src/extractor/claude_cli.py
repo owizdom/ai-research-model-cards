@@ -11,11 +11,15 @@ import json
 import os
 from dataclasses import dataclass
 
+from packages.pipeline_config import CLI_TIMEOUT_DEFAULT_S
+
 # Long docs (62k-word Opus 4.7 system card, etc.) regularly exceed the
 # original 600s ceiling — runs 283-285 and 290 all timed out at exactly
-# 10 minutes. Default to 1200s and let ops override via env without a code
-# change next time a denser card lands.
-DEFAULT_CLI_TIMEOUT_S = float(os.getenv("CLAUDE_CLI_TIMEOUT_S", "1200"))
+# 10 minutes. Default lives in packages/pipeline_config; ops can still
+# override via env without a code change.
+DEFAULT_CLI_TIMEOUT_S = float(
+    os.getenv("CLAUDE_CLI_TIMEOUT_S", str(CLI_TIMEOUT_DEFAULT_S))
+)
 
 # Block every tool — the extractor only needs JSON text output, and the worker
 # container should never let the model touch the filesystem or network.

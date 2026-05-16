@@ -4,6 +4,12 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-_SRC = Path(__file__).resolve().parent.parent / "src"
-if str(_SRC) not in sys.path:
-    sys.path.insert(0, str(_SRC))
+_HERE = Path(__file__).resolve().parent
+_SRC = _HERE.parent / "src"
+# Repo root — so `from packages.pipeline_config import ...` resolves under pytest.
+_REPO = _HERE.parent.parent.parent
+
+for p in (_SRC, _REPO):
+    p = str(p)
+    if p not in sys.path:
+        sys.path.insert(0, p)

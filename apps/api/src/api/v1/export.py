@@ -5,6 +5,11 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
+from packages.pipeline_config import (
+    COVERAGE_BAND_MODERATE,
+    COVERAGE_BAND_STRONG,
+    COVERAGE_BAND_WEAK,
+)
 from src.core.deps import get_db
 
 router = APIRouter()
@@ -71,9 +76,9 @@ async def export_taxonomy_coverage(db: AsyncSession = Depends(get_db)):
             tc.name AS safety_category,
             ROUND(MAX(dtm.similarity_score)::numeric, 3) AS embedding_similarity,
             CASE
-                WHEN MAX(dtm.similarity_score) >= 0.50 THEN 'A'
-                WHEN MAX(dtm.similarity_score) >= 0.35 THEN 'B'
-                WHEN MAX(dtm.similarity_score) >= 0.20 THEN 'C'
+                WHEN MAX(dtm.similarity_score) >= """ + str(COVERAGE_BAND_STRONG) + """ THEN 'A'
+                WHEN MAX(dtm.similarity_score) >= """ + str(COVERAGE_BAND_MODERATE) + """ THEN 'B'
+                WHEN MAX(dtm.similarity_score) >= """ + str(COVERAGE_BAND_WEAK) + """ THEN 'C'
                 ELSE '-'
             END AS grade
         FROM labs l
