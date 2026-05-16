@@ -90,3 +90,22 @@ many ms, releasing the lock without manual pg_terminate_backend. 30 min."""
 READ_WPM: int = 230
 """Words per minute used by the /api/v1/documents/{id}/content endpoint to
 estimate read_minutes for the UI. 230 ≈ research-prose pace."""
+
+
+# ── HTTP / Redis transport ───────────────────────────────────────────────────
+
+HTTP_TIMEOUT_DEFAULT_S: float = 30.0
+"""Per-request timeout for single-shot HTTP calls: an HTML page fetch, a
+Wayback snapshot pull, a CDX metadata query. Tight enough that a stuck
+upstream doesn't pin a collector slot, generous enough to survive normal
+latency to slow CDNs."""
+
+HTTP_TIMEOUT_BULK_S: float = 60.0
+"""Client-level timeout for bulk/heavy downloads — the fetch_all client that
+walks every Source, the history-collection client, PDF downloads (which can
+be 5–10 MB for long system cards). PDFs in particular need the headroom."""
+
+REDIS_BLPOP_TIMEOUT_S: int = 5
+"""Blocking pop interval for the worker's embed/extract queues. Shorter =
+more responsive shutdown, more idle wakeups; longer = laggier shutdown.
+5s is the working compromise. Read by apps/worker/src/main.py."""
