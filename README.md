@@ -178,15 +178,15 @@ GET  /api/v1/families/{slug}                   Family detail with generations an
 
 | Lab | Count | Documents |
 |---|---|---|
-| **Anthropic** | 19 | Claude 2/3/3.5/3.7/4/4.5/4.6 system cards, Opus 4.1, Mythos Preview, RSP, constitutional AI, character, safeguards |
-| **OpenAI** | 16 | GPT-4/4o/4.5/5/5.1/5.2/5.3 system cards, o1/o3/o3-mini, Operator, model spec, preparedness framework |
-| **Google DeepMind** | 14 | Gemini 1.0/1.5/2.0/2.5/3.0/3.1 reports, AI principles, frontier safety framework, prohibited use |
-| **Meta AI** | 12 | Llama 2/3/3.1/3.2/3.3/4 cards, Purple Llama, Llama Guard 1/3 cards |
+| **Anthropic** | 20 | Claude 2/3/3.5/3.7/4 system cards, Opus 4.1/4.5/4.6/4.7, Sonnet 4.5/4.6, Haiku 4.5, Mythos Preview, RSP, constitutional AI, character, safeguards |
+| **OpenAI** | 17 | GPT-4/4o/4.5/5/5.1/5.2/5.5 system cards, GPT-5.3 Codex, o1/o3/o3-mini, Operator, model spec, preparedness framework |
+| **Google DeepMind** | 14 | Gemini 1.0/1.5/2.0/2.5/3.0/3.1 reports incl. 2.5 Deep Think, AI principles, frontier safety framework, prohibited use |
+| **Meta AI** | 12 | Llama 2/3/3.1/3.2/3.3/4 cards, Purple Llama, Llama Guard + Guard 3 Vision cards |
+| **Mistral AI** | 9 | Mixtral/7B/Large 2/Small 3/Codestral cards, usage policy, guardrailing, moderation |
 | **xAI** | 7 | Grok 4/4 Fast/4.1 cards, risk framework, API docs, usage policy |
-| **Mistral AI** | 5 | Mixtral/7B cards, usage policy, guardrailing, moderation |
-| **Cohere** | 3 | Command R+ card, responsible use, terms |
-| **Amazon** | 2 | Bedrock responsible ML, acceptable use |
-| **AI21** | 2 | Jamba overview, terms |
+| **Cohere** | 3 | Command R+ card, responsible use, terms (DB only — filtered from public API) |
+| **Amazon** | 2 | Bedrock responsible ML, acceptable use (DB only — filtered from public API) |
+| **AI21** | 2 | Jamba overview, terms (DB only — filtered from public API) |
 
 ## Database Schema
 
