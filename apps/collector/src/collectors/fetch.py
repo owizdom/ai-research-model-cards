@@ -3,6 +3,9 @@ from __future__ import annotations
 
 import asyncio
 import httpx
+
+from packages.pipeline_config import HTTP_TIMEOUT_BULK_S
+
 from .base import (
     CollectedDocument,
     ContentTypeMismatch,
@@ -61,7 +64,7 @@ async def fetch_all(concurrency: int = 5) -> list[CollectedDocument]:
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.5",
     }
-    async with httpx.AsyncClient(timeout=60.0, headers=headers, follow_redirects=True) as client:
+    async with httpx.AsyncClient(timeout=HTTP_TIMEOUT_BULK_S, headers=headers, follow_redirects=True) as client:
         results = await asyncio.gather(*[_fetch(s, client) for s in SOURCES], return_exceptions=True)
 
     return [r for r in results if isinstance(r, CollectedDocument)]
