@@ -1,6 +1,6 @@
 """Scheduled collection jobs."""
 import asyncio
-from packages.pipeline_config import STUCK_RUN_THRESHOLD_MIN
+from packages.pipeline_config import HTTP_TIMEOUT_BULK_S, STUCK_RUN_THRESHOLD_MIN
 from ..collectors.fetch import fetch_all
 from ..collectors.registry import SOURCES
 from ..pipeline.store import store_document, store_historical
@@ -65,7 +65,7 @@ async def collect_history(max_sources: int = 5) -> dict:
     tracked = [s for s in SOURCES if s.track_history][:max_sources]
     ingested = skipped = 0
 
-    async with httpx.AsyncClient(timeout=60.0) as client:
+    async with httpx.AsyncClient(timeout=HTTP_TIMEOUT_BULK_S) as client:
         async with AsyncSessionLocal() as db:
             for source in tracked:
                 result = await db.execute(select(Document).where(Document.slug == source.slug))
