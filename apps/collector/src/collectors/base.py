@@ -9,6 +9,8 @@ import httpx
 from bs4 import BeautifulSoup
 from markdownify import markdownify as md
 
+from packages.pipeline_config import HTTP_TIMEOUT_BULK_S, HTTP_TIMEOUT_DEFAULT_S
+
 USER_AGENT = "Mozilla/5.0 AI-Safety-Research-Bot/1.0"
 DEFAULT_HEADERS = {"User-Agent": USER_AGENT, "Accept-Language": "en-US,en;q=0.9"}
 
@@ -71,7 +73,7 @@ def word_count(text: str) -> int:
 
 
 async def html_to_markdown(url: str, client: httpx.AsyncClient, selector: Optional[str] = None) -> str:
-    r = await client.get(url, headers=DEFAULT_HEADERS, follow_redirects=True, timeout=30.0)
+    r = await client.get(url, headers=DEFAULT_HEADERS, follow_redirects=True, timeout=HTTP_TIMEOUT_DEFAULT_S)
     r.raise_for_status()
     if looks_like_pdf(r.content) or "application/pdf" in r.headers.get("content-type", "").lower():
         raise ContentTypeMismatch(
@@ -95,7 +97,7 @@ async def html_to_markdown(url: str, client: httpx.AsyncClient, selector: Option
 
 async def pdf_to_text(url: str, client: httpx.AsyncClient) -> str:
     from pypdf import PdfReader
-    r = await client.get(url, headers=DEFAULT_HEADERS, follow_redirects=True, timeout=60.0)
+    r = await client.get(url, headers=DEFAULT_HEADERS, follow_redirects=True, timeout=HTTP_TIMEOUT_BULK_S)
     r.raise_for_status()
     reader = PdfReader(BytesIO(r.content))
     return "\n\n".join(p.extract_text() for p in reader.pages if p.extract_text())
