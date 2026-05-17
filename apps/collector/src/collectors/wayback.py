@@ -7,6 +7,8 @@ import httpx
 from bs4 import BeautifulSoup
 from markdownify import markdownify as md
 
+from packages.pipeline_config import HTTP_TIMEOUT_DEFAULT_S
+
 from .base import HistoricalVersion, clean_markdown, compute_hash, word_count, DEFAULT_HEADERS
 from .registry import Source
 
@@ -20,7 +22,7 @@ async def get_snapshots(url: str, client: httpx.AsyncClient, from_year: int = 20
         "filter": "statuscode:200", "from": f"{from_year}0101", "collapse": "digest",
     }
     try:
-        r = await client.get(CDX, params=params, headers=DEFAULT_HEADERS, timeout=30.0)
+        r = await client.get(CDX, params=params, headers=DEFAULT_HEADERS, timeout=HTTP_TIMEOUT_DEFAULT_S)
         r.raise_for_status()
         data = r.json()
         if not data or len(data) < 2:
@@ -33,7 +35,7 @@ async def get_snapshots(url: str, client: httpx.AsyncClient, from_year: int = 20
 
 
 async def fetch_snapshot(wayback_url: str, client: httpx.AsyncClient) -> str:
-    r = await client.get(wayback_url, headers=DEFAULT_HEADERS, follow_redirects=True, timeout=30.0)
+    r = await client.get(wayback_url, headers=DEFAULT_HEADERS, follow_redirects=True, timeout=HTTP_TIMEOUT_DEFAULT_S)
     r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
     for el in soup.select("#wm-ipp-base, #wm-ipp, .wb-autocomplete-suggestions"):
