@@ -11,6 +11,8 @@ import redis
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.pool import NullPool
 
+from packages.pipeline_config import REDIS_BLPOP_TIMEOUT_S
+
 EXTRACT_WORKERS = int(os.getenv("EXTRACT_WORKERS", "3"))
 
 
@@ -38,7 +40,7 @@ def embed_thread():
 
     r = _redis()
     while True:
-        item = r.blpop("embed_jobs", timeout=5)
+        item = r.blpop("embed_jobs", timeout=REDIS_BLPOP_TIMEOUT_S)
         if item is None:
             continue
         try:
@@ -62,7 +64,7 @@ def extract_thread():
 
     r = _redis()
     while True:
-        item = r.blpop("extract_jobs", timeout=5)
+        item = r.blpop("extract_jobs", timeout=REDIS_BLPOP_TIMEOUT_S)
         if item is None:
             continue
         try:
