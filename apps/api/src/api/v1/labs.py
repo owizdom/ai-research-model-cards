@@ -3,12 +3,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, text
 from src.core.deps import get_db
 from src.schemas.document import LabRead
+from src.schemas.labs import LabCoveragePoint, LabDetail, LabDocumentItem, LabSummary
 from packages.db.models import Lab, Document
 
 router = APIRouter()
 
 
-@router.get("", response_model=list[dict])
+@router.get("", response_model=list[LabSummary])
 async def list_labs(db: AsyncSession = Depends(get_db)):
     result = await db.execute(
         select(Lab, func.count(Document.id).label("document_count"))
@@ -17,7 +18,7 @@ async def list_labs(db: AsyncSession = Depends(get_db)):
         .order_by(Lab.name)
     )
     return [
-        {**LabRead.model_validate(lab).model_dump(), "document_count": count}
+        LabSummary(**LabRead.model_validate(lab).model_dump(), document_count=count)
         for lab, count in result.all()
     ]
 
