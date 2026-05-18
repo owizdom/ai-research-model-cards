@@ -36,6 +36,11 @@ data/exports/
 # Generated reports
 reports/
 
+# Chart outputs — regeneratable from the Python builders in charts/
+charts/scorecards/
+charts/card_mockup_*.png
+charts/data/article data/_card_text_cache/
+
 # OS
 .DS_Store
 Thumbs.db
