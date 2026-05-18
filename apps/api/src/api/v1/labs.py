@@ -42,7 +42,7 @@ async def get_lab(lab_slug: str, db: AsyncSession = Depends(get_db)):
     )
 
 
-@router.get("/{lab_slug}/coverage", response_model=list[dict])
+@router.get("/{lab_slug}/coverage", response_model=list[LabCoveragePoint])
 async def get_lab_coverage(lab_slug: str, db: AsyncSession = Depends(get_db)):
     sql = text("""
         SELECT tc.slug, tc.name,
@@ -59,6 +59,11 @@ async def get_lab_coverage(lab_slug: str, db: AsyncSession = Depends(get_db)):
     """)
     result = await db.execute(sql, {"lab_slug": lab_slug})
     return [
-        {"slug": r.slug, "name": r.name, "score": round(float(r.max_score), 4), "coverage_depth": r.depth or "none"}
+        LabCoveragePoint(
+            slug=r.slug,
+            name=r.name,
+            score=round(float(r.max_score), 4),
+            coverage_depth=r.depth or "none",
+        )
         for r in result.fetchall()
     ]
