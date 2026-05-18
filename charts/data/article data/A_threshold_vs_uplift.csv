@@ -1,0 +1,15 @@
+lab,document_slug,release_date,risk_category,framework,threshold_value,threshold_unit,measured_value,measured_unit,source_quote,confidence
+anthropic,anthropic_37_card,2025-02-24,bio_uplift,ASL-3 / RSP,2.8,x_uplift,2.1,x_uplift,"2.1x uplift, below the 2.8x acceptable-risk bound",high (quoted in card)
+anthropic,anthropic_claude4_card,2025-05-22,bio_uplift,ASL-3 / RSP,2.8,x_uplift,2.4,x_uplift,approaching the threshold,med (paraphrased)
+anthropic,anthropic_opus45_card,2025-11-24,bio_uplift,ASL-3 / RSP,2.8,x_uplift,2.65,x_uplift,elevated bio-uplift signal; under threshold,med (estimate from card prose)
+anthropic,anthropic_sonnet46_card,2026-02-15,bio_uplift,ASL-3 / RSP,2.8,x_uplift,,,increasingly difficult to confidently rule out,high (verbatim)
+anthropic,anthropic_mythos_card,2026-04-08,agentic,RSP (subjective surveys),,,,,saturated; relying on subjective internal surveys,high (verbatim)
+openai,openai_o1_system_card,2024-12-05,bio,Preparedness Framework v1,Medium,preparedness_rating,Medium,preparedness_rating,Medium risk in biology,high (verbatim)
+openai,openai_o3_system_card,2025-04-16,bio,Preparedness Framework v1,High,preparedness_rating,Medium,preparedness_rating,approaching High threshold,med
+openai,openai_gpt5_system_card,2025-08-07,bio,Preparedness Framework v1,High,preparedness_rating,High,preparedness_rating,first model to reach High in biology,high
+openai,openai_gpt55_system_card,2026-04-23,cyber,Preparedness Framework v2,High,preparedness_rating,High,preparedness_rating,could not verify the effectiveness of the final configuration (UK AISI / SecureBio),high (verbatim)
+google,google_gemini_25_pro_card,2025-03-25,cbrn,Frontier Safety Framework v1,CCL-2,fsf_level,CCL-1,fsf_level,below CCL thresholds,med
+google,google_gemini_3_pro_card,2025-11-18,cbrn,Frontier Safety Framework v1.5,CCL-2,fsf_level,CCL-2,fsf_level,reached CCL-2; mitigations applied,med
+google,google_gemini_31_pro_card,2026-02-20,cbrn,Frontier Safety Framework v2,CCL-3,fsf_level,,,FSF evaluations only; capability data not in this card,med
+meta,meta_llama4_card,2025-04-05,bio,(no formal RSP-equivalent),,,,,qualitative red-teaming only,high (no numeric)
+xai,xai_grok4_card,2025-08-20,general,(no formal RSP-equivalent),,,,,qualitative red-team summary,high (no numeric)

@@ -1,0 +1,53 @@
+slug,lab,release_date,year,word_count,register,register_evidence,has_hedging,hedging_total_hits,hedging_distinct_phrases,hedging_phrases_matched,reassurance_total_hits,reassurance_distinct,threshold_total_hits,threshold_distinct,F_hallucination,F_bias,F_cot_unfaithfulness,F_reward_hacking,F_deception,F_benchmark_saturation,H_hallucination,H_bias_fairness,H_cyber,H_cbrn_weapons,H_child_safety,H_mental_health,H_agentic_autonomy,H_deception,H_reward_hacking,H_cot_faithfulness,V_ASL_level,V_PF_level,V_FSF_level
+openai_gpt4_system_card,openai,2023-03-14,2023,27859,threshold,threshold=3 > reassurance=0,0,0,0,,0,0,3,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,4,0
+anthropic_claude2_card,anthropic,2023-07-11,2023,5889,reassurance,"reassurance=1 >= threshold=0, hedging=0",0,0,0,,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,0,1,0,0,0,0,0,0
+meta_llama2_card,meta,2023-07-18,2023,956,threshold,threshold=3 > reassurance=0,0,0,0,,0,0,3,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+mistral_7b_model_card,mistral,2023-09-27,2023,745,reassurance,no signals — defaulting to reassurance,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+google_gemini_report,google,2023-12-06,2023,32283,threshold,threshold=3 > reassurance=0,1,1,1,saturated,0,0,3,2,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,3,0
+meta_llamaguard_card,meta,2023-12-07,2023,,reassurance,no signals — defaulting to reassurance,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0
+google_gemini_1_5_report,google,2024-02-15,2024,64551,threshold,threshold=2 > reassurance=0,0,0,0,,0,0,2,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+anthropic_model_card,anthropic,2024-03-04,2024,14089,threshold,threshold=9 > reassurance=4,0,0,0,,4,1,9,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,0,0,3,0,0
+mistral_mixtral_model_card,mistral,2024-04-17,2024,810,reassurance,no signals — defaulting to reassurance,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+meta_llama3_model_card,meta,2024-04-18,2024,1191,reassurance,no signals — defaulting to reassurance,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+mistral_codestral_blog,mistral,2024-05-29,2024,1235,reassurance,no signals — defaulting to reassurance,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+anthropic_35_addendum,anthropic,2024-06-20,2024,2948,threshold,threshold=4 > reassurance=1,0,0,0,,1,1,4,1,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,3,0,0
+meta_llama3_paper,meta,2024-07-23,2024,53027,threshold,threshold=6 > reassurance=0,1,1,1,saturated,0,0,6,2,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,4,0
+meta_llama31_card,meta,2024-07-23,2024,3304,threshold,threshold=2 > reassurance=0,0,0,0,,0,0,2,1,0,1,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,4,0
+mistral_large_2_blog,mistral,2024-07-24,2024,979,reassurance,no signals — defaulting to reassurance,0,0,0,,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0
+openai_gpt4o_system_card,openai,2024-08-08,2024,11624,threshold,threshold=18 > reassurance=0,1,1,1,saturated,0,0,18,2,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,3,0
+meta_llama32_card,meta,2024-09-25,2024,4158,threshold,threshold=11 > reassurance=0,0,0,0,,0,0,11,2,0,1,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,4,0
+meta_llamaguard3_card,meta,2024-09-25,2024,,reassurance,no signals — defaulting to reassurance,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0
+anthropic_35h_addendum,anthropic,2024-10-22,2024,5793,threshold,threshold=3 > reassurance=1,0,0,0,,1,1,3,1,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,3,0,0
+openai_o1_system_card,openai,2024-12-05,2024,17410,threshold,threshold=25 > reassurance=0,1,1,1,saturated,0,0,25,2,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,3,0
+meta_responsible_use,meta,2024-12-06,2024,2572,threshold,threshold=2 > reassurance=0,0,0,0,,0,0,2,1,0,1,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,4,0
+google_gemini_2_card,google,2024-12-11,2024,1529,threshold,threshold=2 > reassurance=0,0,0,0,,0,0,2,1,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0
+openai_operator_card,openai,2025-01-23,2025,5291,threshold,threshold=4 > reassurance=0,0,0,0,,0,0,4,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,0,0,0,3,0
+mistral_small_3_blog,mistral,2025-01-30,2025,957,reassurance,"reassurance=1 >= threshold=0, hedging=0",0,0,0,,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0
+mistral_small_3_hf_card,mistral,2025-01-30,2025,1740,reassurance,"reassurance=1 >= threshold=0, hedging=0",0,0,0,,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+openai_o3mini_card,openai,2025-02-10,2025,12135,threshold,threshold=28 > reassurance=0,0,0,0,,0,0,28,3,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,3,0
+anthropic_37_card,anthropic,2025-02-24,2025,17827,hedging,hedging=2 hits,1,2,1,saturated,2,1,28,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,0,0
+openai_gpt45_system_card,openai,2025-02-27,2025,9853,threshold,threshold=13 > reassurance=0,1,1,1,saturated,0,0,13,3,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,3,0
+google_gemini_25_pro_card,google,2025-03-25,2025,7182,hedging,hedging=3 hits,1,3,3,cannot rule out; can ?not rule out; saturated,4,1,6,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+meta_llama4_card,meta,2025-04-05,2025,3165,threshold,threshold=3 > reassurance=0,0,0,0,,0,0,3,1,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,4,0
+google_gemini_25_card,google,2025-04-09,2025,2883,threshold,threshold=2 > reassurance=0,0,0,0,,0,0,2,1,1,0,0,0,0,0,1,0,1,0,1,1,1,0,0,0,0,0,0
+openai_o3_system_card,openai,2025-04-16,2025,9945,threshold,threshold=5 > reassurance=0,1,1,1,saturated,0,0,5,2,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,3,0
+anthropic_claude4_card,anthropic,2025-05-22,2025,33237,hedging,hedging=7 hits,1,7,5,cannot rule out; can ?not rule out; we are uncertain; unable to (?:verify|confirm|rule out); saturated,6,2,94,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,4,0
+google_gemini_25dt_card,google,2025-08-01,2025,6313,hedging,hedging=6 hits,1,6,2,cannot rule out; can ?not rule out,5,2,6,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,0,0,0,0
+anthropic_opus41_card,anthropic,2025-08-05,2025,5271,hedging,hedging=6 hits,1,6,1,saturated,1,1,28,4,0,1,0,1,1,1,0,1,1,1,1,0,1,1,1,0,4,4,0
+openai_gpt5_system_card,openai,2025-08-07,2025,20412,hedging,hedging=2 hits,1,2,2,cannot confidently; saturated,0,0,18,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,3,0
+xai_grok4_card,xai,2025-08-20,2025,3482,threshold,threshold=2 > reassurance=0,0,0,0,,0,0,2,1,0,1,0,0,1,0,0,1,1,1,1,1,1,1,0,0,0,1,0
+xai_grok4_fast_card,xai,2025-09-19,2025,2994,threshold,threshold=1 > reassurance=0,0,0,0,,0,0,1,1,0,1,0,0,1,0,0,1,1,1,1,1,1,1,0,0,0,1,0
+anthropic_sonnet45_card,anthropic,2025-09-29,2025,37364,hedging,hedging=4 hits,1,4,3,cannot rule out; can ?not rule out; saturated,8,3,66,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,4,3,0
+anthropic_haiku45_card,anthropic,2025-10-15,2025,10325,hedging,hedging=2 hits,1,2,1,saturated,3,2,25,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,4,3,0
+openai_gpt51_system_card,openai,2025-11-12,2025,1340,threshold,threshold=3 > reassurance=0,1,1,1,saturated,0,0,3,2,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,3,0
+xai_grok41_card,xai,2025-11-17,2025,2243,reassurance,"reassurance=1 >= threshold=0, hedging=0",0,0,0,,1,1,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0
+google_gemini_3_pro_card,google,2025-11-18,2025,2158,threshold,threshold=4 > reassurance=0,0,0,0,,0,0,4,2,1,0,0,0,0,0,1,0,1,1,1,1,1,0,0,0,0,0,0
+anthropic_opus45_card,anthropic,2025-11-24,2025,38212,hedging,hedging=9 hits,1,9,4,cannot rule out; can ?not rule out; unable to (?:verify|confirm|rule out); saturated,10,4,50,3,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,4,3,0
+openai_gpt52_system_card,openai,2025-12-15,2025,7212,hedging,hedging=2 hits,1,2,1,saturated,0,0,6,2,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,3,0
+google_gemini_3_card,google,2025-12-15,2025,1070,threshold,threshold=2 > reassurance=0,0,0,0,,0,0,2,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0
+openai_gpt53_codex_card,openai,2026-01-20,2026,10850,hedging,hedging=9 hits,1,9,3,cannot rule out; can ?not rule out; saturated,6,2,23,2,0,0,0,0,1,1,0,0,1,1,1,1,1,1,0,0,0,4,0
+anthropic_sonnet46_card,anthropic,2026-02-15,2026,28336,threshold,threshold=35 > reassurance=4,1,1,1,saturated,4,2,35,3,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,4,3,0
+google_gemini_31_pro_card,google,2026-02-20,2026,1755,threshold,threshold=3 > reassurance=0,0,0,0,,0,0,3,2,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0
+anthropic_opus46_card,anthropic,2026-03-20,2026,53965,hedging,hedging=13 hits,1,13,2,we are uncertain; saturated,15,3,47,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,4,3,0
+anthropic_mythos_card,anthropic,2026-04-08,2026,65849,hedging,hedging=5 hits,1,5,2,we are uncertain; saturated,4,2,10,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,3,3,0
+openai_gpt55_system_card,openai,2026-04-23,2026,14496,hedging,hedging=3 hits,1,3,2,unable to (?:verify|confirm|rule out); saturated,2,2,7,2,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,4,0

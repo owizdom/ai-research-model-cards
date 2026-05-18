@@ -1,0 +1,13 @@
+lab,year,pipeline,n_cards,mean_recall_pct,recall_low_pct,recall_high_pct,n_evals_extracted,notes
+anthropic,2024,old (14k window),4,48,35,60,41,Long Anthropic system cards hit window; Claude 3 card 10/21 = 48% recall measured.
+openai,2024,old (14k window),5,78,70,85,92,GPT-4o card 7/9 = 78% recall measured.
+google,2024,old (14k window),3,70,60,78,46,Estimate; Gemini cards mostly fit window.
+meta,2024,old (14k window),5,72,65,80,58,Estimate; Llama cards medium-length.
+mistral,2024,old (14k window),3,85,80,90,18,Estimate; Mistral cards short.
+xai,2024,old (14k window),0,,,,0,No xAI cards in 2024.
+anthropic,2026,new (30k window),13,72,55,90,352,Re-extracted post-fix; Mythos preview 244 pages still strains pipeline.
+openai,2026,new (30k window),12,88,80,95,198,OpenAI cards now well within window.
+google,2026,new (30k window),9,84,75,92,167,Estimate; Gemini 3.1 Pro card is safety-only.
+meta,2026,new (30k window),8,80,72,88,260,Estimate.
+mistral,2026,new (30k window),6,90,85,95,49,Estimate; small cards fully covered.
+xai,2026,new (30k window),3,82,75,88,49,Estimate.

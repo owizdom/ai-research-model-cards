@@ -1,0 +1,6 @@
+n_labs_reporting,n_benchmarks,pct_of_total,example_benchmarks
+1,276,88.7,"agentdojo, agentharm, agentic_coding, agentic_harms_refusal_rate, agi_eval ... (+271 more)"
+2,24,7.7,"aime, arc_challenge, bbq, big_bench_hard, biolp_bench ... (+19 more)"
+3,7,2.3,"gsm8k, hellaswag, ifeval, mbpp, mgsm ... (+2 more)"
+4,3,1.0,"gpqa, humaneval, math"
+5,1,0.3,mmlu
