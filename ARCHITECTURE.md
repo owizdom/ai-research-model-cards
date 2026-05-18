@@ -138,7 +138,9 @@ Three things that bit us and aren't bugs per se — surface area worth knowing.
 
 ### 1. API↔TS shape mismatch on documents
 
-The Python `/api/v1/documents` endpoint returns documents with a nested `{lab: {id, slug, name, ...}}` object and `updated_at`. The TypeScript `Document` type in `apps/web/src/lib/types.ts` expects flat `lab_slug`, `lab_name`, `latest_version_date`, `version_count` fields that the API doesn't send. The frontend is mostly fine at runtime (TS isn't strict, and components read what's actually there) but the type declarations are aspirational. Three labs.py endpoints also use `response_model=dict` / `response_model=list[dict]` instead of real Pydantic schemas, so OpenAPI docs don't reflect the actual shape. **Tracked as a separate frontend pass; flagged here so nobody is surprised.**
+The Python `/api/v1/documents` endpoint returns documents with a nested `{lab: {id, slug, name, ...}}` object and `updated_at`. The TypeScript `Document` type in `apps/web/src/lib/types.ts` expects flat `lab_slug`, `lab_name`, `latest_version_date`, `version_count` fields that the API doesn't send. The frontend is mostly fine at runtime (TS isn't strict, and components read what's actually there) but the type declarations are aspirational. **Tracked as a separate frontend pass; flagged here so nobody is surprised.**
+
+(The sister problem — three labs.py routes using `response_model=dict` — was fixed on 2026-05-18; they now publish `LabSummary` / `LabDetail` / `LabCoveragePoint` in `apps/api/src/schemas/labs.py`.)
 
 ### 2. The 30 KB extraction window can miss the capability table
 
