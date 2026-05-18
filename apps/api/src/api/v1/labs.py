@@ -23,7 +23,7 @@ async def list_labs(db: AsyncSession = Depends(get_db)):
     ]
 
 
-@router.get("/{lab_slug}", response_model=dict)
+@router.get("/{lab_slug}", response_model=LabDetail)
 async def get_lab(lab_slug: str, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Lab).where(Lab.slug == lab_slug))
     lab = result.scalar_one_or_none()
@@ -33,10 +33,13 @@ async def get_lab(lab_slug: str, db: AsyncSession = Depends(get_db)):
         select(Document).where(Document.lab_id == lab.id).order_by(Document.doc_type)
     )
     documents = docs.scalars().all()
-    return {
+    return LabDetail(
         **LabRead.model_validate(lab).model_dump(),
-        "documents": [{"id": d.id, "slug": d.slug, "title": d.title, "doc_type": d.doc_type} for d in documents],
-    }
+        documents=[
+            LabDocumentItem(id=d.id, slug=d.slug, title=d.title, doc_type=d.doc_type)
+            for d in documents
+        ],
+    )
 
 
 @router.get("/{lab_slug}/coverage", response_model=list[dict])
