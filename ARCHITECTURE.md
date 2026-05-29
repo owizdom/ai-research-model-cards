@@ -132,6 +132,27 @@ Bumping is a migration-light op: change the constant, re-run extraction. Old row
 
 ---
 
+## Benchmark Policy Notes (EvalCards alignment)
+
+Each `BenchmarkDefinition` row has a `policy_note` JSON column (added in Alembic 0009 on 2026-05-29) following Figure 3 of the *EvaluationCards* paper (anonymized NeurIPS 2026 submission). The note is six fields:
+
+| Field | What it is |
+|---|---|
+| `measures` | Plain-language description of what the benchmark actually scores. 1-2 sentences. |
+| `caveat` | Known issues: saturation, contamination, label conflation, scaffold dependence. Rendered amber in the UI. |
+| `intended_for` | Audience and use case. |
+| `how_to_read` | Direction (higher/lower better) + scale context. |
+| `topic_tags` | 2-5 short lowercase tags for filtering and visual chrome. |
+| `sources` | `{label: url}` flat map. Standard labels: `paper`, `dataset`, `source`, `github`, `homepage`. |
+
+The notes are authored by hand in `data/benchmarks/benchmark_definitions.yaml` and seeded into the DB via `scripts/seed_db.py`. The seed script does a real upsert (it didn't before Phase 1 — it was insert-only, which silently dropped new fields). Only ~10 of the corpus's ~485 benchmarks have notes today; benchmarks without notes render as plain text in the eval table, no popover.
+
+Why hand-curated instead of LLM-generated: the *EvalCards* paper itself uses Auto-BenchmarkCards (LLM-generated) but acknowledges it misses judgment calls around saturation, contamination, and label conflation. We hand-write the top-N to keep editorial control over those framings, then can opt into auto-drafts for the long tail later.
+
+UI: `apps/web/src/components/ui/BenchmarkPopover.tsx` renders the note as a click-to-open popover portalled to `document.body` (escapes the eval table's `overflow-hidden`). Triggered by dotted-underlined benchmark names in `EvalTable.tsx`.
+
+---
+
 ## Known gotchas
 
 Three things that bit us and aren't bugs per se — surface area worth knowing.
