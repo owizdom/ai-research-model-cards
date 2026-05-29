@@ -102,6 +102,15 @@ export interface IntersectionSet {
 }
 
 // Eval types
+export interface BenchmarkPolicyNote {
+  measures: string | null;
+  caveat: string | null;
+  intended_for: string | null;
+  how_to_read: string | null;
+  topic_tags: string[];
+  sources: Record<string, string>;
+}
+
 export interface Benchmark {
   id: number;
   slug: string;
@@ -111,6 +120,11 @@ export interface Benchmark {
   metric_name: string | null;
   metric_unit: string | null;
   higher_is_better: boolean;
+  source_url?: string | null;
+  aliases?: string[] | null;
+  score_min?: number | null;
+  score_max?: number | null;
+  policy_note?: BenchmarkPolicyNote | null;
 }
 
 export interface GenerationBrief {
