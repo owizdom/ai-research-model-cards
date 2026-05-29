@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { EvalResult } from "@/lib/types";
+import { BenchmarkPopover } from "@/components/ui/BenchmarkPopover";
 
 function scoreColor(score: number): string {
   if (score >= 90) return "text-green-600";
@@ -70,7 +71,7 @@ export function EvalTable({ evals }: { evals: EvalResult[] }) {
                 : "bg-gray-100 text-gray-700";
               return (
               <tr key={e.id} className="border-b border-[var(--border)] last:border-0 hover:bg-[var(--surface-1)]">
-                <td className="px-4 py-3 font-medium">{e.benchmark.name}</td>
+                <td className="px-4 py-3"><BenchmarkPopover benchmark={e.benchmark} /></td>
                 <td className="px-4 py-3">
                   <span className="text-xs px-2 py-0.5 rounded bg-[var(--surface-2)] text-[var(--muted)]">
                     {e.benchmark.category}
