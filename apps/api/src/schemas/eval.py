@@ -1,6 +1,21 @@
 from datetime import datetime, date
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
+
+
+# Fields the EvalCards paper (Section 4.2) treats as the minimal-reproducibility
+# sub-schema. Our equivalent: what was evaluated rather than how it was sampled
+# (the paper checks temperature/max_tokens; we check shot_count/method/language/
+# training_state). Same intent — surface what's missing as content.
+_REPRODUCIBILITY_FIELDS: tuple[str, ...] = (
+    "shot_count", "method", "language", "training_state",
+)
+# Treat these as "not really reported" even when the column is non-null —
+# the extractor emits them as fallback strings rather than actual disclosures.
+_NULL_EQUIVALENT_VALUES: dict[str, set] = {
+    "method": {"none"},
+    "training_state": {"unknown"},
+}
 
 
 class BenchmarkPolicyNote(BaseModel):
@@ -44,6 +59,23 @@ class GenerationBrief(BaseModel):
     version_label: Optional[str] = None
 
 
+class ReproducibilityFlags(BaseModel):
+    """Per-result reproducibility signal (EvalCards paper Section 4.2).
+
+    Counts how many of the four method/setup fields are actually reported.
+    A row with `score = 1.0` is fully reproducible on these axes; a row at
+    `0.0` is a bare score with no methodology disclosed.
+    """
+    has_shot_count: bool
+    has_method: bool
+    has_language: bool
+    has_training_state: bool
+    missing_fields: list[str]
+    populated_count: int
+    total_count: int = 4
+    score: float
+
+
 class EvalResultRead(BaseModel):
     model_config = {"from_attributes": True}
     id: int
@@ -63,6 +95,28 @@ class EvalResultRead(BaseModel):
     is_self_reported: bool
     source_type: str
     extracted_at: datetime
+
+    @computed_field
+    @property
+    def reproducibility(self) -> ReproducibilityFlags:
+        """Derived per-row reproducibility signal. Computed on serialization."""
+        present = {}
+        for field in _REPRODUCIBILITY_FIELDS:
+            value = getattr(self, field)
+            null_equiv = _NULL_EQUIVALENT_VALUES.get(field, set())
+            present[field] = value is not None and value not in null_equiv
+        missing = [k for k, ok in present.items() if not ok]
+        populated = sum(present.values())
+        return ReproducibilityFlags(
+            has_shot_count=present["shot_count"],
+            has_method=present["method"],
+            has_language=present["language"],
+            has_training_state=present["training_state"],
+            missing_fields=missing,
+            populated_count=populated,
+            total_count=len(_REPRODUCIBILITY_FIELDS),
+            score=populated / len(_REPRODUCIBILITY_FIELDS),
+        )
 
 
 class FamilyRead(BaseModel):
