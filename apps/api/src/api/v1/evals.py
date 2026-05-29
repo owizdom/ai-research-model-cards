@@ -8,6 +8,7 @@ from src.schemas.eval import (
     BenchmarkRead, EvalResultRead, ComparisonResult, TimelinePoint, PerCardEvalPoint,
     CategoryTimelinePoint, FragmentationResponse, FragmentationBucket, LabUniqueness,
     FragmentationView, EvalsByDocumentResponse, ExtractionTriggerResponse,
+    DivergentReport, DivergentGroup, DivergenceSummary, DivergenceResponse,
 )
 from packages.db.models import (
     BenchmarkDefinition, EvalResult, ExtractionRun,
@@ -478,3 +479,163 @@ async def trigger_extraction(document_version_id: int, db: AsyncSession = Depend
     r = redis.Redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
     r.rpush("extract_jobs", json.dumps({"version_id": document_version_id}))
     return ExtractionTriggerResponse(version_id=document_version_id, status="queued")
+
+
+# Per-group caveat documenting the metric-path limitation. Until we land the
+# 5-level rollout hierarchy (paper Section 3.2), groups may include rows that
+# actually report different scoring rules on the same benchmark name — e.g.
+# MMLU-Pro / accuracy vs MMLU-Pro / CoT-correct. Surfaced in-band so consumers
+# don't read these as confirmed measurement disagreement.
+_METRIC_PATH_CAVEAT = (
+    "Score spread may reflect different scoring rules on the same benchmark "
+    "name (metric-path differentiation not yet implemented). Treat as a "
+    "possible-conflict signal rather than confirmed disagreement."
+)
+
+
+@router.get("/divergence", response_model=DivergenceResponse)
+async def divergence(
+    threshold: float = Query(
+        5.0, ge=0.0,
+        description="Minimum score spread to flag as divergent. Score units "
+                    "(percentage-points for the dominant '%' metric_unit benchmarks).",
+    ),
+    benchmark_slug: str | None = Query(None, description="Filter to one benchmark."),
+    model_name: str | None = Query(None, description="Filter to one model_name."),
+    limit: int = Query(50, ge=1, le=500),
+    db: AsyncSession = Depends(get_db),
+):
+    """Cross-source comparability signal (EvalCards paper Section 4.2).
+
+    Groups eval results by (benchmark_slug, model_name) tuples that have
+    at least 2 reports, then flags groups whose max-min score spread
+    exceeds `threshold`. For each flagged group, returns the contributing
+    reports plus which setup fields (variant/shot_count/method/language/
+    training_state) differ across them, and whether the disagreement
+    crosses the self-reported / third-party boundary.
+
+    Limitations:
+      - Without metric-path differentiation, groups may include rows
+        scored under different rules on the same benchmark name. Each
+        group carries `caveat` explaining this.
+      - Rows without `model_name` cannot be grouped and are ignored.
+    """
+    summary_sql = text("""
+        WITH g AS (
+            SELECT er.benchmark_id, er.model_name,
+                   MAX(er.score) - MIN(er.score) AS spread,
+                   COUNT(*) AS cnt,
+                   COUNT(DISTINCT er.is_self_reported) AS party_count
+            FROM eval_results er
+            WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
+            GROUP BY er.benchmark_id, er.model_name
+            HAVING COUNT(*) >= 2
+        )
+        SELECT
+            COUNT(*) AS total_pairs,
+            COUNT(*) FILTER (WHERE spread > :threshold) AS divergent,
+            COUNT(*) FILTER (WHERE spread > :threshold AND party_count > 1) AS cross_party_divergent,
+            COALESCE(AVG(spread) FILTER (WHERE spread > :threshold), 0)::float AS avg_spread
+        FROM g
+    """)
+    summary_row = (await db.execute(summary_sql, {"threshold": threshold})).first()
+
+    detail_sql = text("""
+        WITH grouped AS (
+            SELECT
+                er.id AS eval_id,
+                bd.slug AS benchmark_slug,
+                bd.name AS benchmark_name,
+                er.model_name,
+                er.score,
+                er.variant,
+                er.shot_count,
+                er.method,
+                er.language,
+                er.training_state,
+                er.is_self_reported,
+                dv.document_id,
+                d.title AS document_title,
+                l.slug AS lab_slug,
+                MAX(er.score) OVER (PARTITION BY er.benchmark_id, er.model_name) AS group_max,
+                MIN(er.score) OVER (PARTITION BY er.benchmark_id, er.model_name) AS group_min,
+                COUNT(*) OVER (PARTITION BY er.benchmark_id, er.model_name) AS group_count
+            FROM eval_results er
+            JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
+            JOIN document_versions dv ON er.document_version_id = dv.id
+            JOIN documents d ON dv.document_id = d.id
+            LEFT JOIN labs l ON d.lab_id = l.id
+            WHERE er.score IS NOT NULL
+              AND er.model_name IS NOT NULL
+              AND (:benchmark_slug::text IS NULL OR bd.slug = :benchmark_slug)
+              AND (:model_name::text IS NULL OR er.model_name = :model_name)
+        )
+        SELECT * FROM grouped
+        WHERE group_count >= 2
+          AND (group_max - group_min) > :threshold
+        ORDER BY (group_max - group_min) DESC, benchmark_slug, model_name, score DESC
+    """)
+    rows = (await db.execute(detail_sql, {
+        "threshold": threshold,
+        "benchmark_slug": benchmark_slug,
+        "model_name": model_name,
+    })).fetchall()
+
+    # Bucket rows by (benchmark_slug, model_name) preserving insertion order.
+    buckets: dict[tuple[str, str], list] = {}
+    for row in rows:
+        buckets.setdefault((row.benchmark_slug, row.model_name), []).append(row)
+
+    groups: list[DivergentGroup] = []
+    for (slug, model), group_rows in buckets.items():
+        reports = [
+            DivergentReport(
+                eval_id=r.eval_id,
+                document_id=r.document_id,
+                document_title=r.document_title,
+                lab_slug=r.lab_slug,
+                score=float(r.score),
+                variant=r.variant,
+                shot_count=r.shot_count,
+                method=r.method,
+                language=r.language,
+                training_state=r.training_state,
+                is_self_reported=r.is_self_reported,
+            )
+            for r in group_rows
+        ]
+        differing = [
+            f for f in ("variant", "shot_count", "method", "language", "training_state")
+            if len({getattr(r, f) for r in reports}) > 1
+        ]
+        cross_party = len({r.is_self_reported for r in reports}) > 1
+        groups.append(DivergentGroup(
+            benchmark_slug=slug,
+            benchmark_name=group_rows[0].benchmark_name,
+            model_name=model,
+            report_count=len(reports),
+            score_min=float(group_rows[0].group_min),
+            score_max=float(group_rows[0].group_max),
+            score_spread=float(group_rows[0].group_max - group_rows[0].group_min),
+            cross_party=cross_party,
+            differing_fields=differing,
+            reports=reports,
+            caveat=_METRIC_PATH_CAVEAT,
+        ))
+
+    # Apply limit after grouping (groups are already sorted by spread desc).
+    returned_groups = groups[:limit]
+
+    summary = DivergenceSummary(
+        threshold=threshold,
+        total_pairs_scanned=summary_row.total_pairs if summary_row else 0,
+        divergent_pairs=summary_row.divergent if summary_row else 0,
+        cross_party_divergent_pairs=summary_row.cross_party_divergent if summary_row else 0,
+        avg_spread_among_divergent=float(summary_row.avg_spread) if summary_row else 0.0,
+    )
+
+    return DivergenceResponse(
+        summary=summary,
+        groups=returned_groups,
+        returned=len(returned_groups),
+    )
