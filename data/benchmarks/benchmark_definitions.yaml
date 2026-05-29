@@ -1,5 +1,5 @@
 benchmarks:
-  # Knowledge
+  # ── Knowledge ─────────────────────────────────────────────────────────────
   - slug: mmlu
     name: MMLU
     category: knowledge
@@ -8,6 +8,27 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
     aliases: ["MMLU (5-shot)", "MMLU 5-shot"]
+    source_url: https://arxiv.org/abs/2009.03300
+    policy_note:
+      measures: |
+        57 multiple-choice exams spanning STEM, humanities, law, medicine, and
+        other domains. Probes broad factual recall and conceptual reasoning at
+        a level roughly comparable to U.S. high-school through graduate study.
+      caveat: |
+        Saturation: frontier models score above 88%, leaving little signal
+        between top systems. The dataset has acknowledged labeling errors and
+        ambiguities, and several papers document training-data contamination on
+        subsets of MMLU.
+      intended_for: |
+        Aggregate-knowledge comparisons between general-purpose LLMs. Not a
+        substitute for domain-specific evaluations.
+      how_to_read: |
+        Higher is better. Reported by every frontier lab in this corpus,
+        making it the most-cited benchmark in the dataset (5 labs agree on it).
+      topic_tags: [stem, humanities, law, medicine, knowledge]
+      sources:
+        paper: https://arxiv.org/abs/2009.03300
+        dataset: https://huggingface.co/datasets/cais/mmlu
 
   - slug: mmlu_pro
     name: MMLU-Pro
@@ -16,8 +37,28 @@ benchmarks:
     metric_name: accuracy
     metric_unit: "%"
     higher_is_better: true
+    source_url: https://arxiv.org/abs/2406.01574
+    policy_note:
+      measures: |
+        An enhanced MMLU with more challenging, reasoning-focused questions.
+        Expands answer choices from 4 to 10 and removes trivial or noisy items
+        found in the original.
+      caveat: |
+        Dataset contains some acknowledged mistakes per ongoing community
+        corrections. A subset of questions had answer-choice counts reduced
+        during manual review to remove unreasonable options.
+      intended_for: |
+        Researchers and developers comparing capability on harder
+        knowledge-plus-reasoning tasks where MMLU has saturated.
+      how_to_read: |
+        Higher is better. Designed to maintain headroom above MMLU; expect
+        scores 10-20 points below MMLU for the same model.
+      topic_tags: [stem, humanities, social_sciences, math, physics, chemistry]
+      sources:
+        paper: https://arxiv.org/abs/2406.01574
+        dataset: https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro
 
-  # Reasoning
+  # ── Reasoning ─────────────────────────────────────────────────────────────
   - slug: gpqa
     name: GPQA
     category: reasoning
@@ -26,6 +67,27 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
     aliases: ["GPQA Diamond", "GPQA-Diamond"]
+    source_url: https://arxiv.org/abs/2311.12022
+    policy_note:
+      measures: |
+        Graduate-level biology, physics, and chemistry questions written by
+        domain PhDs. Designed to be answerable by in-domain experts but
+        resistant to web search.
+      caveat: |
+        Only 448 questions in the full set; ±1-2 percentage points may not be
+        statistically meaningful. The Diamond subset (198 questions) is harder
+        and more commonly reported. Domain-expert pass rate is around 65%.
+      intended_for: |
+        Frontier-capability comparisons in scientific reasoning. Not
+        appropriate for routine model regression testing.
+      how_to_read: |
+        Higher is better. Common confusion: lab A reporting "GPQA" and lab B
+        reporting "GPQA Diamond" are different splits of the same benchmark
+        and are not directly comparable.
+      topic_tags: [biology, physics, chemistry, reasoning]
+      sources:
+        paper: https://arxiv.org/abs/2311.12022
+        dataset: https://huggingface.co/datasets/Idavidrein/gpqa
 
   - slug: arc_challenge
     name: ARC-Challenge
@@ -43,6 +105,24 @@ benchmarks:
     metric_name: accuracy
     metric_unit: "%"
     higher_is_better: true
+    source_url: https://arxiv.org/abs/1905.07830
+    policy_note:
+      measures: |
+        Multiple-choice sentence-completion tasks designed to require
+        commonsense reasoning, derived adversarially against language models
+        of the 2019 era.
+      caveat: |
+        Now thoroughly saturated by frontier models (>95%) and heavily
+        contaminated in pretraining corpora. Largely retired from frontier
+        reporting but still appears in legacy comparisons.
+      intended_for: |
+        Legacy comparison only. Not informative for current frontier models.
+      how_to_read: |
+        Higher is better. Treat with skepticism when comparing 2024+ models;
+        differences within the noise floor.
+      topic_tags: [commonsense, reasoning, legacy]
+      sources:
+        paper: https://arxiv.org/abs/1905.07830
 
   - slug: winogrande
     name: WinoGrande
@@ -60,7 +140,7 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
 
-  # Coding
+  # ── Coding ────────────────────────────────────────────────────────────────
   - slug: humaneval
     name: HumanEval
     category: coding
@@ -69,6 +149,27 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
     aliases: ["HumanEval+"]
+    source_url: https://arxiv.org/abs/2107.03374
+    policy_note:
+      measures: |
+        164 hand-written Python programming problems with docstring
+        specifications. Measures function-completion correctness via unit
+        tests.
+      caveat: |
+        Heavily contaminated in modern training corpora — multiple papers have
+        shown verbatim solution memorization. Saturation: frontier models
+        exceed 90%, narrowing useful comparison range. HumanEval+ extends the
+        test cases to catch superficial memorization.
+      intended_for: |
+        Coarse coding-capability check. Not a substitute for benchmarks like
+        SWE-bench that test multi-file engineering.
+      how_to_read: |
+        Higher is better. Metric is pass@1 by default (single sample, must
+        pass all tests).
+      topic_tags: [coding, python, function_completion]
+      sources:
+        paper: https://arxiv.org/abs/2107.03374
+        dataset: https://huggingface.co/datasets/openai/openai_humaneval
 
   - slug: swe_bench
     name: SWE-bench
@@ -78,6 +179,29 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
     aliases: ["SWE-bench Verified", "SWE-Bench"]
+    source_url: https://arxiv.org/abs/2310.06770
+    policy_note:
+      measures: |
+        2,294 real GitHub pull requests from 12 Python repositories, each
+        paired with the failing test that the PR resolves. The model must
+        produce a patch that makes the failing test pass. The Verified subset
+        (500 tasks) has had its setup manually validated.
+      caveat: |
+        Highly setup-dependent: scores vary by 10-20 points depending on the
+        agentic scaffold used (Aider, SWE-agent, Claude Code, etc.).
+        Self-reported scores often omit scaffold details, making direct
+        cross-lab comparison hard. Verified is the comparable subset; full
+        SWE-bench is not.
+      intended_for: |
+        Multi-file, real-world software-engineering capability comparison.
+        The de-facto frontier coding benchmark.
+      how_to_read: |
+        Higher is better. Always check whether the report says "SWE-bench
+        Verified" (comparable) or "SWE-bench" (varies by setup).
+      topic_tags: [coding, agentic, real_world, python]
+      sources:
+        paper: https://arxiv.org/abs/2310.06770
+        dataset: https://huggingface.co/datasets/princeton-nlp/SWE-bench
 
   - slug: mbpp
     name: MBPP
@@ -87,8 +211,25 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
     aliases: ["MBPP+"]
+    source_url: https://arxiv.org/abs/2108.07732
+    policy_note:
+      measures: |
+        974 short Python programming problems with brief descriptions and unit
+        tests. Function-completion benchmark similar to HumanEval but with
+        simpler, more introductory-level problems.
+      caveat: |
+        Saturated by frontier coding models. Heavy contamination concerns
+        given public availability of solutions. MBPP+ extends the test cases
+        to catch superficial memorization.
+      intended_for: |
+        Sister-benchmark to HumanEval for coding-capability sanity-checking.
+      how_to_read: |
+        Higher is better. Default metric is pass@1.
+      topic_tags: [coding, python, function_completion]
+      sources:
+        paper: https://arxiv.org/abs/2108.07732
 
-  # Math
+  # ── Math ──────────────────────────────────────────────────────────────────
   - slug: gsm8k
     name: GSM8K
     category: math
@@ -96,6 +237,26 @@ benchmarks:
     metric_name: accuracy
     metric_unit: "%"
     higher_is_better: true
+    source_url: https://arxiv.org/abs/2110.14168
+    policy_note:
+      measures: |
+        8,500 grade-school-level arithmetic word problems requiring 2-8
+        reasoning steps. Solutions are natural-language with a final numeric
+        answer.
+      caveat: |
+        Largely saturated by frontier models (>95%). Original dataset has
+        documented labeling errors. Now most useful as a low-cost sanity check
+        rather than a capability differentiator.
+      intended_for: |
+        Basic arithmetic-reasoning sanity check; regression testing of smaller
+        models.
+      how_to_read: |
+        Higher is better. Scored on exact match of the final numeric answer;
+        intermediate reasoning is not scored.
+      topic_tags: [math, arithmetic, word_problems]
+      sources:
+        paper: https://arxiv.org/abs/2110.14168
+        dataset: https://huggingface.co/datasets/openai/gsm8k
 
   - slug: math
     name: MATH
@@ -105,6 +266,26 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
     aliases: ["MATH (hard)", "MATH-500", "MATH 500"]
+    source_url: https://arxiv.org/abs/2103.03874
+    policy_note:
+      measures: |
+        12,500 competition mathematics problems (AMC, AIME, Putnam, etc.) with
+        worked-out solutions. The MATH-500 subset, the most commonly reported
+        variant, samples 500 problems for stable comparison.
+      caveat: |
+        Contamination is a real concern given the problems originate from
+        publicly indexed competition archives. Frontier scores have reached
+        99%+, leaving the benchmark near saturated.
+      intended_for: |
+        High-school-to-undergraduate math reasoning comparison.
+      how_to_read: |
+        Higher is better. Be alert for label conflation: "MATH" (full set),
+        "MATH-500" (sampled), and "MATH (hard)" (a difficulty filter) all
+        appear in cards and are not directly comparable.
+      topic_tags: [math, competition, reasoning]
+      sources:
+        paper: https://arxiv.org/abs/2103.03874
+        dataset: https://huggingface.co/datasets/hendrycks/competition_math
 
   - slug: aime
     name: AIME
@@ -115,7 +296,7 @@ benchmarks:
     higher_is_better: true
     aliases: ["AIME 2024", "AIME 2025", "AIME '24"]
 
-  # Safety
+  # ── Safety ────────────────────────────────────────────────────────────────
   - slug: truthfulqa
     name: TruthfulQA
     category: safety
@@ -140,7 +321,7 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: false
 
-  # Multilingual
+  # ── Multilingual ──────────────────────────────────────────────────────────
   - slug: mgsm
     name: MGSM
     category: multilingual
@@ -149,7 +330,7 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
 
-  # Instruction following
+  # ── Instruction following ─────────────────────────────────────────────────
   - slug: ifeval
     name: IFEval
     category: instruction_following
@@ -157,8 +338,27 @@ benchmarks:
     metric_name: accuracy
     metric_unit: "%"
     higher_is_better: true
+    source_url: https://arxiv.org/abs/2311.07911
+    policy_note:
+      measures: |
+        541 prompts paired with verifiable constraints (e.g., "respond in
+        exactly 3 paragraphs", "include the word X", "use only lowercase").
+        Scoring is rule-based: did the output satisfy each constraint?
+      caveat: |
+        Tests format compliance, not response quality. A model that answers
+        wrong but follows instructions perfectly scores well. Two reporting
+        variants exist (prompt-level vs. instruction-level strict accuracy)
+        and the variant is not always disclosed.
+      intended_for: |
+        Measuring whether a model can follow detailed formatting instructions.
+      how_to_read: |
+        Higher is better. Prefer the "strict" variant when comparing across
+        labs; "loose" gives partial credit and inflates scores.
+      topic_tags: [instruction_following, formatting, constraint_compliance]
+      sources:
+        paper: https://arxiv.org/abs/2311.07911
 
-  # Vision
+  # ── Vision ────────────────────────────────────────────────────────────────
   - slug: mmmu
     name: MMMU
     category: vision
@@ -167,7 +367,7 @@ benchmarks:
     metric_unit: "%"
     higher_is_better: true
 
-  # Arena
+  # ── Arena ─────────────────────────────────────────────────────────────────
   - slug: chatbot_arena_elo
     name: Chatbot Arena ELO
     category: arena
