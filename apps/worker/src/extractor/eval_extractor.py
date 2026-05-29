@@ -24,7 +24,7 @@ from packages.pipeline_config import (
 from .claude_cli import call_claude_cli
 from .parse import parse_extraction_json as _parse_extraction_json
 
-EXTRACTION_MODEL = os.getenv("EXTRACTION_MODEL", "opus")
+EXTRACTION_MODEL = os.getenv("EXTRACTION_MODEL", "sonnet")
 
 CLAUDE_PREFIXES = ("claude", "sonnet", "opus", "haiku", "anthropic/")
 

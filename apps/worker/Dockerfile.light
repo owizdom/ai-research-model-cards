@@ -22,6 +22,7 @@ RUN mkdir -p /root/.claude && \
 
 COPY data /app/data
 COPY packages/db /app/packages/db
+COPY packages/pipeline_config.py /app/packages/pipeline_config.py
 RUN pip install --no-cache-dir /app/packages/db
 
 # CPU-only PyTorch + sentence-transformers for embedding pipeline.
