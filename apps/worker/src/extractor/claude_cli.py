@@ -72,8 +72,14 @@ async def call_claude_cli(
         raise RuntimeError(f"claude CLI timed out after {timeout_s}s")
 
     if proc.returncode != 0:
+        # Claude CLI sometimes exits non-zero with empty stderr — pull stdout
+        # in too so we can see what the CLI was trying to say (it occasionally
+        # writes JSON errors to stdout instead of stderr).
         err = (stderr or b"").decode(errors="replace")[:300]
-        raise RuntimeError(f"claude CLI exit {proc.returncode}: {err}")
+        out = (stdout or b"").decode(errors="replace")[:300]
+        raise RuntimeError(
+            f"claude CLI exit {proc.returncode}: stderr={err!r} stdout={out!r}"
+        )
 
     try:
         data = json.loads(stdout.decode())
