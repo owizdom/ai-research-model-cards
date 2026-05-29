@@ -136,6 +136,17 @@ export interface GenerationBrief {
 
 export type EvalState = "scored" | "mentioned" | "cited";
 
+export interface ReproducibilityFlags {
+  has_shot_count: boolean;
+  has_method: boolean;
+  has_language: boolean;
+  has_training_state: boolean;
+  missing_fields: string[];
+  populated_count: number;
+  total_count: number;
+  score: number;
+}
+
 export interface EvalResult {
   id: number;
   benchmark: Benchmark;
@@ -154,6 +165,7 @@ export interface EvalResult {
   is_self_reported: boolean;
   source_type: string;
   extracted_at: string;
+  reproducibility?: ReproducibilityFlags;
 }
 
 export interface ModelFamily {
