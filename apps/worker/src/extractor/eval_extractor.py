@@ -24,7 +24,7 @@ from packages.pipeline_config import (
 from .claude_cli import call_claude_cli
 from .parse import parse_extraction_json as _parse_extraction_json
 
-EXTRACTION_MODEL = os.getenv("EXTRACTION_MODEL", "sonnet")
+EXTRACTION_MODEL = os.getenv("EXTRACTION_MODEL", "opus")
 
 CLAUDE_PREFIXES = ("claude", "sonnet", "opus", "haiku", "anthropic/")
 
@@ -67,14 +67,15 @@ EXTRACTION_SYSTEM_PROMPT = """You are a precise data extraction assistant. Extra
 
 For each benchmark reference, emit an object with these fields:
 
-- benchmark_name (TEXT, required): exact benchmark name, e.g. "MMLU", "HumanEval", "GSM8K", "MMLU-Pro", "SWE-bench Verified".
+- benchmark_name (TEXT, required): the canonical benchmark name with NO subset suffix, e.g. "MMLU" (not "MMLU-Pro"), "SWE-bench" (not "SWE-bench Verified"), "GPQA" (not "GPQA Diamond"). Put the subset in `split` instead.
 - score (FLOAT | null): the numerical score. null if state != "scored".
 - state (TEXT, required, one of): "scored" | "mentioned" | "cited".
 - shot_count (INT | null): 0 for zero-shot, 5 for 5-shot, etc. null if not stated.
-- method (TEXT | null): evaluation method. Allowed: "CoT", "self-consistency", "RAG", "extended-thinking", "majority-voting", "none". null if unspecified.
+- method (TEXT | null): evaluation methodology. Allowed: "CoT", "self-consistency", "RAG", "extended-thinking", "majority-voting", "with-tools", "no-tools", "pre-mitigation", "post-mitigation", "without-mitigations", "without-safeguards", "none". null if unspecified.
 - language (TEXT | null): for multilingual benchmarks, the evaluation language or "Average". "English" if explicitly English-only. null if not applicable.
 - training_state (TEXT | null): "pretrained", "instruction-tuned", "RLHF", "base", or "unknown". null if paper does not indicate.
-- metric (TEXT | null): "accuracy", "pass@1", "F1", "BLEU", "ELO", "exact-match", etc.
+- split (TEXT | null): sub-task or subset WITHIN the benchmark — read from prose context, table headers, OR surrounding section titles. Examples: "verified" (SWE-bench Verified), "diamond" (GPQA Diamond), "pro" (MMLU-Pro), "500" (MATH-500), "ambiguous"/"disambiguated" (BBQ), "magnification"/"acquisition"/"ideation"/"formulation"/"release" (OpenAI biorisk sub-tasks), "biology"/"physics"/"chemistry" (GPQA), "2024"/"2026" (year-anchored Olympiad). Lowercase, snake-case-ish. null if no subset/sub-task is identifiable.
+- metric_path (TEXT | null): the scoring rule applied. Examples: "accuracy", "pass_at_1", "pass_at_10", "cot_correct" (chain-of-thought scoring distinct from raw accuracy), "win_rate", "f1", "exact_match", "resolve_rate" (SWE-bench native), "elo". null if not explicitly stated. KEY: a single benchmark can be reported under multiple metric_paths in the same card — emit a row for each.
 - model_name (TEXT | null): the specific model this row refers to, e.g. "Claude 3.5 Sonnet", "GPT-4o", "Llama 3.1 70B". null only for generic "cited" rows.
 - context (TEXT, required, max 300 chars): surrounding text WITH the model name, benchmark name, and score all included when possible. This is the evidence snippet for downstream audit — if you only include the table caption, the extraction is not self-verifiable. When extracting from tables, include the header row + the specific data row. When extracting from prose, include the full sentence.
 
@@ -101,10 +102,20 @@ OUTPUT RULES:
 - If no benchmarks present, return {"results": []}.
 
 EXAMPLES:
-- "MMLU (5-shot) | 88.7" → {"benchmark_name":"MMLU","score":88.7,"state":"scored","shot_count":5,"method":"none","metric":"accuracy",...}
-- "We also ran preliminary evaluations on MMLU-Pro; full results forthcoming." → {"benchmark_name":"MMLU-Pro","score":null,"state":"mentioned",...}
+- "MMLU (5-shot) | 88.7" → {"benchmark_name":"MMLU","score":88.7,"state":"scored","shot_count":5,"method":"none","split":null,"metric_path":"accuracy","metric":"accuracy",...}
+- "MMLU-Pro CoT correct | 84.2" → {"benchmark_name":"MMLU","score":84.2,"state":"scored","split":"pro","method":"CoT","metric_path":"cot_correct","metric":"accuracy",...} — note benchmark_name is MMLU, "pro" is the split.
+- "SWE-bench Verified resolve rate: 72.5%" → {"benchmark_name":"SWE-bench","score":72.5,"split":"verified","metric_path":"resolve_rate","metric":"resolve_rate",...}
+- "GPQA Diamond accuracy: 84.2" → {"benchmark_name":"GPQA","score":84.2,"split":"diamond","metric_path":"accuracy",...}
+- "Long-form biological-risk questions, Magnification, pre-mitigation: 59.0" → {"benchmark_name":"long_form_biological_risk_questions","split":"magnification","method":"pre-mitigation",...}
+- "HumanEval pass@10: 95.2" → {"benchmark_name":"HumanEval","score":95.2,"split":null,"metric_path":"pass_at_10",...}
+- "We also ran preliminary evaluations on MMLU-Pro; full results forthcoming." → {"benchmark_name":"MMLU","split":"pro","score":null,"state":"mentioned",...}
 - "Prior work includes BIG-Bench [Srivastava 2022]" → {"benchmark_name":"BIG-Bench","score":null,"state":"cited","model_name":null,...}
 - "On MGSM avg: 91.6; Swahili: 83.4" → emit two rows with language="Average" and language="Swahili".
+
+SPLIT GUIDANCE — read prose context, not just table headers:
+- If the section heading says "SWE-bench Verified Results" and every cell underneath is a SWE-bench number, set split="verified" on every row from that table even if the cell header doesn't repeat "Verified".
+- If a card has separate "MMLU" and "MMLU-Pro" tables, emit benchmark_name="MMLU" for both and use split=null vs split="pro" to distinguish.
+- Mitigation tables (OpenAI-style) typically alternate pre-/post-mitigation columns under a single benchmark name. Read the column header for the mitigation state and put it in `method`.
 """
 
 EXTRACTION_USER_PROMPT = """Extract every benchmark/evaluation reference (scored, mentioned, or cited) from the model card content below. Return ONLY the JSON object with a "results" key.
@@ -369,6 +380,10 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                 language = (item.get("language") or "").strip() or None
                 training_state = (item.get("training_state") or "").strip().lower() or None
                 model_name = (item.get("model_name") or "").strip() or None
+                # v3 (Phase 5b): split and metric_path are first-class fields,
+                # read from prose context by the extractor itself.
+                split = (item.get("split") or "").strip().lower() or None
+                metric_path = (item.get("metric_path") or "").strip().lower() or None
 
                 legacy_variant_parts = []
                 if shot_count is not None:
@@ -379,6 +394,10 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     legacy_variant_parts.append(language)
                 if training_state and training_state != "unknown":
                     legacy_variant_parts.append(training_state)
+                if split:
+                    legacy_variant_parts.append(split)
+                if metric_path:
+                    legacy_variant_parts.append(metric_path)
                 variant = ", ".join(legacy_variant_parts) if legacy_variant_parts else "default"
 
                 # Idempotent insert via ON CONFLICT DO NOTHING — handles concurrent
@@ -398,6 +417,8 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                     method=method,
                     language=language,
                     training_state=training_state,
+                    split=split,
+                    metric_path=metric_path,
                     extraction_protocol_version=EXTRACTION_PROTOCOL_VERSION,
                     score_details={
                         "raw_text": item.get("context", ""),

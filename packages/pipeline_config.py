@@ -38,11 +38,14 @@ above."""
 
 # ── Extraction pipeline ──────────────────────────────────────────────────────
 
-EXTRACTION_PROTOCOL_VERSION: int = 2
+EXTRACTION_PROTOCOL_VERSION: int = 3
 """Bump when the extractor's output shape changes in a way that makes old
 rows non-comparable. Old rows stay; new rows insert under the new version
-so the UI can filter. Currently v2: structured state/shot_count/method
-columns + 300-char context snippet."""
+so the UI can filter. v3 (2026-05-29): adds explicit `split` and
+`metric_path` fields read from prose context (paper Section 3.2 hierarchy)
+and switches the default extractor model to Opus 4.7 for richer extraction
+of sub-task structure that Sonnet 4.6 historically flattened into the
+variant string."""
 
 WINDOW_SIZE_DEFAULT: int = 30_000
 """Char budget the section selector passes to the Claude CLI per extraction

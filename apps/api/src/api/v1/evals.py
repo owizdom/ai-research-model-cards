@@ -164,10 +164,20 @@ async def evals_by_document(document_id: int, db: AsyncSession = Depends(get_db)
     if not version:
         return EvalsByDocumentResponse(document_id=document_id, title=doc.title)
 
+    # Filter to the latest extraction_protocol_version for this doc. If the
+    # doc has any v3 (post-Phase-5b Opus re-extraction) rows, hide its v2 rows
+    # — otherwise we'd serve duplicates with slightly different variant
+    # strings. Extraction is atomic per doc, so MAX(version) per doc is safe.
+    latest_version_subq = (
+        select(func.max(EvalResult.extraction_protocol_version))
+        .where(EvalResult.document_version_id == version.id)
+        .scalar_subquery()
+    )
     evals_q = (
         select(EvalResult)
         .options(selectinload(EvalResult.benchmark), selectinload(EvalResult.generation))
         .where(EvalResult.document_version_id == version.id)
+        .where(EvalResult.extraction_protocol_version == latest_version_subq)
         .order_by(EvalResult.score.desc())
     )
     evals_result = await db.execute(evals_q)
@@ -531,14 +541,25 @@ async def divergence(
     # group; each path-tuple is its own unit of comparison, which is the paper's
     # Section 3.2 framing. NULL splits/metrics still group together (Postgres
     # GROUP BY treats NULLs as equal), so legacy rows roll forward cleanly.
+    # latest_per_doc strips v2 rows from any doc that has v3 rows. Without
+    # this filter, divergence would double-count when both extractions exist
+    # for the same source.
     summary_sql = text("""
-        WITH g AS (
+        WITH latest_per_doc AS (
+            SELECT er.* FROM eval_results er
+            WHERE er.extraction_protocol_version = (
+                SELECT MAX(er2.extraction_protocol_version)
+                FROM eval_results er2
+                WHERE er2.document_version_id = er.document_version_id
+            )
+        ),
+        g AS (
             SELECT er.benchmark_id, er.model_name, er.split, er.metric_path,
                    MAX(er.score) - MIN(er.score) AS spread,
                    COUNT(*) AS cnt,
                    COUNT(DISTINCT dv.document_id) AS doc_count,
                    COUNT(DISTINCT er.is_self_reported) AS party_count
-            FROM eval_results er
+            FROM latest_per_doc er
             JOIN document_versions dv ON er.document_version_id = dv.id
             WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
             GROUP BY er.benchmark_id, er.model_name, er.split, er.metric_path
@@ -554,11 +575,19 @@ async def divergence(
     summary_row = (await db.execute(summary_sql, {"threshold": threshold})).first()
 
     detail_sql = text("""
-        WITH group_stats AS (
+        WITH latest_per_doc AS (
+            SELECT er.* FROM eval_results er
+            WHERE er.extraction_protocol_version = (
+                SELECT MAX(er2.extraction_protocol_version)
+                FROM eval_results er2
+                WHERE er2.document_version_id = er.document_version_id
+            )
+        ),
+        group_stats AS (
             SELECT er.benchmark_id, er.model_name, er.split, er.metric_path,
                    MAX(er.score) - MIN(er.score) AS spread,
                    COUNT(DISTINCT dv.document_id) AS doc_count
-            FROM eval_results er
+            FROM latest_per_doc er
             JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
             JOIN document_versions dv ON er.document_version_id = dv.id
             WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
@@ -587,7 +616,7 @@ async def divergence(
             l.slug AS lab_slug,
             gs.spread AS group_spread,
             gs.doc_count AS group_doc_count
-        FROM eval_results er
+        FROM latest_per_doc er
         JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
         JOIN document_versions dv ON er.document_version_id = dv.id
         JOIN documents d ON dv.document_id = d.id
