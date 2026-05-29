@@ -525,9 +525,15 @@ async def divergence(
     # on long_form_biological_risk_questions × Magnification/Acquisition/...) flags
     # as "divergent" even though it's a within-document variance, not multi-source
     # disagreement. Paper Section 4.2 explicitly scopes the signal to cross-source.
+    # Phase 5a: group by the full hierarchy path — benchmark + model + split +
+    # metric_path. A (benchmark, model) split into different sub-tasks or scored
+    # by different metric rules no longer aggregates into a single "divergent"
+    # group; each path-tuple is its own unit of comparison, which is the paper's
+    # Section 3.2 framing. NULL splits/metrics still group together (Postgres
+    # GROUP BY treats NULLs as equal), so legacy rows roll forward cleanly.
     summary_sql = text("""
         WITH g AS (
-            SELECT er.benchmark_id, er.model_name,
+            SELECT er.benchmark_id, er.model_name, er.split, er.metric_path,
                    MAX(er.score) - MIN(er.score) AS spread,
                    COUNT(*) AS cnt,
                    COUNT(DISTINCT dv.document_id) AS doc_count,
@@ -535,7 +541,7 @@ async def divergence(
             FROM eval_results er
             JOIN document_versions dv ON er.document_version_id = dv.id
             WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
-            GROUP BY er.benchmark_id, er.model_name
+            GROUP BY er.benchmark_id, er.model_name, er.split, er.metric_path
             HAVING COUNT(DISTINCT dv.document_id) >= 2
         )
         SELECT
@@ -549,7 +555,7 @@ async def divergence(
 
     detail_sql = text("""
         WITH group_stats AS (
-            SELECT er.benchmark_id, er.model_name,
+            SELECT er.benchmark_id, er.model_name, er.split, er.metric_path,
                    MAX(er.score) - MIN(er.score) AS spread,
                    COUNT(DISTINCT dv.document_id) AS doc_count
             FROM eval_results er
@@ -558,7 +564,7 @@ async def divergence(
             WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
               AND (CAST(:benchmark_slug AS text) IS NULL OR bd.slug = :benchmark_slug)
               AND (CAST(:model_name AS text) IS NULL OR er.model_name = :model_name)
-            GROUP BY er.benchmark_id, er.model_name
+            GROUP BY er.benchmark_id, er.model_name, er.split, er.metric_path
             HAVING COUNT(DISTINCT dv.document_id) >= 2
               AND MAX(er.score) - MIN(er.score) > :threshold
         )
@@ -573,6 +579,8 @@ async def divergence(
             er.method,
             er.language,
             er.training_state,
+            er.split,
+            er.metric_path,
             er.is_self_reported,
             dv.document_id,
             d.title AS document_title,
@@ -586,6 +594,8 @@ async def divergence(
         LEFT JOIN labs l ON d.lab_id = l.id
         JOIN group_stats gs ON gs.benchmark_id = er.benchmark_id
                             AND gs.model_name = er.model_name
+                            AND gs.split IS NOT DISTINCT FROM er.split
+                            AND gs.metric_path IS NOT DISTINCT FROM er.metric_path
         WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
         ORDER BY gs.spread DESC, bd.slug, er.model_name, er.score DESC
     """)
@@ -595,13 +605,16 @@ async def divergence(
         "model_name": model_name,
     })).fetchall()
 
-    # Bucket rows by (benchmark_slug, model_name) preserving insertion order.
-    buckets: dict[tuple[str, str], list] = {}
+    # Bucket rows by the full path key — (benchmark, model, split, metric_path).
+    # Two reports on the same benchmark+model under different splits or scoring
+    # rules are now separate groups, not "divergent reports on the same thing".
+    buckets: dict[tuple, list] = {}
     for row in rows:
-        buckets.setdefault((row.benchmark_slug, row.model_name), []).append(row)
+        key = (row.benchmark_slug, row.model_name, row.split, row.metric_path)
+        buckets.setdefault(key, []).append(row)
 
     groups: list[DivergentGroup] = []
-    for (slug, model), group_rows in buckets.items():
+    for (slug, model, split, metric_path), group_rows in buckets.items():
         reports = [
             DivergentReport(
                 eval_id=r.eval_id,
@@ -614,10 +627,15 @@ async def divergence(
                 method=r.method,
                 language=r.language,
                 training_state=r.training_state,
+                split=r.split,
+                metric_path=r.metric_path,
                 is_self_reported=r.is_self_reported,
             )
             for r in group_rows
         ]
+        # Field-variance detection: split + metric_path are now constant within
+        # a group by construction, so they can't differ. Only the setup axes
+        # (variant + shot_count/method/language/training_state) can vary.
         differing = [
             f for f in ("variant", "shot_count", "method", "language", "training_state")
             if len({getattr(r, f) for r in reports}) > 1
@@ -628,6 +646,8 @@ async def divergence(
             benchmark_slug=slug,
             benchmark_name=group_rows[0].benchmark_name,
             model_name=model,
+            split=split,
+            metric_path=metric_path,
             report_count=len(reports),
             score_min=min(scores),
             score_max=max(scores),
@@ -635,7 +655,7 @@ async def divergence(
             cross_party=cross_party,
             differing_fields=differing,
             reports=reports,
-            caveat=_METRIC_PATH_CAVEAT,
+            caveat=_METRIC_PATH_CAVEAT if metric_path is None else None,
         ))
 
     # Apply limit after grouping (groups are already sorted by spread desc).

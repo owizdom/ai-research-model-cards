@@ -89,6 +89,8 @@ class EvalResultRead(BaseModel):
     method: Optional[str] = None
     language: Optional[str] = None
     training_state: Optional[str] = None
+    split: Optional[str] = None
+    metric_path: Optional[str] = None
     extraction_protocol_version: int = 1
     score_details: Optional[dict] = None
     extraction_confidence: Optional[float] = None
@@ -242,7 +244,8 @@ class ExtractionTriggerResponse(BaseModel):
 # ─── Divergence detection (EvalCards Section 4.2 comparability signal) ───────
 
 class DivergentReport(BaseModel):
-    """One contributing row inside a divergent (benchmark, model) group."""
+    """One contributing row inside a divergent (benchmark, model, split,
+    metric_path) group."""
     eval_id: int
     document_id: int
     document_title: Optional[str] = None
@@ -253,17 +256,21 @@ class DivergentReport(BaseModel):
     method: Optional[str] = None
     language: Optional[str] = None
     training_state: Optional[str] = None
+    split: Optional[str] = None
+    metric_path: Optional[str] = None
     is_self_reported: bool
 
 
 class DivergentGroup(BaseModel):
-    """A (benchmark, model_name) pair whose reports disagree above the
-    configured threshold. Lists every contributing report plus the
-    structured signals readers need to judge whether the disagreement
-    reflects a real measurement difference or just a setup difference."""
+    """A full-path (benchmark, model, split, metric_path) tuple whose reports
+    disagree above the configured threshold. As of Phase 5a, splits and
+    metric_paths are first-class — two reports of MMLU-Pro under different
+    metric_paths (e.g. accuracy vs cot_correct) no longer group together."""
     benchmark_slug: str
     benchmark_name: str
     model_name: str
+    split: Optional[str] = None
+    metric_path: Optional[str] = None
     report_count: int
     score_min: float
     score_max: float

@@ -52,7 +52,9 @@ def _parse_shot_count(variant: str) -> Optional[int]:
 # Order matters: longer / more specific patterns first.
 _METHOD_PATTERNS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"\bchain[\s-]of[\s-]thought\b", re.IGNORECASE), "CoT"),
-    (re.compile(r"\bCoT\b"), "CoT"),
+    # Don't match CoT when followed by "correct" — that's a metric_path, not a
+    # prompting method. e.g. "CoT correct" or "CoT-correct" on MMLU-Pro.
+    (re.compile(r"\bCoT\b(?![\s-]?correct)"), "CoT"),
     (re.compile(r"\bself[\s-]consistency\b", re.IGNORECASE), "self-consistency"),
     (re.compile(r"\bmajority[\s-]voting\b", re.IGNORECASE), "majority-voting"),
     (re.compile(r"\bmaj@\d+\b", re.IGNORECASE), "majority-voting"),
@@ -114,6 +116,75 @@ def _parse_training_state(variant: str) -> Optional[str]:
     return None
 
 
+# ── split (EvalCards Section 3.2 — sub-task / subcategory within a benchmark) ─
+# Splits are benchmark-specific. We recognize tokens that the extractor has
+# actually emitted into variant strings across the corpus. Anything else stays
+# null — splits we don't know about should reach the schema through the
+# extractor prompt (Phase 5b) rather than being guessed at by this parser.
+_SPLIT_PATTERNS: list[tuple[re.Pattern[str], str]] = [
+    # OpenAI biorisk benchmark sub-tasks (long_form_biological_risk_questions)
+    (re.compile(r"\bMagnification\b"), "magnification"),
+    (re.compile(r"\bAcquisition\b"), "acquisition"),
+    (re.compile(r"\bIdeation\b"), "ideation"),
+    (re.compile(r"\bFormulation\b"), "formulation"),
+    (re.compile(r"\bRelease\b"), "release"),
+    # BBQ-family eval modes
+    (re.compile(r"\bambiguous\b", re.IGNORECASE), "ambiguous"),
+    (re.compile(r"\bdisambiguated\b", re.IGNORECASE), "disambiguated"),
+    # SWE-bench curated subset
+    (re.compile(r"\bverified\b", re.IGNORECASE), "verified"),
+    # GPQA curated subset
+    (re.compile(r"\bDiamond\b"), "diamond"),
+    # Generic difficulty splits
+    (re.compile(r"\bhard\b", re.IGNORECASE), "hard"),
+    (re.compile(r"\boverall\b", re.IGNORECASE), "overall"),
+    # Year-anchored subsets (USAMO 2026, AIME 2024 etc.) — when the year follows
+    # an Olympiad/competition name, treat year as the split.
+    (re.compile(r"\b(?:USAMO|AIME|AMC|HMMT|Putnam)\s+(\d{4})\b"), r"\g<1>"),
+]
+
+
+def _parse_split(variant: str) -> Optional[str]:
+    for pattern, value in _SPLIT_PATTERNS:
+        m = pattern.search(variant)
+        if m:
+            # Allow backreferences (e.g. captured year).
+            return m.expand(value) if "\\" in value else value
+    return None
+
+
+# ── metric_path (EvalCards Section 3.2 — scoring rule) ───────────────────────
+_METRIC_PATH_PATTERNS: list[tuple[re.Pattern[str], str]] = [
+    (re.compile(r"\bpass@(\d+)\b", re.IGNORECASE), r"pass_at_\g<1>"),
+    (re.compile(r"\bCoT[\s-]?correct\b", re.IGNORECASE), "cot_correct"),
+    (re.compile(r"\bwin[\s-]rate\b", re.IGNORECASE), "win_rate"),
+    (re.compile(r"\bF1\b"), "f1"),
+    (re.compile(r"\bexact[\s-]match\b", re.IGNORECASE), "exact_match"),
+    (re.compile(r"\bresolve[\s-]rate\b", re.IGNORECASE), "resolve_rate"),
+    (re.compile(r"\belo\b", re.IGNORECASE), "elo"),
+]
+
+
+def _parse_metric_path(variant: str) -> Optional[str]:
+    for pattern, value in _METRIC_PATH_PATTERNS:
+        m = pattern.search(variant)
+        if m:
+            return m.expand(value) if "\\" in value else value
+    return None
+
+
+# ── mitigation states (paper-not-modeled axis; routed to method column) ──────
+# pre/post-mitigation and the "without mitigations / without safeguards" tokens
+# are methodology choices about how the model was evaluated, not splits or
+# metrics. They go to `method` so they integrate with the existing pill UI.
+_MITIGATION_PATTERNS: list[tuple[re.Pattern[str], str]] = [
+    (re.compile(r"\bpre[\s-]mitigation\b", re.IGNORECASE), "pre-mitigation"),
+    (re.compile(r"\bpost[\s-]mitigation\b", re.IGNORECASE), "post-mitigation"),
+    (re.compile(r"\bwithout\s+mitigations?\b", re.IGNORECASE), "without-mitigations"),
+    (re.compile(r"\bwithout\s+safeguards?\b", re.IGNORECASE), "without-safeguards"),
+]
+
+
 # ── public entry point ───────────────────────────────────────────────────────
 def parse_variant(variant: Optional[str]) -> dict:
     """Parse a variant string. Returns a dict with only confidently-parsed keys.
@@ -132,7 +203,14 @@ def parse_variant(variant: Optional[str]) -> dict:
     shot = _parse_shot_count(variant)
     if shot is not None:
         out["shot_count"] = shot
+    # Method: first the explicit sampling/prompting tokens, then fall back to
+    # mitigation state (these are method-like; they describe HOW the eval ran).
     method = _parse_method(variant)
+    if method is None:
+        for pattern, value in _MITIGATION_PATTERNS:
+            if pattern.search(variant):
+                method = value
+                break
     if method is not None:
         out["method"] = method
     lang = _parse_language(variant)
@@ -141,4 +219,10 @@ def parse_variant(variant: Optional[str]) -> dict:
     ts = _parse_training_state(variant)
     if ts is not None:
         out["training_state"] = ts
+    split = _parse_split(variant)
+    if split is not None:
+        out["split"] = split
+    metric_path = _parse_metric_path(variant)
+    if metric_path is not None:
+        out["metric_path"] = metric_path
     return out

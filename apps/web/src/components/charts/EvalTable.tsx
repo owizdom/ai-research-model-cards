@@ -172,6 +172,14 @@ export function EvalTable({
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap items-center gap-2">
                     <BenchmarkPopover benchmark={e.benchmark} />
+                    {e.split && (
+                      <span
+                        title={`Split: ${e.split.replace(/_/g, " ")} — sub-task or subset within ${e.benchmark.name} (EvalCards hierarchy level)`}
+                        className="text-[10px] px-1.5 py-0.5 rounded bg-violet-50 text-violet-700 font-mono"
+                      >
+                        / {e.split}
+                      </span>
+                    )}
                     {conflict && <ConflictBadge group={conflict} />}
                   </div>
                 </td>
@@ -186,9 +194,19 @@ export function EvalTable({
                   </span>
                 </td>
                 <td className={`px-4 py-3 text-right font-mono font-semibold ${e.score !== null && e.score !== undefined ? scoreColor(e.score) : "text-[var(--muted)]"}`}>
-                  {e.score !== null && e.score !== undefined
-                    ? `${e.score.toFixed(1)}${e.benchmark.metric_unit === "%" ? "%" : ""}`
-                    : "—"}
+                  <div>
+                    {e.score !== null && e.score !== undefined
+                      ? `${e.score.toFixed(1)}${e.benchmark.metric_unit === "%" ? "%" : ""}`
+                      : "—"}
+                  </div>
+                  {e.metric_path && (
+                    <div
+                      title={`Scoring rule: ${e.metric_path.replace(/_/g, " ")} (EvalCards metric_path)`}
+                      className="text-[9px] text-[var(--muted)] font-normal uppercase tracking-wide mt-0.5"
+                    >
+                      {e.metric_path.replace(/_/g, " ")}
+                    </div>
+                  )}
                 </td>
                 <td className="px-4 py-3"><SetupCell e={e} /></td>
                 <td className="px-4 py-3">

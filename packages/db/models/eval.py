@@ -65,6 +65,8 @@ class EvalResult(Base):
     method: Mapped[Optional[str]] = mapped_column(String)
     language: Mapped[Optional[str]] = mapped_column(String)
     training_state: Mapped[Optional[str]] = mapped_column(String)
+    split: Mapped[Optional[str]] = mapped_column(String, index=True)
+    metric_path: Mapped[Optional[str]] = mapped_column(String, index=True)
     extraction_protocol_version: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
     score_details: Mapped[Optional[dict]] = mapped_column(JSON)
     extraction_confidence: Mapped[Optional[float]] = mapped_column(Float)

@@ -49,19 +49,22 @@ def main(apply_changes: bool) -> None:
     with psycopg2.connect(DB_URL) as conn:
         with conn.cursor() as cur:
             # Select rows whose variant might contain extractable info.
+            # Phase 5a expanded the target columns to include split + metric_path.
             cur.execute("""
-                SELECT id, variant, shot_count, method, language, training_state
+                SELECT id, variant, shot_count, method, language, training_state,
+                       split, metric_path
                 FROM eval_results
                 WHERE variant IS NOT NULL AND variant != 'default'
                   AND (shot_count IS NULL OR method IS NULL
-                       OR language IS NULL OR training_state IS NULL)
+                       OR language IS NULL OR training_state IS NULL
+                       OR split IS NULL OR metric_path IS NULL)
             """)
             rows = cur.fetchall()
             candidates = len(rows)
             print(f"candidate rows (variant set + at least one NULL): {candidates}")
 
             updates: list[tuple] = []
-            for row_id, variant, shot, method, lang, ts in rows:
+            for row_id, variant, shot, method, lang, ts, split, metric_path in rows:
                 parsed = parse_variant(variant)
                 if not parsed:
                     parsed_zero_fields += 1
@@ -78,6 +81,10 @@ def main(apply_changes: bool) -> None:
                     to_set["language"] = parsed["language"]
                 if ts is None and "training_state" in parsed:
                     to_set["training_state"] = parsed["training_state"]
+                if split is None and "split" in parsed:
+                    to_set["split"] = parsed["split"]
+                if metric_path is None and "metric_path" in parsed:
+                    to_set["metric_path"] = parsed["metric_path"]
 
                 if not to_set:
                     # Parser found something but every relevant column was already populated.

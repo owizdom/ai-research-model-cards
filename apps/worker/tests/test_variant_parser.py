@@ -122,38 +122,22 @@ def test_rlhf_case_insensitive():
 
 # ── critical NEGATIVES: don't pollute fields with bad guesses ────────────────
 
-def test_metric_string_not_method():
-    """pass@1 is a metric name, NOT a method. The extractor stashes it in
-    variant sometimes — we must not misclassify it as a setup field."""
-    assert parse_variant("pass@1") == {}
+def test_pass_at_n_is_metric_not_method():
+    """pass@1 → metric_path, not method. (Phase 5a expands the parser to
+    capture metric_paths it ignored in Phase 4.)"""
+    assert parse_variant("pass@1") == {"metric_path": "pass_at_1"}
 
 
-def test_subset_name_no_match():
-    """'Magnification, pre-mitigation' is a sub-task name (EvalCards split)
-    plus mitigation state. None of our four fields applies. Stay silent."""
-    assert parse_variant("Magnification, pre-mitigation") == {}
-    assert parse_variant("Acquisition, post-mitigation") == {}
-
-
-def test_ambiguous_words_no_match():
-    """Single-word variants we can't confidently map."""
-    assert parse_variant("ambiguous") == {}
-    assert parse_variant("disambiguated") == {}
-    assert parse_variant("hard") == {}
-    assert parse_variant("overall") == {}
+def test_truly_ambiguous_still_silent():
+    """The remaining ambiguous strings should still produce nothing — they're
+    eval-mode tokens or safety classifications we can't generalize."""
     assert parse_variant("not_unsafe") == {}
     assert parse_variant("not_overrefuse") == {}
-
-
-def test_comparison_variants_no_match():
-    """Comparative descriptors aren't setup fields."""
-    assert parse_variant("vs Gemini 2.5 Flash") == {}
+    assert parse_variant("prompt engineered") == {}
+    assert parse_variant("single-turn") == {}
+    assert parse_variant("side-by-side") == {}
     assert parse_variant("relative to Gemini 1.5 Pro 002") == {}
-    assert parse_variant("win rate vs Claude 3.5 Sonnet") == {}
-
-
-def test_subset_year_no_match():
-    assert parse_variant("USAMO 2026") == {}
+    assert parse_variant("vs Gemini 2.5 Flash") == {}
 
 
 def test_default_and_empty():
@@ -184,3 +168,112 @@ def test_compound_realistic():
 def test_8shot_cot_observed():
     """Observed in prod, 9 times."""
     assert parse_variant("8-shot, CoT") == {"shot_count": 8, "method": "CoT"}
+
+
+# ── split (Phase 5a) ─────────────────────────────────────────────────────────
+
+def test_split_biorisk_subtasks():
+    """OpenAI's biological-risk benchmark sub-tasks. The single biggest cluster
+    of unparseable variants in our corpus before Phase 5a."""
+    assert parse_variant("Magnification, pre-mitigation") == {
+        "split": "magnification",
+        "method": "pre-mitigation",
+    }
+    assert parse_variant("Acquisition, post-mitigation") == {
+        "split": "acquisition",
+        "method": "post-mitigation",
+    }
+    assert parse_variant("Ideation, pre-mitigation") == {
+        "split": "ideation",
+        "method": "pre-mitigation",
+    }
+
+
+def test_split_bbq_modes():
+    assert parse_variant("ambiguous") == {"split": "ambiguous"}
+    assert parse_variant("disambiguated") == {"split": "disambiguated"}
+
+
+def test_split_swe_bench_verified():
+    """SWE-bench Verified is the curated 500-task subset — a different split
+    from full SWE-bench. Critical for resolving the 28-point divergence."""
+    assert parse_variant("Verified") == {"split": "verified"}
+
+
+def test_split_gpqa_diamond():
+    assert parse_variant("Diamond") == {"split": "diamond"}
+
+
+def test_split_difficulty_descriptors():
+    assert parse_variant("hard") == {"split": "hard"}
+    assert parse_variant("overall") == {"split": "overall"}
+
+
+def test_split_year_anchored_subset():
+    """USAMO 2026 — year acts as the split label, not the year of report."""
+    assert parse_variant("USAMO 2026") == {"split": "2026"}
+    assert parse_variant("AIME 2024") == {"split": "2024"}
+
+
+# ── metric_path (Phase 5a) ───────────────────────────────────────────────────
+
+def test_metric_pass_at_n():
+    assert parse_variant("pass@1") == {"metric_path": "pass_at_1"}
+    assert parse_variant("pass@10") == {"metric_path": "pass_at_10"}
+
+
+def test_metric_cot_correct():
+    """MMLU-Pro and similar — distinguishes raw accuracy from CoT scoring."""
+    assert parse_variant("CoT correct") == {"metric_path": "cot_correct"}
+    assert parse_variant("CoT-correct") == {"metric_path": "cot_correct"}
+
+
+def test_metric_win_rate():
+    assert parse_variant("win rate vs Claude 3.5 Sonnet") == {"metric_path": "win_rate"}
+    assert parse_variant("win-rate") == {"metric_path": "win_rate"}
+
+
+def test_metric_f1():
+    assert parse_variant("F1") == {"metric_path": "f1"}
+
+
+def test_metric_resolve_rate():
+    """SWE-bench native metric."""
+    assert parse_variant("resolve rate") == {"metric_path": "resolve_rate"}
+
+
+# ── mitigation states route to method ────────────────────────────────────────
+
+def test_without_mitigations_goes_to_method():
+    assert parse_variant("without mitigations") == {"method": "without-mitigations"}
+    assert parse_variant("without safeguards") == {"method": "without-safeguards"}
+
+
+def test_pre_mitigation_alone():
+    """pre-mitigation by itself maps to method (not a split — splits are
+    sub-tasks, mitigation state is a methodology choice)."""
+    assert parse_variant("pre-mitigation") == {"method": "pre-mitigation"}
+
+
+# ── compound real-world cases (Phase 5a) ─────────────────────────────────────
+
+def test_compound_split_plus_metric():
+    """A realistic full-path variant: hard MATH subset under pass@1 scoring."""
+    assert parse_variant("hard, pass@1") == {"split": "hard", "metric_path": "pass_at_1"}
+
+
+def test_compound_full_hierarchy():
+    """Composite: shot count + method + split + metric all in one string."""
+    result = parse_variant("0-shot, CoT, Verified, pass@1")
+    assert result == {
+        "shot_count": 0,
+        "method": "CoT",
+        "split": "verified",
+        "metric_path": "pass_at_1",
+    }
+
+
+def test_no_match_still_silent():
+    """Phase 4's silent-on-ambiguous behavior must still hold."""
+    assert parse_variant("relative to Gemini 1.5 Pro 002") == {}
+    assert parse_variant("not_unsafe") == {}

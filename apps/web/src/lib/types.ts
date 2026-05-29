@@ -159,6 +159,8 @@ export interface EvalResult {
   method: string | null;
   language: string | null;
   training_state: string | null;
+  split: string | null;
+  metric_path: string | null;
   extraction_protocol_version: number;
   score_details: Record<string, unknown> | null;
   extraction_confidence: number | null;
@@ -274,6 +276,8 @@ export interface DivergentReport {
   method: string | null;
   language: string | null;
   training_state: string | null;
+  split: string | null;
+  metric_path: string | null;
   is_self_reported: boolean;
 }
 
@@ -281,6 +285,8 @@ export interface DivergentGroup {
   benchmark_slug: string;
   benchmark_name: string;
   model_name: string;
+  split: string | null;
+  metric_path: string | null;
   report_count: number;
   score_min: number;
   score_max: number;
