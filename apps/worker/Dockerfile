@@ -27,6 +27,7 @@ RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/wh
 
 COPY data /app/data
 COPY packages/db /app/packages/db
+COPY packages/pipeline_config.py /app/packages/pipeline_config.py
 RUN pip install --no-cache-dir /app/packages/db
 
 COPY apps/worker/pyproject.toml /app/apps/worker/pyproject.toml

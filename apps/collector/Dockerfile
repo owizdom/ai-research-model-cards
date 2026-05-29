@@ -6,6 +6,7 @@ ENV PYTHONUNBUFFERED=1
 RUN apt-get update && apt-get install -y --no-install-recommends build-essential && rm -rf /var/lib/apt/lists/*
 
 COPY packages/db /app/packages/db
+COPY packages/pipeline_config.py /app/packages/pipeline_config.py
 RUN pip install --no-cache-dir /app/packages/db
 
 COPY apps/collector/pyproject.toml /app/apps/collector/pyproject.toml
