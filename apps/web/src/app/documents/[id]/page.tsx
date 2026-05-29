@@ -13,11 +13,12 @@ import { notFound } from "next/navigation";
 export default async function DocumentPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const docId = Number(id);
-  const [doc, content, evalsData, allDocs] = await Promise.all([
+  const [doc, content, evalsData, allDocs, divergence] = await Promise.all([
     api.documents.get(docId).catch(() => null) as any,
     api.documents.content(docId).catch(() => null),
     api.evals.byDocument(docId).catch(() => null),
     api.documents.list({ limit: 200 }).catch(() => []),
+    api.evals.divergence({ limit: 200 }).catch(() => null),
   ]);
   if (!doc) notFound();
 
@@ -148,7 +149,7 @@ export default async function DocumentPage({ params }: { params: Promise<{ id: s
               ({evals.length} results)
             </span>
           </h2>
-          <EvalTable evals={evals} />
+          <EvalTable evals={evals} divergentGroups={divergence?.groups ?? []} />
         </div>
       )}
     </div>

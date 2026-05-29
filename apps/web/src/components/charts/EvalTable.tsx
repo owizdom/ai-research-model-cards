@@ -1,7 +1,27 @@
 "use client";
-import { useState } from "react";
-import type { EvalResult } from "@/lib/types";
+import { useMemo, useState } from "react";
+import type { EvalResult, DivergentGroup } from "@/lib/types";
 import { BenchmarkPopover } from "@/components/ui/BenchmarkPopover";
+
+/** Inline indicator that this row participates in a cross-document
+ * disagreement above the 5-point threshold. EvalCards comparability
+ * signal (paper Section 4.2). */
+function ConflictBadge({ group }: { group: DivergentGroup }) {
+  const otherReports = group.report_count - 1;
+  const partyLabel = group.cross_party ? "across self-reported + third-party" : "across same-party reports";
+  const fieldsLabel = group.differing_fields.length > 0
+    ? ` Setup fields that vary: ${group.differing_fields.join(", ")}.`
+    : "";
+  const tip = `Conflicting reports: ${group.report_count} sources rate ${group.model_name} on ${group.benchmark_name} from ${group.score_min.toFixed(1)} to ${group.score_max.toFixed(1)} (${group.score_spread.toFixed(1)} spread, ${partyLabel}).${fieldsLabel}`;
+  return (
+    <span
+      title={tip}
+      className="text-[10px] px-1.5 py-0.5 rounded bg-red-50 text-red-700 font-medium whitespace-nowrap cursor-help"
+    >
+      ⚠ {otherReports} other{otherReports === 1 ? "" : "s"} disagree
+    </span>
+  );
+}
 
 function scoreColor(score: number): string {
   if (score >= 90) return "text-green-600";
@@ -54,8 +74,24 @@ function SetupCell({ e }: { e: EvalResult }) {
   );
 }
 
-export function EvalTable({ evals }: { evals: EvalResult[] }) {
+export function EvalTable({
+  evals,
+  divergentGroups = [],
+}: {
+  evals: EvalResult[];
+  divergentGroups?: DivergentGroup[];
+}) {
   const [sortBy, setSortBy] = useState<"score" | "category" | "name">("category");
+
+  // (benchmark_slug, model_name) → divergent group, for O(1) row matching.
+  const conflictMap = useMemo(() => {
+    const m = new Map<string, DivergentGroup>();
+    for (const g of divergentGroups) {
+      m.set(`${g.benchmark_slug}::${g.model_name}`, g);
+    }
+    return m;
+  }, [divergentGroups]);
+  const conflictsOnThisDoc = evals.filter(e => e.model_name && conflictMap.has(`${e.benchmark.slug}::${e.model_name}`)).length;
 
   if (evals.length === 0) {
     return (
@@ -93,7 +129,15 @@ export function EvalTable({ evals }: { evals: EvalResult[] }) {
             {key.charAt(0).toUpperCase() + key.slice(1)}
           </button>
         ))}
-        <span className="ml-auto text-xs text-[var(--muted)]">
+        <span className="ml-auto text-xs text-[var(--muted)] flex items-center gap-3">
+          {conflictsOnThisDoc > 0 && (
+            <span
+              className="text-red-700"
+              title="Eval rows on this doc whose (benchmark, model_name) pair has a disagreement of >5 points across the corpus."
+            >
+              ⚠ {conflictsOnThisDoc} conflicting report{conflictsOnThisDoc === 1 ? "" : "s"}
+            </span>
+          )}
           <span
             className={reproPct < 30 ? "text-amber-700" : reproPct < 70 ? "text-yellow-700" : "text-emerald-700"}
             title="A row is 'fully reproducible' when shot_count, method, language, and training_state were all disclosed. Per the EvalCards paper, this is the dominant reporting gap across the public corpus."
@@ -122,9 +166,15 @@ export function EvalTable({ evals }: { evals: EvalResult[] }) {
                 state === "scored" ? "bg-green-100 text-green-800"
                 : state === "mentioned" ? "bg-yellow-100 text-yellow-800"
                 : "bg-gray-100 text-gray-700";
+              const conflict = e.model_name ? conflictMap.get(`${e.benchmark.slug}::${e.model_name}`) : undefined;
               return (
               <tr key={e.id} className="border-b border-[var(--border)] last:border-0 hover:bg-[var(--surface-1)]">
-                <td className="px-4 py-3"><BenchmarkPopover benchmark={e.benchmark} /></td>
+                <td className="px-4 py-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <BenchmarkPopover benchmark={e.benchmark} />
+                    {conflict && <ConflictBadge group={conflict} />}
+                  </div>
+                </td>
                 <td className="px-4 py-3">
                   <span className="text-xs px-2 py-0.5 rounded bg-[var(--surface-2)] text-[var(--muted)]">
                     {e.benchmark.category}

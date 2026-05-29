@@ -3,7 +3,7 @@ import type {
   Benchmark, EvalResult, GenerationComparison, EvalTimeline, PerCardEvalPoint,
   ModelFamily, ModelFamilyDetail,
   WordCountTimelinePoint, CategoryTimelinePoint,
-  FragmentationResponse,
+  FragmentationResponse, DivergenceResponse,
 } from "./types";
 
 // API_INTERNAL_URL is set server-side only (docker-compose env).
@@ -72,6 +72,8 @@ export const api = {
       get<CategoryTimelinePoint[]>("/evals/category-timeline"),
     fragmentation: () =>
       get<FragmentationResponse>("/evals/fragmentation"),
+    divergence: (params?: { threshold?: number; benchmark_slug?: string; model_name?: string; limit?: number }) =>
+      get<DivergenceResponse>("/evals/divergence", params as Record<string, string | number | boolean> | undefined),
   },
 
   families: {

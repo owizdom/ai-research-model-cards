@@ -261,3 +261,47 @@ export interface CategoryTimelinePoint {
   eval_count: number;
 }
 
+// Divergence (EvalCards comparability signal)
+
+export interface DivergentReport {
+  eval_id: number;
+  document_id: number;
+  document_title: string | null;
+  lab_slug: string | null;
+  score: number;
+  variant: string;
+  shot_count: number | null;
+  method: string | null;
+  language: string | null;
+  training_state: string | null;
+  is_self_reported: boolean;
+}
+
+export interface DivergentGroup {
+  benchmark_slug: string;
+  benchmark_name: string;
+  model_name: string;
+  report_count: number;
+  score_min: number;
+  score_max: number;
+  score_spread: number;
+  cross_party: boolean;
+  differing_fields: string[];
+  reports: DivergentReport[];
+  caveat: string | null;
+}
+
+export interface DivergenceSummary {
+  threshold: number;
+  total_pairs_scanned: number;
+  divergent_pairs: number;
+  cross_party_divergent_pairs: number;
+  avg_spread_among_divergent: number;
+}
+
+export interface DivergenceResponse {
+  summary: DivergenceSummary;
+  groups: DivergentGroup[];
+  returned: number;
+}
+
