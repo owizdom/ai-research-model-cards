@@ -11,7 +11,10 @@ from datetime import datetime
 
 import pytest
 
-from schemas.eval import BenchmarkRead, EvalResultRead, ReproducibilityFlags
+from schemas.eval import (
+    BenchmarkRead, EvalResultRead, ReproducibilityFlags,
+    EvalsByDocumentResponse, ExtractionTriggerResponse,
+)
 
 
 def _benchmark() -> BenchmarkRead:
@@ -97,3 +100,37 @@ def test_reproducibility_flags_is_constructible_directly():
         missing_fields=["method", "training_state"], populated_count=2, score=0.5,
     )
     assert r.total_count == 4  # default
+
+
+def test_evals_by_document_response_carries_reproducibility():
+    """The container response must expose nested EvalResultRead, which in
+    turn must expose reproducibility — this is what the OpenAPI components
+    block needs in order to document ReproducibilityFlags at all."""
+    e = _eval(shot_count=5, method="CoT")
+    resp = EvalsByDocumentResponse(
+        document_id=24,
+        title="Llama 3.1 Technical Paper",
+        lab_name="Meta AI",
+        version_id=42,
+        evals=[e],
+    )
+    dumped = resp.model_dump()
+    assert dumped["document_id"] == 24
+    assert dumped["evals"][0]["reproducibility"]["populated_count"] == 2
+    assert "method" not in dumped["evals"][0]["reproducibility"]["missing_fields"]
+
+
+def test_evals_by_document_response_defaults_are_safe():
+    """When the doc isn't found we early-return with only document_id set —
+    the schema must tolerate that (None title, empty evals list)."""
+    resp = EvalsByDocumentResponse(document_id=999)
+    assert resp.title is None
+    assert resp.lab_name is None
+    assert resp.version_id is None
+    assert resp.evals == []
+
+
+def test_extraction_trigger_response_shape():
+    resp = ExtractionTriggerResponse(version_id=42, status="queued")
+    assert resp.version_id == 42
+    assert resp.status == "queued"

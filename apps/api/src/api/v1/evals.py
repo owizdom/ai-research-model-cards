@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import select, func, text
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
@@ -7,7 +7,7 @@ from src.core.deps import get_db
 from src.schemas.eval import (
     BenchmarkRead, EvalResultRead, ComparisonResult, TimelinePoint, PerCardEvalPoint,
     CategoryTimelinePoint, FragmentationResponse, FragmentationBucket, LabUniqueness,
-    FragmentationView,
+    FragmentationView, EvalsByDocumentResponse, ExtractionTriggerResponse,
 )
 from packages.db.models import (
     BenchmarkDefinition, EvalResult, ExtractionRun,
@@ -145,11 +145,11 @@ async def list_benchmarks(
     return result.scalars().all()
 
 
-@router.get("/results/by-document/{document_id}")
+@router.get("/results/by-document/{document_id}", response_model=EvalsByDocumentResponse)
 async def evals_by_document(document_id: int, db: AsyncSession = Depends(get_db)):
     doc = await db.get(Document, document_id)
     if not doc:
-        return {"document_id": document_id, "title": None, "lab_name": None, "evals": []}
+        return EvalsByDocumentResponse(document_id=document_id)
 
     # Get latest version
     version_q = (
@@ -161,7 +161,7 @@ async def evals_by_document(document_id: int, db: AsyncSession = Depends(get_db)
     version_result = await db.execute(version_q)
     version = version_result.scalar_one_or_none()
     if not version:
-        return {"document_id": document_id, "title": doc.title, "lab_name": None, "evals": []}
+        return EvalsByDocumentResponse(document_id=document_id, title=doc.title)
 
     evals_q = (
         select(EvalResult)
@@ -174,13 +174,13 @@ async def evals_by_document(document_id: int, db: AsyncSession = Depends(get_db)
 
     lab = await db.get(Lab, doc.lab_id) if doc.lab_id else None
 
-    return {
-        "document_id": document_id,
-        "title": doc.title,
-        "lab_name": lab.name if lab else None,
-        "version_id": version.id,
-        "evals": [EvalResultRead.model_validate(e) for e in evals],
-    }
+    return EvalsByDocumentResponse(
+        document_id=document_id,
+        title=doc.title,
+        lab_name=lab.name if lab else None,
+        version_id=version.id,
+        evals=[EvalResultRead.model_validate(e) for e in evals],
+    )
 
 
 @router.get("/compare/generations", response_model=ComparisonResult)
@@ -299,7 +299,7 @@ async def eval_per_card(db: AsyncSession = Depends(get_db)):
     ]
 
 
-@router.get("/depth")
+@router.get("/depth", response_model=dict[str, dict[str, int]])
 async def eval_depth(db: AsyncSession = Depends(get_db)):
     """Eval counts per benchmark category per lab — for the Eval Depth tab."""
     q = text("""
@@ -465,12 +465,16 @@ async def fragmentation(db: AsyncSession = Depends(get_db)):
     )
 
 
-@router.post("/extract/{document_version_id}", status_code=202)
+@router.post(
+    "/extract/{document_version_id}",
+    status_code=202,
+    response_model=ExtractionTriggerResponse,
+)
 async def trigger_extraction(document_version_id: int, db: AsyncSession = Depends(get_db)):
     version = await db.get(DocumentVersion, document_version_id)
     if not version:
-        return {"error": "Version not found"}
+        raise HTTPException(status_code=404, detail=f"Document version {document_version_id} not found")
 
     r = redis.Redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
     r.rpush("extract_jobs", json.dumps({"version_id": document_version_id}))
-    return {"version_id": document_version_id, "status": "queued"}
+    return ExtractionTriggerResponse(version_id=document_version_id, status="queued")

@@ -212,3 +212,28 @@ class ExtractionRunRead(BaseModel):
     evals_extracted: Optional[int] = None
     started_at: datetime
     completed_at: Optional[datetime] = None
+
+
+class EvalsByDocumentResponse(BaseModel):
+    """Response shape for GET /api/v1/evals/results/by-document/{id}.
+
+    Pinning this schema makes the OpenAPI docs accurately advertise the
+    nested EvalResultRead + ReproducibilityFlags shape, which previously
+    rendered as an untyped object because the route returned a raw dict.
+    """
+    document_id: int
+    title: Optional[str] = None
+    lab_name: Optional[str] = None
+    version_id: Optional[int] = None
+    evals: list[EvalResultRead] = []
+
+
+class ExtractionTriggerResponse(BaseModel):
+    """Response shape for POST /api/v1/evals/extract/{version_id}.
+
+    The endpoint enqueues a Redis job and returns 202. The not-found path
+    now raises HTTPException(404) rather than returning an error dict —
+    cleaner contract, single response shape.
+    """
+    version_id: int
+    status: str
