@@ -40,16 +40,30 @@ async def seed_taxonomy(db) -> int:
 
 
 async def seed_benchmarks(db) -> int:
+    """Upsert benchmark definitions from YAML.
+
+    Insert if absent; otherwise update editable metadata fields. Slug is
+    treated as immutable. Previously this was insert-only, which meant
+    additive YAML fields (e.g. policy_note) never propagated to existing
+    rows — that bug surfaced when we added the EvalCards Policy Note block.
+    """
     path = DATA_DIR / "benchmarks/benchmark_definitions.yaml"
     if not path.exists():
         return 0
     data = yaml.safe_load(path.read_text())
-    count = 0
+    inserted = updated = 0
+    editable_fields = (
+        "name", "category", "description",
+        "metric_name", "metric_unit", "higher_is_better",
+        "source_url", "aliases", "score_min", "score_max",
+        "parent_slug", "industry_domain", "policy_note",
+    )
     for b in data.get("benchmarks", []):
         result = await db.execute(
             select(BenchmarkDefinition).where(BenchmarkDefinition.slug == b["slug"])
         )
-        if not result.scalar_one_or_none():
+        existing = result.scalar_one_or_none()
+        if existing is None:
             db.add(BenchmarkDefinition(
                 slug=b["slug"],
                 name=b["name"],
@@ -60,10 +74,24 @@ async def seed_benchmarks(db) -> int:
                 higher_is_better=b.get("higher_is_better", True),
                 source_url=b.get("source_url"),
                 aliases=b.get("aliases"),
+                score_min=b.get("score_min"),
+                score_max=b.get("score_max"),
+                policy_note=b.get("policy_note"),
             ))
-            count += 1
+            inserted += 1
+        else:
+            changed = False
+            for field in editable_fields:
+                if field not in b:
+                    continue  # leave existing value untouched if YAML omits the key
+                new_value = b[field]
+                if getattr(existing, field) != new_value:
+                    setattr(existing, field, new_value)
+                    changed = True
+            if changed:
+                updated += 1
     await db.commit()
-    return count
+    return inserted + updated
 
 
 async def seed_families(db) -> int:
