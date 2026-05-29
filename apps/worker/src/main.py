@@ -40,7 +40,12 @@ def embed_thread():
 
     r = _redis()
     while True:
-        item = r.blpop("embed_jobs", timeout=REDIS_BLPOP_TIMEOUT_S)
+        try:
+            item = r.blpop("embed_jobs", timeout=REDIS_BLPOP_TIMEOUT_S)
+        except (redis.exceptions.TimeoutError, redis.exceptions.ConnectionError):
+            # Some redis-py versions raise on socket timeout instead of
+            # returning None. Treat both as "no work yet, keep polling."
+            continue
         if item is None:
             continue
         try:
@@ -64,7 +69,10 @@ def extract_thread():
 
     r = _redis()
     while True:
-        item = r.blpop("extract_jobs", timeout=REDIS_BLPOP_TIMEOUT_S)
+        try:
+            item = r.blpop("extract_jobs", timeout=REDIS_BLPOP_TIMEOUT_S)
+        except (redis.exceptions.TimeoutError, redis.exceptions.ConnectionError):
+            continue
         if item is None:
             continue
         try:
