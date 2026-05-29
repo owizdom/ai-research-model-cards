@@ -520,16 +520,23 @@ async def divergence(
         group carries `caveat` explaining this.
       - Rows without `model_name` cannot be grouped and are ignored.
     """
+    # Divergence requires ≥2 distinct *documents* — without that filter, a single
+    # card reporting sub-task scores under the same benchmark name (e.g. GPT-4.5
+    # on long_form_biological_risk_questions × Magnification/Acquisition/...) flags
+    # as "divergent" even though it's a within-document variance, not multi-source
+    # disagreement. Paper Section 4.2 explicitly scopes the signal to cross-source.
     summary_sql = text("""
         WITH g AS (
             SELECT er.benchmark_id, er.model_name,
                    MAX(er.score) - MIN(er.score) AS spread,
                    COUNT(*) AS cnt,
+                   COUNT(DISTINCT dv.document_id) AS doc_count,
                    COUNT(DISTINCT er.is_self_reported) AS party_count
             FROM eval_results er
+            JOIN document_versions dv ON er.document_version_id = dv.id
             WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
             GROUP BY er.benchmark_id, er.model_name
-            HAVING COUNT(*) >= 2
+            HAVING COUNT(DISTINCT dv.document_id) >= 2
         )
         SELECT
             COUNT(*) AS total_pairs,
@@ -541,39 +548,46 @@ async def divergence(
     summary_row = (await db.execute(summary_sql, {"threshold": threshold})).first()
 
     detail_sql = text("""
-        WITH grouped AS (
-            SELECT
-                er.id AS eval_id,
-                bd.slug AS benchmark_slug,
-                bd.name AS benchmark_name,
-                er.model_name,
-                er.score,
-                er.variant,
-                er.shot_count,
-                er.method,
-                er.language,
-                er.training_state,
-                er.is_self_reported,
-                dv.document_id,
-                d.title AS document_title,
-                l.slug AS lab_slug,
-                MAX(er.score) OVER (PARTITION BY er.benchmark_id, er.model_name) AS group_max,
-                MIN(er.score) OVER (PARTITION BY er.benchmark_id, er.model_name) AS group_min,
-                COUNT(*) OVER (PARTITION BY er.benchmark_id, er.model_name) AS group_count
+        WITH group_stats AS (
+            SELECT er.benchmark_id, er.model_name,
+                   MAX(er.score) - MIN(er.score) AS spread,
+                   COUNT(DISTINCT dv.document_id) AS doc_count
             FROM eval_results er
             JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
             JOIN document_versions dv ON er.document_version_id = dv.id
-            JOIN documents d ON dv.document_id = d.id
-            LEFT JOIN labs l ON d.lab_id = l.id
-            WHERE er.score IS NOT NULL
-              AND er.model_name IS NOT NULL
+            WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
               AND (CAST(:benchmark_slug AS text) IS NULL OR bd.slug = :benchmark_slug)
               AND (CAST(:model_name AS text) IS NULL OR er.model_name = :model_name)
+            GROUP BY er.benchmark_id, er.model_name
+            HAVING COUNT(DISTINCT dv.document_id) >= 2
+              AND MAX(er.score) - MIN(er.score) > :threshold
         )
-        SELECT * FROM grouped
-        WHERE group_count >= 2
-          AND (group_max - group_min) > :threshold
-        ORDER BY (group_max - group_min) DESC, benchmark_slug, model_name, score DESC
+        SELECT
+            er.id AS eval_id,
+            bd.slug AS benchmark_slug,
+            bd.name AS benchmark_name,
+            er.model_name,
+            er.score,
+            er.variant,
+            er.shot_count,
+            er.method,
+            er.language,
+            er.training_state,
+            er.is_self_reported,
+            dv.document_id,
+            d.title AS document_title,
+            l.slug AS lab_slug,
+            gs.spread AS group_spread,
+            gs.doc_count AS group_doc_count
+        FROM eval_results er
+        JOIN benchmark_definitions bd ON er.benchmark_id = bd.id
+        JOIN document_versions dv ON er.document_version_id = dv.id
+        JOIN documents d ON dv.document_id = d.id
+        LEFT JOIN labs l ON d.lab_id = l.id
+        JOIN group_stats gs ON gs.benchmark_id = er.benchmark_id
+                            AND gs.model_name = er.model_name
+        WHERE er.score IS NOT NULL AND er.model_name IS NOT NULL
+        ORDER BY gs.spread DESC, bd.slug, er.model_name, er.score DESC
     """)
     rows = (await db.execute(detail_sql, {
         "threshold": threshold,
@@ -609,14 +623,15 @@ async def divergence(
             if len({getattr(r, f) for r in reports}) > 1
         ]
         cross_party = len({r.is_self_reported for r in reports}) > 1
+        scores = [r.score for r in reports]
         groups.append(DivergentGroup(
             benchmark_slug=slug,
             benchmark_name=group_rows[0].benchmark_name,
             model_name=model,
             report_count=len(reports),
-            score_min=float(group_rows[0].group_min),
-            score_max=float(group_rows[0].group_max),
-            score_spread=float(group_rows[0].group_max - group_rows[0].group_min),
+            score_min=min(scores),
+            score_max=max(scores),
+            score_spread=float(group_rows[0].group_spread),
             cross_party=cross_party,
             differing_fields=differing,
             reports=reports,
