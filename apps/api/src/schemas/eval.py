@@ -237,3 +237,61 @@ class ExtractionTriggerResponse(BaseModel):
     """
     version_id: int
     status: str
+
+
+# ─── Divergence detection (EvalCards Section 4.2 comparability signal) ───────
+
+class DivergentReport(BaseModel):
+    """One contributing row inside a divergent (benchmark, model) group."""
+    eval_id: int
+    document_id: int
+    document_title: Optional[str] = None
+    lab_slug: Optional[str] = None
+    score: float
+    variant: str
+    shot_count: Optional[int] = None
+    method: Optional[str] = None
+    language: Optional[str] = None
+    training_state: Optional[str] = None
+    is_self_reported: bool
+
+
+class DivergentGroup(BaseModel):
+    """A (benchmark, model_name) pair whose reports disagree above the
+    configured threshold. Lists every contributing report plus the
+    structured signals readers need to judge whether the disagreement
+    reflects a real measurement difference or just a setup difference."""
+    benchmark_slug: str
+    benchmark_name: str
+    model_name: str
+    report_count: int
+    score_min: float
+    score_max: float
+    score_spread: float
+    cross_party: bool
+    differing_fields: list[str]
+    reports: list[DivergentReport]
+    caveat: Optional[str] = None
+
+
+class DivergenceSummary(BaseModel):
+    """Aggregate stats for the corpus at the configured threshold."""
+    threshold: float
+    total_pairs_scanned: int
+    divergent_pairs: int
+    cross_party_divergent_pairs: int
+    avg_spread_among_divergent: float
+
+
+class DivergenceResponse(BaseModel):
+    """Response for GET /api/v1/evals/divergence.
+
+    Implements the EvalCards paper's comparability signal at the granularity
+    of (benchmark_slug, model_name) tuples. Without metric-path
+    differentiation (paper Section 3.2), some groups will be flagged that
+    actually reflect different scoring rules rather than measurement
+    disagreement — DivergentGroup.caveat surfaces that limitation in-band.
+    """
+    summary: DivergenceSummary
+    groups: list[DivergentGroup]
+    returned: int
