@@ -30,6 +30,7 @@ class BenchmarkDefinition(Base):
     score_max: Mapped[Optional[float]] = mapped_column(Float)
     parent_slug: Mapped[Optional[str]] = mapped_column(String, index=True)
     industry_domain: Mapped[Optional[str]] = mapped_column(String, index=True)
+    policy_note: Mapped[Optional[dict]] = mapped_column(JSON)
 
 
 class EvalResult(Base):
