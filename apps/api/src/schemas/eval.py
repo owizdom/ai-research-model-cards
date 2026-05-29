@@ -3,6 +3,22 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+class BenchmarkPolicyNote(BaseModel):
+    """Plain-language Policy Note attached to a benchmark.
+
+    Mirrors Figure 3 of the EvalCards paper (NeurIPS 2026): the four
+    narrative fields a non-technical reader needs to interpret a score,
+    plus topic tags and outbound source links. All fields optional; the
+    UI degrades to "no policy note available" when absent.
+    """
+    measures: Optional[str] = None
+    caveat: Optional[str] = None
+    intended_for: Optional[str] = None
+    how_to_read: Optional[str] = None
+    topic_tags: list[str] = []
+    sources: dict[str, str] = {}
+
+
 class BenchmarkRead(BaseModel):
     model_config = {"from_attributes": True}
     id: int
@@ -13,6 +29,11 @@ class BenchmarkRead(BaseModel):
     metric_name: Optional[str] = None
     metric_unit: Optional[str] = None
     higher_is_better: bool
+    source_url: Optional[str] = None
+    aliases: Optional[list[str]] = None
+    score_min: Optional[float] = None
+    score_max: Optional[float] = None
+    policy_note: Optional[BenchmarkPolicyNote] = None
 
 
 class GenerationBrief(BaseModel):
