@@ -567,8 +567,8 @@ async def divergence(
             LEFT JOIN labs l ON d.lab_id = l.id
             WHERE er.score IS NOT NULL
               AND er.model_name IS NOT NULL
-              AND (:benchmark_slug::text IS NULL OR bd.slug = :benchmark_slug)
-              AND (:model_name::text IS NULL OR er.model_name = :model_name)
+              AND (CAST(:benchmark_slug AS text) IS NULL OR bd.slug = :benchmark_slug)
+              AND (CAST(:model_name AS text) IS NULL OR er.model_name = :model_name)
         )
         SELECT * FROM grouped
         WHERE group_count >= 2
