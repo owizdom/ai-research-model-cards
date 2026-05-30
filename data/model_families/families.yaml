@@ -56,6 +56,11 @@ families:
         version_label: "4.7-opus"
         release_date: 2026-04-16
         document_slug: anthropic_opus47_card
+      - slug: claude-opus-4.8
+        name: Claude Opus 4.8
+        version_label: "4.8-opus"
+        release_date: 2026-05-28
+        document_slug: anthropic_opus48_card
 
   - slug: gpt
     lab_slug: openai
