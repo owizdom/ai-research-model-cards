@@ -8,7 +8,6 @@ import re
 import traceback
 from datetime import datetime, timezone
 
-import litellm
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -51,6 +50,7 @@ async def _llm_complete(system: str, user: str, model: str) -> str:
     if _is_claude_model(model):
         result = await call_claude_cli(system, user, model=_normalize_claude_model(model))
         return result.content
+    import litellm  # lazy — keeps non-litellm callers (extract_window.py) importable
     response = await litellm.acompletion(
         model=model,
         messages=[
