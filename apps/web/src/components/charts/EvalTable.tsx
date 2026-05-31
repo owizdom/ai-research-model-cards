@@ -82,6 +82,7 @@ export function EvalTable({
   divergentGroups?: DivergentGroup[];
 }) {
   const [sortBy, setSortBy] = useState<"score" | "category" | "name">("category");
+  const [hideCompetitors, setHideCompetitors] = useState(false);
 
   // (benchmark_slug, model_name) → divergent group, for O(1) row matching.
   const conflictMap = useMemo(() => {
@@ -93,6 +94,22 @@ export function EvalTable({
   }, [divergentGroups]);
   const conflictsOnThisDoc = evals.filter(e => e.model_name && conflictMap.has(`${e.benchmark.slug}::${e.model_name}`)).length;
 
+  // Primary model = the most frequent model_name in this doc's evals. Cards
+  // like Anthropic system cards include comparison rows for Opus 4.7, GPT-5.5,
+  // Gemini etc. — those would otherwise look like duplicates of the doc's
+  // own scores. Mark the dominant model and let the reader hide competitors.
+  const { primaryModel, competitorCount } = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const e of evals) {
+      if (!e.model_name) continue;
+      counts.set(e.model_name, (counts.get(e.model_name) ?? 0) + 1);
+    }
+    const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    const top = sorted[0];
+    const others = sorted.slice(1).reduce((sum, [, n]) => sum + n, 0);
+    return { primaryModel: top?.[0], competitorCount: others };
+  }, [evals]);
+
   if (evals.length === 0) {
     return (
       <div className="p-6 text-center text-[var(--muted)] border border-[var(--border)] rounded-xl">
@@ -101,7 +118,11 @@ export function EvalTable({
     );
   }
 
-  const sorted = [...evals].sort((a, b) => {
+  const filtered = hideCompetitors && primaryModel
+    ? evals.filter(e => !e.model_name || e.model_name === primaryModel)
+    : evals;
+
+  const sorted = [...filtered].sort((a, b) => {
     if (sortBy === "score") return (b.score ?? -Infinity) - (a.score ?? -Infinity);
     if (sortBy === "name") return a.benchmark.name.localeCompare(b.benchmark.name);
     const catCmp = a.benchmark.category.localeCompare(b.benchmark.category);
@@ -129,6 +150,17 @@ export function EvalTable({
             {key.charAt(0).toUpperCase() + key.slice(1)}
           </button>
         ))}
+        {primaryModel && competitorCount > 0 && (
+          <button
+            onClick={() => setHideCompetitors(v => !v)}
+            className={`text-xs px-2 py-1 rounded ${
+              hideCompetitors ? "bg-accent text-white" : "bg-[var(--surface-2)] text-[var(--muted)] hover:text-[var(--text)]"
+            }`}
+            title={`The card lists ${competitorCount} eval row${competitorCount === 1 ? "" : "s"} for competitor models (not ${primaryModel}). Toggle to hide them.`}
+          >
+            {hideCompetitors ? `Show competitors (${competitorCount})` : `Hide competitors (${competitorCount})`}
+          </button>
+        )}
         <span className="ml-auto text-xs text-[var(--muted)] flex items-center gap-3">
           {conflictsOnThisDoc > 0 && (
             <span
@@ -167,8 +199,9 @@ export function EvalTable({
                 : state === "mentioned" ? "bg-yellow-100 text-yellow-800"
                 : "bg-gray-100 text-gray-700";
               const conflict = e.model_name ? conflictMap.get(`${e.benchmark.slug}::${e.model_name}`) : undefined;
+              const isCompetitor = primaryModel != null && e.model_name != null && e.model_name !== primaryModel;
               return (
-              <tr key={e.id} className="border-b border-[var(--border)] last:border-0 hover:bg-[var(--surface-1)]">
+              <tr key={e.id} className={`border-b border-[var(--border)] last:border-0 hover:bg-[var(--surface-1)] ${isCompetitor ? "bg-[var(--surface-1)]/40" : ""}`}>
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap items-center gap-2">
                     <BenchmarkPopover benchmark={e.benchmark} />
@@ -182,6 +215,19 @@ export function EvalTable({
                     )}
                     {conflict && <ConflictBadge group={conflict} />}
                   </div>
+                  {e.model_name && (
+                    <div
+                      className={`mt-1 text-[11px] ${
+                        isCompetitor
+                          ? "text-[var(--muted)] italic"
+                          : "text-[var(--text)] font-medium"
+                      }`}
+                      title={isCompetitor ? `Competitor row — score reported by this card for ${e.model_name}, not its own model` : `This card's own score on ${e.benchmark.name}`}
+                    >
+                      {e.model_name}
+                      {isCompetitor && <span className="ml-1 text-[10px] uppercase tracking-wide text-[var(--muted)]">· comparison</span>}
+                    </div>
+                  )}
                 </td>
                 <td className="px-4 py-3">
                   <span className="text-xs px-2 py-0.5 rounded bg-[var(--surface-2)] text-[var(--muted)]">
