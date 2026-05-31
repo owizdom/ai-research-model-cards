@@ -1,29 +1,27 @@
-// Highlight the model-tier word inside a document title so cards from the
-// same family don't all visually collapse together. "Claude Haiku 4.5 System
-// Card" / "Claude Sonnet 4.5 System Card" / "Claude Opus 4.5 System Card"
-// look near-identical at a glance because they only differ in one word — this
-// pulls that word out into the brand accent color so the row reads as
-// "Claude *Haiku* 4.5" rather than four indistinguishable words.
-const TIER_WORDS = [
-  "Haiku", "Sonnet", "Opus",
-  "Flash", "Pro", "Mini", "Lite", "Plus", "Turbo",
-  "Preview", "Instruct", "Base",
-  "Mythos", "Deep Think",
+// Strips redundant document-type suffixes from titles so the row reads as the
+// model's name. The doc_type badge on the right already conveys "system card"
+// / "model card" / "technical paper" — repeating it inside the title made the
+// three Claude 4.5 rows ("Claude Haiku 4.5 System Card", "Claude Sonnet 4.5
+// System Card", "Claude Opus 4.5 System Card") visually collapse into each
+// other. After this strip they read as "Claude Haiku 4.5" / "Claude Sonnet 4.5"
+// / "Claude Opus 4.5" — the distinguishing word is the trailing word.
+const TRAILING_SUFFIXES = [
+  / (System|Model)\s+Card$/i,
+  / Technical\s+Paper$/i,
+  / Card$/i,
+  / Paper$/i,
+  / Report$/i,
 ];
 
-export function DocumentTitle({ title, className = "" }: { title: string; className?: string }) {
-  const re = new RegExp(`\\b(${TIER_WORDS.join("|")})\\b`, "i");
-  const match = title.match(re);
-  if (!match || match.index === undefined) {
-    return <span className={className}>{title}</span>;
+export function cleanDocumentTitle(title: string): string {
+  let t = title.trim();
+  for (const re of TRAILING_SUFFIXES) {
+    const stripped = t.replace(re, "");
+    if (stripped !== t) return stripped.trim();
   }
-  const idx = match.index;
-  const word = match[0];
-  return (
-    <span className={className}>
-      {title.slice(0, idx)}
-      <span className="text-accent font-semibold">{word}</span>
-      {title.slice(idx + word.length)}
-    </span>
-  );
+  return t;
+}
+
+export function DocumentTitle({ title, className = "" }: { title: string; className?: string }) {
+  return <span className={className}>{cleanDocumentTitle(title)}</span>;
 }
