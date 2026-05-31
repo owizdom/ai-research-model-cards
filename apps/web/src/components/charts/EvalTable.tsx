@@ -82,7 +82,11 @@ export function EvalTable({
   divergentGroups?: DivergentGroup[];
 }) {
   const [sortBy, setSortBy] = useState<"score" | "category" | "name">("category");
-  const [hideCompetitors, setHideCompetitors] = useState(false);
+  // Default ON: the doc detail page primarily exists to show *this* model's
+  // scores. Comparison rows extracted from cards' own competitor tables stay
+  // in the DB (EvalCards thesis: cross-source data is signal, not noise — see
+  // divergentGroups) but are hidden by default to keep the table readable.
+  const [hideCompetitors, setHideCompetitors] = useState(true);
 
   // (benchmark_slug, model_name) → divergent group, for O(1) row matching.
   const conflictMap = useMemo(() => {

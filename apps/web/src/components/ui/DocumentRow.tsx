@@ -1,6 +1,7 @@
 import type { Document } from "@/lib/types";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
+import { DocumentTitle } from "./DocumentTitle";
 
 export function DocumentRow({ doc }: { doc: Document }) {
   return (
@@ -9,7 +10,9 @@ export function DocumentRow({ doc }: { doc: Document }) {
       className="flex items-center gap-4 px-5 py-4 bg-white hover:bg-[var(--surface-1)] transition-colors group"
     >
       <div className="flex-1 min-w-0">
-        <p className="font-medium truncate group-hover:text-accent transition-colors">{doc.title}</p>
+        <p className="font-medium truncate group-hover:text-accent transition-colors">
+          <DocumentTitle title={doc.title} />
+        </p>
         <div className="flex items-center gap-3 mt-1.5">
           <span className="text-xs text-[var(--muted)]">{doc.lab_name}</span>
           <span className="text-xs text-[var(--muted)]">
