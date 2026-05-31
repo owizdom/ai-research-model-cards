@@ -38,8 +38,19 @@ export const api = {
   },
 
   documents: {
-    list: (params?: { lab?: string; doc_type?: string; search?: string; limit?: number; offset?: number }) =>
-      get<Document[]>("/documents", params as Record<string, string | number | boolean>),
+    list: (params?: { lab?: string; doc_type?: string; search?: string; limit?: number; offset?: number }) => {
+      // The API parameter is `lab_slug`; the UI/URL convention is `lab`.
+      // Translate at the boundary so FastAPI's filter actually fires (it
+      // silently drops unknown query params, which made `?lab=anthropic`
+      // a no-op and returned every doc regardless of lab).
+      const q: Record<string, string | number | boolean> = {};
+      if (params?.lab) q.lab_slug = params.lab;
+      if (params?.doc_type) q.doc_type = params.doc_type;
+      if (params?.search) q.search = params.search;
+      if (params?.limit != null) q.limit = params.limit;
+      if (params?.offset != null) q.offset = params.offset;
+      return get<Document[]>("/documents", q);
+    },
     wordCountTimeline: () =>
       get<WordCountTimelinePoint[]>("/documents/word-count-timeline"),
     get: (id: number) => get<DocumentDetail>(`/documents/${id}`),

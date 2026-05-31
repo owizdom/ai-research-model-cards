@@ -9,7 +9,7 @@ export function DocumentFilters({
   currentType,
   currentSearch,
 }: {
-  labs: string[];
+  labs: { slug: string; name: string }[];
   docTypes: string[];
   currentLab?: string;
   currentType?: string;
@@ -75,13 +75,13 @@ export function DocumentFilters({
           </button>
           {labs.map(lab => (
             <button
-              key={lab}
-              onClick={() => updateFilter("lab", lab === currentLab ? undefined : lab)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all capitalize ${
-                lab === currentLab ? pillActive : pillInactive
+              key={lab.slug}
+              onClick={() => updateFilter("lab", lab.slug === currentLab ? undefined : lab.slug)}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+                lab.slug === currentLab ? pillActive : pillInactive
               }`}
             >
-              {lab}
+              {lab.name}
             </button>
           ))}
         </div>

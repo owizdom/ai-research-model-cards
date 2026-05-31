@@ -30,7 +30,9 @@ export default async function DocumentsPage({
   const hasNextPage = docs.length > PAGE_SIZE;
   const displayDocs = docs.slice(0, PAGE_SIZE);
 
-  const labSlugs = [...new Set(labs.map(l => l.slug))].sort();
+  const labOptions = labs
+    .map(l => ({ slug: l.slug, name: l.name }))
+    .sort((a, b) => a.name.localeCompare(b.name));
   const docTypes = ["model_card", "usage_policy", "constitution"].sort();
 
   // Build pagination URLs preserving filters
@@ -54,7 +56,7 @@ export default async function DocumentsPage({
       </div>
 
       <DocumentFilters
-        labs={labSlugs}
+        labs={labOptions}
         docTypes={docTypes}
         currentLab={params.lab}
         currentType={params.doc_type}
