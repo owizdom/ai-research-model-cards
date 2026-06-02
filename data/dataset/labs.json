@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "anthropic",
+    "name": "Anthropic",
+    "color_hex": "#D4791A",
+    "website": "https://www.anthropic.com"
+  },
+  {
+    "slug": "google",
+    "name": "Google DeepMind",
+    "color_hex": "#4285F4",
+    "website": "https://deepmind.google"
+  },
+  {
+    "slug": "meta",
+    "name": "Meta AI",
+    "color_hex": "#0866FF",
+    "website": "https://ai.meta.com"
+  },
+  {
+    "slug": "mistral",
+    "name": "Mistral AI",
+    "color_hex": "#FF7000",
+    "website": "https://mistral.ai"
+  },
+  {
+    "slug": "openai",
+    "name": "OpenAI",
+    "color_hex": "#10A37F",
+    "website": "https://openai.com"
+  },
+  {
+    "slug": "xai",
+    "name": "xAI",
+    "color_hex": "#1DA1F2",
+    "website": "https://x.ai"
+  }
+]

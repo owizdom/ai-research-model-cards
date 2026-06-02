@@ -1,0 +1,52 @@
+slug,name,version_label,lab_slug,release_date,document_slug
+mistral-7b,Mistral 7B,,mistral,2023-09-27,mistral_7b_model_card
+mixtral-8x7b,Mixtral 8x7B,,mistral,2023-12-11,mistral_mixtral_model_card
+codestral,Codestral,,mistral,2024-05-29,mistral_codestral_blog
+llama-3.1-card,Llama 3.1 (card),,meta,2024-07-23,meta_llama31_card
+mistral-large-2,Mistral Large 2,,mistral,2024-07-24,mistral_large_2_blog
+claude-3.5-haiku,Claude 3.5 Haiku,,anthropic,2024-10-22,anthropic_35h_addendum
+operator,Operator,,openai,2025-01-23,openai_operator_card
+mistral-small-3,Mistral Small 3,,mistral,2025-01-30,mistral_small_3_hf_card
+o3-mini,o3-mini,,openai,2025-01-31,openai_o3mini_card
+claude-haiku-4.5,Claude Haiku 4.5,,anthropic,2025-10-01,anthropic_haiku45_card
+claude-opus-4.6,Claude Opus 4.6,,anthropic,2026-02-01,anthropic_opus46_card
+claude-mythos,Claude (Mythos preview),,anthropic,2026-03-01,anthropic_mythos_card
+claude-opus-4.8,Claude Opus 4.8,4.8-opus,anthropic,2026-05-28,anthropic_opus48_card
+claude-2,Claude 2,2,anthropic,,anthropic_claude2_card
+claude-3,Claude 3,3,anthropic,,anthropic_model_card
+claude-3.5,Claude 3.5,3.5,anthropic,,anthropic_35_addendum
+claude-3.7,Claude 3.7 Sonnet,3.7,anthropic,,anthropic_37_card
+claude-4,Claude 4,4,anthropic,,anthropic_claude4_card
+claude-mythos-preview,Claude Mythos Preview,mythos-preview,anthropic,,anthropic_mythos_card
+claude-opus-4.1,Claude Opus 4.1,4.1,anthropic,,anthropic_opus41_card
+claude-opus-4.5,Claude Opus 4.5,4.5-opus,anthropic,,anthropic_opus45_card
+claude-opus-4.7,Claude Opus 4.7,4.7-opus,anthropic,,anthropic_opus47_card
+claude-sonnet-4.5,Claude Sonnet 4.5,4.5-sonnet,anthropic,,anthropic_sonnet45_card
+claude-sonnet-4.6,Claude Sonnet 4.6,4.6,anthropic,,anthropic_sonnet46_card
+gemini-1.0,Gemini 1.0,1.0,google,,google_gemini_report
+gemini-1.5,Gemini 1.5,1.5,google,,google_gemini_1_5_report
+gemini-2.0,Gemini 2.0 Flash,2.0,google,,google_gemini_2_card
+gemini-2.5,Gemini 2.5 Flash,2.5,google,,google_gemini_25_card
+gemini-2.5-dt,Gemini 2.5 Deep Think,2.5-dt,google,,google_gemini_25dt_card
+gemini-2.5-pro,Gemini 2.5 Pro,2.5-pro,google,,google_gemini_25_pro_card
+gemini-3.0,Gemini 3 Flash,3.0,google,,google_gemini_3_card
+gemini-3.0-pro,Gemini 3 Pro,3.0-pro,google,,google_gemini_3_pro_card
+gemini-3.1-pro,Gemini 3.1 Pro,3.1-pro,google,,google_gemini_31_pro_card
+gpt-4,GPT-4,4,openai,,openai_gpt4_system_card
+gpt-4.5,GPT-4.5,4.5,openai,,openai_gpt45_system_card
+gpt-4o,GPT-4o,4o,openai,,openai_gpt4o_system_card
+gpt-5,GPT-5,5,openai,,openai_gpt5_system_card
+gpt-5.1,GPT-5.1,5.1,openai,,openai_gpt51_system_card
+gpt-5.2,GPT-5.2,5.2,openai,,openai_gpt52_system_card
+gpt-5.3,GPT-5.3 Codex,5.3,openai,,openai_gpt53_codex_card
+grok-4,Grok 4,4,xai,,xai_grok4_card
+grok-4.1,Grok 4.1,4.1,xai,,xai_grok41_card
+grok-4-fast,Grok 4 Fast,4-fast,xai,,xai_grok4_fast_card
+llama-2,Llama 2,2,meta,,meta_llama2_card
+llama-3,Llama 3,3,meta,,meta_llama3_model_card
+llama-3.1,Llama 3.1,3.1,meta,,meta_llama3_paper
+llama-3.2,Llama 3.2,3.2,meta,,meta_llama32_card
+llama-3.3,Llama 3.3,3.3,meta,,meta_responsible_use
+llama-4,Llama 4,4,meta,,meta_llama4_card
+o1,o1,o1,openai,,openai_o1_system_card
+o3,o3,o3,openai,,openai_o3_system_card

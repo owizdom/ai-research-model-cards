@@ -1,0 +1,713 @@
+[
+  {
+    "slug": "anthropic_35_addendum",
+    "title": "Claude 3.5 Model Card Addendum",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model_Card_Claude_3_Addendum.pdf",
+    "updated_at": "2026-03-31T09:13:59.375987+00:00",
+    "word_count_latest": 2948
+  },
+  {
+    "slug": "anthropic_35h_addendum",
+    "title": "Claude 3.5 Haiku Addendum",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/c7822cdc35ad788ec87e14b3a9d45010f1f86c38.pdf",
+    "updated_at": "2026-03-31T11:25:02.381872+00:00",
+    "word_count_latest": 5793
+  },
+  {
+    "slug": "anthropic_37_card",
+    "title": "Claude 3.7 Sonnet System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/9ff93dfa8f445c932415d335c88852ef47f1201e.pdf",
+    "updated_at": "2026-03-31T11:25:19.517491+00:00",
+    "word_count_latest": 17827
+  },
+  {
+    "slug": "anthropic_claude2_card",
+    "title": "Claude 2 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/bd2a28d2535bfb0494cc8e2a3bf135d2e7523226/Model-Card-Claude-2.pdf",
+    "updated_at": "2026-03-31T09:10:56.881993+00:00",
+    "word_count_latest": 5889
+  },
+  {
+    "slug": "anthropic_claude4_card",
+    "title": "Claude 4 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",
+    "updated_at": "2026-03-31T09:11:41.802373+00:00",
+    "word_count_latest": 33237
+  },
+  {
+    "slug": "anthropic_claude_character",
+    "title": "Claude's Character",
+    "doc_type": "constitution",
+    "lab_slug": "anthropic",
+    "source_url": "https://www.anthropic.com/research/claude-character",
+    "updated_at": "2026-04-08T22:19:34.497539+00:00",
+    "word_count_latest": 1731
+  },
+  {
+    "slug": "anthropic_constitutional_ai",
+    "title": "Constitutional AI Paper",
+    "doc_type": "constitution",
+    "lab_slug": "anthropic",
+    "source_url": "https://arxiv.org/pdf/2212.08073",
+    "updated_at": "2026-04-08T22:19:34.532204+00:00",
+    "word_count_latest": 19146
+  },
+  {
+    "slug": "anthropic_core_views",
+    "title": "Core Views on AI Safety",
+    "doc_type": "constitution",
+    "lab_slug": "anthropic",
+    "source_url": "https://www.anthropic.com/news/core-views-on-ai-safety",
+    "updated_at": "2026-04-08T22:19:34.468367+00:00",
+    "word_count_latest": 6781
+  },
+  {
+    "slug": "anthropic_haiku45_card",
+    "title": "Claude Haiku 4.5 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf",
+    "updated_at": "2026-03-31T09:12:59.853309+00:00",
+    "word_count_latest": 10325
+  },
+  {
+    "slug": "anthropic_model_card",
+    "title": "Claude 3 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf",
+    "updated_at": "2026-03-31T09:11:16.033587+00:00",
+    "word_count_latest": 14089
+  },
+  {
+    "slug": "anthropic_mythos_card",
+    "title": "Claude Mythos Preview System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/8b8380204f74670be75e81c820ca8dda846ab289.pdf",
+    "updated_at": "2026-04-08T22:19:36.414666+00:00",
+    "word_count_latest": 65849
+  },
+  {
+    "slug": "anthropic_opus41_card",
+    "title": "Claude Opus 4.1 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/9fa30625273bafdf5af82c93719d7ca606485a16.pdf",
+    "updated_at": "2026-03-31T09:13:16.994806+00:00",
+    "word_count_latest": 5271
+  },
+  {
+    "slug": "anthropic_opus45_card",
+    "title": "Claude Opus 4.5 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf",
+    "updated_at": "2026-03-31T09:12:11.005523+00:00",
+    "word_count_latest": 38212
+  },
+  {
+    "slug": "anthropic_opus46_card",
+    "title": "Claude Opus 4.6 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://anthropic.com/claude-opus-4-6-system-card",
+    "updated_at": "2026-04-08T22:19:34.788842+00:00",
+    "word_count_latest": 53965
+  },
+  {
+    "slug": "anthropic_opus47_card",
+    "title": "Claude Opus 4.7 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://anthropic.com/claude-opus-4-7-system-card",
+    "updated_at": "2026-05-15T15:04:15.253698+00:00",
+    "word_count_latest": 62813
+  },
+  {
+    "slug": "anthropic_opus48_card",
+    "title": "Claude Opus 4.8 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www.anthropic.com/claude-opus-4-8-system-card",
+    "updated_at": "2026-05-30T09:52:04.893931+00:00",
+    "word_count_latest": 61922
+  },
+  {
+    "slug": "anthropic_rsp",
+    "title": "Responsible Scaling Policy",
+    "doc_type": "constitution",
+    "lab_slug": "anthropic",
+    "source_url": "https://www.anthropic.com/responsible-scaling-policy",
+    "updated_at": "2026-04-08T22:19:34.366773+00:00",
+    "word_count_latest": 3203
+  },
+  {
+    "slug": "anthropic_safeguards",
+    "title": "Building Safeguards for Claude",
+    "doc_type": "constitution",
+    "lab_slug": "anthropic",
+    "source_url": "https://www.anthropic.com/news/building-safeguards-for-claude",
+    "updated_at": "2026-04-08T22:19:36.548189+00:00",
+    "word_count_latest": 1614
+  },
+  {
+    "slug": "anthropic_sonnet45_card",
+    "title": "Claude Sonnet 4.5 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf",
+    "updated_at": "2026-03-31T09:12:40.842455+00:00",
+    "word_count_latest": 37364
+  },
+  {
+    "slug": "anthropic_sonnet46_card",
+    "title": "Claude Sonnet 4.6 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf",
+    "updated_at": "2026-03-31T09:13:43.474121+00:00",
+    "word_count_latest": 28336
+  },
+  {
+    "slug": "anthropic_usage_policy",
+    "title": "Acceptable Use Policy",
+    "doc_type": "usage_policy",
+    "lab_slug": "anthropic",
+    "source_url": "https://www.anthropic.com/legal/aup",
+    "updated_at": "2026-04-08T22:19:34.241117+00:00",
+    "word_count_latest": 2576
+  },
+  {
+    "slug": "google_ai_principles",
+    "title": "AI Principles",
+    "doc_type": "constitution",
+    "lab_slug": "google",
+    "source_url": "https://ai.google/responsibility/principles/",
+    "updated_at": "2026-04-08T22:19:36.911577+00:00",
+    "word_count_latest": 28
+  },
+  {
+    "slug": "google_frontier_safety",
+    "title": "Frontier Safety Framework",
+    "doc_type": "constitution",
+    "lab_slug": "google",
+    "source_url": "https://deepmind.google/blog/updating-the-frontier-safety-framework/",
+    "updated_at": "2026-04-08T22:19:37.198111+00:00",
+    "word_count_latest": 13
+  },
+  {
+    "slug": "google_gemini_1_5_report",
+    "title": "Gemini 1.5 Technical Report",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://arxiv.org/pdf/2403.05530",
+    "updated_at": "2026-03-31T09:16:31.307971+00:00",
+    "word_count_latest": 64551
+  },
+  {
+    "slug": "google_gemini_25_card",
+    "title": "Gemini 2.5 Flash Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Flash-Model-Card.pdf",
+    "updated_at": "2026-03-31T09:16:49.124307+00:00",
+    "word_count_latest": 2883
+  },
+  {
+    "slug": "google_gemini_25dt_card",
+    "title": "Gemini 2.5 Deep Think Card",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Deep-Think-Model-Card.pdf",
+    "updated_at": "2026-03-31T11:27:20.329194+00:00",
+    "word_count_latest": 6313
+  },
+  {
+    "slug": "google_gemini_25_pro_card",
+    "title": "Gemini 2.5 Pro Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Pro-Model-Card.pdf",
+    "updated_at": "2026-03-31T09:17:07.101602+00:00",
+    "word_count_latest": 7182
+  },
+  {
+    "slug": "google_gemini_2_card",
+    "title": "Gemini 2.0 Flash Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-0-Flash-Model-Card.pdf",
+    "updated_at": "2026-03-31T11:27:02.292947+00:00",
+    "word_count_latest": 1529
+  },
+  {
+    "slug": "google_gemini_31_pro_card",
+    "title": "Gemini 3.1 Pro Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Pro-Model-Card.pdf",
+    "updated_at": "2026-03-31T11:27:36.734953+00:00",
+    "word_count_latest": 1755
+  },
+  {
+    "slug": "google_gemini_3_card",
+    "title": "Gemini 3 Flash Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Flash-Model-Card.pdf",
+    "updated_at": "2026-03-31T09:17:23.099210+00:00",
+    "word_count_latest": 1070
+  },
+  {
+    "slug": "google_gemini_3_pro_card",
+    "title": "Gemini 3 Pro Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf",
+    "updated_at": "2026-03-31T09:17:39.102689+00:00",
+    "word_count_latest": 2158
+  },
+  {
+    "slug": "google_gemini_report",
+    "title": "Gemini Technical Report",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://arxiv.org/pdf/2312.11805",
+    "updated_at": "2026-03-31T09:16:08.879055+00:00",
+    "word_count_latest": 32283
+  },
+  {
+    "slug": "google_prohibited_use",
+    "title": "Generative AI Prohibited Use",
+    "doc_type": "usage_policy",
+    "lab_slug": "google",
+    "source_url": "https://policies.google.com/terms/generative-ai/use-policy",
+    "updated_at": "2026-04-08T22:19:37.164696+00:00",
+    "word_count_latest": 621
+  },
+  {
+    "slug": "google_responsibility",
+    "title": "Responsibility & Safety",
+    "doc_type": "constitution",
+    "lab_slug": "google",
+    "source_url": "https://deepmind.google/responsibility-and-safety/",
+    "updated_at": "2026-04-08T22:19:37.241077+00:00",
+    "word_count_latest": 16
+  },
+  {
+    "slug": "google_responsible_ai",
+    "title": "Responsible AI Practices",
+    "doc_type": "usage_policy",
+    "lab_slug": "google",
+    "source_url": "https://ai.google/responsibility/responsible-ai-practices/",
+    "updated_at": "2026-04-08T22:19:36.946267+00:00",
+    "word_count_latest": 28
+  },
+  {
+    "slug": "meta_llama2_card",
+    "title": "Llama 2 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/llama/main/MODEL_CARD.md",
+    "updated_at": "2026-03-31T09:17:53.229399+00:00",
+    "word_count_latest": 956
+  },
+  {
+    "slug": "meta_llama31_card",
+    "title": "Llama 3.1 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
+    "updated_at": "2026-03-31T09:19:16.853795+00:00",
+    "word_count_latest": 3304
+  },
+  {
+    "slug": "meta_llama32_card",
+    "title": "Llama 3.2 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_2/MODEL_CARD.md",
+    "updated_at": "2026-03-31T09:19:31.216945+00:00",
+    "word_count_latest": 4158
+  },
+  {
+    "slug": "meta_llama3_model_card",
+    "title": "Llama 3 Model Card (GitHub)",
+    "doc_type": "model_card",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/llama3/main/README.md",
+    "updated_at": "2026-03-31T09:19:02.351091+00:00",
+    "word_count_latest": 1191
+  },
+  {
+    "slug": "meta_llama3_paper",
+    "title": "Llama 3.1 Technical Paper",
+    "doc_type": "model_card",
+    "lab_slug": "meta",
+    "source_url": "https://arxiv.org/pdf/2407.21783",
+    "updated_at": "2026-03-31T09:18:32.566760+00:00",
+    "word_count_latest": 53027
+  },
+  {
+    "slug": "meta_llama4_card",
+    "title": "Llama 4 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
+    "updated_at": "2026-03-31T09:20:14.050461+00:00",
+    "word_count_latest": 3165
+  },
+  {
+    "slug": "meta_llama_guard",
+    "title": "Llama Guard Paper",
+    "doc_type": "constitution",
+    "lab_slug": "meta",
+    "source_url": "https://arxiv.org/pdf/2312.06674",
+    "updated_at": "2026-03-31T09:18:48.537204+00:00",
+    "word_count_latest": 7127
+  },
+  {
+    "slug": "meta_llamaguard3_card",
+    "title": "Llama Guard 3 Vision Card",
+    "doc_type": "constitution",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard3/11B-vision/MODEL_CARD.md",
+    "updated_at": "2026-03-31T09:20:00.000174+00:00",
+    "word_count_latest": 1531
+  },
+  {
+    "slug": "meta_llamaguard_card",
+    "title": "Llama Guard Model Card",
+    "doc_type": "constitution",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Llama-Guard/MODEL_CARD.md",
+    "updated_at": "2026-03-31T09:19:45.221035+00:00",
+    "word_count_latest": 805
+  },
+  {
+    "slug": "meta_llama_use_policy",
+    "title": "Llama 3.3 Use Policy",
+    "doc_type": "usage_policy",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/USE_POLICY.md",
+    "updated_at": "2026-04-08T22:19:37.325186+00:00",
+    "word_count_latest": 802
+  },
+  {
+    "slug": "meta_purple_llama",
+    "title": "Purple Llama (Safety Tools)",
+    "doc_type": "constitution",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/README.md",
+    "updated_at": "2026-04-08T22:19:37.568525+00:00",
+    "word_count_latest": 904
+  },
+  {
+    "slug": "meta_responsible_use",
+    "title": "Llama 3.3 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "meta",
+    "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
+    "updated_at": "2026-03-31T09:18:07.485872+00:00",
+    "word_count_latest": 2572
+  },
+  {
+    "slug": "mistral_7b_model_card",
+    "title": "Mistral 7B Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "mistral",
+    "source_url": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3/raw/main/README.md",
+    "updated_at": "2026-03-31T09:20:43.449229+00:00",
+    "word_count_latest": 745
+  },
+  {
+    "slug": "mistral_codestral_blog",
+    "title": "Codestral Release",
+    "doc_type": "model_card",
+    "lab_slug": "mistral",
+    "source_url": "https://mistral.ai/news/codestral",
+    "updated_at": "2026-04-17T13:31:37.146233+00:00",
+    "word_count_latest": 1235
+  },
+  {
+    "slug": "mistral_guardrailing",
+    "title": "Guardrailing Docs",
+    "doc_type": "usage_policy",
+    "lab_slug": "mistral",
+    "source_url": "https://docs.mistral.ai/capabilities/guardrailing/",
+    "updated_at": "2026-04-08T22:19:37.784975+00:00",
+    "word_count_latest": 1807
+  },
+  {
+    "slug": "mistral_large_2_blog",
+    "title": "Mistral Large 2 Release",
+    "doc_type": "model_card",
+    "lab_slug": "mistral",
+    "source_url": "https://mistral.ai/news/mistral-large-2407",
+    "updated_at": "2026-04-17T13:31:36.851741+00:00",
+    "word_count_latest": 979
+  },
+  {
+    "slug": "mistral_mixtral_model_card",
+    "title": "Mixtral 8x22B Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "mistral",
+    "source_url": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1/raw/main/README.md",
+    "updated_at": "2026-03-31T09:20:28.798801+00:00",
+    "word_count_latest": 810
+  },
+  {
+    "slug": "mistral_moderation",
+    "title": "Moderation API",
+    "doc_type": "constitution",
+    "lab_slug": "mistral",
+    "source_url": "https://mistral.ai/news/mistral-moderation",
+    "updated_at": "2026-04-08T22:19:37.998299+00:00",
+    "word_count_latest": 313
+  },
+  {
+    "slug": "mistral_small_3_blog",
+    "title": "Mistral Small 3 Release",
+    "doc_type": "model_card",
+    "lab_slug": "mistral",
+    "source_url": "https://mistral.ai/news/mistral-small-3",
+    "updated_at": "2026-04-17T13:31:36.961594+00:00",
+    "word_count_latest": 957
+  },
+  {
+    "slug": "mistral_small_3_hf_card",
+    "title": "Mistral Small 24B Instruct 2501 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "mistral",
+    "source_url": "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501/raw/main/README.md",
+    "updated_at": "2026-04-17T13:31:37.059886+00:00",
+    "word_count_latest": 1740
+  },
+  {
+    "slug": "mistral_usage_policy",
+    "title": "Usage Policy",
+    "doc_type": "usage_policy",
+    "lab_slug": "mistral",
+    "source_url": "https://legal.mistral.ai/terms/usage-policy",
+    "updated_at": "2026-04-08T22:19:37.894585+00:00",
+    "word_count_latest": 965
+  },
+  {
+    "slug": "openai_agentic_governance",
+    "title": "Practices for Governing Agentic AI",
+    "doc_type": "constitution",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/papers/practices-for-governing-agentic-ai-systems.pdf",
+    "updated_at": "2026-04-08T22:19:36.679811+00:00",
+    "word_count_latest": 12761
+  },
+  {
+    "slug": "openai_gpt45_system_card",
+    "title": "GPT-4.5 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/gpt-4-5-system-card-2272025.pdf",
+    "updated_at": "2026-03-31T09:15:03.785450+00:00",
+    "word_count_latest": 9853
+  },
+  {
+    "slug": "openai_gpt4o_system_card",
+    "title": "GPT-4o System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/gpt-4o-system-card.pdf",
+    "updated_at": "2026-03-31T09:14:30.173489+00:00",
+    "word_count_latest": 11624
+  },
+  {
+    "slug": "openai_gpt4_system_card",
+    "title": "GPT-4 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/papers/gpt-4-system-card.pdf",
+    "updated_at": "2026-03-31T09:14:14.824379+00:00",
+    "word_count_latest": 27859
+  },
+  {
+    "slug": "openai_gpt51_system_card",
+    "title": "GPT-5.1 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/pdf/4173ec8d-1229-47db-96de-06d87147e07e/5_1_system_card.pdf",
+    "updated_at": "2026-03-31T11:26:11.528273+00:00",
+    "word_count_latest": 1340
+  },
+  {
+    "slug": "openai_gpt52_system_card",
+    "title": "GPT-5.2 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf",
+    "updated_at": "2026-03-31T11:26:29.080082+00:00",
+    "word_count_latest": 7212
+  },
+  {
+    "slug": "openai_gpt53_codex_card",
+    "title": "GPT-5.3 Codex System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/pdf/23eca107-a9b1-4d2c-b156-7deb4fbc697c/GPT-5-3-Codex-System-Card-02.pdf",
+    "updated_at": "2026-03-31T11:26:46.624725+00:00",
+    "word_count_latest": 10850
+  },
+  {
+    "slug": "openai_gpt55_system_card",
+    "title": "GPT-5.5 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+    "updated_at": "2026-04-23T18:40:07.654336+00:00",
+    "word_count_latest": 14496
+  },
+  {
+    "slug": "openai_gpt5_system_card",
+    "title": "GPT-5 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/gpt-5-system-card.pdf",
+    "updated_at": "2026-03-31T09:14:46.064787+00:00",
+    "word_count_latest": 20412
+  },
+  {
+    "slug": "openai_mental_health",
+    "title": "Mental Health Safety Update",
+    "doc_type": "usage_policy",
+    "lab_slug": "openai",
+    "source_url": "https://openai.com/index/update-on-mental-health-related-work/",
+    "updated_at": "2026-04-13T14:57:39.748859+00:00",
+    "word_count_latest": 680
+  },
+  {
+    "slug": "openai_model_spec",
+    "title": "Model Spec",
+    "doc_type": "constitution",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/spec/model-spec-2024-05-08.html",
+    "updated_at": "2026-04-08T22:19:36.578478+00:00",
+    "word_count_latest": 10084
+  },
+  {
+    "slug": "openai_o1_system_card",
+    "title": "o1 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "updated_at": "2026-03-31T09:15:24.496606+00:00",
+    "word_count_latest": 17410
+  },
+  {
+    "slug": "openai_o3mini_card",
+    "title": "o3-mini System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/o3-mini-system-card-feb10.pdf",
+    "updated_at": "2026-03-31T11:25:40.687533+00:00",
+    "word_count_latest": 12135
+  },
+  {
+    "slug": "openai_o3_system_card",
+    "title": "o3 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf",
+    "updated_at": "2026-03-31T09:15:45.628971+00:00",
+    "word_count_latest": 9945
+  },
+  {
+    "slug": "openai_operator_card",
+    "title": "Operator System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/operator_system_card.pdf",
+    "updated_at": "2026-03-31T11:25:55.593510+00:00",
+    "word_count_latest": 5291
+  },
+  {
+    "slug": "openai_preparedness",
+    "title": "Preparedness Framework",
+    "doc_type": "constitution",
+    "lab_slug": "openai",
+    "source_url": "https://cdn.openai.com/openai-preparedness-framework-beta.pdf",
+    "updated_at": "2026-04-08T22:19:36.632230+00:00",
+    "word_count_latest": 12537
+  },
+  {
+    "slug": "xai_api_docs",
+    "title": "xAI API Documentation",
+    "doc_type": "usage_policy",
+    "lab_slug": "xai",
+    "source_url": "https://docs.x.ai/docs/api-reference",
+    "updated_at": "2026-04-08T22:19:38.115960+00:00",
+    "word_count_latest": 989
+  },
+  {
+    "slug": "xai_aup",
+    "title": "Acceptable Use Policy",
+    "doc_type": "usage_policy",
+    "lab_slug": "xai",
+    "source_url": "https://x.ai/legal/acceptable-use-policy",
+    "updated_at": "2026-04-08T22:19:38.145781+00:00",
+    "word_count_latest": 438
+  },
+  {
+    "slug": "xai_grok41_card",
+    "title": "Grok 4.1 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "xai",
+    "source_url": "https://data.x.ai/2025-11-17-grok-4-1-model-card.pdf",
+    "updated_at": "2026-03-31T11:28:05.454574+00:00",
+    "word_count_latest": 2243
+  },
+  {
+    "slug": "xai_grok4_card",
+    "title": "Grok 4 Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "xai",
+    "source_url": "https://data.x.ai/2025-08-20-grok-4-model-card.pdf",
+    "updated_at": "2026-03-31T09:21:12.829271+00:00",
+    "word_count_latest": 3482
+  },
+  {
+    "slug": "xai_grok4_fast_card",
+    "title": "Grok 4 Fast Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "xai",
+    "source_url": "https://data.x.ai/2025-09-19-grok-4-fast-model-card.pdf",
+    "updated_at": "2026-03-31T11:27:51.346632+00:00",
+    "word_count_latest": 2994
+  },
+  {
+    "slug": "xai_grok_docs",
+    "title": "Grok Documentation",
+    "doc_type": "usage_policy",
+    "lab_slug": "xai",
+    "source_url": "https://docs.x.ai/docs",
+    "updated_at": "2026-03-31T09:20:58.337442+00:00",
+    "word_count_latest": 448
+  },
+  {
+    "slug": "xai_risk_framework",
+    "title": "Risk Management Framework",
+    "doc_type": "constitution",
+    "lab_slug": "xai",
+    "source_url": "https://data.x.ai/2025-08-20-xai-risk-management-framework.pdf",
+    "updated_at": "2026-04-08T22:19:38.223154+00:00",
+    "word_count_latest": 3484
+  }
+]

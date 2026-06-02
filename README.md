@@ -54,6 +54,10 @@ Analyses produced from the platform's data, with provenance and regeneration scr
 - **Roughly 100× spread** in model-card length, from Mistral 7B (~750 words) to Anthropic's Claude Mythos Preview (~68,000). The disclosure gap is not just substantive — it is two orders of magnitude in surface area.
 - **Hedging language has gone from 17% to 83%** of cards over 2023 – 2026. Phrases like *"cannot rule out"*, *"could not verify"*, and *"saturated"* appeared in 1 of 6 cards in 2023; by 2026 they appear in 5 of 6. Labs are increasingly admitting they cannot bound the risk.
 
+## Public dataset
+
+A snapshot of the corpus is exported as flat CSV and typed JSON files at [`data/dataset/`](data/dataset/). Five tables (`eval_results`, `benchmarks`, `models`, `labs`, `documents`), no nesting, joinable on slug columns. Each release ships with a SHA256 fingerprint and a per-column [README](data/dataset/README.md) with load examples for pandas, R, and DuckDB-against-CSV. Re-export with `python3 scripts/export_dataset.py`. License: CC-BY 4.0 (attribution to modelcards.net + the original lab card linked in `documents.csv`).
+
 ## Architecture
 
 ```
