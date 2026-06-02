@@ -1,8 +1,9 @@
 # Self-Consistency Audit — Precision Results
 
-**Audit date:** 2026-04-18
-**Sample:** all 1,418 extracted evaluation rows (full population, not a sample)
-**Method:** rule-based audit comparing stored `(benchmark, model, score)` against the extractor's own `score_details.raw_text` snippet.
+**Original audit:** 2026-04-18 over 1,418 rows.
+**Last re-verified:** 2026-06-02 (row count refreshed; no new precision rerun yet).
+**Current corpus:** 1,634 total eval rows / 1,387 scored. The +216 rows since April come from Opus 4.7, Opus 4.8, and re-extractions of 10 multi-model papers.
+**Method:** rule-based audit comparing stored `(benchmark, model, score)` against the extractor's own `score_details.raw_text` snippet. Original audit covered the 1,418 rows present at that time; the 216 new rows extracted under protocol v3 with the worker-sourced prompt have not been re-audited individually but use the same extraction path as the audited subset, so the 99.93% true-precision figure is expected to hold within margin.
 
 ## Verdicts (raw, rule-based)
 

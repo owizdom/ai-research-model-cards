@@ -1,8 +1,10 @@
 # Audited Claims — Model Card Benchmark Disclosure Research
 
-Last updated: 2026-04-13
-Corpus: 53 frontier model card versions across 9 labs
+Last updated: 2026-06-02
+Corpus: 52 frontier model card documents (79 documents total including constitutions and usage policies) across 6 Western frontier labs
 Audit method: DB regex grep (PostgreSQL `~*` operator with word boundaries) + independent web verification
+
+**Periodic re-verification on 2026-06-02:** All five claims below (C1 through C5) re-checked against the current corpus. None changed. New cards added since Apr 2026 (Opus 4.7, Opus 4.8) did not introduce new occurrences of MedQA, PubMedQA, LegalBench, CUAD, or MedMCQA. The medical-eval drought of 2025–26 persists.
 
 ---
 
