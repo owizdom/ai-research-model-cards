@@ -424,6 +424,11 @@ async def extract_evals_from_version(version_id: int, SessionLocal=None) -> int:
                         "raw_text": item.get("context", ""),
                         "metric": item.get("metric", ""),
                         "model_name": item.get("model_name", ""),
+                        # Provenance: the LLM that did the extraction (distinct
+                        # from "model_name", which is the model being benchmarked).
+                        # Protocol version tracks schema, not model — record the
+                        # model explicitly so a row is self-describing.
+                        "extractor_model": EXTRACTION_MODEL,
                     },
                     extraction_confidence=0.85,
                     is_self_reported=True,

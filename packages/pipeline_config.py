@@ -39,13 +39,22 @@ above."""
 # ── Extraction pipeline ──────────────────────────────────────────────────────
 
 EXTRACTION_PROTOCOL_VERSION: int = 3
-"""Bump when the extractor's output shape changes in a way that makes old
-rows non-comparable. Old rows stay; new rows insert under the new version
-so the UI can filter. v3 (2026-05-29): adds explicit `split` and
-`metric_path` fields read from prose context (paper Section 3.2 hierarchy)
-and switches the default extractor model to Opus 4.7 for richer extraction
-of sub-task structure that Sonnet 4.6 historically flattened into the
-variant string."""
+"""Tracks the extractor's OUTPUT SCHEMA — not the model. Bump only when the
+output shape changes in a way that makes old rows non-comparable; old rows
+stay and new rows insert under the new version so the UI can filter. v3
+(2026-05-29) added explicit `split` and `metric_path` fields read from prose
+context (EvaluationCards paper Section 3.2 hierarchy) that Sonnet had been
+flattening into the variant string.
+
+The protocol version says nothing about which model produced a row. The
+extractor model is recorded per-row in
+`eval_results.score_details.extractor_model` and per-run in
+`extraction_runs.model_used`, and is selected at runtime by the
+EXTRACTION_MODEL env var (default "sonnet"). Every production row to date —
+all protocol versions, v3 included — was extracted by Sonnet. An earlier
+draft of this docstring claimed v3 switched the default to Opus 4.7; that
+switch was reverted before any Opus extraction ran. Do not infer the model
+from the protocol version."""
 
 WINDOW_SIZE_DEFAULT: int = 30_000
 """Char budget the section selector passes to the Claude CLI per extraction
