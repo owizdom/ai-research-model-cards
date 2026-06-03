@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-06-03T15:20:22.869579+00:00",
+  "source": "live Railway DB (read-only)",
+  "data_snapshot": "2026-05-31T06:26:59.574655+00:00",
+  "scope": {
+    "current_labs": [
+      "anthropic",
+      "google",
+      "meta",
+      "mistral",
+      "openai",
+      "xai"
+    ],
+    "retired_labs": [
+      "cohere",
+      "amazon",
+      "ai21"
+    ],
+    "note": "cohere/amazon/ai21 appear in earlier snapshots and older docs but are not in the current corpus. The current DB is 6 labs."
+  },
+  "corpus": {
+    "labs": 6,
+    "documents": 79,
+    "document_versions": 109,
+    "benchmarks": 630,
+    "benchmarks_curated": 62,
+    "benchmarks_auto_created": 568,
+    "benchmarks_with_evals": 471,
+    "benchmarks_with_policy_note": 485,
+    "evals": 1634,
+    "evals_scored": 1387,
+    "evals_mentioned": 220,
+    "evals_cited": 27,
+    "model_families": 6,
+    "model_generations": 51,
+    "taxonomy_categories": 15,
+    "taxonomy_mappings": 857
+  },
+  "documents_by_type": {
+    "model_card": 52,
+    "constitution": 17,
+    "usage_policy": 10
+  },
+  "documents_by_lab": {
+    "anthropic": 21,
+    "openai": 16,
+    "google": 14,
+    "meta": 12,
+    "mistral": 9,
+    "xai": 7
+  },
+  "evals_by_lab": {
+    "openai": 521,
+    "anthropic": 521,
+    "google": 254,
+    "meta": 235,
+    "xai": 66,
+    "mistral": 37
+  },
+  "evals_by_state": {
+    "scored": 1387,
+    "mentioned": 220,
+    "cited": 27
+  },
+  "evals_by_protocol_version": {
+    "1": 578,
+    "2": 105,
+    "3": 951
+  },
+  "evals_by_industry_domain": {
+    "general_academic": 913,
+    "(none)": 461,
+    "software_engineering": 118,
+    "education_exams": 89,
+    "cybersecurity": 25,
+    "healthcare_medical": 20,
+    "crm_enterprise": 8
+  },
+  "extractor_models_in_prod": {
+    "sonnet": 85,
+    "sonnet-fallback-v2-15k": 1,
+    "sonnet-extract_one": 1
+  },
+  "fragmentation_raw": {
+    "benchmarks_with_evals": 471,
+    "single_lab": 424,
+    "single_lab_pct": 0.9002,
+    "note": "Raw, not family-collapsed. Site headline uses family-collapsed names (276/311) via /api/v1/evals/fragmentation."
+  }
+}

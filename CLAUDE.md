@@ -55,6 +55,6 @@ These are scars from real incidents. Each fix is in the current code; don't acci
 ## Things to ask the user before doing
 
 - **Layout restructure** (apps/+packages/ → flat). User wants this eventually but it's a separate big PR; don't volunteer it.
-- **Adding new tracked labs.** Scope is "Western frontier labs" by design — Cohere/Amazon/AI21 are tracked in DB but filtered from the public API.
+- **Adding new tracked labs.** Scope is "Western frontier labs" by design — the current corpus is six (Anthropic, OpenAI, Google, Meta, Mistral, xAI). Cohere/Amazon/AI21 were tracked in earlier snapshots but are no longer in the DB.
 - **Bumping `EXTRACTION_PROTOCOL_VERSION`.** Old rows stay forever once a version is in use; this is a permanent decision.
 - **Pushing to `main`.** User-initiated only. Don't push commits unless they asked.

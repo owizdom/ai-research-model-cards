@@ -1,7 +1,7 @@
 # Model Card Explorer — Methodology
 
 *Free Systems Lab, Stanford GSB — Andrew Hall (PI)*
-*Last updated: 2026-04-18*
+*Last updated: 2026-06-03*
 
 ---
 
@@ -10,7 +10,7 @@
 The **Model Card Explorer** is a structured dataset + dashboard that extracts benchmark evaluation claims from frontier-AI model cards and technical reports, and surfaces them in a queryable form for transparency analysis.
 
 **In scope:**
-- Public model cards, system cards, and technical reports from nine frontier AI labs (Anthropic, OpenAI, Google DeepMind, Meta, Mistral, xAI, Cohere, Amazon, AI21) through **2026-04-18**.
+- Public model cards, system cards, and technical reports from six frontier AI labs (Anthropic, OpenAI, Google DeepMind, Meta, Mistral, xAI) through **2026-05-31**. (Earlier snapshots also tracked Cohere, Amazon, and AI21; they are no longer in the corpus.)
 - Explicit benchmark scores reported in these documents — accuracy, pass@k, F1, ELO, etc.
 - Documents' structural metadata (publication date, document type, benchmark coverage).
 
@@ -22,22 +22,26 @@ The **Model Card Explorer** is a structured dataset + dashboard that extracts be
 
 ---
 
-## 2. Current dataset (as of 2026-04-18)
+## 2. Current dataset (as of 2026-05-31)
 
 | Entity | Count |
 |---|---:|
-| Labs tracked | **9** |
-| Documents | **88** |
-| Document versions (snapshots) | **112** |
-| Benchmark definitions (canonical + auto-created) | **419** |
-| Extracted evaluation rows | **1,417** |
-| Model families | **9** |
-| Model generations | **53** |
-| Taxonomy mappings (doc ↔ NIST/EU-AI-Act category) | **880** |
+| Labs tracked | **6** |
+| Documents | **79** |
+| Document versions (snapshots) | **109** |
+| Benchmark definitions (canonical + auto-created) | **630** |
+| Extracted evaluation rows | **1,634** |
+| Model families | **6** |
+| Model generations | **51** |
+| Taxonomy mappings (doc ↔ NIST/EU-AI-Act category) | **857** |
 
-Evals by lab: `anthropic` 352 · `meta` 260 · `openai` 199 · `google` 168 · `cohere` 121 · `ai21` 111 · `amazon` 108 · `xai` 49 · `mistral` 48.
+These counts are generated from the live DB by `scripts/compute_stats.py` into `data/stats.json` (snapshot 2026-05-31). Regenerate after any corpus change rather than hand-editing them here.
 
-Evals by industry domain (per benchmark_definitions.industry_domain): `general_academic` 331 · `software_engineering` 17 · `education_exams` 11 · `healthcare_medical` 10 · `cybersecurity` 8 · `crm_enterprise` 3 · `legal` 2 · `finance_tax` 1. Consistent with the broader field's observation that frontier benchmark reporting skews heavily toward academic evaluation and away from industry-specific tasks.
+Evals by state: `scored` 1,387 · `mentioned` 220 · `cited` 27.
+
+Evals by lab: `openai` 521 · `anthropic` 521 · `google` 254 · `meta` 235 · `xai` 66 · `mistral` 37.
+
+Evals by industry domain (per benchmark_definitions.industry_domain): `general_academic` 913 · `software_engineering` 118 · `education_exams` 89 · `cybersecurity` 25 · `healthcare_medical` 20 · `crm_enterprise` 8; a further 461 rows are on benchmarks with no industry_domain set (mostly auto-created internal benchmarks). Consistent with the broader field's observation that frontier benchmark reporting skews heavily toward academic evaluation and away from industry-specific tasks.
 
 ---
 
@@ -136,7 +140,7 @@ The LLM output parser (`apps/worker/src/extractor/parse.py::parse_extraction_jso
 
 ### 5.2 Auto-created entries
 
-The extractor auto-creates a new `benchmark_definitions` row when a name is mentioned that doesn't match any canonical slug or alias. 362 of the 419 benchmarks in the DB are auto-created; most are lab-specific internal benchmarks (`anthropic_production_benchmark_*`, `openai_our_test_set_*`) with no public leaderboard.
+The extractor auto-creates a new `benchmark_definitions` row when a name is mentioned that doesn't match any canonical slug or alias. 568 of the 630 benchmarks in the DB are auto-created; most are lab-specific internal benchmarks (`anthropic_production_benchmark_*`, `openai_our_test_set_*`) with no public leaderboard.
 
 ### 5.3 Versioning policy
 
@@ -161,7 +165,7 @@ MultiPL-E per-language rows were migrated into `humaneval` or `mbpp` with the la
 
 ## 6. Data quality audits
 
-Three audit passes have been published. Their numbers are cited verbatim below; reproducible methodology is in the referenced files.
+Three audit passes have been published. Their numbers are cited verbatim below; reproducible methodology is in the referenced files. They were run on the 1,417-row snapshot then current; the corpus has since grown to 1,634 rows (§2), so the denominators below are historical to each audit, not the current corpus size.
 
 ### 6.1 Self-consistency precision (Phase 4)
 
