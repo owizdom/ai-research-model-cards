@@ -1,0 +1,109 @@
+{
+  "lab": "anthropic",
+  "num": "004/052",
+  "tier": "holo",
+  "name": "Claude 3 Opus",
+  "capN": "60",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 3 \u00b7 Mar 2024",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "MULTIMODAL"
+  ],
+  "animal": "sphinx",
+  "words": "32k",
+  "evals": "12",
+  "unique": "52%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "86.8",
+      "c": "#c8832a"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "50.4",
+      "c": "#a06820"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "60.1",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "2",
+      "d": "Jul'23"
+    },
+    {
+      "v": "3H",
+      "d": "Mar'24"
+    },
+    {
+      "v": "3S",
+      "d": "Mar'24"
+    },
+    {
+      "v": "3O",
+      "d": "Mar'24",
+      "a": true
+    },
+    {
+      "v": "3.5",
+      "d": "Jun'24"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "86.8",
+      "l": "6 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "50.4",
+      "l": "4 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "60.1",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "84.9",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Cost \u00d72",
+    "d": "Most expensive Claude 3 model; slower than Sonnet/Haiku."
+  },
+  "res": {
+    "t": "Reasoning \u221212",
+    "d": "Strongest reasoning in family; first Claude to outperform GPT-4 on MMLU."
+  },
+  "lims": [
+    "<strong>Cost</strong> \u2014 pricing limits agentic use at scale.",
+    "<strong>Speed</strong> \u2014 slower than smaller models in the family."
+  ],
+  "blurb": "The flagship of Claude 3. First Anthropic model to clearly surpass GPT-4 on MMLU. Set the template for subsequent Anthropic system cards.",
+  "val": {
+    "b": "Internal + limited external evaluation, Mar 2024",
+    "l": "modelcards.net/claude-3-opus",
+    "h": true
+  },
+  "slug": "claude-3-opus",
+  "html": "claude-3-opus.html",
+  "art": null,
+  "source": "mockup"
+}

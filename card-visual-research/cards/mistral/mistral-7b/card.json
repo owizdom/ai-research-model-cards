@@ -1,0 +1,100 @@
+{
+  "lab": "mistral",
+  "num": "044/052",
+  "tier": "common",
+  "name": "Mistral 7B",
+  "capN": "8",
+  "capL": "CAP",
+  "meta": "Mistral AI \u00b7 Mistral 7B \u00b7 Sep 2023",
+  "tags": [
+    "OPEN WEIGHTS",
+    "EFFICIENT",
+    "FAST"
+  ],
+  "animal": "fox",
+  "words": "750",
+  "evals": "3",
+  "unique": "8%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "60.1",
+      "c": "#e85d04"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "12.7",
+      "c": "#c04000"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "30.5",
+      "c": "#902e00"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "7B",
+      "d": "Sep'23",
+      "a": true
+    },
+    {
+      "v": "Mixtral",
+      "d": "Dec'23"
+    },
+    {
+      "v": "Large",
+      "d": "2024"
+    },
+    {
+      "v": "Large 2",
+      "d": "2024"
+    },
+    {
+      "v": "3.1",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "60.1",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "12.7",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "30.5",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Scale Limit \u00d72",
+    "d": "7B parameters fundamentally limit complex reasoning tasks."
+  },
+  "res": {
+    "t": "Efficiency \u221212",
+    "d": "Outperforms models 2\u00d7 its size on MMLU; remarkable efficiency."
+  },
+  "lims": [
+    "<strong>Scale</strong> \u2014 7B parameters limits complex reasoning.",
+    "<strong>~750 words</strong> \u2014 shortest card in the set by far."
+  ],
+  "blurb": "~750 words. The shortest model card in the entire set. Mistral 7B's card is two orders of magnitude shorter than Claude Opus 4.8's. The disclosure gap is not just substantive \u2014 it is 100\u00d7 in surface area.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "modelcards.net/mistral-7b",
+    "h": false
+  },
+  "slug": "mistral-7b",
+  "html": "mistral-7b.html",
+  "art": null,
+  "source": "mockup"
+}

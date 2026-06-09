@@ -1,0 +1,99 @@
+{
+  "lab": "anthropic",
+  "num": "001/052",
+  "tier": "common",
+  "name": "Claude 2",
+  "capN": "12",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 2 \u00b7 Jul 2023",
+  "tags": [
+    "REASONING",
+    "SAFETY"
+  ],
+  "animal": "owl",
+  "words": "18k",
+  "evals": "8",
+  "unique": "42%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "78.5",
+      "c": "#c8832a"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "71.2",
+      "c": "#a06820"
+    },
+    {
+      "n": "GSM8K",
+      "d": "Math word problems",
+      "s": "88.0",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "2",
+      "d": "Jul'23",
+      "a": true
+    },
+    {
+      "v": "3",
+      "d": "Mar'24"
+    },
+    {
+      "v": "3.5",
+      "d": "Jun'24"
+    },
+    {
+      "v": "3.7",
+      "d": "Feb'25"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "78.5",
+      "l": "6 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "71.2",
+      "l": "4 labs"
+    },
+    {
+      "n": "GSM8K",
+      "s": "88.0",
+      "l": "5 labs"
+    }
+  ],
+  "weak": {
+    "t": "Context Length \u00d72",
+    "d": "Limited to 100k tokens; performance degrades in long docs."
+  },
+  "res": {
+    "t": "RLHF \u22128",
+    "d": "Human feedback training reduces harmful outputs."
+  },
+  "lims": [
+    "<strong>Context limits</strong> \u2014 100k token ceiling vs later generations.",
+    "<strong>Benchmark sparsity</strong> \u2014 8 evals, minimal safety coverage."
+  ],
+  "blurb": "The baseline. Claude 2 established Anthropic's system card format and RLHF approach, but reported relatively few evals by later standards.",
+  "val": {
+    "b": "Internal red-teaming only",
+    "l": "modelcards.net/claude-2",
+    "h": false
+  },
+  "slug": "claude-2",
+  "html": "claude-2.html",
+  "art": null,
+  "source": "mockup"
+}

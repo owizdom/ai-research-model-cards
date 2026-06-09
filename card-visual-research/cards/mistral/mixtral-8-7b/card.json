@@ -1,0 +1,96 @@
+{
+  "lab": "mistral",
+  "num": "045/052",
+  "tier": "rare",
+  "name": "Mixtral 8\u00d77B",
+  "capN": "32",
+  "capL": "CAP",
+  "meta": "Mistral AI \u00b7 Mixtral \u00b7 Dec 2023",
+  "tags": [
+    "OPEN WEIGHTS",
+    "MoE",
+    "EFFICIENT"
+  ],
+  "animal": "fox",
+  "words": "2k",
+  "evals": "5",
+  "unique": "12%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "70.6",
+      "c": "#e85d04"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "28.4",
+      "c": "#c04000"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "40.2",
+      "c": "#902e00"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "7B",
+      "d": "Sep'23"
+    },
+    {
+      "v": "Mixtral",
+      "d": "Dec'23",
+      "a": true
+    },
+    {
+      "v": "Large",
+      "d": "2024"
+    },
+    {
+      "v": "Large 2",
+      "d": "2024"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "70.6",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "28.4",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "40.2",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Safety Sparsity \u00d72",
+    "d": "Open weights; minimal safety evaluation relative to capability."
+  },
+  "res": {
+    "t": "MoE Efficiency \u221210",
+    "d": "8 experts, 2 active \u2014 competitive with larger dense models."
+  },
+  "lims": [
+    "<strong>Minimal safety disclosure</strong> \u2014 2k words is extremely sparse.",
+    "<strong>MoE routing</strong> \u2014 expert routing decisions non-interpretable."
+  ],
+  "blurb": "First major open-weights MoE release. Mixtral demonstrated that sparse mixture-of-experts architecture could be democratised. Card still only 2k words \u2014 safety documentation not keeping pace with capability.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "modelcards.net/mixtral",
+    "h": false
+  },
+  "slug": "mixtral-8-7b",
+  "html": "mixtral-8-7b.html",
+  "art": null,
+  "source": "mockup"
+}

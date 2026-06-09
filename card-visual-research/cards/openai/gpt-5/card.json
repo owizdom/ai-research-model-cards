@@ -1,0 +1,110 @@
+{
+  "lab": "openai",
+  "num": "022/052",
+  "tier": "holo",
+  "name": "GPT-5",
+  "capN": "91",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 GPT-5 \u00b7 2025",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "MULTIMODAL"
+  ],
+  "animal": "eagle",
+  "words": "180k",
+  "evals": "12",
+  "unique": "44%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "91.0",
+      "c": "#10a37f"
+    },
+    {
+      "n": "TRUTHFULQA",
+      "d": "Factual accuracy",
+      "s": "88.4",
+      "c": "#0d8066"
+    },
+    {
+      "n": "BBQ",
+      "d": "Bias benchmark",
+      "s": "92.1",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4.5",
+      "d": "Feb'25"
+    },
+    {
+      "v": "o3",
+      "d": "Apr'25"
+    },
+    {
+      "v": "GPT-5",
+      "d": "2025",
+      "a": true
+    },
+    {
+      "v": "5.1",
+      "d": "2025"
+    },
+    {
+      "v": "5.3",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "91.0",
+      "l": "6 labs"
+    },
+    {
+      "n": "TruthfulQA",
+      "s": "88.4",
+      "l": "4 labs"
+    },
+    {
+      "n": "BBQ",
+      "s": "92.1",
+      "l": "2 labs"
+    },
+    {
+      "n": "HealthBench",
+      "s": "83.2",
+      "l": "1 lab"
+    },
+    {
+      "n": "ARC",
+      "s": "96.3",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Hallucination \u00d72",
+    "d": "Confidently incorrect outputs on novel multi-hop tasks."
+  },
+  "res": {
+    "t": "TruthfulQA \u221212",
+    "d": "RLHF substantially reduces false assertion rate."
+  },
+  "lims": [
+    "<strong>Hallucination</strong> \u2014 produces plausible but false content.",
+    "<strong>Context degradation</strong> \u2014 accuracy drops in very long documents."
+  ],
+  "blurb": "GPT-5 unified the GPT and o-series lines. Card length hit 180k words. First OpenAI model with HealthBench evaluation. Collapsed the standard/reasoning distinction into one model.",
+  "val": {
+    "b": "OpenAI red team \u00b7 External evaluators, 2025",
+    "l": "modelcards.net/gpt-5",
+    "h": true
+  },
+  "slug": "gpt-5",
+  "html": "gpt-5.html",
+  "art": null,
+  "source": "mockup"
+}

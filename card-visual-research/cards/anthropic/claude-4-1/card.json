@@ -1,0 +1,99 @@
+{
+  "lab": "anthropic",
+  "num": "010/052",
+  "tier": "rare",
+  "name": "Claude 4.1",
+  "capN": "82",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 4.1 \u00b7 Aug 2025",
+  "tags": [
+    "AGENTIC",
+    "CODING",
+    "REASONING"
+  ],
+  "animal": "owl",
+  "words": "168k",
+  "evals": "17",
+  "unique": "70%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "80.2",
+      "c": "#c8832a"
+    },
+    {
+      "n": "TERMINAL-BENCH",
+      "d": "Terminal tasks",
+      "s": "68.5",
+      "c": "#a06820"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "84.0",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4O",
+      "d": "May'25"
+    },
+    {
+      "v": "4.1",
+      "d": "Aug'25",
+      "a": true
+    },
+    {
+      "v": "4.5",
+      "d": "Sep'25"
+    },
+    {
+      "v": "4.6",
+      "d": "Apr'26"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "80.2",
+      "l": "3 labs"
+    },
+    {
+      "n": "Terminal-bench",
+      "s": "68.5",
+      "l": "1 lab"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "84.0",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Agentic Risk \u00d72",
+    "d": "Increased autonomy requires expanded safety documentation."
+  },
+  "res": {
+    "t": "Terminal Use \u221212",
+    "d": "First Anthropic model with Terminal-bench evaluation."
+  },
+  "lims": [
+    "<strong>Agentic risk</strong> \u2014 safety evaluation expanded to cover new agentic capabilities."
+  ],
+  "blurb": "Interim release. Introduced Terminal-bench as a new eval \u2014 notable because it is a lab-unique benchmark with no cross-lab comparison available.",
+  "val": {
+    "b": "Internal + METR evaluation, Aug 2025",
+    "l": "modelcards.net/claude-4-1",
+    "h": false
+  },
+  "slug": "claude-4-1",
+  "html": "claude-4-1.html",
+  "art": null,
+  "source": "mockup"
+}

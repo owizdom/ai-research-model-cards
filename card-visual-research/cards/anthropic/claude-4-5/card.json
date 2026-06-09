@@ -1,0 +1,96 @@
+{
+  "lab": "anthropic",
+  "num": "011/052",
+  "tier": "rare",
+  "name": "Claude 4.5",
+  "capN": "85",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 4.5 \u00b7 Sep 2025",
+  "tags": [
+    "AGENTIC",
+    "MULTIMODAL",
+    "REASONING"
+  ],
+  "animal": "owl",
+  "words": "210k",
+  "evals": "18",
+  "unique": "71%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "83.1",
+      "c": "#c8832a"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "84.8",
+      "c": "#a06820"
+    },
+    {
+      "n": "MMMU",
+      "d": "Multimodal understanding",
+      "s": "78.4",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4.1",
+      "d": "Aug'25"
+    },
+    {
+      "v": "4.5",
+      "d": "Sep'25",
+      "a": true
+    },
+    {
+      "v": "4.6",
+      "d": "Apr'26"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "83.1",
+      "l": "3 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "84.8",
+      "l": "4 labs"
+    },
+    {
+      "n": "MMMU",
+      "s": "78.4",
+      "l": "3 labs"
+    }
+  ],
+  "weak": {
+    "t": "Saturation \u00d72",
+    "d": "Benchmark ceiling approached on several evals."
+  },
+  "res": {
+    "t": "Multimodal \u221212",
+    "d": "Expanded multimodal evaluation coverage vs prior generation."
+  },
+  "lims": [
+    "<strong>Benchmark saturation</strong> \u2014 scores approaching ceiling on key evals.",
+    "<strong>Card length</strong> \u2014 210k words; readability becoming a research question in itself."
+  ],
+  "blurb": "Card length crossed 200k words. The documentation surface area was itself becoming a research finding. Benchmark saturation first noted in the card as a limitation.",
+  "val": {
+    "b": "Internal + METR + Apollo evaluation, Sep 2025",
+    "l": "modelcards.net/claude-4-5",
+    "h": false
+  },
+  "slug": "claude-4-5",
+  "html": "claude-4-5.html",
+  "art": null,
+  "source": "mockup"
+}

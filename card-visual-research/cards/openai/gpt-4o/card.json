@@ -1,0 +1,99 @@
+{
+  "lab": "openai",
+  "num": "016/052",
+  "tier": "rare",
+  "name": "GPT-4o",
+  "capN": "62",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 GPT-4 \u00b7 May 2024",
+  "tags": [
+    "MULTIMODAL",
+    "FAST",
+    "REASONING"
+  ],
+  "animal": "falcon",
+  "words": "28k",
+  "evals": "7",
+  "unique": "28%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "88.7",
+      "c": "#10a37f"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "53.6",
+      "c": "#0d8066"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "90.2",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "GPT-4",
+      "d": "Mar'23"
+    },
+    {
+      "v": "4o",
+      "d": "May'24",
+      "a": true
+    },
+    {
+      "v": "4.5",
+      "d": "Feb'25"
+    },
+    {
+      "v": "o1",
+      "d": "Sep'24"
+    },
+    {
+      "v": "GPT-5",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "88.7",
+      "l": "6 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "53.6",
+      "l": "4 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "90.2",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Multimodal Risk \u00d72",
+    "d": "Native audio/video modalities expand attack surface."
+  },
+  "res": {
+    "t": "Omni Speed \u221210",
+    "d": "Fastest GPT-4 class model; native multimodal without adapter."
+  },
+  "lims": [
+    "<strong>Multimodal attack surface</strong> \u2014 audio/video inputs require additional red-teaming."
+  ],
+  "blurb": "GPT-4o collapsed text, image, and audio into a single model. Card length jumped from 8k to 28k. Native multimodality required new safety documentation.",
+  "val": {
+    "b": "Internal red-team, May 2024",
+    "l": "modelcards.net/gpt-4o",
+    "h": false
+  },
+  "slug": "gpt-4o",
+  "html": "gpt-4o.html",
+  "art": null,
+  "source": "mockup"
+}

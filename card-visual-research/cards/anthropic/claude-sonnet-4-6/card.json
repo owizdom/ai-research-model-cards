@@ -1,0 +1,62 @@
+{
+  "slug": "claude-sonnet-4.6",
+  "name": "Claude Sonnet 4.6",
+  "lab": "anthropic",
+  "release_date": null,
+  "status": "built",
+  "creature": "sphinx",
+  "html": "sonnet-4-6.html",
+  "art": "art/sonnet-4-6-sphinx.png",
+  "word_count": 28336,
+  "n_scored": 29,
+  "cap": 92,
+  "attacks": [
+    {
+      "name": "GraphWalks Parents 256K subset of 1M",
+      "score": 97.9
+    },
+    {
+      "name": "DeepSearchQA",
+      "score": 91.1
+    },
+    {
+      "name": "SWE-bench",
+      "score": 90.0
+    }
+  ],
+  "record": [
+    {
+      "name": "GraphWalks Parents 256K subset of 1M",
+      "score": 97.9
+    },
+    {
+      "name": "DeepSearchQA",
+      "score": 91.1
+    },
+    {
+      "name": "SWE-bench",
+      "score": 90.0
+    },
+    {
+      "name": "GPQA-Diamond",
+      "score": 89.9
+    },
+    {
+      "name": "MMLU",
+      "score": 89.3
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4.5",
+      "on": false
+    },
+    {
+      "v": "4.6",
+      "on": true
+    }
+  ],
+  "n_cap": 15,
+  "profile": "capability",
+  "n_capability": 13
+}

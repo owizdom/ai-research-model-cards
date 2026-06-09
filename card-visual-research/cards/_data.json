@@ -1,0 +1,2232 @@
+[
+  {
+    "slug": "claude-2",
+    "name": "Claude 2",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 5889,
+    "profile": "capability",
+    "n_capability": 4,
+    "n_scored": 7,
+    "cap": 73,
+    "attacks": [
+      {
+        "name": "ARC-Challenge",
+        "score": 85.7
+      },
+      {
+        "name": "GSM8K",
+        "score": 80.9
+      },
+      {
+        "name": "MMLU",
+        "score": 73.4
+      }
+    ],
+    "record": [
+      {
+        "name": "ARC-Challenge",
+        "score": 85.7
+      },
+      {
+        "name": "GSM8K",
+        "score": 80.9
+      },
+      {
+        "name": "MMLU",
+        "score": 73.4
+      },
+      {
+        "name": "HumanEval",
+        "score": 52.8
+      },
+      {
+        "name": "RACE-H",
+        "score": 85.5
+      }
+    ]
+  },
+  {
+    "slug": "claude-3",
+    "name": "Claude 3",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 14089,
+    "profile": "capability",
+    "n_capability": 10,
+    "n_scored": 17,
+    "cap": 92,
+    "attacks": [
+      {
+        "name": "ARC-Challenge",
+        "score": 96.4
+      },
+      {
+        "name": "HellaSwag",
+        "score": 95.4
+      },
+      {
+        "name": "MGSM",
+        "score": 90.7
+      }
+    ],
+    "record": [
+      {
+        "name": "ARC-Challenge",
+        "score": 96.4
+      },
+      {
+        "name": "HellaSwag",
+        "score": 95.4
+      },
+      {
+        "name": "MGSM",
+        "score": 90.7
+      },
+      {
+        "name": "WinoGrande",
+        "score": 88.5
+      },
+      {
+        "name": "BIG-Bench Hard",
+        "score": 86.8
+      }
+    ]
+  },
+  {
+    "slug": "claude-3.5",
+    "name": "Claude 3.5",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 2948,
+    "profile": "capability",
+    "n_capability": 10,
+    "n_scored": 18,
+    "cap": 93,
+    "attacks": [
+      {
+        "name": "GSM8K",
+        "score": 96.4
+      },
+      {
+        "name": "BIG-Bench Hard",
+        "score": 93.1
+      },
+      {
+        "name": "HumanEval",
+        "score": 92.0
+      }
+    ],
+    "record": [
+      {
+        "name": "GSM8K",
+        "score": 96.4
+      },
+      {
+        "name": "BIG-Bench Hard",
+        "score": 93.1
+      },
+      {
+        "name": "HumanEval",
+        "score": 92.0
+      },
+      {
+        "name": "MGSM",
+        "score": 91.6
+      },
+      {
+        "name": "MMLU",
+        "score": 90.4
+      }
+    ]
+  },
+  {
+    "slug": "claude-4",
+    "name": "Claude 4",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 33237,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 19,
+    "cap": 73,
+    "attacks": [
+      {
+        "name": "Single-turn violative request evaluation",
+        "score": 98.9
+      },
+      {
+        "name": "Computer use prompt injection evaluation",
+        "score": 89.0
+      },
+      {
+        "name": "Agentic Coding",
+        "score": 88.0
+      }
+    ],
+    "record": [
+      {
+        "name": "Single-turn violative request evaluation",
+        "score": 98.9
+      },
+      {
+        "name": "Computer use prompt injection evaluation",
+        "score": 89.0
+      },
+      {
+        "name": "Agentic Coding",
+        "score": 88.0
+      },
+      {
+        "name": "Anthropic AI R&D Suite 1 Time Series",
+        "score": 81.8
+      },
+      {
+        "name": "Anthropic Cyber CTF",
+        "score": 80.0
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~73 from claude-2 +0 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "claude-opus-4.5",
+    "name": "Claude Opus 4.5",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 38212,
+    "profile": "capability",
+    "n_capability": 7,
+    "n_scored": 20,
+    "cap": 81,
+    "attacks": [
+      {
+        "name": "MMLU",
+        "score": 90.8
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 87.0
+      },
+      {
+        "name": "SWE-bench",
+        "score": 80.9
+      }
+    ],
+    "record": [
+      {
+        "name": "MMLU",
+        "score": 90.8
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 87.0
+      },
+      {
+        "name": "SWE-bench",
+        "score": 80.9
+      },
+      {
+        "name": "MMMU",
+        "score": 80.7
+      },
+      {
+        "name": "OSWorld",
+        "score": 66.3
+      }
+    ]
+  },
+  {
+    "slug": "claude-opus-4.1",
+    "name": "Claude Opus 4.1",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 5271,
+    "profile": "capability",
+    "n_capability": 1,
+    "n_scored": 23,
+    "cap": 18,
+    "attacks": [
+      {
+        "name": "SWE-bench",
+        "score": 18.4
+      },
+      {
+        "name": "BBQ",
+        "score": 99.8
+      },
+      {
+        "name": "Single-turn violative request evaluation",
+        "score": 99.1
+      }
+    ],
+    "record": [
+      {
+        "name": "SWE-bench",
+        "score": 18.4
+      },
+      {
+        "name": "BBQ",
+        "score": 99.8
+      },
+      {
+        "name": "Single-turn violative request evaluation",
+        "score": 99.1
+      },
+      {
+        "name": "Violative Request Evaluation - Extended Thinking Harmless Response Rate",
+        "score": 99.1
+      },
+      {
+        "name": "Violative Request Evaluation - Overall Harmless Response Rate",
+        "score": 98.8
+      }
+    ]
+  },
+  {
+    "slug": "claude-sonnet-4.5",
+    "name": "Claude Sonnet 4.5",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 37364,
+    "profile": "capability",
+    "n_capability": 1,
+    "n_scored": 9,
+    "cap": 45,
+    "attacks": [
+      {
+        "name": "SWE-bench",
+        "score": 45.3
+      },
+      {
+        "name": "Claude Code Malicious Use Evaluation (with mitigations)",
+        "score": 100.0
+      },
+      {
+        "name": "Claude Code Safety Evaluation (without mitigations)",
+        "score": 98.7
+      }
+    ],
+    "record": [
+      {
+        "name": "SWE-bench",
+        "score": 45.3
+      },
+      {
+        "name": "Claude Code Malicious Use Evaluation (with mitigations)",
+        "score": 100.0
+      },
+      {
+        "name": "Claude Code Safety Evaluation (without mitigations)",
+        "score": 98.7
+      },
+      {
+        "name": "Claude Code Malicious Use Evaluation (without mitigations)",
+        "score": 95.6
+      },
+      {
+        "name": "Internal AI Research Evaluation Suite 1",
+        "score": 85.0
+      }
+    ]
+  },
+  {
+    "slug": "claude-sonnet-4.6",
+    "name": "Claude Sonnet 4.6",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 28336,
+    "profile": "capability",
+    "n_capability": 13,
+    "n_scored": 29,
+    "cap": 92,
+    "attacks": [
+      {
+        "name": "GraphWalks Parents 256K subset of 1M",
+        "score": 97.9
+      },
+      {
+        "name": "DeepSearchQA",
+        "score": 91.1
+      },
+      {
+        "name": "SWE-bench",
+        "score": 90.0
+      }
+    ],
+    "record": [
+      {
+        "name": "GraphWalks Parents 256K subset of 1M",
+        "score": 97.9
+      },
+      {
+        "name": "DeepSearchQA",
+        "score": 91.1
+      },
+      {
+        "name": "SWE-bench",
+        "score": 90.0
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 89.9
+      },
+      {
+        "name": "MMLU",
+        "score": 89.3
+      }
+    ]
+  },
+  {
+    "slug": "gpt-4",
+    "name": "GPT-4",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 27859,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 2,
+    "cap": 58,
+    "attacks": [
+      {
+        "name": "RealToxicityPrompts",
+        "score": 73.0
+      },
+      {
+        "name": "Human Preference (ChatGPT + API prompts)",
+        "score": 70.2
+      }
+    ],
+    "record": [
+      {
+        "name": "RealToxicityPrompts",
+        "score": 73.0
+      },
+      {
+        "name": "Human Preference (ChatGPT + API prompts)",
+        "score": 70.2
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~58 from gpt-4o +0 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "gpt-4o",
+    "name": "GPT-4o",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 11624,
+    "profile": "capability",
+    "n_capability": 2,
+    "n_scored": 18,
+    "cap": 58,
+    "attacks": [
+      {
+        "name": "MMLU",
+        "score": 96.0
+      },
+      {
+        "name": "SWE-bench",
+        "score": 19.0
+      },
+      {
+        "name": "CTF",
+        "score": 100.0
+      }
+    ],
+    "record": [
+      {
+        "name": "MMLU",
+        "score": 96.0
+      },
+      {
+        "name": "SWE-bench",
+        "score": 19.0
+      },
+      {
+        "name": "CTF",
+        "score": 100.0
+      },
+      {
+        "name": "Voice Output Classifier",
+        "score": 96.0
+      },
+      {
+        "name": "OpenAI Research Coding Interview",
+        "score": 95.0
+      }
+    ]
+  },
+  {
+    "slug": "gpt-4.5",
+    "name": "GPT-4.5",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 9853,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 7,
+    "cap": 58,
+    "attacks": [
+      {
+        "name": "Long-form Biological Risk Questions",
+        "score": 59.0
+      },
+      {
+        "name": "Multimodal Troubleshooting Virology",
+        "score": 56.0
+      },
+      {
+        "name": "CTF Cybersecurity",
+        "score": 53.0
+      }
+    ],
+    "record": [
+      {
+        "name": "Long-form Biological Risk Questions",
+        "score": 59.0
+      },
+      {
+        "name": "Multimodal Troubleshooting Virology",
+        "score": 56.0
+      },
+      {
+        "name": "CTF Cybersecurity",
+        "score": 53.0
+      },
+      {
+        "name": "SWE-Lancer SWE Manager",
+        "score": 44.0
+      },
+      {
+        "name": "METR",
+        "score": 30.0
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~58 from gpt-4o +0 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "gpt-5",
+    "name": "GPT-5",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 20412,
+    "profile": "capability",
+    "n_capability": 1,
+    "n_scored": 4,
+    "cap": 75,
+    "attacks": [
+      {
+        "name": "SWE-bench",
+        "score": 74.9
+      },
+      {
+        "name": "Standard Disallowed Content Evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Pairwise Bioweaponization Campaign",
+        "score": 60.0
+      }
+    ],
+    "record": [
+      {
+        "name": "SWE-bench",
+        "score": 74.9
+      },
+      {
+        "name": "Standard Disallowed Content Evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Pairwise Bioweaponization Campaign",
+        "score": 60.0
+      },
+      {
+        "name": "OPQA",
+        "score": 2.0
+      }
+    ]
+  },
+  {
+    "slug": "o1",
+    "name": "o1",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 17410,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 10,
+    "cap": 58,
+    "attacks": [
+      {
+        "name": "XSTest",
+        "score": 100.0
+      },
+      {
+        "name": "Standard Refusal Evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Multimodal Refusal Evaluation",
+        "score": 99.0
+      }
+    ],
+    "record": [
+      {
+        "name": "XSTest",
+        "score": 100.0
+      },
+      {
+        "name": "Standard Refusal Evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Multimodal Refusal Evaluation",
+        "score": 99.0
+      },
+      {
+        "name": "Challenging Refusal Evaluation",
+        "score": 96.3
+      },
+      {
+        "name": "Wildchat Toxic",
+        "score": 94.5
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~58 from gpt-4o +0 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "o3",
+    "name": "o3",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 9945,
+    "profile": "capability",
+    "n_capability": 1,
+    "n_scored": 15,
+    "cap": 49,
+    "attacks": [
+      {
+        "name": "SimpleQA",
+        "score": 49.0
+      },
+      {
+        "name": "Challenging Refusal Evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Human sourced jailbreaks",
+        "score": 100.0
+      }
+    ],
+    "record": [
+      {
+        "name": "SimpleQA",
+        "score": 49.0
+      },
+      {
+        "name": "Challenging Refusal Evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Human sourced jailbreaks",
+        "score": 100.0
+      },
+      {
+        "name": "Vision sexual refusal evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Vision self-harm refusal evaluation",
+        "score": 100.0
+      }
+    ]
+  },
+  {
+    "slug": "gemini-1.0",
+    "name": "Gemini 1.0",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 32283,
+    "profile": "capability",
+    "n_capability": 6,
+    "n_scored": 16,
+    "cap": 80,
+    "attacks": [
+      {
+        "name": "GSM8K",
+        "score": 94.4
+      },
+      {
+        "name": "MMLU",
+        "score": 90.0
+      },
+      {
+        "name": "MGSM",
+        "score": 79.0
+      }
+    ],
+    "record": [
+      {
+        "name": "GSM8K",
+        "score": 94.4
+      },
+      {
+        "name": "MMLU",
+        "score": 90.0
+      },
+      {
+        "name": "MGSM",
+        "score": 79.0
+      },
+      {
+        "name": "HumanEval",
+        "score": 74.4
+      },
+      {
+        "name": "MMMU",
+        "score": 62.4
+      }
+    ]
+  },
+  {
+    "slug": "gemini-1.5",
+    "name": "Gemini 1.5",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 64551,
+    "profile": "capability",
+    "n_capability": 3,
+    "n_scored": 4,
+    "cap": 49,
+    "attacks": [
+      {
+        "name": "MGSM",
+        "score": 63.5
+      },
+      {
+        "name": "MATH",
+        "score": 55.8
+      },
+      {
+        "name": "GPQA",
+        "score": 27.9
+      }
+    ],
+    "record": [
+      {
+        "name": "MGSM",
+        "score": 63.5
+      },
+      {
+        "name": "MATH",
+        "score": 55.8
+      },
+      {
+        "name": "GPQA",
+        "score": 27.9
+      },
+      {
+        "name": "PhysicsFinals",
+        "score": 19.0
+      }
+    ]
+  },
+  {
+    "slug": "gemini-2.5",
+    "name": "Gemini 2.5 Flash",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 2883,
+    "profile": "capability",
+    "n_capability": 8,
+    "n_scored": 11,
+    "cap": 84,
+    "attacks": [
+      {
+        "name": "AIME",
+        "score": 93.3
+      },
+      {
+        "name": "MMLU",
+        "score": 87.9
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 80.2
+      }
+    ],
+    "record": [
+      {
+        "name": "AIME",
+        "score": 93.3
+      },
+      {
+        "name": "MMLU",
+        "score": 87.9
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 80.2
+      },
+      {
+        "name": "LiveCodeBench v5",
+        "score": 79.4
+      },
+      {
+        "name": "MMMU",
+        "score": 78.0
+      }
+    ]
+  },
+  {
+    "slug": "gemini-2.5-pro",
+    "name": "Gemini 2.5 Pro",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 7182,
+    "profile": "capability",
+    "n_capability": 9,
+    "n_scored": 15,
+    "cap": 86,
+    "attacks": [
+      {
+        "name": "MMLU",
+        "score": 89.2
+      },
+      {
+        "name": "AIME",
+        "score": 88.0
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 86.4
+      }
+    ],
+    "record": [
+      {
+        "name": "MMLU",
+        "score": 89.2
+      },
+      {
+        "name": "AIME",
+        "score": 88.0
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 86.4
+      },
+      {
+        "name": "MMMU",
+        "score": 83.6
+      },
+      {
+        "name": "Aider Polyglot",
+        "score": 82.2
+      }
+    ]
+  },
+  {
+    "slug": "gemini-3.0",
+    "name": "Gemini 3 Flash",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 1070,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 2,
+    "cap": 72,
+    "attacks": [
+      {
+        "name": "Multilingual Safety",
+        "score": 10.0
+      },
+      {
+        "name": "Tone",
+        "score": 3.8
+      }
+    ],
+    "record": [
+      {
+        "name": "Multilingual Safety",
+        "score": 10.0
+      },
+      {
+        "name": "Tone",
+        "score": 3.8
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~80 from gemini-1.0 -8 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "gemini-3.0-pro",
+    "name": "Gemini 3 Pro",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 2158,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 9,
+    "cap": 72,
+    "attacks": [
+      {
+        "name": "Misalignment",
+        "score": 100.0
+      },
+      {
+        "name": "Cybersecurity Key Skills Benchmark",
+        "score": 91.7
+      },
+      {
+        "name": "Misalignment Situational Awareness",
+        "score": 27.3
+      }
+    ],
+    "record": [
+      {
+        "name": "Misalignment",
+        "score": 100.0
+      },
+      {
+        "name": "Cybersecurity Key Skills Benchmark",
+        "score": 91.7
+      },
+      {
+        "name": "Misalignment Situational Awareness",
+        "score": 27.3
+      },
+      {
+        "name": "Misalignment Stealth Challenges",
+        "score": 25.0
+      },
+      {
+        "name": "Multilingual Safety",
+        "score": 20.0
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~80 from gemini-1.0 -8 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "llama-2",
+    "name": "Llama 2",
+    "lab": "meta",
+    "release_date": null,
+    "word_count": 956,
+    "profile": "capability",
+    "n_capability": 3,
+    "n_scored": 10,
+    "cap": 42,
+    "attacks": [
+      {
+        "name": "MMLU",
+        "score": 68.9
+      },
+      {
+        "name": "BBH",
+        "score": 51.2
+      },
+      {
+        "name": "MATH",
+        "score": 7.0
+      }
+    ],
+    "record": [
+      {
+        "name": "MMLU",
+        "score": 68.9
+      },
+      {
+        "name": "BBH",
+        "score": 51.2
+      },
+      {
+        "name": "MATH",
+        "score": 7.0
+      },
+      {
+        "name": "TruthfulQA",
+        "score": 64.1
+      },
+      {
+        "name": "Commonsense Reasoning",
+        "score": 60.8
+      }
+    ]
+  },
+  {
+    "slug": "llama-3",
+    "name": "Llama 3",
+    "lab": "meta",
+    "release_date": null,
+    "word_count": 1191,
+    "profile": "empty",
+    "n_capability": 0,
+    "n_scored": 0,
+    "cap": 42,
+    "attacks": [],
+    "record": [],
+    "cap_est": true,
+    "cap_basis": "~42 from llama-2 +0 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "llama-3.1",
+    "name": "Llama 3.1",
+    "lab": "meta",
+    "release_date": null,
+    "word_count": 53027,
+    "profile": "capability",
+    "n_capability": 11,
+    "n_scored": 16,
+    "cap": 79,
+    "attacks": [
+      {
+        "name": "GSM8K",
+        "score": 84.5
+      },
+      {
+        "name": "ARC-Challenge",
+        "score": 83.4
+      },
+      {
+        "name": "IFEval",
+        "score": 80.4
+      }
+    ],
+    "record": [
+      {
+        "name": "GSM8K",
+        "score": 84.5
+      },
+      {
+        "name": "ARC-Challenge",
+        "score": 83.4
+      },
+      {
+        "name": "IFEval",
+        "score": 80.4
+      },
+      {
+        "name": "MMLU",
+        "score": 73.0
+      },
+      {
+        "name": "MBPP",
+        "score": 72.8
+      }
+    ]
+  },
+  {
+    "slug": "llama-3.2",
+    "name": "Llama 3.2",
+    "lab": "meta",
+    "release_date": null,
+    "word_count": 4158,
+    "profile": "capability",
+    "n_capability": 7,
+    "n_scored": 14,
+    "cap": 47,
+    "attacks": [
+      {
+        "name": "IFEval",
+        "score": 59.5
+      },
+      {
+        "name": "ARC-Challenge",
+        "score": 59.4
+      },
+      {
+        "name": "GSM8K",
+        "score": 44.4
+      }
+    ],
+    "record": [
+      {
+        "name": "IFEval",
+        "score": 59.5
+      },
+      {
+        "name": "ARC-Challenge",
+        "score": 59.4
+      },
+      {
+        "name": "GSM8K",
+        "score": 44.4
+      },
+      {
+        "name": "HellaSwag",
+        "score": 41.2
+      },
+      {
+        "name": "MATH",
+        "score": 30.6
+      }
+    ]
+  },
+  {
+    "slug": "llama-3.3",
+    "name": "Llama 3.3",
+    "lab": "meta",
+    "release_date": null,
+    "word_count": 2572,
+    "profile": "capability",
+    "n_capability": 9,
+    "n_scored": 10,
+    "cap": 90,
+    "attacks": [
+      {
+        "name": "IFEval",
+        "score": 92.1
+      },
+      {
+        "name": "MGSM",
+        "score": 91.6
+      },
+      {
+        "name": "HumanEval",
+        "score": 89.0
+      }
+    ],
+    "record": [
+      {
+        "name": "IFEval",
+        "score": 92.1
+      },
+      {
+        "name": "MGSM",
+        "score": 91.6
+      },
+      {
+        "name": "HumanEval",
+        "score": 89.0
+      },
+      {
+        "name": "MMLU",
+        "score": 88.6
+      },
+      {
+        "name": "MBPP",
+        "score": 88.6
+      }
+    ]
+  },
+  {
+    "slug": "llama-4",
+    "name": "Llama 4",
+    "lab": "meta",
+    "release_date": null,
+    "word_count": 3165,
+    "profile": "capability",
+    "n_capability": 11,
+    "n_scored": 16,
+    "cap": 80,
+    "attacks": [
+      {
+        "name": "MGSM",
+        "score": 92.3
+      },
+      {
+        "name": "MMLU",
+        "score": 85.5
+      },
+      {
+        "name": "MBPP",
+        "score": 77.6
+      }
+    ],
+    "record": [
+      {
+        "name": "MGSM",
+        "score": 92.3
+      },
+      {
+        "name": "MMLU",
+        "score": 85.5
+      },
+      {
+        "name": "MBPP",
+        "score": 77.6
+      },
+      {
+        "name": "MathVista",
+        "score": 73.7
+      },
+      {
+        "name": "MMMU",
+        "score": 73.4
+      }
+    ]
+  },
+  {
+    "slug": "grok-4",
+    "name": "Grok 4",
+    "lab": "xai",
+    "release_date": null,
+    "word_count": 3482,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 16,
+    "cap": 80,
+    "attacks": [
+      {
+        "name": "WMDP",
+        "score": 87.0
+      },
+      {
+        "name": "WMDP Bio",
+        "score": 87.0
+      },
+      {
+        "name": "WMDP Chem",
+        "score": 83.0
+      }
+    ],
+    "record": [
+      {
+        "name": "WMDP",
+        "score": 87.0
+      },
+      {
+        "name": "WMDP Bio",
+        "score": 87.0
+      },
+      {
+        "name": "WMDP Chem",
+        "score": 83.0
+      },
+      {
+        "name": "WMDP Cyber",
+        "score": 79.0
+      },
+      {
+        "name": "VCT",
+        "score": 60.0
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~80 era-median (no xai capability data) +0 tier",
+    "cap_conf": "low"
+  },
+  {
+    "slug": "claude-3.7",
+    "name": "Claude 3.7 Sonnet",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 17827,
+    "profile": "capability",
+    "n_capability": 1,
+    "n_scored": 2,
+    "cap": 23,
+    "attacks": [
+      {
+        "name": "SWE-bench",
+        "score": 23.0
+      },
+      {
+        "name": "BBQ",
+        "score": 89.0
+      }
+    ],
+    "record": [
+      {
+        "name": "SWE-bench",
+        "score": 23.0
+      },
+      {
+        "name": "BBQ",
+        "score": 89.0
+      }
+    ]
+  },
+  {
+    "slug": "gpt-5.1",
+    "name": "GPT-5.1",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 1340,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 10,
+    "cap": 58,
+    "attacks": [
+      {
+        "name": "Production Benchmarks",
+        "score": 100.0
+      },
+      {
+        "name": "Image Input Evaluations",
+        "score": 100.0
+      },
+      {
+        "name": "Image Input Evaluations - attack planning",
+        "score": 100.0
+      }
+    ],
+    "record": [
+      {
+        "name": "Production Benchmarks",
+        "score": 100.0
+      },
+      {
+        "name": "Image Input Evaluations",
+        "score": 100.0
+      },
+      {
+        "name": "Image Input Evaluations - attack planning",
+        "score": 100.0
+      },
+      {
+        "name": "Image Input Evaluations - illicit",
+        "score": 99.4
+      },
+      {
+        "name": "Image Input Evaluations - extremism",
+        "score": 99.1
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~58 from gpt-4o +0 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "gpt-5.2",
+    "name": "GPT-5.2",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 7212,
+    "profile": "capability",
+    "n_capability": 1,
+    "n_scored": 4,
+    "cap": 91,
+    "attacks": [
+      {
+        "name": "MMLU",
+        "score": 91.3
+      },
+      {
+        "name": "Irregular Atomic Challenges",
+        "score": 100.0
+      },
+      {
+        "name": "Tacit Knowledge and Troubleshooting",
+        "score": 83.3
+      }
+    ],
+    "record": [
+      {
+        "name": "MMLU",
+        "score": 91.3
+      },
+      {
+        "name": "Irregular Atomic Challenges",
+        "score": 100.0
+      },
+      {
+        "name": "Tacit Knowledge and Troubleshooting",
+        "score": 83.3
+      },
+      {
+        "name": "First-Person Fairness",
+        "score": 1.0
+      }
+    ]
+  },
+  {
+    "slug": "gpt-5.3",
+    "name": "GPT-5.3 Codex",
+    "lab": "openai",
+    "release_date": null,
+    "word_count": 10850,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 8,
+    "cap": 58,
+    "attacks": [
+      {
+        "name": "CVE-Bench",
+        "score": 90.0
+      },
+      {
+        "name": "Apollo Sabotage Suite",
+        "score": 88.0
+      },
+      {
+        "name": "Sabotage Suite",
+        "score": 88.0
+      }
+    ],
+    "record": [
+      {
+        "name": "CVE-Bench",
+        "score": 90.0
+      },
+      {
+        "name": "Apollo Sabotage Suite",
+        "score": 88.0
+      },
+      {
+        "name": "Sabotage Suite",
+        "score": 88.0
+      },
+      {
+        "name": "Network Attack Simulation",
+        "score": 86.0
+      },
+      {
+        "name": "Cyber Range",
+        "score": 80.0
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~58 from gpt-4o +0 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "gemini-2.0",
+    "name": "Gemini 2.0 Flash",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 1529,
+    "profile": "capability",
+    "n_capability": 10,
+    "n_scored": 22,
+    "cap": 75,
+    "attacks": [
+      {
+        "name": "MATH",
+        "score": 90.9
+      },
+      {
+        "name": "MMLU",
+        "score": 83.4
+      },
+      {
+        "name": "MMMU",
+        "score": 71.7
+      }
+    ],
+    "record": [
+      {
+        "name": "MATH",
+        "score": 90.9
+      },
+      {
+        "name": "MMLU",
+        "score": 83.4
+      },
+      {
+        "name": "MMMU",
+        "score": 71.7
+      },
+      {
+        "name": "MMLU-Pro",
+        "score": 67.3
+      },
+      {
+        "name": "HiddenMath",
+        "score": 63.5
+      }
+    ]
+  },
+  {
+    "slug": "gemini-2.5-dt",
+    "name": "Gemini 2.5 Deep Think",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 6313,
+    "profile": "capability",
+    "n_capability": 3,
+    "n_scored": 14,
+    "cap": 74,
+    "attacks": [
+      {
+        "name": "AIME",
+        "score": 99.2
+      },
+      {
+        "name": "LiveCodeBench",
+        "score": 87.6
+      },
+      {
+        "name": "Humanity's Last Exam",
+        "score": 34.8
+      }
+    ],
+    "record": [
+      {
+        "name": "AIME",
+        "score": 99.2
+      },
+      {
+        "name": "LiveCodeBench",
+        "score": 87.6
+      },
+      {
+        "name": "Humanity's Last Exam",
+        "score": 34.8
+      },
+      {
+        "name": "Autonomous Cyber Offense Suite",
+        "score": 100.0
+      },
+      {
+        "name": "RE-Bench",
+        "score": 96.0
+      }
+    ]
+  },
+  {
+    "slug": "gemini-3.1-pro",
+    "name": "Gemini 3.1 Pro",
+    "lab": "google",
+    "release_date": null,
+    "word_count": 1755,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 7,
+    "cap": 72,
+    "attacks": [
+      {
+        "name": "Multilingual Safety",
+        "score": 11.0
+      },
+      {
+        "name": "Text to Text Safety",
+        "score": 10.0
+      },
+      {
+        "name": "FSF Harmful Manipulation Evaluation",
+        "score": 3.6
+      }
+    ],
+    "record": [
+      {
+        "name": "Multilingual Safety",
+        "score": 11.0
+      },
+      {
+        "name": "Text to Text Safety",
+        "score": 10.0
+      },
+      {
+        "name": "FSF Harmful Manipulation Evaluation",
+        "score": 3.6
+      },
+      {
+        "name": "Harmful Manipulation",
+        "score": 3.6
+      },
+      {
+        "name": "Harmful Manipulation (odds ratio)",
+        "score": 3.6
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~80 from gemini-1.0 -8 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "grok-4-fast",
+    "name": "Grok 4 Fast",
+    "lab": "xai",
+    "release_date": null,
+    "word_count": 2994,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 18,
+    "cap": 72,
+    "attacks": [
+      {
+        "name": "WMDP",
+        "score": 85.2
+      },
+      {
+        "name": "WMDP Bio",
+        "score": 85.2
+      },
+      {
+        "name": "WMDP Cyber",
+        "score": 81.4
+      }
+    ],
+    "record": [
+      {
+        "name": "WMDP",
+        "score": 85.2
+      },
+      {
+        "name": "WMDP Bio",
+        "score": 85.2
+      },
+      {
+        "name": "WMDP Cyber",
+        "score": 81.4
+      },
+      {
+        "name": "Soft Bias",
+        "score": 79.0
+      },
+      {
+        "name": "Soft Bias (Internal)",
+        "score": 79.0
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~80 era-median (no xai capability data) -8 tier",
+    "cap_conf": "low"
+  },
+  {
+    "slug": "grok-4.1",
+    "name": "Grok 4.1",
+    "lab": "xai",
+    "release_date": null,
+    "word_count": 2243,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 11,
+    "cap": 80,
+    "attacks": [
+      {
+        "name": "WMDP",
+        "score": 87.0
+      },
+      {
+        "name": "Lab-Bench",
+        "score": 79.0
+      },
+      {
+        "name": "VCT",
+        "score": 61.0
+      }
+    ],
+    "record": [
+      {
+        "name": "WMDP",
+        "score": 87.0
+      },
+      {
+        "name": "Lab-Bench",
+        "score": 79.0
+      },
+      {
+        "name": "VCT",
+        "score": 61.0
+      },
+      {
+        "name": "MASK",
+        "score": 49.0
+      },
+      {
+        "name": "Cybench",
+        "score": 39.0
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~80 era-median (no xai capability data) +0 tier",
+    "cap_conf": "low"
+  },
+  {
+    "slug": "mistral-7b",
+    "name": "Mistral 7B",
+    "lab": "mistral",
+    "release_date": "2023-09-27",
+    "word_count": 745,
+    "profile": "empty",
+    "n_capability": 0,
+    "n_scored": 0,
+    "cap": 66,
+    "attacks": [],
+    "record": [],
+    "cap_est": true,
+    "cap_basis": "~74 from codestral -8 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "mixtral-8x7b",
+    "name": "Mixtral 8x7B",
+    "lab": "mistral",
+    "release_date": "2023-12-11",
+    "word_count": 810,
+    "profile": "empty",
+    "n_capability": 0,
+    "n_scored": 0,
+    "cap": 66,
+    "attacks": [],
+    "record": [],
+    "cap_est": true,
+    "cap_basis": "~74 from codestral -8 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "mistral-large-2",
+    "name": "Mistral Large 2",
+    "lab": "mistral",
+    "release_date": "2024-07-24",
+    "word_count": 979,
+    "profile": "capability",
+    "n_capability": 1,
+    "n_scored": 1,
+    "cap": 84,
+    "attacks": [
+      {
+        "name": "MMLU",
+        "score": 84.0
+      }
+    ],
+    "record": [
+      {
+        "name": "MMLU",
+        "score": 84.0
+      }
+    ]
+  },
+  {
+    "slug": "mistral-small-3",
+    "name": "Mistral Small 3",
+    "lab": "mistral",
+    "release_date": "2025-01-30",
+    "word_count": 1740,
+    "profile": "capability",
+    "n_capability": 10,
+    "n_scored": 13,
+    "cap": 74,
+    "attacks": [
+      {
+        "name": "HumanEval",
+        "score": 84.8
+      },
+      {
+        "name": "IFEval",
+        "score": 82.9
+      },
+      {
+        "name": "MATH",
+        "score": 70.6
+      }
+    ],
+    "record": [
+      {
+        "name": "HumanEval",
+        "score": 84.8
+      },
+      {
+        "name": "IFEval",
+        "score": 82.9
+      },
+      {
+        "name": "MATH",
+        "score": 70.6
+      },
+      {
+        "name": "MMLU-Pro",
+        "score": 66.3
+      },
+      {
+        "name": "MMLU",
+        "score": 66.3
+      }
+    ]
+  },
+  {
+    "slug": "codestral",
+    "name": "Codestral",
+    "lab": "mistral",
+    "release_date": "2024-05-29",
+    "word_count": 1235,
+    "profile": "capability",
+    "n_capability": 2,
+    "n_scored": 2,
+    "cap": 74,
+    "attacks": [
+      {
+        "name": "Kotlin-HumanEval",
+        "score": 73.8
+      },
+      {
+        "name": "HumanEval",
+        "score": 73.8
+      }
+    ],
+    "record": [
+      {
+        "name": "Kotlin-HumanEval",
+        "score": 73.8
+      },
+      {
+        "name": "HumanEval",
+        "score": 73.8
+      }
+    ]
+  },
+  {
+    "slug": "claude-mythos",
+    "name": "Claude (Mythos preview)",
+    "lab": "anthropic",
+    "release_date": "2026-03-01",
+    "word_count": 65849,
+    "profile": "capability",
+    "n_capability": 12,
+    "n_scored": 19,
+    "cap": 94,
+    "attacks": [
+      {
+        "name": "USAMO 2026",
+        "score": 97.6
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 94.5
+      },
+      {
+        "name": "SWE-bench",
+        "score": 93.9
+      }
+    ],
+    "record": [
+      {
+        "name": "USAMO 2026",
+        "score": 97.6
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 94.5
+      },
+      {
+        "name": "SWE-bench",
+        "score": 93.9
+      },
+      {
+        "name": "CharXiv Reasoning",
+        "score": 93.2
+      },
+      {
+        "name": "MMLU",
+        "score": 92.7
+      }
+    ]
+  },
+  {
+    "slug": "claude-3.5-haiku",
+    "name": "Claude 3.5 Haiku",
+    "lab": "anthropic",
+    "release_date": "2024-10-22",
+    "word_count": 5793,
+    "profile": "capability",
+    "n_capability": 14,
+    "n_scored": 28,
+    "cap": 92,
+    "attacks": [
+      {
+        "name": "HumanEval",
+        "score": 93.7
+      },
+      {
+        "name": "BIG-Bench Hard",
+        "score": 93.2
+      },
+      {
+        "name": "MGSM",
+        "score": 92.5
+      }
+    ],
+    "record": [
+      {
+        "name": "HumanEval",
+        "score": 93.7
+      },
+      {
+        "name": "BIG-Bench Hard",
+        "score": 93.2
+      },
+      {
+        "name": "MGSM",
+        "score": 92.5
+      },
+      {
+        "name": "MMLU",
+        "score": 90.5
+      },
+      {
+        "name": "IFEval",
+        "score": 90.2
+      }
+    ]
+  },
+  {
+    "slug": "claude-haiku-4.5",
+    "name": "Claude Haiku 4.5",
+    "lab": "anthropic",
+    "release_date": "2025-10-01",
+    "word_count": 10325,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 17,
+    "cap": 85,
+    "attacks": [
+      {
+        "name": "Agentic Coding",
+        "score": 100.0
+      },
+      {
+        "name": "Single-turn violative request evaluation",
+        "score": 99.4
+      },
+      {
+        "name": "Malicious Use of Claude Code - Malicious Refusal Rate",
+        "score": 99.2
+      }
+    ],
+    "record": [
+      {
+        "name": "Agentic Coding",
+        "score": 100.0
+      },
+      {
+        "name": "Single-turn violative request evaluation",
+        "score": 99.4
+      },
+      {
+        "name": "Malicious Use of Claude Code - Malicious Refusal Rate",
+        "score": 99.2
+      },
+      {
+        "name": "Prompt Injection Evaluation - Tool Use",
+        "score": 93.4
+      },
+      {
+        "name": "Prompt Injection Evaluation - MCP (Model Context Protocol)",
+        "score": 92.5
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~93 from claude-opus-4.6 -8 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "claude-opus-4.6",
+    "name": "Claude Opus 4.6",
+    "lab": "anthropic",
+    "release_date": "2026-02-01",
+    "word_count": 53965,
+    "profile": "capability",
+    "n_capability": 9,
+    "n_scored": 13,
+    "cap": 93,
+    "attacks": [
+      {
+        "name": "AIME",
+        "score": 99.8
+      },
+      {
+        "name": "ARC-AGI-1",
+        "score": 94.0
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 91.3
+      }
+    ],
+    "record": [
+      {
+        "name": "AIME",
+        "score": 99.8
+      },
+      {
+        "name": "ARC-AGI-1",
+        "score": 94.0
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 91.3
+      },
+      {
+        "name": "MMLU",
+        "score": 91.1
+      },
+      {
+        "name": "BrowseComp",
+        "score": 86.6
+      }
+    ]
+  },
+  {
+    "slug": "o3-mini",
+    "name": "o3-mini",
+    "lab": "openai",
+    "release_date": "2025-01-31",
+    "word_count": 12135,
+    "profile": "capability",
+    "n_capability": 2,
+    "n_scored": 2,
+    "cap": 61,
+    "attacks": [
+      {
+        "name": "Multilingual MMLU",
+        "score": 83.2
+      },
+      {
+        "name": "SWE-bench",
+        "score": 39.0
+      }
+    ],
+    "record": [
+      {
+        "name": "Multilingual MMLU",
+        "score": 83.2
+      },
+      {
+        "name": "SWE-bench",
+        "score": 39.0
+      }
+    ]
+  },
+  {
+    "slug": "operator",
+    "name": "Operator",
+    "lab": "openai",
+    "release_date": "2025-01-23",
+    "word_count": 5291,
+    "profile": "safety-only",
+    "n_capability": 0,
+    "n_scored": 17,
+    "cap": 61,
+    "attacks": [
+      {
+        "name": "Standard Refusal Evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Biorisk Tooling Eval",
+        "score": 100.0
+      },
+      {
+        "name": "Prompt Injection Monitor Recall",
+        "score": 99.0
+      }
+    ],
+    "record": [
+      {
+        "name": "Standard Refusal Evaluation",
+        "score": 100.0
+      },
+      {
+        "name": "Biorisk Tooling Eval",
+        "score": 100.0
+      },
+      {
+        "name": "Prompt Injection Monitor Recall",
+        "score": 99.0
+      },
+      {
+        "name": "Agentic Harms Refusal Rate",
+        "score": 97.0
+      },
+      {
+        "name": "Proactive Refusals Recall",
+        "score": 94.0
+      }
+    ],
+    "cap_est": true,
+    "cap_basis": "~61 from o3-mini +0 tier",
+    "cap_conf": "moderate"
+  },
+  {
+    "slug": "llama-3.1-card",
+    "name": "Llama 3.1 (card)",
+    "lab": "meta",
+    "release_date": "2024-07-23",
+    "word_count": 3304,
+    "profile": "capability",
+    "n_capability": 5,
+    "n_scored": 10,
+    "cap": 83,
+    "attacks": [
+      {
+        "name": "GSM8K",
+        "score": 95.1
+      },
+      {
+        "name": "MGSM",
+        "score": 86.9
+      },
+      {
+        "name": "MBPP",
+        "score": 86.0
+      }
+    ],
+    "record": [
+      {
+        "name": "GSM8K",
+        "score": 95.1
+      },
+      {
+        "name": "MGSM",
+        "score": 86.9
+      },
+      {
+        "name": "MBPP",
+        "score": 86.0
+      },
+      {
+        "name": "MMLU",
+        "score": 80.4
+      },
+      {
+        "name": "MATH",
+        "score": 68.0
+      }
+    ]
+  },
+  {
+    "slug": "claude-mythos-preview",
+    "name": "Claude Mythos Preview",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 65849,
+    "profile": "capability",
+    "n_capability": 12,
+    "n_scored": 19,
+    "cap": 94,
+    "attacks": [
+      {
+        "name": "USAMO 2026",
+        "score": 97.6
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 94.5
+      },
+      {
+        "name": "SWE-bench",
+        "score": 93.9
+      }
+    ],
+    "record": [
+      {
+        "name": "USAMO 2026",
+        "score": 97.6
+      },
+      {
+        "name": "GPQA-Diamond",
+        "score": 94.5
+      },
+      {
+        "name": "SWE-bench",
+        "score": 93.9
+      },
+      {
+        "name": "CharXiv Reasoning",
+        "score": 93.2
+      },
+      {
+        "name": "MMLU",
+        "score": 92.7
+      }
+    ]
+  },
+  {
+    "slug": "claude-opus-4.7",
+    "name": "Claude Opus 4.7",
+    "lab": "anthropic",
+    "release_date": null,
+    "word_count": 62813,
+    "profile": "capability",
+    "n_capability": 18,
+    "n_scored": 32,
+    "cap": 92,
+    "attacks": [
+      {
+        "name": "GPQA-Diamond",
+        "score": 94.2
+      },
+      {
+        "name": "ARC-AGI-1",
+        "score": 92.0
+      },
+      {
+        "name": "Multilingual MMLU",
+        "score": 91.5
+      }
+    ],
+    "record": [
+      {
+        "name": "GPQA-Diamond",
+        "score": 94.2
+      },
+      {
+        "name": "ARC-AGI-1",
+        "score": 92.0
+      },
+      {
+        "name": "Multilingual MMLU",
+        "score": 91.5
+      },
+      {
+        "name": "CharXiv Reasoning (With Tools)",
+        "score": 91.0
+      },
+      {
+        "name": "DeepSearchQA",
+        "score": 89.1
+      }
+    ]
+  },
+  {
+    "slug": "claude-opus-4.8",
+    "name": "Claude Opus 4.8",
+    "lab": "anthropic",
+    "release_date": "2026-05-28",
+    "word_count": 61922,
+    "profile": "capability",
+    "n_capability": 9,
+    "n_scored": 16,
+    "cap": 93,
+    "attacks": [
+      {
+        "name": "GraphWalks",
+        "score": 99.3
+      },
+      {
+        "name": "USAMO",
+        "score": 96.7
+      },
+      {
+        "name": "GPQA",
+        "score": 93.6
+      }
+    ],
+    "record": [
+      {
+        "name": "GraphWalks",
+        "score": 99.3
+      },
+      {
+        "name": "USAMO",
+        "score": 96.7
+      },
+      {
+        "name": "GPQA",
+        "score": 93.6
+      },
+      {
+        "name": "SWE-bench",
+        "score": 88.6
+      },
+      {
+        "name": "BrowseComp",
+        "score": 88.5
+      }
+    ]
+  }
+]

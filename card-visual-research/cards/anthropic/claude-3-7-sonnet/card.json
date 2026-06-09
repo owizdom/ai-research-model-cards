@@ -1,0 +1,105 @@
+{
+  "lab": "anthropic",
+  "num": "007/052",
+  "tier": "holo",
+  "name": "Claude 3.7 Sonnet",
+  "capN": "84",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 3.7 \u00b7 Feb 2025",
+  "tags": [
+    "EXTENDED THINKING",
+    "HYBRID",
+    "REASONING"
+  ],
+  "animal": "phoenix",
+  "words": "89k",
+  "evals": "14",
+  "unique": "61%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "62.0",
+      "c": "#c8832a"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "78.2",
+      "c": "#a06820"
+    },
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "87.1",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "3.5S",
+      "d": "Jun'24"
+    },
+    {
+      "v": "3.5H",
+      "d": "Nov'24"
+    },
+    {
+      "v": "3.7",
+      "d": "Feb'25",
+      "a": true
+    },
+    {
+      "v": "4",
+      "d": "May'25"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "62.0",
+      "l": "4 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "78.2",
+      "l": "4 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "87.1",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "96.2",
+      "l": "5 labs"
+    }
+  ],
+  "weak": {
+    "t": "Context Fade \u00d72",
+    "d": "Accuracy degrades in long contexts without extended thinking."
+  },
+  "res": {
+    "t": "Extended Thinking \u221212",
+    "d": "Visible reasoning chain before response; first Anthropic hybrid model."
+  },
+  "lims": [
+    "<strong>Thinking token cost</strong> \u2014 extended thinking expensive in production.",
+    "<strong>Chain faithfulness</strong> \u2014 thinking chain may not reflect true internal process."
+  ],
+  "blurb": "The inflection point. Claude 3.7 introduced extended thinking and the card length nearly doubled. SWE-bench jumped 13 points. The reasoning era began here.",
+  "val": {
+    "b": "Internal + limited external evaluation, Feb 2025",
+    "l": "modelcards.net/claude-3-7",
+    "h": true
+  },
+  "slug": "claude-3-7-sonnet",
+  "html": "claude-3-7-sonnet.html",
+  "art": null,
+  "source": "mockup"
+}

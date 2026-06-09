@@ -1,0 +1,103 @@
+{
+  "lab": "anthropic",
+  "num": "003/052",
+  "tier": "rare",
+  "name": "Claude 3 Sonnet",
+  "capN": "34",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 3 \u00b7 Mar 2024",
+  "tags": [
+    "BALANCED",
+    "REASONING",
+    "SAFETY"
+  ],
+  "animal": "owl",
+  "words": "32k",
+  "evals": "10",
+  "unique": "48%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "79.0",
+      "c": "#c8832a"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "40.4",
+      "c": "#a06820"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "40.5",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "2",
+      "d": "Jul'23"
+    },
+    {
+      "v": "3H",
+      "d": "Mar'24"
+    },
+    {
+      "v": "3S",
+      "d": "Mar'24",
+      "a": true
+    },
+    {
+      "v": "3O",
+      "d": "Mar'24"
+    },
+    {
+      "v": "3.5",
+      "d": "Jun'24"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "79.0",
+      "l": "6 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "40.4",
+      "l": "4 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "40.5",
+      "l": "5 labs"
+    }
+  ],
+  "weak": {
+    "t": "Benchmark Ceiling \u00d72",
+    "d": "Outperformed by Opus on reasoning tasks."
+  },
+  "res": {
+    "t": "Balance \u221210",
+    "d": "Best cost-performance ratio of the Claude 3 family."
+  },
+  "lims": [
+    "<strong>Middle tier</strong> \u2014 clearly below Opus, clearly above Haiku."
+  ],
+  "blurb": "The balanced middle of Claude 3. Positioned for most production workloads. Reports identical eval suite to Haiku and Opus \u2014 same card, different scores.",
+  "val": {
+    "b": "Shared Claude 3 red-team evaluation",
+    "l": "modelcards.net/claude-3",
+    "h": false
+  },
+  "slug": "claude-3-sonnet",
+  "html": "claude-3-sonnet.html",
+  "art": null,
+  "source": "mockup"
+}

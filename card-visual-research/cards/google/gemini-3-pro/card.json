@@ -1,0 +1,106 @@
+{
+  "lab": "google",
+  "num": "033/052",
+  "tier": "holo",
+  "name": "Gemini 3 Pro",
+  "capN": "89",
+  "capL": "CAP",
+  "meta": "Google DeepMind \u00b7 Gemini 3 \u00b7 2025",
+  "tags": [
+    "FRONTIER",
+    "MULTIMODAL",
+    "LONG CONTEXT"
+  ],
+  "animal": "eagle",
+  "words": "120k",
+  "evals": "16",
+  "unique": "52%",
+  "benches": [
+    {
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "92.0",
+      "c": "#4285f4"
+    },
+    {
+      "n": "LIVECODE BENCH",
+      "d": "Live coding",
+      "s": "74.0",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "CHARTQA",
+      "d": "Chart understanding",
+      "s": "88.0",
+      "c": "#1a3e90"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "2.5DT",
+      "d": "May'25"
+    },
+    {
+      "v": "3F",
+      "d": "2025"
+    },
+    {
+      "v": "3 Pro",
+      "d": "2025",
+      "a": true
+    },
+    {
+      "v": "3.1P",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME",
+      "s": "92.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "LiveCodeBench",
+      "s": "74.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "ChartQA",
+      "s": "88.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "DocVQA",
+      "s": "94.4",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "84.0",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Multimodal Drift \u00d72",
+    "d": "Cross-modal tasks show higher hallucination rate than text-only."
+  },
+  "res": {
+    "t": "Context Length \u221212",
+    "d": "2M token context with sub-linear degradation."
+  },
+  "lims": [
+    "<strong>Multimodal hallucination</strong> \u2014 higher rates on image+text tasks.",
+    "<strong>Benchmark ceiling</strong> \u2014 saturation on some key evals."
+  ],
+  "blurb": "Current Google DeepMind flagship. Strongest multimodal coverage of any card in the set \u2014 ChartQA, DocVQA, and MathVista alongside standard reasoning evals.",
+  "val": {
+    "b": "Google internal + Frontier Safety Framework, 2025",
+    "l": "modelcards.net/gemini-3-pro",
+    "h": true
+  },
+  "slug": "gemini-3-pro",
+  "html": "gemini-3-pro.html",
+  "art": null,
+  "source": "mockup"
+}

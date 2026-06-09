@@ -1,0 +1,92 @@
+{
+  "lab": "google",
+  "num": "034/052",
+  "tier": "rare",
+  "name": "Gemini 3.1 Pro",
+  "capN": "91",
+  "capL": "CAP",
+  "meta": "Google DeepMind \u00b7 Gemini 3.1 \u00b7 2025",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "AGENTIC"
+  ],
+  "animal": "octopus",
+  "words": "130k",
+  "evals": "16",
+  "unique": "53%",
+  "benches": [
+    {
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "93.5",
+      "c": "#4285f4"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "85.5",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "68.0",
+      "c": "#1a3e90"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "3F",
+      "d": "2025"
+    },
+    {
+      "v": "3 Pro",
+      "d": "2025"
+    },
+    {
+      "v": "3.1P",
+      "d": "2025",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME",
+      "s": "93.5",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "85.5",
+      "l": "4 labs"
+    },
+    {
+      "n": "SWE-bench",
+      "s": "68.0",
+      "l": "3 labs"
+    }
+  ],
+  "weak": {
+    "t": "Agentic Risk \u00d72",
+    "d": "Stronger agentic capability increases potential for unintended actions."
+  },
+  "res": {
+    "t": "Coding \u221212",
+    "d": "SWE-bench added for first time in Google's frontier lineup."
+  },
+  "lims": [
+    "<strong>Agentic risk</strong> \u2014 new safety documentation required for expanded capability.",
+    "<strong>SWE-bench debut</strong> \u2014 first Google model to report this benchmark."
+  ],
+  "blurb": "Google's latest. First Gemini model to report SWE-bench \u2014 notable because Google had not previously used this as a public evaluation. Follows Anthropic's lead in agentic coding benchmarks.",
+  "val": {
+    "b": "Google internal + Frontier Safety Framework, 2025",
+    "l": "modelcards.net/gemini-3-1-pro",
+    "h": false
+  },
+  "slug": "gemini-3-1-pro",
+  "html": "gemini-3-1-pro.html",
+  "art": null,
+  "source": "mockup"
+}

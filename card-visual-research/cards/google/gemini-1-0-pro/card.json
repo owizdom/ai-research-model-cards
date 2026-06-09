@@ -1,0 +1,100 @@
+{
+  "lab": "google",
+  "num": "026/052",
+  "tier": "rare",
+  "name": "Gemini 1.0 Pro",
+  "capN": "55",
+  "capL": "CAP",
+  "meta": "Google DeepMind \u00b7 Gemini 1 \u00b7 Dec 2023",
+  "tags": [
+    "MULTIMODAL",
+    "REASONING",
+    "FRONTIER"
+  ],
+  "animal": "octopus",
+  "words": "35k",
+  "evals": "10",
+  "unique": "38%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "83.7",
+      "c": "#4285f4"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "32.6",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "67.7",
+      "c": "#1a3e90"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "1.0P",
+      "d": "Dec'23",
+      "a": true
+    },
+    {
+      "v": "1.5P",
+      "d": "Feb'24"
+    },
+    {
+      "v": "2.0F",
+      "d": "Dec'24"
+    },
+    {
+      "v": "2.5P",
+      "d": "Mar'25"
+    },
+    {
+      "v": "3 Pro",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "83.7",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "32.6",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "67.7",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Multimodal Consistency \u00d72",
+    "d": "Inconsistent performance across modalities in early testing."
+  },
+  "res": {
+    "t": "Native Multimodal \u221210",
+    "d": "First frontier model built natively multimodal from scratch."
+  },
+  "lims": [
+    "<strong>Multimodal consistency</strong> \u2014 cross-modal task performance variable.",
+    "<strong>Math</strong> \u2014 MATH score below GPT-4 at launch."
+  ],
+  "blurb": "Google's first major multimodal frontier model. Native multimodal architecture from the ground up \u2014 not text-first with adapters. Set the template for all subsequent Gemini cards.",
+  "val": {
+    "b": "Internal Google DeepMind evaluation, Dec 2023",
+    "l": "modelcards.net/gemini-1",
+    "h": false
+  },
+  "slug": "gemini-1-0-pro",
+  "html": "gemini-1-0-pro.html",
+  "art": null,
+  "source": "mockup"
+}

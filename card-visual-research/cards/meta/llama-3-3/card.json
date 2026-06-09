@@ -1,0 +1,91 @@
+{
+  "lab": "meta",
+  "num": "039/052",
+  "tier": "rare",
+  "name": "Llama 3.3",
+  "capN": "68",
+  "capL": "CAP",
+  "meta": "Meta AI \u00b7 Llama 3.3 \u00b7 Nov 2024",
+  "tags": [
+    "OPEN WEIGHTS",
+    "CODING",
+    "REASONING"
+  ],
+  "animal": "wolf",
+  "words": "32k",
+  "evals": "12",
+  "unique": "29%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "86.0",
+      "c": "#0082fb"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "77.0",
+      "c": "#0060c0"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "88.4",
+      "c": "#004090"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "3.2",
+      "d": "Sep'24"
+    },
+    {
+      "v": "3.3",
+      "d": "Nov'24",
+      "a": true
+    },
+    {
+      "v": "4",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "86.0",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "77.0",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "88.4",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Context Ceiling \u00d72",
+    "d": "Reasoning at very long contexts degrades."
+  },
+  "res": {
+    "t": "Open Instruction \u221212",
+    "d": "Strong instruction-following on complex tasks; competitive with closed models."
+  },
+  "lims": [
+    "<strong>Context ceiling</strong> \u2014 reasoning degrades in very long contexts."
+  ],
+  "blurb": "Final Llama 3 model. At 86% MMLU, competitive with GPT-4o. The open-weights ecosystem reached a point where the gap to frontier closed in was largely closed for most tasks.",
+  "val": {
+    "b": "Internal Meta evaluation + Purple Llama, Nov 2024",
+    "l": "modelcards.net/llama-3-3",
+    "h": false
+  },
+  "slug": "llama-3-3",
+  "html": "llama-3-3.html",
+  "art": null,
+  "source": "mockup"
+}

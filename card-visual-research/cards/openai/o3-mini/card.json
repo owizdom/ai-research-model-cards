@@ -1,0 +1,95 @@
+{
+  "lab": "openai",
+  "num": "021/052",
+  "tier": "rare",
+  "name": "o3-mini",
+  "capN": "72",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 o-series \u00b7 Apr 2025",
+  "tags": [
+    "REASONING",
+    "FAST",
+    "EFFICIENT"
+  ],
+  "animal": "falcon",
+  "words": "65k",
+  "evals": "7",
+  "unique": "30%",
+  "benches": [
+    {
+      "n": "AIME 2024",
+      "d": "Competition math",
+      "s": "89.2",
+      "c": "#10a37f"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "79.3",
+      "c": "#0d8066"
+    },
+    {
+      "n": "CODEFORCES",
+      "d": "Competitive coding",
+      "s": "88.0",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "o1-mini",
+      "d": "Sep'24"
+    },
+    {
+      "v": "o3",
+      "d": "Apr'25"
+    },
+    {
+      "v": "o3-mini",
+      "d": "Apr'25",
+      "a": true
+    },
+    {
+      "v": "GPT-5",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME 2024",
+      "s": "89.2",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "79.3",
+      "l": "4 labs"
+    },
+    {
+      "n": "Codeforces",
+      "s": "88.0",
+      "l": "1 lab"
+    }
+  ],
+  "weak": {
+    "t": "Knowledge Breadth \u00d72",
+    "d": "STEM-optimised at expense of general knowledge tasks."
+  },
+  "res": {
+    "t": "STEM Efficiency \u221212",
+    "d": "89% AIME at fraction of o3 cost."
+  },
+  "lims": [
+    "<strong>STEM focus</strong> \u2014 intentionally narrowed scope vs o3."
+  ],
+  "blurb": "Demonstrated that o3-level math reasoning could be delivered at much lower cost. Forced competitors to reconsider their pricing strategy.",
+  "val": {
+    "b": "Internal evaluation, Apr 2025",
+    "l": "modelcards.net/o3-mini",
+    "h": false
+  },
+  "slug": "o3-mini",
+  "html": "o3-mini.html",
+  "art": null,
+  "source": "mockup"
+}

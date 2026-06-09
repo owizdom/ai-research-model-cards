@@ -1,0 +1,103 @@
+{
+  "lab": "anthropic",
+  "num": "002/052",
+  "tier": "rare",
+  "name": "Claude 3 Haiku",
+  "capN": "28",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 3 \u00b7 Mar 2024",
+  "tags": [
+    "FAST",
+    "EFFICIENT",
+    "SAFETY"
+  ],
+  "animal": "owl",
+  "words": "32k",
+  "evals": "10",
+  "unique": "48%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "75.2",
+      "c": "#c8832a"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "75.9",
+      "c": "#a06820"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "33.3",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "2",
+      "d": "Jul'23"
+    },
+    {
+      "v": "3H",
+      "d": "Mar'24",
+      "a": true
+    },
+    {
+      "v": "3S",
+      "d": "Mar'24"
+    },
+    {
+      "v": "3O",
+      "d": "Mar'24"
+    },
+    {
+      "v": "3.5",
+      "d": "Jun'24"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "75.2",
+      "l": "6 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "75.9",
+      "l": "4 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "33.3",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Capability Gap \u00d72",
+    "d": "Fastest but least capable of Claude 3 family."
+  },
+  "res": {
+    "t": "Latency \u221214",
+    "d": "Fastest Claude \u2014 ideal for high-frequency agentic tasks."
+  },
+  "lims": [
+    "<strong>Capability tradeoff</strong> \u2014 speed optimised at cost of reasoning depth."
+  ],
+  "blurb": "Speed-optimised entry point of the Claude 3 family. Reports the same eval suite as Opus but lower scores throughout.",
+  "val": {
+    "b": "Shared Claude 3 red-team evaluation",
+    "l": "modelcards.net/claude-3",
+    "h": false
+  },
+  "slug": "claude-3-haiku",
+  "html": "claude-3-haiku.html",
+  "art": null,
+  "source": "mockup"
+}
