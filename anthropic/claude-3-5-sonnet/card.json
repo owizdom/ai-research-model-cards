@@ -1,0 +1,105 @@
+{
+  "lab": "anthropic",
+  "num": "005/052",
+  "tier": "holo",
+  "name": "Claude 3.5 Sonnet",
+  "capN": "75",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 3.5 \u00b7 Jun 2024",
+  "tags": [
+    "CODING",
+    "AGENTIC",
+    "FAST"
+  ],
+  "animal": "eagle",
+  "words": "45k",
+  "evals": "14",
+  "unique": "58%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "49.0",
+      "c": "#c8832a"
+    },
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "88.7",
+      "c": "#a06820"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "59.4",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "3O",
+      "d": "Mar'24"
+    },
+    {
+      "v": "3.5S",
+      "d": "Jun'24",
+      "a": true
+    },
+    {
+      "v": "3.5H",
+      "d": "Nov'24"
+    },
+    {
+      "v": "3.7",
+      "d": "Feb'25"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "49.0",
+      "l": "3 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "88.7",
+      "l": "6 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "59.4",
+      "l": "4 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "92.0",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Agentic Risk \u00d72",
+    "d": "Stronger agentic capability increases potential for unintended actions."
+  },
+  "res": {
+    "t": "Computer Use \u221212",
+    "d": "First model with official computer-use capability."
+  },
+  "lims": [
+    "<strong>Agentic risk</strong> \u2014 stronger agency requires more careful deployment.",
+    "<strong>SWE-bench</strong> \u2014 first major coding benchmark result from Anthropic."
+  ],
+  "blurb": "The model that made Anthropic competitive on coding. First to report SWE-bench. Introduced computer use capability. Card length jumped as agentic risks required more documentation.",
+  "val": {
+    "b": "Internal red-team + agentic evaluation, Jun 2024",
+    "l": "modelcards.net/claude-3-5",
+    "h": true
+  },
+  "slug": "claude-3-5-sonnet",
+  "html": "claude-3-5-sonnet.html",
+  "art": null,
+  "source": "mockup"
+}

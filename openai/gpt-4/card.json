@@ -1,0 +1,105 @@
+{
+  "lab": "openai",
+  "num": "015/052",
+  "tier": "common",
+  "name": "GPT-4",
+  "capN": "40",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 GPT-4 \u00b7 Mar 2023",
+  "tags": [
+    "FRONTIER",
+    "MULTIMODAL"
+  ],
+  "animal": "falcon",
+  "words": "8k",
+  "evals": "4",
+  "unique": "18%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "86.4",
+      "c": "#10a37f"
+    },
+    {
+      "n": "ARC",
+      "d": "Grade-school reasoning",
+      "s": "96.3",
+      "c": "#0d8066"
+    },
+    {
+      "n": "HELLASWAG",
+      "d": "Common-sense NLI",
+      "s": "95.3",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "GPT-4",
+      "d": "Mar'23",
+      "a": true
+    },
+    {
+      "v": "4o",
+      "d": "May'24"
+    },
+    {
+      "v": "o1",
+      "d": "Sep'24"
+    },
+    {
+      "v": "o3",
+      "d": "Apr'25"
+    },
+    {
+      "v": "GPT-5",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "86.4",
+      "l": "6 labs"
+    },
+    {
+      "n": "ARC",
+      "s": "96.3",
+      "l": "4 labs"
+    },
+    {
+      "n": "HellaSwag",
+      "s": "95.3",
+      "l": "4 labs"
+    },
+    {
+      "n": "TruthfulQA",
+      "s": "59.0",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Disclosure Gap \u00d72",
+    "d": "Sparse safety documentation relative to capability level."
+  },
+  "res": {
+    "t": "RLHF \u22128",
+    "d": "Human feedback training reduces harmful output rate."
+  },
+  "lims": [
+    "<strong>Minimal safety disclosure</strong> \u2014 no dangerous capabilities section.",
+    "<strong>No third-party validation</strong> \u2014 internal evaluation only.",
+    "<strong>4 evals reported</strong> \u2014 the baseline, not the frontier."
+  ],
+  "blurb": "The original template. GPT-4's system card at ~8k words set the format, but by 2026 standards it is remarkably sparse. The contrast with Opus 4.8 (475k words) makes the essay's argument in a single comparison.",
+  "val": {
+    "b": "Internal red-teaming only \u2014 no external validation disclosed",
+    "l": "modelcards.net/gpt-4",
+    "h": false
+  },
+  "slug": "gpt-4",
+  "html": "gpt-4.html",
+  "art": null,
+  "source": "mockup"
+}

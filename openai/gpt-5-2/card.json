@@ -1,0 +1,95 @@
+{
+  "lab": "openai",
+  "num": "024/052",
+  "tier": "rare",
+  "name": "GPT-5.2",
+  "capN": "89",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 GPT-5 \u00b7 2025",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "MULTIMODAL"
+  ],
+  "animal": "falcon",
+  "words": "170k",
+  "evals": "12",
+  "unique": "42%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "91.2",
+      "c": "#10a37f"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "86.0",
+      "c": "#0d8066"
+    },
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "75.0",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "GPT-5",
+      "d": "2025"
+    },
+    {
+      "v": "5.1",
+      "d": "2025"
+    },
+    {
+      "v": "5.2",
+      "d": "2025",
+      "a": true
+    },
+    {
+      "v": "5.3",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "91.2",
+      "l": "6 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "86.0",
+      "l": "4 labs"
+    },
+    {
+      "n": "SWE-bench",
+      "s": "75.0",
+      "l": "3 labs"
+    }
+  ],
+  "weak": {
+    "t": "Saturation \u00d72",
+    "d": "Benchmark ceiling approached on key academic evals."
+  },
+  "res": {
+    "t": "Multimodal \u221210",
+    "d": "Improved multimodal understanding vs GPT-5.1."
+  },
+  "lims": [
+    "<strong>Benchmark saturation</strong> \u2014 MMLU approaching ceiling."
+  ],
+  "blurb": "Incremental release. Notable mainly for showing that the GPT-5 line could be iterated rapidly. The release cadence itself became a competitive signal.",
+  "val": {
+    "b": "Internal evaluation, 2025",
+    "l": "modelcards.net/gpt-5-2",
+    "h": false
+  },
+  "slug": "gpt-5-2",
+  "html": "gpt-5-2.html",
+  "art": null,
+  "source": "mockup"
+}

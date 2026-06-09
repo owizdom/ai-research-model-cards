@@ -1,0 +1,93 @@
+{
+  "lab": "anthropic",
+  "num": "012/052",
+  "tier": "rare",
+  "name": "Claude 4.6",
+  "capN": "90",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 4.6 \u00b7 Apr 2026",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "AGENTIC"
+  ],
+  "animal": "owl",
+  "words": "475k",
+  "evals": "18",
+  "unique": "73%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "89.4",
+      "c": "#c8832a"
+    },
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "67.1",
+      "c": "#a06820"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "74.9",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4.5",
+      "d": "Sep'25"
+    },
+    {
+      "v": "4.6",
+      "d": "Apr'26",
+      "a": true
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "89.4",
+      "l": "6 labs"
+    },
+    {
+      "n": "SWE-bench",
+      "s": "67.1",
+      "l": "3 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "74.9",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Personality Drift \u00d72",
+    "d": "Sycophancy and hedging under pressure documented."
+  },
+  "res": {
+    "t": "Extended Thinking \u221214",
+    "d": "Interleaved reasoning sustains accuracy under long-horizon load."
+  },
+  "lims": [
+    "<strong>Personality drift</strong> \u2014 sycophancy documented.",
+    "<strong>Card length</strong> \u2014 475k words; longest to this point.",
+    "<strong>73% lab-unique</strong> \u2014 most eval choices not echoed by peers."
+  ],
+  "blurb": "475k words \u2014 the longest model card published to this date. 73% lab-unique eval choices. The card itself became a transparency artifact worthy of study.",
+  "val": {
+    "b": "Internal + METR + UK AISI evaluation, Apr 2026",
+    "l": "modelcards.net/claude-4-6",
+    "h": false
+  },
+  "slug": "claude-4-6",
+  "html": "claude-4-6.html",
+  "art": null,
+  "source": "mockup"
+}

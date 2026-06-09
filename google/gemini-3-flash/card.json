@@ -1,0 +1,95 @@
+{
+  "lab": "google",
+  "num": "032/052",
+  "tier": "rare",
+  "name": "Gemini 3 Flash",
+  "capN": "78",
+  "capL": "CAP",
+  "meta": "Google DeepMind \u00b7 Gemini 3 \u00b7 2025",
+  "tags": [
+    "FAST",
+    "AGENTIC",
+    "MULTIMODAL"
+  ],
+  "animal": "octopus",
+  "words": "100k",
+  "evals": "14",
+  "unique": "50%",
+  "benches": [
+    {
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "88.0",
+      "c": "#4285f4"
+    },
+    {
+      "n": "LIVECODE BENCH",
+      "d": "Live coding",
+      "s": "68.0",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "88.5",
+      "c": "#1a3e90"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "2.5DT",
+      "d": "May'25"
+    },
+    {
+      "v": "3F",
+      "d": "2025",
+      "a": true
+    },
+    {
+      "v": "3 Pro",
+      "d": "2025"
+    },
+    {
+      "v": "3.1P",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME",
+      "s": "88.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "LiveCodeBench",
+      "s": "68.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "88.5",
+      "l": "6 labs"
+    }
+  ],
+  "weak": {
+    "t": "Pro Gap \u00d72",
+    "d": "Clearly below Gemini 3 Pro on reasoning tasks."
+  },
+  "res": {
+    "t": "Production Speed \u221212",
+    "d": "Optimised for real-time production workloads."
+  },
+  "lims": [
+    "<strong>Reasoning depth</strong> \u2014 below Pro tier on complex multi-step tasks."
+  ],
+  "blurb": "Speed-first entry point of Gemini 3. Continues the Pro+Flash pattern. Strong AIME score even at the Flash tier signals how far math reasoning capability has propagated down the size hierarchy.",
+  "val": {
+    "b": "Internal evaluation, 2025",
+    "l": "modelcards.net/gemini-3-flash",
+    "h": false
+  },
+  "slug": "gemini-3-flash",
+  "html": "gemini-3-flash.html",
+  "art": null,
+  "source": "mockup"
+}

@@ -1,0 +1,100 @@
+{
+  "lab": "meta",
+  "num": "035/052",
+  "tier": "common",
+  "name": "Llama 2",
+  "capN": "22",
+  "capL": "CAP",
+  "meta": "Meta AI \u00b7 Llama 2 \u00b7 Jul 2023",
+  "tags": [
+    "OPEN WEIGHTS",
+    "SAFETY",
+    "REASONING"
+  ],
+  "animal": "wolf",
+  "words": "15k",
+  "evals": "8",
+  "unique": "22%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "68.9",
+      "c": "#0082fb"
+    },
+    {
+      "n": "TRUTHFULQA",
+      "d": "Factual accuracy",
+      "s": "50.2",
+      "c": "#0060c0"
+    },
+    {
+      "n": "BBQ",
+      "d": "Bias benchmark",
+      "s": "78.0",
+      "c": "#004090"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Llama 2",
+      "d": "Jul'23",
+      "a": true
+    },
+    {
+      "v": "3",
+      "d": "Apr'24"
+    },
+    {
+      "v": "3.1",
+      "d": "Jul'24"
+    },
+    {
+      "v": "3.3",
+      "d": "Nov'24"
+    },
+    {
+      "v": "4",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "68.9",
+      "l": "6 labs"
+    },
+    {
+      "n": "TruthfulQA",
+      "s": "50.2",
+      "l": "4 labs"
+    },
+    {
+      "n": "BBQ",
+      "s": "78.0",
+      "l": "2 labs"
+    }
+  ],
+  "weak": {
+    "t": "Capability Gap \u00d72",
+    "d": "Below frontier models on most benchmarks at launch."
+  },
+  "res": {
+    "t": "Open Weights \u221214",
+    "d": "Weights publicly available \u2014 transparency through openness."
+  },
+  "lims": [
+    "<strong>Capability</strong> \u2014 below frontier models on most benchmarks.",
+    "<strong>Safety documentation</strong> \u2014 card sparser than closed-model peers."
+  ],
+  "blurb": "The open-weights frontier. Llama 2 established that a lab could release competitive weights publicly. The model card is sparser than closed-model peers \u2014 the weights are themselves the transparency mechanism.",
+  "val": {
+    "b": "Internal Meta evaluation + Purple Llama, Jul 2023",
+    "l": "modelcards.net/llama-2",
+    "h": false
+  },
+  "slug": "llama-2",
+  "html": "llama-2.html",
+  "art": null,
+  "source": "mockup"
+}

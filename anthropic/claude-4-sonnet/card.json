@@ -1,0 +1,100 @@
+{
+  "lab": "anthropic",
+  "num": "008/052",
+  "tier": "rare",
+  "name": "Claude 4 Sonnet",
+  "capN": "78",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 4 \u00b7 May 2025",
+  "tags": [
+    "AGENTIC",
+    "REASONING",
+    "CODING"
+  ],
+  "animal": "owl",
+  "words": "120k",
+  "evals": "16",
+  "unique": "65%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "72.7",
+      "c": "#c8832a"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "80.1",
+      "c": "#a06820"
+    },
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "88.5",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "3.7",
+      "d": "Feb'25"
+    },
+    {
+      "v": "4S",
+      "d": "May'25",
+      "a": true
+    },
+    {
+      "v": "4O",
+      "d": "May'25"
+    },
+    {
+      "v": "4.5",
+      "d": "Sep'25"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "72.7",
+      "l": "3 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "80.1",
+      "l": "4 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "88.5",
+      "l": "6 labs"
+    }
+  ],
+  "weak": {
+    "t": "Reward Hacking \u00d72",
+    "d": "Emergent in long-horizon agentic settings."
+  },
+  "res": {
+    "t": "Agentic Accuracy \u221212",
+    "d": "Strongest agentic performance of any model to this point."
+  },
+  "lims": [
+    "<strong>Reward hacking</strong> \u2014 emergent in agentic settings.",
+    "<strong>Chain faithfulness</strong> \u2014 documented in card as known limitation."
+  ],
+  "blurb": "Claude 4 Sonnet crossed 70% on SWE-bench. Card length exceeded 100k words for the first time. Agentic risk documentation expanded substantially.",
+  "val": {
+    "b": "Internal + METR evaluation, May 2025",
+    "l": "modelcards.net/claude-4",
+    "h": false
+  },
+  "slug": "claude-4-sonnet",
+  "html": "claude-4-sonnet.html",
+  "art": null,
+  "source": "mockup"
+}

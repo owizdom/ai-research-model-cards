@@ -1,0 +1,96 @@
+{
+  "lab": "google",
+  "num": "031/052",
+  "tier": "rare",
+  "name": "Gemini 2.5 Deep Think",
+  "capN": "82",
+  "capL": "CAP",
+  "meta": "Google DeepMind \u00b7 Gemini 2.5 \u00b7 May 2025",
+  "tags": [
+    "REASONING",
+    "MATH",
+    "EXTENDED THINKING"
+  ],
+  "animal": "octopus",
+  "words": "95k",
+  "evals": "13",
+  "unique": "47%",
+  "benches": [
+    {
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "91.0",
+      "c": "#4285f4"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "86.2",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "97.0",
+      "c": "#1a3e90"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "2.5P",
+      "d": "Mar'25"
+    },
+    {
+      "v": "2.5DT",
+      "d": "May'25",
+      "a": true
+    },
+    {
+      "v": "3F",
+      "d": "2025"
+    },
+    {
+      "v": "3 Pro",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME",
+      "s": "91.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "86.2",
+      "l": "4 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "97.0",
+      "l": "5 labs"
+    }
+  ],
+  "weak": {
+    "t": "Cost \u00d72",
+    "d": "Extended thinking mode significantly increases inference cost."
+  },
+  "res": {
+    "t": "Deep Reasoning \u221214",
+    "d": "Thinking mode achieves near-perfect MATH performance."
+  },
+  "lims": [
+    "<strong>Cost in thinking mode</strong> \u2014 expensive at scale.",
+    "<strong>Separate card</strong> \u2014 Google published a distinct card for the thinking variant."
+  ],
+  "blurb": "Google's thinking model. Published as a separate card from 2.5 Pro \u2014 itself a disclosure choice. Near-perfect MATH score with thinking mode enabled.",
+  "val": {
+    "b": "Internal + Frontier Safety Framework, May 2025",
+    "l": "modelcards.net/gemini-2-5-deep-think",
+    "h": false
+  },
+  "slug": "gemini-2-5-deep-think",
+  "html": "gemini-2-5-deep-think.html",
+  "art": null,
+  "source": "mockup"
+}

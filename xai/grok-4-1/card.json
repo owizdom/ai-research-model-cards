@@ -1,0 +1,91 @@
+{
+  "lab": "xai",
+  "num": "043/052",
+  "tier": "common",
+  "name": "Grok 4.1",
+  "capN": "0",
+  "capL": "EVALS",
+  "meta": "xAI \u00b7 Grok 4.1 \u00b7 2025",
+  "tags": [
+    "FRONTIER",
+    "REASONING"
+  ],
+  "animal": "crow",
+  "words": "<4k",
+  "evals": "0",
+  "unique": "0%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Not reported",
+      "s": "\u2014",
+      "c": "#3a2a5a",
+      "na": true
+    },
+    {
+      "n": "GPQA",
+      "d": "Not reported",
+      "s": "\u2014",
+      "c": "#3a2a5a",
+      "na": true
+    },
+    {
+      "n": "AIME",
+      "d": "Not reported",
+      "s": "\u2014",
+      "c": "#3a2a5a",
+      "na": true
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Grok 4",
+      "d": "2025"
+    },
+    {
+      "v": "4 Fast",
+      "d": "2025"
+    },
+    {
+      "v": "4.1",
+      "d": "2025",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "\u2014",
+      "l": "not reported",
+      "na": true
+    },
+    {
+      "n": "GPQA",
+      "s": "\u2014",
+      "l": "not reported",
+      "na": true
+    }
+  ],
+  "weak": {
+    "t": "Disclosure Gap \u00d72",
+    "d": "Latest xAI model \u2014 still zero public benchmark scores."
+  },
+  "res": {
+    "t": "Undocumented \u22120",
+    "d": ""
+  },
+  "lims": [
+    "<strong>No public evals</strong> \u2014 zero benchmark scores.",
+    "<strong>Three xAI models tracked</strong> \u2014 none report a single benchmark."
+  ],
+  "blurb": "The newest xAI model. Still zero public benchmark scores. Across three tracked models, xAI has reported not one benchmark result. The pattern is the finding.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "modelcards.net/grok-4-1",
+    "h": false
+  },
+  "slug": "grok-4-1",
+  "html": "grok-4-1.html",
+  "art": null,
+  "source": "mockup"
+}

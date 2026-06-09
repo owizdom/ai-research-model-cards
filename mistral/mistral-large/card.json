@@ -1,0 +1,101 @@
+{
+  "lab": "mistral",
+  "num": "046/052",
+  "tier": "rare",
+  "name": "Mistral Large",
+  "capN": "45",
+  "capL": "CAP",
+  "meta": "Mistral AI \u00b7 Mistral Large \u00b7 2024",
+  "tags": [
+    "REASONING",
+    "CODING",
+    "MULTILINGUAL"
+  ],
+  "animal": "fox",
+  "words": "4k",
+  "evals": "6",
+  "unique": "14%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "81.2",
+      "c": "#e85d04"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "45.0",
+      "c": "#c04000"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "45.1",
+      "c": "#902e00"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Mixtral",
+      "d": "Dec'23"
+    },
+    {
+      "v": "Large",
+      "d": "2024",
+      "a": true
+    },
+    {
+      "v": "Large 2",
+      "d": "2024"
+    },
+    {
+      "v": "3.1",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "81.2",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "45.0",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "45.1",
+      "l": "4 labs"
+    },
+    {
+      "n": "IFEval",
+      "s": "82.4",
+      "l": "2 labs"
+    }
+  ],
+  "weak": {
+    "t": "Closed Weights \u00d72",
+    "d": "First Mistral closed model \u2014 departure from open-weights ethos."
+  },
+  "res": {
+    "t": "Commercial API \u221210",
+    "d": "API access model; strong multilingual and reasoning performance."
+  },
+  "lims": [
+    "<strong>Closed weights</strong> \u2014 first Mistral model not fully open.",
+    "<strong>Disclosure still sparse</strong> \u2014 4k words vs frontier peers at 30k+."
+  ],
+  "blurb": "Mistral's first closed-weights model. A strategic shift. The card remained sparse despite moving to a commercial API model \u2014 disclosure practices did not follow capability tier.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "modelcards.net/mistral-large",
+    "h": false
+  },
+  "slug": "mistral-large",
+  "html": "mistral-large.html",
+  "art": null,
+  "source": "mockup"
+}

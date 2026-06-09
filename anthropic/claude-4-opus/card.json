@@ -1,0 +1,105 @@
+{
+  "lab": "anthropic",
+  "num": "009/052",
+  "tier": "holo",
+  "name": "Claude 4 Opus",
+  "capN": "88",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 4 \u00b7 May 2025",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "MULTIMODAL"
+  ],
+  "animal": "sphinx",
+  "words": "145k",
+  "evals": "17",
+  "unique": "68%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "79.4",
+      "c": "#c8832a"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "83.1",
+      "c": "#a06820"
+    },
+    {
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "90.2",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "3.7",
+      "d": "Feb'25"
+    },
+    {
+      "v": "4S",
+      "d": "May'25"
+    },
+    {
+      "v": "4O",
+      "d": "May'25",
+      "a": true
+    },
+    {
+      "v": "4.5",
+      "d": "Sep'25"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "79.4",
+      "l": "3 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "83.1",
+      "l": "4 labs"
+    },
+    {
+      "n": "AIME",
+      "s": "90.2",
+      "l": "2 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "89.2",
+      "l": "6 labs"
+    }
+  ],
+  "weak": {
+    "t": "Cost \u00d72",
+    "d": "Most capable but most expensive; limits production deployment."
+  },
+  "res": {
+    "t": "Frontier Reasoning \u221214",
+    "d": "Strongest reasoning of any model at time of release."
+  },
+  "lims": [
+    "<strong>Cost</strong> \u2014 highest inference cost of family.",
+    "<strong>Benchmark saturation</strong> \u2014 many evals approaching ceiling."
+  ],
+  "blurb": "Frontier of the Claude 4 family. SWE-bench crossed 79%. Card length 145k words \u2014 the documentation now as substantial as many academic papers.",
+  "val": {
+    "b": "Internal + METR + UK AISI evaluation, May 2025",
+    "l": "modelcards.net/claude-4-opus",
+    "h": true
+  },
+  "slug": "claude-4-opus",
+  "html": "claude-4-opus.html",
+  "art": null,
+  "source": "mockup"
+}

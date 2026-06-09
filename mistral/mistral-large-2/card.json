@@ -1,0 +1,97 @@
+{
+  "lab": "mistral",
+  "num": "047/052",
+  "tier": "rare",
+  "name": "Mistral Large 2",
+  "capN": "58",
+  "capL": "CAP",
+  "meta": "Mistral AI \u00b7 Mistral Large 2 \u00b7 2024",
+  "tags": [
+    "REASONING",
+    "CODING",
+    "FRONTIER"
+  ],
+  "animal": "fox",
+  "words": "6k",
+  "evals": "7",
+  "unique": "16%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "84.0",
+      "c": "#e85d04"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "69.0",
+      "c": "#c04000"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "92.0",
+      "c": "#902e00"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Large",
+      "d": "2024"
+    },
+    {
+      "v": "Large 2",
+      "d": "2024",
+      "a": true
+    },
+    {
+      "v": "3.1",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "84.0",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "69.0",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "92.0",
+      "l": "4 labs"
+    },
+    {
+      "n": "IFEval",
+      "s": "85.1",
+      "l": "2 labs"
+    }
+  ],
+  "weak": {
+    "t": "Disclosure Gap \u00d72",
+    "d": "6k words vs Claude 3.5 Sonnet at 45k \u2014 same capability tier, 7\u00d7 less documentation."
+  },
+  "res": {
+    "t": "Code \u221212",
+    "d": "HumanEval 92% \u2014 competitive with frontier closed models on coding."
+  },
+  "lims": [
+    "<strong>Sparse safety documentation</strong> \u2014 6k words for frontier-competitive capability.",
+    "<strong>No dangerous capabilities section</strong> \u2014 not standard practice at Mistral."
+  ],
+  "blurb": "Frontier-competitive coding. 92% HumanEval. But only 6k words of documentation. The disclosure gap with Anthropic (~45k for Claude 3.5 Sonnet, similar capability tier) is 7\u00d7. European frontier lab with American disclosure standards.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "modelcards.net/mistral-large-2",
+    "h": false
+  },
+  "slug": "mistral-large-2",
+  "html": "mistral-large-2.html",
+  "art": null,
+  "source": "mockup"
+}

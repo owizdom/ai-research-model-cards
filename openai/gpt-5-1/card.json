@@ -1,0 +1,95 @@
+{
+  "lab": "openai",
+  "num": "023/052",
+  "tier": "rare",
+  "name": "GPT-5.1",
+  "capN": "88",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 GPT-5 \u00b7 2025",
+  "tags": [
+    "FRONTIER",
+    "CODING",
+    "AGENTIC"
+  ],
+  "animal": "falcon",
+  "words": "160k",
+  "evals": "11",
+  "unique": "40%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "72.0",
+      "c": "#10a37f"
+    },
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "90.5",
+      "c": "#0d8066"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "85.0",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "GPT-5",
+      "d": "2025"
+    },
+    {
+      "v": "5.1",
+      "d": "2025",
+      "a": true
+    },
+    {
+      "v": "5.2",
+      "d": "2025"
+    },
+    {
+      "v": "5.3",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "72.0",
+      "l": "3 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "90.5",
+      "l": "6 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "85.0",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Agentic Risk \u00d72",
+    "d": "Stronger agentic capability increases potential for unintended actions."
+  },
+  "res": {
+    "t": "Coding Accuracy \u221212",
+    "d": "Strong improvement on SWE-bench vs GPT-5."
+  },
+  "lims": [
+    "<strong>Agentic risk</strong> \u2014 expanded capability requires new safety documentation."
+  ],
+  "blurb": "Iterative improvement on GPT-5 focusing on coding and agentic capability. Narrowed the SWE-bench gap with Anthropic.",
+  "val": {
+    "b": "Internal evaluation, 2025",
+    "l": "modelcards.net/gpt-5-1",
+    "h": false
+  },
+  "slug": "gpt-5-1",
+  "html": "gpt-5-1.html",
+  "art": null,
+  "source": "mockup"
+}

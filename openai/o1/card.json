@@ -1,0 +1,100 @@
+{
+  "lab": "openai",
+  "num": "018/052",
+  "tier": "rare",
+  "name": "o1",
+  "capN": "76",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 o-series \u00b7 Sep 2024",
+  "tags": [
+    "REASONING",
+    "MATH",
+    "CHAIN-OF-THOUGHT"
+  ],
+  "animal": "shark",
+  "words": "40k",
+  "evals": "8",
+  "unique": "35%",
+  "benches": [
+    {
+      "n": "AIME 2024",
+      "d": "Competition math",
+      "s": "83.3",
+      "c": "#10a37f"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "77.3",
+      "c": "#0d8066"
+    },
+    {
+      "n": "CODEFORCES",
+      "d": "Competitive coding",
+      "s": "89.0",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "GPT-4o",
+      "d": "May'24"
+    },
+    {
+      "v": "o1",
+      "d": "Sep'24",
+      "a": true
+    },
+    {
+      "v": "o1-mini",
+      "d": "Sep'24"
+    },
+    {
+      "v": "o3",
+      "d": "Apr'25"
+    },
+    {
+      "v": "GPT-5",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME 2024",
+      "s": "83.3",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "77.3",
+      "l": "4 labs"
+    },
+    {
+      "n": "Codeforces",
+      "s": "89.0",
+      "l": "1 lab"
+    }
+  ],
+  "weak": {
+    "t": "Overthinking \u00d72",
+    "d": "Applies heavy reasoning compute to trivial tasks."
+  },
+  "res": {
+    "t": "Chain-of-thought \u221212",
+    "d": "Internal reasoning chain before response; first commercial CoT model."
+  },
+  "lims": [
+    "<strong>Overthinking</strong> \u2014 reasoning compute wasted on simple tasks.",
+    "<strong>Latency</strong> \u2014 reasoning steps add significant time-to-first-token."
+  ],
+  "blurb": "o1 announced the reasoning model era. AIME score of 83.3% was unprecedented. Card introduced new category: dangerous capability evaluations as a standalone section.",
+  "val": {
+    "b": "Internal + Apollo evaluation, Sep 2024",
+    "l": "modelcards.net/o1",
+    "h": false
+  },
+  "slug": "o1",
+  "html": "o1.html",
+  "art": null,
+  "source": "mockup"
+}

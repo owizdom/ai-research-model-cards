@@ -1,0 +1,96 @@
+{
+  "lab": "anthropic",
+  "num": "006/052",
+  "tier": "rare",
+  "name": "Claude 3.5 Haiku",
+  "capN": "52",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Claude 3.5 \u00b7 Nov 2024",
+  "tags": [
+    "FAST",
+    "CODING",
+    "EFFICIENT"
+  ],
+  "animal": "owl",
+  "words": "42k",
+  "evals": "12",
+  "unique": "55%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "40.6",
+      "c": "#c8832a"
+    },
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "87.2",
+      "c": "#a06820"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "88.1",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "3.5S",
+      "d": "Jun'24"
+    },
+    {
+      "v": "3.5H",
+      "d": "Nov'24",
+      "a": true
+    },
+    {
+      "v": "3.7",
+      "d": "Feb'25"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "40.6",
+      "l": "3 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "87.2",
+      "l": "6 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "88.1",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Size Ceiling \u00d72",
+    "d": "Smaller model limits complex multi-step reasoning."
+  },
+  "res": {
+    "t": "Speed \u221212",
+    "d": "Fastest of Claude 3.5 family; outperforms prior Opus on several benchmarks."
+  },
+  "lims": [
+    "<strong>Reasoning depth</strong> \u2014 smaller model limits complex chains.",
+    "<strong>SWE-bench gap</strong> \u2014 8.4 points below Sonnet."
+  ],
+  "blurb": "Speed-first model of Claude 3.5 generation. Notable for beating prior-generation Opus on MMLU despite being the smaller model.",
+  "val": {
+    "b": "Internal evaluation, Nov 2024",
+    "l": "modelcards.net/claude-3-5-haiku",
+    "h": false
+  },
+  "slug": "claude-3-5-haiku",
+  "html": "claude-3-5-haiku.html",
+  "art": null,
+  "source": "mockup"
+}

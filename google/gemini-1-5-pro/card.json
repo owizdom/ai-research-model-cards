@@ -1,0 +1,100 @@
+{
+  "lab": "google",
+  "num": "027/052",
+  "tier": "rare",
+  "name": "Gemini 1.5 Pro",
+  "capN": "72",
+  "capL": "CAP",
+  "meta": "Google DeepMind \u00b7 Gemini 1.5 \u00b7 Feb 2024",
+  "tags": [
+    "LONG CONTEXT",
+    "MULTIMODAL",
+    "REASONING"
+  ],
+  "animal": "octopus",
+  "words": "55k",
+  "evals": "12",
+  "unique": "44%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "85.9",
+      "c": "#4285f4"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "58.5",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "71.9",
+      "c": "#1a3e90"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "1.0P",
+      "d": "Dec'23"
+    },
+    {
+      "v": "1.5P",
+      "d": "Feb'24",
+      "a": true
+    },
+    {
+      "v": "1.5F",
+      "d": "May'24"
+    },
+    {
+      "v": "2.0F",
+      "d": "Dec'24"
+    },
+    {
+      "v": "3 Pro",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "85.9",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "58.5",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "71.9",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Context Degradation \u00d72",
+    "d": "Performance degrades in very long context windows."
+  },
+  "res": {
+    "t": "1M Context \u221212",
+    "d": "First model with 1M token context window publicly available."
+  },
+  "lims": [
+    "<strong>Context degradation</strong> \u2014 accuracy drops at extreme context lengths.",
+    "<strong>Cost</strong> \u2014 1M token context is expensive in production."
+  ],
+  "blurb": "Introduced 1M token context window. Changed what 'long context' meant for the industry. Card length grew to account for context-length-specific safety considerations.",
+  "val": {
+    "b": "Internal evaluation, Feb 2024",
+    "l": "modelcards.net/gemini-1-5",
+    "h": false
+  },
+  "slug": "gemini-1-5-pro",
+  "html": "gemini-1-5-pro.html",
+  "art": null,
+  "source": "mockup"
+}

@@ -1,0 +1,93 @@
+{
+  "lab": "mistral",
+  "num": "048/052",
+  "tier": "rare",
+  "name": "Mistral 3.1",
+  "capN": "62",
+  "capL": "CAP",
+  "meta": "Mistral AI \u00b7 Mistral 3.1 \u00b7 2025",
+  "tags": [
+    "OPEN WEIGHTS",
+    "REASONING",
+    "MULTILINGUAL"
+  ],
+  "animal": "raven",
+  "words": "8k",
+  "evals": "7",
+  "unique": "18%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "85.0",
+      "c": "#e85d04"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "72.0",
+      "c": "#c04000"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "88.0",
+      "c": "#902e00"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Large 2",
+      "d": "2024"
+    },
+    {
+      "v": "3.1",
+      "d": "2025",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "85.0",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "72.0",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "88.0",
+      "l": "4 labs"
+    },
+    {
+      "n": "IFEval",
+      "s": "88.0",
+      "l": "2 labs"
+    }
+  ],
+  "weak": {
+    "t": "Safety Documentation \u00d72",
+    "d": "8k words for frontier-capable model remains sparse by 2025 standards."
+  },
+  "res": {
+    "t": "Open Efficiency \u221210",
+    "d": "Open weights; competitive with closed models on key benchmarks."
+  },
+  "lims": [
+    "<strong>Safety documentation</strong> \u2014 8k words vs 200k+ for comparable Anthropic models.",
+    "<strong>No third-party validation</strong> \u2014 pattern continues throughout Mistral's card history."
+  ],
+  "blurb": "Latest Mistral. 8k words of documentation at a point where Anthropic is publishing 200k+. The growing disclosure gap between European and American frontier labs is one of the set's central findings.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "modelcards.net/mistral-3-1",
+    "h": false
+  },
+  "slug": "mistral-3-1",
+  "html": "mistral-3-1.html",
+  "art": null,
+  "source": "mockup"
+}

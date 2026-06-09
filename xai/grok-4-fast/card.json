@@ -1,0 +1,91 @@
+{
+  "lab": "xai",
+  "num": "042/052",
+  "tier": "common",
+  "name": "Grok 4 Fast",
+  "capN": "0",
+  "capL": "EVALS",
+  "meta": "xAI \u00b7 Grok 4 \u00b7 2025",
+  "tags": [
+    "FAST",
+    "FRONTIER"
+  ],
+  "animal": "void_",
+  "words": "<3k",
+  "evals": "0",
+  "unique": "0%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Not reported",
+      "s": "\u2014",
+      "c": "#3a2a5a",
+      "na": true
+    },
+    {
+      "n": "LATENCY",
+      "d": "Not reported",
+      "s": "\u2014",
+      "c": "#3a2a5a",
+      "na": true
+    },
+    {
+      "n": "SWE-BENCH",
+      "d": "Not reported",
+      "s": "\u2014",
+      "c": "#3a2a5a",
+      "na": true
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Grok 4",
+      "d": "2025"
+    },
+    {
+      "v": "4 Fast",
+      "d": "2025",
+      "a": true
+    },
+    {
+      "v": "4.1",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "\u2014",
+      "l": "not reported",
+      "na": true
+    },
+    {
+      "n": "SWE-bench",
+      "s": "\u2014",
+      "l": "not reported",
+      "na": true
+    }
+  ],
+  "weak": {
+    "t": "Disclosure Gap \u00d72",
+    "d": "No benchmark scores. Speed-optimised with no public eval basis."
+  },
+  "res": {
+    "t": "Undocumented \u22120",
+    "d": ""
+  },
+  "lims": [
+    "<strong>No public evals</strong> \u2014 zero benchmark scores.",
+    "<strong>Speed claims</strong> \u2014 no documented basis for performance assertions."
+  ],
+  "blurb": "Speed-optimised variant of Grok 4. Equally undocumented. The xAI pattern: release, name, but don't evaluate publicly.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "modelcards.net/grok-4-fast",
+    "h": false
+  },
+  "slug": "grok-4-fast",
+  "html": "grok-4-fast.html",
+  "art": null,
+  "source": "mockup"
+}

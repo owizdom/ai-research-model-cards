@@ -1,0 +1,96 @@
+{
+  "lab": "openai",
+  "num": "025/052",
+  "tier": "rare",
+  "name": "GPT-5.3",
+  "capN": "90",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 GPT-5 \u00b7 2025",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "AGENTIC"
+  ],
+  "animal": "falcon",
+  "words": "175k",
+  "evals": "12",
+  "unique": "43%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "91.5",
+      "c": "#10a37f"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "86.5",
+      "c": "#0d8066"
+    },
+    {
+      "n": "BROWSECOMP",
+      "d": "Web navigation tasks",
+      "s": "71.0",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "GPT-5",
+      "d": "2025"
+    },
+    {
+      "v": "5.1",
+      "d": "2025"
+    },
+    {
+      "v": "5.2",
+      "d": "2025"
+    },
+    {
+      "v": "5.3",
+      "d": "2025",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "91.5",
+      "l": "6 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "86.5",
+      "l": "4 labs"
+    },
+    {
+      "n": "BrowseComp",
+      "s": "71.0",
+      "l": "1 lab"
+    }
+  ],
+  "weak": {
+    "t": "Web Risk \u00d72",
+    "d": "BrowseComp capability increases web-based attack surface."
+  },
+  "res": {
+    "t": "Browsing \u221212",
+    "d": "First GPT-5 model with BrowseComp evaluation."
+  },
+  "lims": [
+    "<strong>Web browsing</strong> \u2014 new capability introduces new attack surface.",
+    "<strong>Rapid iteration</strong> \u2014 fast release cadence limits evaluation depth per model."
+  ],
+  "blurb": "Current OpenAI flagship. Introduced BrowseComp as a new eval \u2014 lab-unique, no cross-lab comparison. The rapid GPT-5 iteration cadence contrasts sharply with Anthropic's longer cycles.",
+  "val": {
+    "b": "Internal evaluation, 2025",
+    "l": "modelcards.net/gpt-5-3",
+    "h": false
+  },
+  "slug": "gpt-5-3",
+  "html": "gpt-5-3.html",
+  "art": null,
+  "source": "mockup"
+}

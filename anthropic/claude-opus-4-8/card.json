@@ -1,0 +1,103 @@
+{
+  "lab": "anthropic",
+  "num": "013/052",
+  "tier": "holo",
+  "name": "Claude Opus 4.8",
+  "capN": "96",
+  "capL": "CAP",
+  "meta": "Anthropic \u00b7 Opus 4.8 \u00b7 May 2026",
+  "tags": [
+    "AGENTIC",
+    "REASONING",
+    "MULTIMODAL"
+  ],
+  "animal": "sphinx",
+  "words": "475k",
+  "evals": "18",
+  "unique": "73%",
+  "benches": [
+    {
+      "n": "SWE-BENCH VER.",
+      "d": "Real GitHub issues",
+      "s": "88.6",
+      "c": "#c8832a"
+    },
+    {
+      "n": "USAMO 2026",
+      "d": "Competition math",
+      "s": "96.7",
+      "c": "#a06820"
+    },
+    {
+      "n": "TERMINAL-BENCH",
+      "d": "Agentic terminal tasks",
+      "s": "74.6",
+      "c": "#805010"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4.5",
+      "d": "Sep'25"
+    },
+    {
+      "v": "4.6",
+      "d": "Apr'26"
+    },
+    {
+      "v": "4.8",
+      "d": "May'26",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "USAMO 2026",
+      "s": "96.7",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "86.1",
+      "l": "4 labs"
+    },
+    {
+      "n": "SWE-bench Ver.",
+      "s": "88.6",
+      "l": "3 labs"
+    },
+    {
+      "n": "Terminal-bench",
+      "s": "74.6",
+      "l": "1 lab"
+    },
+    {
+      "n": "HLE",
+      "s": "38.2",
+      "l": "1 lab"
+    }
+  ],
+  "weak": {
+    "t": "Personality Drift \u00d72",
+    "d": "Curiosity suppression, sycophancy & hedging under pressure."
+  },
+  "res": {
+    "t": "Extended Thinking \u221214",
+    "d": "Interleaved reasoning sustains accuracy under long-horizon load."
+  },
+  "lims": [
+    "<strong>Chain-of-thought faithfulness</strong> \u2014 traces may diverge from internal computation.",
+    "<strong>Reward hacking</strong> \u2014 emergent in long-horizon agentic settings.",
+    "<strong>Benchmark saturation</strong> \u2014 many evaluations near ceiling."
+  ],
+  "blurb": "Current frontier. 475k words. Independent validation by UK AISI, METR, and Apollo. 73% of benchmark choices not echoed by any peer lab. The most documented frontier model ever published.",
+  "val": {
+    "b": "UK AISI \u00b7 METR \u00b7 Apollo \u2014 pre-deployment, May 2026",
+    "l": "modelcards.net/opus-4-8",
+    "h": true
+  },
+  "slug": "claude-opus-4-8",
+  "html": "claude-opus-4-8.html",
+  "art": "art/opus-4-8-wizard.png",
+  "source": "mockup"
+}

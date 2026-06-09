@@ -1,0 +1,99 @@
+{
+  "lab": "meta",
+  "num": "036/052",
+  "tier": "rare",
+  "name": "Llama 3",
+  "capN": "55",
+  "capL": "CAP",
+  "meta": "Meta AI \u00b7 Llama 3 \u00b7 Apr 2024",
+  "tags": [
+    "OPEN WEIGHTS",
+    "CODING",
+    "REASONING"
+  ],
+  "animal": "wolf",
+  "words": "22k",
+  "evals": "10",
+  "unique": "26%",
+  "benches": [
+    {
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "79.5",
+      "c": "#0082fb"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "81.7",
+      "c": "#0060c0"
+    },
+    {
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "50.4",
+      "c": "#004090"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Llama 2",
+      "d": "Jul'23"
+    },
+    {
+      "v": "3",
+      "d": "Apr'24",
+      "a": true
+    },
+    {
+      "v": "3.1",
+      "d": "Jul'24"
+    },
+    {
+      "v": "3.3",
+      "d": "Nov'24"
+    },
+    {
+      "v": "4",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU",
+      "s": "79.5",
+      "l": "6 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "81.7",
+      "l": "4 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "50.4",
+      "l": "5 labs"
+    }
+  ],
+  "weak": {
+    "t": "Context Limit \u00d72",
+    "d": "8k context window limits long-document tasks."
+  },
+  "res": {
+    "t": "Open Weights \u221212",
+    "d": "Strong improvement over Llama 2 across all benchmarks."
+  },
+  "lims": [
+    "<strong>Context window</strong> \u2014 8k limit constrained early deployment."
+  ],
+  "blurb": "Llama 3 closed the gap with proprietary frontier models significantly. Crossed 79% MMLU \u2014 competitive with GPT-4 at release, while remaining fully open weights.",
+  "val": {
+    "b": "Internal Meta evaluation + Purple Llama, Apr 2024",
+    "l": "modelcards.net/llama-3",
+    "h": false
+  },
+  "slug": "llama-3",
+  "html": "llama-3.html",
+  "art": null,
+  "source": "mockup"
+}

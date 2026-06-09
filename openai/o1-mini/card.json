@@ -1,0 +1,95 @@
+{
+  "lab": "openai",
+  "num": "019/052",
+  "tier": "common",
+  "name": "o1-mini",
+  "capN": "58",
+  "capL": "CAP",
+  "meta": "OpenAI \u00b7 o-series \u00b7 Sep 2024",
+  "tags": [
+    "REASONING",
+    "FAST",
+    "MATH"
+  ],
+  "animal": "falcon",
+  "words": "35k",
+  "evals": "6",
+  "unique": "28%",
+  "benches": [
+    {
+      "n": "AIME 2024",
+      "d": "Competition math",
+      "s": "70.0",
+      "c": "#10a37f"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "60.0",
+      "c": "#0d8066"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "97.9",
+      "c": "#0a604c"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "o1",
+      "d": "Sep'24"
+    },
+    {
+      "v": "o1-mini",
+      "d": "Sep'24",
+      "a": true
+    },
+    {
+      "v": "o3",
+      "d": "Apr'25"
+    },
+    {
+      "v": "o3-mini",
+      "d": "Apr'25"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME 2024",
+      "s": "70.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA",
+      "s": "60.0",
+      "l": "4 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "97.9",
+      "l": "4 labs"
+    }
+  ],
+  "weak": {
+    "t": "Knowledge Gap \u00d72",
+    "d": "Smaller knowledge base than o1 on non-STEM subjects."
+  },
+  "res": {
+    "t": "STEM Focus \u221210",
+    "d": "Matched or exceeded o1 on STEM benchmarks at lower cost."
+  },
+  "lims": [
+    "<strong>Knowledge breadth</strong> \u2014 intentionally reduced for STEM focus."
+  ],
+  "blurb": "Cost-optimised reasoning model. Near-matched o1 on STEM while being cheaper. First evidence that reasoning capability could be distilled into smaller models.",
+  "val": {
+    "b": "Internal evaluation, Sep 2024",
+    "l": "modelcards.net/o1-mini",
+    "h": false
+  },
+  "slug": "o1-mini",
+  "html": "o1-mini.html",
+  "art": null,
+  "source": "mockup"
+}

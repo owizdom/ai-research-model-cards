@@ -1,0 +1,105 @@
+{
+  "lab": "google",
+  "num": "030/052",
+  "tier": "holo",
+  "name": "Gemini 2.5 Pro",
+  "capN": "84",
+  "capL": "CAP",
+  "meta": "Google DeepMind \u00b7 Gemini 2.5 \u00b7 Mar 2025",
+  "tags": [
+    "REASONING",
+    "FRONTIER",
+    "LONG CONTEXT"
+  ],
+  "animal": "eagle",
+  "words": "110k",
+  "evals": "15",
+  "unique": "50%",
+  "benches": [
+    {
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "86.7",
+      "c": "#4285f4"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "84.0",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "LIVECODE BENCH",
+      "d": "Live coding",
+      "s": "70.0",
+      "c": "#1a3e90"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "2.0F",
+      "d": "Dec'24"
+    },
+    {
+      "v": "2.5P",
+      "d": "Mar'25",
+      "a": true
+    },
+    {
+      "v": "2.5DT",
+      "d": "May'25"
+    },
+    {
+      "v": "3F",
+      "d": "2025"
+    },
+    {
+      "v": "3 Pro",
+      "d": "2025"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME",
+      "s": "86.7",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "84.0",
+      "l": "4 labs"
+    },
+    {
+      "n": "LiveCodeBench",
+      "s": "70.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "89.0",
+      "l": "6 labs"
+    }
+  ],
+  "weak": {
+    "t": "Multimodal Hallucination \u00d72",
+    "d": "Cross-modal tasks show higher error rates than text-only."
+  },
+  "res": {
+    "t": "Context Length \u221212",
+    "d": "2M token context window."
+  },
+  "lims": [
+    "<strong>Multimodal hallucination</strong> \u2014 higher rates on image+text tasks.",
+    "<strong>Benchmark ceiling</strong> \u2014 saturation on several key evals."
+  ],
+  "blurb": "Google's response to the reasoning model era. Strong AIME performance closed the gap with o3. 2M token context window \u2014 the longest available at time of release.",
+  "val": {
+    "b": "Google internal + Frontier Safety Framework, Mar 2025",
+    "l": "modelcards.net/gemini-2-5-pro",
+    "h": true
+  },
+  "slug": "gemini-2-5-pro",
+  "html": "gemini-2-5-pro.html",
+  "art": null,
+  "source": "mockup"
+}
