@@ -4,8 +4,8 @@ A snapshot of the modelcards.net evaluation corpus, exported as flat
 CSV and typed JSON files. Five tables, no nesting, joinable on slug
 columns.
 
-- **Snapshot date:** 2026-06-02
-- **Corpus SHA256:** `644fb8d6741bb922b7b702ec83ce838cda78667e0c0d06cfd2a302823051bb14`
+- **Snapshot date:** 2026-06-28
+- **Corpus SHA256:** `b6277fcba8e898811b3d57d0768602f06ebf30bbc80f0c3c008f9dc3bf172230`
 - **License:** CC-BY 4.0 (data extracted from public model cards;
   attribution to modelcards.net + original lab)
 
@@ -13,11 +13,11 @@ columns.
 
 | file | rows | what's in it |
 |---|---|---|
-| `eval_results.csv` / `.json` | 1634 | every (model, benchmark) scored row — the fact table |
-| `benchmarks.csv` / `.json`   | 630 | benchmark definitions, categories, and policy notes |
-| `models.csv` / `.json`       | 51 | canonical model generations linked to their cards |
+| `eval_results.csv` / `.json` | 1742 | every (model, benchmark) scored row — the fact table |
+| `benchmarks.csv` / `.json`   | 652 | benchmark definitions, categories, and policy notes |
+| `models.csv` / `.json`       | 56 | canonical model generations linked to their cards |
 | `labs.csv` / `.json`         | 6 | lab metadata and brand color |
-| `documents.csv` / `.json`    | 79 | model card identity (titles, source URLs, word counts) |
+| `documents.csv` / `.json`    | 82 | model card identity (titles, source URLs, word counts) |
 
 ## Schema
 
@@ -116,8 +116,8 @@ by `document_slug`.
 
 If you use this dataset, please cite as:
 
-> modelcards.net evaluation corpus, snapshot 2026-06-02, corpus sha256
-> 644fb8d6741bb922b7b702ec83ce838cda78667e0c0d06cfd2a302823051bb14. Available at modelcards.net.
+> modelcards.net evaluation corpus, snapshot 2026-06-28, corpus sha256
+> b6277fcba8e898811b3d57d0768602f06ebf30bbc80f0c3c008f9dc3bf172230. Available at modelcards.net.
 
 And cite the upstream model cards individually using the URLs in
 `documents.csv`.

@@ -19,6 +19,13 @@
     }
   },
   {
+    "slug": "aav_capsid_packaging_prediction",
+    "name": "AAV_Capsid_Packaging_Prediction",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "abc_bench",
     "name": "ABC-Bench",
     "category": "other",
@@ -241,7 +248,7 @@
     "slug": "aime",
     "name": "AIME",
     "category": "math",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Heavy saturation at the frontier: top models with extended thinking now approach or exceed 90% on recent years, compressing headroom for differentiation. Contamination is a serious concern because AIME problems from prior years (pre-2024) are widely published online and likely present in training corpora. Scores are highly sensitive to the sampling protocol \u2014 best-of-32, majority-vote, 5-trial average, and single pass@1 can differ by 20\u201340 percentage points on the same model, making cross-report comparisons unreliable without knowing the exact variant. The unversioned 'aime' slug conflates multiple competition years that vary in difficulty; prefer aime_2024 or aime_2025 for reproducible comparisons.",
       "sources": {
@@ -756,8 +763,8 @@
   {
     "slug": "arc_challenge",
     "name": "ARC-Challenge",
-    "category": "general_knowledge",
-    "metric_unit": "percent",
+    "category": "reasoning",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Heavily saturated \u2014 frontier models routinely score above 90%, leaving little headroom to differentiate top systems. The benchmark has been public since 2018, raising contamination risk as its questions likely appear in pretraining corpora. Shot-count variants (0-shot, 5-shot, 25-shot) produce meaningfully different absolute scores and should not be compared directly across papers.",
       "sources": {
@@ -820,6 +827,13 @@
   {
     "slug": "arxivmath",
     "name": "ArxivMath",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "atomic_challenges",
+    "name": "Atomic Challenges",
     "category": "other",
     "metric_unit": null,
     "policy_note": null
@@ -931,7 +945,7 @@
     "slug": "bbq",
     "name": "BBQ",
     "category": "safety",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "The variant strings reported across cards reflect genuinely distinct sub-tasks that should not be aggregated: 'ambiguous' and 'disambiguated' have different correct-answer logic, and P(not stereotyping|ambiguous) is a derived bias score from the ambiguous subset only \u2014 mixing these produces meaningless composites. Frontier models now approach ceiling on the disambiguated accuracy sub-task (>90%), limiting its power to differentiate top models. Scores are also sensitive to answer-option ordering and prompt phrasing, which creates scaffold dependence when comparing across evaluation harnesses.",
       "sources": {
@@ -1413,6 +1427,13 @@
     }
   },
   {
+    "slug": "blueprint_bench_2",
+    "name": "Blueprint-Bench 2",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "boolq",
     "name": "BoolQ",
     "category": "other",
@@ -1805,6 +1826,13 @@
       "how_to_read": "Higher is better \u2014 a higher score means the model refuses more harmful jailbreak attempts. Scores are typically expressed as refusal rates (0\u2013100%). Frontier models vary considerably on this metric depending on safety tuning intensity; models with aggressive safety training can score near ceiling on known probes while still being vulnerable to novel attacks.",
       "intended_for": "AI safety researchers and policy teams evaluating a model's robustness to adversarial user inputs; used in red-teaming and pre-deployment safety assessments."
     }
+  },
+  {
+    "slug": "child_safety",
+    "name": "Child Safety",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "child_safety_evaluation",
@@ -2397,6 +2425,13 @@
       "how_to_read": "Higher scores indicate stronger creative and generative biology reasoning. No standardized frontier range or leaderboard is publicly associated with this benchmark name, so cross-model comparisons should be treated with caution.",
       "intended_for": "Researchers and developers evaluating generative or creative reasoning capabilities in life-sciences domains."
     }
+  },
+  {
+    "slug": "critpt",
+    "name": "CritPt",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "crpe",
@@ -3176,6 +3211,13 @@
     }
   },
   {
+    "slug": "exploitgym",
+    "name": "ExploitGym",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "facts_grounding",
     "name": "FACTS Grounding",
     "category": "other",
@@ -3249,6 +3291,13 @@
       "how_to_read": "Higher scores indicate better task completion. Because variants reflect different compute budgets rather than difficulty levels, results should be read within the same variant (e.g., compare all models at 'High Thinking'); cross-variant improvement shows the marginal value of additional thinking compute.",
       "intended_for": "AI researchers and developers evaluating agentic reasoning on domain-specific financial tasks, particularly under extended-thinking or chain-of-thought regimes."
     }
+  },
+  {
+    "slug": "finance_agent_v2",
+    "name": "Finance Agent v2",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "finqa",
@@ -3367,6 +3416,20 @@
     }
   },
   {
+    "slug": "frontiercode",
+    "name": "FrontierCode",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "frontiercyber",
+    "name": "FrontierCyber",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "frontier_math",
     "name": "FrontierMath",
     "category": "math",
@@ -3384,6 +3447,13 @@
       "how_to_read": "Higher is better; scores are percentage of problems answered correctly. As of late 2024, frontier models clustered below 2%, so even a jump to single-digit percentages represents meaningful capability progress. The benchmark has wide headroom and is not yet useful for distinguishing models at the low end.",
       "intended_for": "AI researchers and frontier-lab evaluators assessing expert-level mathematical reasoning in large language models, particularly for tracking progress beyond what olympiad-style benchmarks (MATH, AIME) can differentiate."
     }
+  },
+  {
+    "slug": "frontier_safety_assessment",
+    "name": "Frontier Safety Assessment",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "frontier_safety_framework",
@@ -3502,6 +3572,13 @@
     }
   },
   {
+    "slug": "gdp_pdf",
+    "name": "GDP.pdf",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "gdpval",
     "name": "GDPval",
     "category": "other",
@@ -3565,7 +3642,7 @@
     "slug": "gpqa",
     "name": "GPQA",
     "category": "reasoning",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Only 448 questions in the full set; \u00b11-2 percentage points may not be\nstatistically meaningful. The Diamond subset (198 questions) is harder\nand more commonly reported. Domain-expert pass rate is around 65%.\n",
       "sources": {
@@ -3661,6 +3738,13 @@
       "how_to_read": "Higher is better; typically reported as accuracy (fraction of BFS traversals answered correctly). Frontier models at full context may score in the 40\u201380% range, with performance dropping sharply as graph depth and context length increase \u2014 a large gap between 64k and max-context variants signals context-length sensitivity rather than general reasoning failure.",
       "intended_for": "Researchers evaluating long-context algorithmic reasoning, specifically whether models can maintain state and follow deterministic traversal rules across very long token sequences."
     }
+  },
+  {
+    "slug": "graphwalks_bfs_256k",
+    "name": "GraphWalks BFS 256K",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "graphwalks_bfs_256k_1m",
@@ -3838,7 +3922,7 @@
     "slug": "gsm8k",
     "name": "GSM8K",
     "category": "math",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Largely saturated by frontier models (>95%). Original dataset has\ndocumented labeling errors. Now most useful as a low-cost sanity check\nrather than a capability differentiator.\n",
       "sources": {
@@ -4008,7 +4092,7 @@
     "slug": "hellaswag",
     "name": "HellaSwag",
     "category": "reasoning",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Now thoroughly saturated by frontier models (>95%) and heavily\ncontaminated in pretraining corpora. Largely retired from frontier\nreporting but still appears in legacy comparisons.\n",
       "sources": {
@@ -4072,7 +4156,7 @@
     "slug": "humaneval",
     "name": "HumanEval",
     "category": "coding",
-    "metric_unit": "pass_at_k",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Heavily contaminated in modern training corpora \u2014 multiple papers have\nshown verbatim solution memorization. Saturation: frontier models\nexceed 90%, narrowing useful comparison range. HumanEval+ extends the\ntest cases to catch superficial memorization.\n",
       "sources": {
@@ -4479,8 +4563,8 @@
   {
     "slug": "ifeval",
     "name": "IFEval",
-    "category": "reasoning",
-    "metric_unit": "percent",
+    "category": "instruction_following",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Tests format compliance, not response quality. A model that answers\nwrong but follows instructions perfectly scores well. Two reporting\nvariants exist (prompt-level vs. instruction-level strict accuracy)\nand the variant is not always disclosed.\n",
       "sources": {
@@ -5205,6 +5289,13 @@
     "policy_note": null
   },
   {
+    "slug": "kernelgen",
+    "name": "KernelGen",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "kernel_optimization_hard_variant",
     "name": "Kernel Optimization - Hard Variant",
     "category": "other",
@@ -5339,6 +5430,13 @@
       "how_to_read": "Higher is better; scores represent pass@k (typically pass@1), ranging from 0\u2013100%. Frontier models generally score in the 60\u201390% range depending on problem difficulty tier; lower scores indicate meaningful gaps in code generation capability.",
       "intended_for": "Researchers and practitioners comparing LLM coding ability in Python; useful for tracking progress on functional code generation beyond toy-level tasks."
     }
+  },
+  {
+    "slug": "legal_agent_benchmark",
+    "name": "Legal Agent Benchmark",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "legalbench",
@@ -5828,7 +5926,7 @@
     "slug": "math",
     "name": "MATH",
     "category": "math",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Contamination is a real concern given the problems originate from\npublicly indexed competition archives. Frontier scores have reached\n99%+, leaving the benchmark near saturated.\n",
       "sources": {
@@ -5934,7 +6032,7 @@
     "slug": "mbpp",
     "name": "MBPP",
     "category": "coding",
-    "metric_unit": "pass_at_k",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Saturated by frontier coding models. Heavy contamination concerns\ngiven public availability of solutions. MBPP+ extends the test cases\nto catch superficial memorization.\n",
       "sources": {
@@ -6127,7 +6225,7 @@
     "slug": "mgsm",
     "name": "MGSM",
     "category": "multilingual",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Scores are highly sensitive to prompting variant: 8-shot chain-of-thought typically yields substantially higher numbers than 0-shot, so comparisons across cards reporting different variants are not valid. Saturation is a concern for top frontier models, which regularly exceed 90% on high-resource languages. Because MGSM is derived directly from GSM8K \u2014 one of the most widely used training benchmarks \u2014 contamination risk is elevated for both the source problems and their translations.",
       "sources": {
@@ -6359,8 +6457,8 @@
   {
     "slug": "mmlu",
     "name": "MMLU",
-    "category": "general_knowledge",
-    "metric_unit": "percent",
+    "category": "knowledge",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Saturation: frontier models score above 88%, leaving little signal\nbetween top systems. The dataset has acknowledged labeling errors and\nambiguities, and several papers document training-data contamination on\nsubsets of MMLU.\n",
       "sources": {
@@ -6382,8 +6480,8 @@
   {
     "slug": "mmlu_pro",
     "name": "MMLU-Pro",
-    "category": "general_knowledge",
-    "metric_unit": "percent",
+    "category": "knowledge",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Dataset contains some acknowledged mistakes per ongoing community\ncorrections. A subset of questions had answer-choice counts reduced\nduring manual review to remove unreasonable options.\n",
       "sources": {
@@ -6428,8 +6526,8 @@
   {
     "slug": "mmmu",
     "name": "MMMU",
-    "category": "multimodal",
-    "metric_unit": "percent",
+    "category": "vision",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Frontier models now cluster in the high-60s to mid-80s percent range, limiting differentiation at the top. Variant conflation is a significant reporting hazard: validation-set scores (~900 items) are consistently 2\u20135 points higher than held-out test scores; 'extended reasoning' or chain-of-thought prompting further inflates scores relative to standard 0-shot; and 'no tools' disambiguates agentic setups where tool-augmented models would otherwise be incomparable. Comparing scores across these variants without labeling them is misleading.",
       "sources": {
@@ -6788,6 +6886,13 @@
       "how_to_read": "Higher is better; scores represent recall accuracy as a percentage. On the 128k average variant, frontier models typically range from roughly 60% to 95%+; the 1M pointwise variant is harder and shows greater differentiation among top models.",
       "intended_for": "Researchers and model developers evaluating frontier model long-context retrieval fidelity, particularly for use cases requiring precise multi-hop recall over very long documents."
     }
+  },
+  {
+    "slug": "mrcr_v2_8_needle",
+    "name": "MRCR v2 (8-needle)",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "mt_bench",
@@ -7760,6 +7865,13 @@
     }
   },
   {
+    "slug": "posttrainbench",
+    "name": "PostTrainBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "preparedness_framework",
     "name": "Preparedness Framework",
     "category": "other",
@@ -8395,6 +8507,13 @@
     "policy_note": null
   },
   {
+    "slug": "riemannbench",
+    "name": "RiemannBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "ruler",
     "name": "RULER",
     "category": "other",
@@ -8637,6 +8756,20 @@
       "how_to_read": "Higher is better; reported as element-localization accuracy (0\u2013100%). A near-zero random baseline reflects the fine-grained spatial requirement. Frontier VLMs score roughly in the 70\u201395% range on web text, with top models clustering near the ceiling.",
       "intended_for": "Researchers and practitioners benchmarking GUI grounding and visual agent capabilities of multimodal vision-language models."
     }
+  },
+  {
+    "slug": "sec_bench",
+    "name": "SEC-Bench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "securebio",
+    "name": "SecureBio",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "securebio_vmqa",
@@ -9022,7 +9155,7 @@
     "slug": "swe_bench",
     "name": "SWE-bench",
     "category": "coding",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Highly setup-dependent: scores vary by 10-20 points depending on the\nagentic scaffold used (Aider, SWE-agent, Claude Code, etc.).\nSelf-reported scores often omit scaffold details, making direct\ncross-lab comparison hard. Verified is the comparable subset; full\nSWE-bench is not.\n",
       "sources": {
@@ -9209,6 +9342,13 @@
     }
   },
   {
+    "slug": "tacit_knowledge",
+    "name": "Tacit Knowledge",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "tacit_knowledge_and_troubleshooting",
     "name": "Tacit Knowledge and Troubleshooting",
     "category": "other",
@@ -9387,6 +9527,13 @@
     }
   },
   {
+    "slug": "terminal_bench_2_1",
+    "name": "Terminal-bench 2.1",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "text_based_rl",
     "name": "Text-based RL",
     "category": "other",
@@ -9531,6 +9678,13 @@
     }
   },
   {
+    "slug": "toolathon",
+    "name": "Toolathon",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "tooluse",
     "name": "ToolUse",
     "category": "other",
@@ -9571,7 +9725,7 @@
     "slug": "toxigen",
     "name": "ToxiGen",
     "category": "safety",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Human annotation agreement on the original dataset was low, leading to a revised human-annotated subset; results on the full set vs. the cleaner subset are not directly comparable. The benchmark targets English only and covers a fixed set of 13 demographic groups, leaving other axes of harm unmeasured. Frontier models have approached saturation on the cleaner subset.",
       "sources": {
@@ -9685,7 +9839,7 @@
     "slug": "truthfulqa",
     "name": "TruthfulQA",
     "category": "safety",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Saturation is a concern: frontier models now routinely score above 85\u201390% on mc1, leaving little headroom to differentiate top systems. The mc1 and mc2 variants measure subtly different things (single correct answer vs. probability mass on all true answers) and should not be compared across cards that mix them. Questions were written in 2021 and some factual answers may have since changed, creating silent label rot.",
       "sources": {
@@ -10330,7 +10484,7 @@
     "slug": "winogrande",
     "name": "WinoGrande",
     "category": "reasoning",
-    "metric_unit": "percent",
+    "metric_unit": "%",
     "policy_note": {
       "caveat": "Frontier models now score in the high 80s\u2013low 90s range, approaching human performance (~94%), so the benchmark has limited headroom to differentiate top models. The dataset has been publicly available since 2019, raising contamination concerns for models trained on broad web corpora. Scores are sensitive to the number of few-shot examples used (5-shot is standard, but some cards report 0-shot), making cross-card comparisons unreliable without knowing the exact evaluation protocol.",
       "sources": {

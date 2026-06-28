@@ -1,10 +1,10 @@
 id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchmark_name,benchmark_category,split,score,state,method,shot_count,training_state,language,metric_path,variant,is_self_reported,extraction_protocol_version,source_type
 745,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,humaneval,HumanEval,coding,,52.8,scored,,0,,,,0-shot,True,1,model_card
 746,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,gsm8k,GSM8K,math,,80.9,scored,CoT,0,,,,0-shot CoT,True,1,model_card
-747,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,mmlu,MMLU,general_knowledge,,73.4,scored,CoT,5,,,,5-shot CoT,True,1,model_card
+747,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,mmlu,MMLU,knowledge,,73.4,scored,CoT,5,,,,5-shot CoT,True,1,model_card
 748,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,triviaqa,TriviaQA,general_knowledge,,78.9,scored,,5,,,,5-shot,True,1,model_card
 749,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,quality,QuALITY,long_context,,80.5,scored,,5,,,,5-shot,True,1,model_card
-750,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,arc_challenge,ARC-Challenge,general_knowledge,,85.7,scored,,5,,,,5-shot,True,1,model_card
+750,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,arc_challenge,ARC-Challenge,reasoning,,85.7,scored,,5,,,,5-shot,True,1,model_card
 751,Claude Instant 1.1,claude-2,anthropic,anthropic_claude2_card,race_h,RACE-H,other,,85.5,scored,,5,,,,5-shot,True,1,model_card
 754,Claude Opus 4,claude-4,anthropic,anthropic_claude4_card,single_turn_violative_request_evaluation,Single-turn violative request evaluation,other,overall,98.43,scored,,,,,,overall,True,1,model_card
 755,Claude Opus 4,claude-4,anthropic,anthropic_claude4_card,single_turn_violative_request_evaluation,Single-turn violative request evaluation,other,,97.92,scored,,,,,,standard thinking,True,1,model_card
@@ -30,9 +30,9 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 782,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,arc_agi_2_verified,ARC-AGI-2 (Verified),other,,37.6,scored,,,,,,64k thinking budget,True,1,model_card
 784,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,gpqa_diamond,GPQA-Diamond,reasoning,,87.0,scored,,,,,,default,True,1,model_card
 785,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,gpqa_diamond,GPQA-Diamond,reasoning,,86.95,scored,,,,,,5 trials average,True,1,model_card
-786,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,mmmu,MMMU,multimodal,,80.7,scored,,,,,,default,True,1,model_card
-787,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,mmlu,MMLU,general_knowledge,,90.8,scored,,,,,,default,True,1,model_card
-788,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,mmlu,MMLU,general_knowledge,,90.77,scored,,,,,,10 trials average,True,1,model_card
+786,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,mmmu,MMMU,vision,,80.7,scored,,,,,,default,True,1,model_card
+787,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,mmlu,MMLU,knowledge,,90.8,scored,,,,,,default,True,1,model_card
+788,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,mmlu,MMLU,knowledge,,90.77,scored,,,,,,10 trials average,True,1,model_card
 789,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,swe_bench,SWE-bench,coding,,80.6,scored,,,,,,64k thinking,True,1,model_card
 790,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,swe_bench,SWE-bench,coding,,80.9,scored,,,,,,no thinking,True,1,model_card
 791,Claude Opus 4.5,claude-opus-4.5,anthropic,anthropic_opus45_card,spreadsheetbench,SpreadsheetBench,other,,64.25,scored,extended-thinking,,,,,no extended thinking,True,1,model_card
@@ -102,16 +102,16 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 860,Claude Haiku 4.5,claude-haiku-4.5,anthropic,anthropic_haiku45_card,long_form_virology_task_2,Long-Form Virology Task 2,other,,0.19,scored,,,,,,default,True,1,model_card
 861,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,gpqa_diamond,GPQA-Diamond,reasoning,,59.4,scored,CoT,0,,,,0-shot CoT,True,1,model_card
 862,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,gpqa_diamond,GPQA-Diamond,reasoning,,67.2,scored,CoT,5,,,,Maj@32 5-shot CoT,True,1,model_card
-863,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mmlu,MMLU,general_knowledge,,90.4,scored,CoT,5,,,,5-shot CoT,True,1,model_card
-864,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mmlu,MMLU,general_knowledge,,88.7,scored,,5,,,,5-shot,True,1,model_card
-865,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mmlu,MMLU,general_knowledge,,88.3,scored,CoT,0,,,,0-shot CoT,True,1,model_card
+863,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mmlu,MMLU,knowledge,,90.4,scored,CoT,5,,,,5-shot CoT,True,1,model_card
+864,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mmlu,MMLU,knowledge,,88.7,scored,,5,,,,5-shot,True,1,model_card
+865,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mmlu,MMLU,knowledge,,88.3,scored,CoT,0,,,,0-shot CoT,True,1,model_card
 866,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,math,MATH,math,,71.1,scored,CoT,0,,,,0-shot CoT,True,1,model_card
 869,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,humaneval,HumanEval,coding,,92.0,scored,,0,,,,0-shot,True,1,model_card
 870,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mgsm,MGSM,multilingual,,91.6,scored,CoT,0,,,,0-shot CoT,True,1,model_card
 872,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,drop,DROP,reasoning,,87.1,scored,,3,,,,3-shot,True,1,model_card
 874,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,big_bench_hard,BIG-Bench Hard,reasoning,,93.1,scored,CoT,3,,,,3-shot CoT,True,1,model_card
 875,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,gsm8k,GSM8K,math,,96.4,scored,CoT,0,,,,0-shot CoT,True,1,model_card
-878,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mmmu,MMMU,multimodal,,68.3,scored,,0,,,,0-shot,True,1,model_card
+878,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mmmu,MMMU,vision,,68.3,scored,,0,,,,0-shot,True,1,model_card
 879,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,mathvista,MathVista,multimodal,,67.7,scored,,0,,,,0-shot,True,1,model_card
 880,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,ai2d,AI2D,other,,94.7,scored,,0,,,,0-shot,True,1,model_card
 881,Claude 3.5 Sonnet,claude-3.5,anthropic,anthropic_35_addendum,chartqa,ChartQA,multimodal,,90.8,scored,,0,,,,0-shot,True,1,model_card
@@ -169,8 +169,8 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 958,GPT-4.5,gpt-4.5,openai,openai_gpt45_system_card,swe_lancer_ic_swe,SWE-Lancer IC SWE,other,,20.0,scored,post-mitigation,,,,pass_at_1,"pass@1, post-mitigation",True,1,model_card
 959,GPT-4.5,gpt-4.5,openai,openai_gpt45_system_card,swe_lancer_swe_manager,SWE-Lancer SWE Manager,other,,44.0,scored,post-mitigation,,,,pass_at_1,"pass@1, post-mitigation",True,1,model_card
 962,GPT-4.5,gpt-4.5,openai,openai_gpt45_system_card,metr,METR,other,,30.0,scored,,,,,,default,True,1,model_card
-964,Gemini Ultra,gemini-1.0,google,google_gemini_report,mmlu,MMLU,general_knowledge,,90.04,scored,CoT,,,,,CoT with uncertainty routing,True,1,model_card
-966,Gemini Ultra,gemini-1.0,google,google_gemini_report,mmmu,MMMU,multimodal,,62.4,scored,,,,,,default,True,1,model_card
+964,Gemini Ultra,gemini-1.0,google,google_gemini_report,mmlu,MMLU,knowledge,,90.04,scored,CoT,,,,,CoT with uncertainty routing,True,1,model_card
+966,Gemini Ultra,gemini-1.0,google,google_gemini_report,mmmu,MMMU,vision,,62.4,scored,,,,,,default,True,1,model_card
 967,Gemini Ultra,gemini-1.0,google,google_gemini_report,gsm8k,GSM8K,math,,94.4,scored,self-consistency,,,,,CoT + self-consistency,True,1,model_card
 968,Gemini Ultra,gemini-1.0,google,google_gemini_report,math,MATH,math,,53.2,scored,,4,,,,4-shot,True,1,model_card
 969,Gemini Ultra,gemini-1.0,google,google_gemini_report,math,MATH,math,,32.0,scored,,,,,,default,True,1,model_card
@@ -229,8 +229,8 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1079,Grok 3 Beta,gemini-2.5,google,google_gemini_25_card,swe_bench,SWE-bench,coding,,49.2,scored,,,,,,extended reasoning,True,1,model_card
 1081,Grok 3 Beta,gemini-2.5,google,google_gemini_25_card,simpleqa,SimpleQA,other,,43.6,scored,,,,,,extended reasoning,True,1,model_card
 1083,Grok 3 Beta,gemini-2.5,google,google_gemini_25_card,facts_grounding,FACTS Grounding,other,,74.8,scored,,,,,,extended reasoning,True,1,model_card
-1086,Grok 3 Beta,gemini-2.5,google,google_gemini_25_card,mmmu,MMMU,multimodal,,76.0,scored,,,,,pass_at_1,"single attempt, pass@1, extended reasoning",True,1,model_card
-1087,Grok 3 Beta,gemini-2.5,google,google_gemini_25_card,mmmu,MMMU,multimodal,,78.0,scored,,,,,,"multiple attempts, extended reasoning",True,1,model_card
+1086,Grok 3 Beta,gemini-2.5,google,google_gemini_25_card,mmmu,MMMU,vision,,76.0,scored,,,,,pass_at_1,"single attempt, pass@1, extended reasoning",True,1,model_card
+1087,Grok 3 Beta,gemini-2.5,google,google_gemini_25_card,mmmu,MMMU,vision,,78.0,scored,,,,,,"multiple attempts, extended reasoning",True,1,model_card
 1090,Grok 3 Beta,gemini-2.5,google,google_gemini_25_card,mrcr_v2,MRCR v2,other,,54.0,scored,,,,,,"128k, average, extended reasoning",True,1,model_card
 1103,Llama 1 7B,llama-2,meta,meta_llama2_card,natural2code,Natural2Code,other,,14.1,scored,,,,,,default,True,1,model_card
 1104,Llama 1 7B,llama-2,meta,meta_llama2_card,commonsense_reasoning,Commonsense Reasoning,other,,60.8,scored,,,,,,mixed-shot,True,1,model_card
@@ -246,17 +246,17 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1125,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,swe_bench,SWE-bench,coding,,67.2,scored,,,,,,multiple attempts,True,1,model_card
 1126,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,simpleqa,SimpleQA,other,,54.0,scored,,,,,,default,True,1,model_card
 1127,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,facts_grounding,FACTS Grounding,other,,87.8,scored,,,,,,default,True,1,model_card
-1128,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,mmmu,MMMU,multimodal,,82.0,scored,,,,,pass_at_1,single attempt (pass@1),True,1,model_card
+1128,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,mmmu,MMMU,vision,,82.0,scored,,,,,pass_at_1,single attempt (pass@1),True,1,model_card
 1130,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,vibe_eval_reka,Vibe-Eval (Reka),other,,67.2,scored,,,,,,default,True,1,model_card
 1131,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,video_mme,Video-MME,other,,86.9,scored,,,,,,"audio, visual, subtitles",True,1,model_card
-1132,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,mmmu,MMMU,multimodal,,83.6,scored,,,,,,default,True,1,model_card
-1136,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,mmlu,MMLU,general_knowledge,,89.2,scored,,,,,,default,True,1,model_card
+1132,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,mmmu,MMMU,vision,,83.6,scored,,,,,,default,True,1,model_card
+1136,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,mmlu,MMLU,knowledge,,89.2,scored,,,,,,default,True,1,model_card
 1137,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,text_to_text_safety,Text to Text Safety,other,,-0.9,scored,,,,,,relative to Gemini 1.5 Pro 002,True,1,model_card
 1138,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,multilingual_safety,Multilingual Safety,other,,-3.5,scored,,,,,,relative to Gemini 1.5 Pro 002,True,1,model_card
 1139,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,image_to_text_safety,Image to Text Safety,other,,1.8,scored,,,,,,"relative to Gemini 1.5 Pro 002, non-egregious",True,1,model_card
 1141,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,tone,Tone,other,,18.4,scored,,,,,,relative to Gemini 1.5 Pro 002,True,1,model_card
 1142,Gemini 2.5 Pro (GA),gemini-2.5-pro,google,google_gemini_25_pro_card,instruction_following_safety,Instruction Following (Safety),other,,14.8,scored,,,,,,relative to Gemini 1.5 Pro 002,True,1,model_card
-1145,Llama 3.1 8B Instruct,llama-3.3,meta,meta_responsible_use,mmlu_pro,MMLU-Pro,general_knowledge,,48.3,scored,CoT,5,,,,"5-shot, CoT",True,1,model_card
+1145,Llama 3.1 8B Instruct,llama-3.3,meta,meta_responsible_use,mmlu_pro,MMLU-Pro,knowledge,,48.3,scored,CoT,5,,,,"5-shot, CoT",True,1,model_card
 1147,Llama 3.1 8B Instruct,llama-3.3,meta,meta_responsible_use,gpqa_diamond,GPQA-Diamond,reasoning,,31.8,scored,CoT,0,,,,"0-shot, CoT",True,1,model_card
 1149,Llama 3.1 8B Instruct,llama-3.3,meta,meta_responsible_use,mbpp,MBPP,coding,,72.8,scored,,0,base,,,"0-shot, base",True,1,model_card
 1151,Llama 3.1 8B Instruct,llama-3.3,meta,meta_responsible_use,bfcl,BFCL,coding,,65.4,scored,,0,,,,0-shot,True,1,model_card
@@ -300,15 +300,15 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1211,o3-mini,o3-mini,openai,openai_o3mini_card,mmmlu,Multilingual MMLU,multilingual,,82.89,scored,,0,,Spanish,,"0-shot, Spanish",True,1,model_card
 1212,o3-mini,o3-mini,openai,openai_o3mini_card,mmmlu,Multilingual MMLU,multilingual,,71.67,scored,,0,,Swahili,,"0-shot, Swahili",True,1,model_card
 1213,o3-mini,o3-mini,openai,openai_o3mini_card,mmmlu,Multilingual MMLU,multilingual,,61.63999999999999,scored,,0,,Yoruba,,"0-shot, Yoruba",True,1,model_card
-1214,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,mmlu_pro,MMLU-Pro,general_knowledge,,67.3,scored,,,,,,default,True,1,model_card
+1214,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,mmlu_pro,MMLU-Pro,knowledge,,67.3,scored,,,,,,default,True,1,model_card
 1215,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,livecodebench_v5,LiveCodeBench v5,other,,30.7,scored,,,,,,default,True,1,model_card
 1216,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,bird_sql_dev,Bird-SQL (Dev),other,,45.6,scored,,,,,,default,True,1,model_card
 1217,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,gpqa_diamond,GPQA-Diamond,reasoning,,51.0,scored,,,,,,diamond,True,1,model_card
 1219,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,facts_grounding,FACTS Grounding,other,,82.9,scored,,,,,,default,True,1,model_card
-1220,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,,73.7,scored,,,,,,default,True,1,model_card
+1220,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,mmlu,MMLU,knowledge,,73.7,scored,,,,,,default,True,1,model_card
 1221,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,math,MATH,math,,77.9,scored,,,,,,default,True,1,model_card
 1222,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,mrcr_1m,MRCR (1M),other,,71.9,scored,,,,,,1M context,True,1,model_card
-1223,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,mmmu,MMMU,multimodal,,62.3,scored,,,,,,default,True,1,model_card
+1223,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,mmmu,MMMU,vision,,62.3,scored,,,,,,default,True,1,model_card
 1224,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,covost2_21_lang,CoVoST2 (21 lang),other,,37.4,scored,,,,,,21 languages,True,1,model_card
 1225,Gemini 1.5 Flash,gemini-2.0,google,google_gemini_2_card,egoschema_test,EgoSchema (test),other,,66.8,scored,,,,,,test,True,1,model_card
 1226,gpt-5-thinking,gpt-5.1,openai,openai_gpt51_system_card,production_benchmarks,Production Benchmarks,other,,0.865,scored,,,,,,default,True,1,model_card
@@ -323,7 +323,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1253,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,swe_bench,SWE-bench,coding,,93.9,scored,,,,,,default,True,1,model_card
 1254,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,terminal_bench_2_0,Terminal-bench 2.0,other,,82.0,scored,,,,,,default,True,1,model_card
 1255,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,gpqa_diamond,GPQA-Diamond,reasoning,,94.5,scored,,,,,,default,True,1,model_card
-1256,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,mmlu,MMLU,general_knowledge,,92.7,scored,,,,,,default,True,1,model_card
+1256,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,mmlu,MMLU,knowledge,,92.7,scored,,,,,,default,True,1,model_card
 1259,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,usamo_2026,USAMO 2026,other,,97.6,scored,,,,,,default,True,1,model_card
 1260,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,graphwalks_bfs_256k_1m,GraphWalks BFS 256K-1M,other,,80.0,scored,,,,,,BFS 256K-1M,True,1,model_card
 1261,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,hle,HLE,other,,56.8,scored,no-tools,,,,,no tools,True,1,model_card
@@ -338,13 +338,13 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1270,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,claude_code_malicious_refusal_rate,Claude Code Malicious Refusal Rate,other,,96.72,scored,,,,,,without FileTool reminder,True,1,model_card
 1271,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,claude_code_dual_use_success_rate,Claude Code (dual-use success rate),other,,92.75,scored,,,,,,without FileTool reminder,True,1,model_card
 1274,Claude Mythos Preview,claude-mythos,anthropic,anthropic_mythos_card,malicious_computer_use_refusal_rate,Malicious Computer Use (refusal rate),other,,93.75,scored,without-mitigations,,,,,without mitigations,True,1,model_card
-1276,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,,79.3,scored,,5,,,,5-shot,True,1,model_card
-1277,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,mmlu_pro,MMLU-Pro,general_knowledge,,53.8,scored,,5,,,,5-shot,True,1,model_card
+1276,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,mmlu,MMLU,knowledge,,79.3,scored,,5,,,,5-shot,True,1,model_card
+1277,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,mmlu_pro,MMLU-Pro,knowledge,,53.8,scored,,5,,,,5-shot,True,1,model_card
 1278,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,math,MATH,math,,41.6,scored,,4,,,,4-shot,True,1,model_card
 1279,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,mbpp,MBPP,coding,,66.4,scored,,3,,,,3-shot,True,1,model_card
 1280,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,tydiqa_goldp,TydiQA (GoldP),other,,29.9,scored,,1,,,,1-shot,True,1,model_card
 1281,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,livecodebench_v5,LiveCodeBench v5,other,,33.3,scored,,0,,,,0-shot,True,1,model_card
-1282,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,mmlu_pro,MMLU-Pro,general_knowledge,,68.9,scored,,0,,,,0-shot,True,1,model_card
+1282,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,mmlu_pro,MMLU-Pro,knowledge,,68.9,scored,,0,,,,0-shot,True,1,model_card
 1283,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,gpqa_diamond,GPQA-Diamond,reasoning,,50.5,scored,,0,,,,0-shot,True,1,model_card
 1284,LLaMA-3.1 70B,llama-4,meta,meta_llama4_card,mgsm,MGSM,multilingual,,91.1,scored,,0,,,,0-shot,True,1,model_card
 1285,Grok 4 API,grok-4,xai,xai_grok4_card,unjustified_refusals,Unjustified-refusals,other,,0.0,scored,,,,,,standard,True,1,model_card
@@ -365,10 +365,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1308,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,osworld,OSWorld,agent,,72.5,scored,,,,,,default,True,1,model_card
 1309,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,arc_agi_2_verified,ARC-AGI-2 (Verified),other,,58.3,scored,,,,,,default,True,1,model_card
 1311,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,gpqa_diamond,GPQA-Diamond,reasoning,,89.9,scored,,,,,,default,True,1,model_card
-1312,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,mmlu,MMLU,general_knowledge,,89.3,scored,,,,,,default,True,1,model_card
+1312,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,mmlu,MMLU,knowledge,,89.3,scored,,,,,,default,True,1,model_card
 1313,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,gdpval_aa,GDPval-AA,other,,1633.0,scored,,,,,,default,True,1,model_card
-1314,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,mmmu,MMMU,multimodal,,74.5,scored,no-tools,,,,,no tools,True,1,model_card
-1315,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,mmmu,MMMU,multimodal,,75.6,scored,with-tools,,,,,with tools,True,1,model_card
+1314,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,mmmu,MMMU,vision,,74.5,scored,no-tools,,,,,no tools,True,1,model_card
+1315,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,mmmu,MMMU,vision,,75.6,scored,with-tools,,,,,with tools,True,1,model_card
 1316,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,hle,HLE,other,,33.2,scored,no-tools,,,,,no tools,True,1,model_card
 1317,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,hle,HLE,other,,49.0,scored,with-tools,,,,,with tools,True,1,model_card
 1318,Claude Sonnet 4.6,claude-sonnet-4.6,anthropic,anthropic_sonnet46_card,finance_agent,Finance Agent,other,,63.3,scored,,,,,,Max Thinking,True,1,model_card
@@ -403,10 +403,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1348,Claude 3.7 Sonnet,claude-3.7,anthropic,anthropic_37_card,swe_bench,SWE-bench,coding,hard,23.0,scored,,,,,,hard subset,True,1,model_card
 1369,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,open_rewrite_eval,Open-rewrite eval,other,,41.6,scored,,0,,,,0-shot,True,1,model_card
 1370,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,tldr9,TLDR9+,other,,16.8,scored,,1,,,,1-shot,True,1,model_card
-1371,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,ifeval,IFEval,reasoning,,59.5,scored,,0,,,,0-shot,True,1,model_card
+1371,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,ifeval,IFEval,instruction_following,,59.5,scored,,0,,,,0-shot,True,1,model_card
 1372,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,gsm8k,GSM8K,math,,44.4,scored,CoT,8,,,,8-shot CoT,True,1,model_card
 1373,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,math,MATH,math,,30.6,scored,CoT,0,,,,0-shot CoT,True,1,model_card
-1374,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,arc_challenge,ARC-Challenge,general_knowledge,,59.4,scored,,0,,,,0-shot,True,1,model_card
+1374,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,arc_challenge,ARC-Challenge,reasoning,,59.4,scored,,0,,,,0-shot,True,1,model_card
 1375,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,gpqa,GPQA,reasoning,,27.2,scored,,0,,,,0-shot,True,1,model_card
 1376,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,hellaswag,HellaSwag,reasoning,,41.2,scored,,0,,,,0-shot,True,1,model_card
 1377,Llama 3.2 1B Instruct bf16,llama-3.2,meta,meta_llama32_card,bfcl,BFCL,coding,,25.7,scored,,0,,,,0-shot,True,1,model_card
@@ -442,15 +442,15 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1430,Grok 4 Fast,grok-4-fast,xai,xai_grok4_fast_card,wmdp_bio,WMDP Bio,other,,85.2,scored,,,,,,default,True,1,model_card
 1431,Grok 4 Fast,grok-4-fast,xai,xai_grok4_fast_card,wmdp_chem,WMDP Chem,other,,77.5,scored,,,,,,default,True,1,model_card
 1432,Grok 4 Fast,grok-4-fast,xai,xai_grok4_fast_card,wmdp_cyber,WMDP Cyber,other,,81.4,scored,,,,,,default,True,1,model_card
-1434,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,mmlu,MMLU,general_knowledge,,69.4,scored,,5,,,,5-shot,True,1,model_card
-1435,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,mmlu,MMLU,general_knowledge,,73.0,scored,CoT,0,,,,"0-shot, CoT",True,1,model_card
-1436,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,mmlu_pro,MMLU-Pro,general_knowledge,,48.3,scored,CoT,5,,,,"5-shot, CoT",True,1,model_card
-1437,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,ifeval,IFEval,reasoning,,80.4,scored,,,,,,default,True,1,model_card
+1434,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,mmlu,MMLU,knowledge,,69.4,scored,,5,,,,5-shot,True,1,model_card
+1435,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,mmlu,MMLU,knowledge,,73.0,scored,CoT,0,,,,"0-shot, CoT",True,1,model_card
+1436,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,mmlu_pro,MMLU-Pro,knowledge,,48.3,scored,CoT,5,,,,"5-shot, CoT",True,1,model_card
+1437,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,ifeval,IFEval,instruction_following,,80.4,scored,,,,,,default,True,1,model_card
 1438,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,humaneval,HumanEval,coding,,72.6,scored,,0,,,,0-shot,True,1,model_card
 1439,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,mbpp,MBPP,coding,,72.8,scored,,0,,,,0-shot,True,1,model_card
 1440,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,gsm8k,GSM8K,math,,84.5,scored,CoT,8,,,,"8-shot, CoT",True,1,model_card
 1441,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,math,MATH,math,,51.9,scored,CoT,0,,,,"0-shot, CoT",True,1,model_card
-1442,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,arc_challenge,ARC-Challenge,general_knowledge,,83.4,scored,,0,,,,0-shot,True,1,model_card
+1442,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,arc_challenge,ARC-Challenge,reasoning,,83.4,scored,,0,,,,0-shot,True,1,model_card
 1443,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,gpqa,GPQA,reasoning,,32.8,scored,CoT,0,,,,"0-shot, CoT",True,1,model_card
 1444,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,bfcl,BFCL,coding,,76.1,scored,,,,,,default,True,1,model_card
 1445,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,nexus,Nexus,agent,,38.5,scored,,,,,,default,True,1,model_card
@@ -477,7 +477,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1485,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,gpqa_diamond,GPQA-Diamond,reasoning,,59.5,scored,CoT,5,,,,"Maj@32, 5-shot CoT",True,1,model_card
 1486,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,math,MATH,math,,73.7,scored,majority-voting,,,,,Maj@32,True,1,model_card
 1487,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,big_bench_hard,BIG-Bench Hard,reasoning,,86.8,scored,CoT,3,,,,3-shot CoT,True,1,model_card
-1488,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,arc_challenge,ARC-Challenge,general_knowledge,,96.4,scored,,25,,,,25-shot,True,1,model_card
+1488,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,arc_challenge,ARC-Challenge,reasoning,,96.4,scored,,25,,,,25-shot,True,1,model_card
 1489,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,hellaswag,HellaSwag,reasoning,,95.4,scored,,10,,,,10-shot,True,1,model_card
 1490,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,pubmedqa,PubMedQA,medical,,75.8,scored,,5,,,,5-shot,True,1,model_card
 1491,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,pubmedqa,PubMedQA,medical,,74.9,scored,,0,,,,0-shot,True,1,model_card
@@ -493,7 +493,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1502,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,chartqa,ChartQA,multimodal,,80.8,scored,CoT,0,,,,0-shot CoT,True,1,model_card
 1503,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,mgsm,MGSM,multilingual,,90.5,scored,,8,,,,8-shot,True,1,model_card
 1504,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,mgsm,MGSM,multilingual,,90.7,scored,,0,,,,0-shot,True,1,model_card
-1505,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,mmlu,MMLU,general_knowledge,,79.1,scored,,5,,,,5-shot,True,1,model_card
+1505,Claude 3 Opus,claude-3,anthropic,anthropic_model_card,mmlu,MMLU,knowledge,,79.1,scored,,5,,,,5-shot,True,1,model_card
 1506,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,osworld,OSWorld,agent,,14.9,scored,,,,,,"15 steps, screenshot only",True,1,model_card
 1507,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,osworld,OSWorld,agent,,22.0,scored,,,,,,"50 steps, screenshot only",True,1,model_card
 1508,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,osworld,OSWorld,agent,,54.2,scored,,,,,,15 steps,True,1,model_card
@@ -502,7 +502,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1512,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,tau_bench_retail,TAU-bench (Retail),other,,69.2,scored,,,,,,pass^1,True,1,model_card
 1513,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,tau_bench_airline,TAU-bench (Airline),other,,46.0,scored,,,,,,pass^1,True,1,model_card
 1514,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,agentic_coding,Agentic Coding,coding,,78.0,scored,,,,,,default,True,1,model_card
-1515,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmmu,MMMU,multimodal,,70.4,scored,,0,,,,"0-shot, validation",True,1,model_card
+1515,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmmu,MMMU,vision,,70.4,scored,,0,,,,"0-shot, validation",True,1,model_card
 1516,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mathvista,MathVista,multimodal,,70.7,scored,CoT,0,,,,"0-shot CoT, testmini",True,1,model_card
 1517,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,ai2d,AI2D,other,,95.3,scored,,0,,,,"0-shot, test",True,1,model_card
 1518,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,chartqa,ChartQA,multimodal,,90.8,scored,CoT,0,,,,"0-shot CoT, test, relaxed accuracy",True,1,model_card
@@ -511,10 +511,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1521,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,wildchat_non_toxic,Wildchat Non-toxic,other,,5.3,scored,,,,,,default,True,1,model_card
 1522,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,xstest,XSTest,safety,,4.3,scored,,,,,,default,True,1,model_card
 1523,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,gpqa_diamond,GPQA-Diamond,reasoning,,65.0,scored,CoT,0,,,,0-shot CoT,True,1,model_card
-1524,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmlu,MMLU,general_knowledge,,90.5,scored,CoT,5,,,,5-shot CoT,True,1,model_card
-1525,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmlu,MMLU,general_knowledge,,88.7,scored,,5,,,,5-shot,True,1,model_card
-1526,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmlu,MMLU,general_knowledge,,89.3,scored,CoT,0,,,,0-shot CoT,True,1,model_card
-1527,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmlu_pro,MMLU-Pro,general_knowledge,,78.0,scored,CoT,0,,,,0-shot CoT,True,1,model_card
+1524,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmlu,MMLU,knowledge,,90.5,scored,CoT,5,,,,5-shot CoT,True,1,model_card
+1525,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmlu,MMLU,knowledge,,88.7,scored,,5,,,,5-shot,True,1,model_card
+1526,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmlu,MMLU,knowledge,,89.3,scored,CoT,0,,,,0-shot CoT,True,1,model_card
+1527,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mmlu_pro,MMLU-Pro,knowledge,,78.0,scored,CoT,0,,,,0-shot CoT,True,1,model_card
 1528,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,math,MATH,math,,78.3,scored,CoT,0,,,,0-shot CoT,True,1,model_card
 1530,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,humaneval,HumanEval,coding,,93.7,scored,,0,,,,0-shot,True,1,model_card
 1531,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,mgsm,MGSM,multilingual,,92.5,scored,CoT,0,,,,0-shot CoT,True,1,model_card
@@ -522,7 +522,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1533,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,big_bench_hard,BIG-Bench Hard,reasoning,,93.2,scored,CoT,3,,,,3-shot CoT,True,1,model_card
 1534,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,aime_2024,AIME 2024,math,,16.0,scored,CoT,0,,,,0-shot CoT,True,1,model_card
 1535,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,aime_2024,AIME 2024,math,,27.6,scored,CoT,0,,,,"Maj@64, 0-shot CoT",True,1,model_card
-1536,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,ifeval,IFEval,reasoning,,90.2,scored,,,,,,default,True,1,model_card
+1536,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,ifeval,IFEval,instruction_following,,90.2,scored,,,,,,default,True,1,model_card
 1537,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,human_feedback_document_analysis,Human Feedback - Document Analysis,other,,61.0,scored,,,,,win_rate,win rate vs Claude 3.5 Sonnet,True,1,model_card
 1538,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,human_feedback_visual_understanding,Human Feedback - Visual Understanding,other,,57.0,scored,,,,,win_rate,win rate vs Claude 3.5 Sonnet,True,1,model_card
 1539,Claude 3.5 Sonnet (New),claude-3.5-haiku,anthropic,anthropic_35h_addendum,human_feedback_creative_writing,Human Feedback - Creative Writing,other,,58.0,scored,,,,,win_rate,win rate vs Claude 3.5 Sonnet,True,1,model_card
@@ -534,10 +534,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1547,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,arc_agi_2_veri_ed,ARC-AGI-2 (Veriﬁed),other,,69.17,scored,,,,,,high effort,True,1,model_card
 1548,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,gpqa_diamond,GPQA-Diamond,reasoning,,91.31,scored,,,,,,5-trial average,True,1,model_card
 1549,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,gpqa_diamond,GPQA-Diamond,reasoning,,91.3,scored,,,,,,default,True,1,model_card
-1550,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,mmmu,MMMU,multimodal,,73.9,scored,no-tools,,,,,no tools,True,1,model_card
-1551,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,mmmu,MMMU,multimodal,,77.3,scored,with-tools,,,,,with tools,True,1,model_card
-1552,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,mmlu,MMLU,general_knowledge,,91.1,scored,,,,,,default,True,1,model_card
-1553,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,mmlu,MMLU,general_knowledge,,91.05,scored,,,,,,5-trial average,True,1,model_card
+1550,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,mmmu,MMMU,vision,,73.9,scored,no-tools,,,,,no tools,True,1,model_card
+1551,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,mmmu,MMMU,vision,,77.3,scored,with-tools,,,,,with tools,True,1,model_card
+1552,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,mmlu,MMLU,knowledge,,91.1,scored,,,,,,default,True,1,model_card
+1553,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,mmlu,MMLU,knowledge,,91.05,scored,,,,,,5-trial average,True,1,model_card
 1554,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,aime,AIME,math,,99.79,scored,no-tools,,,,,"no tools, 5-trial average",True,1,model_card
 1556,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,webarena,WebArena,agent,,68.0,scored,,,,,pass_at_1,pass@1,True,1,model_card
 1557,Claude Opus 4.6,claude-opus-4.6,anthropic,anthropic_opus46_card,webarena,WebArena,agent,,71.7,scored,,,,,pass_at_2,pass@2,True,1,model_card
@@ -549,11 +549,11 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 1722,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,gsm8k,GSM8K,math,,60.0,scored,,16,pretrained,,,"16-shot, pre-trained",True,1,model_card
 1725,Llama 3 8B,llama-3.1,meta,meta_llama3_paper,mmmlu,Multilingual MMLU,multilingual,,58.6,scored,,5,,,,5-shot,True,1,model_card
 1743,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,73.75,scored,,,,,,T=0.2,True,1,model_card
-1750,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,mmlu_pro,MMLU-Pro,general_knowledge,,66.3,scored,CoT,5,,,,5-shot CoT,True,1,model_card
+1750,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,mmlu_pro,MMLU-Pro,knowledge,,66.3,scored,CoT,5,,,,5-shot CoT,True,1,model_card
 1755,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,gpqa,GPQA,reasoning,,45.300000000000004,scored,CoT,5,,,,5-shot CoT,True,1,model_card
 1760,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,humaneval,HumanEval,coding,,84.8,scored,,,,,pass_at_1,pass@1,True,1,model_card
 1765,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,math,MATH,math,,70.6,scored,,,,,,default,True,1,model_card
-1785,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,ifeval,IFEval,reasoning,,82.89999999999999,scored,,,,,,default,True,1,model_card
+1785,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,ifeval,IFEval,instruction_following,,82.89999999999999,scored,,,,,,default,True,1,model_card
 1790,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,human_evaluation_vs_gemma_2_27b,Human Evaluation (vs Gemma-2-27B),other,,0.536,scored,,,,,,side-by-side,True,1,model_card
 1791,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,human_evaluation_vs_qwen_2_5_32b,Human Evaluation (vs Qwen-2.5-32B),other,,0.496,scored,,,,,,side-by-side,True,1,model_card
 1792,Mistral-Small-24B-Instruct-2501,mistral-small-3,mistral,mistral_small_3_hf_card,human_evaluation_vs_llama_3_3_70b,Human Evaluation (vs Llama-3.3-70B),other,,0.192,scored,,,,,,side-by-side,True,1,model_card
@@ -594,7 +594,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 4211,,,openai,openai_gpt55_system_card,healthbench_consensus,HealthBench Consensus,other,,,mentioned,,,,,,default,True,2,model_card
 4212,gpt-5.5,,openai,openai_gpt55_system_card,cot_control,CoT-Control,other,,0.2,scored,cot,,,,,cot,True,2,model_card
 4215,,,openai,openai_gpt55_system_card,gpqa,GPQA,reasoning,,,cited,,,,,,default,True,2,model_card
-4216,,,openai,openai_gpt55_system_card,mmlu_pro,MMLU-Pro,general_knowledge,,,cited,,,,,,default,True,2,model_card
+4216,,,openai,openai_gpt55_system_card,mmlu_pro,MMLU-Pro,knowledge,,,cited,,,,,,default,True,2,model_card
 4217,,,openai,openai_gpt55_system_card,hle,HLE,other,,,cited,,,,,,default,True,2,model_card
 4218,,,openai,openai_gpt55_system_card,bfcl,BFCL,coding,,,cited,,,,,,default,True,2,model_card
 4219,,,openai,openai_gpt55_system_card,swe_bench_verified,SWE-bench Verified,coding,,,cited,,,,,,default,True,2,model_card
@@ -619,7 +619,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 4253,GPT-5.5,,openai,openai_gpt55_system_card,healthbench_professional,HealthBench Professional,other,,,mentioned,,,,,,default,True,2,model_card
 4258,GPT-5.5,,openai,openai_gpt55_system_card,cot_control,CoT-Control,other,,0.2,scored,,,,,,default,True,2,model_card
 4261,,,openai,openai_gpt55_system_card,gpqa,GPQA,reasoning,,,cited,,,,,,default,True,2,model_card
-4262,,,openai,openai_gpt55_system_card,mmlu_pro,MMLU-Pro,general_knowledge,,,cited,,,,,,default,True,2,model_card
+4262,,,openai,openai_gpt55_system_card,mmlu_pro,MMLU-Pro,knowledge,,,cited,,,,,,default,True,2,model_card
 4263,,,openai,openai_gpt55_system_card,hle,HLE,other,,,cited,,,,,,default,True,2,model_card
 4264,,,openai,openai_gpt55_system_card,bfcl,BFCL,coding,,,cited,,,,,,default,True,2,model_card
 4265,,,openai,openai_gpt55_system_card,swe_bench_verified,SWE-bench Verified,coding,,,cited,,,,,,default,True,2,model_card
@@ -679,10 +679,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 4383,Claude Opus 4.7,claude-opus-4.7,anthropic,anthropic_opus47_card,deepsearchqa,DeepSearchQA,other,,89.1,scored,extended-thinking,,rlhf,,,"extended-thinking, rlhf",True,2,model_card
 4384,Claude Opus 4.7,claude-opus-4.7,anthropic,anthropic_opus47_card,draco,DRACO,other,,77.7,scored,extended-thinking,,rlhf,,,"extended-thinking, rlhf",True,2,model_card
 4385,,claude-opus-4.7,anthropic,anthropic_opus47_card,aime,AIME,math,,,mentioned,,,,,,default,True,2,model_card
-4386,,claude-opus-4.7,anthropic,anthropic_opus47_card,mmlu,MMLU,general_knowledge,,,cited,,,,,,default,True,2,model_card
+4386,,claude-opus-4.7,anthropic,anthropic_opus47_card,mmlu,MMLU,knowledge,,,cited,,,,,,default,True,2,model_card
 4387,,claude-opus-4.7,anthropic,anthropic_opus47_card,michelangelo,Michelangelo,other,,,cited,,,,,,default,True,2,model_card
 4388,,claude-opus-4.7,anthropic,anthropic_opus47_card,matharena,MathArena,other,,,cited,,,,,,default,True,2,model_card
-4389,Mistral Small 3,,mistral,mistral_small_3_blog,mmlu,MMLU,general_knowledge,,81.0,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
+4389,Mistral Small 3,,mistral,mistral_small_3_blog,mmlu,MMLU,knowledge,,81.0,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 4390,Mistral Small 3,,mistral,mistral_small_3_blog,wildbench,WildBench,other,,,mentioned,,,instruction-tuned,,,instruction-tuned,True,3,model_card
 4391,Mistral Small 3,,mistral,mistral_small_3_blog,arena_hard,Arena Hard,other,,,mentioned,,,instruction-tuned,,,instruction-tuned,True,3,model_card
 4392,Mistral Small 3,,mistral,mistral_small_3_blog,mt_bench,MT-Bench,other,,,mentioned,,,instruction-tuned,,,instruction-tuned,True,3,model_card
@@ -691,8 +691,8 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 4395,Gemini 3 Flash,,google,google_gemini_3_card,image_to_text_safety,Image to Text Safety,other,,-2.3,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 4396,Gemini 3 Flash,,google,google_gemini_3_card,tone,Tone,other,,3.8,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 4397,Gemini 3 Flash,,google,google_gemini_3_card,unjustified_refusals,Unjustified-refusals,other,,-10.4,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
-4399,Mistral Large 2,,mistral,mistral_large_2_blog,mmlu,MMLU,general_knowledge,,84.0,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-4400,Mistral Large 2,,mistral,mistral_large_2_blog,mmlu,MMLU,general_knowledge,multilingual,,mentioned,,,pretrained,Average,accuracy,"Average, pretrained, multilingual, accuracy",True,3,model_card
+4399,Mistral Large 2,,mistral,mistral_large_2_blog,mmlu,MMLU,knowledge,,84.0,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
+4400,Mistral Large 2,,mistral,mistral_large_2_blog,mmlu,MMLU,knowledge,multilingual,,mentioned,,,pretrained,Average,accuracy,"Average, pretrained, multilingual, accuracy",True,3,model_card
 4404,Mistral Large 2,,mistral,mistral_large_2_blog,multipl_e,MultiPL-E (aggregate),other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
 4409,Mistral Large 2,,mistral,mistral_large_2_blog,gsm8k,GSM8K,math,,,mentioned,,8,,,accuracy,"8-shot, accuracy",True,3,model_card
 4414,Mistral Large 2,,mistral,mistral_large_2_blog,math,MATH,math,,,mentioned,none,0,,,accuracy,"0-shot, accuracy",True,3,model_card
@@ -706,14 +706,14 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 4484,Codestral,,mistral,mistral_codestral_blog,spider,Spider,other,,,mentioned,,,,,,default,True,3,model_card
 4492,Codestral,,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,fim,,mentioned,,,,Python,pass_at_1,"Python, fim, pass_at_1",True,3,model_card
 4498,Codestral,,mistral,mistral_codestral_blog,kotlin_humaneval,Kotlin-HumanEval,other,,73.75,scored,,,,Kotlin,pass_at_1,"Kotlin, pass_at_1",True,3,model_card
-4668,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,mmlu,MMLU,general_knowledge,pro,0.663,scored,cot,5,instruction-tuned,,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
+4668,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,mmlu,MMLU,knowledge,pro,0.663,scored,cot,5,instruction-tuned,,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
 4673,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,gpqa,GPQA,reasoning,main,0.453,scored,cot,5,instruction-tuned,,accuracy,"5-shot, cot, instruction-tuned, main, accuracy",True,3,model_card
 4678,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,humaneval,HumanEval,coding,,0.848,scored,,,instruction-tuned,,pass_at_1,"instruction-tuned, pass_at_1",True,3,model_card
 4683,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,math,MATH,math,,0.706,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 4688,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,mt_bench,MT-Bench,other,,8.35,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 4693,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,wildbench,WildBench,other,,52.27,scored,,,instruction-tuned,,win_rate,"instruction-tuned, win_rate",True,3,model_card
 4698,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,arena_hard,Arena Hard,other,,0.873,scored,,,instruction-tuned,,win_rate,"instruction-tuned, win_rate",True,3,model_card
-4703,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,ifeval,IFEval,reasoning,,0.829,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
+4703,Mistral-Small-24B-Instruct-2501,,mistral,mistral_small_3_hf_card,ifeval,IFEval,instruction_following,,0.829,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 4708,Gemini 3.1 Pro,,google,google_gemini_31_pro_card,re_bench,RE-Bench,other,,1.27,scored,extended-thinking,,instruction-tuned,,human_normalized_score,"extended-thinking, instruction-tuned, human_normalized_score",True,3,model_card
 4710,Gemini 3.1 Pro,,google,google_gemini_31_pro_card,re_bench,RE-Bench,other,optimise_llm_foundry,2.0,scored,extended-thinking,,instruction-tuned,,human_normalized_score,"extended-thinking, instruction-tuned, optimise_llm_foundry, human_normalized_score",True,3,model_card
 4711,Gemini 3.1 Pro,,google,google_gemini_31_pro_card,text_to_text_safety,Text to Text Safety,other,,0.1,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
@@ -788,13 +788,13 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 4972,Llama 3.1 70B Instruct,,meta,meta_llama31_card,gorilla_benchmark,Gorilla Benchmark,other,api_bench,29.7,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, api_bench, accuracy",True,3,model_card
 4977,Llama 3.1 70B Instruct,,meta,meta_llama31_card,nexus,Nexus,agent,,56.7,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, accuracy",True,3,model_card
 4980,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mgsm,MGSM,multilingual,,86.9,scored,cot,0,instruction-tuned,Average,exact_match,"0-shot, cot, Average, instruction-tuned, exact_match",True,3,model_card
-4983,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,general_knowledge,,80.13,scored,,5,instruction-tuned,Portuguese,accuracy,"5-shot, Portuguese, instruction-tuned, accuracy",True,3,model_card
-4986,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,general_knowledge,,80.05,scored,,5,instruction-tuned,Spanish,accuracy,"5-shot, Spanish, instruction-tuned, accuracy",True,3,model_card
-4989,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,general_knowledge,,80.4,scored,,5,instruction-tuned,Italian,accuracy,"5-shot, Italian, instruction-tuned, accuracy",True,3,model_card
-4992,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,general_knowledge,,79.27,scored,,5,instruction-tuned,German,accuracy,"5-shot, German, instruction-tuned, accuracy",True,3,model_card
-4995,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,general_knowledge,,79.82,scored,,5,instruction-tuned,French,accuracy,"5-shot, French, instruction-tuned, accuracy",True,3,model_card
-4998,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,general_knowledge,,74.52,scored,,5,instruction-tuned,Hindi,accuracy,"5-shot, Hindi, instruction-tuned, accuracy",True,3,model_card
-5001,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,general_knowledge,,72.95,scored,,5,instruction-tuned,Thai,accuracy,"5-shot, Thai, instruction-tuned, accuracy",True,3,model_card
+4983,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,knowledge,,80.13,scored,,5,instruction-tuned,Portuguese,accuracy,"5-shot, Portuguese, instruction-tuned, accuracy",True,3,model_card
+4986,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,knowledge,,80.05,scored,,5,instruction-tuned,Spanish,accuracy,"5-shot, Spanish, instruction-tuned, accuracy",True,3,model_card
+4989,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,knowledge,,80.4,scored,,5,instruction-tuned,Italian,accuracy,"5-shot, Italian, instruction-tuned, accuracy",True,3,model_card
+4992,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,knowledge,,79.27,scored,,5,instruction-tuned,German,accuracy,"5-shot, German, instruction-tuned, accuracy",True,3,model_card
+4995,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,knowledge,,79.82,scored,,5,instruction-tuned,French,accuracy,"5-shot, French, instruction-tuned, accuracy",True,3,model_card
+4998,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,knowledge,,74.52,scored,,5,instruction-tuned,Hindi,accuracy,"5-shot, Hindi, instruction-tuned, accuracy",True,3,model_card
+5001,Llama 3.1 70B Instruct,,meta,meta_llama31_card,mmlu,MMLU,knowledge,,72.95,scored,,5,instruction-tuned,Thai,accuracy,"5-shot, Thai, instruction-tuned, accuracy",True,3,model_card
 5003,Claude Opus 4.1,,anthropic,anthropic_opus41_card,single_turn_violative_request_evaluation,Single-turn violative request evaluation,other,overall,98.76,scored,,,,English,accuracy,"overall, accuracy",True,3,model_card
 5004,Claude Opus 4.1,,anthropic,anthropic_opus41_card,single_turn_violative_request_evaluation,Single-turn violative request evaluation,other,standard_thinking,98.45,scored,none,,,English,accuracy,"standard_thinking, accuracy",True,3,model_card
 5005,Claude Opus 4.1,,anthropic,anthropic_opus41_card,single_turn_violative_request_evaluation,Single-turn violative request evaluation,other,extended_thinking,99.06,scored,extended-thinking,,,English,accuracy,"extended-thinking, extended_thinking, accuracy",True,3,model_card
@@ -849,18 +849,18 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5097,Gemini 2.5 Deep Think,,google,google_gemini_25dt_card,image_to_text_safety,Image to Text Safety,other,,2.1,scored,,,rlhf,,,rlhf,True,3,model_card
 5098,Gemini 2.5 Deep Think,,google,google_gemini_25dt_card,tone,Tone,other,,16.3,scored,,,rlhf,,,rlhf,True,3,model_card
 5099,Gemini 2.5 Deep Think,,google,google_gemini_25dt_card,instruction_following,Instruction Following,other,,-9.9,scored,,,rlhf,,,rlhf,True,3,model_card
-5101,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.901,scored,cot,0,instruction-tuned,Arabic,accuracy,"0-shot, cot, Arabic, instruction-tuned, accuracy",True,3,model_card
-5103,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.889,scored,cot,0,instruction-tuned,Bengali,accuracy,"0-shot, cot, Bengali, instruction-tuned, accuracy",True,3,model_card
-5107,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.899,scored,cot,0,instruction-tuned,French,accuracy,"0-shot, cot, French, instruction-tuned, accuracy",True,3,model_card
-5109,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.903,scored,cot,0,instruction-tuned,German,accuracy,"0-shot, cot, German, instruction-tuned, accuracy",True,3,model_card
-5111,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.9,scored,cot,0,instruction-tuned,Hindi,accuracy,"0-shot, cot, Hindi, instruction-tuned, accuracy",True,3,model_card
-5113,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.904,scored,cot,0,instruction-tuned,Indonesian,accuracy,"0-shot, cot, Indonesian, instruction-tuned, accuracy",True,3,model_card
-5115,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.91,scored,cot,0,instruction-tuned,Italian,accuracy,"0-shot, cot, Italian, instruction-tuned, accuracy",True,3,model_card
-5117,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.897,scored,cot,0,instruction-tuned,Japanese,accuracy,"0-shot, cot, Japanese, instruction-tuned, accuracy",True,3,model_card
-5119,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.895,scored,cot,0,instruction-tuned,Korean,accuracy,"0-shot, cot, Korean, instruction-tuned, accuracy",True,3,model_card
-5123,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.913,scored,cot,0,instruction-tuned,Spanish,accuracy,"0-shot, cot, Spanish, instruction-tuned, accuracy",True,3,model_card
-5125,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.88,scored,cot,0,instruction-tuned,Swahili,accuracy,"0-shot, cot, Swahili, instruction-tuned, accuracy",True,3,model_card
-5127,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,general_knowledge,,0.808,scored,cot,0,instruction-tuned,Yoruba,accuracy,"0-shot, cot, Yoruba, instruction-tuned, accuracy",True,3,model_card
+5101,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.901,scored,cot,0,instruction-tuned,Arabic,accuracy,"0-shot, cot, Arabic, instruction-tuned, accuracy",True,3,model_card
+5103,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.889,scored,cot,0,instruction-tuned,Bengali,accuracy,"0-shot, cot, Bengali, instruction-tuned, accuracy",True,3,model_card
+5107,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.899,scored,cot,0,instruction-tuned,French,accuracy,"0-shot, cot, French, instruction-tuned, accuracy",True,3,model_card
+5109,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.903,scored,cot,0,instruction-tuned,German,accuracy,"0-shot, cot, German, instruction-tuned, accuracy",True,3,model_card
+5111,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.9,scored,cot,0,instruction-tuned,Hindi,accuracy,"0-shot, cot, Hindi, instruction-tuned, accuracy",True,3,model_card
+5113,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.904,scored,cot,0,instruction-tuned,Indonesian,accuracy,"0-shot, cot, Indonesian, instruction-tuned, accuracy",True,3,model_card
+5115,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.91,scored,cot,0,instruction-tuned,Italian,accuracy,"0-shot, cot, Italian, instruction-tuned, accuracy",True,3,model_card
+5117,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.897,scored,cot,0,instruction-tuned,Japanese,accuracy,"0-shot, cot, Japanese, instruction-tuned, accuracy",True,3,model_card
+5119,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.895,scored,cot,0,instruction-tuned,Korean,accuracy,"0-shot, cot, Korean, instruction-tuned, accuracy",True,3,model_card
+5123,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.913,scored,cot,0,instruction-tuned,Spanish,accuracy,"0-shot, cot, Spanish, instruction-tuned, accuracy",True,3,model_card
+5125,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.88,scored,cot,0,instruction-tuned,Swahili,accuracy,"0-shot, cot, Swahili, instruction-tuned, accuracy",True,3,model_card
+5127,gpt-5.2-thinking,,openai,openai_gpt52_system_card,mmlu,MMLU,knowledge,,0.808,scored,cot,0,instruction-tuned,Yoruba,accuracy,"0-shot, cot, Yoruba, instruction-tuned, accuracy",True,3,model_card
 5129,gpt-5.2-thinking,,openai,openai_gpt52_system_card,first_person_fairness,First-Person Fairness,other,,0.00997,scored,,,instruction-tuned,,harm_overall,"instruction-tuned, harm_overall",True,3,model_card
 5130,,,openai,openai_gpt52_system_card,multimodal_troubleshooting_virology,Multimodal Troubleshooting Virology,other,,,mentioned,,,,,,default,True,3,model_card
 5131,,,openai,openai_gpt52_system_card,protocolqa,ProtocolQA,other,open_ended,,mentioned,,,,,,open_ended,True,3,model_card
@@ -926,18 +926,18 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5333,GPT-4o,,openai,openai_gpt4o_system_card,medqa,MedQA,other,taiwan,0.91,scored,,5,,,accuracy,"5-shot, taiwan, accuracy",True,3,model_card
 5335,GPT-4o,,openai,openai_gpt4o_system_card,medqa,MedQA,other,mainland_china,0.84,scored,,0,,,accuracy,"0-shot, mainland_china, accuracy",True,3,model_card
 5337,GPT-4o,,openai,openai_gpt4o_system_card,medqa,MedQA,other,mainland_china,0.86,scored,,5,,,accuracy,"5-shot, mainland_china, accuracy",True,3,model_card
-5339,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,clinical_knowledge,0.92,scored,,0,,,accuracy,"0-shot, clinical_knowledge, accuracy",True,3,model_card
-5341,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,clinical_knowledge,0.92,scored,,5,,,accuracy,"5-shot, clinical_knowledge, accuracy",True,3,model_card
-5343,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,medical_genetics,0.96,scored,,0,,,accuracy,"0-shot, medical_genetics, accuracy",True,3,model_card
-5345,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,medical_genetics,0.95,scored,,5,,,accuracy,"5-shot, medical_genetics, accuracy",True,3,model_card
-5347,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,anatomy,0.89,scored,,0,,,accuracy,"0-shot, anatomy, accuracy",True,3,model_card
-5349,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,anatomy,0.89,scored,,5,,,accuracy,"5-shot, anatomy, accuracy",True,3,model_card
-5351,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,professional_medicine,0.94,scored,,0,,,accuracy,"0-shot, professional_medicine, accuracy",True,3,model_card
-5353,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,professional_medicine,0.94,scored,,5,,,accuracy,"5-shot, professional_medicine, accuracy",True,3,model_card
-5355,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,college_biology,0.95,scored,,0,,,accuracy,"0-shot, college_biology, accuracy",True,3,model_card
-5357,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,college_biology,0.95,scored,,5,,,accuracy,"5-shot, college_biology, accuracy",True,3,model_card
-5359,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,college_medicine,0.84,scored,,0,,,accuracy,"0-shot, college_medicine, accuracy",True,3,model_card
-5361,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,general_knowledge,college_medicine,0.89,scored,,5,,,accuracy,"5-shot, college_medicine, accuracy",True,3,model_card
+5339,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,clinical_knowledge,0.92,scored,,0,,,accuracy,"0-shot, clinical_knowledge, accuracy",True,3,model_card
+5341,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,clinical_knowledge,0.92,scored,,5,,,accuracy,"5-shot, clinical_knowledge, accuracy",True,3,model_card
+5343,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,medical_genetics,0.96,scored,,0,,,accuracy,"0-shot, medical_genetics, accuracy",True,3,model_card
+5345,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,medical_genetics,0.95,scored,,5,,,accuracy,"5-shot, medical_genetics, accuracy",True,3,model_card
+5347,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,anatomy,0.89,scored,,0,,,accuracy,"0-shot, anatomy, accuracy",True,3,model_card
+5349,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,anatomy,0.89,scored,,5,,,accuracy,"5-shot, anatomy, accuracy",True,3,model_card
+5351,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,professional_medicine,0.94,scored,,0,,,accuracy,"0-shot, professional_medicine, accuracy",True,3,model_card
+5353,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,professional_medicine,0.94,scored,,5,,,accuracy,"5-shot, professional_medicine, accuracy",True,3,model_card
+5355,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,college_biology,0.95,scored,,0,,,accuracy,"0-shot, college_biology, accuracy",True,3,model_card
+5357,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,college_biology,0.95,scored,,5,,,accuracy,"5-shot, college_biology, accuracy",True,3,model_card
+5359,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,college_medicine,0.84,scored,,0,,,accuracy,"0-shot, college_medicine, accuracy",True,3,model_card
+5361,GPT-4o,,openai,openai_gpt4o_system_card,mmlu,MMLU,knowledge,college_medicine,0.89,scored,,5,,,accuracy,"5-shot, college_medicine, accuracy",True,3,model_card
 5363,GPT-4o,,openai,openai_gpt4o_system_card,medmcqa,MedMCQA,other,dev,0.77,scored,,0,,,accuracy,"0-shot, dev, accuracy",True,3,model_card
 5365,GPT-4o,,openai,openai_gpt4o_system_card,medmcqa,MedMCQA,other,dev,0.79,scored,,5,,,accuracy,"5-shot, dev, accuracy",True,3,model_card
 5386,GPT-4o,,openai,openai_gpt4o_system_card,arc,ARC,other,easy,94.8,scored,,0,,English,accuracy,"0-shot, easy, accuracy",True,3,model_card
@@ -959,7 +959,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5429,GPT-5.5,,openai,openai_gpt55_system_card,cot_monitorability_evaluation,CoT Monitorability Evaluation,other,health_queries_patient_opinion,,mentioned,,,,,,health_queries_patient_opinion,True,3,model_card
 5430,,,openai,openai_gpt55_system_card,anti_scheming_evaluation,Anti-Scheming Evaluation,other,,,mentioned,,,,,,default,True,3,model_card
 5431,,,openai,openai_gpt55_system_card,memory_evaluation,Memory Evaluation,other,,,mentioned,,,,,,default,True,3,model_card
-5436,,,openai,openai_gpt55_system_card,mmlu,MMLU,general_knowledge,pro,,mentioned,,,,,,pro,True,3,model_card
+5436,,,openai,openai_gpt55_system_card,mmlu,MMLU,knowledge,pro,,mentioned,,,,,,pro,True,3,model_card
 5439,,,openai,openai_gpt55_system_card,swe_bench,SWE-bench,coding,verified,,mentioned,,,,,,verified,True,3,model_card
 5443,GPT-5.5,,openai,openai_gpt55_system_card,first_person_fairness_evaluation,First Person Fairness Evaluation,other,,0.0112,scored,,,,,harm_overall,harm_overall,True,3,model_card
 5444,GPT-5.5,,openai,openai_gpt55_system_card,multimodal_troubleshooting_virology,Multimodal Troubleshooting Virology,other,,,mentioned,,,,,,default,True,3,model_card
@@ -1079,7 +1079,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5624,Claude Opus 4.7,,anthropic,anthropic_opus47_card,decision_theory_evaluation,Decision theory evaluation,other,,,mentioned,,,instruction-tuned,,,instruction-tuned,True,3,model_card
 5625,Claude Opus 4.6,,anthropic,anthropic_opus46_card,cybench,Cybench,agent,,100.0,scored,,,rlhf,,pass_at_30,"rlhf, pass_at_30",True,3,model_card
 5626,Claude Opus 4.6,,anthropic,anthropic_opus46_card,cybergym,CyberGym,agent,,66.0,scored,,,rlhf,,pass_at_1,"rlhf, pass_at_1",True,3,model_card
-5627,Claude Opus 4.6,,anthropic,anthropic_opus46_card,mmmu,MMMU,multimodal,pro,70.6,scored,,,rlhf,,accuracy,"rlhf, pro, accuracy",True,3,model_card
+5627,Claude Opus 4.6,,anthropic,anthropic_opus46_card,mmmu,MMMU,vision,pro,70.6,scored,,,rlhf,,accuracy,"rlhf, pro, accuracy",True,3,model_card
 5628,Claude Opus 4.6,,anthropic,anthropic_opus46_card,hle,HLE,other,,53.0,scored,with-tools,,rlhf,,accuracy,"with-tools, rlhf, accuracy",True,3,model_card
 5629,Claude Opus 4.6,,anthropic,anthropic_opus46_card,browsecomp,BrowseComp,agent,,83.73,scored,,,rlhf,,accuracy,"rlhf, accuracy",True,3,model_card
 5630,Claude Opus 4.6,,anthropic,anthropic_opus46_card,browsecomp,BrowseComp,agent,,86.57,scored,,,rlhf,,accuracy,"rlhf, accuracy",True,3,model_card
@@ -1094,7 +1094,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5639,Claude Opus 4.6,,anthropic,anthropic_opus46_card,gdpval_aa,GDPval-AA,other,,,mentioned,,,rlhf,,,rlhf,True,3,model_card
 5640,Claude Opus 4.6,,anthropic,anthropic_opus46_card,gpqa,GPQA,reasoning,diamond,,mentioned,,,rlhf,,,"rlhf, diamond",True,3,model_card
 5641,Claude Opus 4.6,,anthropic,anthropic_opus46_card,aime,AIME,math,2025,,mentioned,,,rlhf,,,"rlhf, 2025",True,3,model_card
-5642,Claude Opus 4.6,,anthropic,anthropic_opus46_card,mmlu,MMLU,general_knowledge,multilingual,,mentioned,,,rlhf,Average,,"Average, rlhf, multilingual",True,3,model_card
+5642,Claude Opus 4.6,,anthropic,anthropic_opus46_card,mmlu,MMLU,knowledge,multilingual,,mentioned,,,rlhf,Average,,"Average, rlhf, multilingual",True,3,model_card
 5643,Claude Opus 4.6,,anthropic,anthropic_opus46_card,vending_bench,Vending-Bench,other,2,,mentioned,,,rlhf,,,"rlhf, 2",True,3,model_card
 5644,Claude Opus 4.6,,anthropic,anthropic_opus46_card,mcp_atlas,MCP Atlas,other,,,mentioned,,,rlhf,,,rlhf,True,3,model_card
 5645,Claude Opus 4.6,,anthropic,anthropic_opus46_card,mrcr,MRCR,other,v2,,mentioned,,,rlhf,,,"rlhf, v2",True,3,model_card
@@ -1109,7 +1109,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5654,Claude Opus 4.6,,anthropic,anthropic_opus46_card,biomysterybench,BioMysteryBench,other,,,mentioned,,,rlhf,,,rlhf,True,3,model_card
 5664,Claude Opus 4.8,,anthropic,anthropic_opus48_card,gpqa,GPQA,reasoning,,,mentioned,extended-thinking,,,,,extended-thinking,True,3,model_card
 5665,Claude Opus 4.8,,anthropic,anthropic_opus48_card,hle,HLE,other,,,mentioned,extended-thinking,,,,,extended-thinking,True,3,model_card
-5666,Claude Opus 4.8,,anthropic,anthropic_opus48_card,mmlu,MMLU,general_knowledge,pro,,mentioned,extended-thinking,,,,,"extended-thinking, pro",True,3,model_card
+5666,Claude Opus 4.8,,anthropic,anthropic_opus48_card,mmlu,MMLU,knowledge,pro,,mentioned,extended-thinking,,,,,"extended-thinking, pro",True,3,model_card
 5667,Claude Opus 4.8,,anthropic,anthropic_opus48_card,gpqa,GPQA,reasoning,physics,,mentioned,extended-thinking,,,,,"extended-thinking, physics",True,3,model_card
 5668,Claude Opus 4.8,,anthropic,anthropic_opus48_card,aime,AIME,math,,,mentioned,extended-thinking,,,,,extended-thinking,True,3,model_card
 5669,Claude Opus 4.8,,anthropic,anthropic_opus48_card,internal_math_benchmark,internal math benchmark,other,,,mentioned,,,unknown,,pass_at_1,pass_at_1,True,3,model_card
@@ -1147,10 +1147,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5776,Claude Opus 4.8,,anthropic,anthropic_opus48_card,programbench,ProgramBench,other,,79.0,scored,,,,,pass_rate,pass_rate,True,3,model_card
 5780,Claude Opus 4.8,,anthropic,anthropic_opus48_card,usamo,USAMO,other,2026,,mentioned,,,,,,2026,True,3,model_card
 5782,,,anthropic,anthropic_opus48_card,swe_bench,SWE-bench,coding,multimodal,,cited,,,,,,multimodal,True,3,model_card
-5783,Gemini 1.5 Flash,,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,pro,67.3,scored,,,instruction-tuned,,accuracy,"instruction-tuned, pro, accuracy",True,3,model_card
-5784,Gemini 1.5 Pro,,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,pro,75.8,scored,,,instruction-tuned,,accuracy,"instruction-tuned, pro, accuracy",True,3,model_card
-5785,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,pro,71.6,scored,,,instruction-tuned,,accuracy,"instruction-tuned, pro, accuracy",True,3,model_card
-5786,Gemini 2.0 Flash,,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,pro,77.6,scored,,,instruction-tuned,,accuracy,"instruction-tuned, pro, accuracy",True,3,model_card
+5783,Gemini 1.5 Flash,,google,google_gemini_2_card,mmlu,MMLU,knowledge,pro,67.3,scored,,,instruction-tuned,,accuracy,"instruction-tuned, pro, accuracy",True,3,model_card
+5784,Gemini 1.5 Pro,,google,google_gemini_2_card,mmlu,MMLU,knowledge,pro,75.8,scored,,,instruction-tuned,,accuracy,"instruction-tuned, pro, accuracy",True,3,model_card
+5785,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,mmlu,MMLU,knowledge,pro,71.6,scored,,,instruction-tuned,,accuracy,"instruction-tuned, pro, accuracy",True,3,model_card
+5786,Gemini 2.0 Flash,,google,google_gemini_2_card,mmlu,MMLU,knowledge,pro,77.6,scored,,,instruction-tuned,,accuracy,"instruction-tuned, pro, accuracy",True,3,model_card
 5787,Gemini 1.5 Flash,,google,google_gemini_2_card,livecodebench,LiveCodeBench,coding,v5,30.7,scored,,,instruction-tuned,,,"instruction-tuned, v5",True,3,model_card
 5788,Gemini 1.5 Pro,,google,google_gemini_2_card,livecodebench,LiveCodeBench,coding,v5,34.2,scored,,,instruction-tuned,,,"instruction-tuned, v5",True,3,model_card
 5789,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,livecodebench,LiveCodeBench,coding,v5,28.9,scored,,,instruction-tuned,,,"instruction-tuned, v5",True,3,model_card
@@ -1171,10 +1171,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5804,Gemini 1.5 Pro,,google,google_gemini_2_card,facts_grounding,FACTS Grounding,other,,80.0,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 5805,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,facts_grounding,FACTS Grounding,other,,83.6,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 5806,Gemini 2.0 Flash,,google,google_gemini_2_card,facts_grounding,FACTS Grounding,other,,84.6,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
-5807,Gemini 1.5 Flash,,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,global_lite,73.7,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
-5808,Gemini 1.5 Pro,,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,global_lite,80.8,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
-5809,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,global_lite,78.2,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
-5810,Gemini 2.0 Flash,,google,google_gemini_2_card,mmlu,MMLU,general_knowledge,global_lite,83.4,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
+5807,Gemini 1.5 Flash,,google,google_gemini_2_card,mmlu,MMLU,knowledge,global_lite,73.7,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
+5808,Gemini 1.5 Pro,,google,google_gemini_2_card,mmlu,MMLU,knowledge,global_lite,80.8,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
+5809,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,mmlu,MMLU,knowledge,global_lite,78.2,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
+5810,Gemini 2.0 Flash,,google,google_gemini_2_card,mmlu,MMLU,knowledge,global_lite,83.4,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
 5811,Gemini 1.5 Flash,,google,google_gemini_2_card,math,MATH,math,,77.9,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 5812,Gemini 1.5 Pro,,google,google_gemini_2_card,math,MATH,math,,86.5,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 5813,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,math,MATH,math,,86.8,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
@@ -1187,10 +1187,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5820,Gemini 1.5 Pro,,google,google_gemini_2_card,mrcr,MRCR,other,1m,82.6,scored,,,instruction-tuned,,accuracy,"instruction-tuned, 1m, accuracy",True,3,model_card
 5821,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,mrcr,MRCR,other,1m,58.0,scored,,,instruction-tuned,,accuracy,"instruction-tuned, 1m, accuracy",True,3,model_card
 5822,Gemini 2.0 Flash,,google,google_gemini_2_card,mrcr,MRCR,other,1m,70.5,scored,,,instruction-tuned,,accuracy,"instruction-tuned, 1m, accuracy",True,3,model_card
-5823,Gemini 1.5 Flash,,google,google_gemini_2_card,mmmu,MMMU,multimodal,,62.3,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
-5824,Gemini 1.5 Pro,,google,google_gemini_2_card,mmmu,MMMU,multimodal,,65.9,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
-5825,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,mmmu,MMMU,multimodal,,68.0,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
-5826,Gemini 2.0 Flash,,google,google_gemini_2_card,mmmu,MMMU,multimodal,,71.7,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
+5823,Gemini 1.5 Flash,,google,google_gemini_2_card,mmmu,MMMU,vision,,62.3,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
+5824,Gemini 1.5 Pro,,google,google_gemini_2_card,mmmu,MMMU,vision,,65.9,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
+5825,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,mmmu,MMMU,vision,,68.0,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
+5826,Gemini 2.0 Flash,,google,google_gemini_2_card,mmmu,MMMU,vision,,71.7,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 5827,Gemini 1.5 Flash,,google,google_gemini_2_card,covost2,CoVoST2,other,21_lang,37.4,scored,,,instruction-tuned,Average,bleu,"Average, instruction-tuned, 21_lang, bleu",True,3,model_card
 5828,Gemini 1.5 Pro,,google,google_gemini_2_card,covost2,CoVoST2,other,21_lang,40.1,scored,,,instruction-tuned,Average,bleu,"Average, instruction-tuned, 21_lang, bleu",True,3,model_card
 5829,Gemini 2.0 Flash-Lite,,google,google_gemini_2_card,covost2,CoVoST2,other,21_lang,38.4,scored,,,instruction-tuned,Average,bleu,"Average, instruction-tuned, 21_lang, bleu",True,3,model_card
@@ -1203,34 +1203,34 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 5836,Gemini 2.0 Flash,,google,google_gemini_2_card,multilingual_safety,Multilingual Safety,other,,-1.0,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, accuracy",True,3,model_card
 5837,Gemini 2.0 Flash,,google,google_gemini_2_card,tone,Tone,other,,1.5,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
 5838,Gemini 2.0 Flash,,google,google_gemini_2_card,instruction_following_safety,Instruction Following (Safety),other,,0.0,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
-5839,Llama 1 7B,,meta,meta_llama2_card,mmlu,MMLU,general_knowledge,,35.1,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
+5839,Llama 1 7B,,meta,meta_llama2_card,mmlu,MMLU,knowledge,,35.1,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
 5840,Gemini 2.0 Flash,,google,google_gemini_2_card,image_to_text_safety,Image to Text Safety,other,,1.5,scored,,,instruction-tuned,,accuracy,"instruction-tuned, accuracy",True,3,model_card
-5841,Llama 1 13B,,meta,meta_llama2_card,mmlu,MMLU,general_knowledge,,46.9,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
+5841,Llama 1 13B,,meta,meta_llama2_card,mmlu,MMLU,knowledge,,46.9,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
 5842,Gemini 2.0 Flash,,google,google_gemini_2_card,frontier_safety_framework,Frontier Safety Framework,other,,,mentioned,,,instruction-tuned,,,instruction-tuned,True,3,model_card
-5843,Llama 1 33B,,meta,meta_llama2_card,mmlu,MMLU,general_knowledge,,57.8,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5844,Llama 3.1 8B Instruct,,meta,meta_responsible_use,mmlu,MMLU,general_knowledge,,73.0,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, accuracy",True,3,model_card
-5845,Llama 1 65B,,meta,meta_llama2_card,mmlu,MMLU,general_knowledge,,63.4,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5846,Llama 3.1 70B Instruct,,meta,meta_responsible_use,mmlu,MMLU,general_knowledge,,86.0,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, accuracy",True,3,model_card
-5847,Llama 2 7B,,meta,meta_llama2_card,mmlu,MMLU,general_knowledge,,45.3,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5848,Llama 3.3 70B Instruct,,meta,meta_responsible_use,mmlu,MMLU,general_knowledge,,86.0,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, accuracy",True,3,model_card
-5849,Llama 2 13B,,meta,meta_llama2_card,mmlu,MMLU,general_knowledge,,54.8,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5850,Llama 3.1 405B Instruct,,meta,meta_responsible_use,mmlu,MMLU,general_knowledge,,88.6,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, accuracy",True,3,model_card
-5851,Llama 2 70B,,meta,meta_llama2_card,mmlu,MMLU,general_knowledge,,68.9,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5852,Llama 3.1 8B Instruct,,meta,meta_responsible_use,mmlu,MMLU,general_knowledge,pro,48.3,scored,cot,5,instruction-tuned,English,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
+5843,Llama 1 33B,,meta,meta_llama2_card,mmlu,MMLU,knowledge,,57.8,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
+5844,Llama 3.1 8B Instruct,,meta,meta_responsible_use,mmlu,MMLU,knowledge,,73.0,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, accuracy",True,3,model_card
+5845,Llama 1 65B,,meta,meta_llama2_card,mmlu,MMLU,knowledge,,63.4,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
+5846,Llama 3.1 70B Instruct,,meta,meta_responsible_use,mmlu,MMLU,knowledge,,86.0,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, accuracy",True,3,model_card
+5847,Llama 2 7B,,meta,meta_llama2_card,mmlu,MMLU,knowledge,,45.3,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
+5848,Llama 3.3 70B Instruct,,meta,meta_responsible_use,mmlu,MMLU,knowledge,,86.0,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, accuracy",True,3,model_card
+5849,Llama 2 13B,,meta,meta_llama2_card,mmlu,MMLU,knowledge,,54.8,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
+5850,Llama 3.1 405B Instruct,,meta,meta_responsible_use,mmlu,MMLU,knowledge,,88.6,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, accuracy",True,3,model_card
+5851,Llama 2 70B,,meta,meta_llama2_card,mmlu,MMLU,knowledge,,68.9,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
+5852,Llama 3.1 8B Instruct,,meta,meta_responsible_use,mmlu,MMLU,knowledge,pro,48.3,scored,cot,5,instruction-tuned,English,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
 5853,Llama 1 7B,,meta,meta_llama2_card,bbh,BBH,other,,30.3,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5854,Llama 3.1 70B Instruct,,meta,meta_responsible_use,mmlu,MMLU,general_knowledge,pro,66.4,scored,cot,5,instruction-tuned,English,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
+5854,Llama 3.1 70B Instruct,,meta,meta_responsible_use,mmlu,MMLU,knowledge,pro,66.4,scored,cot,5,instruction-tuned,English,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
 5855,Llama 1 13B,,meta,meta_llama2_card,bbh,BBH,other,,37.0,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5856,Llama 3.3 70B Instruct,,meta,meta_responsible_use,mmlu,MMLU,general_knowledge,pro,68.9,scored,cot,5,instruction-tuned,English,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
+5856,Llama 3.3 70B Instruct,,meta,meta_responsible_use,mmlu,MMLU,knowledge,pro,68.9,scored,cot,5,instruction-tuned,English,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
 5857,Llama 1 33B,,meta,meta_llama2_card,bbh,BBH,other,,39.8,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5858,Llama 3.1 405B Instruct,,meta,meta_responsible_use,mmlu,MMLU,general_knowledge,pro,73.3,scored,cot,5,instruction-tuned,English,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
+5858,Llama 3.1 405B Instruct,,meta,meta_responsible_use,mmlu,MMLU,knowledge,pro,73.3,scored,cot,5,instruction-tuned,English,accuracy,"5-shot, cot, instruction-tuned, pro, accuracy",True,3,model_card
 5859,Llama 1 65B,,meta,meta_llama2_card,bbh,BBH,other,,43.5,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5860,Llama 3.1 8B Instruct,,meta,meta_responsible_use,ifeval,IFEval,reasoning,,80.4,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
+5860,Llama 3.1 8B Instruct,,meta,meta_responsible_use,ifeval,IFEval,instruction_following,,80.4,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
 5861,Llama 2 7B,,meta,meta_llama2_card,bbh,BBH,other,,32.6,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5862,Llama 3.1 70B Instruct,,meta,meta_responsible_use,ifeval,IFEval,reasoning,,87.5,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
+5862,Llama 3.1 70B Instruct,,meta,meta_responsible_use,ifeval,IFEval,instruction_following,,87.5,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
 5863,Llama 2 13B,,meta,meta_llama2_card,bbh,BBH,other,,39.4,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5864,Llama 3.3 70B Instruct,,meta,meta_responsible_use,ifeval,IFEval,reasoning,,92.1,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
+5864,Llama 3.3 70B Instruct,,meta,meta_responsible_use,ifeval,IFEval,instruction_following,,92.1,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
 5865,Llama 2 70B,,meta,meta_llama2_card,bbh,BBH,other,,51.2,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
-5866,Llama 3.1 405B Instruct,,meta,meta_responsible_use,ifeval,IFEval,reasoning,,88.6,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
+5866,Llama 3.1 405B Instruct,,meta,meta_responsible_use,ifeval,IFEval,instruction_following,,88.6,scored,,,instruction-tuned,English,,instruction-tuned,True,3,model_card
 5867,Llama 3.1 8B Instruct,,meta,meta_responsible_use,gpqa,GPQA,reasoning,diamond,31.8,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, diamond, accuracy",True,3,model_card
 5868,Llama 1 7B,,meta,meta_llama2_card,agieval,AGIEval,other,,23.9,scored,,,pretrained,,accuracy,"pretrained, accuracy",True,3,model_card
 5869,Llama 3.1 70B Instruct,,meta,meta_responsible_use,gpqa,GPQA,reasoning,diamond,48.0,scored,cot,0,instruction-tuned,English,accuracy,"0-shot, cot, instruction-tuned, diamond, accuracy",True,3,model_card
@@ -1399,14 +1399,14 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 6032,gpt-5-instant-aug15,,openai,openai_gpt51_system_card,image_input_evaluations,Image Input Evaluations,other,harms_erotic,0.994,scored,,,,,not_unsafe,"harms_erotic, not_unsafe",True,3,model_card
 6033,gpt-5-instant-oct3,,openai,openai_gpt51_system_card,image_input_evaluations,Image Input Evaluations,other,harms_erotic,0.999,scored,,,,,not_unsafe,"harms_erotic, not_unsafe",True,3,model_card
 6034,gpt-5.1-instant,,openai,openai_gpt51_system_card,image_input_evaluations,Image Input Evaluations,other,harms_erotic,0.999,scored,,,,,not_unsafe,"harms_erotic, not_unsafe",True,3,model_card
-6035,Llama 3.1 70B,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,,79.3,scored,,5,pretrained,,accuracy,"5-shot, pretrained, accuracy",True,3,model_card
-6036,Llama 3.1 405B,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,,85.2,scored,,5,pretrained,,accuracy,"5-shot, pretrained, accuracy",True,3,model_card
-6037,Llama 4 Scout,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,,79.6,scored,,5,pretrained,,accuracy,"5-shot, pretrained, accuracy",True,3,model_card
-6038,Llama 4 Maverick,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,,85.5,scored,,5,pretrained,,accuracy,"5-shot, pretrained, accuracy",True,3,model_card
-6039,Llama 3.1 70B,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,pro,53.8,scored,,5,pretrained,,exact_match,"5-shot, pretrained, pro, exact_match",True,3,model_card
-6040,Llama 3.1 405B,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,pro,61.6,scored,,5,pretrained,,exact_match,"5-shot, pretrained, pro, exact_match",True,3,model_card
-6041,Llama 4 Scout,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,pro,58.2,scored,,5,pretrained,,exact_match,"5-shot, pretrained, pro, exact_match",True,3,model_card
-6042,Llama 4 Maverick,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,pro,62.9,scored,,5,pretrained,,exact_match,"5-shot, pretrained, pro, exact_match",True,3,model_card
+6035,Llama 3.1 70B,,meta,meta_llama4_card,mmlu,MMLU,knowledge,,79.3,scored,,5,pretrained,,accuracy,"5-shot, pretrained, accuracy",True,3,model_card
+6036,Llama 3.1 405B,,meta,meta_llama4_card,mmlu,MMLU,knowledge,,85.2,scored,,5,pretrained,,accuracy,"5-shot, pretrained, accuracy",True,3,model_card
+6037,Llama 4 Scout,,meta,meta_llama4_card,mmlu,MMLU,knowledge,,79.6,scored,,5,pretrained,,accuracy,"5-shot, pretrained, accuracy",True,3,model_card
+6038,Llama 4 Maverick,,meta,meta_llama4_card,mmlu,MMLU,knowledge,,85.5,scored,,5,pretrained,,accuracy,"5-shot, pretrained, accuracy",True,3,model_card
+6039,Llama 3.1 70B,,meta,meta_llama4_card,mmlu,MMLU,knowledge,pro,53.8,scored,,5,pretrained,,exact_match,"5-shot, pretrained, pro, exact_match",True,3,model_card
+6040,Llama 3.1 405B,,meta,meta_llama4_card,mmlu,MMLU,knowledge,pro,61.6,scored,,5,pretrained,,exact_match,"5-shot, pretrained, pro, exact_match",True,3,model_card
+6041,Llama 4 Scout,,meta,meta_llama4_card,mmlu,MMLU,knowledge,pro,58.2,scored,,5,pretrained,,exact_match,"5-shot, pretrained, pro, exact_match",True,3,model_card
+6042,Llama 4 Maverick,,meta,meta_llama4_card,mmlu,MMLU,knowledge,pro,62.9,scored,,5,pretrained,,exact_match,"5-shot, pretrained, pro, exact_match",True,3,model_card
 6043,Llama 3.1 70B,,meta,meta_llama4_card,math,MATH,math,,41.6,scored,,4,pretrained,,exact_match,"4-shot, pretrained, exact_match",True,3,model_card
 6044,Llama 3.1 405B,,meta,meta_llama4_card,math,MATH,math,,53.5,scored,,4,pretrained,,exact_match,"4-shot, pretrained, exact_match",True,3,model_card
 6045,Llama 4 Scout,,meta,meta_llama4_card,math,MATH,math,,50.3,scored,,4,pretrained,,exact_match,"4-shot, pretrained, exact_match",True,3,model_card
@@ -1423,10 +1423,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 6056,Llama 4 Maverick,,meta,meta_llama4_card,chartqa,ChartQA,multimodal,,85.3,scored,,0,pretrained,,relaxed_accuracy,"0-shot, pretrained, relaxed_accuracy",True,3,model_card
 6057,Llama 4 Scout,,meta,meta_llama4_card,docvqa,DocVQA,multimodal,,89.4,scored,,0,pretrained,,anls,"0-shot, pretrained, anls",True,3,model_card
 6058,Llama 4 Maverick,,meta,meta_llama4_card,docvqa,DocVQA,multimodal,,91.6,scored,,0,pretrained,,anls,"0-shot, pretrained, anls",True,3,model_card
-6059,Llama 4 Scout,,meta,meta_llama4_card,mmmu,MMMU,multimodal,,69.4,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, accuracy",True,3,model_card
-6060,Llama 4 Maverick,,meta,meta_llama4_card,mmmu,MMMU,multimodal,,73.4,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, accuracy",True,3,model_card
-6061,Llama 4 Scout,,meta,meta_llama4_card,mmmu,MMMU,multimodal,pro,52.2,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
-6062,Llama 4 Maverick,,meta,meta_llama4_card,mmmu,MMMU,multimodal,pro,59.6,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
+6059,Llama 4 Scout,,meta,meta_llama4_card,mmmu,MMMU,vision,,69.4,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, accuracy",True,3,model_card
+6060,Llama 4 Maverick,,meta,meta_llama4_card,mmmu,MMMU,vision,,73.4,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, accuracy",True,3,model_card
+6061,Llama 4 Scout,,meta,meta_llama4_card,mmmu,MMMU,vision,pro,52.2,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
+6062,Llama 4 Maverick,,meta,meta_llama4_card,mmmu,MMMU,vision,pro,59.6,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
 6063,Llama 4 Scout,,meta,meta_llama4_card,mathvista,MathVista,multimodal,,70.7,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, accuracy",True,3,model_card
 6064,Llama 4 Maverick,,meta,meta_llama4_card,mathvista,MathVista,multimodal,,73.7,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, accuracy",True,3,model_card
 6065,Llama 4 Scout,,meta,meta_llama4_card,chartqa,ChartQA,multimodal,,88.8,scored,,0,instruction-tuned,,relaxed_accuracy,"0-shot, instruction-tuned, relaxed_accuracy",True,3,model_card
@@ -1437,10 +1437,10 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 6070,Llama 3.1 405B,,meta,meta_llama4_card,livecodebench,LiveCodeBench,coding,2024_10_2025_02,27.7,scored,,0,instruction-tuned,,pass_at_1,"0-shot, instruction-tuned, 2024_10_2025_02, pass_at_1",True,3,model_card
 6071,Llama 4 Scout,,meta,meta_llama4_card,livecodebench,LiveCodeBench,coding,2024_10_2025_02,32.8,scored,,0,instruction-tuned,,pass_at_1,"0-shot, instruction-tuned, 2024_10_2025_02, pass_at_1",True,3,model_card
 6072,Llama 4 Maverick,,meta,meta_llama4_card,livecodebench,LiveCodeBench,coding,2024_10_2025_02,43.4,scored,,0,instruction-tuned,,pass_at_1,"0-shot, instruction-tuned, 2024_10_2025_02, pass_at_1",True,3,model_card
-6073,Llama 3.3 70B,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,pro,68.9,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
-6074,Llama 3.1 405B,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,pro,73.4,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
-6075,Llama 4 Scout,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,pro,74.3,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
-6076,Llama 4 Maverick,,meta,meta_llama4_card,mmlu,MMLU,general_knowledge,pro,80.5,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
+6073,Llama 3.3 70B,,meta,meta_llama4_card,mmlu,MMLU,knowledge,pro,68.9,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
+6074,Llama 3.1 405B,,meta,meta_llama4_card,mmlu,MMLU,knowledge,pro,73.4,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
+6075,Llama 4 Scout,,meta,meta_llama4_card,mmlu,MMLU,knowledge,pro,74.3,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
+6076,Llama 4 Maverick,,meta,meta_llama4_card,mmlu,MMLU,knowledge,pro,80.5,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, pro, accuracy",True,3,model_card
 6077,Llama 3.3 70B,,meta,meta_llama4_card,gpqa,GPQA,reasoning,diamond,50.5,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, diamond, accuracy",True,3,model_card
 6078,Llama 3.1 405B,,meta,meta_llama4_card,gpqa,GPQA,reasoning,diamond,49.0,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, diamond, accuracy",True,3,model_card
 6079,Llama 4 Scout,,meta,meta_llama4_card,gpqa,GPQA,reasoning,diamond,57.2,scored,,0,instruction-tuned,,accuracy,"0-shot, instruction-tuned, diamond, accuracy",True,3,model_card
@@ -1581,7 +1581,7 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 6214,o1-mini,,openai,openai_o1_system_card,xstest,XSTest,safety,privacy_public,0.96,scored,,,,,accuracy,"privacy_public, accuracy",True,3,model_card
 6215,Gemini 2.5 Flash,,google,google_gemini_25_card,mrcr,MRCR,other,128k,52.4,scored,,,instruction-tuned,,accuracy,"instruction-tuned, 128k, accuracy",True,3,model_card
 6216,Gemini 2.5 Flash,,google,google_gemini_25_card,mrcr,MRCR,other,1m,16.3,scored,,,instruction-tuned,,accuracy,"instruction-tuned, 1m, accuracy",True,3,model_card
-6217,Gemini 2.5 Flash,,google,google_gemini_25_card,mmlu,MMLU,general_knowledge,global_lite,87.9,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
+6217,Gemini 2.5 Flash,,google,google_gemini_25_card,mmlu,MMLU,knowledge,global_lite,87.9,scored,,,instruction-tuned,Average,accuracy,"Average, instruction-tuned, global_lite, accuracy",True,3,model_card
 6218,Gemini Flash 2.5 Image,,google,google_gemini_25_card,lmarena,LMArena,other,text_to_image_overall,1147.0,scored,,,instruction-tuned,,elo,"instruction-tuned, text_to_image_overall, elo",True,3,model_card
 6219,Imagen 4 Ultra 06-06,,google,google_gemini_25_card,lmarena,LMArena,other,text_to_image_overall,1135.0,scored,,,,,elo,"text_to_image_overall, elo",True,3,model_card
 6220,ChatGPT 4o / GPT Image 1 (High),,google,google_gemini_25_card,lmarena,LMArena,other,text_to_image_overall,1129.0,scored,,,,,elo,"text_to_image_overall, elo",True,3,model_card
@@ -1633,3 +1633,111 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 6266,Qwen Image Edit,,google,google_gemini_25_card,lmarena,LMArena,other,image_editing_stylization,1091.0,scored,,,,,elo,"image_editing_stylization, elo",True,3,model_card
 6267,Gemini Flash 2.0 Image,,google,google_gemini_25_card,lmarena,LMArena,other,image_editing_stylization,733.0,scored,,,instruction-tuned,,elo,"instruction-tuned, image_editing_stylization, elo",True,3,model_card
 6268,Gemini 2.5 Flash,,google,google_gemini_25_card,frontier_safety_framework,Frontier Safety Framework,other,,,mentioned,,,instruction-tuned,,,instruction-tuned,True,3,model_card
+6269,Gemini 3.5 Flash,,google,google_gemini_35_flash_card,text_to_text_safety,Text to Text Safety,other,,-3.9,scored,,,,,accuracy,accuracy,True,3,model_card
+6270,Gemini 3.5 Flash,,google,google_gemini_35_flash_card,multilingual_safety,Multilingual Safety,other,,-2.6,scored,,,,Average,accuracy,"Average, accuracy",True,3,model_card
+6271,Gemini 3.5 Flash,,google,google_gemini_35_flash_card,image_to_text_safety,Image to Text Safety,other,,0.0,scored,,,,,accuracy,accuracy,True,3,model_card
+6272,Gemini 3.5 Flash,,google,google_gemini_35_flash_card,tone,Tone,other,,8.9,scored,,,,,accuracy,accuracy,True,3,model_card
+6273,Gemini 3.5 Flash,,google,google_gemini_35_flash_card,unjustified_refusals,Unjustified-refusals,other,non-egregious,0.8,scored,,,,,accuracy,"non-egregious, accuracy",True,3,model_card
+6274,Gemini 3.5 Flash,,google,google_gemini_35_flash_card,frontier_safety_assessment,Frontier Safety Assessment,other,,,mentioned,,,,,,default,True,3,model_card
+6275,Gemini 3.5 Flash,,google,google_gemini_35_flash_card,frontier_safety_assessment,Frontier Safety Assessment,other,cyber,,mentioned,,,,,,cyber,True,3,model_card
+6276,Gemini 3.5 Flash,,google,google_gemini_35_flash_card,child_safety,Child Safety,other,,,mentioned,,,,,,default,True,3,model_card
+6277,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,cot_control,CoT-Control,other,,1.3,scored,cot,,,,accuracy,"cot, accuracy",True,3,model_card
+6278,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,cot_control,CoT-Control,other,,0.4,scored,cot,,,,accuracy,"cot, accuracy",True,3,model_card
+6279,GPT-5.4 Thinking,gpt-5.6,openai,openai_gpt56_system_card,cot_control,CoT-Control,other,,0.7,scored,cot,,,,accuracy,"cot, accuracy",True,3,model_card
+6280,,gpt-5.6,openai,openai_gpt56_system_card,gpqa,GPQA,reasoning,,,cited,,,,,,default,True,3,model_card
+6281,,gpt-5.6,openai,openai_gpt56_system_card,mmlu,MMLU,knowledge,pro,,cited,,,,,,pro,True,3,model_card
+6282,,gpt-5.6,openai,openai_gpt56_system_card,hle,HLE,other,,,cited,,,,,,default,True,3,model_card
+6283,,gpt-5.6,openai,openai_gpt56_system_card,swe_bench,SWE-bench,coding,verified,,mentioned,,,,,,verified,True,3,model_card
+6284,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,securebio,SecureBio,other,,55.5,scored,,,,,accuracy,accuracy,True,3,model_card
+6285,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,protocolqa,ProtocolQA,other,open_ended,43.5,scored,,,,,accuracy,"open_ended, accuracy",True,3,model_card
+6286,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,aav_capsid_packaging_prediction,AAV_Capsid_Packaging_Prediction,other,,0.528,scored,with-tools,,,,spearman_correlation,"with-tools, spearman_correlation",True,3,model_card
+6287,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,aav_capsid_packaging_prediction,AAV_Capsid_Packaging_Prediction,other,,0.529,scored,with-tools,,,,spearman_correlation,"with-tools, spearman_correlation",True,3,model_card
+6288,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,frontiercyber,FrontierCyber,other,easy,11.0,scored,,,,,accuracy,"easy, accuracy",True,3,model_card
+6289,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,frontiercyber,FrontierCyber,other,medium,12.0,scored,,,,,accuracy,"medium, accuracy",True,3,model_card
+6290,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,frontiercyber,FrontierCyber,other,hard,5.0,scored,,,,,accuracy,"hard, accuracy",True,3,model_card
+6291,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,frontiercyber,FrontierCyber,other,elite,0.0,scored,,,,,accuracy,"elite, accuracy",True,3,model_card
+6292,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,frontiercyber,FrontierCyber,other,easy,6.0,scored,,,,,accuracy,"easy, accuracy",True,3,model_card
+6293,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,frontiercyber,FrontierCyber,other,medium,6.0,scored,,,,,accuracy,"medium, accuracy",True,3,model_card
+6294,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,frontiercyber,FrontierCyber,other,hard,4.0,scored,,,,,accuracy,"hard, accuracy",True,3,model_card
+6295,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,frontiercyber,FrontierCyber,other,elite,0.0,scored,,,,,accuracy,"elite, accuracy",True,3,model_card
+6296,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,cyscenariobench,CyScenarioBench,other,,28.0,scored,,,,,accuracy,accuracy,True,3,model_card
+6297,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,cyscenariobench,CyScenarioBench,other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6298,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,atomic_challenges,Atomic Challenges,other,network_attack_simulation,98.0,scored,,,,,accuracy,"network_attack_simulation, accuracy",True,3,model_card
+6299,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,atomic_challenges,Atomic Challenges,other,vulnerability_research_and_exploitation,91.0,scored,,,,,accuracy,"vulnerability_research_and_exploitation, accuracy",True,3,model_card
+6300,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,atomic_challenges,Atomic Challenges,other,evasion,56.0,scored,,,,,accuracy,"evasion, accuracy",True,3,model_card
+6301,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,atomic_challenges,Atomic Challenges,other,network_attack_simulation,100.0,scored,,,,,accuracy,"network_attack_simulation, accuracy",True,3,model_card
+6302,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,atomic_challenges,Atomic Challenges,other,vulnerability_research_and_exploitation,92.0,scored,,,,,accuracy,"vulnerability_research_and_exploitation, accuracy",True,3,model_card
+6303,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,atomic_challenges,Atomic Challenges,other,evasion,54.0,scored,,,,,accuracy,"evasion, accuracy",True,3,model_card
+6304,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,sec_bench,SEC-Bench,other,pro,,mentioned,,,,,pass_at_1,"pro, pass_at_1",True,3,model_card
+6305,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,exploitgym,ExploitGym,other,,,mentioned,,,,,,default,True,3,model_card
+6306,GPT-5.6 Luna,gpt-5.6,openai,openai_gpt56_system_card,exploitgym,ExploitGym,other,,,mentioned,,,,,,default,True,3,model_card
+6307,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,exploitgym,ExploitGym,other,,,mentioned,,,,,,default,True,3,model_card
+6308,GPT-5.5 Terra,gpt-5.6,openai,openai_gpt56_system_card,exploitgym,ExploitGym,other,,,mentioned,,,,,,default,True,3,model_card
+6309,GPT-5.4,gpt-5.6,openai,openai_gpt56_system_card,exploitgym,ExploitGym,other,,,mentioned,,,,,,default,True,3,model_card
+6310,,gpt-5.6,openai,openai_gpt56_system_card,healthbench,HealthBench,medical,,,mentioned,,,,,,default,True,3,model_card
+6311,GPT-5.6,gpt-5.6,openai,openai_gpt56_system_card,production_benchmarks,Production Benchmarks,other,,,mentioned,without-safeguards,,,,not_unsafe,"without-safeguards, not_unsafe",True,3,model_card
+6312,,gpt-5.6,openai,openai_gpt56_system_card,hard_negative_protein_binding_prediction,Hard Negative Protein Binding Prediction,other,,,mentioned,,,,,,default,True,3,model_card
+6313,,gpt-5.6,openai,openai_gpt56_system_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,,,mentioned,,,,,,default,True,3,model_card
+6314,,gpt-5.6,openai,openai_gpt56_system_card,monorepo_bench,Monorepo-Bench,other,,,mentioned,,,,,,default,True,3,model_card
+6315,,gpt-5.6,openai,openai_gpt56_system_card,opqa,OPQA,other,,,mentioned,,,,,,default,True,3,model_card
+6316,,gpt-5.6,openai,openai_gpt56_system_card,kernelgen,KernelGen,other,1p,,mentioned,,,,,,1p,True,3,model_card
+6317,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,posttrainbench,PostTrainBench,other,lite,,mentioned,,,,,,lite,True,3,model_card
+6318,GPT-5.6 Terra,gpt-5.6,openai,openai_gpt56_system_card,posttrainbench,PostTrainBench,other,lite,,mentioned,,,,,,lite,True,3,model_card
+6319,GPT-5.5,gpt-5.6,openai,openai_gpt56_system_card,posttrainbench,PostTrainBench,other,lite,,mentioned,,,,,,lite,True,3,model_card
+6320,,gpt-5.6,openai,openai_gpt56_system_card,mle_bench,MLE-bench,other,revised,,mentioned,,,,,,revised,True,3,model_card
+6321,,gpt-5.6,openai,openai_gpt56_system_card,aime,AIME,math,2025,,mentioned,,,,,,2025,True,3,model_card
+6322,,gpt-5.6,openai,openai_gpt56_system_card,bfcl,BFCL,coding,,,mentioned,,,,,,default,True,3,model_card
+6323,,gpt-5.6,openai,openai_gpt56_system_card,gsm8k,GSM8K,math,,,mentioned,,,,,,default,True,3,model_card
+6324,,gpt-5.6,openai,openai_gpt56_system_card,humaneval,HumanEval,coding,,,mentioned,,,,,,default,True,3,model_card
+6325,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,terminal_bench_2_1,Terminal-bench 2.1,other,,76.2,scored,,,,,,Terminus-2 harness,True,3,model_card
+6326,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,swe_bench_pro,SWE-bench Pro,other,,53.9,scored,,,,,,single attempt,True,3,model_card
+6327,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,mcp_atlas,MCP Atlas,other,,83.6,scored,,,,,,multi-step MCP workflows,True,3,model_card
+6328,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,toolathon,Toolathon,other,,56.5,scored,,,,,,real-world tool use,True,3,model_card
+6329,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,osworld_verified,OSWorld-Verified,agent,,78.4,scored,,,,,,agentic computer use,True,3,model_card
+6330,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,finance_agent_v2,Finance Agent v2,other,,57.9,scored,,,,,,financial analysis,True,3,model_card
+6331,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,gdpval_aa,GDPval-AA,other,,1656.0,scored,,,,,,economically valuable knowledge work,True,3,model_card
+6332,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,charxiv_reasoning,CharXiv Reasoning,other,,84.2,scored,,,,,,no tools,True,3,model_card
+6333,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,mmmu_pro,MMMU-Pro,multimodal,,83.6,scored,,,,,,no tools,True,3,model_card
+6334,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,blueprint_bench_2,Blueprint-Bench 2,other,,33.6,scored,,,,,,agentic spatial reasoning,True,3,model_card
+6335,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,mrcr_v2_8_needle,MRCR v2 (8-needle),other,,77.3,scored,,,,,,128k average,True,3,model_card
+6336,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,humanity_s_last_exam,Humanity's Last Exam,other,,40.2,scored,,,,,,"full set, text + MMI",True,3,model_card
+6337,Gemini 3.5 Flash,gemini-3.5,google,google_gemini_35_flash_card,arc_agi_2,ARC-AGI-2,reasoning,,72.1,scored,,,,,,abstract reasoning,True,3,model_card
+6338,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,healthbench_consensus,HealthBench Consensus,other,,95.5,scored,,,,,,consensus,True,3,model_card
+6339,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,healthbench_professional,HealthBench Professional,other,,60.5,scored,,,,,,professional,True,3,model_card
+6340,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,healthbench,HealthBench,medical,,57.0,scored,,,,,,open-ended health,True,3,model_card
+6341,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,healthbench_hard,HealthBench Hard,other,,33.1,scored,,,,,,challenging,True,3,model_card
+6342,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,tacit_knowledge,Tacit Knowledge,other,,84.1,scored,,,,,,"refusals-as-success, 60 MCQ",True,3,model_card
+6343,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,protocolqa,ProtocolQA,other,,43.5,scored,,,,,,108 modified protocols,True,3,model_card
+6344,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,multimodal_troubleshooting_virology,Multimodal Troubleshooting Virology,other,,55.5,scored,,,,,,350 questions,True,3,model_card
+6345,GPT-5.6 Sol,gpt-5.6,openai,openai_gpt56_system_card,troubleshooting_bench,Troubleshooting Bench,other,,48.0,scored,,,,,,156 expert protocols,True,3,model_card
+6346,GPT-5.6 Terra,gpt-5.6,openai,openai_gpt56_system_card,healthbench_professional,HealthBench Professional,other,,57.7,scored,,,,,,professional,True,3,model_card
+6347,GPT-5.6 Terra,gpt-5.6,openai,openai_gpt56_system_card,healthbench_consensus,HealthBench Consensus,other,,95.1,scored,,,,,,consensus,True,3,model_card
+6348,GPT-5.6 Luna,gpt-5.6,openai,openai_gpt56_system_card,healthbench_professional,HealthBench Professional,other,,55.7,scored,,,,,,professional,True,3,model_card
+6349,GPT-5.6 Luna,gpt-5.6,openai,openai_gpt56_system_card,healthbench_consensus,HealthBench Consensus,other,,95.1,scored,,,,,,consensus,True,3,model_card
+6350,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,swe_bench_verified,SWE-bench Verified,coding,,95.0,scored,,,,,,production safeguards,True,3,model_card
+6351,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,swe_bench_pro,SWE-bench Pro,other,,80.0,scored,,,,,,production safeguards,True,3,model_card
+6352,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,terminal_bench_2_1,Terminal-bench 2.1,other,,84.3,scored,,,,,,"mini-SWE harness, high effort",True,3,model_card
+6353,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,osworld_verified,OSWorld-Verified,agent,,85.0,scored,,,,,,agentic computer use,True,3,model_card
+6354,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,frontiercode,FrontierCode,other,,29.3,scored,,,,,,"Diamond subset, xhigh effort",True,3,model_card
+6355,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,gdpval_aa,GDPval-AA,other,,1932.0,scored,,,,,,economically valuable knowledge work,True,3,model_card
+6356,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,gdp_pdf,GDP.pdf,other,,29.8,scored,,,,,,document understanding,True,3,model_card
+6357,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,officeqa_pro,OfficeQA Pro,other,,57.9,scored,,,,,,office tasks,True,3,model_card
+6358,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,automation_bench,Automation Bench,other,,17.4,scored,,,,,,automation tasks,True,3,model_card
+6359,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,blueprint_bench_2,Blueprint-Bench 2,other,,38.6,scored,,,,,,spatial reasoning,True,3,model_card
+6360,Claude Fable 5,claude-fable-5,anthropic,anthropic_fable5_card,legal_agent_benchmark,Legal Agent Benchmark,other,,13.3,scored,,,,,,Harvey held-out set,True,3,model_card
+6361,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,swe_bench_verified,SWE-bench Verified,coding,,95.5,scored,,,,,,max effort,True,3,model_card
+6362,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,swe_bench_pro,SWE-bench Pro,other,,80.3,scored,,,,,,max effort,True,3,model_card
+6363,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,swe_bench_multilingual,SWE-bench Multilingual,other,,92.2,scored,,,,,,9 languages,True,3,model_card
+6364,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,swe_bench_multimodal,SWE-bench Multimodal,other,,54.9,scored,,,,,,visual context,True,3,model_card
+6365,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,terminal_bench_2_1,Terminal-bench 2.1,other,,88.0,scored,,,,,,mini-SWE harness,True,3,model_card
+6366,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,browsecomp,BrowseComp,agent,,88.0,scored,,,,,,single-agent,True,3,model_card
+6367,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,humanity_s_last_exam,Humanity's Last Exam,other,,59.0,scored,,,,,,no tools,True,3,model_card
+6368,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,charxiv_reasoning,CharXiv Reasoning,other,,88.9,scored,,,,,,no tools,True,3,model_card
+6369,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,biomysterybench,BioMysteryBench,other,,83.9,scored,,,,,,human-level subset,True,3,model_card
+6370,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,osworld_verified,OSWorld-Verified,agent,,85.0,scored,,,,,,agentic computer use,True,3,model_card
+6371,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,critpt,CritPt,other,,28.6,scored,,,,,,physics research,True,3,model_card
+6372,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,arxivmath,ArxivMath,other,,78.5,scored,,,,,,research math,True,3,model_card
+6373,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,riemannbench,RiemannBench,other,,55.0,scored,,,,,,math,True,3,model_card
+6374,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,graphwalks_bfs_256k,GraphWalks BFS 256K,other,,91.1,scored,,,,,,long context,True,3,model_card
+6375,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,healthbench,HealthBench,medical,,62.7,scored,,,,,,open-ended health,True,3,model_card
+6376,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,healthbench_professional,HealthBench Professional,other,,66.0,scored,,,,,,professional,True,3,model_card

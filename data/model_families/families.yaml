@@ -61,6 +61,16 @@ families:
         version_label: "4.8-opus"
         release_date: 2026-05-28
         document_slug: anthropic_opus48_card
+      - slug: claude-fable-5
+        name: Claude Fable 5
+        version_label: "fable-5"
+        release_date: 2026-06-09
+        document_slug: anthropic_fable5_card
+      - slug: claude-mythos-5
+        name: Claude Mythos 5
+        version_label: "mythos-5"
+        release_date: 2026-06-09
+        document_slug: anthropic_fable5_card
 
   - slug: gpt
     lab_slug: openai
@@ -102,6 +112,16 @@ families:
         name: GPT-5.3 Codex
         version_label: "5.3"
         document_slug: openai_gpt53_codex_card
+      - slug: gpt-5.5
+        name: GPT-5.5
+        version_label: "5.5"
+        release_date: 2026-04-23
+        document_slug: openai_gpt55_system_card
+      - slug: gpt-5.6
+        name: GPT-5.6
+        version_label: "5.6"
+        release_date: 2026-06-26
+        document_slug: openai_gpt56_system_card
 
   - slug: gemini
     lab_slug: google
@@ -143,6 +163,11 @@ families:
         name: Gemini 3.1 Pro
         version_label: "3.1-pro"
         document_slug: google_gemini_31_pro_card
+      - slug: gemini-3.5
+        name: Gemini 3.5 Flash
+        version_label: "3.5"
+        release_date: 2026-05-19
+        document_slug: google_gemini_35_flash_card
 
   - slug: llama
     lab_slug: meta

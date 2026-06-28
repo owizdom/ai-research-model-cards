@@ -72,6 +72,15 @@
     "word_count_latest": 6781
   },
   {
+    "slug": "anthropic_fable5_card",
+    "title": "Claude Fable 5 & Mythos 5 System Card",
+    "doc_type": "model_card",
+    "lab_slug": "anthropic",
+    "source_url": "https://www.anthropic.com/claude-fable-5-mythos-5-system-card",
+    "updated_at": "2026-06-28T17:20:44.356248+00:00",
+    "word_count_latest": 66211
+  },
+  {
     "slug": "anthropic_haiku45_card",
     "title": "Claude Haiku 4.5 System Card",
     "doc_type": "model_card",
@@ -259,6 +268,15 @@
     "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Pro-Model-Card.pdf",
     "updated_at": "2026-03-31T11:27:36.734953+00:00",
     "word_count_latest": 1755
+  },
+  {
+    "slug": "google_gemini_35_flash_card",
+    "title": "Gemini 3.5 Flash Model Card",
+    "doc_type": "model_card",
+    "lab_slug": "google",
+    "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf",
+    "updated_at": "2026-06-28T17:19:01.405699+00:00",
+    "word_count_latest": 1166
   },
   {
     "slug": "google_gemini_3_card",
@@ -574,6 +592,15 @@
     "source_url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
     "updated_at": "2026-04-23T18:40:07.654336+00:00",
     "word_count_latest": 14496
+  },
+  {
+    "slug": "openai_gpt56_system_card",
+    "title": "GPT-5.6 Preview System Card",
+    "doc_type": "model_card",
+    "lab_slug": "openai",
+    "source_url": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf",
+    "updated_at": "2026-06-28T17:19:23.821239+00:00",
+    "word_count_latest": 19590
   },
   {
     "slug": "openai_gpt5_system_card",

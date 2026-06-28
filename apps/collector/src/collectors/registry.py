@@ -46,6 +46,7 @@ SOURCES: list[Source] = [
     Source("anthropic_mythos_card",  "anthropic", "Claude Mythos Preview System Card", "model_card", "https://www-cdn.anthropic.com/8b8380204f74670be75e81c820ca8dda846ab289.pdf", "pdf"),
     Source("anthropic_opus47_card",  "anthropic", "Claude Opus 4.7 System Card", "model_card",    "https://anthropic.com/claude-opus-4-7-system-card",                            "pdf"),
     Source("anthropic_opus48_card",  "anthropic", "Claude Opus 4.8 System Card", "model_card",    "https://www.anthropic.com/claude-opus-4-8-system-card",                        "pdf"),
+    Source("anthropic_fable5_card",  "anthropic", "Claude Fable 5 & Mythos 5 System Card", "model_card", "https://www.anthropic.com/claude-fable-5-mythos-5-system-card", "pdf"),
     Source("anthropic_safeguards",    "anthropic", "Building Safeguards for Claude","constitution",  "https://www.anthropic.com/news/building-safeguards-for-claude",                   "html"),
 
     # ── OpenAI ────────────────────────────────────────────────────────────────
@@ -66,6 +67,7 @@ SOURCES: list[Source] = [
     Source("openai_gpt52_system_card",  "openai", "GPT-5.2 System Card",              "model_card",   "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "pdf"),
     Source("openai_gpt53_codex_card",   "openai", "GPT-5.3 Codex System Card",        "model_card",   "https://cdn.openai.com/pdf/23eca107-a9b1-4d2c-b156-7deb4fbc697c/GPT-5-3-Codex-System-Card-02.pdf", "pdf"),
     Source("openai_gpt55_system_card",  "openai", "GPT-5.5 System Card",              "model_card",   "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",                       "pdf"),
+    Source("openai_gpt56_system_card",  "openai", "GPT-5.6 Preview System Card",       "model_card",   "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf",       "pdf"),
 
     # ── Google DeepMind ───────────────────────────────────────────────────────
     Source("google_ai_principles",     "google", "AI Principles",                 "constitution",  "https://ai.google/responsibility/principles/",                                    "html"),
@@ -79,6 +81,7 @@ SOURCES: list[Source] = [
     Source("google_gemini_3_pro_card", "google", "Gemini 3 Pro Model Card",     "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf", "pdf"),
     Source("google_gemini_25dt_card",  "google", "Gemini 2.5 Deep Think Card",  "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Deep-Think-Model-Card.pdf", "pdf"),
     Source("google_gemini_31_pro_card","google", "Gemini 3.1 Pro Model Card",   "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Pro-Model-Card.pdf", "pdf"),
+    Source("google_gemini_35_flash_card","google", "Gemini 3.5 Flash Model Card", "model_card",    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "pdf"),
     Source("google_prohibited_use",    "google", "Generative AI Prohibited Use", "usage_policy",  "https://policies.google.com/terms/generative-ai/use-policy",                      "html"),
     Source("google_frontier_safety",   "google", "Frontier Safety Framework",    "constitution",  "https://deepmind.google/blog/updating-the-frontier-safety-framework/",            "html"),
     Source("google_responsibility",    "google", "Responsibility & Safety",      "constitution",  "https://deepmind.google/responsibility-and-safety/",                              "html"),
