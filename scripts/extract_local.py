@@ -243,6 +243,50 @@ def parse_results(raw: str) -> list[dict]:
     return []
 
 
+def reconcile_with_tables(results: list[dict], content: str) -> list[dict]:
+    """Let the tables overrule the model on attribution and score.
+
+    The CLI reads a benchmark table as prose and has to infer which column
+    belongs to which model. It gets that wrong on every family report: all 22
+    rows of anthropic_model_card came back as "Claude 3 Opus", so Sonnet and
+    Haiku were published with Opus's GPQA of 50.4 when they score 40.4 and 33.3.
+
+    packages/table_extract reads the same table by column, using the x-offsets
+    pdftotext -layout preserves. Where a benchmark appears in a table, its cells
+    replace whatever the CLI inferred, and every model column becomes its own
+    row so siblings stop inheriting each other's numbers. Prose-only findings
+    the tables do not cover are kept as the CLI reported them.
+    """
+    try:
+        from packages.table_extract import extract_tables
+    except Exception:
+        return results
+
+    tables = extract_tables(content or "")
+    if not tables:
+        return results
+
+    from_tables: dict[tuple[str, str], dict] = {}
+    for t in tables:
+        for bench, vals in t.rows.items():
+            for col, model in enumerate(t.models):
+                if not model or col >= len(vals) or vals[col] is None:
+                    continue
+                key = (_slugify(bench), _slugify(model))
+                from_tables.setdefault(key, {
+                    "benchmark_name": bench.strip(),
+                    "model_name": model.strip(),
+                    "score": vals[col],
+                    "state": "scored",
+                    "context": "read by column from the document's table",
+                })
+
+    covered = {_slugify(r.get("benchmark_name") or "") for r in from_tables.values()}
+    kept = [r for r in results
+            if _slugify(r.get("benchmark_name") or "") not in covered]
+    return kept + list(from_tables.values())
+
+
 def upsert_benchmark(cur, name: str) -> int | None:
     """Resolve a benchmark_name to benchmark_definitions.id, inserting if new."""
     if not name:
@@ -311,6 +355,7 @@ async def extract_one_doc(doc_row: tuple, semaphore: asyncio.Semaphore, apply: b
                     "reason": err, "inserted": 0, "elapsed": elapsed}
 
         results = parse_results(raw)
+        results = reconcile_with_tables(results, content_md or "")
         if not apply:
             return {"doc_id": doc_id, "title": doc_title, "status": "dry-run",
                     "found": len(results), "inserted": 0, "elapsed": elapsed,
