@@ -13,26 +13,23 @@
   ],
   "animal": "falcon",
   "words": "10.8k",
-  "evals": "12",
-  "unique": "43%",
+  "evals": "13",
+  "unique": "85%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "91.5",
-      "c": "#10a37f"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "86.5",
-      "c": "#0d8066"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "BROWSECOMP",
-      "d": "Web navigation tasks",
-      "s": "71.0",
-      "c": "#0a604c"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -56,19 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "91.5",
-      "l": "6 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "GPQA",
-      "s": "86.5",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "BrowseComp",
-      "s": "71.0",
-      "l": "1 lab"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

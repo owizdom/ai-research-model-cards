@@ -13,26 +13,23 @@
   ],
   "animal": "owl",
   "words": "14.1k",
-  "evals": "10",
-  "unique": "48%",
+  "evals": "22",
+  "unique": "44%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "75.2",
-      "c": "#c8832a"
+      "d": "5-shot",
+      "s": "79.1"
     },
     {
-      "n": "HUMANEVAL",
-      "d": "Code generation",
-      "s": "75.9",
-      "c": "#a06820"
+      "n": "GPQA-DIAMOND",
+      "d": "0-shot CoT",
+      "s": "50.4"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "33.3",
-      "c": "#805010"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -65,18 +62,18 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "75.2",
-      "l": "6 labs"
+      "s": "79.1",
+      "l": "5 labs"
     },
     {
-      "n": "HumanEval",
-      "s": "75.9",
-      "l": "4 labs"
+      "n": "GPQA-Diamond",
+      "s": "50.4",
+      "l": "3 labs"
     },
     {
-      "n": "GPQA",
-      "s": "33.3",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

@@ -13,26 +13,23 @@
   ],
   "animal": "dragon",
   "words": "9.9k",
-  "evals": "9",
-  "unique": "38%",
+  "evals": "33",
+  "unique": "86%",
   "benches": [
     {
       "n": "AIME 2024",
-      "d": "Competition math",
-      "s": "96.7",
-      "c": "#10a37f"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "87.7",
-      "c": "#0d8066"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "71.7",
-      "c": "#0a604c"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -56,24 +53,24 @@
   ],
   "btbl": [
     {
-      "n": "AIME 2024",
-      "s": "96.7",
-      "l": "2 labs"
+      "n": "Apollo Research Sabotage",
+      "s": "58.0",
+      "l": "1 lab"
     },
     {
-      "n": "GPQA Diamond",
-      "s": "87.7",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "SWE-bench",
-      "s": "71.7",
-      "l": "3 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "MMLU",
-      "s": "92.3",
-      "l": "6 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

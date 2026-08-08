@@ -13,26 +13,23 @@
   ],
   "animal": "falcon",
   "words": "11.6k",
-  "evals": "7",
-  "unique": "28%",
+  "evals": "62",
+  "unique": "83%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "88.7",
-      "c": "#10a37f"
+      "d": "0-shot, anatomy, accuracy",
+      "s": "89.0"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "53.6",
-      "c": "#0d8066"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "HUMANEVAL",
-      "d": "Code generation",
-      "s": "90.2",
-      "c": "#0a604c"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -61,18 +58,18 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "88.7",
-      "l": "6 labs"
+      "s": "89.0",
+      "l": "5 labs"
     },
     {
-      "n": "GPQA",
-      "s": "53.6",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "HumanEval",
-      "s": "90.2",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

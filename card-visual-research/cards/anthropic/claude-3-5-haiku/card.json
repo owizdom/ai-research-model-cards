@@ -13,26 +13,23 @@
   ],
   "animal": "owl",
   "words": "5.8k",
-  "evals": "12",
-  "unique": "55%",
+  "evals": "34",
+  "unique": "50%",
   "benches": [
     {
       "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "40.6",
-      "c": "#c8832a"
+      "d": "as reported",
+      "s": "49.0"
     },
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "87.2",
-      "c": "#a06820"
+      "d": "5-shot",
+      "s": "88.7"
     },
     {
       "n": "HUMANEVAL",
-      "d": "Code generation",
-      "s": "88.1",
-      "c": "#805010"
+      "d": "0-shot",
+      "s": "93.7"
     }
   ],
   "lineage": [
@@ -57,18 +54,18 @@
   "btbl": [
     {
       "n": "SWE-bench",
-      "s": "40.6",
+      "s": "49.0",
       "l": "3 labs"
     },
     {
       "n": "MMLU",
-      "s": "87.2",
-      "l": "6 labs"
+      "s": "88.7",
+      "l": "5 labs"
     },
     {
       "n": "HumanEval",
-      "s": "88.1",
-      "l": "4 labs"
+      "s": "93.7",
+      "l": "5 labs"
     }
   ],
   "weak": {

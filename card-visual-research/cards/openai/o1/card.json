@@ -13,26 +13,23 @@
   ],
   "animal": "shark",
   "words": "17.4k",
-  "evals": "8",
-  "unique": "35%",
+  "evals": "133",
+  "unique": "80%",
   "benches": [
     {
       "n": "AIME 2024",
-      "d": "Competition math",
-      "s": "83.3",
-      "c": "#10a37f"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "77.3",
-      "c": "#0d8066"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "CODEFORCES",
-      "d": "Competitive coding",
-      "s": "89.0",
-      "c": "#0a604c"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -60,19 +57,19 @@
   ],
   "btbl": [
     {
-      "n": "AIME 2024",
-      "s": "83.3",
-      "l": "2 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "GPQA Diamond",
-      "s": "77.3",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "Codeforces",
-      "s": "89.0",
-      "l": "1 lab"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

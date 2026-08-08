@@ -13,26 +13,23 @@
   ],
   "animal": "bear",
   "words": "3.2k",
-  "evals": "11",
-  "unique": "29%",
+  "evals": "68",
+  "unique": "24%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "85.5",
-      "c": "#0082fb"
+      "d": "5-shot",
+      "s": "79.3"
     },
     {
       "n": "MATH",
-      "d": "Competition math",
-      "s": "88.5",
-      "c": "#0060c0"
+      "d": "4-shot",
+      "s": "41.6"
     },
     {
       "n": "CHARTQA",
-      "d": "Chart understanding",
-      "s": "90.3",
-      "c": "#004090"
+      "d": "0-shot, pretrained",
+      "s": "83.4"
     }
   ],
   "lineage": [
@@ -49,22 +46,22 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "85.5",
-      "l": "6 labs"
-    },
-    {
-      "n": "MATH",
-      "s": "88.5",
+      "s": "79.3",
       "l": "5 labs"
     },
     {
+      "n": "MATH",
+      "s": "41.6",
+      "l": "4 labs"
+    },
+    {
       "n": "ChartQA",
-      "s": "90.3",
+      "s": "83.4",
       "l": "2 labs"
     },
     {
-      "n": "DocVQA",
-      "s": "92.8",
+      "n": "LiveCodeBench",
+      "s": "33.3",
       "l": "2 labs"
     }
   ],

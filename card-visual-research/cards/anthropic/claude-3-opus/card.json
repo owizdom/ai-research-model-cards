@@ -13,26 +13,23 @@
   ],
   "animal": "sphinx",
   "words": "14.1k",
-  "evals": "12",
-  "unique": "52%",
+  "evals": "22",
+  "unique": "44%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "86.8",
-      "c": "#c8832a"
+      "d": "5-shot",
+      "s": "79.1"
     },
     {
-      "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "50.4",
-      "c": "#a06820"
+      "n": "GPQA-DIAMOND",
+      "d": "0-shot CoT",
+      "s": "50.4"
     },
     {
       "n": "MATH",
-      "d": "Competition math",
-      "s": "60.1",
-      "c": "#805010"
+      "d": "Maj@32",
+      "s": "73.7"
     }
   ],
   "lineage": [
@@ -65,23 +62,23 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "86.8",
-      "l": "6 labs"
-    },
-    {
-      "n": "GPQA",
-      "s": "50.4",
-      "l": "4 labs"
-    },
-    {
-      "n": "MATH",
-      "s": "60.1",
+      "s": "79.1",
       "l": "5 labs"
     },
     {
-      "n": "HumanEval",
-      "s": "84.9",
+      "n": "GPQA-Diamond",
+      "s": "50.4",
+      "l": "3 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "73.7",
       "l": "4 labs"
+    },
+    {
+      "n": "MBPP",
+      "s": "86.4",
+      "l": "3 labs"
     }
   ],
   "weak": {

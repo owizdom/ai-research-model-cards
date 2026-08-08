@@ -13,26 +13,23 @@
   ],
   "animal": "octopus",
   "words": "64.6k",
-  "evals": "11",
-  "unique": "40%",
+  "evals": "5",
+  "unique": "25%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "78.9",
-      "c": "#4285f4"
+      "n": "MATH",
+      "d": "0-shot, original problems",
+      "s": "55.8"
     },
     {
       "n": "MATH",
-      "d": "Competition math",
-      "s": "54.9",
-      "c": "#2a5ec8"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "HUMANEVAL",
-      "d": "Code generation",
-      "s": "74.9",
-      "c": "#1a3e90"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -60,19 +57,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "78.9",
-      "l": "6 labs"
-    },
-    {
       "n": "MATH",
-      "s": "54.9",
-      "l": "5 labs"
+      "s": "55.8",
+      "l": "4 labs"
     },
     {
-      "n": "HumanEval",
-      "s": "74.9",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
+    },
+    {
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

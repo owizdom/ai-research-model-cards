@@ -13,26 +13,23 @@
   ],
   "animal": "octopus",
   "words": "1.5k",
-  "evals": "13",
-  "unique": "46%",
+  "evals": "69",
+  "unique": "60%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "86.5",
-      "c": "#4285f4"
+      "d": "as reported",
+      "s": "73.7"
     },
     {
-      "n": "AIME",
-      "d": "Competition math",
-      "s": "74.0",
-      "c": "#2a5ec8"
+      "n": "LIVECODEBENCH",
+      "d": "instruction-tuned, v5",
+      "s": "30.7"
     },
     {
-      "n": "LIVECODE BENCH",
-      "d": "Live coding",
-      "s": "56.0",
-      "c": "#1a3e90"
+      "n": "LIVECODEBENCH V5",
+      "d": "as reported",
+      "s": "30.7"
     }
   ],
   "lineage": [
@@ -61,17 +58,17 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "86.5",
-      "l": "6 labs"
-    },
-    {
-      "n": "AIME",
-      "s": "74.0",
-      "l": "2 labs"
+      "s": "73.7",
+      "l": "5 labs"
     },
     {
       "n": "LiveCodeBench",
-      "s": "56.0",
+      "s": "30.7",
+      "l": "2 labs"
+    },
+    {
+      "n": "LiveCodeBench v5",
+      "s": "30.7",
       "l": "2 labs"
     }
   ],

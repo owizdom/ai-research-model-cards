@@ -18,19 +18,19 @@
   "unique": "71%",
   "benches": [
     {
-      "n": "TACIT KNOWLEDGE",
-      "d": "Troubleshooting under uncertainty",
-      "s": "84.1"
-    },
-    {
-      "n": "MM TROUBLESHOOTING",
-      "d": "Multimodal virology",
-      "s": "55.5"
+      "n": "TACIT KNOWLEDGE AND TROUBLESHOOTING",
+      "d": "mcq, accuracy",
+      "s": "65.0"
     },
     {
       "n": "PROTOCOLQA",
-      "d": "Wet-lab protocol QA",
+      "d": "open_ended, accuracy",
       "s": "43.5"
+    },
+    {
+      "n": "PROTOCOLQA",
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -50,19 +50,19 @@
   ],
   "btbl": [
     {
-      "n": "Tacit Knowledge",
-      "s": "84.1",
-      "l": "1 lab"
-    },
-    {
-      "n": "Multimodal Troubleshooting",
-      "s": "55.5",
+      "n": "Tacit Knowledge and Troubleshooting",
+      "s": "65.0",
       "l": "1 lab"
     },
     {
       "n": "ProtocolQA",
       "s": "43.5",
       "l": "2 labs"
+    },
+    {
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

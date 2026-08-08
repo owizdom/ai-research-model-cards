@@ -13,26 +13,23 @@
   ],
   "animal": "wolf",
   "words": "956",
-  "evals": "8",
-  "unique": "22%",
+  "evals": "62",
+  "unique": "56%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "68.9",
-      "c": "#0082fb"
+      "d": "pretrained, accuracy",
+      "s": "35.1"
     },
     {
       "n": "TRUTHFULQA",
-      "d": "Factual accuracy",
-      "s": "50.2",
-      "c": "#0060c0"
+      "d": "rlhf, accuracy",
+      "s": "57.0"
     },
     {
       "n": "BBQ",
-      "d": "Bias benchmark",
-      "s": "78.0",
-      "c": "#004090"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -61,18 +58,18 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "68.9",
-      "l": "6 labs"
+      "s": "35.1",
+      "l": "5 labs"
     },
     {
       "n": "TruthfulQA",
-      "s": "50.2",
-      "l": "4 labs"
+      "s": "57.0",
+      "l": "2 labs"
     },
     {
-      "n": "BBQ",
-      "s": "78.0",
-      "l": "2 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

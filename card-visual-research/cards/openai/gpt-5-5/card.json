@@ -19,18 +19,18 @@
   "benches": [
     {
       "n": "SANDBAGGING QA",
-      "d": "Strategic deception probe",
+      "d": "as reported",
       "s": "100.0"
     },
     {
-      "n": "UK AISI CYBER",
-      "d": "Lower-difficulty cyber tasks",
+      "n": "ATOMIC CHALLENGES (IRREGULAR)",
+      "d": "as reported",
       "s": "100.0"
     },
     {
       "n": "ATOMIC CHALLENGES",
-      "d": "Irregular task set",
-      "s": "100.0"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -55,14 +55,14 @@
       "l": "1 lab"
     },
     {
-      "n": "UK AISI Cyber Tasks",
-      "s": "100.0",
-      "l": "2 labs"
-    },
-    {
-      "n": "Atomic Challenges",
+      "n": "Atomic Challenges (Irregular)",
       "s": "100.0",
       "l": "1 lab"
+    },
+    {
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

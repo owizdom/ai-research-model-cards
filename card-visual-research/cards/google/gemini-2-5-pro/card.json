@@ -13,26 +13,23 @@
   ],
   "animal": "eagle",
   "words": "7.2k",
-  "evals": "15",
-  "unique": "50%",
+  "evals": "19",
+  "unique": "59%",
   "benches": [
     {
       "n": "AIME",
-      "d": "Competition math",
-      "s": "86.7",
-      "c": "#4285f4"
+      "d": "single attempt (pass@1)",
+      "s": "88.0"
     },
     {
-      "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "84.0",
-      "c": "#2a5ec8"
+      "n": "GPQA-DIAMOND",
+      "d": "single attempt (pass@1)",
+      "s": "86.4"
     },
     {
-      "n": "LIVECODE BENCH",
-      "d": "Live coding",
-      "s": "70.0",
-      "c": "#1a3e90"
+      "n": "LIVECODEBENCH (1/1/2025-5/1/2025)",
+      "d": "single attempt",
+      "s": "69.0"
     }
   ],
   "lineage": [
@@ -61,23 +58,23 @@
   "btbl": [
     {
       "n": "AIME",
-      "s": "86.7",
-      "l": "2 labs"
+      "s": "88.0",
+      "l": "3 labs"
     },
     {
-      "n": "GPQA Diamond",
-      "s": "84.0",
-      "l": "4 labs"
+      "n": "GPQA-Diamond",
+      "s": "86.4",
+      "l": "3 labs"
     },
     {
-      "n": "LiveCodeBench",
-      "s": "70.0",
-      "l": "2 labs"
+      "n": "LiveCodeBench (1/1/2025-5/1/2025)",
+      "s": "69.0",
+      "l": "1 lab"
     },
     {
-      "n": "MMLU",
-      "s": "89.0",
-      "l": "6 labs"
+      "n": "SWE-bench",
+      "s": "59.6",
+      "l": "3 labs"
     }
   ],
   "weak": {

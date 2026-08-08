@@ -12,26 +12,23 @@
   ],
   "animal": "falcon",
   "words": "27.9k",
-  "evals": "4",
-  "unique": "18%",
+  "evals": "2",
+  "unique": "100%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "86.4",
-      "c": "#10a37f"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "ARC",
-      "d": "Grade-school reasoning",
-      "s": "96.3",
-      "c": "#0d8066"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "HELLASWAG",
-      "d": "Common-sense NLI",
-      "s": "95.3",
-      "c": "#0a604c"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -59,24 +56,24 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "86.4",
-      "l": "6 labs"
+      "n": "RealToxicityPrompts",
+      "s": "73.0",
+      "l": "1 lab"
     },
     {
-      "n": "ARC",
-      "s": "96.3",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "HellaSwag",
-      "s": "95.3",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "TruthfulQA",
-      "s": "59.0",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

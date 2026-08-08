@@ -13,26 +13,23 @@
   ],
   "animal": "eagle",
   "words": "2.9k",
-  "evals": "14",
-  "unique": "58%",
+  "evals": "21",
+  "unique": "33%",
   "benches": [
     {
-      "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "49.0",
-      "c": "#c8832a"
+      "n": "MMLU",
+      "d": "5-shot",
+      "s": "88.7"
     },
     {
-      "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "88.7",
-      "c": "#a06820"
+      "n": "GPQA-DIAMOND",
+      "d": "0-shot CoT",
+      "s": "59.4"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "59.4",
-      "c": "#805010"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -60,24 +57,24 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench",
-      "s": "49.0",
+      "n": "MMLU",
+      "s": "88.7",
+      "l": "5 labs"
+    },
+    {
+      "n": "GPQA-Diamond",
+      "s": "59.4",
       "l": "3 labs"
     },
     {
-      "n": "MMLU",
-      "s": "88.7",
-      "l": "6 labs"
+      "n": "Agentic Coding",
+      "s": "64.0",
+      "l": "1 lab"
     },
     {
-      "n": "GPQA",
-      "s": "59.4",
-      "l": "4 labs"
-    },
-    {
-      "n": "HumanEval",
-      "s": "92.0",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

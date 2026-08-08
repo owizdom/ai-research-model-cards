@@ -13,26 +13,23 @@
   ],
   "animal": "sphinx",
   "words": "33.2k",
-  "evals": "17",
-  "unique": "68%",
+  "evals": "36",
+  "unique": "90%",
   "benches": [
     {
       "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "79.4",
-      "c": "#c8832a"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "83.1",
-      "c": "#a06820"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "AIME",
-      "d": "Competition math",
-      "s": "90.2",
-      "c": "#805010"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -60,24 +57,24 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench",
-      "s": "79.4",
-      "l": "3 labs"
+      "n": "Agentic Coding",
+      "s": "88.0",
+      "l": "1 lab"
     },
     {
-      "n": "GPQA Diamond",
-      "s": "83.1",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "AIME",
-      "s": "90.2",
-      "l": "2 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "MMLU",
-      "s": "89.2",
-      "l": "6 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

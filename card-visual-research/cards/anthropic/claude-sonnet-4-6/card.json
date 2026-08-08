@@ -63,5 +63,41 @@
   "ability": {
     "name": "Long Memory",
     "text": "Holds a 1,000,000-token context and sustains recall across the GraphWalks 1M long-context suite."
-  }
+  },
+  "evals": "42",
+  "unique": "73%",
+  "benches": [
+    {
+      "n": "AGENTIC CODING",
+      "d": "without mitigations",
+      "s": "100.0"
+    },
+    {
+      "n": "SWE-BENCH",
+      "d": "as reported",
+      "s": "79.6"
+    },
+    {
+      "n": "GPQA-DIAMOND",
+      "d": "as reported",
+      "s": "89.9"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "Agentic Coding",
+      "s": "100.0",
+      "l": "1 lab"
+    },
+    {
+      "n": "SWE-bench",
+      "s": "79.6",
+      "l": "3 labs"
+    },
+    {
+      "n": "GPQA-Diamond",
+      "s": "89.9",
+      "l": "3 labs"
+    }
+  ]
 }

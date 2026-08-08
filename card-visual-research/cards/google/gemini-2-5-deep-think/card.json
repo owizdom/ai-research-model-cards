@@ -13,26 +13,23 @@
   ],
   "animal": "octopus",
   "words": "6.3k",
-  "evals": "13",
-  "unique": "47%",
+  "evals": "36",
+  "unique": "78%",
   "benches": [
     {
       "n": "AIME",
-      "d": "Competition math",
-      "s": "91.0",
-      "c": "#4285f4"
+      "d": "majority-voting, rlhf",
+      "s": "99.2"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "86.2",
-      "c": "#2a5ec8"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "MATH",
-      "d": "Competition math",
-      "s": "97.0",
-      "c": "#1a3e90"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -57,18 +54,18 @@
   "btbl": [
     {
       "n": "AIME",
-      "s": "91.0",
-      "l": "2 labs"
+      "s": "99.2",
+      "l": "3 labs"
     },
     {
-      "n": "GPQA Diamond",
-      "s": "86.2",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "MATH",
-      "s": "97.0",
-      "l": "5 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

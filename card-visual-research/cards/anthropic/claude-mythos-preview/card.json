@@ -12,30 +12,24 @@
   ],
   "animal": "god",
   "words": "65.8k",
-  "evals": "??",
-  "unique": "??",
+  "evals": "37",
+  "unique": "53%",
   "secret": true,
   "benches": [
     {
       "n": "REDACTED",
-      "d": "",
-      "s": "██",
-      "c": "#222",
-      "na": true
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "REDACTED",
-      "d": "",
-      "s": "██",
-      "c": "#222",
-      "na": true
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "REDACTED",
-      "d": "",
-      "s": "██",
-      "c": "#222",
-      "na": true
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -59,16 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "REDACTED",
-      "s": "██",
-      "l": "classified",
-      "na": true
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "REDACTED",
-      "s": "██",
-      "l": "classified",
-      "na": true
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
+    },
+    {
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

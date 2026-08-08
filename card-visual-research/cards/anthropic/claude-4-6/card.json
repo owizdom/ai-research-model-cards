@@ -13,26 +13,23 @@
   ],
   "animal": "owl",
   "words": "54k",
-  "evals": "18",
-  "unique": "73%",
+  "evals": "47",
+  "unique": "52%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "89.4",
-      "c": "#c8832a"
+      "d": "as reported",
+      "s": "91.1"
     },
     {
       "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "67.1",
-      "c": "#a06820"
+      "d": "as reported",
+      "s": "80.8"
     },
     {
-      "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "74.9",
-      "c": "#805010"
+      "n": "GPQA-DIAMOND",
+      "d": "as reported",
+      "s": "91.3"
     }
   ],
   "lineage": [
@@ -53,18 +50,18 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "89.4",
-      "l": "6 labs"
+      "s": "91.1",
+      "l": "5 labs"
     },
     {
       "n": "SWE-bench",
-      "s": "67.1",
+      "s": "80.8",
       "l": "3 labs"
     },
     {
-      "n": "GPQA Diamond",
-      "s": "74.9",
-      "l": "4 labs"
+      "n": "GPQA-Diamond",
+      "s": "91.3",
+      "l": "3 labs"
     }
   ],
   "weak": {
@@ -80,7 +77,7 @@
     "<strong>Card length</strong> — 53,965 words; four later Anthropic cards run longer.",
     "<strong>73% lab-unique</strong> — most eval choices not echoed by peers."
   ],
-  "blurb": "53,965 words of documentation and 73% lab-unique eval choices. The card itself became a transparency artifact worthy of study.",
+  "blurb": "53,965 words of documentation and 52% lab-unique eval choices. The card itself became a transparency artifact worthy of study.",
   "val": {
     "b": "Internal + METR + UK AISI evaluation, Apr 2026",
     "l": "modelcards.net/claude-4-6",

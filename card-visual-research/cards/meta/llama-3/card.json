@@ -13,26 +13,23 @@
   ],
   "animal": "wolf",
   "words": "1.2k",
-  "evals": "10",
-  "unique": "26%",
+  "evals": "0",
+  "unique": "—",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "79.5",
-      "c": "#0082fb"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "HUMANEVAL",
-      "d": "Code generation",
-      "s": "81.7",
-      "c": "#0060c0"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "MATH",
-      "d": "Competition math",
-      "s": "50.4",
-      "c": "#004090"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -60,19 +57,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "79.5",
-      "l": "6 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "HumanEval",
-      "s": "81.7",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "MATH",
-      "s": "50.4",
-      "l": "5 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {
