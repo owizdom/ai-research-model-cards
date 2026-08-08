@@ -192,6 +192,14 @@
     "document_slug": "anthropic_opus47_card"
   },
   {
+    "slug": "claude-opus-5",
+    "name": "Claude Opus 5",
+    "version_label": "5-opus",
+    "lab_slug": "anthropic",
+    "release_date": null,
+    "document_slug": "anthropic_opus5_card"
+  },
+  {
     "slug": "claude-sonnet-4.5",
     "name": "Claude Sonnet 4.5",
     "version_label": "4.5-sonnet",
@@ -206,6 +214,14 @@
     "lab_slug": "anthropic",
     "release_date": null,
     "document_slug": "anthropic_sonnet46_card"
+  },
+  {
+    "slug": "claude-sonnet-5",
+    "name": "Claude Sonnet 5",
+    "version_label": "5-sonnet",
+    "lab_slug": "anthropic",
+    "release_date": null,
+    "document_slug": "anthropic_sonnet5_card"
   },
   {
     "slug": "gemini-1.0",
@@ -286,6 +302,14 @@
     "lab_slug": "google",
     "release_date": null,
     "document_slug": "google_gemini_35_flash_card"
+  },
+  {
+    "slug": "gemini-3.6",
+    "name": "Gemini 3.6 Flash",
+    "version_label": "3.6",
+    "lab_slug": "google",
+    "release_date": null,
+    "document_slug": "google_gemini_36_flash_card"
   },
   {
     "slug": "gpt-4",

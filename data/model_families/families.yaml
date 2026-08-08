@@ -71,6 +71,16 @@ families:
         version_label: "mythos-5"
         release_date: 2026-06-09
         document_slug: anthropic_fable5_card
+      - slug: claude-sonnet-5
+        name: Claude Sonnet 5
+        version_label: "5-sonnet"
+        release_date: 2026-06-30
+        document_slug: anthropic_sonnet5_card
+      - slug: claude-opus-5
+        name: Claude Opus 5
+        version_label: "5-opus"
+        release_date: 2026-07-24
+        document_slug: anthropic_opus5_card
 
   - slug: gpt
     lab_slug: openai
@@ -168,6 +178,11 @@ families:
         version_label: "3.5"
         release_date: 2026-05-19
         document_slug: google_gemini_35_flash_card
+      - slug: gemini-3.6
+        name: Gemini 3.6 Flash
+        version_label: "3.6"
+        release_date: 2026-07-21
+        document_slug: google_gemini_36_flash_card
 
   - slug: llama
     lab_slug: meta

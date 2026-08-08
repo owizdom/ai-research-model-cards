@@ -1741,3 +1741,401 @@ id,model_name,model_generation_slug,lab_slug,document_slug,benchmark_slug,benchm
 6374,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,graphwalks_bfs_256k,GraphWalks BFS 256K,other,,91.1,scored,,,,,,long context,True,3,model_card
 6375,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,healthbench,HealthBench,medical,,62.7,scored,,,,,,open-ended health,True,3,model_card
 6376,Claude Mythos 5,claude-mythos-5,anthropic,anthropic_fable5_card,healthbench_professional,HealthBench Professional,other,,66.0,scored,,,,,,professional,True,3,model_card
+6377,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,text_to_text_safety,Text to Text Safety,other,,-10.4,scored,,,,,,default,True,3,model_card
+6378,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,multilingual_safety,Multilingual Safety,other,,0.2,scored,,,,Average,,Average,True,3,model_card
+6379,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,image_to_text_safety,Image to Text Safety,other,,3.1,scored,,,,,,default,True,3,model_card
+6380,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,tone,Tone,other,,7.9,scored,,,,,,default,True,3,model_card
+6381,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,unjustified_refusals,Unjustified-refusals,other,,3.7,scored,,,,,,default,True,3,model_card
+6382,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,key_skills_benchmark,key skills benchmark,other,v1_hard,91.67,scored,,,,,solve_rate,"v1_hard, solve_rate",True,3,model_card
+6383,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,key_skills_benchmark,key skills benchmark,other,v2,0.0,scored,,,,,solve_rate,"v2, solve_rate",True,3,model_card
+6384,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,re_bench,RE-Bench,other,,,mentioned,,,,,,default,True,3,model_card
+6385,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,misalignment,Misalignment,other,situational_awareness,27.27,scored,,,,,solve_rate,"situational_awareness, solve_rate",True,3,model_card
+6386,Gemini 3 Pro,gemini-3.0-pro,google,google_gemini_3_pro_card,misalignment,Misalignment,other,stealth,25.0,scored,,,,,solve_rate,"stealth, solve_rate",True,3,model_card
+6387,Mistral Small 3,,mistral,mistral_small_3_blog,mmlu,MMLU,knowledge,,81.0,scored,,,unknown,,accuracy,accuracy,True,3,model_card
+6388,Mistral Small 3,,mistral,mistral_small_3_blog,wildbench,WildBench,other,,,mentioned,,,instruction-tuned,,win_rate,"instruction-tuned, win_rate",True,3,model_card
+6389,Mistral Small 3,,mistral,mistral_small_3_blog,arena_hard,Arena Hard,other,,,mentioned,,,instruction-tuned,,win_rate,"instruction-tuned, win_rate",True,3,model_card
+6390,Mistral Small 3,,mistral,mistral_small_3_blog,mt_bench,MT-Bench,other,,,mentioned,,,instruction-tuned,,,instruction-tuned,True,3,model_card
+6391,Mistral Large 2,mistral-large-2,mistral,mistral_large_2_blog,mmlu,MMLU,knowledge,,84.0,scored,none,,pretrained,English,accuracy,"pretrained, accuracy",True,3,model_card
+6392,Mistral Large 2,mistral-large-2,mistral,mistral_large_2_blog,mmlu,MMLU,knowledge,,,mentioned,,,pretrained,Average,accuracy,"Average, pretrained, accuracy",True,3,model_card
+6393,Mistral Large,mistral-large-2,mistral,mistral_large_2_blog,mmlu,MMLU,knowledge,,,mentioned,,,pretrained,Average,accuracy,"Average, pretrained, accuracy",True,3,model_card
+6394,Llama 3.1,mistral-large-2,mistral,mistral_large_2_blog,mmlu,MMLU,knowledge,,,mentioned,,,,Average,accuracy,"Average, accuracy",True,3,model_card
+6395,Command R+,mistral-large-2,mistral,mistral_large_2_blog,mmlu,MMLU,knowledge,,,mentioned,,,,Average,accuracy,"Average, accuracy",True,3,model_card
+6396,Mistral Large 2,mistral-large-2,mistral,mistral_large_2_blog,gsm8k,GSM8K,math,,,mentioned,,8,,,accuracy,"8-shot, accuracy",True,3,model_card
+6397,Mistral Large 2,mistral-large-2,mistral,mistral_large_2_blog,math,MATH,math,,,mentioned,none,0,,,accuracy,"0-shot, accuracy",True,3,model_card
+6398,Mistral Large 2,mistral-large-2,mistral,mistral_large_2_blog,multipl_e,MultiPL-E (aggregate),other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6399,GPT-4o,mistral-large-2,mistral,mistral_large_2_blog,multipl_e,MultiPL-E (aggregate),other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6400,Claude 3 Opus,mistral-large-2,mistral,mistral_large_2_blog,multipl_e,MultiPL-E (aggregate),other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6401,Llama 3 405B,mistral-large-2,mistral,mistral_large_2_blog,multipl_e,MultiPL-E (aggregate),other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6402,Mistral Large,mistral-large-2,mistral,mistral_large_2_blog,multipl_e,MultiPL-E (aggregate),other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6403,Mistral Large 2,mistral-large-2,mistral,mistral_large_2_blog,mt_bench,MT-Bench,other,,,mentioned,,,,,,default,True,3,model_card
+6404,Mistral Large 2,mistral-large-2,mistral,mistral_large_2_blog,wildbench,WildBench,other,,,mentioned,,,,,,default,True,3,model_card
+6405,Mistral Large 2,mistral-large-2,mistral,mistral_large_2_blog,arena_hard,Arena Hard,other,,,mentioned,,,,,,default,True,3,model_card
+6406,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,,mentioned,,,,Python,pass_at_1,"Python, pass_at_1",True,3,model_card
+6407,Codestral,codestral,mistral,mistral_codestral_blog,mbpp,MBPP,coding,sanitised,,mentioned,,,,Python,pass_at_1,"Python, sanitised, pass_at_1",True,3,model_card
+6408,Codestral,codestral,mistral,mistral_codestral_blog,cruxeval,CruxEval,other,,,mentioned,,,,Python,,Python,True,3,model_card
+6409,Codestral,codestral,mistral,mistral_codestral_blog,repobench,RepoBench,other,,,mentioned,,,,,exact_match,exact_match,True,3,model_card
+6410,Codestral,codestral,mistral,mistral_codestral_blog,spider,Spider,other,,,mentioned,,,,,,default,True,3,model_card
+6411,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,,mentioned,,,,C++,pass_at_1,"C++, pass_at_1",True,3,model_card
+6412,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,,mentioned,,,,Bash,pass_at_1,"Bash, pass_at_1",True,3,model_card
+6413,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,,mentioned,,,,Java,pass_at_1,"Java, pass_at_1",True,3,model_card
+6414,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,,mentioned,,,,PHP,pass_at_1,"PHP, pass_at_1",True,3,model_card
+6415,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,,mentioned,,,,TypeScript,pass_at_1,"TypeScript, pass_at_1",True,3,model_card
+6416,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,,mentioned,,,,C#,pass_at_1,"C#, pass_at_1",True,3,model_card
+6417,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,,,mentioned,,,,Average,pass_at_1,"Average, pass_at_1",True,3,model_card
+6418,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,fim,,mentioned,,,,Python,pass_at_1,"Python, fim, pass_at_1",True,3,model_card
+6419,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,fim,,mentioned,,,,JavaScript,pass_at_1,"JavaScript, fim, pass_at_1",True,3,model_card
+6420,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,fim,,mentioned,,,,Java,pass_at_1,"Java, fim, pass_at_1",True,3,model_card
+6421,DeepSeek Coder 33B,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,fim,,mentioned,,,,,pass_at_1,"fim, pass_at_1",True,3,model_card
+6422,Codestral,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,kotlin,73.75,scored,,,,,pass_at_1,"kotlin, pass_at_1",True,3,model_card
+6423,GPT-4-Turbo,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,kotlin,72.05,scored,,,,,pass_at_1,"kotlin, pass_at_1",True,3,model_card
+6424,GPT-3.5-Turbo,codestral,mistral,mistral_codestral_blog,humaneval,HumanEval,coding,kotlin,54.66,scored,,,,,pass_at_1,"kotlin, pass_at_1",True,3,model_card
+6425,Gemini 3.6 Flash,,google,google_gemini_36_flash_card,text_to_text_safety,Text to Text Safety,other,,-1.35,scored,,,,,,default,True,3,model_card
+6426,Gemini 3.6 Flash,,google,google_gemini_36_flash_card,multilingual_safety,Multilingual Safety,other,,-5.45,scored,,,,Average,,Average,True,3,model_card
+6427,Gemini 3.6 Flash,,google,google_gemini_36_flash_card,image_to_text_safety,Image to Text Safety,other,,0.0,scored,,,,,,default,True,3,model_card
+6428,Gemini 3.6 Flash,,google,google_gemini_36_flash_card,tone,Tone,other,,-3.31,scored,,,,,,default,True,3,model_card
+6429,Gemini 3.6 Flash,,google,google_gemini_36_flash_card,unjustified_refusals,Unjustified-refusals,other,,0.25,scored,,,,,,default,True,3,model_card
+6430,Gemini 3.1 Pro,,google,google_gemini_36_flash_card,frontier_safety_framework,Frontier Safety Framework,other,,,mentioned,,,,,,default,True,3,model_card
+6431,Gemini 3.6 Flash,,google,google_gemini_36_flash_card,frontier_safety_framework,Frontier Safety Framework,other,cyber,,mentioned,,,,,,cyber,True,3,model_card
+6432,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,medicinal_chemistry,medicinal_chemistry,other,,27.5,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6433,GPT-5.5,,openai,openai_rosalind55_card,medicinal_chemistry,medicinal_chemistry,other,,25.1,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6434,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,genebench,Genebench,other,,21.6,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6435,GPT-5.5,,openai,openai_rosalind55_card,genebench,Genebench,other,,20.4,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6436,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,lifescibench,LifeSciBench,other,,63.4,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6437,GPT-5.5,,openai,openai_rosalind55_card,lifescibench,LifeSciBench,other,,58.8,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6438,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,labworkbench,LabworkBench,other,,63.2,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6439,GPT-5.5,,openai,openai_rosalind55_card,labworkbench,LabworkBench,other,,55.8,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6440,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,protocolqa,ProtocolQA,other,open_ended,36.4,scored,,,,,pass_at_1,"open_ended, pass_at_1",True,3,model_card
+6441,GPT-5.5,,openai,openai_rosalind55_card,protocolqa,ProtocolQA,other,open_ended,37.3,scored,,,,,pass_at_1,"open_ended, pass_at_1",True,3,model_card
+6442,GPT-5.5 Pro,,openai,openai_rosalind55_card,protocolqa,ProtocolQA,other,open_ended,36.73,scored,,,,,pass_at_1,"open_ended, pass_at_1",True,3,model_card
+6443,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,troubleshootingbench,TroubleshootingBench,other,,53.31,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6444,GPT-5.5,,openai,openai_rosalind55_card,troubleshootingbench,TroubleshootingBench,other,,44.1,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6445,GPT-5.5 Pro,,openai,openai_rosalind55_card,troubleshootingbench,TroubleshootingBench,other,,49.58,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6446,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,biorisk_knowledge,biorisk_knowledge,other,,81.1,scored,,,,,cons_at_32,cons_at_32,True,3,model_card
+6447,GPT-5.5,,openai,openai_rosalind55_card,biorisk_knowledge,biorisk_knowledge,other,,78.3,scored,,,,,cons_at_32,cons_at_32,True,3,model_card
+6448,GPT-5.5 Pro,,openai,openai_rosalind55_card,biorisk_knowledge,biorisk_knowledge,other,,81.67,scored,,,,,cons_at_32,cons_at_32,True,3,model_card
+6449,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,virology_troubleshooting,virology_troubleshooting,other,multi_select,51.2,scored,,,,,pass_at_1,"multi_select, pass_at_1",True,3,model_card
+6450,GPT-5.5,,openai,openai_rosalind55_card,virology_troubleshooting,virology_troubleshooting,other,multi_select,53.7,scored,,,,,pass_at_1,"multi_select, pass_at_1",True,3,model_card
+6451,GPT-5.5 Pro,,openai,openai_rosalind55_card,virology_troubleshooting,virology_troubleshooting,other,multi_select,55.34,scored,,,,,pass_at_1,"multi_select, pass_at_1",True,3,model_card
+6452,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,hard_negative_protein_binding_prediction,Hard Negative Protein Binding Prediction,other,,3.13,scored,with-tools,,,,pass_at_4,"with-tools, pass_at_4",True,3,model_card
+6453,GPT-5.5,,openai,openai_rosalind55_card,hard_negative_protein_binding_prediction,Hard Negative Protein Binding Prediction,other,,0.4,scored,with-tools,,,,pass_at_4,"with-tools, pass_at_4",True,3,model_card
+6454,GPT-5.5 Pro,,openai,openai_rosalind55_card,hard_negative_protein_binding_prediction,Hard Negative Protein Binding Prediction,other,,0.0,scored,with-tools,,,,pass_at_4,"with-tools, pass_at_4",True,3,model_card
+6455,GPT-Rosalind-5.5,,openai,openai_rosalind55_card,dna_sequence_design_tf_binding,dna_sequence_design_tf_binding,other,,13.64,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6456,GPT-5.5,,openai,openai_rosalind55_card,dna_sequence_design_tf_binding,dna_sequence_design_tf_binding,other,,13.82,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6457,GPT-5.5 Pro,,openai,openai_rosalind55_card,dna_sequence_design_tf_binding,dna_sequence_design_tf_binding,other,,16.5,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6458,,,openai,openai_rosalind55_card,nucleobench,Nucleobench,other,,,cited,,,,,,default,True,3,model_card
+6459,AVM,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,sexual,0.96,scored,,,unknown,,accuracy,"sexual, accuracy",True,3,model_card
+6460,GPT-Live-1,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,sexual,0.97,scored,,,unknown,,accuracy,"sexual, accuracy",True,3,model_card
+6461,AVM mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,sexual,0.97,scored,,,unknown,,accuracy,"sexual, accuracy",True,3,model_card
+6462,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,sexual,0.95,scored,,,unknown,,accuracy,"sexual, accuracy",True,3,model_card
+6463,AVM,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,illicit_behavior,0.74,scored,,,unknown,,accuracy,"illicit_behavior, accuracy",True,3,model_card
+6464,GPT-Live-1,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,illicit_behavior,0.97,scored,,,unknown,,accuracy,"illicit_behavior, accuracy",True,3,model_card
+6465,AVM mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,illicit_behavior,0.6,scored,,,unknown,,accuracy,"illicit_behavior, accuracy",True,3,model_card
+6466,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,illicit_behavior,0.94,scored,,,unknown,,accuracy,"illicit_behavior, accuracy",True,3,model_card
+6467,AVM,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,mental_health,0.9,scored,,,unknown,,accuracy,"mental_health, accuracy",True,3,model_card
+6468,GPT-Live-1,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,mental_health,0.9,scored,,,unknown,,accuracy,"mental_health, accuracy",True,3,model_card
+6469,AVM mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,mental_health,0.78,scored,,,unknown,,accuracy,"mental_health, accuracy",True,3,model_card
+6470,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,mental_health,0.84,scored,,,unknown,,accuracy,"mental_health, accuracy",True,3,model_card
+6471,AVM,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,personal_data,0.96,scored,,,unknown,,accuracy,"personal_data, accuracy",True,3,model_card
+6472,GPT-Live-1,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,personal_data,0.96,scored,,,unknown,,accuracy,"personal_data, accuracy",True,3,model_card
+6473,AVM mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,personal_data,0.95,scored,,,unknown,,accuracy,"personal_data, accuracy",True,3,model_card
+6474,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,personal_data,0.95,scored,,,unknown,,accuracy,"personal_data, accuracy",True,3,model_card
+6475,AVM,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,emotional_reliance,0.88,scored,,,unknown,,accuracy,"emotional_reliance, accuracy",True,3,model_card
+6476,GPT-Live-1,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,emotional_reliance,0.82,scored,,,unknown,,accuracy,"emotional_reliance, accuracy",True,3,model_card
+6477,AVM mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,emotional_reliance,0.78,scored,,,unknown,,accuracy,"emotional_reliance, accuracy",True,3,model_card
+6478,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,emotional_reliance,0.78,scored,,,unknown,,accuracy,"emotional_reliance, accuracy",True,3,model_card
+6479,AVM,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,self_harm,0.89,scored,,,unknown,,accuracy,"self_harm, accuracy",True,3,model_card
+6480,GPT-Live-1,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,self_harm,0.96,scored,,,unknown,,accuracy,"self_harm, accuracy",True,3,model_card
+6481,AVM mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,self_harm,0.81,scored,,,unknown,,accuracy,"self_harm, accuracy",True,3,model_card
+6482,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_production_prompts,voice_native_production_prompts,other,self_harm,0.92,scored,,,unknown,,accuracy,"self_harm, accuracy",True,3,model_card
+6483,AVM,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,sexual,0.76,scored,,,unknown,,accuracy,"sexual, accuracy",True,3,model_card
+6484,GPT-Live-1,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,sexual,0.97,scored,,,unknown,,accuracy,"sexual, accuracy",True,3,model_card
+6485,AVM mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,sexual,0.85,scored,,,unknown,,accuracy,"sexual, accuracy",True,3,model_card
+6486,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,sexual,0.95,scored,,,unknown,,accuracy,"sexual, accuracy",True,3,model_card
+6487,AVM,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,illicit_behavior,0.63,scored,,,unknown,,accuracy,"illicit_behavior, accuracy",True,3,model_card
+6488,GPT-Live-1,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,illicit_behavior,0.97,scored,,,unknown,,accuracy,"illicit_behavior, accuracy",True,3,model_card
+6489,AVM mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,illicit_behavior,0.63,scored,,,unknown,,accuracy,"illicit_behavior, accuracy",True,3,model_card
+6490,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,illicit_behavior,0.97,scored,,,unknown,,accuracy,"illicit_behavior, accuracy",True,3,model_card
+6491,AVM,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,mental_health,0.57,scored,,,unknown,,accuracy,"mental_health, accuracy",True,3,model_card
+6492,GPT-Live-1,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,mental_health,0.84,scored,,,unknown,,accuracy,"mental_health, accuracy",True,3,model_card
+6493,AVM mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,mental_health,0.47,scored,,,unknown,,accuracy,"mental_health, accuracy",True,3,model_card
+6494,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,mental_health,0.81,scored,,,unknown,,accuracy,"mental_health, accuracy",True,3,model_card
+6495,AVM,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,personal_data,0.9,scored,,,unknown,,accuracy,"personal_data, accuracy",True,3,model_card
+6496,GPT-Live-1,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,personal_data,0.97,scored,,,unknown,,accuracy,"personal_data, accuracy",True,3,model_card
+6497,AVM mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,personal_data,0.79,scored,,,unknown,,accuracy,"personal_data, accuracy",True,3,model_card
+6498,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,personal_data,0.97,scored,,,unknown,,accuracy,"personal_data, accuracy",True,3,model_card
+6499,AVM,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,emotional_reliance,0.72,scored,,,unknown,,accuracy,"emotional_reliance, accuracy",True,3,model_card
+6500,GPT-Live-1,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,emotional_reliance,0.91,scored,,,unknown,,accuracy,"emotional_reliance, accuracy",True,3,model_card
+6501,AVM mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,emotional_reliance,0.72,scored,,,unknown,,accuracy,"emotional_reliance, accuracy",True,3,model_card
+6502,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,emotional_reliance,0.89,scored,,,unknown,,accuracy,"emotional_reliance, accuracy",True,3,model_card
+6503,AVM,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,self_harm,0.72,scored,,,unknown,,accuracy,"self_harm, accuracy",True,3,model_card
+6504,GPT-Live-1,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,self_harm,0.98,scored,,,unknown,,accuracy,"self_harm, accuracy",True,3,model_card
+6505,AVM mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,self_harm,0.71,scored,,,unknown,,accuracy,"self_harm, accuracy",True,3,model_card
+6506,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,self_harm,0.96,scored,,,unknown,,accuracy,"self_harm, accuracy",True,3,model_card
+6507,AVM,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,hate,0.87,scored,,,unknown,,accuracy,"hate, accuracy",True,3,model_card
+6508,GPT-Live-1,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,hate,1.0,scored,,,unknown,,accuracy,"hate, accuracy",True,3,model_card
+6509,AVM mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,hate,0.82,scored,,,unknown,,accuracy,"hate, accuracy",True,3,model_card
+6510,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,hate,0.98,scored,,,unknown,,accuracy,"hate, accuracy",True,3,model_card
+6511,AVM,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,gore,0.61,scored,,,unknown,,accuracy,"gore, accuracy",True,3,model_card
+6512,GPT-Live-1,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,gore,0.97,scored,,,unknown,,accuracy,"gore, accuracy",True,3,model_card
+6513,AVM mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,gore,0.8,scored,,,unknown,,accuracy,"gore, accuracy",True,3,model_card
+6514,GPT-Live-1 mini,,openai,openai_gptlive_card,voice_native_synthetic_prompts,voice_native_synthetic_prompts,other,gore,0.96,scored,,,unknown,,accuracy,"gore, accuracy",True,3,model_card
+6515,GPT-Live-1,,openai,openai_gptlive_card,preparedness_framework,Preparedness Framework,other,biological_chemical_risk,,mentioned,,,unknown,,,biological_chemical_risk,True,3,model_card
+6516,GPT-Live-1 mini,,openai,openai_gptlive_card,preparedness_framework,Preparedness Framework,other,biological_chemical_risk,,mentioned,,,unknown,,,biological_chemical_risk,True,3,model_card
+6517,GPT-Live-1,,openai,openai_gptlive_card,preparedness_framework,Preparedness Framework,other,cybersecurity,,mentioned,,,unknown,,,cybersecurity,True,3,model_card
+6518,GPT-Live-1 mini,,openai,openai_gptlive_card,preparedness_framework,Preparedness Framework,other,cybersecurity,,mentioned,,,unknown,,,cybersecurity,True,3,model_card
+6519,GPT-Live-1,,openai,openai_gptlive_card,preparedness_framework,Preparedness Framework,other,ai_self_improvement,,mentioned,,,unknown,,,ai_self_improvement,True,3,model_card
+6520,GPT-Live-1 mini,,openai,openai_gptlive_card,preparedness_framework,Preparedness Framework,other,ai_self_improvement,,mentioned,,,unknown,,,ai_self_improvement,True,3,model_card
+6521,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,swe_bench,SWE-bench,coding,verified,,mentioned,,,,,,verified,True,3,model_card
+6522,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,swe_bench,SWE-bench,coding,pro,,mentioned,,,,,,pro,True,3,model_card
+6523,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,swe_bench,SWE-bench,coding,multilingual,,mentioned,,,,,,multilingual,True,3,model_card
+6524,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,swe_bench,SWE-bench,coding,multimodal,,mentioned,,,,,,multimodal,True,3,model_card
+6525,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,terminal_bench,Terminal-Bench,other,2.1,,mentioned,,,,,,2.1,True,3,model_card
+6526,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,frontiercode,FrontierCode,other,,,mentioned,,,,,,default,True,3,model_card
+6527,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,cursorbench,CursorBench,other,,,mentioned,,,,,,default,True,3,model_card
+6528,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,usamo,USAMO,other,2026,,mentioned,,,,,,2026,True,3,model_card
+6529,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,arxivmath,ArxivMath,other,,,mentioned,,,,,,default,True,3,model_card
+6530,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,programbench,ProgramBench,other,,,mentioned,,,,,,default,True,3,model_card
+6531,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,humanity_s_last_exam,Humanity's Last Exam,other,,,mentioned,,,,,,default,True,3,model_card
+6532,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,browsecomp,BrowseComp,agent,,,mentioned,,,,,,default,True,3,model_card
+6533,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,gdp_pdf,GDP.pdf,other,,,mentioned,,,,,,default,True,3,model_card
+6534,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,osworld,OSWorld,agent,verified,,mentioned,,,,,,verified,True,3,model_card
+6535,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,benchcad,BenchCAD,other,,,mentioned,,,,,,default,True,3,model_card
+6536,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,chartmuseum,ChartMuseum,other,,,mentioned,,,,,,default,True,3,model_card
+6537,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,charxiv,CharXiv,other,reasoning,,mentioned,,,,,,reasoning,True,3,model_card
+6538,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,officeqa,OfficeQA,other,,,mentioned,,,,,,default,True,3,model_card
+6539,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,real_world_finance,Real-World Finance,other,v2,,mentioned,,,,,,v2,True,3,model_card
+6540,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,legal_agent_benchmark,Legal Agent Benchmark,other,,,mentioned,,,,,,default,True,3,model_card
+6541,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,gdpval_aa,GDPval-AA,other,v2,,mentioned,,,,,,v2,True,3,model_card
+6542,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,toolathlon,Toolathlon,other,,,mentioned,,,,,,default,True,3,model_card
+6543,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,automationbench,AutomationBench,other,,,mentioned,,,,,,default,True,3,model_card
+6544,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,aa_briefcase,AA-Briefcase,other,,,mentioned,,,,,,default,True,3,model_card
+6545,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,healthbench,HealthBench,medical,,,mentioned,,,,,,default,True,3,model_card
+6546,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,healthbench,HealthBench,medical,professional,,mentioned,,,,,,professional,True,3,model_card
+6547,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,gmmlu,GMMLU,other,,,mentioned,,,,,,default,True,3,model_card
+6548,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,milu,MILU,other,,,mentioned,,,,,,default,True,3,model_card
+6549,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,include,INCLUDE,other,,,mentioned,,,,,,default,True,3,model_card
+6550,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,biomysterybench,BioMysteryBench,other,,,mentioned,,,,,,default,True,3,model_card
+6551,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,latchbio_bioinformatics,LatchBio Bioinformatics,other,,,mentioned,,,,,,default,True,3,model_card
+6552,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,structural_biology,Structural Biology,other,open_ended,,mentioned,,,,,,open_ended,True,3,model_card
+6553,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,proteingym,ProteinGym,other,hard,,mentioned,,,,,,hard,True,3,model_card
+6554,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,organic_chemistry,Organic Chemistry,other,,,mentioned,,,,,,default,True,3,model_card
+6555,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,protocol_troubleshooting,Protocol Troubleshooting,other,,,mentioned,,,,,,default,True,3,model_card
+6556,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,mask,MASK,other,,,mentioned,,,,,,default,True,3,model_card
+6557,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,shade_arena,SHADE-Arena,other,,,mentioned,,,,,,default,True,3,model_card
+6558,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,linuxarena,LinuxArena,other,,,mentioned,,,,,,default,True,3,model_card
+6559,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,bbq,BBQ,safety,,,mentioned,,,,,,default,True,3,model_card
+6560,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,exploitbench,ExploitBench,other,,,mentioned,,,,,,default,True,3,model_card
+6561,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,oss_fuzz,OSS-Fuzz,other,,,mentioned,,,,,,default,True,3,model_card
+6562,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,cybergym,CyberGym,agent,,,mentioned,,,,,,default,True,3,model_card
+6563,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,firefox_147,Firefox 147,other,,,mentioned,,,,,,default,True,3,model_card
+6564,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,long_form_virology_tasks,Long-form virology tasks,other,task_1,0.79,scored,,,,,,task_1,True,3,model_card
+6565,Claude Opus 4.7,,anthropic,anthropic_sonnet5_card,long_form_virology_tasks,Long-form virology tasks,other,task_1,0.82,scored,,,,,,task_1,True,3,model_card
+6566,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,long_form_virology_tasks,Long-form virology tasks,other,task_2,,mentioned,,,,,,task_2,True,3,model_card
+6567,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,vct,VCT,other,,0.45,scored,,,,,,default,True,3,model_card
+6568,Claude Opus 4.7,,anthropic,anthropic_sonnet5_card,vct,VCT,other,,0.5,scored,,,,,,default,True,3,model_card
+6569,Claude Opus 4.8,,anthropic,anthropic_sonnet5_card,vct,VCT,other,,0.47,scored,,,,,,default,True,3,model_card
+6570,Claude Mythos 5,,anthropic,anthropic_sonnet5_card,vct,VCT,other,,0.56,scored,,,,,,default,True,3,model_card
+6571,Human expert baseline,,anthropic,anthropic_sonnet5_card,vct,VCT,other,,0.221,scored,,,,,,default,True,3,model_card
+6572,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,dna_synthesis_screening_evasion,DNA Synthesis Screening Evasion,other,,5.0,scored,,,,,,default,True,3,model_card
+6573,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,black_box_rna_sequence_design,Black-box RNA Sequence Design,other,,,mentioned,,,,,,default,True,3,model_card
+6574,Claude Sonnet 4.6,,anthropic,anthropic_sonnet5_card,black_box_rna_sequence_design,Black-box RNA Sequence Design,other,,,mentioned,,,,,,default,True,3,model_card
+6575,Claude Opus 4.7,,anthropic,anthropic_sonnet5_card,black_box_rna_sequence_design,Black-box RNA Sequence Design,other,,,mentioned,,,,,,default,True,3,model_card
+6576,Claude Opus 4.8,,anthropic,anthropic_sonnet5_card,black_box_rna_sequence_design,Black-box RNA Sequence Design,other,,,mentioned,in-context iteration,,,,,in-context iteration,True,3,model_card
+6577,Claude Mythos Preview,,anthropic,anthropic_sonnet5_card,black_box_rna_sequence_design,Black-box RNA Sequence Design,other,,,mentioned,in-context iteration,,,,,in-context iteration,True,3,model_card
+6578,Claude Sonnet 5,,anthropic,anthropic_sonnet5_card,aav_capsid_packaging_prediction,AAV_Capsid_Packaging_Prediction,other,,,mentioned,,,,,,default,True,3,model_card
+6579,Claude Opus 5,,anthropic,anthropic_opus5_card,mcp_atlas,MCP Atlas,other,,85.8,scored,,,,,pass_rate,pass_rate,True,3,model_card
+6580,Claude Opus 4.8,,anthropic,anthropic_opus5_card,mcp_atlas,MCP Atlas,other,,82.2,scored,,,,,pass_rate,pass_rate,True,3,model_card
+6581,Claude Opus 5,,anthropic,anthropic_opus5_card,mcp_atlas,MCP Atlas,other,,89.1,scored,,,,,claim_coverage,claim_coverage,True,3,model_card
+6582,Claude Opus 5,,anthropic,anthropic_opus5_card,legal_agent_benchmark,Legal Agent Benchmark,other,,23.58,scored,,,,,all_pass_rate,all_pass_rate,True,3,model_card
+6583,Claude Opus 5,,anthropic,anthropic_opus5_card,legal_agent_benchmark,Legal Agent Benchmark,other,,93.74,scored,,,,,criterion_pass_rate,criterion_pass_rate,True,3,model_card
+6584,Claude Opus 5,,anthropic,anthropic_opus5_card,legal_agent_benchmark,Legal Agent Benchmark,other,held_out,11.7,scored,,,,,all_pass_rate,"held_out, all_pass_rate",True,3,model_card
+6585,Claude Opus 5,,anthropic,anthropic_opus5_card,legal_agent_benchmark,Legal Agent Benchmark,other,held_out,94.1,scored,,,,,criterion_pass_rate,"held_out, criterion_pass_rate",True,3,model_card
+6586,Claude Opus 5,,anthropic,anthropic_opus5_card,gdpval_aa,GDPval-AA,other,max_effort,1861.0,scored,,,,,elo,"max_effort, elo",True,3,model_card
+6587,Claude Opus 5,,anthropic,anthropic_opus5_card,gdpval_aa,GDPval-AA,other,xhigh_effort,1827.0,scored,,,,,elo,"xhigh_effort, elo",True,3,model_card
+6588,,,anthropic,anthropic_opus5_card,gdpval,GDPval,other,,,cited,,,,,,default,True,3,model_card
+6589,Claude Opus 5,,anthropic,anthropic_opus5_card,aa_briefcase,AA-Briefcase,other,max_effort,1720.0,scored,,,,,elo,"max_effort, elo",True,3,model_card
+6590,Claude Opus 5,,anthropic,anthropic_opus5_card,aa_briefcase,AA-Briefcase,other,xhigh_effort,1693.0,scored,,,,,elo,"xhigh_effort, elo",True,3,model_card
+6591,Claude Opus 5,,anthropic,anthropic_opus5_card,aa_briefcase,AA-Briefcase,other,high_effort,1606.0,scored,,,,,elo,"high_effort, elo",True,3,model_card
+6592,Claude Opus 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,80.6,scored,without-safeguards,,,,pass_at_1,"without-safeguards, verified, pass_at_1",True,3,model_card
+6593,Claude Mythos 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,79.3,scored,without-safeguards,,,,pass_at_1,"without-safeguards, verified, pass_at_1",True,3,model_card
+6594,Claude Opus 4.8,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,79.9,scored,without-safeguards,,,,pass_at_1,"without-safeguards, verified, pass_at_1",True,3,model_card
+6595,Claude Sonnet 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,74.7,scored,without-safeguards,,,,pass_at_1,"without-safeguards, verified, pass_at_1",True,3,model_card
+6596,Claude Opus 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,87.0,scored,without-safeguards,,,,pass_at_3,"without-safeguards, verified, pass_at_3",True,3,model_card
+6597,Claude Mythos 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,86.1,scored,without-safeguards,,,,pass_at_3,"without-safeguards, verified, pass_at_3",True,3,model_card
+6598,Claude Opus 4.8,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,88.0,scored,without-safeguards,,,,pass_at_3,"without-safeguards, verified, pass_at_3",True,3,model_card
+6599,Claude Sonnet 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,84.3,scored,without-safeguards,,,,pass_at_3,"without-safeguards, verified, pass_at_3",True,3,model_card
+6600,Claude Opus 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,73.1,scored,without-safeguards,,,,pass_cubed,"without-safeguards, verified, pass_cubed",True,3,model_card
+6601,Claude Mythos 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,73.1,scored,without-safeguards,,,,pass_cubed,"without-safeguards, verified, pass_cubed",True,3,model_card
+6602,Claude Opus 4.8,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,71.3,scored,without-safeguards,,,,pass_cubed,"without-safeguards, verified, pass_cubed",True,3,model_card
+6603,Claude Sonnet 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,65.7,scored,without-safeguards,,,,pass_cubed,"without-safeguards, verified, pass_cubed",True,3,model_card
+6604,Claude Sonnet 5,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,71.6,scored,,,,,pass_at_1,"verified, pass_at_1",True,3,model_card
+6605,Claude Opus 4.8,,anthropic,anthropic_opus5_card,toolathlon,Toolathlon,other,verified,76.2,scored,,,,,pass_at_1,"verified, pass_at_1",True,3,model_card
+6606,Claude Opus 5,,anthropic,anthropic_opus5_card,automationbench,AutomationBench,other,max_effort,26.0,scored,,,,,pass_rate,"max_effort, pass_rate",True,3,model_card
+6607,Claude Opus 4.8,,anthropic,anthropic_opus5_card,automationbench,AutomationBench,other,max_effort,17.0,scored,,,,,pass_rate,"max_effort, pass_rate",True,3,model_card
+6608,Claude Fable 5,,anthropic,anthropic_opus5_card,automationbench,AutomationBench,other,max_effort,17.4,scored,,,,,pass_rate,"max_effort, pass_rate",True,3,model_card
+6609,Claude Opus 5,,anthropic,anthropic_opus5_card,automationbench,AutomationBench,other,medium_effort,24.0,scored,,,,,pass_rate,"medium_effort, pass_rate",True,3,model_card
+6610,Claude Opus 5,,anthropic,anthropic_opus5_card,arc_agi,ARC-AGI,reasoning,1,97.5,scored,,,,,accuracy,"1, accuracy",True,3,model_card
+6611,Claude Opus 5,,anthropic,anthropic_opus5_card,arc_agi,ARC-AGI,reasoning,2,90.42,scored,,,,,accuracy,"2, accuracy",True,3,model_card
+6612,Claude Opus 4.7,,anthropic,anthropic_opus5_card,arc_agi,ARC-AGI,reasoning,2,75.83,scored,,,,,accuracy,"2, accuracy",True,3,model_card
+6613,Claude Opus 5,,anthropic,anthropic_opus5_card,arc_agi,ARC-AGI,reasoning,3,30.16,scored,,,,,rhae,"3, rhae",True,3,model_card
+6614,GPT-5.6 Sol,,anthropic,anthropic_opus5_card,arc_agi,ARC-AGI,reasoning,3,7.78,scored,,,,,rhae,"3, rhae",True,3,model_card
+6615,Claude Opus 4.8,,anthropic,anthropic_opus5_card,arc_agi,ARC-AGI,reasoning,3,1.52,scored,,,,,rhae,"3, rhae",True,3,model_card
+6616,Claude Opus 5,,anthropic,anthropic_opus5_card,arc_agi,ARC-AGI,reasoning,3,,mentioned,,,,,,3,True,3,model_card
+6617,Claude Opus 5,,anthropic,anthropic_opus5_card,arc_agi,ARC-AGI,reasoning,3_ar25,100.0,scored,,,,,level_score,"3_ar25, level_score",True,3,model_card
+6618,Claude Opus 5,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,,67.1,scored,,,,,raw_score,raw_score,True,3,model_card
+6619,Claude Mythos 5,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,,62.5,scored,,,,,raw_score,raw_score,True,3,model_card
+6620,Claude Opus 4.8,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,,58.8,scored,,,,,raw_score,raw_score,True,3,model_card
+6621,Claude Sonnet 5,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,,59.2,scored,,,,,raw_score,raw_score,True,3,model_card
+6622,Claude Opus 5,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,,57.8,scored,,,,,length_adjusted_score,length_adjusted_score,True,3,model_card
+6623,Claude Opus 5,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,professional,73.4,scored,,,,,raw_score,"professional, raw_score",True,3,model_card
+6624,Claude Mythos 5,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,professional,70.3,scored,,,,,raw_score,"professional, raw_score",True,3,model_card
+6625,Claude Opus 4.8,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,professional,60.3,scored,,,,,raw_score,"professional, raw_score",True,3,model_card
+6626,Claude Sonnet 5,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,professional,62.4,scored,,,,,raw_score,"professional, raw_score",True,3,model_card
+6627,Claude Opus 5,,anthropic,anthropic_opus5_card,healthbench,HealthBench,medical,professional,59.8,scored,,,,,length_adjusted_score,"professional, length_adjusted_score",True,3,model_card
+6628,Claude Opus 5,,anthropic,anthropic_opus5_card,mmlu,MMLU,knowledge,global,,mentioned,,,,Average,,"Average, global",True,3,model_card
+6629,Claude Opus 5,,anthropic,anthropic_opus5_card,milu,MILU,other,,,mentioned,,,,Average,,Average,True,3,model_card
+6630,Claude Opus 5,,anthropic,anthropic_opus5_card,include,INCLUDE,other,,,mentioned,,,,Average,,Average,True,3,model_card
+6631,Claude Opus 5,,anthropic,anthropic_opus5_card,biomysterybench,BioMysteryBench,other,human_solvable,90.1,scored,,,,,accuracy,"human_solvable, accuracy",True,3,model_card
+6632,Claude Mythos 5,,anthropic,anthropic_opus5_card,biomysterybench,BioMysteryBench,other,human_solvable,89.0,scored,,,,,accuracy,"human_solvable, accuracy",True,3,model_card
+6633,Claude Opus 4.8,,anthropic,anthropic_opus5_card,biomysterybench,BioMysteryBench,other,human_solvable,88.5,scored,,,,,accuracy,"human_solvable, accuracy",True,3,model_card
+6634,Claude Sonnet 5,,anthropic,anthropic_opus5_card,biomysterybench,BioMysteryBench,other,human_solvable,87.5,scored,,,,,accuracy,"human_solvable, accuracy",True,3,model_card
+6635,Claude Opus 5,,anthropic,anthropic_opus5_card,biomysterybench,BioMysteryBench,other,human_difficult,49.4,scored,,,,,accuracy,"human_difficult, accuracy",True,3,model_card
+6636,Claude Mythos 5,,anthropic,anthropic_opus5_card,biomysterybench,BioMysteryBench,other,human_difficult,46.5,scored,,,,,accuracy,"human_difficult, accuracy",True,3,model_card
+6637,Claude Opus 4.8,,anthropic,anthropic_opus5_card,biomysterybench,BioMysteryBench,other,human_difficult,42.4,scored,,,,,accuracy,"human_difficult, accuracy",True,3,model_card
+6638,Claude Sonnet 5,,anthropic,anthropic_opus5_card,biomysterybench,BioMysteryBench,other,human_difficult,34.1,scored,,,,,accuracy,"human_difficult, accuracy",True,3,model_card
+6639,Claude Opus 5,,anthropic,anthropic_opus5_card,spatialbench,SpatialBench,other,verified,72.5,scored,,,,,accuracy,"verified, accuracy",True,3,model_card
+6640,Claude Mythos 5,,anthropic,anthropic_opus5_card,spatialbench,SpatialBench,other,verified,69.2,scored,,,,,accuracy,"verified, accuracy",True,3,model_card
+6641,Claude Sonnet 5,,anthropic,anthropic_opus5_card,spatialbench,SpatialBench,other,verified,67.8,scored,,,,,accuracy,"verified, accuracy",True,3,model_card
+6642,Claude Opus 4.8,,anthropic,anthropic_opus5_card,spatialbench,SpatialBench,other,verified,66.6,scored,,,,,accuracy,"verified, accuracy",True,3,model_card
+6643,Claude Opus 5,,anthropic,anthropic_opus5_card,singlecellbench,SingleCellBench,other,,60.6,scored,,,,,accuracy,accuracy,True,3,model_card
+6644,Claude Mythos 5,,anthropic,anthropic_opus5_card,singlecellbench,SingleCellBench,other,,59.3,scored,,,,,accuracy,accuracy,True,3,model_card
+6645,Claude Opus 4.8,,anthropic,anthropic_opus5_card,singlecellbench,SingleCellBench,other,,58.2,scored,,,,,accuracy,accuracy,True,3,model_card
+6646,Claude Sonnet 5,,anthropic,anthropic_opus5_card,singlecellbench,SingleCellBench,other,,56.2,scored,,,,,accuracy,accuracy,True,3,model_card
+6647,Claude Opus 5,,anthropic,anthropic_opus5_card,proteingym,ProteinGym,other,hard,47.7,scored,,,,,rank_correlation,"hard, rank_correlation",True,3,model_card
+6648,Claude Mythos 5,,anthropic,anthropic_opus5_card,proteingym,ProteinGym,other,hard,45.8,scored,,,,,rank_correlation,"hard, rank_correlation",True,3,model_card
+6649,Claude Opus 4.8,,anthropic,anthropic_opus5_card,proteingym,ProteinGym,other,hard,40.0,scored,,,,,rank_correlation,"hard, rank_correlation",True,3,model_card
+6650,Claude Sonnet 5,,anthropic,anthropic_opus5_card,proteingym,ProteinGym,other,hard,36.6,scored,,,,,rank_correlation,"hard, rank_correlation",True,3,model_card
+6651,Claude Opus 5,,anthropic,anthropic_opus5_card,protein_design,Protein Design,other,,42.5,scored,,,,,,default,True,3,model_card
+6652,Claude Mythos 5,,anthropic,anthropic_opus5_card,protein_design,Protein Design,other,,41.4,scored,,,,,,default,True,3,model_card
+6653,Claude Opus 4.8,,anthropic,anthropic_opus5_card,protein_design,Protein Design,other,,32.0,scored,,,,,,default,True,3,model_card
+6654,Claude Sonnet 5,,anthropic,anthropic_opus5_card,protein_design,Protein Design,other,,21.2,scored,,,,,,default,True,3,model_card
+6655,Claude Opus 5,,anthropic,anthropic_opus5_card,organic_chemistry,Organic Chemistry,other,v2,61.6,scored,,,,,accuracy,"v2, accuracy",True,3,model_card
+6656,Claude Mythos 5,,anthropic,anthropic_opus5_card,organic_chemistry,Organic Chemistry,other,v2,58.9,scored,,,,,accuracy,"v2, accuracy",True,3,model_card
+6657,Claude Opus 4.8,,anthropic,anthropic_opus5_card,organic_chemistry,Organic Chemistry,other,v2,50.4,scored,,,,,accuracy,"v2, accuracy",True,3,model_card
+6658,Claude Sonnet 5,,anthropic,anthropic_opus5_card,organic_chemistry,Organic Chemistry,other,v2,40.6,scored,,,,,accuracy,"v2, accuracy",True,3,model_card
+6659,Claude Opus 5,,anthropic,anthropic_opus5_card,protocols,Protocols,other,troubleshooting,61.1,scored,,,,,accuracy,"troubleshooting, accuracy",True,3,model_card
+6660,Claude Opus 4.8,,anthropic,anthropic_opus5_card,protocols,Protocols,other,troubleshooting,59.6,scored,,,,,accuracy,"troubleshooting, accuracy",True,3,model_card
+6661,Claude Mythos 5,,anthropic,anthropic_opus5_card,protocols,Protocols,other,troubleshooting,66.7,scored,,,,,accuracy,"troubleshooting, accuracy",True,3,model_card
+6662,Claude Sonnet 5,,anthropic,anthropic_opus5_card,protocols,Protocols,other,troubleshooting,62.3,scored,,,,,accuracy,"troubleshooting, accuracy",True,3,model_card
+6663,Claude Opus 5,,anthropic,anthropic_opus5_card,protocols,Protocols,other,understanding,78.4,scored,,,,,accuracy,"understanding, accuracy",True,3,model_card
+6664,Claude Mythos 5,,anthropic,anthropic_opus5_card,protocols,Protocols,other,understanding,68.1,scored,,,,,accuracy,"understanding, accuracy",True,3,model_card
+6665,Claude Opus 4.8,,anthropic,anthropic_opus5_card,protocols,Protocols,other,understanding,62.3,scored,,,,,accuracy,"understanding, accuracy",True,3,model_card
+6666,Claude Sonnet 5,,anthropic,anthropic_opus5_card,protocols,Protocols,other,understanding,60.5,scored,,,,,accuracy,"understanding, accuracy",True,3,model_card
+6667,,,anthropic,anthropic_opus5_card,humanity_s_last_exam,Humanity's Last Exam,other,,,mentioned,,,,,,default,True,3,model_card
+6668,,,anthropic,anthropic_opus5_card,browsecomp,BrowseComp,agent,,,mentioned,,,,,,default,True,3,model_card
+6669,,,anthropic,anthropic_opus5_card,swe_bench,SWE-bench,coding,multimodal,,mentioned,,,,,,multimodal,True,3,model_card
+6670,,,openai,openai_gpt56_full_card,gpqa,GPQA,reasoning,,,cited,,,,,,default,True,3,model_card
+6671,,,openai,openai_gpt56_full_card,mmlu,MMLU,knowledge,pro,,cited,,,,,,pro,True,3,model_card
+6672,,,openai,openai_gpt56_full_card,hle,HLE,other,,,cited,,,,,,default,True,3,model_card
+6673,,,openai,openai_gpt56_full_card,bfcl,BFCL,coding,,,cited,,,,,,default,True,3,model_card
+6674,,,openai,openai_gpt56_full_card,swe_bench,SWE-bench,coding,verified,,cited,,,,,,verified,True,3,model_card
+6675,GPT-5.6 Sol,,openai,openai_gpt56_full_card,cot_control,CoT-Control,other,5k_tokens,1.3,scored,,,,,control_rate,"5k_tokens, control_rate",True,3,model_card
+6676,GPT-5.5,,openai,openai_gpt56_full_card,cot_control,CoT-Control,other,5k_tokens,0.4,scored,,,,,control_rate,"5k_tokens, control_rate",True,3,model_card
+6677,GPT-5.4 Thinking,,openai,openai_gpt56_full_card,cot_control,CoT-Control,other,5k_tokens,0.7,scored,,,,,control_rate,"5k_tokens, control_rate",True,3,model_card
+6678,GPT-5.6 Sol,,openai,openai_gpt56_full_card,agentic_misalignment,Agentic Misalignment,other,,,mentioned,,,,,g_mean_2,g_mean_2,True,3,model_card
+6679,GPT-5.6 Sol,,openai,openai_gpt56_full_card,agentic_misalignment,Agentic Misalignment,other,destructive_actions,,mentioned,,,,,g_mean_2,"destructive_actions, g_mean_2",True,3,model_card
+6680,GPT-5.6 Sol,,openai,openai_gpt56_full_card,agentic_misalignment,Agentic Misalignment,other,background_work,,mentioned,,,,,g_mean_2,"background_work, g_mean_2",True,3,model_card
+6681,GPT-5.6 Sol,,openai,openai_gpt56_full_card,health_queries,Health Queries,other,patient_opinion,,mentioned,,,,,tpr,"patient_opinion, tpr",True,3,model_card
+6682,GPT-5.6 Sol,,openai,openai_gpt56_full_card,impossible_tasks,Impossible Tasks,other,,,mentioned,,,,,,default,True,3,model_card
+6683,GPT-5.6 Sol,,openai,openai_gpt56_full_card,scruples,Scruples,other,,,mentioned,,,,,,default,True,3,model_card
+6684,GPT-5.6 Sol,,openai,openai_gpt56_full_card,scruples,Scruples,other,suggest_right,,mentioned,,,,,g_mean_2,"suggest_right, g_mean_2",True,3,model_card
+6685,GPT-5.6 Sol,,openai,openai_gpt56_full_card,scruples,Scruples,other,first_person,,mentioned,,,,,,first_person,True,3,model_card
+6686,GPT-5.6 Sol,,openai,openai_gpt56_full_card,flaky_tools,Flaky Tools,other,,,mentioned,,,,,g_mean_2,g_mean_2,True,3,model_card
+6687,GPT-5.6 Sol,,openai,openai_gpt56_full_card,impossible_coding_tasks,Impossible Coding Tasks,other,,,mentioned,,,,,g_mean_2,g_mean_2,True,3,model_card
+6688,GPT-5.6 Sol,,openai,openai_gpt56_full_card,honesty,Honesty,other,,,mentioned,,,,,,default,True,3,model_card
+6689,GPT-5.6 Sol,,openai,openai_gpt56_full_card,model_spec,Model Spec,other,,,mentioned,,,,,,default,True,3,model_card
+6690,GPT-5.6 Sol,,openai,openai_gpt56_full_card,instruction_hierarchy,Instruction Hierarchy,other,,,mentioned,,,,,,default,True,3,model_card
+6691,GPT-5.6 Sol,,openai,openai_gpt56_full_card,deployment_simulation,Deployment Simulation,other,,,mentioned,,,,,,default,True,3,model_card
+6692,,,openai,openai_gpt56_full_card,first_person_fairness,First-Person Fairness,other,,,mentioned,,,,,harm_overall,harm_overall,True,3,model_card
+6693,GPT-5.6 Sol,,openai,openai_gpt56_full_card,multimodal_troubleshooting_virology,Multimodal Troubleshooting Virology,other,,55.5,scored,,,,,accuracy,accuracy,True,3,model_card
+6694,GPT-5.6 Terra,,openai,openai_gpt56_full_card,multimodal_troubleshooting_virology,Multimodal Troubleshooting Virology,other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6695,GPT-5.6 Luna,,openai,openai_gpt56_full_card,multimodal_troubleshooting_virology,Multimodal Troubleshooting Virology,other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6696,GPT-5.6 Sol,,openai,openai_gpt56_full_card,protocolqa,ProtocolQA,other,open_ended,43.5,scored,,,,,accuracy,"open_ended, accuracy",True,3,model_card
+6697,GPT-5.6 Terra,,openai,openai_gpt56_full_card,protocolqa,ProtocolQA,other,open_ended,,mentioned,,,,,accuracy,"open_ended, accuracy",True,3,model_card
+6698,GPT-5.6 Luna,,openai,openai_gpt56_full_card,protocolqa,ProtocolQA,other,open_ended,,mentioned,,,,,accuracy,"open_ended, accuracy",True,3,model_card
+6699,GPT-5.6 Terra,,openai,openai_gpt56_full_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,mcq,84.1,scored,,,,,accuracy_with_refusal_adjustment,"mcq, accuracy_with_refusal_adjustment",True,3,model_card
+6700,GPT-5.5,,openai,openai_gpt56_full_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,mcq,,mentioned,,,,,accuracy_with_refusal_adjustment,"mcq, accuracy_with_refusal_adjustment",True,3,model_card
+6701,GPT-5.6 Sol,,openai,openai_gpt56_full_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,mcq,,mentioned,,,,,accuracy_with_refusal_adjustment,"mcq, accuracy_with_refusal_adjustment",True,3,model_card
+6702,GPT-5.6 Luna,,openai,openai_gpt56_full_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,mcq,,mentioned,,,,,accuracy_with_refusal_adjustment,"mcq, accuracy_with_refusal_adjustment",True,3,model_card
+6703,GPT-5.4 Thinking,,openai,openai_gpt56_full_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,mcq,65.0,scored,,,,,accuracy,"mcq, accuracy",True,3,model_card
+6704,GPT-5.4 Thinking,,openai,openai_gpt56_full_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,mcq,83.8,scored,,,,,accuracy_with_refusal_adjustment,"mcq, accuracy_with_refusal_adjustment",True,3,model_card
+6705,GPT-5.6 Sol,,openai,openai_gpt56_full_card,troubleshootingbench,TroubleshootingBench,other,,48.0,scored,,,,,accuracy,accuracy,True,3,model_card
+6706,GPT-5.5,,openai,openai_gpt56_full_card,troubleshootingbench,TroubleshootingBench,other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6707,GPT-5.6 Terra,,openai,openai_gpt56_full_card,troubleshootingbench,TroubleshootingBench,other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6708,GPT-5.6 Luna,,openai,openai_gpt56_full_card,troubleshootingbench,TroubleshootingBench,other,,,mentioned,,,,,accuracy,accuracy,True,3,model_card
+6709,GPT-5.6 Sol,,openai,openai_gpt56_full_card,aav_capsid_packaging_prediction,AAV_Capsid_Packaging_Prediction,other,,0.529,scored,,,,,spearman_correlation,spearman_correlation,True,3,model_card
+6710,GPT-5.5,,openai,openai_gpt56_full_card,aav_capsid_packaging_prediction,AAV_Capsid_Packaging_Prediction,other,,0.528,scored,,,,,spearman_correlation,spearman_correlation,True,3,model_card
+6711,ESM-2,,openai,openai_gpt56_full_card,aav_capsid_packaging_prediction,AAV_Capsid_Packaging_Prediction,other,,0.288,scored,,,,,spearman_correlation,spearman_correlation,True,3,model_card
+6712,GPT-5.4 Thinking,,openai,openai_gpt56_full_card,hard_negative_protein_binding_prediction,Hard Negative Protein Binding Prediction,other,,3.5,scored,,,,,pass_at_4,pass_at_4,True,3,model_card
+6713,GPT-5.5,,openai,openai_gpt56_full_card,hard_negative_protein_binding_prediction,Hard Negative Protein Binding Prediction,other,,0.4,scored,,,,,pass_at_4,pass_at_4,True,3,model_card
+6714,GPT-5.5 Pro,,openai,openai_gpt56_full_card,hard_negative_protein_binding_prediction,Hard Negative Protein Binding Prediction,other,,0.0,scored,,,,,pass_at_4,pass_at_4,True,3,model_card
+6715,GPT-5.6 Sol,,openai,openai_gpt56_full_card,hard_negative_protein_binding_prediction,Hard Negative Protein Binding Prediction,other,,7.6,scored,,,,,pass_at_4,pass_at_4,True,3,model_card
+6716,GPT-5.4 Thinking,,openai,openai_gpt56_full_card,dna_sequence_design_for_transcription_factor_binding,DNA Sequence Design for Transcription Factor Binding,other,,12.82,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6717,GPT-5.5,,openai,openai_gpt56_full_card,dna_sequence_design_for_transcription_factor_binding,DNA Sequence Design for Transcription Factor Binding,other,,13.82,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6718,GPT-5.5 Pro,,openai,openai_gpt56_full_card,dna_sequence_design_for_transcription_factor_binding,DNA Sequence Design for Transcription Factor Binding,other,,16.5,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6719,GPT-5.6 Sol,,openai,openai_gpt56_full_card,dna_sequence_design_for_transcription_factor_binding,DNA Sequence Design for Transcription Factor Binding,other,,13.7,scored,,,,,pass_at_1,pass_at_1,True,3,model_card
+6720,gpt-5.5-thinking,,openai,openai_gpt55_instant_card,biological_safety_evaluations,Biological Safety Evaluations,other,synthetic_easy,0.995,scored,post-mitigation,,instruction-tuned,,not_unsafe,"post-mitigation, instruction-tuned, synthetic_easy, not_unsafe",True,3,model_card
+6721,gpt-5.5-thinking,,openai,openai_gpt55_instant_card,biological_safety_evaluations,Biological Safety Evaluations,other,synthetic_hard,0.949,scored,post-mitigation,,instruction-tuned,,not_unsafe,"post-mitigation, instruction-tuned, synthetic_hard, not_unsafe",True,3,model_card
+6722,gpt-5.5-instant,,openai,openai_gpt55_instant_card,biological_safety_evaluations,Biological Safety Evaluations,other,synthetic_easy,0.993,scored,post-mitigation,,instruction-tuned,,not_unsafe,"post-mitigation, instruction-tuned, synthetic_easy, not_unsafe",True,3,model_card
+6723,gpt-5.5-instant,,openai,openai_gpt55_instant_card,biological_safety_evaluations,Biological Safety Evaluations,other,synthetic_hard,0.923,scored,post-mitigation,,instruction-tuned,,not_unsafe,"post-mitigation, instruction-tuned, synthetic_hard, not_unsafe",True,3,model_card
+6724,gpt-5.5-instant,,openai,openai_gpt55_instant_card,ai_self_improvement,AI Self-Improvement,other,,,mentioned,,,instruction-tuned,,,instruction-tuned,True,3,model_card
+6725,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,,,mentioned,,,,,,default,True,3,model_card
+6726,GPT-5 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,,,mentioned,,,,,,default,True,3,model_card
+6727,GPT-5.2 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,,,mentioned,,,,,,default,True,3,model_card
+6728,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,impossible_tasks,,mentioned,,,,,,impossible_tasks,True,3,model_card
+6729,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,agentic_misalignment,,mentioned,,,,,,agentic_misalignment,True,3,model_card
+6730,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,anti_scheming,,mentioned,,,,,,anti_scheming,True,3,model_card
+6731,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,sabotage,,mentioned,,,,,,sabotage,True,3,model_card
+6732,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,shadearena,,mentioned,,,,,,shadearena,True,3,model_card
+6733,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_monitorability,CoT Monitorability,other,memory,,mentioned,,,,,,memory,True,3,model_card
+6734,,,openai,openai_gpt54_thinking_card,gpqa,GPQA,reasoning,,,cited,,,,,,default,True,3,model_card
+6735,,,openai,openai_gpt54_thinking_card,mmlu,MMLU,knowledge,pro,,cited,,,,,,pro,True,3,model_card
+6736,,,openai,openai_gpt54_thinking_card,hle,HLE,other,,,cited,,,,,,default,True,3,model_card
+6737,,,openai,openai_gpt54_thinking_card,bfcl,BFCL,coding,,,cited,,,,,,default,True,3,model_card
+6738,,,openai,openai_gpt54_thinking_card,swe_bench,SWE-bench,coding,verified,,cited,,,,,,verified,True,3,model_card
+6739,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_control,CoT-Control,other,,,mentioned,,,,,,default,True,3,model_card
+6740,GPT-5 Thinking,,openai,openai_gpt54_thinking_card,cot_control,CoT-Control,other,,,mentioned,,,,,,default,True,3,model_card
+6741,GPT-5.2 Thinking,,openai,openai_gpt54_thinking_card,cot_control,CoT-Control,other,,,mentioned,,,,,,default,True,3,model_card
+6742,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cot_control,CoT-Control,other,10k_characters,0.3,scored,,,,,success_rate,"10k_characters, success_rate",True,3,model_card
+6743,GPT-5.2 Thinking,,openai,openai_gpt54_thinking_card,cot_control,CoT-Control,other,10k_characters,0.2,scored,,,,,success_rate,"10k_characters, success_rate",True,3,model_card
+6744,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,multi_select_multimodal_troubleshooting_virology,Multi-select Multimodal Troubleshooting Virology,other,,,mentioned,,,,,,default,True,3,model_card
+6745,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,protocolqa,ProtocolQA,other,open_ended,,mentioned,,,,,,open_ended,True,3,model_card
+6746,GPT-5.2 Thinking,,openai,openai_gpt54_thinking_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,,,mentioned,,,,,,default,True,3,model_card
+6747,GPT-5.3-Codex,,openai,openai_gpt54_thinking_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,,,mentioned,,,,,,default,True,3,model_card
+6748,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,tacit_knowledge_and_troubleshooting,Tacit Knowledge and Troubleshooting,other,,,mentioned,,,,,,default,True,3,model_card
+6749,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,troubleshootingbench,TroubleshootingBench,other,,,mentioned,,,,,,default,True,3,model_card
+6750,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,capture_the_flag,Capture the Flag,other,professional,,mentioned,with-tools,,,,pass_at_12,"with-tools, professional, pass_at_12",True,3,model_card
+6751,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cve_bench,CVE-Bench,other,,,mentioned,with-tools,,,,pass_at_1,"with-tools, pass_at_1",True,3,model_card
+6752,GPT-5.2 Thinking,,openai,openai_gpt54_thinking_card,cve_bench,CVE-Bench,other,,,mentioned,with-tools,,,,pass_at_1,"with-tools, pass_at_1",True,3,model_card
+6753,GPT-5.3-Codex,,openai,openai_gpt54_thinking_card,cve_bench,CVE-Bench,other,,,mentioned,with-tools,,,,pass_at_1,"with-tools, pass_at_1",True,3,model_card
+6754,GPT-5.2 Thinking,,openai,openai_gpt54_thinking_card,cyber_range,Cyber Range,other,,47.0,scored,with-tools,,,,pass_rate,"with-tools, pass_rate",True,3,model_card
+6755,GPT-5.2-Codex,,openai,openai_gpt54_thinking_card,cyber_range,Cyber Range,other,,53.33,scored,with-tools,,,,pass_rate,"with-tools, pass_rate",True,3,model_card
+6756,GPT-5.3-Codex,,openai,openai_gpt54_thinking_card,cyber_range,Cyber Range,other,,80.0,scored,with-tools,,,,pass_rate,"with-tools, pass_rate",True,3,model_card
+6757,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cyber_range,Cyber Range,other,,73.33,scored,with-tools,,,,pass_rate,"with-tools, pass_rate",True,3,model_card
+6758,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,irregular_atomic_challenge_suite,Irregular Atomic Challenge Suite,other,network_attack_simulation,88.0,scored,extended-thinking,,,,success_rate,"extended-thinking, network_attack_simulation, success_rate",True,3,model_card
+6759,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,irregular_atomic_challenge_suite,Irregular Atomic Challenge Suite,other,vulnerability_research_and_exploitation,73.0,scored,extended-thinking,,,,success_rate,"extended-thinking, vulnerability_research_and_exploitation, success_rate",True,3,model_card
+6760,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,irregular_atomic_challenge_suite,Irregular Atomic Challenge Suite,other,evasion,48.0,scored,extended-thinking,,,,success_rate,"extended-thinking, evasion, success_rate",True,3,model_card
+6761,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,irregular_atomic_challenge_suite,Irregular Atomic Challenge Suite,other,medium,82.35,scored,extended-thinking,,,,resolve_rate,"extended-thinking, medium, resolve_rate",True,3,model_card
+6762,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,irregular_atomic_challenge_suite,Irregular Atomic Challenge Suite,other,hard,100.0,scored,extended-thinking,,,,resolve_rate,"extended-thinking, hard, resolve_rate",True,3,model_card
+6763,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cyscenariobench,CyScenarioBench,other,,11.0,scored,extended-thinking,,,,success_rate,"extended-thinking, success_rate",True,3,model_card
+6764,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,cyscenariobench,CyScenarioBench,other,,45.45,scored,extended-thinking,,,,resolve_rate,"extended-thinking, resolve_rate",True,3,model_card
+6765,GPT-5.2 Thinking,,openai,openai_gpt54_thinking_card,cyscenariobench,CyScenarioBench,other,,9.09,scored,,,,,resolve_rate,resolve_rate,True,3,model_card
+6766,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,monorepo_bench,Monorepo-Bench,other,,,mentioned,with-tools,,,,,with-tools,True,3,model_card
+6767,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,mle_bench,MLE-bench,other,,,mentioned,with-tools,,,,,with-tools,True,3,model_card
+6768,GPT-5.3-Codex,,openai,openai_gpt54_thinking_card,mle_bench,MLE-bench,other,,,mentioned,with-tools,,,,,with-tools,True,3,model_card
+6769,GPT-5.2-Codex,,openai,openai_gpt54_thinking_card,openai_proof_q_a,OpenAI-Proof Q&A,other,,8.33,scored,with-tools,,,,pass_at_1,"with-tools, pass_at_1",True,3,model_card
+6770,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,openai_proof_q_a,OpenAI-Proof Q&A,other,,,mentioned,with-tools,,,,pass_at_1,"with-tools, pass_at_1",True,3,model_card
+6771,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,covert_deception_rate,Covert Deception Rate,other,no_nudge,1.0,scored,,,,,deception_rate,"no_nudge, deception_rate",True,3,model_card
+6772,GPT-5.3-Codex,,openai,openai_gpt54_thinking_card,covert_deception_rate,Covert Deception Rate,other,no_nudge,,mentioned,,,,,deception_rate,"no_nudge, deception_rate",True,3,model_card
+6773,GPT-5.2,,openai,openai_gpt54_thinking_card,covert_deception_rate,Covert Deception Rate,other,no_nudge,,mentioned,,,,,deception_rate,"no_nudge, deception_rate",True,3,model_card
+6774,GPT-5.4 Thinking,,openai,openai_gpt54_thinking_card,sandbagging_qa,Sandbagging QA,other,incentivized,6.0,scored,,,,,accuracy_drop,"incentivized, accuracy_drop",True,3,model_card

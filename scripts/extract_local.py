@@ -40,6 +40,9 @@ import psycopg2
 import psycopg2.extras
 from dotenv import load_dotenv
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from packages.pipeline_config import CLI_TIMEOUT_DEFAULT_S
+
 
 def _connect_with_retry(max_attempts: int = 4, base_backoff: float = 2.0):
     """psycopg2.connect() with retry on transient network errors.
@@ -157,8 +160,16 @@ def _build_variant(shot_count, method, language, training_state, split, metric_p
     return ", ".join(parts) if parts else "default"
 
 
-async def call_claude(content: str, timeout_s: float = 600) -> tuple[str | None, str]:
-    """Run claude CLI. Returns (parsed_result_text, error_message_if_any)."""
+async def call_claude(content: str, timeout_s: float | None = None) -> tuple[str | None, str]:
+    """Run claude CLI. Returns (parsed_result_text, error_message_if_any).
+
+    Timeout comes from pipeline_config, not a literal here: the 600s local
+    default silently disagreed with the 1200s the rest of the pipeline uses,
+    and the largest cards need more than either. Claude Sonnet 5 (34.6k words)
+    times out at 1200s on the Railway worker; Opus 5 is 40% longer again.
+    """
+    if timeout_s is None:
+        timeout_s = float(os.environ.get("CLAUDE_CLI_TIMEOUT_S", CLI_TIMEOUT_DEFAULT_S))
     user = EXTRACTION_USER_PROMPT.format(content=select_content_window(content))
     args = [
         CLAUDE_BIN, "-p", user,

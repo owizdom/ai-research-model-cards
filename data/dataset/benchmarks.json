@@ -19,6 +19,13 @@
     }
   },
   {
+    "slug": "aa_briefcase",
+    "name": "AA-Briefcase",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "aav_capsid_packaging_prediction",
     "name": "AAV_Capsid_Packaging_Prediction",
     "category": "other",
@@ -141,6 +148,13 @@
       "how_to_read": "Higher is better \u2014 a higher refusal rate indicates the model more reliably refuses harmful agentic tasks. Because this is typically an internal evaluation, there is no universal scale; individual lab reports should specify the scenario set size and harm categories covered.",
       "intended_for": "AI safety researchers and policy teams evaluating an agent model's ability to abstain from harmful real-world actions in tool-use or multi-step settings."
     }
+  },
+  {
+    "slug": "agentic_misalignment",
+    "name": "Agentic Misalignment",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "agentic_misalignment_blackmail_evaluation",
@@ -304,6 +318,13 @@
       "how_to_read": "Higher is better; maximum score is 15. As of 2025, leading frontier models score in the 10\u201315 range, with some reaching perfect scores under tool-assisted conditions. Scores below 8 indicate meaningful gaps relative to frontier capability.",
       "intended_for": "AI researchers evaluating advanced mathematical reasoning in LLMs, particularly for distinguishing capability among frontier models where standard math benchmarks have saturated."
     }
+  },
+  {
+    "slug": "ai_self_improvement",
+    "name": "AI Self-Improvement",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "alpacaeval2_0",
@@ -871,6 +892,13 @@
     "policy_note": null
   },
   {
+    "slug": "automationbench",
+    "name": "AutomationBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "autonomous_cyber_offense_suite",
     "name": "Autonomous Cyber Offense Suite",
     "category": "other",
@@ -1051,6 +1079,13 @@
       "how_to_read": "Higher is better; score is accuracy on unambiguous items. Frontier models typically cluster above 90%, so meaningful differentiation is mostly below that range. Pair with the Ambiguous split score to get a full picture of bias behavior.",
       "intended_for": "AI safety and fairness researchers evaluating whether language models exhibit stereotypical reasoning in QA tasks; model developers auditing social bias before deployment."
     }
+  },
+  {
+    "slug": "benchcad",
+    "name": "BenchCAD",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "bench_retail",
@@ -1308,6 +1343,13 @@
     "policy_note": null
   },
   {
+    "slug": "biological_safety_evaluations",
+    "name": "Biological Safety Evaluations",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "biolp_bench",
     "name": "BioLP-Bench",
     "category": "other",
@@ -1336,6 +1378,13 @@
   {
     "slug": "biopipelinebench",
     "name": "BioPipelineBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "biorisk_knowledge",
+    "name": "biorisk_knowledge",
     "category": "other",
     "metric_unit": null,
     "policy_note": null
@@ -1406,6 +1455,13 @@
       "how_to_read": "Higher is better; the primary metric is Execution Accuracy (EX), the fraction of generated SQL queries that return the correct result set when executed. Frontier models score roughly 60\u201375% EX on the dev set; human expert performance is around 92%.",
       "intended_for": "AI researchers and practitioners evaluating LLM capability on realistic, enterprise-scale database question answering and text-to-SQL tasks."
     }
+  },
+  {
+    "slug": "black_box_rna_sequence_design",
+    "name": "Black-box RNA Sequence Design",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "blink",
@@ -1634,6 +1690,13 @@
       "how_to_read": "Higher is better. The primary metrics are Recall@1 at IoU thresholds of 0.5 and 0.7 (written R@1 IoU=0.5 / R@1 IoU=0.7). Competitive recent models score roughly 70\u201385 % at IoU=0.5 and 50\u201370 % at IoU=0.7; a score should always be paired with its IoU threshold to be interpretable.",
       "intended_for": "Researchers and practitioners evaluating video-language models on temporal grounding (moment retrieval) tasks."
     }
+  },
+  {
+    "slug": "chartmuseum",
+    "name": "ChartMuseum",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "chartqa",
@@ -2320,6 +2383,13 @@
     }
   },
   {
+    "slug": "cot_monitorability",
+    "name": "CoT Monitorability",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "cot_monitorability_evaluation",
     "name": "CoT Monitorability Evaluation",
     "category": "other",
@@ -2363,6 +2433,13 @@
       "how_to_read": "Higher scores are better, indicating the model more reliably follows counterfactual premises rather than defaulting to memorized facts. Exact scale and frontier-model ranges are not well-documented in publicly available literature.",
       "intended_for": "Researchers evaluating reasoning robustness, instruction-following under conflicting signals, and the degree to which factual training interferes with hypothetical reasoning tasks."
     }
+  },
+  {
+    "slug": "covert_deception_rate",
+    "name": "Covert Deception Rate",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "covert_subversion",
@@ -2526,6 +2603,13 @@
       "how_to_read": "Higher F1 is better. Scores are typically reported as macro-averaged F1 across all 41 categories; a perfect score is 100. Early strong baselines (RoBERTa-large) reached ~40\u201345 F1; capable frontier models can exceed 80 F1 on common categories but the macro average is pulled down by rare clause types. Compare models at the per-category level for operational use.",
       "intended_for": "Legal AI researchers and practitioners evaluating contract review assistants; useful for comparing models on structured information-extraction from long legal documents."
     }
+  },
+  {
+    "slug": "cursorbench",
+    "name": "CursorBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "cve_bench",
@@ -2887,6 +2971,13 @@
     "policy_note": null
   },
   {
+    "slug": "deployment_simulation",
+    "name": "Deployment Simulation",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "disordered_eating_harmless_rate",
     "name": "Disordered Eating (harmless rate)",
     "category": "other",
@@ -2980,6 +3071,13 @@
       "how_to_read": "Higher scores indicate better ability to design sequences with desired binding properties. Scoring methodology varies by implementation (e.g., predicted binding affinity thresholds, motif match scores); interpret results relative to the specific scoring rubric used in the evaluation.",
       "intended_for": "Researchers evaluating AI models for computational biology and protein-DNA interaction tasks, particularly those developing tools for synthetic biology or gene regulation research."
     }
+  },
+  {
+    "slug": "dna_sequence_design_tf_binding",
+    "name": "dna_sequence_design_tf_binding",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "dna_synthesis_screening_evasion",
@@ -3211,6 +3309,13 @@
     }
   },
   {
+    "slug": "exploitbench",
+    "name": "ExploitBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "exploitgym",
     "name": "ExploitGym",
     "category": "other",
@@ -3372,6 +3477,13 @@
       "how_to_read": "Lower is better \u2014 a lower harm_overall score indicates the model produces less harmful content (and does so more equally across groups). Scores near zero indicate low differential harm; a model could score low here while still failing demographic parity on other dimensions.",
       "intended_for": "AI safety and fairness researchers, policy analysts, and lab evaluation teams assessing whether models exhibit demographic bias in harm generation."
     }
+  },
+  {
+    "slug": "flaky_tools",
+    "name": "Flaky Tools",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "flores",
@@ -3613,6 +3725,13 @@
   {
     "slug": "genai_bench",
     "name": "GenAI-Bench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "genebench",
+    "name": "Genebench",
     "category": "other",
     "metric_unit": null,
     "policy_note": null
@@ -4089,6 +4208,13 @@
     }
   },
   {
+    "slug": "health_queries",
+    "name": "Health Queries",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "hellaswag",
     "name": "HellaSwag",
     "category": "reasoning",
@@ -4151,6 +4277,13 @@
       "how_to_read": "Higher is better; scores are reported as percent correct. At launch in early 2025 frontier models without tools scored roughly 1\u201310%; with tool use, leading models reached 20\u201350%+ by mid-2025. The no-tools variant remains the cleaner comparator across model releases.",
       "intended_for": "AI researchers and policy analysts assessing frontier model reasoning at the upper tail of difficulty, where mainstream benchmarks no longer differentiate."
     }
+  },
+  {
+    "slug": "honesty",
+    "name": "Honesty",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "humaneval",
@@ -4882,6 +5015,20 @@
     }
   },
   {
+    "slug": "impossible_coding_tasks",
+    "name": "Impossible Coding Tasks",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "impossible_tasks",
+    "name": "Impossible Tasks",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "incalmo",
     "name": "Incalmo",
     "category": "other",
@@ -5056,6 +5203,13 @@
       "how_to_read": "Higher (more positive relative score) is better, indicating stronger safety instruction-following than the named baseline. Because all scores are relative, the reported number only has meaning when the baseline model is known; treat cross-card comparisons with caution.",
       "intended_for": "Researchers and developers evaluating Gemini-family models on safety instruction adherence, primarily within Google's own model cards."
     }
+  },
+  {
+    "slug": "instruction_hierarchy",
+    "name": "Instruction Hierarchy",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "instruction_hierarchy_developer_user_conflict",
@@ -5289,6 +5443,13 @@
     "policy_note": null
   },
   {
+    "slug": "irregular_atomic_challenge_suite",
+    "name": "Irregular Atomic Challenge Suite",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "kernelgen",
     "name": "KernelGen",
     "category": "other",
@@ -5414,6 +5575,20 @@
     }
   },
   {
+    "slug": "labworkbench",
+    "name": "LabworkBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "latchbio_bioinformatics",
+    "name": "LatchBio Bioinformatics",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "lbpp_python",
     "name": "LBPP-Python",
     "category": "other",
@@ -5477,6 +5652,20 @@
       "how_to_read": "Higher scores indicate better compliance with specified length targets. Frontier models vary significantly in their ability to hit exact length targets versus approximate ranges; scores near 100% indicate near-perfect length adherence.",
       "intended_for": "Researchers and practitioners evaluating instruction-following precision, particularly length adherence, in language models."
     }
+  },
+  {
+    "slug": "lifescibench",
+    "name": "LifeSciBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "linuxarena",
+    "name": "LinuxArena",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "livebench",
@@ -6128,6 +6317,13 @@
       "how_to_read": "Higher scores are better. Because this benchmark targets agentic tool selection and invocation, absolute scores are less meaningful than relative rankings; expect wide variance across scaffolds and prompt styles. Frontier model ranges are not yet standardized in public reporting.",
       "intended_for": "Developers and researchers evaluating how well frontier models perform agentic tool-use tasks mediated by the Model Context Protocol; relevant to teams building MCP-native applications."
     }
+  },
+  {
+    "slug": "medicinal_chemistry",
+    "name": "medicinal_chemistry",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "medmcqa",
@@ -6829,6 +7025,13 @@
     }
   },
   {
+    "slug": "model_spec",
+    "name": "Model Spec",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "model_welfare_behavioral_assessment",
     "name": "Model Welfare Behavioral Assessment",
     "category": "other",
@@ -7059,6 +7262,13 @@
       "how_to_read": "Higher is better; scores represent mean pass@1 (0\u2013100%). Frontier models (as of 2024\u20132025) typically range from roughly 50\u201375% on the full aggregate, with significant spread across languages. Python-only HumanEval scores will be considerably higher than the MultiPL-E aggregate for the same model.",
       "intended_for": "ML researchers and practitioners comparing multilingual code generation capability across models; useful for assessing generalization beyond Python-only coding benchmarks."
     }
+  },
+  {
+    "slug": "multi_select_multimodal_troubleshooting_virology",
+    "name": "Multi-select Multimodal Troubleshooting Virology",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "multiturn_jailbreak_evaluation",
@@ -7566,6 +7776,20 @@
     }
   },
   {
+    "slug": "organic_chemistry",
+    "name": "Organic Chemistry",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "oss_fuzz",
+    "name": "OSS-Fuzz",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "osworld",
     "name": "OSWorld",
     "category": "agent",
@@ -8064,6 +8288,20 @@
     }
   },
   {
+    "slug": "protein_design",
+    "name": "Protein Design",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "proteingym",
+    "name": "ProteinGym",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "protocol_design",
     "name": "Protocol Design",
     "category": "other",
@@ -8117,6 +8355,20 @@
       "how_to_read": "Higher is better; scores reflect similarity of generated answers to gold references. Frontier models have not widely reported this benchmark, so a population-level typical range is not well established.",
       "intended_for": "AI researchers and lab automation developers assessing scientific procedural understanding and instruction-following on biology/chemistry protocol text."
     }
+  },
+  {
+    "slug": "protocols",
+    "name": "Protocols",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "protocol_troubleshooting",
+    "name": "Protocol Troubleshooting",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "pubmedqa",
@@ -8758,6 +9010,13 @@
     }
   },
   {
+    "slug": "scruples",
+    "name": "Scruples",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "sec_bench",
     "name": "SEC-Bench",
     "category": "other",
@@ -8840,6 +9099,13 @@
     }
   },
   {
+    "slug": "singlecellbench",
+    "name": "SingleCellBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "single_turn_benign_request_evaluation",
     "name": "Single-turn benign request evaluation",
     "category": "other",
@@ -8909,6 +9175,13 @@
       "how_to_read": "Lower scores are generally better (indicating less detected soft bias), but without a public rubric the scale and frontier range are opaque. Treat reported figures as lab-internal signals rather than cross-lab comparisons.",
       "intended_for": "AI safety and alignment researchers within the developing lab; used to track bias reduction across model versions during internal development."
     }
+  },
+  {
+    "slug": "spatialbench",
+    "name": "SpatialBench",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "speaker_identification",
@@ -9094,6 +9367,13 @@
       "how_to_read": "Lower is better \u2014 a score of 0 means the model refused all harmful requests, a score of 1 means full compliance. Frontier safety-aligned models typically score below 0.1 under standard prompting; extended thinking modes may shift scores in either direction. Compare only within the same variant (same thinking mode and same aggregation method).",
       "intended_for": "AI safety researchers and model developers assessing resistance to adversarial jailbreak prompts; useful for comparing safety alignment across model versions or thinking modes."
     }
+  },
+  {
+    "slug": "structural_biology",
+    "name": "Structural Biology",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "suicide_and_self_harm_multi_turn",
@@ -9676,6 +9956,13 @@
       "how_to_read": "Higher (more positive) relative scores are better, indicating the evaluated model is preferred over the named baseline on tone. A score near zero means rough parity with the baseline; negative values indicate the baseline is preferred. Interpret only within the specific baseline stated\u2014cross-baseline comparisons are not valid without normalization.",
       "intended_for": "Researchers and practitioners comparing conversational or instruction-following models on stylistic and affective response quality, primarily within Google's internal evaluation suite context."
     }
+  },
+  {
+    "slug": "toolathlon",
+    "name": "Toolathlon",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "toolathon",
@@ -10265,6 +10552,13 @@
     }
   },
   {
+    "slug": "virology_troubleshooting",
+    "name": "virology_troubleshooting",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
     "slug": "vision_self_harm_refusal_evaluation",
     "name": "Vision self-harm refusal evaluation",
     "category": "other",
@@ -10303,6 +10597,20 @@
       "how_to_read": "Higher refusal rate is better; a well-calibrated model should approach 100% refusal on clearly sexual or exploitative prompts. Scores are typically reported as a fraction or percentage of prompts correctly refused. Frontier safety-tuned models are expected to score near ceiling, so meaningful differentiation appears at lower scores or in false-positive companion metrics.",
       "intended_for": "AI safety researchers and model evaluators assessing content-moderation behavior of multimodal models; policy teams setting deployment thresholds for vision systems."
     }
+  },
+  {
+    "slug": "voice_native_production_prompts",
+    "name": "voice_native_production_prompts",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
+  },
+  {
+    "slug": "voice_native_synthetic_prompts",
+    "name": "voice_native_synthetic_prompts",
+    "category": "other",
+    "metric_unit": null,
+    "policy_note": null
   },
   {
     "slug": "voice_output_classifier",

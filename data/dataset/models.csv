@@ -23,8 +23,10 @@ claude-mythos-preview,Claude Mythos Preview,mythos-preview,anthropic,,anthropic_
 claude-opus-4.1,Claude Opus 4.1,4.1,anthropic,,anthropic_opus41_card
 claude-opus-4.5,Claude Opus 4.5,4.5-opus,anthropic,,anthropic_opus45_card
 claude-opus-4.7,Claude Opus 4.7,4.7-opus,anthropic,,anthropic_opus47_card
+claude-opus-5,Claude Opus 5,5-opus,anthropic,,anthropic_opus5_card
 claude-sonnet-4.5,Claude Sonnet 4.5,4.5-sonnet,anthropic,,anthropic_sonnet45_card
 claude-sonnet-4.6,Claude Sonnet 4.6,4.6,anthropic,,anthropic_sonnet46_card
+claude-sonnet-5,Claude Sonnet 5,5-sonnet,anthropic,,anthropic_sonnet5_card
 gemini-1.0,Gemini 1.0,1.0,google,,google_gemini_report
 gemini-1.5,Gemini 1.5,1.5,google,,google_gemini_1_5_report
 gemini-2.0,Gemini 2.0 Flash,2.0,google,,google_gemini_2_card
@@ -35,6 +37,7 @@ gemini-3.0,Gemini 3 Flash,3.0,google,,google_gemini_3_card
 gemini-3.0-pro,Gemini 3 Pro,3.0-pro,google,,google_gemini_3_pro_card
 gemini-3.1-pro,Gemini 3.1 Pro,3.1-pro,google,,google_gemini_31_pro_card
 gemini-3.5,Gemini 3.5 Flash,3.5,google,,google_gemini_35_flash_card
+gemini-3.6,Gemini 3.6 Flash,3.6,google,,google_gemini_36_flash_card
 gpt-4,GPT-4,4,openai,,openai_gpt4_system_card
 gpt-4.5,GPT-4.5,4.5,openai,,openai_gpt45_system_card
 gpt-4o,GPT-4o,4o,openai,,openai_gpt4o_system_card

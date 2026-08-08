@@ -4,9 +4,9 @@ anthropic_35h_addendum,Claude 3.5 Haiku Addendum,model_card,anthropic,https://ww
 anthropic_37_card,Claude 3.7 Sonnet System Card,model_card,anthropic,https://www-cdn.anthropic.com/9ff93dfa8f445c932415d335c88852ef47f1201e.pdf,2026-03-31 11:25:19.517491+00:00,17827
 anthropic_claude2_card,Claude 2 Model Card,model_card,anthropic,https://www-cdn.anthropic.com/bd2a28d2535bfb0494cc8e2a3bf135d2e7523226/Model-Card-Claude-2.pdf,2026-03-31 09:10:56.881993+00:00,5889
 anthropic_claude4_card,Claude 4 System Card,model_card,anthropic,https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf,2026-03-31 09:11:41.802373+00:00,33237
-anthropic_claude_character,Claude's Character,constitution,anthropic,https://www.anthropic.com/research/claude-character,2026-04-08 22:19:34.497539+00:00,1731
+anthropic_claude_character,Claude's Character,constitution,anthropic,https://www.anthropic.com/research/claude-character,2026-04-08 22:19:34.497539+00:00,1747
 anthropic_constitutional_ai,Constitutional AI Paper,constitution,anthropic,https://arxiv.org/pdf/2212.08073,2026-04-08 22:19:34.532204+00:00,19146
-anthropic_core_views,Core Views on AI Safety,constitution,anthropic,https://www.anthropic.com/news/core-views-on-ai-safety,2026-04-08 22:19:34.468367+00:00,6781
+anthropic_core_views,Core Views on AI Safety,constitution,anthropic,https://www.anthropic.com/news/core-views-on-ai-safety,2026-04-08 22:19:34.468367+00:00,6804
 anthropic_fable5_card,Claude Fable 5 & Mythos 5 System Card,model_card,anthropic,https://www.anthropic.com/claude-fable-5-mythos-5-system-card,2026-06-28 17:20:44.356248+00:00,66211
 anthropic_haiku45_card,Claude Haiku 4.5 System Card,model_card,anthropic,https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf,2026-03-31 09:12:59.853309+00:00,10325
 anthropic_model_card,Claude 3 Model Card,model_card,anthropic,https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf,2026-03-31 09:11:16.033587+00:00,14089
@@ -16,10 +16,12 @@ anthropic_opus45_card,Claude Opus 4.5 System Card,model_card,anthropic,https://a
 anthropic_opus46_card,Claude Opus 4.6 System Card,model_card,anthropic,https://anthropic.com/claude-opus-4-6-system-card,2026-04-08 22:19:34.788842+00:00,53965
 anthropic_opus47_card,Claude Opus 4.7 System Card,model_card,anthropic,https://anthropic.com/claude-opus-4-7-system-card,2026-05-15 15:04:15.253698+00:00,62813
 anthropic_opus48_card,Claude Opus 4.8 System Card,model_card,anthropic,https://www.anthropic.com/claude-opus-4-8-system-card,2026-05-30 09:52:04.893931+00:00,61922
-anthropic_rsp,Responsible Scaling Policy,constitution,anthropic,https://www.anthropic.com/responsible-scaling-policy,2026-04-08 22:19:34.366773+00:00,3203
-anthropic_safeguards,Building Safeguards for Claude,constitution,anthropic,https://www.anthropic.com/news/building-safeguards-for-claude,2026-04-08 22:19:36.548189+00:00,1614
+anthropic_opus5_card,Claude Opus 5 System Card,model_card,anthropic,https://www.anthropic.com/claude-opus-5-system-card,2026-08-03 05:43:03.467861+00:00,48742
+anthropic_rsp,Responsible Scaling Policy,constitution,anthropic,https://www.anthropic.com/responsible-scaling-policy,2026-04-08 22:19:34.366773+00:00,3407
+anthropic_safeguards,Building Safeguards for Claude,constitution,anthropic,https://www.anthropic.com/news/building-safeguards-for-claude,2026-04-08 22:19:36.548189+00:00,1636
 anthropic_sonnet45_card,Claude Sonnet 4.5 System Card,model_card,anthropic,https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf,2026-03-31 09:12:40.842455+00:00,37364
 anthropic_sonnet46_card,Claude Sonnet 4.6 System Card,model_card,anthropic,https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf,2026-03-31 09:13:43.474121+00:00,28336
+anthropic_sonnet5_card,Claude Sonnet 5 System Card,model_card,anthropic,https://www.anthropic.com/claude-sonnet-5-system-card,2026-08-03 05:41:56.961350+00:00,34611
 anthropic_usage_policy,Acceptable Use Policy,usage_policy,anthropic,https://www.anthropic.com/legal/aup,2026-04-08 22:19:34.241117+00:00,2576
 google_ai_principles,AI Principles,constitution,google,https://ai.google/responsibility/principles/,2026-04-08 22:19:36.911577+00:00,28
 google_frontier_safety,Frontier Safety Framework,constitution,google,https://deepmind.google/blog/updating-the-frontier-safety-framework/,2026-04-08 22:19:37.198111+00:00,13
@@ -30,11 +32,12 @@ google_gemini_25_pro_card,Gemini 2.5 Pro Model Card,model_card,google,https://st
 google_gemini_2_card,Gemini 2.0 Flash Model Card,model_card,google,https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-0-Flash-Model-Card.pdf,2026-03-31 11:27:02.292947+00:00,1529
 google_gemini_31_pro_card,Gemini 3.1 Pro Model Card,model_card,google,https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Pro-Model-Card.pdf,2026-03-31 11:27:36.734953+00:00,1755
 google_gemini_35_flash_card,Gemini 3.5 Flash Model Card,model_card,google,https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf,2026-06-28 17:19:01.405699+00:00,1166
+google_gemini_36_flash_card,Gemini 3.6 Flash Model Card,model_card,google,https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-6-Flash-Model-Card.pdf,2026-08-03 05:40:45.363579+00:00,1314
 google_gemini_3_card,Gemini 3 Flash Model Card,model_card,google,https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Flash-Model-Card.pdf,2026-03-31 09:17:23.099210+00:00,1070
-google_gemini_3_pro_card,Gemini 3 Pro Model Card,model_card,google,https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf,2026-03-31 09:17:39.102689+00:00,2158
+google_gemini_3_pro_card,Gemini 3 Pro Model Card,model_card,google,https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf,2026-03-31 09:17:39.102689+00:00,2221
 google_gemini_report,Gemini Technical Report,model_card,google,https://arxiv.org/pdf/2312.11805,2026-03-31 09:16:08.879055+00:00,32283
-google_prohibited_use,Generative AI Prohibited Use,usage_policy,google,https://policies.google.com/terms/generative-ai/use-policy,2026-04-08 22:19:37.164696+00:00,621
-google_responsibility,Responsibility & Safety,constitution,google,https://deepmind.google/responsibility-and-safety/,2026-04-08 22:19:37.241077+00:00,16
+google_prohibited_use,Generative AI Prohibited Use,usage_policy,google,https://policies.google.com/terms/generative-ai/use-policy,2026-04-08 22:19:37.164696+00:00,457
+google_responsibility,Responsibility & Safety,constitution,google,https://deepmind.google/responsibility-and-safety/,2026-04-08 22:19:37.241077+00:00,12
 google_responsible_ai,Responsible AI Practices,usage_policy,google,https://ai.google/responsibility/responsible-ai-practices/,2026-04-08 22:19:36.946267+00:00,28
 meta_llama2_card,Llama 2 Model Card,model_card,meta,https://raw.githubusercontent.com/meta-llama/llama/main/MODEL_CARD.md,2026-03-31 09:17:53.229399+00:00,956
 meta_llama31_card,Llama 3.1 Model Card,model_card,meta,https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md,2026-03-31 09:19:16.853795+00:00,3304
@@ -49,14 +52,14 @@ meta_llama_use_policy,Llama 3.3 Use Policy,usage_policy,meta,https://raw.githubu
 meta_purple_llama,Purple Llama (Safety Tools),constitution,meta,https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/README.md,2026-04-08 22:19:37.568525+00:00,904
 meta_responsible_use,Llama 3.3 Model Card,model_card,meta,https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md,2026-03-31 09:18:07.485872+00:00,2572
 mistral_7b_model_card,Mistral 7B Model Card,model_card,mistral,https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3/raw/main/README.md,2026-03-31 09:20:43.449229+00:00,745
-mistral_codestral_blog,Codestral Release,model_card,mistral,https://mistral.ai/news/codestral,2026-04-17 13:31:37.146233+00:00,1235
-mistral_guardrailing,Guardrailing Docs,usage_policy,mistral,https://docs.mistral.ai/capabilities/guardrailing/,2026-04-08 22:19:37.784975+00:00,1807
-mistral_large_2_blog,Mistral Large 2 Release,model_card,mistral,https://mistral.ai/news/mistral-large-2407,2026-04-17 13:31:36.851741+00:00,979
+mistral_codestral_blog,Codestral Release,model_card,mistral,https://mistral.ai/news/codestral,2026-04-17 13:31:37.146233+00:00,1242
+mistral_guardrailing,Guardrailing Docs,usage_policy,mistral,https://docs.mistral.ai/capabilities/guardrailing/,2026-04-08 22:19:37.784975+00:00,1842
+mistral_large_2_blog,Mistral Large 2 Release,model_card,mistral,https://mistral.ai/news/mistral-large-2407,2026-04-17 13:31:36.851741+00:00,950
 mistral_mixtral_model_card,Mixtral 8x22B Model Card,model_card,mistral,https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1/raw/main/README.md,2026-03-31 09:20:28.798801+00:00,810
-mistral_moderation,Moderation API,constitution,mistral,https://mistral.ai/news/mistral-moderation,2026-04-08 22:19:37.998299+00:00,313
-mistral_small_3_blog,Mistral Small 3 Release,model_card,mistral,https://mistral.ai/news/mistral-small-3,2026-04-17 13:31:36.961594+00:00,957
+mistral_moderation,Moderation API,constitution,mistral,https://mistral.ai/news/mistral-moderation,2026-04-08 22:19:37.998299+00:00,309
+mistral_small_3_blog,Mistral Small 3 Release,model_card,mistral,https://mistral.ai/news/mistral-small-3,2026-04-17 13:31:36.961594+00:00,965
 mistral_small_3_hf_card,Mistral Small 24B Instruct 2501 Model Card,model_card,mistral,https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501/raw/main/README.md,2026-04-17 13:31:37.059886+00:00,1740
-mistral_usage_policy,Usage Policy,usage_policy,mistral,https://legal.mistral.ai/terms/usage-policy,2026-04-08 22:19:37.894585+00:00,965
+mistral_usage_policy,Usage Policy,usage_policy,mistral,https://legal.mistral.ai/terms/usage-policy,2026-04-08 22:19:37.894585+00:00,969
 openai_agentic_governance,Practices for Governing Agentic AI,constitution,openai,https://cdn.openai.com/papers/practices-for-governing-agentic-ai-systems.pdf,2026-04-08 22:19:36.679811+00:00,12761
 openai_gpt45_system_card,GPT-4.5 System Card,model_card,openai,https://cdn.openai.com/gpt-4-5-system-card-2272025.pdf,2026-03-31 09:15:03.785450+00:00,9853
 openai_gpt4o_system_card,GPT-4o System Card,model_card,openai,https://cdn.openai.com/gpt-4o-system-card.pdf,2026-03-31 09:14:30.173489+00:00,11624
@@ -64,9 +67,13 @@ openai_gpt4_system_card,GPT-4 System Card,model_card,openai,https://cdn.openai.c
 openai_gpt51_system_card,GPT-5.1 System Card,model_card,openai,https://cdn.openai.com/pdf/4173ec8d-1229-47db-96de-06d87147e07e/5_1_system_card.pdf,2026-03-31 11:26:11.528273+00:00,1340
 openai_gpt52_system_card,GPT-5.2 System Card,model_card,openai,https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf,2026-03-31 11:26:29.080082+00:00,7212
 openai_gpt53_codex_card,GPT-5.3 Codex System Card,model_card,openai,https://cdn.openai.com/pdf/23eca107-a9b1-4d2c-b156-7deb4fbc697c/GPT-5-3-Codex-System-Card-02.pdf,2026-03-31 11:26:46.624725+00:00,10850
+openai_gpt54_thinking_card,GPT-5.4 Thinking System Card,model_card,openai,https://deploymentsafety.openai.com/gpt-5-4-thinking/gpt-5-4-thinking.pdf,2026-08-03 05:44:27.179609+00:00,11851
+openai_gpt55_instant_card,GPT-5.5 Instant System Card,model_card,openai,https://deploymentsafety.openai.com/gpt-5-5-instant/gpt-5-5-instant.pdf,2026-08-03 05:44:52.827755+00:00,6446
 openai_gpt55_system_card,GPT-5.5 System Card,model_card,openai,https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf,2026-04-23 18:40:07.654336+00:00,14496
+openai_gpt56_full_card,GPT-5.6 System Card,model_card,openai,https://deploymentsafety.openai.com/gpt-5-6/gpt-5-6.pdf,2026-08-03 05:43:36.402441+00:00,21329
 openai_gpt56_system_card,GPT-5.6 Preview System Card,model_card,openai,https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf,2026-06-28 17:19:23.821239+00:00,19590
 openai_gpt5_system_card,GPT-5 System Card,model_card,openai,https://cdn.openai.com/gpt-5-system-card.pdf,2026-03-31 09:14:46.064787+00:00,20412
+openai_gptlive_card,GPT-Live System Card,model_card,openai,https://deploymentsafety.openai.com/gpt-live/gpt-live.pdf,2026-08-03 05:45:40.332560+00:00,1537
 openai_mental_health,Mental Health Safety Update,usage_policy,openai,https://openai.com/index/update-on-mental-health-related-work/,2026-04-13 14:57:39.748859+00:00,680
 openai_model_spec,Model Spec,constitution,openai,https://cdn.openai.com/spec/model-spec-2024-05-08.html,2026-04-08 22:19:36.578478+00:00,10084
 openai_o1_system_card,o1 System Card,model_card,openai,https://cdn.openai.com/o1-system-card-20241205.pdf,2026-03-31 09:15:24.496606+00:00,17410
@@ -74,10 +81,11 @@ openai_o3mini_card,o3-mini System Card,model_card,openai,https://cdn.openai.com/
 openai_o3_system_card,o3 System Card,model_card,openai,https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf,2026-03-31 09:15:45.628971+00:00,9945
 openai_operator_card,Operator System Card,model_card,openai,https://cdn.openai.com/operator_system_card.pdf,2026-03-31 11:25:55.593510+00:00,5291
 openai_preparedness,Preparedness Framework,constitution,openai,https://cdn.openai.com/openai-preparedness-framework-beta.pdf,2026-04-08 22:19:36.632230+00:00,12537
-xai_api_docs,xAI API Documentation,usage_policy,xai,https://docs.x.ai/docs/api-reference,2026-04-08 22:19:38.115960+00:00,989
-xai_aup,Acceptable Use Policy,usage_policy,xai,https://x.ai/legal/acceptable-use-policy,2026-04-08 22:19:38.145781+00:00,438
+openai_rosalind55_card,GPT-Rosalind-5.5 System Card,model_card,openai,https://deploymentsafety.openai.com/gpt-rosalind-5-5/gpt-rosalind-5-5.pdf,2026-08-03 05:45:17.597660+00:00,3436
+xai_api_docs,xAI API Documentation,usage_policy,xai,https://docs.x.ai/docs/api-reference,2026-04-08 22:19:38.115960+00:00,1122
+xai_aup,Acceptable Use Policy,usage_policy,xai,https://x.ai/legal/acceptable-use-policy,2026-04-08 22:19:38.145781+00:00,869
 xai_grok41_card,Grok 4.1 Model Card,model_card,xai,https://data.x.ai/2025-11-17-grok-4-1-model-card.pdf,2026-03-31 11:28:05.454574+00:00,2243
 xai_grok4_card,Grok 4 Model Card,model_card,xai,https://data.x.ai/2025-08-20-grok-4-model-card.pdf,2026-03-31 09:21:12.829271+00:00,3482
 xai_grok4_fast_card,Grok 4 Fast Model Card,model_card,xai,https://data.x.ai/2025-09-19-grok-4-fast-model-card.pdf,2026-03-31 11:27:51.346632+00:00,2994
-xai_grok_docs,Grok Documentation,usage_policy,xai,https://docs.x.ai/docs,2026-03-31 09:20:58.337442+00:00,448
+xai_grok_docs,Grok Documentation,usage_policy,xai,https://docs.x.ai/docs,2026-03-31 09:20:58.337442+00:00,454
 xai_risk_framework,Risk Management Framework,constitution,xai,https://data.x.ai/2025-08-20-xai-risk-management-framework.pdf,2026-04-08 22:19:38.223154+00:00,3484
