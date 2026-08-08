@@ -83,7 +83,7 @@
   "lims": [
     "<strong>Context window</strong> — 8k limit constrained early deployment."
   ],
-  "blurb": "Llama 3 closed the gap with proprietary frontier models significantly. Crossed 79% MMLU — competitive with GPT-4 at release, while remaining fully open weights.",
+  "blurb": "Llama 3 closed the gap with proprietary frontier models while remaining fully open. Its model card reports no benchmark scores at all.",
   "val": {
     "b": "Internal Meta evaluation + Purple Llama, Apr 2024",
     "l": "modelcards.net/llama-3",
@@ -94,7 +94,7 @@
   "art": null,
   "source": "mockup",
   "ability": {
-    "name": "Closed the Gap",
-    "text": "79.5 on MMLU, competitive with GPT-4 at release, with weights anyone could download."
+    "name": "Open at the Frontier",
+    "text": "Closed the gap with proprietary frontier models and shipped weights anyone could download. Its card records none of it."
   }
 }

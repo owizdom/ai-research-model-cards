@@ -78,7 +78,7 @@
     "<strong>Card length</strong> — 66,211 words; the longest in the corpus.",
     "<strong>Shared card</strong> — documented alongside Mythos 5 in one document."
   ],
-  "blurb": "66,211 words, the longest model card in the corpus. Reports SWE-bench Verified at 95.5, and more than half its eval choices appear on no other lab's card.",
+  "blurb": "66,211 words, the longest model card in the corpus. Reports SWE-bench Verified at 95, and more than half its eval choices appear on no other lab's card.",
   "ability": {
     "name": "Longest Card",
     "text": "66,211 words, the longest model card in the corpus, with 57% of its eval choices echoed by no other lab."

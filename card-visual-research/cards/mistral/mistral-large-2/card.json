@@ -81,7 +81,7 @@
     "<strong>Sparse safety documentation</strong> — 6k words for frontier-competitive capability.",
     "<strong>No dangerous capabilities section</strong> — not standard practice at Mistral."
   ],
-  "blurb": "Frontier-competitive coding at 92% HumanEval, documented in a 950-word release post. Claude's 3.5 addendum at a similar tier runs 2,948.",
+  "blurb": "Frontier-tier MMLU at 84.0, documented in a 950-word release post. Claude's 3.5 addendum at a similar tier runs 2,948 words.",
   "val": {
     "b": "No independent validation disclosed.",
     "l": "modelcards.net/mistral-large-2",
@@ -92,7 +92,7 @@
   "art": null,
   "source": "mockup",
   "ability": {
-    "name": "Release Note",
-    "text": "92.0 on HumanEval, frontier-competitive coding, documented in a 950-word release post."
+    "name": "Frontier in 950 Words",
+    "text": "Frontier-tier MMLU at 84.0, documented in a 950-word release post. Claude's 3.5 addendum at a similar tier runs 2,948."
   }
 }
