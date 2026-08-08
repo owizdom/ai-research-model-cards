@@ -158,7 +158,17 @@ def extract_tables(text: str, min_cols: int = 2) -> list[Table]:
             ln = block_start - back
             if ln < 0:
                 break
-            for txt, off in _tokens(lines[ln]):
+            toks = _tokens(lines[ln])
+            # Skip span labels. Real cards group columns under a heading that
+            # covers several of them at once:
+            #     Evaluation   Claude family models      Other models
+            #                  Mythos  Fable 5  Mythos   Opus  GPT-5.  Gemini
+            # Gluing the span onto the column below produced the model name
+            # "Claude family models Fable 5". A span row has far fewer cells
+            # than the table has columns, so require it to be nearly as wide.
+            if len(toks) < max(2, len(merged) * 0.6):
+                continue
+            for txt, off in toks:
                 if as_number(txt) is not None and len(txt) > 3:
                     continue
                 k = min(range(len(merged)), key=lambda x: abs(merged[x] - off))

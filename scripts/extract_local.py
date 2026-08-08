@@ -74,7 +74,12 @@ from packages.pipeline_config import EXTRACTION_PROTOCOL_VERSION
 # (60k was 2x slower than expected — sonnet took 13+ min on the GPT-5 card).
 # Worker historically extracted 207 hits from Llama with this window size in
 # ~4 min, so this is the proven configuration.
-MAX_CONTENT_CHARS = 30_000
+MAX_CONTENT_CHARS = int(os.environ.get("MAX_CONTENT_CHARS", 30_000))
+"""Overridable because a handful of cards blow the output ceiling rather than
+time out. o1's system card is wall-to-wall refusal evaluations and asked for
+64,000 output tokens in a single JSON before erroring; the two Llama cards asked
+for 16-17k. A narrower window is the cheap fix, and it only costs coverage on
+documents that were failing outright."""
 # Char threshold above which we use a smart window (anchor + back-half bias)
 # rather than just taking the first MAX_CONTENT_CHARS. Most cards smaller than
 # this are short enough to send whole.
@@ -435,7 +440,7 @@ async def main(doc_id: int | None, do_all: bool, apply: bool, workers: int, limi
                     FROM documents d
                     JOIN document_versions dv ON dv.document_id = d.id
                     WHERE d.id = %s
-                    ORDER BY dv.version_date DESC LIMIT 1
+                    ORDER BY dv.version_date DESC, dv.id DESC LIMIT 1
                 """, (doc_id,))
             elif do_all:
                 base = """
@@ -444,7 +449,11 @@ async def main(doc_id: int | None, do_all: bool, apply: bool, workers: int, limi
                     JOIN LATERAL (
                         SELECT id, content_md FROM document_versions
                         WHERE document_id = d.id
-                        ORDER BY version_date DESC LIMIT 1
+                        -- id breaks the tie: re-ingesting a document the same
+                        -- day gives two versions with the same version_date, and
+                        -- without this the extractor kept picking the older one,
+                        -- so a re-ingest could never be re-extracted.
+                        ORDER BY version_date DESC, id DESC LIMIT 1
                     ) dv ON true
                     WHERE d.doc_type = 'model_card' AND dv.content_md IS NOT NULL
                     ORDER BY length(dv.content_md) ASC

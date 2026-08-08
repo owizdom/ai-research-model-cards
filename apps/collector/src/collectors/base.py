@@ -14,7 +14,17 @@ from packages.pipeline_config import HTTP_TIMEOUT_BULK_S, HTTP_TIMEOUT_DEFAULT_S
 USER_AGENT = "Mozilla/5.0 AI-Safety-Research-Bot/1.0"
 DEFAULT_HEADERS = {"User-Agent": USER_AGENT, "Accept-Language": "en-US,en;q=0.9"}
 
-MAX_CONTENT_BYTES = 500_000
+MAX_CONTENT_BYTES = 1_200_000
+"""The cap was 500,000, which silently decapitated the two longest cards.
+
+Model cards put their benchmark tables near the END, behind the safety prose:
+Claude Fable 5's SWE-bench table is section 8.2 of a 624,000-char document, and
+the Gemini 1.5 report is 565,000. Both stored at exactly 500,062 chars, so the
+tables were cut off before extraction ever saw them and Fable 5 came back with
+no scores at all.
+
+1.2M clears the largest card in the corpus with room to spare. Raise it before
+adding a longer one rather than after."""
 TRUNCATION_MARKER = "\n\n[... TRUNCATED BY COLLECTOR — content exceeded size cap ...]"
 PDF_MAGIC = b"%PDF-"
 
