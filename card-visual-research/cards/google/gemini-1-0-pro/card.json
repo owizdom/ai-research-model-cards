@@ -18,18 +18,18 @@
   "benches": [
     {
       "n": "MMLU",
-      "d": "CoT with uncertainty",
-      "s": "90.0"
-    },
-    {
-      "n": "MATH",
       "d": "as reported",
-      "s": "32.0"
+      "s": "90.04"
     },
     {
-      "n": "HUMANEVAL",
-      "d": "instruction-tuned",
-      "s": "74.4"
+      "n": "MMMU",
+      "d": "pro",
+      "s": "62.4"
+    },
+    {
+      "n": "GSM8K",
+      "d": "as reported",
+      "s": "94.4"
     }
   ],
   "lineage": [
@@ -58,17 +58,17 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "90.0",
+      "s": "90.04",
       "l": "5 labs"
     },
     {
-      "n": "MATH",
-      "s": "32.0",
-      "l": "4 labs"
+      "n": "MMMU",
+      "s": "62.4",
+      "l": "3 labs"
     },
     {
-      "n": "HumanEval",
-      "s": "74.4",
+      "n": "GSM8K",
+      "s": "94.4",
       "l": "5 labs"
     }
   ],

@@ -17,19 +17,19 @@
   "unique": "30%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "5-shot, Thai",
-      "s": "73.0"
+      "n": "MBPP",
+      "d": "as reported",
+      "s": "86.0"
+    },
+    {
+      "n": "GSM8K",
+      "d": "as reported",
+      "s": "95.1"
     },
     {
       "n": "MATH",
-      "d": "0-shot, cot",
-      "s": "68.0"
-    },
-    {
-      "n": "HUMANEVAL",
-      "d": "not reported",
-      "s": "—"
+      "d": "as reported",
+      "s": "68"
     }
   ],
   "lineage": [
@@ -57,24 +57,24 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "73.0",
+      "n": "MBPP",
+      "s": "86.0",
+      "l": "3 labs"
+    },
+    {
+      "n": "GSM8K",
+      "s": "95.1",
       "l": "5 labs"
     },
     {
       "n": "MATH",
-      "s": "68.0",
+      "s": "68",
       "l": "4 labs"
     },
     {
-      "n": "BFCL",
-      "s": "84.8",
-      "l": "2 labs"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "API-Bank",
+      "s": "90",
+      "l": "1 lab"
     }
   ],
   "weak": {

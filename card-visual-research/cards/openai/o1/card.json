@@ -17,19 +17,19 @@
   "unique": "80%",
   "benches": [
     {
-      "n": "AIME 2024",
-      "d": "not reported",
-      "s": "—"
+      "n": "STANDARD REFUSAL",
+      "d": "as reported",
+      "s": "0.99"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "CHALLENGING REFUSAL",
+      "d": "as reported",
+      "s": "0.713"
     },
     {
-      "n": "CODEFORCES",
-      "d": "not reported",
-      "s": "—"
+      "n": "XSTEST",
+      "d": "as reported",
+      "s": "0.924"
     }
   ],
   "lineage": [
@@ -57,19 +57,19 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Standard Refusal",
+      "s": "0.99",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Challenging Refusal",
+      "s": "0.713",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "XSTest",
+      "s": "0.924",
+      "l": "2 labs"
     }
   ],
   "weak": {

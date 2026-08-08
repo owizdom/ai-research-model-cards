@@ -17,18 +17,18 @@
   "unique": "52%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "as reported",
-      "s": "91.1"
+      "n": "SWE-BENCH",
+      "d": "pro",
+      "s": "81.4"
     },
     {
-      "n": "SWE-BENCH",
+      "n": "ARC-AGI-1",
       "d": "as reported",
-      "s": "80.8"
+      "s": "94.00"
     },
     {
       "n": "GPQA-DIAMOND",
-      "d": "as reported",
+      "d": "diamond",
       "s": "91.3"
     }
   ],
@@ -49,14 +49,14 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "91.1",
-      "l": "5 labs"
+      "n": "SWE-bench",
+      "s": "81.4",
+      "l": "3 labs"
     },
     {
-      "n": "SWE-bench",
-      "s": "80.8",
-      "l": "3 labs"
+      "n": "ARC-AGI-1",
+      "s": "94.00",
+      "l": "1 lab"
     },
     {
       "n": "GPQA-Diamond",
@@ -77,7 +77,7 @@
     "<strong>Card length</strong> — 53,965 words; four later Anthropic cards run longer.",
     "<strong>73% lab-unique</strong> — most eval choices not echoed by peers."
   ],
-  "blurb": "53,965 words of documentation and 52% lab-unique eval choices. The card itself became a transparency artifact worthy of study.",
+  "blurb": "53,965 words of documentation and 73% lab-unique eval choices. The card itself became a transparency artifact worthy of study.",
   "val": {
     "b": "Internal + METR + UK AISI evaluation, Apr 2026",
     "l": "modelcards.net/claude-4-6",

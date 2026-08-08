@@ -17,19 +17,19 @@
   "unique": "56%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "pretrained, accuracy",
-      "s": "35.1"
+      "n": "COMMONSENSE REASONING",
+      "d": "as reported",
+      "s": "60.8"
     },
     {
-      "n": "TRUTHFULQA",
-      "d": "rlhf, accuracy",
-      "s": "57.0"
+      "n": "WORLD KNOWLEDGE",
+      "d": "as reported",
+      "s": "46.2"
     },
     {
-      "n": "BBQ",
-      "d": "not reported",
-      "s": "—"
+      "n": "READING COMPREHENSION",
+      "d": "as reported",
+      "s": "58.5"
     }
   ],
   "lineage": [
@@ -57,19 +57,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "35.1",
-      "l": "5 labs"
+      "n": "Commonsense Reasoning",
+      "s": "60.8",
+      "l": "1 lab"
     },
     {
-      "n": "TruthfulQA",
-      "s": "57.0",
-      "l": "2 labs"
+      "n": "World Knowledge",
+      "s": "46.2",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Reading Comprehension",
+      "s": "58.5",
+      "l": "1 lab"
     }
   ],
   "weak": {

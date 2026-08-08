@@ -17,9 +17,9 @@
   "unique": "69%",
   "benches": [
     {
-      "n": "SWE-BENCH",
-      "d": "verified_hard",
-      "s": "45.3"
+      "n": "INTERNAL AI RESEARCH",
+      "d": "as reported",
+      "s": "5.5"
     },
     {
       "n": "GPQA",
@@ -53,9 +53,9 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench",
-      "s": "45.3",
-      "l": "3 labs"
+      "n": "Internal AI Research",
+      "s": "5.5",
+      "l": "1 lab"
     },
     {
       "n": "Not reported",

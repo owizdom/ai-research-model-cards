@@ -17,19 +17,19 @@
   "unique": "91%",
   "benches": [
     {
-      "n": "AIME",
-      "d": "not reported",
-      "s": "—"
+      "n": "TEXT TO TEXT SAFETY",
+      "d": "as reported",
+      "s": "-10.4"
     },
     {
-      "n": "LIVECODE BENCH",
-      "d": "not reported",
-      "s": "—"
+      "n": "IMAGE TO TEXT SAFETY",
+      "d": "as reported",
+      "s": "3.1"
     },
     {
-      "n": "CHARTQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "TONE",
+      "d": "as reported",
+      "s": "7.9"
     }
   ],
   "lineage": [
@@ -53,8 +53,8 @@
   ],
   "btbl": [
     {
-      "n": "Cybersecurity Key Skills Benchmark",
-      "s": "91.7",
+      "n": "Text to Text Safety",
+      "s": "-10.4",
       "l": "1 lab"
     },
     {
@@ -63,19 +63,19 @@
       "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Tone",
+      "s": "7.9",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Multilingual Safety",
+      "s": "0.2",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "key skills benchmark",
+      "s": "11",
+      "l": "1 lab"
     }
   ],
   "weak": {

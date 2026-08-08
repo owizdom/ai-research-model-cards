@@ -17,9 +17,9 @@
   "unique": "0%",
   "benches": [
     {
-      "n": "AIME 2024",
-      "d": "not reported",
-      "s": "—"
+      "n": "SWE-BENCH",
+      "d": "as reported",
+      "s": "39"
     },
     {
       "n": "GPQA",
@@ -53,9 +53,9 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "SWE-bench",
+      "s": "39",
+      "l": "3 labs"
     },
     {
       "n": "Not reported",

@@ -19,17 +19,17 @@
     {
       "n": "MMLU",
       "d": "5-shot",
-      "s": "79.1"
+      "s": "86.8"
     },
     {
-      "n": "GPQA-DIAMOND",
-      "d": "0-shot CoT",
+      "n": "HUMANEVAL",
+      "d": "0-shot",
+      "s": "84.9"
+    },
+    {
+      "n": "GPQA",
+      "d": "Diamond, 0-shot CoT",
       "s": "50.4"
-    },
-    {
-      "n": "MATH",
-      "d": "Maj@32",
-      "s": "73.7"
     }
   ],
   "lineage": [
@@ -62,23 +62,23 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "79.1",
-      "l": "5 labs"
+      "s": "86.8",
+      "l": "—"
     },
     {
-      "n": "GPQA-Diamond",
+      "n": "HUMANEVAL",
+      "s": "84.9",
+      "l": "—"
+    },
+    {
+      "n": "GPQA",
       "s": "50.4",
-      "l": "3 labs"
+      "l": "—"
     },
     {
-      "n": "MATH",
-      "s": "73.7",
-      "l": "4 labs"
-    },
-    {
-      "n": "MBPP",
-      "s": "86.4",
-      "l": "3 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

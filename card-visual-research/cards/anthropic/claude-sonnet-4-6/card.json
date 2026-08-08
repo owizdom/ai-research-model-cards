@@ -68,36 +68,36 @@
   "unique": "73%",
   "benches": [
     {
-      "n": "AGENTIC CODING",
-      "d": "without mitigations",
-      "s": "100.0"
-    },
-    {
       "n": "SWE-BENCH",
-      "d": "as reported",
+      "d": "pro",
       "s": "79.6"
     },
     {
-      "n": "GPQA-DIAMOND",
+      "n": "TERMINAL-BENCH 2.0",
       "d": "as reported",
-      "s": "89.9"
+      "s": "59.1"
+    },
+    {
+      "n": "MCP ATLAS",
+      "d": "as reported",
+      "s": "61.3"
     }
   ],
   "btbl": [
-    {
-      "n": "Agentic Coding",
-      "s": "100.0",
-      "l": "1 lab"
-    },
     {
       "n": "SWE-bench",
       "s": "79.6",
       "l": "3 labs"
     },
     {
-      "n": "GPQA-Diamond",
-      "s": "89.9",
-      "l": "3 labs"
+      "n": "Terminal-bench 2.0",
+      "s": "59.1",
+      "l": "1 lab"
+    },
+    {
+      "n": "MCP Atlas",
+      "s": "61.3",
+      "l": "2 labs"
     }
   ]
 }

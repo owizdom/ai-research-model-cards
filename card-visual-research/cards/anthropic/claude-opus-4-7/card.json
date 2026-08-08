@@ -76,36 +76,36 @@
   "unique": "76%",
   "benches": [
     {
-      "n": "SWE-BENCH VERIFIED",
-      "d": "extended-thinking, rlhf",
-      "s": "87.6"
-    },
-    {
-      "n": "ARC-AGI-2",
+      "n": "CHARXIV REASONING (NO",
       "d": "as reported",
-      "s": "75.8"
+      "s": "82.1"
     },
     {
-      "n": "GPQA-DIAMOND",
-      "d": "extended-thinking, rlhf",
-      "s": "94.2"
+      "n": "OSWORLD",
+      "d": "as reported",
+      "s": "78"
+    },
+    {
+      "n": "SCREENSPOT-PRO (NO",
+      "d": "pro",
+      "s": "79.5"
     }
   ],
   "btbl": [
     {
-      "n": "SWE-bench Verified",
-      "s": "87.6",
-      "l": "2 labs"
+      "n": "CharXiv Reasoning (No",
+      "s": "82.1",
+      "l": "1 lab"
     },
     {
-      "n": "ARC-AGI-2",
-      "s": "75.8",
-      "l": "2 labs"
+      "n": "OSWorld",
+      "s": "78",
+      "l": "1 lab"
     },
     {
-      "n": "GPQA-Diamond",
-      "s": "94.2",
-      "l": "3 labs"
+      "n": "ScreenSpot-Pro (No Tools)",
+      "s": "79.5",
+      "l": "1 lab"
     }
   ]
 }

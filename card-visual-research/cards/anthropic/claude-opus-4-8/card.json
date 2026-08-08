@@ -18,18 +18,18 @@
   "benches": [
     {
       "n": "SWE-BENCH",
-      "d": "extended-thinking, pro",
-      "s": "69.2"
+      "d": "verified, pro",
+      "s": "88.6"
     },
     {
-      "n": "USAMO",
-      "d": "extended-thinking",
-      "s": "96.7"
+      "n": "BROWSECOMP",
+      "d": "as reported",
+      "s": "84.3"
     },
     {
-      "n": "TERMINAL-BENCH",
-      "d": "extended-thinking, 2.1",
-      "s": "74.6"
+      "n": "HUMANITY'S LAST EXAM",
+      "d": "as reported",
+      "s": "49.8"
     }
   ],
   "lineage": [
@@ -50,27 +50,27 @@
   "btbl": [
     {
       "n": "SWE-bench",
-      "s": "69.2",
+      "s": "88.6",
       "l": "3 labs"
     },
     {
-      "n": "USAMO",
-      "s": "96.7",
-      "l": "1 lab"
-    },
-    {
-      "n": "Terminal-Bench",
-      "s": "74.6",
-      "l": "1 lab"
-    },
-    {
-      "n": "GPQA",
-      "s": "93.6",
-      "l": "5 labs"
-    },
-    {
       "n": "BrowseComp",
-      "s": "88.5",
+      "s": "84.3",
+      "l": "1 lab"
+    },
+    {
+      "n": "Humanity's Last Exam",
+      "s": "49.8",
+      "l": "2 labs"
+    },
+    {
+      "n": "ChartQA",
+      "s": "69.4",
+      "l": "2 labs"
+    },
+    {
+      "n": "OSWorld",
+      "s": "83.4",
       "l": "1 lab"
     }
   ],

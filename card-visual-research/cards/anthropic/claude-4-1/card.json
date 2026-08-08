@@ -17,19 +17,19 @@
   "unique": "89%",
   "benches": [
     {
+      "n": "PROTOCOLQA",
+      "d": "pro",
+      "s": "0.69"
+    },
+    {
+      "n": "LONG-FORM VIROLOGY",
+      "d": "as reported",
+      "s": "0.67"
+    },
+    {
       "n": "SWE-BENCH",
-      "d": "pass@1",
+      "d": "hard subset",
       "s": "18.4"
-    },
-    {
-      "n": "TERMINAL-BENCH",
-      "d": "not reported",
-      "s": "—"
-    },
-    {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
     }
   ],
   "lineage": [
@@ -57,19 +57,19 @@
   ],
   "btbl": [
     {
+      "n": "ProtocolQA",
+      "s": "0.69",
+      "l": "2 labs"
+    },
+    {
+      "n": "Long-Form Virology Task 2",
+      "s": "0.67",
+      "l": "1 lab"
+    },
+    {
       "n": "SWE-bench",
       "s": "18.4",
       "l": "3 labs"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
     }
   ],
   "weak": {

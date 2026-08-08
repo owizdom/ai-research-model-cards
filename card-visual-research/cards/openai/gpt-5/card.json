@@ -17,14 +17,14 @@
   "unique": "75%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "not reported",
-      "s": "—"
+      "n": "STANDARD DISALLOWED",
+      "d": "as reported",
+      "s": "1"
     },
     {
-      "n": "TRUTHFULQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "SWE-BENCH",
+      "d": "as reported",
+      "s": "74.9"
     },
     {
       "n": "BBQ",
@@ -57,14 +57,14 @@
   ],
   "btbl": [
     {
+      "n": "Standard Disallowed",
+      "s": "1",
+      "l": "1 lab"
+    },
+    {
       "n": "SWE-bench",
       "s": "74.9",
       "l": "3 labs"
-    },
-    {
-      "n": "OPQA",
-      "s": "2.0",
-      "l": "1 lab"
     },
     {
       "n": "Not reported",

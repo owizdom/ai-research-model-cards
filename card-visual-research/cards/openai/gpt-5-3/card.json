@@ -17,14 +17,14 @@
   "unique": "85%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "not reported",
-      "s": "—"
+      "n": "SABOTAGE SUITE",
+      "d": "as reported",
+      "s": "0.88"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "CVE-BENCH",
+      "d": "as reported",
+      "s": "90"
     },
     {
       "n": "BROWSECOMP",
@@ -53,14 +53,14 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Sabotage Suite",
+      "s": "0.88",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "CVE-Bench",
+      "s": "90",
+      "l": "1 lab"
     },
     {
       "n": "Not reported",

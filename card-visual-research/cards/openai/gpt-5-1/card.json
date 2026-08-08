@@ -17,19 +17,19 @@
   "unique": "100%",
   "benches": [
     {
-      "n": "SWE-BENCH",
-      "d": "not reported",
-      "s": "—"
+      "n": "PRODUCTION BENCHMARKS",
+      "d": "as reported",
+      "s": "0.865"
     },
     {
-      "n": "MMLU",
-      "d": "not reported",
-      "s": "—"
+      "n": "STRONGREJECT",
+      "d": "as reported",
+      "s": "0.974"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "IMAGE INPUT",
+      "d": "as reported",
+      "s": "0.984"
     }
   ],
   "lineage": [
@@ -53,19 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Production Benchmarks",
+      "s": "0.865",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "StrongReject",
+      "s": "0.974",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Image Input Evaluations",
+      "s": "0.984",
+      "l": "1 lab"
     }
   ],
   "weak": {

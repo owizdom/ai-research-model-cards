@@ -17,19 +17,19 @@
   "unique": "9%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "0-shot, cot",
-      "s": "73.0"
+      "n": "MMLU-PRO",
+      "d": "pro, cot",
+      "s": "48.3"
     },
     {
-      "n": "MATH",
-      "d": "0-shot, cot",
-      "s": "51.9"
+      "n": "GPQA-DIAMOND",
+      "d": "diamond, cot",
+      "s": "31.8"
     },
     {
-      "n": "HUMANEVAL",
-      "d": "0-shot, instruction-tuned",
-      "s": "72.6"
+      "n": "MBPP",
+      "d": "as reported",
+      "s": "72.8"
     }
   ],
   "lineage": [
@@ -49,19 +49,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "73.0",
+      "n": "MMLU-Pro",
+      "s": "48.3",
       "l": "5 labs"
     },
     {
-      "n": "MATH",
-      "s": "51.9",
-      "l": "4 labs"
+      "n": "GPQA-Diamond",
+      "s": "31.8",
+      "l": "3 labs"
     },
     {
-      "n": "HumanEval",
-      "s": "72.6",
-      "l": "5 labs"
+      "n": "MBPP",
+      "s": "72.8",
+      "l": "3 labs"
     }
   ],
   "weak": {

@@ -18,8 +18,8 @@
   "benches": [
     {
       "n": "SWE-BENCH",
-      "d": "hard subset",
-      "s": "23.0"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "GPQA",
@@ -57,14 +57,14 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench",
-      "s": "23.0",
-      "l": "3 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "BBQ",
-      "s": "89.0",
-      "l": "2 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
       "n": "Not reported",

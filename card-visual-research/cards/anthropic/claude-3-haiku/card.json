@@ -19,17 +19,17 @@
     {
       "n": "MMLU",
       "d": "5-shot",
-      "s": "79.1"
+      "s": "75.2"
     },
     {
-      "n": "GPQA-DIAMOND",
-      "d": "0-shot CoT",
-      "s": "50.4"
+      "n": "HUMANEVAL",
+      "d": "0-shot",
+      "s": "75.9"
     },
     {
       "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "d": "Diamond, 0-shot CoT",
+      "s": "33.3"
     }
   ],
   "lineage": [
@@ -62,17 +62,17 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "79.1",
-      "l": "5 labs"
+      "s": "75.2",
+      "l": "—"
     },
     {
-      "n": "GPQA-Diamond",
-      "s": "50.4",
-      "l": "3 labs"
+      "n": "HUMANEVAL",
+      "s": "75.9",
+      "l": "—"
     },
     {
-      "n": "Not reported",
-      "s": "—",
+      "n": "GPQA",
+      "s": "33.3",
       "l": "—"
     }
   ],

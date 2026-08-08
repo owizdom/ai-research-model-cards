@@ -203,8 +203,6 @@ def main(argv: list[str]) -> int:
                 new_benches.append({"n": r["benchmark_name"].upper(), "d": variant_label(r),
                                     "s": show_score(r),
                                     **({"cost": old["cost"]} if "cost" in old else {})})
-        if new_benches != card.get("benches"):
-            deltas.append(("benches", None, None))
 
         n_btbl = max(3, min(5, len(card.get("btbl") or [])))
         new_btbl = []
@@ -215,8 +213,6 @@ def main(argv: list[str]) -> int:
                 labs = len(bench_labs.get(r["benchmark_slug"], ()))
                 new_btbl.append({"n": r["benchmark_name"], "s": show_score(r),
                                  "l": f"{labs} lab{'s' if labs != 1 else ''}"})
-        if new_btbl != card.get("btbl"):
-            deltas.append(("btbl", None, None))
 
         if not deltas:
             continue
@@ -225,7 +221,6 @@ def main(argv: list[str]) -> int:
             continue
 
         card["evals"], card["unique"] = n_ev, uq
-        card["benches"], card["btbl"] = new_benches, new_btbl
         (d / "card.json").write_text(json.dumps(card, indent=2, ensure_ascii=False) + "\n")
 
         if card.get("generated"):

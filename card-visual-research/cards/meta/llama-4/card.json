@@ -18,18 +18,18 @@
   "benches": [
     {
       "n": "MMLU",
-      "d": "5-shot",
+      "d": "as reported",
       "s": "79.3"
     },
     {
-      "n": "MATH",
-      "d": "4-shot",
-      "s": "41.6"
+      "n": "MMLU-PRO",
+      "d": "pro",
+      "s": "53.8"
     },
     {
-      "n": "CHARTQA",
-      "d": "0-shot, pretrained",
-      "s": "83.4"
+      "n": "MATH",
+      "d": "as reported",
+      "s": "41.6"
     }
   ],
   "lineage": [
@@ -50,19 +50,19 @@
       "l": "5 labs"
     },
     {
+      "n": "MMLU-Pro",
+      "s": "53.8",
+      "l": "5 labs"
+    },
+    {
       "n": "MATH",
       "s": "41.6",
       "l": "4 labs"
     },
     {
-      "n": "ChartQA",
-      "s": "83.4",
-      "l": "2 labs"
-    },
-    {
-      "n": "LiveCodeBench",
-      "s": "33.3",
-      "l": "2 labs"
+      "n": "MBPP",
+      "s": "66.4",
+      "l": "3 labs"
     }
   ],
   "weak": {

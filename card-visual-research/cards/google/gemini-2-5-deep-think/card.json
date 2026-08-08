@@ -17,19 +17,19 @@
   "unique": "78%",
   "benches": [
     {
-      "n": "AIME",
-      "d": "majority-voting, rlhf",
-      "s": "99.2"
+      "n": "IMO 2025",
+      "d": "as reported",
+      "s": "60.7"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "HUMANITY'S LAST EXAM",
+      "d": "as reported",
+      "s": "34.8"
     },
     {
-      "n": "MATH",
-      "d": "not reported",
-      "s": "—"
+      "n": "IMO",
+      "d": "as reported",
+      "s": "60.7"
     }
   ],
   "lineage": [
@@ -53,19 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "AIME",
-      "s": "99.2",
-      "l": "3 labs"
+      "n": "IMO 2025",
+      "s": "60.7",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Humanity's Last Exam",
+      "s": "34.8",
+      "l": "2 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "IMO",
+      "s": "60.7",
+      "l": "1 lab"
     }
   ],
   "weak": {

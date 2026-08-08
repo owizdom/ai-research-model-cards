@@ -17,14 +17,14 @@
   "unique": "86%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "not reported",
-      "s": "—"
+      "n": "BIOLP-BENCH",
+      "d": "as reported",
+      "s": "29"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "METR",
+      "d": "as reported",
+      "s": "0.30"
     },
     {
       "n": "SWE-BENCH",
@@ -53,14 +53,14 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "BioLP-Bench",
+      "s": "29",
+      "l": "2 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "METR",
+      "s": "0.30",
+      "l": "1 lab"
     },
     {
       "n": "Not reported",

@@ -18,19 +18,19 @@
   "unique": "82%",
   "benches": [
     {
-      "n": "SANDBAGGING QA",
-      "d": "as reported",
-      "s": "100.0"
+      "n": "PROMPT INJECTION",
+      "d": "pro",
+      "s": "0.963"
     },
     {
-      "n": "ATOMIC CHALLENGES (IRREGULAR)",
-      "d": "as reported",
-      "s": "100.0"
+      "n": "HARD NEGATIVE PROTEIN",
+      "d": "pro",
+      "s": "0.4"
     },
     {
-      "n": "ATOMIC CHALLENGES",
-      "d": "not reported",
-      "s": "—"
+      "n": "DNA SEQUENCE DESIGN",
+      "d": "pro",
+      "s": "13.82"
     }
   ],
   "lineage": [
@@ -50,19 +50,19 @@
   ],
   "btbl": [
     {
-      "n": "Sandbagging QA",
-      "s": "100.0",
+      "n": "Prompt Injection Attacks",
+      "s": "0.963",
       "l": "1 lab"
     },
     {
-      "n": "Atomic Challenges (Irregular)",
-      "s": "100.0",
+      "n": "Hard Negative Protein",
+      "s": "0.4",
       "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "DNA Sequence Design for",
+      "s": "13.82",
+      "l": "1 lab"
     }
   ],
   "weak": {

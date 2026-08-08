@@ -17,19 +17,19 @@
   "unique": "25%",
   "benches": [
     {
+      "n": "GPQA",
+      "d": "pro",
+      "s": "27.9"
+    },
+    {
+      "n": "MGSM",
+      "d": "multilingual",
+      "s": "63.5"
+    },
+    {
       "n": "MATH",
-      "d": "0-shot, original problems",
+      "d": "pro, 0-shot",
       "s": "55.8"
-    },
-    {
-      "n": "MATH",
-      "d": "not reported",
-      "s": "—"
-    },
-    {
-      "n": "HUMANEVAL",
-      "d": "not reported",
-      "s": "—"
     }
   ],
   "lineage": [
@@ -57,19 +57,19 @@
   ],
   "btbl": [
     {
+      "n": "GPQA",
+      "s": "27.9",
+      "l": "5 labs"
+    },
+    {
+      "n": "MGSM",
+      "s": "63.5",
+      "l": "3 labs"
+    },
+    {
       "n": "MATH",
       "s": "55.8",
       "l": "4 labs"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
     }
   ],
   "weak": {

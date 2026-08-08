@@ -17,19 +17,19 @@
   "unique": "93%",
   "benches": [
     {
-      "n": "AIME",
-      "d": "not reported",
-      "s": "—"
+      "n": "TEXT TO TEXT SAFETY",
+      "d": "as reported",
+      "s": "0.10"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "MULTILINGUAL SAFETY",
+      "d": "as reported",
+      "s": "0.11"
     },
     {
-      "n": "SWE-BENCH",
-      "d": "not reported",
-      "s": "—"
+      "n": "IMAGE TO TEXT SAFETY",
+      "d": "as reported",
+      "s": "-0.33"
     }
   ],
   "lineage": [
@@ -49,19 +49,19 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Text to Text Safety",
+      "s": "0.10",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Multilingual Safety",
+      "s": "0.11",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Image to Text Safety",
+      "s": "-0.33",
+      "l": "1 lab"
     }
   ],
   "weak": {

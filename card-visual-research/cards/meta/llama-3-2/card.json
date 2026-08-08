@@ -17,19 +17,19 @@
   "unique": "43%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "not reported",
-      "s": "—"
+      "n": "OPEN-REWRITE EVAL",
+      "d": "as reported",
+      "s": "41.6"
     },
     {
-      "n": "CHARTQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "TLDR9+",
+      "d": "as reported",
+      "s": "16.8"
     },
     {
-      "n": "DOCVQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "IFEVAL",
+      "d": "pro",
+      "s": "59.5"
     }
   ],
   "lineage": [
@@ -53,19 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Open-rewrite eval",
+      "s": "41.6",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "TLDR9+",
+      "s": "16.8",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "IFEval",
+      "s": "59.5",
+      "l": "3 labs"
     }
   ],
   "weak": {

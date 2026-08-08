@@ -18,19 +18,19 @@
   "unique": "80%",
   "benches": [
     {
-      "n": "LONG-FORM VIROLOGY TASKS",
-      "d": "task_1",
-      "s": "79.0"
+      "n": "LONG-FORM VIROLOGY",
+      "d": "as reported",
+      "s": "0.79"
     },
     {
       "n": "VCT",
       "d": "as reported",
-      "s": "45.0"
+      "s": "0.45"
     },
     {
-      "n": "DNA SCREENING",
-      "d": "not reported",
-      "s": "—"
+      "n": "DNA SYNTHESIS",
+      "d": "as reported",
+      "s": "5"
     }
   ],
   "lineage": [
@@ -51,18 +51,18 @@
   "btbl": [
     {
       "n": "Long-form virology tasks",
-      "s": "79.0",
+      "s": "0.79",
       "l": "1 lab"
     },
     {
       "n": "VCT",
-      "s": "45.0",
+      "s": "0.45",
       "l": "2 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "DNA Synthesis Screening",
+      "s": "5",
+      "l": "1 lab"
     }
   ],
   "weak": {

@@ -17,19 +17,19 @@
   "secret": true,
   "benches": [
     {
-      "n": "REDACTED",
-      "d": "not reported",
-      "s": "—"
+      "n": "SWE-BENCH",
+      "d": "pro",
+      "s": "93.9"
     },
     {
-      "n": "REDACTED",
-      "d": "not reported",
-      "s": "—"
+      "n": "TERMINAL-BENCH 2.0",
+      "d": "as reported",
+      "s": "82"
     },
     {
-      "n": "REDACTED",
-      "d": "not reported",
-      "s": "—"
+      "n": "GPQA-DIAMOND",
+      "d": "diamond",
+      "s": "94.5"
     }
   ],
   "lineage": [
@@ -53,19 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "SWE-bench",
+      "s": "93.9",
+      "l": "3 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Terminal-bench 2.0",
+      "s": "82",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "GPQA-Diamond",
+      "s": "94.5",
+      "l": "3 labs"
     }
   ],
   "weak": {

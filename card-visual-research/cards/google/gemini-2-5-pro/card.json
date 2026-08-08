@@ -17,19 +17,19 @@
   "unique": "59%",
   "benches": [
     {
-      "n": "AIME",
-      "d": "single attempt (pass@1)",
-      "s": "88.0"
+      "n": "HUMANITY'S LAST EXAM",
+      "d": "as reported",
+      "s": "21.6"
     },
     {
       "n": "GPQA-DIAMOND",
-      "d": "single attempt (pass@1)",
+      "d": "diamond",
       "s": "86.4"
     },
     {
-      "n": "LIVECODEBENCH (1/1/2025-5/1/2025)",
-      "d": "single attempt",
-      "s": "69.0"
+      "n": "AIME",
+      "d": "as reported",
+      "s": "88"
     }
   ],
   "lineage": [
@@ -57,9 +57,9 @@
   ],
   "btbl": [
     {
-      "n": "AIME",
-      "s": "88.0",
-      "l": "3 labs"
+      "n": "Humanity's Last Exam",
+      "s": "21.6",
+      "l": "2 labs"
     },
     {
       "n": "GPQA-Diamond",
@@ -67,14 +67,14 @@
       "l": "3 labs"
     },
     {
-      "n": "LiveCodeBench (1/1/2025-5/1/2025)",
-      "s": "69.0",
-      "l": "1 lab"
+      "n": "AIME",
+      "s": "88",
+      "l": "3 labs"
     },
     {
-      "n": "SWE-bench",
-      "s": "59.6",
-      "l": "3 labs"
+      "n": "Aider Polyglot",
+      "s": "82.2",
+      "l": "1 lab"
     }
   ],
   "weak": {

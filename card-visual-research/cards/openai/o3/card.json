@@ -17,19 +17,19 @@
   "unique": "86%",
   "benches": [
     {
-      "n": "AIME 2024",
-      "d": "not reported",
-      "s": "—"
+      "n": "CHALLENGING REFUSAL",
+      "d": "as reported",
+      "s": "0.9"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "HUMAN SOURCED",
+      "d": "as reported",
+      "s": "1"
     },
     {
-      "n": "SWE-BENCH",
-      "d": "not reported",
-      "s": "—"
+      "n": "SIMPLEQA",
+      "d": "as reported",
+      "s": "0.49"
     }
   ],
   "lineage": [
@@ -53,24 +53,24 @@
   ],
   "btbl": [
     {
-      "n": "Apollo Research Sabotage",
-      "s": "58.0",
+      "n": "Challenging Refusal",
+      "s": "0.9",
       "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "Human sourced jailbreaks",
+      "s": "1",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "SimpleQA",
+      "s": "0.49",
+      "l": "2 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "PersonQA",
+      "s": "0.59",
+      "l": "1 lab"
     }
   ],
   "weak": {

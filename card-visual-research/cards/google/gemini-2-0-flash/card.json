@@ -17,19 +17,19 @@
   "unique": "60%",
   "benches": [
     {
-      "n": "MMLU",
+      "n": "MMLU-PRO",
       "d": "as reported",
-      "s": "73.7"
-    },
-    {
-      "n": "LIVECODEBENCH",
-      "d": "instruction-tuned, v5",
-      "s": "30.7"
+      "s": "67.3"
     },
     {
       "n": "LIVECODEBENCH V5",
       "d": "as reported",
       "s": "30.7"
+    },
+    {
+      "n": "BIRD-SQL (DEV)",
+      "d": "as reported",
+      "s": "45.6"
     }
   ],
   "lineage": [
@@ -57,19 +57,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "73.7",
+      "n": "MMLU-Pro",
+      "s": "67.3",
       "l": "5 labs"
-    },
-    {
-      "n": "LiveCodeBench",
-      "s": "30.7",
-      "l": "2 labs"
     },
     {
       "n": "LiveCodeBench v5",
       "s": "30.7",
       "l": "2 labs"
+    },
+    {
+      "n": "Bird-SQL (Dev)",
+      "s": "45.6",
+      "l": "1 lab"
     }
   ],
   "weak": {

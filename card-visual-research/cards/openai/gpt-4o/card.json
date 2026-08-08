@@ -17,19 +17,19 @@
   "unique": "83%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "0-shot, anatomy, accuracy",
-      "s": "89.0"
+      "n": "VOICE OUTPUT",
+      "d": "as reported",
+      "s": "0.96"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "OPENAI RESEARCH",
+      "d": "as reported",
+      "s": "95"
     },
     {
-      "n": "HUMANEVAL",
-      "d": "not reported",
-      "s": "—"
+      "n": "OPENAI INTERVIEW",
+      "d": "as reported",
+      "s": "61"
     }
   ],
   "lineage": [
@@ -57,19 +57,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "89.0",
-      "l": "5 labs"
+      "n": "Voice Output Classifier",
+      "s": "0.96",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "OpenAI Research Coding",
+      "s": "95",
+      "l": "1 lab"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "OpenAI Interview Multiple",
+      "s": "61",
+      "l": "1 lab"
     }
   ],
   "weak": {

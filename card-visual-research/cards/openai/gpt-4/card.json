@@ -16,9 +16,9 @@
   "unique": "100%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "not reported",
-      "s": "—"
+      "n": "REALTOXICITYPROMPTS",
+      "d": "pro",
+      "s": "0.73"
     },
     {
       "n": "ARC",
@@ -57,7 +57,7 @@
   "btbl": [
     {
       "n": "RealToxicityPrompts",
-      "s": "73.0",
+      "s": "0.73",
       "l": "1 lab"
     },
     {

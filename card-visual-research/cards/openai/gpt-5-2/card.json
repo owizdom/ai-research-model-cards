@@ -18,13 +18,13 @@
   "benches": [
     {
       "n": "MMLU",
-      "d": "0-shot, cot, Hindi",
-      "s": "90.0"
+      "d": "as reported",
+      "s": "0.901"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "FIRST-PERSON FAIRNESS",
+      "d": "as reported",
+      "s": "0.00997"
     },
     {
       "n": "SWE-BENCH",
@@ -54,13 +54,13 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "90.0",
+      "s": "0.901",
       "l": "5 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "First-Person Fairness",
+      "s": "0.00997",
+      "l": "1 lab"
     },
     {
       "n": "Not reported",

@@ -17,9 +17,9 @@
   "unique": "90%",
   "benches": [
     {
-      "n": "SWE-BENCH",
-      "d": "not reported",
-      "s": "—"
+      "n": "BBQ",
+      "d": "as reported",
+      "s": "-0.60"
     },
     {
       "n": "GPQA",
@@ -57,9 +57,9 @@
   ],
   "btbl": [
     {
-      "n": "Agentic Coding",
-      "s": "88.0",
-      "l": "1 lab"
+      "n": "BBQ",
+      "s": "-0.60",
+      "l": "2 labs"
     },
     {
       "n": "Not reported",

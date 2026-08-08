@@ -18,7 +18,7 @@
   "benches": [
     {
       "n": "MMLU",
-      "d": "pretrained, accuracy",
+      "d": "as reported",
       "s": "84.0"
     },
     {

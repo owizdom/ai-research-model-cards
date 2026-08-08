@@ -17,19 +17,19 @@
   "unique": "33%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "5-shot",
-      "s": "88.7"
-    },
-    {
       "n": "GPQA-DIAMOND",
-      "d": "0-shot CoT",
+      "d": "diamond, 0-shot",
       "s": "59.4"
     },
     {
-      "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "n": "MMLU",
+      "d": "5-shot, cot",
+      "s": "90.4"
+    },
+    {
+      "n": "MATH",
+      "d": "pro",
+      "s": "71.1"
     }
   ],
   "lineage": [
@@ -57,24 +57,24 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "88.7",
-      "l": "5 labs"
-    },
-    {
       "n": "GPQA-Diamond",
       "s": "59.4",
       "l": "3 labs"
     },
     {
-      "n": "Agentic Coding",
-      "s": "64.0",
-      "l": "1 lab"
+      "n": "MMLU",
+      "s": "90.4",
+      "l": "5 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "MATH",
+      "s": "71.1",
+      "l": "4 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "92.0",
+      "l": "5 labs"
     }
   ],
   "weak": {

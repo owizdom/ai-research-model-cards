@@ -16,19 +16,19 @@
   "unique": "14%",
   "benches": [
     {
+      "n": "GSM8K",
+      "d": "0-shot, cot",
+      "s": "80.9"
+    },
+    {
       "n": "MMLU",
-      "d": "5-shot CoT",
+      "d": "0-shot, 5-shot",
       "s": "73.4"
     },
     {
-      "n": "HUMANEVAL",
-      "d": "0-shot",
-      "s": "52.8"
-    },
-    {
-      "n": "GSM8K",
-      "d": "0-shot CoT",
-      "s": "80.9"
+      "n": "TRIVIAQA",
+      "d": "5-shot, cot",
+      "s": "78.9"
     }
   ],
   "lineage": [
@@ -56,19 +56,19 @@
   ],
   "btbl": [
     {
+      "n": "GSM8K",
+      "s": "80.9",
+      "l": "5 labs"
+    },
+    {
       "n": "MMLU",
       "s": "73.4",
       "l": "5 labs"
     },
     {
-      "n": "HumanEval",
-      "s": "52.8",
-      "l": "5 labs"
-    },
-    {
-      "n": "GSM8K",
-      "s": "80.9",
-      "l": "5 labs"
+      "n": "TriviaQA",
+      "s": "78.9",
+      "l": "2 labs"
     }
   ],
   "weak": {

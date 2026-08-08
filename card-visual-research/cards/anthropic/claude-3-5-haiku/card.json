@@ -17,19 +17,19 @@
   "unique": "50%",
   "benches": [
     {
+      "n": "OSWORLD",
+      "d": "as reported",
+      "s": "14.9"
+    },
+    {
       "n": "SWE-BENCH",
       "d": "as reported",
-      "s": "49.0"
+      "s": "49"
     },
     {
-      "n": "MMLU",
-      "d": "5-shot",
-      "s": "88.7"
-    },
-    {
-      "n": "HUMANEVAL",
-      "d": "0-shot",
-      "s": "93.7"
+      "n": "MMMU",
+      "d": "as reported",
+      "s": "70.4"
     }
   ],
   "lineage": [
@@ -53,19 +53,19 @@
   ],
   "btbl": [
     {
+      "n": "OSWorld",
+      "s": "14.9",
+      "l": "1 lab"
+    },
+    {
       "n": "SWE-bench",
-      "s": "49.0",
+      "s": "49",
       "l": "3 labs"
     },
     {
-      "n": "MMLU",
-      "s": "88.7",
-      "l": "5 labs"
-    },
-    {
-      "n": "HumanEval",
-      "s": "93.7",
-      "l": "5 labs"
+      "n": "MMMU",
+      "s": "70.4",
+      "l": "3 labs"
     }
   ],
   "weak": {
