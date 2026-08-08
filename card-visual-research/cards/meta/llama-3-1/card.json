@@ -13,26 +13,23 @@
   ],
   "animal": "wolf",
   "words": "3.3k",
-  "evals": "11",
-  "unique": "28%",
+  "evals": "17",
+  "unique": "30%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "82.8",
-      "c": "#0082fb"
+      "n": "MBPP",
+      "d": "as reported",
+      "s": "86"
+    },
+    {
+      "n": "GSM8K",
+      "d": "as reported",
+      "s": "95.1"
     },
     {
       "n": "MATH",
-      "d": "Competition math",
-      "s": "68.0",
-      "c": "#0060c0"
-    },
-    {
-      "n": "HUMANEVAL",
-      "d": "Code generation",
-      "s": "89.0",
-      "c": "#004090"
+      "d": "as reported",
+      "s": "68.0"
     }
   ],
   "lineage": [
@@ -60,24 +57,24 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "82.8",
-      "l": "6 labs"
+      "n": "MBPP",
+      "s": "86",
+      "l": "3 labs"
+    },
+    {
+      "n": "GSM8K",
+      "s": "95.1",
+      "l": "5 labs"
     },
     {
       "n": "MATH",
       "s": "68.0",
-      "l": "5 labs"
-    },
-    {
-      "n": "HumanEval",
-      "s": "89.0",
       "l": "4 labs"
     },
     {
-      "n": "MGSM",
-      "s": "91.6",
-      "l": "2 labs"
+      "n": "API-Bank",
+      "s": "90",
+      "l": "1 lab"
     }
   ],
   "weak": {

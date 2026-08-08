@@ -13,26 +13,23 @@
   ],
   "animal": "shark",
   "words": "17.4k",
-  "evals": "8",
-  "unique": "35%",
+  "evals": "133",
+  "unique": "80%",
   "benches": [
     {
-      "n": "AIME 2024",
-      "d": "Competition math",
-      "s": "83.3",
-      "c": "#10a37f"
+      "n": "STANDARD REFUSAL",
+      "d": "as reported",
+      "s": "0.99"
     },
     {
-      "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "77.3",
-      "c": "#0d8066"
+      "n": "CHALLENGING REFUSAL",
+      "d": "as reported",
+      "s": "0.713"
     },
     {
-      "n": "CODEFORCES",
-      "d": "Competitive coding",
-      "s": "89.0",
-      "c": "#0a604c"
+      "n": "XSTEST",
+      "d": "as reported",
+      "s": "0.924"
     }
   ],
   "lineage": [
@@ -60,19 +57,19 @@
   ],
   "btbl": [
     {
-      "n": "AIME 2024",
-      "s": "83.3",
-      "l": "2 labs"
-    },
-    {
-      "n": "GPQA Diamond",
-      "s": "77.3",
-      "l": "4 labs"
-    },
-    {
-      "n": "Codeforces",
-      "s": "89.0",
+      "n": "Standard Refusal",
+      "s": "0.99",
       "l": "1 lab"
+    },
+    {
+      "n": "Challenging Refusal",
+      "s": "0.713",
+      "l": "1 lab"
+    },
+    {
+      "n": "XSTest",
+      "s": "0.924",
+      "l": "2 labs"
     }
   ],
   "weak": {

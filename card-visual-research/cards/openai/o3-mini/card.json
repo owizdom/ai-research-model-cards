@@ -13,26 +13,23 @@
   ],
   "animal": "falcon",
   "words": "12.1k",
-  "evals": "7",
-  "unique": "30%",
+  "evals": "15",
+  "unique": "0%",
   "benches": [
     {
-      "n": "AIME 2024",
-      "d": "Competition math",
-      "s": "89.2",
-      "c": "#10a37f"
+      "n": "SWE-BENCH",
+      "d": "as reported",
+      "s": "39"
     },
     {
       "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "79.3",
-      "c": "#0d8066"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "CODEFORCES",
-      "d": "Competitive coding",
-      "s": "88.0",
-      "c": "#0a604c"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -56,19 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "AIME 2024",
-      "s": "89.2",
-      "l": "2 labs"
+      "n": "SWE-bench",
+      "s": "39",
+      "l": "3 labs"
     },
     {
-      "n": "GPQA",
-      "s": "79.3",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "Codeforces",
-      "s": "88.0",
-      "l": "1 lab"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

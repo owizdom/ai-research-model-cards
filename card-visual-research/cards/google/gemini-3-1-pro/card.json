@@ -13,26 +13,23 @@
   ],
   "animal": "octopus",
   "words": "1.8k",
-  "evals": "16",
-  "unique": "53%",
+  "evals": "22",
+  "unique": "93%",
   "benches": [
     {
-      "n": "AIME",
-      "d": "Competition math",
-      "s": "93.5",
-      "c": "#4285f4"
+      "n": "TEXT TO TEXT SAFETY",
+      "d": "as reported",
+      "s": "0.10"
     },
     {
-      "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "85.5",
-      "c": "#2a5ec8"
+      "n": "MULTILINGUAL SAFETY",
+      "d": "as reported",
+      "s": "0.11"
     },
     {
-      "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "68.0",
-      "c": "#1a3e90"
+      "n": "IMAGE TO TEXT SAFETY",
+      "d": "as reported",
+      "s": "-0.33"
     }
   ],
   "lineage": [
@@ -52,19 +49,19 @@
   ],
   "btbl": [
     {
-      "n": "AIME",
-      "s": "93.5",
-      "l": "2 labs"
+      "n": "Text to Text Safety",
+      "s": "0.10",
+      "l": "1 lab"
     },
     {
-      "n": "GPQA",
-      "s": "85.5",
-      "l": "4 labs"
+      "n": "Multilingual Safety",
+      "s": "0.11",
+      "l": "1 lab"
     },
     {
-      "n": "SWE-bench",
-      "s": "68.0",
-      "l": "3 labs"
+      "n": "Image to Text Safety",
+      "s": "-0.33",
+      "l": "1 lab"
     }
   ],
   "weak": {

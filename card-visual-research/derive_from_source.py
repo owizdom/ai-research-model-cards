@@ -61,11 +61,12 @@ HAND_READ: dict[str, dict[str, tuple[str, str]]] = {
                         "GPQA": ("40.4", "Diamond, 0-shot CoT")},
     "claude-3-haiku":  {"MMLU": ("75.2", "5-shot"), "HUMANEVAL": ("75.9", "0-shot"),
                         "GPQA": ("33.3", "Diamond, 0-shot CoT")},
-    # anthropic_fable5_card, the comparison table at "SWE-bench Verified 95.5 95
-    # 93.9 88.6 - 80.6". The automated matcher took 95, the second column, which
-    # is a different model. Multi-column tables have to be read by column.
-    "claude-fable-5":  {"SWE-BENCH VERIFIED": ("95.5", "Verified"),
-                        "SWE-BENCH PRO": ("80.3", "Pro"),
+    # anthropic_fable5_card documents TWO models and its header reads
+    #   Mythos 5 | Fable 5 | Mythos Preview | Opus 4.8 | GPT-5.5 | Gemini 3.1 Pro
+    # so Fable 5 is column ONE, not zero. Column zero is Mythos 5, and the prose
+    # says it outright: "Mythos 5 achieved 95.5% and Fable 5 achieved 95%".
+    "claude-fable-5":  {"SWE-BENCH VERIFIED": ("95", "Verified"),
+                        "SWE-BENCH PRO": ("80", "Pro"),
                         "TERMINAL-BENCH 2.1": ("84.3", "as reported")},
     # anthropic_opus5_card. Both of the card's old figures were the flattering
     # secondary metric: the document says an 11.7% all-pass rate alongside the

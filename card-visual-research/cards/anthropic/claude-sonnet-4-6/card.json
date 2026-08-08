@@ -63,5 +63,41 @@
   "ability": {
     "name": "Long Memory",
     "text": "Holds a 1,000,000-token context and sustains recall across the GraphWalks 1M long-context suite."
-  }
+  },
+  "evals": "42",
+  "unique": "73%",
+  "benches": [
+    {
+      "n": "SWE-BENCH",
+      "d": "verified",
+      "s": "79.6"
+    },
+    {
+      "n": "TERMINAL-BENCH 2.0",
+      "d": "as reported",
+      "s": "59.1"
+    },
+    {
+      "n": "MCP ATLAS",
+      "d": "as reported",
+      "s": "61.3"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench",
+      "s": "79.6",
+      "l": "3 labs"
+    },
+    {
+      "n": "Terminal-bench 2.0",
+      "s": "59.1",
+      "l": "1 lab"
+    },
+    {
+      "n": "MCP Atlas",
+      "s": "61.3",
+      "l": "2 labs"
+    }
+  ]
 }

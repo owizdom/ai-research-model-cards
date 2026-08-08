@@ -13,26 +13,23 @@
   ],
   "animal": "eagle",
   "words": "2.2k",
-  "evals": "16",
-  "unique": "52%",
+  "evals": "24",
+  "unique": "91%",
   "benches": [
     {
-      "n": "AIME",
-      "d": "Competition math",
-      "s": "92.0",
-      "c": "#4285f4"
+      "n": "TEXT TO TEXT SAFETY",
+      "d": "as reported",
+      "s": "-10.4"
     },
     {
-      "n": "LIVECODE BENCH",
-      "d": "Live coding",
-      "s": "74.0",
-      "c": "#2a5ec8"
+      "n": "IMAGE TO TEXT SAFETY",
+      "d": "as reported",
+      "s": "3.1"
     },
     {
-      "n": "CHARTQA",
-      "d": "Chart understanding",
-      "s": "88.0",
-      "c": "#1a3e90"
+      "n": "TONE",
+      "d": "as reported",
+      "s": "7.9"
     }
   ],
   "lineage": [
@@ -56,29 +53,29 @@
   ],
   "btbl": [
     {
-      "n": "AIME",
-      "s": "92.0",
+      "n": "Text to Text Safety",
+      "s": "-10.4",
+      "l": "1 lab"
+    },
+    {
+      "n": "Image to Text Safety",
+      "s": "3.1",
+      "l": "1 lab"
+    },
+    {
+      "n": "Tone",
+      "s": "7.9",
+      "l": "1 lab"
+    },
+    {
+      "n": "Unjustified-refusals",
+      "s": "3.7",
       "l": "2 labs"
     },
     {
-      "n": "LiveCodeBench",
-      "s": "74.0",
-      "l": "2 labs"
-    },
-    {
-      "n": "ChartQA",
-      "s": "88.0",
-      "l": "2 labs"
-    },
-    {
-      "n": "DocVQA",
-      "s": "94.4",
-      "l": "2 labs"
-    },
-    {
-      "n": "GPQA",
-      "s": "84.0",
-      "l": "4 labs"
+      "n": "Multilingual Safety",
+      "s": "0.2",
+      "l": "1 lab"
     }
   ],
   "weak": {

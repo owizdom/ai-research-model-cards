@@ -13,26 +13,23 @@
   ],
   "animal": "eagle",
   "words": "2.9k",
-  "evals": "14",
-  "unique": "58%",
+  "evals": "21",
+  "unique": "33%",
   "benches": [
     {
-      "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "49.0",
-      "c": "#c8832a"
+      "n": "GPQA-DIAMOND",
+      "d": "diamond, 0-shot",
+      "s": "59.4"
     },
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "88.7",
-      "c": "#a06820"
+      "d": "5-shot",
+      "s": "88.7"
     },
     {
-      "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "59.4",
-      "c": "#805010"
+      "n": "MATH",
+      "d": "as reported",
+      "s": "71.1"
     }
   ],
   "lineage": [
@@ -60,24 +57,24 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench",
-      "s": "49.0",
+      "n": "GPQA-Diamond",
+      "s": "59.4",
       "l": "3 labs"
     },
     {
       "n": "MMLU",
       "s": "88.7",
-      "l": "6 labs"
+      "l": "5 labs"
     },
     {
-      "n": "GPQA",
-      "s": "59.4",
+      "n": "MATH",
+      "s": "71.1",
       "l": "4 labs"
     },
     {
       "n": "HumanEval",
       "s": "92.0",
-      "l": "4 labs"
+      "l": "5 labs"
     }
   ],
   "weak": {

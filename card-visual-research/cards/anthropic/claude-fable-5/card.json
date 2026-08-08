@@ -19,18 +19,18 @@
   "benches": [
     {
       "n": "SWE-BENCH VERIFIED",
-      "d": "Real GitHub issues",
-      "s": "95.5"
+      "d": "Verified",
+      "s": "95"
     },
     {
-      "n": "SWE-BENCH ML",
-      "d": "Multilingual code repair",
-      "s": "92.2"
+      "n": "SWE-BENCH PRO",
+      "d": "Pro",
+      "s": "80"
     },
     {
       "n": "TERMINAL-BENCH 2.1",
-      "d": "Agentic terminal tasks",
-      "s": "88.0"
+      "d": "as reported",
+      "s": "84.3"
     }
   ],
   "lineage": [
@@ -50,19 +50,19 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench Verified",
-      "s": "95.5",
-      "l": "3 labs"
+      "n": "SWE-BENCH VERIFIED",
+      "s": "95",
+      "l": "—"
     },
     {
-      "n": "SWE-bench Multilingual",
-      "s": "92.2",
-      "l": "1 lab"
+      "n": "SWE-BENCH PRO",
+      "s": "80",
+      "l": "—"
     },
     {
-      "n": "Terminal-bench 2.1",
-      "s": "88.0",
-      "l": "1 lab"
+      "n": "TERMINAL-BENCH 2.1",
+      "s": "84.3",
+      "l": "—"
     }
   ],
   "weak": {

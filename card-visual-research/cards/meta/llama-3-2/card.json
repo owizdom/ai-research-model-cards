@@ -13,26 +13,23 @@
   ],
   "animal": "wolf",
   "words": "4.2k",
-  "evals": "11",
-  "unique": "27%",
+  "evals": "14",
+  "unique": "43%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "81.0",
-      "c": "#0082fb"
+      "n": "OPEN-REWRITE EVAL",
+      "d": "as reported",
+      "s": "41.6"
     },
     {
-      "n": "CHARTQA",
-      "d": "Chart understanding",
-      "s": "78.0",
-      "c": "#0060c0"
+      "n": "TLDR9+",
+      "d": "as reported",
+      "s": "16.8"
     },
     {
-      "n": "DOCVQA",
-      "d": "Document understanding",
-      "s": "87.5",
-      "c": "#004090"
+      "n": "IFEVAL",
+      "d": "pro",
+      "s": "59.5"
     }
   ],
   "lineage": [
@@ -56,19 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "81.0",
-      "l": "6 labs"
+      "n": "Open-rewrite eval",
+      "s": "41.6",
+      "l": "1 lab"
     },
     {
-      "n": "ChartQA",
-      "s": "78.0",
-      "l": "2 labs"
+      "n": "TLDR9+",
+      "s": "16.8",
+      "l": "1 lab"
     },
     {
-      "n": "DocVQA",
-      "s": "87.5",
-      "l": "2 labs"
+      "n": "IFEval",
+      "s": "59.5",
+      "l": "3 labs"
     }
   ],
   "weak": {

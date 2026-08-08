@@ -71,5 +71,41 @@
   "ability": {
     "name": "Deep Disclosure",
     "text": "A 423,000-character system card. The most exhaustively documented model of its generation."
-  }
+  },
+  "evals": "89",
+  "unique": "76%",
+  "benches": [
+    {
+      "n": "CHARXIV REASONING (NO",
+      "d": "as reported",
+      "s": "82.1"
+    },
+    {
+      "n": "OSWORLD",
+      "d": "as reported",
+      "s": "78"
+    },
+    {
+      "n": "SCREENSPOT-PRO (NO",
+      "d": "pro",
+      "s": "79.5"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "CharXiv Reasoning (No",
+      "s": "82.1",
+      "l": "1 lab"
+    },
+    {
+      "n": "OSWorld",
+      "s": "78",
+      "l": "1 lab"
+    },
+    {
+      "n": "ScreenSpot-Pro (No Tools)",
+      "s": "79.5",
+      "l": "1 lab"
+    }
+  ]
 }

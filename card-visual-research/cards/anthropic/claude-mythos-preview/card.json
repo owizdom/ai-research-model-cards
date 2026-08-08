@@ -12,30 +12,24 @@
   ],
   "animal": "god",
   "words": "65.8k",
-  "evals": "??",
-  "unique": "??",
+  "evals": "37",
+  "unique": "53%",
   "secret": true,
   "benches": [
     {
-      "n": "REDACTED",
-      "d": "",
-      "s": "██",
-      "c": "#222",
-      "na": true
+      "n": "SWE-BENCH",
+      "d": "verified",
+      "s": "93.9"
     },
     {
-      "n": "REDACTED",
-      "d": "",
-      "s": "██",
-      "c": "#222",
-      "na": true
+      "n": "TERMINAL-BENCH 2.0",
+      "d": "as reported",
+      "s": "82"
     },
     {
-      "n": "REDACTED",
-      "d": "",
-      "s": "██",
-      "c": "#222",
-      "na": true
+      "n": "GPQA-DIAMOND",
+      "d": "diamond",
+      "s": "94.5"
     }
   ],
   "lineage": [
@@ -59,16 +53,19 @@
   ],
   "btbl": [
     {
-      "n": "REDACTED",
-      "s": "██",
-      "l": "classified",
-      "na": true
+      "n": "SWE-bench",
+      "s": "93.9",
+      "l": "3 labs"
     },
     {
-      "n": "REDACTED",
-      "s": "██",
-      "l": "classified",
-      "na": true
+      "n": "Terminal-bench 2.0",
+      "s": "82",
+      "l": "1 lab"
+    },
+    {
+      "n": "GPQA-Diamond",
+      "s": "94.5",
+      "l": "3 labs"
     }
   ],
   "weak": {

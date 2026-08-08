@@ -13,26 +13,23 @@
   ],
   "animal": "owl",
   "words": "54k",
-  "evals": "18",
-  "unique": "73%",
+  "evals": "47",
+  "unique": "52%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "89.4",
-      "c": "#c8832a"
-    },
-    {
       "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "67.1",
-      "c": "#a06820"
+      "d": "pro",
+      "s": "81.4"
     },
     {
-      "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "74.9",
-      "c": "#805010"
+      "n": "ARC-AGI-1",
+      "d": "as reported",
+      "s": "94"
+    },
+    {
+      "n": "GPQA-DIAMOND",
+      "d": "diamond",
+      "s": "91.3"
     }
   ],
   "lineage": [
@@ -52,19 +49,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "89.4",
-      "l": "6 labs"
-    },
-    {
       "n": "SWE-bench",
-      "s": "67.1",
+      "s": "81.4",
       "l": "3 labs"
     },
     {
-      "n": "GPQA Diamond",
-      "s": "74.9",
-      "l": "4 labs"
+      "n": "ARC-AGI-1",
+      "s": "94",
+      "l": "1 lab"
+    },
+    {
+      "n": "GPQA-Diamond",
+      "s": "91.3",
+      "l": "3 labs"
     }
   ],
   "weak": {

@@ -12,26 +12,23 @@
   ],
   "animal": "owl",
   "words": "5.9k",
-  "evals": "8",
-  "unique": "42%",
+  "evals": "7",
+  "unique": "14%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "78.5",
-      "c": "#c8832a"
-    },
-    {
-      "n": "HUMANEVAL",
-      "d": "Code generation",
-      "s": "71.2",
-      "c": "#a06820"
-    },
-    {
       "n": "GSM8K",
-      "d": "Math word problems",
-      "s": "88.0",
-      "c": "#805010"
+      "d": "0-shot, cot",
+      "s": "80.9"
+    },
+    {
+      "n": "MMLU",
+      "d": "5-shot, cot",
+      "s": "73.4"
+    },
+    {
+      "n": "TRIVIAQA",
+      "d": "5-shot",
+      "s": "78.9"
     }
   ],
   "lineage": [
@@ -59,19 +56,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "78.5",
-      "l": "6 labs"
-    },
-    {
-      "n": "HumanEval",
-      "s": "71.2",
-      "l": "4 labs"
-    },
-    {
       "n": "GSM8K",
-      "s": "88.0",
+      "s": "80.9",
       "l": "5 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "73.4",
+      "l": "5 labs"
+    },
+    {
+      "n": "TriviaQA",
+      "s": "78.9",
+      "l": "2 labs"
     }
   ],
   "weak": {

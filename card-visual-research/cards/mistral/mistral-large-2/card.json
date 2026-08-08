@@ -13,26 +13,23 @@
   ],
   "animal": "fox",
   "words": "950",
-  "evals": "7",
-  "unique": "16%",
+  "evals": "23",
+  "unique": "43%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "84.0",
-      "c": "#e85d04"
+      "d": "as reported",
+      "s": "84"
     },
     {
       "n": "MATH",
-      "d": "Competition math",
-      "s": "69.0",
-      "c": "#c04000"
+      "d": "not reported",
+      "s": "—"
     },
     {
       "n": "HUMANEVAL",
-      "d": "Code generation",
-      "s": "92.0",
-      "c": "#902e00"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -53,23 +50,23 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "84.0",
-      "l": "6 labs"
-    },
-    {
-      "n": "MATH",
-      "s": "69.0",
+      "s": "84",
       "l": "5 labs"
     },
     {
-      "n": "HumanEval",
-      "s": "92.0",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "IFEval",
-      "s": "85.1",
-      "l": "2 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
+    },
+    {
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {
