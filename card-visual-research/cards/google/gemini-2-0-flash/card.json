@@ -1,18 +1,18 @@
 {
   "lab": "google",
-  "num": "029/052",
+  "num": "031/055",
   "tier": "rare",
   "name": "Gemini 2.0 Flash",
   "capN": "70",
   "capL": "CAP",
-  "meta": "Google DeepMind \u00b7 Gemini 2 \u00b7 Dec 2024",
+  "meta": "Google DeepMind · Gemini 2 · Dec 2024",
   "tags": [
     "FAST",
     "AGENTIC",
     "MULTIMODAL"
   ],
   "animal": "octopus",
-  "words": "68k",
+  "words": "1.5k",
   "evals": "13",
   "unique": "46%",
   "benches": [
@@ -76,17 +76,17 @@
     }
   ],
   "weak": {
-    "t": "Safety Baseline \u00d72",
+    "t": "Safety Baseline ×2",
     "d": "Faster model; safety evaluations proportionally less extensive."
   },
   "res": {
-    "t": "Agentic Speed \u221212",
+    "t": "Agentic Speed −12",
     "d": "Optimised for real-time agentic use cases."
   },
   "lims": [
-    "<strong>Safety evaluation depth</strong> \u2014 less extensive than Pro tier."
+    "<strong>Safety evaluation depth</strong> — less extensive than Pro tier."
   ],
-  "blurb": "First Gemini 2 release. Introduced AIME as an evaluation \u2014 signalling Google's response to o1's math benchmark dominance.",
+  "blurb": "First Gemini 2 release. Introduced AIME as an evaluation — signalling Google's response to o1's math benchmark dominance.",
   "val": {
     "b": "Internal evaluation, Dec 2024",
     "l": "modelcards.net/gemini-2-flash",
@@ -95,5 +95,9 @@
   "slug": "gemini-2-0-flash",
   "html": "gemini-2-0-flash.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Answer to o1",
+    "text": "Added AIME to Google's suite, the first visible response to OpenAI's lead on math benchmarks."
+  }
 }

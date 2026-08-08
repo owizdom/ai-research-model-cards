@@ -1,38 +1,38 @@
 {
   "lab": "xai",
-  "num": "041/052",
+  "num": "048/058",
   "tier": "common",
   "name": "Grok 4",
-  "capN": "0",
+  "capN": "24",
   "capL": "EVALS",
-  "meta": "xAI \u00b7 Grok 4 \u00b7 2025",
+  "meta": "xAI · Grok 4 · 2025",
   "tags": [
     "FRONTIER",
     "REASONING"
   ],
   "animal": "void_",
-  "words": "<5k",
-  "evals": "0",
-  "unique": "0%",
+  "words": "3.5k",
+  "evals": "24",
+  "unique": "62%",
   "benches": [
     {
       "n": "MMLU",
       "d": "Not reported",
-      "s": "\u2014",
+      "s": "—",
       "c": "#3a2a5a",
       "na": true
     },
     {
       "n": "GPQA",
       "d": "Not reported",
-      "s": "\u2014",
+      "s": "—",
       "c": "#3a2a5a",
       "na": true
     },
     {
       "n": "SWE-BENCH",
       "d": "Not reported",
-      "s": "\u2014",
+      "s": "—",
       "c": "#3a2a5a",
       "na": true
     }
@@ -55,36 +55,37 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "\u2014",
+      "s": "—",
       "l": "not reported",
       "na": true
     },
     {
       "n": "GPQA",
-      "s": "\u2014",
+      "s": "—",
       "l": "not reported",
       "na": true
     },
     {
       "n": "SWE-bench",
-      "s": "\u2014",
+      "s": "—",
       "l": "not reported",
       "na": true
     }
   ],
   "weak": {
-    "t": "Disclosure Gap \u00d72",
+    "t": "Disclosure Gap ×2",
     "d": "No public benchmark scores reported in any tracked documentation."
   },
   "res": {
-    "t": "Undocumented \u22120",
+    "t": "Undocumented −0",
     "d": "No resistance modifiers disclosed. Baseline unknown."
   },
   "lims": [
-    "<strong>No public evals</strong> \u2014 zero benchmark scores in tracked documentation.",
-    "<strong>Minimal safety disclosure</strong> \u2014 sparse by any comparative standard."
+    "<strong>No capability evals</strong> — 24 scored rows, all safety.",
+    "<strong>No MMLU, GPQA or SWE-bench</strong> — the three benchmarks peers all report.",
+    "<strong>62% lab-unique</strong> — most of its safety suite is xAI's alone."
   ],
-  "blurb": "The outlier. xAI reports zero benchmark scores in tracked documentation. A frontier model with near-empty public evaluation disclosure. The absence of data is the finding.",
+  "blurb": "The outlier, but not for the reason the deck first claimed. 24 scored evaluations, every one a refusal or harm test, and no capability benchmark at all.",
   "val": {
     "b": "No independent validation disclosed.",
     "l": "modelcards.net/grok-4",
@@ -93,5 +94,9 @@
   "slug": "grok-4",
   "html": "grok-4.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Safety Only",
+    "text": "24 scored evaluations, every one a refusal or harm test. No MMLU, no GPQA, no SWE-bench anywhere on the card."
+  }
 }

@@ -1,18 +1,18 @@
 {
   "lab": "google",
-  "num": "028/052",
+  "num": "030/055",
   "tier": "rare",
   "name": "Gemini 1.5 Flash",
   "capN": "60",
   "capL": "CAP",
-  "meta": "Google DeepMind \u00b7 Gemini 1.5 \u00b7 May 2024",
+  "meta": "Google DeepMind · Gemini 1.5 · May 2024",
   "tags": [
     "FAST",
     "EFFICIENT",
     "MULTIMODAL"
   ],
   "animal": "octopus",
-  "words": "48k",
+  "words": "64.6k",
   "evals": "11",
   "unique": "40%",
   "benches": [
@@ -76,15 +76,15 @@
     }
   ],
   "weak": {
-    "t": "Capability Tradeoff \u00d72",
+    "t": "Capability Tradeoff ×2",
     "d": "Speed-optimised at cost of reasoning depth."
   },
   "res": {
-    "t": "Speed \u221212",
+    "t": "Speed −12",
     "d": "Fastest Gemini 1.5 model; optimised for high-frequency production use."
   },
   "lims": [
-    "<strong>Speed/capability tradeoff</strong> \u2014 less capable than Pro."
+    "<strong>Speed/capability tradeoff</strong> — less capable than Pro."
   ],
   "blurb": "Speed-optimised sibling of 1.5 Pro. Established Google's two-tier release pattern (Pro + Flash) that continued through all subsequent generations.",
   "val": {
@@ -95,5 +95,9 @@
   "slug": "gemini-1-5-flash",
   "html": "gemini-1-5-flash.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Two-Tier Release",
+    "text": "Established the Pro-and-Flash pattern Google has repeated in every generation since."
+  }
 }

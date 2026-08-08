@@ -1,18 +1,18 @@
 {
   "lab": "mistral",
-  "num": "047/052",
+  "num": "046/055",
   "tier": "rare",
   "name": "Mistral Large 2",
   "capN": "58",
   "capL": "CAP",
-  "meta": "Mistral AI \u00b7 Mistral Large 2 \u00b7 2024",
+  "meta": "Mistral AI · Mistral Large 2 · 2024",
   "tags": [
     "REASONING",
     "CODING",
     "FRONTIER"
   ],
   "animal": "fox",
-  "words": "6k",
+  "words": "950",
   "evals": "7",
   "unique": "16%",
   "benches": [
@@ -73,18 +73,18 @@
     }
   ],
   "weak": {
-    "t": "Disclosure Gap \u00d72",
-    "d": "6k words vs Claude 3.5 Sonnet at 45k \u2014 same capability tier, 7\u00d7 less documentation."
+    "t": "Disclosure Gap ×2",
+    "d": "6k words vs Claude 3.5 Sonnet at 45k — same capability tier, 7× less documentation."
   },
   "res": {
-    "t": "Code \u221212",
-    "d": "HumanEval 92% \u2014 competitive with frontier closed models on coding."
+    "t": "Code −12",
+    "d": "HumanEval 92% — competitive with frontier closed models on coding."
   },
   "lims": [
-    "<strong>Sparse safety documentation</strong> \u2014 6k words for frontier-competitive capability.",
-    "<strong>No dangerous capabilities section</strong> \u2014 not standard practice at Mistral."
+    "<strong>Sparse safety documentation</strong> — 6k words for frontier-competitive capability.",
+    "<strong>No dangerous capabilities section</strong> — not standard practice at Mistral."
   ],
-  "blurb": "Frontier-competitive coding. 92% HumanEval. But only 6k words of documentation. The disclosure gap with Anthropic (~45k for Claude 3.5 Sonnet, similar capability tier) is 7\u00d7. European frontier lab with American disclosure standards.",
+  "blurb": "Frontier-competitive coding at 92% HumanEval, documented in a 950-word release post. Claude's 3.5 addendum at a similar tier runs 2,948.",
   "val": {
     "b": "No independent validation disclosed.",
     "l": "modelcards.net/mistral-large-2",
@@ -93,5 +93,9 @@
   "slug": "mistral-large-2",
   "html": "mistral-large-2.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Release Note",
+    "text": "92.0 on HumanEval, frontier-competitive coding, documented in a 950-word release post."
+  }
 }

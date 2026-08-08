@@ -1,18 +1,18 @@
 {
   "lab": "meta",
-  "num": "038/052",
+  "num": "040/055",
   "tier": "rare",
   "name": "Llama 3.2",
   "capN": "62",
   "capL": "CAP",
-  "meta": "Meta AI \u00b7 Llama 3.2 \u00b7 Sep 2024",
+  "meta": "Meta AI · Llama 3.2 · Sep 2024",
   "tags": [
     "OPEN WEIGHTS",
     "MULTIMODAL",
     "EFFICIENT"
   ],
   "animal": "wolf",
-  "words": "28k",
+  "words": "4.2k",
   "evals": "11",
   "unique": "27%",
   "benches": [
@@ -72,18 +72,18 @@
     }
   ],
   "weak": {
-    "t": "Image Consistency \u00d72",
+    "t": "Image Consistency ×2",
     "d": "Multimodal performance variable across image types."
   },
   "res": {
-    "t": "Vision \u221210",
+    "t": "Vision −10",
     "d": "First Llama with native vision capability."
   },
   "lims": [
-    "<strong>Vision consistency</strong> \u2014 cross-image performance variable.",
-    "<strong>Lightweight models</strong> \u2014 1B and 3B variants included, with separate safety evaluation."
+    "<strong>Vision consistency</strong> — cross-image performance variable.",
+    "<strong>Lightweight models</strong> — 1B and 3B variants included, with separate safety evaluation."
   ],
-  "blurb": "Llama 3.2 introduced vision capability to the open-weights ecosystem. Meta's first multimodal open model \u2014 significant because it made vision capability available to any researcher.",
+  "blurb": "Llama 3.2 introduced vision capability to the open-weights ecosystem. Meta's first multimodal open model — significant because it made vision capability available to any researcher.",
   "val": {
     "b": "Internal Meta evaluation + Purple Llama, Sep 2024",
     "l": "modelcards.net/llama-3-2",
@@ -92,5 +92,9 @@
   "slug": "llama-3-2",
   "html": "llama-3-2.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Open Vision",
+    "text": "Brought native vision into the open-weights ecosystem, where any researcher could run it."
+  }
 }

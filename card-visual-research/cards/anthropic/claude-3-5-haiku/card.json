@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "006/052",
+  "num": "006/055",
   "tier": "rare",
   "name": "Claude 3.5 Haiku",
   "capN": "52",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 3.5 \u00b7 Nov 2024",
+  "meta": "Anthropic · Claude 3.5 · Nov 2024",
   "tags": [
     "FAST",
     "CODING",
     "EFFICIENT"
   ],
   "animal": "owl",
-  "words": "42k",
+  "words": "5.8k",
   "evals": "12",
   "unique": "55%",
   "benches": [
@@ -72,16 +72,16 @@
     }
   ],
   "weak": {
-    "t": "Size Ceiling \u00d72",
+    "t": "Size Ceiling ×2",
     "d": "Smaller model limits complex multi-step reasoning."
   },
   "res": {
-    "t": "Speed \u221212",
+    "t": "Speed −12",
     "d": "Fastest of Claude 3.5 family; outperforms prior Opus on several benchmarks."
   },
   "lims": [
-    "<strong>Reasoning depth</strong> \u2014 smaller model limits complex chains.",
-    "<strong>SWE-bench gap</strong> \u2014 8.4 points below Sonnet."
+    "<strong>Reasoning depth</strong> — smaller model limits complex chains.",
+    "<strong>SWE-bench gap</strong> — 8.4 points below Sonnet."
   ],
   "blurb": "Speed-first model of Claude 3.5 generation. Notable for beating prior-generation Opus on MMLU despite being the smaller model.",
   "val": {
@@ -92,5 +92,9 @@
   "slug": "claude-3-5-haiku",
   "html": "claude-3-5-haiku.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Punching Up",
+    "text": "Beats the previous generation's Opus on MMLU, 87.2 against 86.8, as the smaller and faster model."
+  }
 }

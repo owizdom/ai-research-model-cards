@@ -1,18 +1,18 @@
 {
   "lab": "openai",
-  "num": "023/052",
+  "num": "025/055",
   "tier": "rare",
   "name": "GPT-5.1",
   "capN": "88",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 GPT-5 \u00b7 2025",
+  "meta": "OpenAI · GPT-5 · 2025",
   "tags": [
     "FRONTIER",
     "CODING",
     "AGENTIC"
   ],
   "animal": "falcon",
-  "words": "160k",
+  "words": "1.3k",
   "evals": "11",
   "unique": "40%",
   "benches": [
@@ -72,15 +72,15 @@
     }
   ],
   "weak": {
-    "t": "Agentic Risk \u00d72",
+    "t": "Agentic Risk ×2",
     "d": "Stronger agentic capability increases potential for unintended actions."
   },
   "res": {
-    "t": "Coding Accuracy \u221212",
+    "t": "Coding Accuracy −12",
     "d": "Strong improvement on SWE-bench vs GPT-5."
   },
   "lims": [
-    "<strong>Agentic risk</strong> \u2014 expanded capability requires new safety documentation."
+    "<strong>Agentic risk</strong> — expanded capability requires new safety documentation."
   ],
   "blurb": "Iterative improvement on GPT-5 focusing on coding and agentic capability. Narrowed the SWE-bench gap with Anthropic.",
   "val": {
@@ -91,5 +91,9 @@
   "slug": "gpt-5-1",
   "html": "gpt-5-1.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Chasing SWE-bench",
+    "text": "Narrowed the agentic-coding gap with Anthropic on the one benchmark OpenAI had never led."
+  }
 }

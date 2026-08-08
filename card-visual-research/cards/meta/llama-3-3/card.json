@@ -1,18 +1,18 @@
 {
   "lab": "meta",
-  "num": "039/052",
+  "num": "041/055",
   "tier": "rare",
   "name": "Llama 3.3",
   "capN": "68",
   "capL": "CAP",
-  "meta": "Meta AI \u00b7 Llama 3.3 \u00b7 Nov 2024",
+  "meta": "Meta AI · Llama 3.3 · Nov 2024",
   "tags": [
     "OPEN WEIGHTS",
     "CODING",
     "REASONING"
   ],
   "animal": "wolf",
-  "words": "32k",
+  "words": "2.6k",
   "evals": "12",
   "unique": "29%",
   "benches": [
@@ -68,15 +68,15 @@
     }
   ],
   "weak": {
-    "t": "Context Ceiling \u00d72",
+    "t": "Context Ceiling ×2",
     "d": "Reasoning at very long contexts degrades."
   },
   "res": {
-    "t": "Open Instruction \u221212",
+    "t": "Open Instruction −12",
     "d": "Strong instruction-following on complex tasks; competitive with closed models."
   },
   "lims": [
-    "<strong>Context ceiling</strong> \u2014 reasoning degrades in very long contexts."
+    "<strong>Context ceiling</strong> — reasoning degrades in very long contexts."
   ],
   "blurb": "Final Llama 3 model. At 86% MMLU, competitive with GPT-4o. The open-weights ecosystem reached a point where the gap to frontier closed in was largely closed for most tasks.",
   "val": {
@@ -87,5 +87,9 @@
   "slug": "llama-3-3",
   "html": "llama-3-3.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Parity",
+    "text": "86.0 on MMLU, matching GPT-4o, at the point the open-weights gap effectively closed for most tasks."
+  }
 }

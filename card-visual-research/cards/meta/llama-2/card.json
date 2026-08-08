@@ -1,18 +1,18 @@
 {
   "lab": "meta",
-  "num": "035/052",
+  "num": "037/055",
   "tier": "common",
   "name": "Llama 2",
   "capN": "22",
   "capL": "CAP",
-  "meta": "Meta AI \u00b7 Llama 2 \u00b7 Jul 2023",
+  "meta": "Meta AI · Llama 2 · Jul 2023",
   "tags": [
     "OPEN WEIGHTS",
     "SAFETY",
     "REASONING"
   ],
   "animal": "wolf",
-  "words": "15k",
+  "words": "956",
   "evals": "8",
   "unique": "22%",
   "benches": [
@@ -76,18 +76,18 @@
     }
   ],
   "weak": {
-    "t": "Capability Gap \u00d72",
+    "t": "Capability Gap ×2",
     "d": "Below frontier models on most benchmarks at launch."
   },
   "res": {
-    "t": "Open Weights \u221214",
-    "d": "Weights publicly available \u2014 transparency through openness."
+    "t": "Open Weights −14",
+    "d": "Weights publicly available — transparency through openness."
   },
   "lims": [
-    "<strong>Capability</strong> \u2014 below frontier models on most benchmarks.",
-    "<strong>Safety documentation</strong> \u2014 card sparser than closed-model peers."
+    "<strong>Capability</strong> — below frontier models on most benchmarks.",
+    "<strong>Safety documentation</strong> — card sparser than closed-model peers."
   ],
-  "blurb": "The open-weights frontier. Llama 2 established that a lab could release competitive weights publicly. The model card is sparser than closed-model peers \u2014 the weights are themselves the transparency mechanism.",
+  "blurb": "The open-weights frontier. Llama 2 established that a lab could release competitive weights publicly. The model card is sparser than closed-model peers — the weights are themselves the transparency mechanism.",
   "val": {
     "b": "Internal Meta evaluation + Purple Llama, Jul 2023",
     "l": "modelcards.net/llama-2",
@@ -96,5 +96,9 @@
   "slug": "llama-2",
   "html": "llama-2.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Weights as Disclosure",
+    "text": "A 956-word card, sparser than any closed peer, on the argument that the weights are the disclosure."
+  }
 }

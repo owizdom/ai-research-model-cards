@@ -1,0 +1,96 @@
+{
+  "slug": "claude-fable-5",
+  "lab": "anthropic",
+  "name": "Claude Fable 5",
+  "num": "048/055",
+  "tier": "holo",
+  "stage": "STAGE 2",
+  "capL": "CAP",
+  "capN": "97",
+  "meta": "Anthropic · Fable 5 · Jun 2026",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "AGENTIC"
+  ],
+  "words": "66.2k",
+  "evals": "27",
+  "unique": "57%",
+  "benches": [
+    {
+      "n": "SWE-BENCH VERIFIED",
+      "d": "Real GitHub issues",
+      "s": "95.5"
+    },
+    {
+      "n": "SWE-BENCH ML",
+      "d": "Multilingual code repair",
+      "s": "92.2"
+    },
+    {
+      "n": "TERMINAL-BENCH 2.1",
+      "d": "Agentic terminal tasks",
+      "s": "88.0"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4.8",
+      "d": "May'26"
+    },
+    {
+      "v": "Fable 5",
+      "d": "Jun'26",
+      "a": true
+    },
+    {
+      "v": "Opus 5",
+      "d": "Jul'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "SWE-bench Verified",
+      "s": "95.5",
+      "l": "3 labs"
+    },
+    {
+      "n": "SWE-bench Multilingual",
+      "s": "92.2",
+      "l": "1 lab"
+    },
+    {
+      "n": "Terminal-bench 2.1",
+      "s": "88.0",
+      "l": "1 lab"
+    }
+  ],
+  "weak": {
+    "t": "Lab-Unique Evals ×2",
+    "d": "57% of its benchmarks are reported by no other lab, so most scores have no peer comparison."
+  },
+  "res": {
+    "t": "Disclosure Depth −14",
+    "d": "The longest published model card in the corpus."
+  },
+  "lims": [
+    "<strong>Comparability</strong> — 57% of eval choices are echoed by no peer lab.",
+    "<strong>Card length</strong> — 66,211 words; the longest in the corpus.",
+    "<strong>Shared card</strong> — documented alongside Mythos 5 in one document."
+  ],
+  "blurb": "66,211 words, the longest model card in the corpus. Reports SWE-bench Verified at 95.5, and more than half its eval choices appear on no other lab's card.",
+  "ability": {
+    "name": "Longest Card",
+    "text": "66,211 words, the longest model card in the corpus, with 57% of its eval choices echoed by no other lab."
+  },
+  "val": {
+    "b": "Internal + external red team, Jun 2026",
+    "l": "modelcards.net/claude-fable-5",
+    "h": true
+  },
+  "source": "corpus",
+  "animal": "",
+  "html": "claude-fable-5.html",
+  "art": "claude-fable-5.png",
+  "generated": true
+}

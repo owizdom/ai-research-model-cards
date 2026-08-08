@@ -1,18 +1,18 @@
 {
   "lab": "google",
-  "num": "032/052",
+  "num": "034/055",
   "tier": "rare",
   "name": "Gemini 3 Flash",
   "capN": "78",
   "capL": "CAP",
-  "meta": "Google DeepMind \u00b7 Gemini 3 \u00b7 2025",
+  "meta": "Google DeepMind · Gemini 3 · 2025",
   "tags": [
     "FAST",
     "AGENTIC",
     "MULTIMODAL"
   ],
   "animal": "octopus",
-  "words": "100k",
+  "words": "1.1k",
   "evals": "14",
   "unique": "50%",
   "benches": [
@@ -72,15 +72,15 @@
     }
   ],
   "weak": {
-    "t": "Pro Gap \u00d72",
+    "t": "Pro Gap ×2",
     "d": "Clearly below Gemini 3 Pro on reasoning tasks."
   },
   "res": {
-    "t": "Production Speed \u221212",
+    "t": "Production Speed −12",
     "d": "Optimised for real-time production workloads."
   },
   "lims": [
-    "<strong>Reasoning depth</strong> \u2014 below Pro tier on complex multi-step tasks."
+    "<strong>Reasoning depth</strong> — below Pro tier on complex multi-step tasks."
   ],
   "blurb": "Speed-first entry point of Gemini 3. Continues the Pro+Flash pattern. Strong AIME score even at the Flash tier signals how far math reasoning capability has propagated down the size hierarchy.",
   "val": {
@@ -91,5 +91,9 @@
   "slug": "gemini-3-flash",
   "html": "gemini-3-flash.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Trickle Down",
+    "text": "88.0 on AIME at the Flash tier. Math reasoning has propagated the whole way down the size hierarchy."
+  }
 }

@@ -1,17 +1,17 @@
 {
   "lab": "anthropic",
-  "num": "001/052",
+  "num": "001/055",
   "tier": "common",
   "name": "Claude 2",
   "capN": "12",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 2 \u00b7 Jul 2023",
+  "meta": "Anthropic · Claude 2 · Jul 2023",
   "tags": [
     "REASONING",
     "SAFETY"
   ],
   "animal": "owl",
-  "words": "18k",
+  "words": "5.9k",
   "evals": "8",
   "unique": "42%",
   "benches": [
@@ -75,16 +75,16 @@
     }
   ],
   "weak": {
-    "t": "Context Length \u00d72",
+    "t": "Context Length ×2",
     "d": "Limited to 100k tokens; performance degrades in long docs."
   },
   "res": {
-    "t": "RLHF \u22128",
+    "t": "RLHF −8",
     "d": "Human feedback training reduces harmful outputs."
   },
   "lims": [
-    "<strong>Context limits</strong> \u2014 100k token ceiling vs later generations.",
-    "<strong>Benchmark sparsity</strong> \u2014 8 evals, minimal safety coverage."
+    "<strong>Context limits</strong> — 100k token ceiling vs later generations.",
+    "<strong>Benchmark sparsity</strong> — 8 evals, minimal safety coverage."
   ],
   "blurb": "The baseline. Claude 2 established Anthropic's system card format and RLHF approach, but reported relatively few evals by later standards.",
   "val": {
@@ -95,5 +95,9 @@
   "slug": "claude-2",
   "html": "claude-2.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "First Draft",
+    "text": "The 5,889-word card that set Anthropic's format. Every Claude card since is a descendant of this one."
+  }
 }

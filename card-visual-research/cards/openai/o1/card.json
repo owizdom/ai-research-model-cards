@@ -1,18 +1,18 @@
 {
   "lab": "openai",
-  "num": "018/052",
+  "num": "020/055",
   "tier": "rare",
   "name": "o1",
   "capN": "76",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 o-series \u00b7 Sep 2024",
+  "meta": "OpenAI · o-series · Sep 2024",
   "tags": [
     "REASONING",
     "MATH",
     "CHAIN-OF-THOUGHT"
   ],
   "animal": "shark",
-  "words": "40k",
+  "words": "17.4k",
   "evals": "8",
   "unique": "35%",
   "benches": [
@@ -76,16 +76,16 @@
     }
   ],
   "weak": {
-    "t": "Overthinking \u00d72",
+    "t": "Overthinking ×2",
     "d": "Applies heavy reasoning compute to trivial tasks."
   },
   "res": {
-    "t": "Chain-of-thought \u221212",
+    "t": "Chain-of-thought −12",
     "d": "Internal reasoning chain before response; first commercial CoT model."
   },
   "lims": [
-    "<strong>Overthinking</strong> \u2014 reasoning compute wasted on simple tasks.",
-    "<strong>Latency</strong> \u2014 reasoning steps add significant time-to-first-token."
+    "<strong>Overthinking</strong> — reasoning compute wasted on simple tasks.",
+    "<strong>Latency</strong> — reasoning steps add significant time-to-first-token."
   ],
   "blurb": "o1 announced the reasoning model era. AIME score of 83.3% was unprecedented. Card introduced new category: dangerous capability evaluations as a standalone section.",
   "val": {
@@ -96,5 +96,9 @@
   "slug": "o1",
   "html": "o1.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Reasoning Era",
+    "text": "83.3 on AIME, unprecedented at release, and the first card to carry dangerous-capability evaluation as its own section."
+  }
 }

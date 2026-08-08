@@ -1,0 +1,96 @@
+{
+  "slug": "claude-sonnet-5",
+  "lab": "anthropic",
+  "name": "Claude Sonnet 5",
+  "num": "049/055",
+  "tier": "rare",
+  "stage": "STAGE 2",
+  "capL": "EVALS",
+  "capN": "58",
+  "meta": "Anthropic · Sonnet 5 · Jun 2026",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "SAFETY"
+  ],
+  "words": "34.6k",
+  "evals": "58",
+  "unique": "80%",
+  "benches": [
+    {
+      "n": "LONG-FORM VIROLOGY",
+      "d": "Wet-lab protocol tasks",
+      "s": "0.82"
+    },
+    {
+      "n": "VCT",
+      "d": "Virology capabilities test",
+      "s": "0.56"
+    },
+    {
+      "n": "DNA SCREENING",
+      "d": "Synthesis screening evasion",
+      "s": "5.0"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4.6",
+      "d": "Feb'26"
+    },
+    {
+      "v": "Sonnet 5",
+      "d": "Jun'26",
+      "a": true
+    },
+    {
+      "v": "Opus 5",
+      "d": "Jul'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "Long-form virology",
+      "s": "0.82",
+      "l": "1 lab"
+    },
+    {
+      "n": "VCT",
+      "s": "0.56",
+      "l": "2 labs"
+    },
+    {
+      "n": "DNA Synthesis Screening",
+      "s": "5.0",
+      "l": "1 lab"
+    }
+  ],
+  "weak": {
+    "t": "Incomparable Suite ×2",
+    "d": "80% of its benchmarks are run by no other lab — the highest single-lab share of any Claude card."
+  },
+  "res": {
+    "t": "Safety Depth −12",
+    "d": "58 disclosed evaluations, weighted heavily toward biosecurity."
+  },
+  "lims": [
+    "<strong>80% lab-unique</strong> — almost nothing on this card is cross-comparable.",
+    "<strong>Biosecurity weighting</strong> — the disclosed suite is dominated by virology and synthesis screening.",
+    "<strong>Capability tables</strong> — not machine-extractable from the published PDF."
+  ],
+  "blurb": "58 disclosed evaluations, 80% of them run by no other lab. The published suite leans heavily toward biosecurity rather than the capability benchmarks peers report.",
+  "ability": {
+    "name": "Alone at Eighty",
+    "text": "58 disclosed evaluations and 80% of them appear on no other lab's card — the highest single-lab share of any Claude card."
+  },
+  "val": {
+    "b": "Internal + UK AISI, Jun 2026",
+    "l": "modelcards.net/claude-sonnet-5",
+    "h": false
+  },
+  "source": "corpus",
+  "animal": "",
+  "html": "claude-sonnet-5.html",
+  "art": "claude-sonnet-5.png",
+  "generated": true
+}

@@ -1,18 +1,18 @@
 {
   "lab": "google",
-  "num": "031/052",
+  "num": "033/055",
   "tier": "rare",
   "name": "Gemini 2.5 Deep Think",
   "capN": "82",
   "capL": "CAP",
-  "meta": "Google DeepMind \u00b7 Gemini 2.5 \u00b7 May 2025",
+  "meta": "Google DeepMind · Gemini 2.5 · May 2025",
   "tags": [
     "REASONING",
     "MATH",
     "EXTENDED THINKING"
   ],
   "animal": "octopus",
-  "words": "95k",
+  "words": "6.3k",
   "evals": "13",
   "unique": "47%",
   "benches": [
@@ -72,18 +72,18 @@
     }
   ],
   "weak": {
-    "t": "Cost \u00d72",
+    "t": "Cost ×2",
     "d": "Extended thinking mode significantly increases inference cost."
   },
   "res": {
-    "t": "Deep Reasoning \u221214",
+    "t": "Deep Reasoning −14",
     "d": "Thinking mode achieves near-perfect MATH performance."
   },
   "lims": [
-    "<strong>Cost in thinking mode</strong> \u2014 expensive at scale.",
-    "<strong>Separate card</strong> \u2014 Google published a distinct card for the thinking variant."
+    "<strong>Cost in thinking mode</strong> — expensive at scale.",
+    "<strong>Separate card</strong> — Google published a distinct card for the thinking variant."
   ],
-  "blurb": "Google's thinking model. Published as a separate card from 2.5 Pro \u2014 itself a disclosure choice. Near-perfect MATH score with thinking mode enabled.",
+  "blurb": "Google's thinking model. Published as a separate card from 2.5 Pro — itself a disclosure choice. Near-perfect MATH score with thinking mode enabled.",
   "val": {
     "b": "Internal + Frontier Safety Framework, May 2025",
     "l": "modelcards.net/gemini-2-5-deep-think",
@@ -92,5 +92,9 @@
   "slug": "gemini-2-5-deep-think",
   "html": "gemini-2-5-deep-think.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Separate Card",
+    "text": "Google published thinking mode as its own card rather than a section, scoring 97.0 on MATH. A disclosure choice as much as a model one."
+  }
 }

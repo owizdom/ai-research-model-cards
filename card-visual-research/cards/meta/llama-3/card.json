@@ -1,18 +1,18 @@
 {
   "lab": "meta",
-  "num": "036/052",
+  "num": "038/055",
   "tier": "rare",
   "name": "Llama 3",
   "capN": "55",
   "capL": "CAP",
-  "meta": "Meta AI \u00b7 Llama 3 \u00b7 Apr 2024",
+  "meta": "Meta AI · Llama 3 · Apr 2024",
   "tags": [
     "OPEN WEIGHTS",
     "CODING",
     "REASONING"
   ],
   "animal": "wolf",
-  "words": "22k",
+  "words": "1.2k",
   "evals": "10",
   "unique": "26%",
   "benches": [
@@ -76,17 +76,17 @@
     }
   ],
   "weak": {
-    "t": "Context Limit \u00d72",
+    "t": "Context Limit ×2",
     "d": "8k context window limits long-document tasks."
   },
   "res": {
-    "t": "Open Weights \u221212",
+    "t": "Open Weights −12",
     "d": "Strong improvement over Llama 2 across all benchmarks."
   },
   "lims": [
-    "<strong>Context window</strong> \u2014 8k limit constrained early deployment."
+    "<strong>Context window</strong> — 8k limit constrained early deployment."
   ],
-  "blurb": "Llama 3 closed the gap with proprietary frontier models significantly. Crossed 79% MMLU \u2014 competitive with GPT-4 at release, while remaining fully open weights.",
+  "blurb": "Llama 3 closed the gap with proprietary frontier models significantly. Crossed 79% MMLU — competitive with GPT-4 at release, while remaining fully open weights.",
   "val": {
     "b": "Internal Meta evaluation + Purple Llama, Apr 2024",
     "l": "modelcards.net/llama-3",
@@ -95,5 +95,9 @@
   "slug": "llama-3",
   "html": "llama-3.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Closed the Gap",
+    "text": "79.5 on MMLU, competitive with GPT-4 at release, with weights anyone could download."
+  }
 }

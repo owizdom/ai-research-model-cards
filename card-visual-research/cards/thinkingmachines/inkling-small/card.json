@@ -1,0 +1,97 @@
+{
+  "slug": "inkling-small",
+  "lab": "thinkingmachines",
+  "name": "Inkling-Small",
+  "num": "054/055",
+  "tier": "rare",
+  "stage": "BASIC",
+  "capL": "CAP",
+  "capN": "86",
+  "meta": "Thinking Machines · Inkling-Small · Jul 2026",
+  "tags": [
+    "OPEN WEIGHTS",
+    "EFFICIENT",
+    "MULTIMODAL"
+  ],
+  "words": "—",
+  "evals": "—",
+  "unique": "—",
+  "benches": [
+    {
+      "n": "SWEBENCH VERIFIED",
+      "d": "Inkling itself: 77.6",
+      "s": "80.2"
+    },
+    {
+      "n": "GPQA DIAMOND",
+      "d": "Inkling itself: 87.2",
+      "s": "89.5"
+    },
+    {
+      "n": "SIMPLEQA VERIFIED",
+      "d": "Inkling itself: 43.9",
+      "s": "20.6"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "—",
+      "d": "first"
+    },
+    {
+      "v": "Inkling",
+      "d": "Jul'26"
+    },
+    {
+      "v": "Small",
+      "d": "Jul'26",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME 2026",
+      "s": "95.5",
+      "l": "—"
+    },
+    {
+      "n": "SWEBench Verified",
+      "s": "80.2",
+      "l": "—"
+    },
+    {
+      "n": "SimpleQA Verified",
+      "s": "20.6",
+      "l": "—"
+    }
+  ],
+  "weak": {
+    "t": "Recall −23",
+    "d": "SimpleQA Verified 20.6 against Inkling's 43.9. Twelve billion active parameters hold less of the world."
+  },
+  "res": {
+    "t": "Open Weights −14",
+    "d": "Weights released publicly, so third parties can evaluate it independently."
+  },
+  "lims": [
+    "<strong>Not in the corpus</strong> — card read by hand, not pipeline-extracted.",
+    "<strong>Long conversations</strong> — the lab reports degraded performance over long exchanges.",
+    "<strong>Indirect framing</strong> — the lab reports occasional role-play compliance on harmful topics."
+  ],
+  "blurb": "Thinking Machines' second model: 276B parameters, 12B active, Apache 2.0. It beats the larger Inkling on code and science while knowing measurably less.",
+  "ability": {
+    "name": "Sparse Advantage",
+    "text": "Outscores the 3.5× larger Inkling on code and science while routing 6 of 256 experts, and recalls less than half as many facts."
+  },
+  "val": {
+    "b": "Hand-read from the published model card",
+    "l": "thinkingmachines.ai/model-card/inkling-small",
+    "h": false
+  },
+  "source": "manual-cardread",
+  "lab_css": ".lab-thinkingmachines{--t1:#93a8c9;--t2:#546f96;--t3:#2f4260;--spark:#7590b5}",
+  "animal": "",
+  "html": "inkling-small.html",
+  "art": "inkling-small.png",
+  "generated": true
+}

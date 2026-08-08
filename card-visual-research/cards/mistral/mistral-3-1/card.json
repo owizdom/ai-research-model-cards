@@ -1,11 +1,11 @@
 {
   "lab": "mistral",
-  "num": "048/052",
+  "num": "047/055",
   "tier": "rare",
   "name": "Mistral 3.1",
   "capN": "62",
   "capL": "CAP",
-  "meta": "Mistral AI \u00b7 Mistral 3.1 \u00b7 2025",
+  "meta": "Mistral AI · Mistral 3.1 · 2025",
   "tags": [
     "OPEN WEIGHTS",
     "REASONING",
@@ -69,16 +69,16 @@
     }
   ],
   "weak": {
-    "t": "Safety Documentation \u00d72",
+    "t": "Safety Documentation ×2",
     "d": "8k words for frontier-capable model remains sparse by 2025 standards."
   },
   "res": {
-    "t": "Open Efficiency \u221210",
+    "t": "Open Efficiency −10",
     "d": "Open weights; competitive with closed models on key benchmarks."
   },
   "lims": [
-    "<strong>Safety documentation</strong> \u2014 8k words vs 200k+ for comparable Anthropic models.",
-    "<strong>No third-party validation</strong> \u2014 pattern continues throughout Mistral's card history."
+    "<strong>Safety documentation</strong> — 8k words vs 200k+ for comparable Anthropic models.",
+    "<strong>No third-party validation</strong> — pattern continues throughout Mistral's card history."
   ],
   "blurb": "Latest Mistral. 8k words of documentation at a point where Anthropic is publishing 200k+. The growing disclosure gap between European and American frontier labs is one of the set's central findings.",
   "val": {
@@ -89,5 +89,9 @@
   "slug": "mistral-3-1",
   "html": "mistral-3-1.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Widening Gap",
+    "text": "Frontier-competitive scores on a release note, while the longest card in the corpus runs to 66,211 words."
+  }
 }

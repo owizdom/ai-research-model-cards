@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "004/052",
+  "num": "004/055",
   "tier": "holo",
   "name": "Claude 3 Opus",
   "capN": "60",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 3 \u00b7 Mar 2024",
+  "meta": "Anthropic · Claude 3 · Mar 2024",
   "tags": [
     "FRONTIER",
     "REASONING",
     "MULTIMODAL"
   ],
   "animal": "sphinx",
-  "words": "32k",
+  "words": "14.1k",
   "evals": "12",
   "unique": "52%",
   "benches": [
@@ -85,16 +85,16 @@
     }
   ],
   "weak": {
-    "t": "Cost \u00d72",
+    "t": "Cost ×2",
     "d": "Most expensive Claude 3 model; slower than Sonnet/Haiku."
   },
   "res": {
-    "t": "Reasoning \u221212",
+    "t": "Reasoning −12",
     "d": "Strongest reasoning in family; first Claude to outperform GPT-4 on MMLU."
   },
   "lims": [
-    "<strong>Cost</strong> \u2014 pricing limits agentic use at scale.",
-    "<strong>Speed</strong> \u2014 slower than smaller models in the family."
+    "<strong>Cost</strong> — pricing limits agentic use at scale.",
+    "<strong>Speed</strong> — slower than smaller models in the family."
   ],
   "blurb": "The flagship of Claude 3. First Anthropic model to clearly surpass GPT-4 on MMLU. Set the template for subsequent Anthropic system cards.",
   "val": {
@@ -105,5 +105,9 @@
   "slug": "claude-3-opus",
   "html": "claude-3-opus.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "First Overtake",
+    "text": "First Claude to pass GPT-4 on MMLU, 86.8 against 86.4, and the template every later Anthropic card follows."
+  }
 }

@@ -1,18 +1,18 @@
 {
   "lab": "meta",
-  "num": "040/052",
+  "num": "042/055",
   "tier": "holo",
   "name": "Llama 4",
   "capN": "78",
   "capL": "CAP",
-  "meta": "Meta AI \u00b7 Llama 4 \u00b7 2025",
+  "meta": "Meta AI · Llama 4 · 2025",
   "tags": [
     "OPEN WEIGHTS",
     "MULTIMODAL",
     "MoE"
   ],
   "animal": "bear",
-  "words": "45k",
+  "words": "3.2k",
   "evals": "11",
   "unique": "29%",
   "benches": [
@@ -69,19 +69,19 @@
     }
   ],
   "weak": {
-    "t": "Safety Sparsity \u00d72",
+    "t": "Safety Sparsity ×2",
     "d": "Open weights limits certain eval disclosures; sparse dangerous capabilities section."
   },
   "res": {
-    "t": "Open Weights \u221214",
-    "d": "Full parameter transparency \u2014 weights downloadable by anyone."
+    "t": "Open Weights −14",
+    "d": "Full parameter transparency — weights downloadable by anyone."
   },
   "lims": [
-    "<strong>Safety eval sparsity</strong> \u2014 fewer safety evaluations than closed peers.",
-    "<strong>Downstream control</strong> \u2014 Meta cannot control fine-tuning of open weights.",
-    "<strong>MoE routing</strong> \u2014 expert routing decisions are non-interpretable."
+    "<strong>Safety eval sparsity</strong> — fewer safety evaluations than closed peers.",
+    "<strong>Downstream control</strong> — Meta cannot control fine-tuning of open weights.",
+    "<strong>MoE routing</strong> — expert routing decisions are non-interpretable."
   ],
-  "blurb": "Mixture of Experts architecture \u2014 17B active of 400B total parameters. First frontier MoE from a major lab as open weights. The card is comparatively sparse because the model itself is the transparency.",
+  "blurb": "Mixture of Experts architecture — 17B active of 400B total parameters. First frontier MoE from a major lab as open weights. The card is comparatively sparse because the model itself is the transparency.",
   "val": {
     "b": "Internal Meta evaluation + Purple Llama, 2025",
     "l": "modelcards.net/llama-4",
@@ -90,5 +90,9 @@
   "slug": "llama-4",
   "html": "llama-4.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Sparse Frontier",
+    "text": "17B active parameters of 400B total, the first frontier mixture-of-experts as open weights, on a 3,165-word card."
+  }
 }

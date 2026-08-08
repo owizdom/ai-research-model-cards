@@ -1,18 +1,18 @@
 {
   "lab": "openai",
-  "num": "024/052",
+  "num": "026/055",
   "tier": "rare",
   "name": "GPT-5.2",
   "capN": "89",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 GPT-5 \u00b7 2025",
+  "meta": "OpenAI · GPT-5 · 2025",
   "tags": [
     "FRONTIER",
     "REASONING",
     "MULTIMODAL"
   ],
   "animal": "falcon",
-  "words": "170k",
+  "words": "7.2k",
   "evals": "12",
   "unique": "42%",
   "benches": [
@@ -72,15 +72,15 @@
     }
   ],
   "weak": {
-    "t": "Saturation \u00d72",
+    "t": "Saturation ×2",
     "d": "Benchmark ceiling approached on key academic evals."
   },
   "res": {
-    "t": "Multimodal \u221210",
+    "t": "Multimodal −10",
     "d": "Improved multimodal understanding vs GPT-5.1."
   },
   "lims": [
-    "<strong>Benchmark saturation</strong> \u2014 MMLU approaching ceiling."
+    "<strong>Benchmark saturation</strong> — MMLU approaching ceiling."
   ],
   "blurb": "Incremental release. Notable mainly for showing that the GPT-5 line could be iterated rapidly. The release cadence itself became a competitive signal.",
   "val": {
@@ -91,5 +91,9 @@
   "slug": "gpt-5-2",
   "html": "gpt-5-2.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Cadence",
+    "text": "An incremental release whose real signal was the speed of iteration rather than any single score."
+  }
 }

@@ -58,5 +58,10 @@
   ],
   "n_cap": 15,
   "profile": "capability",
-  "n_capability": 13
+  "n_capability": 13,
+  "num": "013/055",
+  "ability": {
+    "name": "Long Memory",
+    "text": "Holds a 1,000,000-token context and sustains recall across the GraphWalks 1M long-context suite."
+  }
 }

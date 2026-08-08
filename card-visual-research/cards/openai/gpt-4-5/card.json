@@ -1,18 +1,18 @@
 {
   "lab": "openai",
-  "num": "017/052",
+  "num": "019/055",
   "tier": "rare",
   "name": "GPT-4.5",
   "capN": "70",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 GPT-4 \u00b7 Feb 2025",
+  "meta": "OpenAI · GPT-4 · Feb 2025",
   "tags": [
     "REASONING",
     "FRONTIER",
     "CODING"
   ],
   "animal": "falcon",
-  "words": "55k",
+  "words": "9.9k",
   "evals": "9",
   "unique": "32%",
   "benches": [
@@ -72,15 +72,15 @@
     }
   ],
   "weak": {
-    "t": "Reasoning Gap \u00d72",
+    "t": "Reasoning Gap ×2",
     "d": "Outperformed by o-series on mathematical reasoning tasks."
   },
   "res": {
-    "t": "Instruction Follow \u221210",
+    "t": "Instruction Follow −10",
     "d": "Strong instruction-following on complex multi-step prompts."
   },
   "lims": [
-    "<strong>Reasoning</strong> \u2014 o-series clearly stronger on mathematical tasks."
+    "<strong>Reasoning</strong> — o-series clearly stronger on mathematical tasks."
   ],
   "blurb": "Bridge model. GPT-4.5 came before GPT-5 but after o1. The naming revealed OpenAI's split between standard and reasoning model lines.",
   "val": {
@@ -91,5 +91,9 @@
   "slug": "gpt-4-5",
   "html": "gpt-4-5.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Bridge Model",
+    "text": "Shipped after o1 but numbered before GPT-5. The naming exposed OpenAI's split standard and reasoning lines."
+  }
 }

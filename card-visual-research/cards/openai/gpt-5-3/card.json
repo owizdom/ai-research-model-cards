@@ -1,18 +1,18 @@
 {
   "lab": "openai",
-  "num": "025/052",
+  "num": "027/055",
   "tier": "rare",
   "name": "GPT-5.3",
   "capN": "90",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 GPT-5 \u00b7 2025",
+  "meta": "OpenAI · GPT-5 · 2025",
   "tags": [
     "FRONTIER",
     "REASONING",
     "AGENTIC"
   ],
   "animal": "falcon",
-  "words": "175k",
+  "words": "10.8k",
   "evals": "12",
   "unique": "43%",
   "benches": [
@@ -72,18 +72,18 @@
     }
   ],
   "weak": {
-    "t": "Web Risk \u00d72",
+    "t": "Web Risk ×2",
     "d": "BrowseComp capability increases web-based attack surface."
   },
   "res": {
-    "t": "Browsing \u221212",
+    "t": "Browsing −12",
     "d": "First GPT-5 model with BrowseComp evaluation."
   },
   "lims": [
-    "<strong>Web browsing</strong> \u2014 new capability introduces new attack surface.",
-    "<strong>Rapid iteration</strong> \u2014 fast release cadence limits evaluation depth per model."
+    "<strong>Web browsing</strong> — new capability introduces new attack surface.",
+    "<strong>Rapid iteration</strong> — fast release cadence limits evaluation depth per model."
   ],
-  "blurb": "Current OpenAI flagship. Introduced BrowseComp as a new eval \u2014 lab-unique, no cross-lab comparison. The rapid GPT-5 iteration cadence contrasts sharply with Anthropic's longer cycles.",
+  "blurb": "Current OpenAI flagship. Introduced BrowseComp as a new eval — lab-unique, no cross-lab comparison. The rapid GPT-5 iteration cadence contrasts sharply with Anthropic's longer cycles.",
   "val": {
     "b": "Internal evaluation, 2025",
     "l": "modelcards.net/gpt-5-3",
@@ -92,5 +92,9 @@
   "slug": "gpt-5-3",
   "html": "gpt-5-3.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "BrowseComp",
+    "text": "Introduced a browsing benchmark no other lab reports. Scores 71.0, with nothing to compare it against."
+  }
 }

@@ -1,18 +1,18 @@
 {
   "lab": "meta",
-  "num": "037/052",
+  "num": "039/055",
   "tier": "rare",
   "name": "Llama 3.1",
   "capN": "65",
   "capL": "CAP",
-  "meta": "Meta AI \u00b7 Llama 3.1 \u00b7 Jul 2024",
+  "meta": "Meta AI · Llama 3.1 · Jul 2024",
   "tags": [
     "OPEN WEIGHTS",
     "LONG CONTEXT",
     "MULTILINGUAL"
   ],
   "animal": "wolf",
-  "words": "30k",
+  "words": "3.3k",
   "evals": "11",
   "unique": "28%",
   "benches": [
@@ -81,18 +81,18 @@
     }
   ],
   "weak": {
-    "t": "Safety Sparsity \u00d72",
+    "t": "Safety Sparsity ×2",
     "d": "Open weights means Meta cannot control downstream fine-tuning."
   },
   "res": {
-    "t": "Long Context \u221212",
+    "t": "Long Context −12",
     "d": "Expanded to 128k token context window."
   },
   "lims": [
-    "<strong>Downstream fine-tuning</strong> \u2014 open weights means Meta cannot control use.",
-    "<strong>Multilingual</strong> \u2014 added MGSM for first time."
+    "<strong>Downstream fine-tuning</strong> — open weights means Meta cannot control use.",
+    "<strong>Multilingual</strong> — added MGSM for first time."
   ],
-  "blurb": "Extended context and multilingual capability. First Llama to report MGSM \u2014 a sign that multilingual evals were becoming expected in responsible model documentation.",
+  "blurb": "Extended context and multilingual capability. First Llama to report MGSM — a sign that multilingual evals were becoming expected in responsible model documentation.",
   "val": {
     "b": "Internal Meta evaluation + Purple Llama, Jul 2024",
     "l": "modelcards.net/llama-3-1",
@@ -101,5 +101,9 @@
   "slug": "llama-3-1",
   "html": "llama-3-1.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Multilingual Turn",
+    "text": "First Llama to report MGSM, at the point multilingual evaluation became an expectation rather than an extra."
+  }
 }

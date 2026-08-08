@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "012/052",
+  "num": "012/055",
   "tier": "rare",
   "name": "Claude 4.6",
   "capN": "90",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 4.6 \u00b7 Apr 2026",
+  "meta": "Anthropic · Claude 4.6 · Apr 2026",
   "tags": [
     "FRONTIER",
     "REASONING",
     "AGENTIC"
   ],
   "animal": "owl",
-  "words": "475k",
+  "words": "54k",
   "evals": "18",
   "unique": "73%",
   "benches": [
@@ -68,19 +68,19 @@
     }
   ],
   "weak": {
-    "t": "Personality Drift \u00d72",
+    "t": "Personality Drift ×2",
     "d": "Sycophancy and hedging under pressure documented."
   },
   "res": {
-    "t": "Extended Thinking \u221214",
+    "t": "Extended Thinking −14",
     "d": "Interleaved reasoning sustains accuracy under long-horizon load."
   },
   "lims": [
-    "<strong>Personality drift</strong> \u2014 sycophancy documented.",
-    "<strong>Card length</strong> \u2014 475k words; longest to this point.",
-    "<strong>73% lab-unique</strong> \u2014 most eval choices not echoed by peers."
+    "<strong>Personality drift</strong> — sycophancy documented.",
+    "<strong>Card length</strong> — 53,965 words; four later Anthropic cards run longer.",
+    "<strong>73% lab-unique</strong> — most eval choices not echoed by peers."
   ],
-  "blurb": "475k words \u2014 the longest model card published to this date. 73% lab-unique eval choices. The card itself became a transparency artifact worthy of study.",
+  "blurb": "53,965 words of documentation and 73% lab-unique eval choices. The card itself became a transparency artifact worthy of study.",
   "val": {
     "b": "Internal + METR + UK AISI evaluation, Apr 2026",
     "l": "modelcards.net/claude-4-6",
@@ -89,5 +89,9 @@
   "slug": "claude-4-6",
   "html": "claude-4-6.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Documented Drift",
+    "text": "One of the few cards to name its own sycophancy and hedging under pressure as a disclosed weakness."
+  }
 }

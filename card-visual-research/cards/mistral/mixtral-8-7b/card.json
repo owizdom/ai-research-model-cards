@@ -1,11 +1,11 @@
 {
   "lab": "mistral",
-  "num": "045/052",
+  "num": "044/055",
   "tier": "rare",
-  "name": "Mixtral 8\u00d77B",
+  "name": "Mixtral 8×7B",
   "capN": "32",
   "capL": "CAP",
-  "meta": "Mistral AI \u00b7 Mixtral \u00b7 Dec 2023",
+  "meta": "Mistral AI · Mixtral · Dec 2023",
   "tags": [
     "OPEN WEIGHTS",
     "MoE",
@@ -72,18 +72,18 @@
     }
   ],
   "weak": {
-    "t": "Safety Sparsity \u00d72",
+    "t": "Safety Sparsity ×2",
     "d": "Open weights; minimal safety evaluation relative to capability."
   },
   "res": {
-    "t": "MoE Efficiency \u221210",
-    "d": "8 experts, 2 active \u2014 competitive with larger dense models."
+    "t": "MoE Efficiency −10",
+    "d": "8 experts, 2 active — competitive with larger dense models."
   },
   "lims": [
-    "<strong>Minimal safety disclosure</strong> \u2014 2k words is extremely sparse.",
-    "<strong>MoE routing</strong> \u2014 expert routing decisions non-interpretable."
+    "<strong>Minimal safety disclosure</strong> — 2k words is extremely sparse.",
+    "<strong>MoE routing</strong> — expert routing decisions non-interpretable."
   ],
-  "blurb": "First major open-weights MoE release. Mixtral demonstrated that sparse mixture-of-experts architecture could be democratised. Card still only 2k words \u2014 safety documentation not keeping pace with capability.",
+  "blurb": "First major open-weights MoE release. Mixtral demonstrated that sparse mixture-of-experts architecture could be democratised. Card still only 2k words — safety documentation not keeping pace with capability.",
   "val": {
     "b": "No independent validation disclosed.",
     "l": "modelcards.net/mixtral",
@@ -92,5 +92,9 @@
   "slug": "mixtral-8-7b",
   "html": "mixtral-8-7b.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Sparse, Democratised",
+    "text": "First major open-weights mixture-of-experts release, with safety documentation that did not scale with the architecture."
+  }
 }

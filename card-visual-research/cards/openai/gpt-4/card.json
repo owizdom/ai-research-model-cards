@@ -1,17 +1,17 @@
 {
   "lab": "openai",
-  "num": "015/052",
+  "num": "017/055",
   "tier": "common",
   "name": "GPT-4",
   "capN": "40",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 GPT-4 \u00b7 Mar 2023",
+  "meta": "OpenAI · GPT-4 · Mar 2023",
   "tags": [
     "FRONTIER",
     "MULTIMODAL"
   ],
   "animal": "falcon",
-  "words": "8k",
+  "words": "27.9k",
   "evals": "4",
   "unique": "18%",
   "benches": [
@@ -80,26 +80,30 @@
     }
   ],
   "weak": {
-    "t": "Disclosure Gap \u00d72",
+    "t": "Disclosure Gap ×2",
     "d": "Sparse safety documentation relative to capability level."
   },
   "res": {
-    "t": "RLHF \u22128",
+    "t": "RLHF −8",
     "d": "Human feedback training reduces harmful output rate."
   },
   "lims": [
-    "<strong>Minimal safety disclosure</strong> \u2014 no dangerous capabilities section.",
-    "<strong>No third-party validation</strong> \u2014 internal evaluation only.",
-    "<strong>4 evals reported</strong> \u2014 the baseline, not the frontier."
+    "<strong>Minimal safety disclosure</strong> — no dangerous capabilities section.",
+    "<strong>No third-party validation</strong> — internal evaluation only.",
+    "<strong>4 evals reported</strong> — the baseline, not the frontier."
   ],
-  "blurb": "The original template. GPT-4's system card at ~8k words set the format, but by 2026 standards it is remarkably sparse. The contrast with Opus 4.8 (475k words) makes the essay's argument in a single comparison.",
+  "blurb": "The original template. GPT-4's system card at 27,859 words set the format, and is still longer than GPT-5's at 20,412.",
   "val": {
-    "b": "Internal red-teaming only \u2014 no external validation disclosed",
+    "b": "Internal red-teaming only — no external validation disclosed",
     "l": "modelcards.net/gpt-4",
     "h": false
   },
   "slug": "gpt-4",
   "html": "gpt-4.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "The Template",
+    "text": "The card that set the industry format. At 27,859 words it is still longer than GPT-5's."
+  }
 }

@@ -1,0 +1,97 @@
+{
+  "slug": "kimi-k3",
+  "lab": "moonshot",
+  "name": "Kimi K3",
+  "num": "055/055",
+  "tier": "holo",
+  "stage": "STAGE 2",
+  "capL": "CAP",
+  "capN": "92",
+  "meta": "Moonshot AI · Kimi K3 · Jul 2026",
+  "tags": [
+    "OPEN WEIGHTS",
+    "LONG CONTEXT",
+    "FRONTIER"
+  ],
+  "words": "—",
+  "evals": "—",
+  "unique": "—",
+  "benches": [
+    {
+      "n": "2.8T PARAMETERS",
+      "d": "Largest open-weight model",
+      "s": "—"
+    },
+    {
+      "n": "1M CONTEXT",
+      "d": "Kimi Delta Attention",
+      "s": "—"
+    },
+    {
+      "n": "MODIFIED MIT",
+      "d": "Open licence",
+      "s": "—"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "K2",
+      "d": "2025"
+    },
+    {
+      "v": "K3",
+      "d": "Jul'26",
+      "a": true
+    },
+    {
+      "v": "—",
+      "d": "—"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "Not yet in corpus",
+      "s": "—",
+      "l": "—"
+    },
+    {
+      "n": "Not yet in corpus",
+      "s": "—",
+      "l": "—"
+    },
+    {
+      "n": "Not yet in corpus",
+      "s": "—",
+      "l": "—"
+    }
+  ],
+  "weak": {
+    "t": "Self-Declared Gap ×2",
+    "d": "The card states a noticeable user-experience gap against Claude Fable 5 and GPT-5.6 Sol."
+  },
+  "res": {
+    "t": "Open at Scale −12",
+    "d": "2.8 trillion parameters released under a modified MIT licence."
+  },
+  "lims": [
+    "<strong>Not in the corpus</strong> — card read by hand, not pipeline-extracted.",
+    "<strong>Self-declared gap</strong> — the lab rates its own model behind two competitors.",
+    "<strong>Scope</strong> — outside the tracked set of Western frontier labs."
+  ],
+  "blurb": "2.8 trillion parameters, a 1M-token context on Kimi Delta Attention, released under a modified MIT licence. Its own card places it behind Claude Fable 5 and GPT-5.6 Sol.",
+  "ability": {
+    "name": "Names Its Own Gap",
+    "text": "The card concedes a noticeable user-experience gap against Claude Fable 5 and GPT-5.6 Sol. Almost no card rates itself behind a rival."
+  },
+  "val": {
+    "b": "Hand-read from the published model card",
+    "l": "moonshotai.com/kimi-k3",
+    "h": true
+  },
+  "source": "manual-cardread",
+  "lab_css": ".lab-moonshot{--t1:#e6899e;--t2:#c33f5e;--t3:#7e1a30;--spark:#d55a74}",
+  "animal": "",
+  "html": "kimi-k3.html",
+  "art": "kimi-k3.png",
+  "generated": true
+}

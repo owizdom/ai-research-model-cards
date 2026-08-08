@@ -1,0 +1,96 @@
+{
+  "slug": "gpt-5-5",
+  "lab": "openai",
+  "name": "GPT-5.5",
+  "num": "051/055",
+  "tier": "rare",
+  "stage": "STAGE 2",
+  "capL": "EVALS",
+  "capN": "77",
+  "meta": "OpenAI · GPT-5.5 · Apr 2026",
+  "tags": [
+    "FRONTIER",
+    "REASONING",
+    "SAFETY"
+  ],
+  "words": "14.5k",
+  "evals": "77",
+  "unique": "82%",
+  "benches": [
+    {
+      "n": "SANDBAGGING QA",
+      "d": "Strategic deception probe",
+      "s": "100.0"
+    },
+    {
+      "n": "UK AISI CYBER",
+      "d": "Lower-difficulty cyber tasks",
+      "s": "100.0"
+    },
+    {
+      "n": "ATOMIC CHALLENGES",
+      "d": "Irregular task set",
+      "s": "100.0"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "5.4",
+      "d": "Mar'26"
+    },
+    {
+      "v": "5.5",
+      "d": "Apr'26",
+      "a": true
+    },
+    {
+      "v": "5.6",
+      "d": "Jul'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "Sandbagging QA",
+      "s": "100.0",
+      "l": "1 lab"
+    },
+    {
+      "n": "UK AISI Cyber Tasks",
+      "s": "100.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "Atomic Challenges",
+      "s": "100.0",
+      "l": "1 lab"
+    }
+  ],
+  "weak": {
+    "t": "Incomparable Suite ×2",
+    "d": "82% of its evaluations are reported by no other lab — the highest share in the set."
+  },
+  "res": {
+    "t": "External Testing −12",
+    "d": "Apollo and UK AISI evaluations disclosed alongside internal results."
+  },
+  "lims": [
+    "<strong>82% lab-unique</strong> — the highest single-lab share of any card in this set.",
+    "<strong>Ceiling scores</strong> — several suites are reported at 100, limiting headroom.",
+    "<strong>Short card</strong> — 14,496 words for a frontier release."
+  ],
+  "blurb": "77 disclosed evaluations on 14,496 words, and 82% of them appear on no other lab's card — the highest single-lab share anywhere in this set.",
+  "ability": {
+    "name": "Eighty-Two Alone",
+    "text": "82% of its 77 evaluations are reported by no other lab, the highest single-lab share of any card in this set."
+  },
+  "val": {
+    "b": "Apollo Research + UK AISI, Apr 2026",
+    "l": "modelcards.net/gpt-5-5",
+    "h": false
+  },
+  "source": "corpus",
+  "animal": "",
+  "html": "gpt-5-5.html",
+  "art": "gpt-5-5.png",
+  "generated": true
+}

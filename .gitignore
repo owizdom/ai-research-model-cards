@@ -52,3 +52,9 @@ Thumbs.db
 .vercel
 audit_chunks
 .migrate-venv/
+
+# card-visual-research build output. Regenerate with build_print.py /
+# build_export.py; the committed source is each card's <slug>.html.
+card-visual-research/cards/**/print_front.*
+card-visual-research/cards/**/print_back.*
+card-visual-research/print/

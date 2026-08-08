@@ -1,18 +1,18 @@
 {
   "lab": "openai",
-  "num": "020/052",
+  "num": "022/055",
   "tier": "holo",
   "name": "o3",
   "capN": "88",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 o-series \u00b7 Apr 2025",
+  "meta": "OpenAI · o-series · Apr 2025",
   "tags": [
     "REASONING",
     "MATH",
     "COMPETITION"
   ],
   "animal": "dragon",
-  "words": "95k",
+  "words": "9.9k",
   "evals": "9",
   "unique": "38%",
   "benches": [
@@ -77,25 +77,29 @@
     }
   ],
   "weak": {
-    "t": "Compute Cost \u00d72",
+    "t": "Compute Cost ×2",
     "d": "Reasoning steps multiply inference cost significantly."
   },
   "res": {
-    "t": "Multi-step Logic \u221214",
+    "t": "Multi-step Logic −14",
     "d": "Chain-of-thought sustains accuracy across long deduction chains."
   },
   "lims": [
-    "<strong>Cost</strong> \u2014 reasoning steps significantly increase inference cost.",
-    "<strong>Overthinking</strong> \u2014 sometimes applies heavy compute to trivial tasks."
+    "<strong>Cost</strong> — reasoning steps significantly increase inference cost.",
+    "<strong>Overthinking</strong> — sometimes applies heavy compute to trivial tasks."
   ],
   "blurb": "The model that reset benchmark expectations. Near-perfect AIME. The industry recalibrated what 'frontier' meant. Dangerous capability evaluations became industry standard after o3's release.",
   "val": {
-    "b": "OpenAI safety evals \u00b7 METR dangerous capabilities, Apr 2025",
+    "b": "OpenAI safety evals · METR dangerous capabilities, Apr 2025",
     "l": "modelcards.net/o3",
     "h": true
   },
   "slug": "o3",
   "html": "o3.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Reset",
+    "text": "96.7 on AIME. Recalibrated what frontier meant, and made dangerous-capability evaluation an industry default."
+  }
 }

@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "013/052",
+  "num": "015/055",
   "tier": "holo",
   "name": "Claude Opus 4.8",
   "capN": "96",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Opus 4.8 \u00b7 May 2026",
+  "meta": "Anthropic · Opus 4.8 · May 2026",
   "tags": [
     "AGENTIC",
     "REASONING",
     "MULTIMODAL"
   ],
   "animal": "sphinx",
-  "words": "475k",
+  "words": "61.9k",
   "evals": "18",
   "unique": "73%",
   "benches": [
@@ -78,26 +78,30 @@
     }
   ],
   "weak": {
-    "t": "Personality Drift \u00d72",
+    "t": "Personality Drift ×2",
     "d": "Curiosity suppression, sycophancy & hedging under pressure."
   },
   "res": {
-    "t": "Extended Thinking \u221214",
+    "t": "Extended Thinking −14",
     "d": "Interleaved reasoning sustains accuracy under long-horizon load."
   },
   "lims": [
-    "<strong>Chain-of-thought faithfulness</strong> \u2014 traces may diverge from internal computation.",
-    "<strong>Reward hacking</strong> \u2014 emergent in long-horizon agentic settings.",
-    "<strong>Benchmark saturation</strong> \u2014 many evaluations near ceiling."
+    "<strong>Chain-of-thought faithfulness</strong> — traces may diverge from internal computation.",
+    "<strong>Reward hacking</strong> — emergent in long-horizon agentic settings.",
+    "<strong>Benchmark saturation</strong> — many evaluations near ceiling."
   ],
-  "blurb": "Current frontier. 475k words. Independent validation by UK AISI, METR, and Apollo. 73% of benchmark choices not echoed by any peer lab. The most documented frontier model ever published.",
+  "blurb": "61,922 words, independently validated by UK AISI, METR and Apollo. 73% of its benchmark choices are echoed by no peer lab.",
   "val": {
-    "b": "UK AISI \u00b7 METR \u00b7 Apollo \u2014 pre-deployment, May 2026",
+    "b": "UK AISI · METR · Apollo — pre-deployment, May 2026",
     "l": "modelcards.net/opus-4-8",
     "h": true
   },
   "slug": "claude-opus-4-8",
   "html": "claude-opus-4-8.html",
   "art": "art/opus-4-8-wizard.png",
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Disclosure Ceiling",
+    "text": "The far end of the spread: 61,922 words against Mistral 7B's 745 in the very same set."
+  }
 }

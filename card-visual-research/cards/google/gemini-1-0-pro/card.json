@@ -1,18 +1,18 @@
 {
   "lab": "google",
-  "num": "026/052",
+  "num": "028/055",
   "tier": "rare",
   "name": "Gemini 1.0 Pro",
   "capN": "55",
   "capL": "CAP",
-  "meta": "Google DeepMind \u00b7 Gemini 1 \u00b7 Dec 2023",
+  "meta": "Google DeepMind · Gemini 1 · Dec 2023",
   "tags": [
     "MULTIMODAL",
     "REASONING",
     "FRONTIER"
   ],
   "animal": "octopus",
-  "words": "35k",
+  "words": "32.3k",
   "evals": "10",
   "unique": "38%",
   "benches": [
@@ -76,18 +76,18 @@
     }
   ],
   "weak": {
-    "t": "Multimodal Consistency \u00d72",
+    "t": "Multimodal Consistency ×2",
     "d": "Inconsistent performance across modalities in early testing."
   },
   "res": {
-    "t": "Native Multimodal \u221210",
+    "t": "Native Multimodal −10",
     "d": "First frontier model built natively multimodal from scratch."
   },
   "lims": [
-    "<strong>Multimodal consistency</strong> \u2014 cross-modal task performance variable.",
-    "<strong>Math</strong> \u2014 MATH score below GPT-4 at launch."
+    "<strong>Multimodal consistency</strong> — cross-modal task performance variable.",
+    "<strong>Math</strong> — MATH score below GPT-4 at launch."
   ],
-  "blurb": "Google's first major multimodal frontier model. Native multimodal architecture from the ground up \u2014 not text-first with adapters. Set the template for all subsequent Gemini cards.",
+  "blurb": "Google's first major multimodal frontier model. Native multimodal architecture from the ground up — not text-first with adapters. Set the template for all subsequent Gemini cards.",
   "val": {
     "b": "Internal Google DeepMind evaluation, Dec 2023",
     "l": "modelcards.net/gemini-1",
@@ -96,5 +96,9 @@
   "slug": "gemini-1-0-pro",
   "html": "gemini-1-0-pro.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Native Multimodal",
+    "text": "First frontier model built multimodal from scratch rather than text-first with adapters bolted on."
+  }
 }

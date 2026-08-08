@@ -1,0 +1,97 @@
+{
+  "slug": "inkling",
+  "lab": "thinkingmachines",
+  "name": "Inkling",
+  "num": "053/055",
+  "tier": "holo",
+  "stage": "BASIC",
+  "capL": "CAP",
+  "capN": "88",
+  "meta": "Thinking Machines · Inkling · Jul 2026",
+  "tags": [
+    "OPEN WEIGHTS",
+    "MULTIMODAL",
+    "FRONTIER"
+  ],
+  "words": "—",
+  "evals": "—",
+  "unique": "—",
+  "benches": [
+    {
+      "n": "TEXT + IMAGE + AUDIO",
+      "d": "Native multimodal input",
+      "s": "—"
+    },
+    {
+      "n": "975B / 41B ACTIVE",
+      "d": "Sparse mixture of experts",
+      "s": "—"
+    },
+    {
+      "n": "OPEN WEIGHTS",
+      "d": "Downloadable by anyone",
+      "s": "—"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "—",
+      "d": "first"
+    },
+    {
+      "v": "Inkling",
+      "d": "Jul'26",
+      "a": true
+    },
+    {
+      "v": "Small",
+      "d": "Jul'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "Not yet in corpus",
+      "s": "—",
+      "l": "—"
+    },
+    {
+      "n": "Not yet in corpus",
+      "s": "—",
+      "l": "—"
+    },
+    {
+      "n": "Not yet in corpus",
+      "s": "—",
+      "l": "—"
+    }
+  ],
+  "weak": {
+    "t": "Unindexed ×2",
+    "d": "Published outside the tracked corpus, so no extracted evaluation record exists yet."
+  },
+  "res": {
+    "t": "Open Weights −14",
+    "d": "Weights released publicly, so third parties can evaluate it independently."
+  },
+  "lims": [
+    "<strong>Not in the corpus</strong> — card read by hand, not pipeline-extracted.",
+    "<strong>First model</strong> — no prior generation to compare disclosure against.",
+    "<strong>Downstream use</strong> — open weights place fine-tuning outside the lab's control."
+  ],
+  "blurb": "Thinking Machines' first model. 975B parameters with 41B active, multimodal across text, image and audio, released with open weights on 2026-07-15.",
+  "ability": {
+    "name": "First and Open",
+    "text": "A lab's first model released with open weights: 975B parameters, 41B active, multimodal across text, image and audio."
+  },
+  "val": {
+    "b": "Hand-read from the published model card",
+    "l": "thinkingmachines.ai/model-card/inkling",
+    "h": false
+  },
+  "source": "manual-cardread",
+  "lab_css": ".lab-thinkingmachines{--t1:#93a8c9;--t2:#546f96;--t3:#2f4260;--spark:#7590b5}",
+  "animal": "",
+  "html": "inkling.html",
+  "art": "inkling.png",
+  "generated": true
+}

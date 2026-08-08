@@ -1,17 +1,17 @@
 {
   "lab": "anthropic",
-  "num": "014/052",
+  "num": "016/055",
   "tier": "holo",
   "name": "Claude Mythos Preview",
   "capN": "??",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Project Glasswing \u00b7 Not public",
+  "meta": "Anthropic · Project Glasswing · Not public",
   "tags": [
     "CLASSIFIED",
     "RESTRICTED"
   ],
   "animal": "god",
-  "words": "68k",
+  "words": "65.8k",
   "evals": "??",
   "unique": "??",
   "secret": true,
@@ -19,21 +19,21 @@
     {
       "n": "REDACTED",
       "d": "",
-      "s": "\u2588\u2588",
+      "s": "██",
       "c": "#222",
       "na": true
     },
     {
       "n": "REDACTED",
       "d": "",
-      "s": "\u2588\u2588",
+      "s": "██",
       "c": "#222",
       "na": true
     },
     {
       "n": "REDACTED",
       "d": "",
-      "s": "\u2588\u2588",
+      "s": "██",
       "c": "#222",
       "na": true
     }
@@ -60,37 +60,41 @@
   "btbl": [
     {
       "n": "REDACTED",
-      "s": "\u2588\u2588",
+      "s": "██",
       "l": "classified",
       "na": true
     },
     {
       "n": "REDACTED",
-      "s": "\u2588\u2588",
+      "s": "██",
       "l": "classified",
       "na": true
     }
   ],
   "weak": {
     "t": "REDACTED",
-    "d": "\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588"
+    "d": "███████████████████████"
   },
   "res": {
     "t": "REDACTED",
-    "d": "\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588"
+    "d": "███████████████████████"
   },
   "lims": [
-    "<strong>REDACTED</strong> \u2014 \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588",
-    "<strong>REDACTED</strong> \u2014 \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588"
+    "<strong>REDACTED</strong> — ██████████████████████",
+    "<strong>REDACTED</strong> — ██████████████████████"
   ],
   "blurb": "Not available to the public due to cybersecurity concerns. Currently used by a small number of trusted organizations as part of Project Glasswing.",
   "val": {
-    "b": "Project Glasswing \u2014 restricted evaluator access only",
+    "b": "Project Glasswing — restricted evaluator access only",
     "l": "anthropic.com/glasswing",
     "h": false
   },
   "slug": "claude-mythos-preview",
   "html": "claude-mythos-preview.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Project Glasswing",
+    "text": "65,849 words of documentation, second longest in the corpus, and every benchmark row on it redacted."
+  }
 }

@@ -1,0 +1,162 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
+/* Original trading-card-game styling. Anthropic "Arcane" type = copper. */
+:root{
+  --t1:#e0a85a; --t2:#b87a2e; --t3:#8a5414;
+  --gold:#f2d275; --gold2:#dcab44;
+  --cream:#f5edd8; --cream2:#ece0c0; --cream3:#e2d2a8;
+  --ink:#241606; --ink2:#5a3d1c; --ink3:#8a6836;
+  --red:#a8351a; --spark:#c8832a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  min-height:100vh;
+  background:#0e0b06 radial-gradient(ellipse at 50% 0%, rgba(184,122,46,0.10) 0%, transparent 60%);
+  font-family:'Jost',system-ui,sans-serif;
+  display:flex; justify-content:center; align-items:flex-start;
+  padding:54px 24px 60px;
+}
+.stage{ transform:scale(1.4); transform-origin:top center; }
+.cardwrap{ width:480px; perspective:1800px; cursor:pointer; }
+.cardwrap:hover .flipper{ transform:rotateY(180deg); }
+.flipper{ position:relative; width:100%; transform-style:preserve-3d; transition:transform .8s cubic-bezier(.4,0,.2,1); }
+.face{ backface-visibility:hidden; -webkit-backface-visibility:hidden; width:100%; }
+.face.back{ position:absolute; top:0; left:0; transform:rotateY(180deg); }
+.tcg{
+  border-radius:22px; padding:14px;
+  background:linear-gradient(135deg, var(--t1) 0%, var(--t2) 45%, var(--t3) 100%);
+  box-shadow:0 24px 70px rgba(0,0,0,.75), inset 0 2px 0 rgba(255,235,180,.4), inset 0 -3px 6px rgba(0,0,0,.3);
+  position:relative;
+}
+.tcg::after{
+  content:''; position:absolute; inset:0; border-radius:22px; pointer-events:none;
+  background:linear-gradient(125deg, transparent 30%, rgba(255,255,255,.10) 45%, rgba(180,220,255,.06) 52%, rgba(255,210,140,.10) 60%, transparent 75%);
+  mix-blend-mode:screen;
+}
+.gold{ border-radius:12px; padding:7px; background:linear-gradient(150deg, var(--gold) 0%, var(--gold2) 60%, #b8902e 100%); box-shadow:inset 0 1px 2px rgba(255,255,255,.5), inset 0 -1px 3px rgba(0,0,0,.25); }
+.inner{ background:linear-gradient(160deg, var(--cream) 0%, var(--cream2) 100%); border-radius:7px; padding:11px 12px 10px; position:relative; overflow:hidden; }
+.inner::before{
+  content:''; position:absolute; inset:0; opacity:.04; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.inner > *{ position:relative; z-index:1; }
+.e{ display:inline-flex; align-items:center; justify-content:center; width:21px; height:21px; border-radius:50%;
+  background:radial-gradient(circle at 34% 28%, #f4c868, var(--spark) 70%, #8a5410);
+  border:1.5px solid #f0d68a; box-shadow:inset 0 -2px 3px rgba(0,0,0,.35), 0 1px 2px rgba(0,0,0,.25);
+  color:#fff7e0; font-size:12px; line-height:1; flex-shrink:0; }
+.e::before{ content:'✦'; text-shadow:0 1px 1px rgba(0,0,0,.4); }
+.e.sm{ width:16px; height:16px; font-size:9px; }
+.e.warn{ background:radial-gradient(circle at 34% 28%, #e89070, var(--red) 72%, #6e1e0c); border-color:#f0b09a; }
+.topbar{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+.stagewrap{ flex:1; min-width:0; }
+.stagebadge{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:600; letter-spacing:.12em;
+  color:var(--ink2); background:var(--cream3); border:1px solid var(--gold2); border-radius:4px; padding:2px 7px; }
+.evofrom{ font-size:10px; color:var(--ink3); font-style:italic; margin-top:2px; }
+.name{ font-size:25px; font-weight:700; color:var(--ink); line-height:1.04; letter-spacing:-.01em; margin-top:3px; }
+.hp{ display:flex; align-items:baseline; gap:4px; flex-shrink:0; white-space:nowrap; }
+.hp .lbl{ font-size:10px; font-weight:600; color:var(--ink3); letter-spacing:.06em; }
+.hp .val{ font-size:27px; font-weight:700; color:var(--red); line-height:1; }
+.hp .e{ align-self:center; margin-left:1px; }
+.art{ margin-top:8px; border-radius:5px; padding:3px; background:linear-gradient(150deg,#e8c878,#b8902e,#8a6420); box-shadow:inset 0 1px 2px rgba(255,255,255,.4); }
+.art-win{ position:relative; height:236px; border-radius:3px; overflow:hidden; background:#1a1005; }
+.art-win img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 32%; }
+.art-tags{ position:absolute; left:0; right:0; bottom:0; display:flex; gap:6px; justify-content:center; padding:5px; background:linear-gradient(0deg, rgba(20,10,0,.72), transparent); }
+.art-tags span{ font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:600; letter-spacing:.1em; color:#f6e6c0; }
+.dex{ font-family:'JetBrains Mono',monospace; font-size:8.5px; color:var(--ink3); letter-spacing:.02em; text-align:center; padding:5px 0 6px; border-bottom:1px solid var(--cream3); }
+.ability{ margin-top:7px; padding:6px 8px; background:linear-gradient(160deg,#f7eccb,#efe0bc); border:1px solid var(--gold2); border-radius:5px; }
+.ability .head{ display:flex; align-items:center; gap:7px; }
+.ability .tag{ font-size:10px; font-weight:700; color:#fff; background:var(--red); border-radius:3px; padding:1px 7px; letter-spacing:.04em; }
+.ability .nm{ font-size:15px; font-weight:700; color:var(--red); }
+.ability .ds{ font-size:11.5px; color:var(--ink2); line-height:1.32; margin-top:2px; }
+.atk{ display:flex; align-items:center; gap:9px; padding:8px 2px; border-bottom:1px solid var(--cream3); }
+.atk .cost{ display:flex; gap:2px; width:68px; flex-shrink:0; justify-content:flex-start; }
+.atk .mid{ flex:1; min-width:0; }
+.atk .nm{ font-size:16px; font-weight:600; color:var(--ink); line-height:1.1; }
+.atk .ds{ font-size:10.5px; color:var(--ink3); margin-top:1px; line-height:1.25; }
+.atk .dmg{ font-size:24px; font-weight:700; color:var(--ink); flex-shrink:0; font-variant-numeric:tabular-nums; }
+.wrr{ display:flex; margin-top:7px; padding:6px 0 5px; border-top:2px solid var(--cream3); }
+.wrr .col{ flex:1; text-align:center; border-right:1px solid var(--cream3); padding:0 4px; }
+.wrr .col:last-child{ border-right:none; }
+.wrr .l{ font-family:'JetBrains Mono',monospace; font-size:7.5px; font-weight:600; letter-spacing:.1em; color:var(--ink3); text-transform:uppercase; }
+.wrr .v{ display:flex; align-items:center; justify-content:center; gap:3px; margin-top:3px; font-size:11px; font-weight:600; color:var(--ink2); }
+.flavor{ font-style:italic; font-size:11px; color:var(--ink2); line-height:1.4; margin-top:8px; padding-top:7px; border-top:1px solid var(--cream3); }
+.foot{ display:flex; justify-content:space-between; align-items:center; margin-top:7px; font-family:'JetBrains Mono',monospace; font-size:8px; color:var(--ink3); letter-spacing:.04em; }
+.foot .no{ font-weight:600; color:var(--ink2); }
+.foot .holo{ color:var(--spark); }
+.bk{ padding:2px; }
+.bk-head{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1.5px solid var(--gold2); padding-bottom:6px; }
+.bk-head .t{ font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.06em; color:var(--ink); }
+.bk-head .s{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink3); }
+.bk-sec{ margin-top:11px; }
+.bk-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:600; letter-spacing:.14em; color:var(--ink3); text-transform:uppercase; margin-bottom:7px; }
+.line{ display:flex; align-items:flex-start; position:relative; }
+.node{ flex:1; text-align:center; position:relative; }
+.node .dot{ width:13px; height:13px; border-radius:50%; border:2px solid var(--gold2); background:var(--cream2); margin:0 auto 4px; position:relative; z-index:1; }
+.node.on .dot{ background:radial-gradient(circle at 35% 35%,#e8a840,#9a5810); border-color:#9a5810; }
+.node .v{ font-size:13px; font-weight:700; color:var(--ink); }
+.node .d{ font-size:9px; color:var(--ink3); font-style:italic; }
+.line::before{ content:''; position:absolute; left:8%; right:8%; top:6px; height:2px; background:var(--cream3); z-index:0; }
+.brow{ display:flex; align-items:center; padding:6px 2px; border-bottom:1px solid var(--cream3); }
+.brow .bn{ flex:1; font-size:14px; color:var(--ink); }
+.brow .bs{ font-size:16px; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; margin:0 12px; }
+.brow .bl{ font-size:10px; color:var(--ink3); font-style:italic; width:48px; text-align:right; }
+.wr2{ display:flex; gap:8px; margin-top:4px; }
+.wr2 .box{ flex:1; background:#f0e4c4; border:1px solid var(--gold2); border-radius:5px; padding:7px 8px; }
+.wr2 .h{ font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:600; letter-spacing:.08em; color:var(--ink3); text-transform:uppercase; }
+.wr2 .n{ font-size:14px; font-weight:700; color:var(--ink); margin:2px 0; }
+.wr2 .x{ font-size:10.5px; color:var(--ink2); font-style:italic; line-height:1.3; }
+.lims{ list-style:none; }
+.lims li{ font-size:11.5px; color:var(--ink2); line-height:1.4; padding-left:14px; position:relative; margin-bottom:3px; }
+.lims li::before{ content:'•'; position:absolute; left:2px; color:var(--spark); }
+.lims b{ color:var(--ink); }
+.bk-flavor{ font-style:italic; font-size:11px; color:var(--ink2); line-height:1.4; }
+.bk-val{ display:flex; justify-content:space-between; align-items:center; margin-top:11px; padding-top:8px; border-top:1.5px solid var(--gold2); }
+.bk-val .vt{ font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:600; letter-spacing:.06em; color:var(--ink); }
+.bk-val .vx{ font-size:10px; color:var(--ink3); font-style:italic; }
+.bk-val .vr{ text-align:right; font-family:'JetBrains Mono',monospace; font-size:8px; color:var(--ink3); }
+.bk-val .vr .holo{ color:var(--spark); }
+
+.lab-anthropic{--t1:#e0a85a;--t2:#b87a2e;--t3:#8a5414;--spark:#c8832a}
+.lab-openai{--t1:#2bb89a;--t2:#10a37f;--t3:#0a6e55;--spark:#10a37f}
+.lab-google{--t1:#6ba3ff;--t2:#4285f4;--t3:#2a5ec8;--spark:#4285f4}
+.lab-meta{--t1:#7d76f0;--t2:#4f46e5;--t3:#332a9e;--spark:#6366f1}
+.lab-xai{--t1:#a87eff;--t2:#8b5cf6;--t3:#5b2ec0;--spark:#8b5cf6}
+.lab-mistral{--t1:#ff8a3c;--t2:#e85d04;--t3:#a03a00;--spark:#e85d04}
+.art-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(240,200,120,.28);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em}
+
+/* ---- pack cover only ---------------------------------------------------- */
+.lab-freesystems{--t1:#e8c87a;--t2:#c9962f;--t3:#8a6414;--spark:#d8a63a}
+.cover{display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:26px 22px 20px!important}
+.cover .wordmark{font-family:'Cinzel',serif;font-size:38px;font-weight:700;
+  letter-spacing:.10em;line-height:1.02;
+  background:linear-gradient(178deg,#fff4d0 0%,var(--gold) 34%,#c9962f 68%,#8a6414 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 1px 0 rgba(255,255,255,.25)}
+.cover .rule{width:70%;height:2px;margin:9px 0 7px;
+  background:linear-gradient(90deg,transparent,var(--gold2),transparent)}
+.cover .kicker{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;
+  letter-spacing:.34em;color:var(--ink2);text-indent:.34em}
+.cover .art{margin-top:13px;width:100%;flex:1 1 auto;display:flex}
+.cover .art-win{flex:1 1 auto;height:auto;min-height:200px}
+.cover .art-win img{object-position:50% 30%}
+.cover .setline{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;
+  letter-spacing:.2em;color:var(--ink2);margin-top:13px}
+.cover .site{font-family:'JetBrains Mono',monospace;font-size:9.5px;
+  letter-spacing:.14em;color:var(--ink3);margin-top:5px}
+.cover .sparkrow{display:flex;gap:7px;justify-content:center;margin-top:11px}
+
+/* ---- cover back: the set list ------------------------------------------- */
+.coverback .wordmark{font-size:26px}
+.coverback .setlist{columns:3;column-gap:11px;width:100%;margin-top:11px;text-align:left}
+.coverback .setlist div{font-family:'JetBrains Mono',monospace;font-size:7.6px;line-height:1.62;
+  color:var(--ink2);break-inside:avoid;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.coverback .setlist .n{color:var(--ink3)}
+.coverback .finding{margin-top:12px;padding-top:9px;border-top:1px solid var(--cream3);
+  font-style:italic;font-size:10.5px;line-height:1.42;color:var(--ink2)}
+.coverback .sigil{display:flex;gap:9px;justify-content:center;margin-top:22px;opacity:.85}
+.coverback .tagline{margin-top:14px;font-family:'Jost',sans-serif;font-style:italic;
+  font-size:11.5px;line-height:1.5;color:var(--ink3);text-align:center}
+.coverback .credit{margin-top:auto;padding-top:9px;border-top:1.5px solid var(--gold2);
+  display:flex;justify-content:space-between;align-items:baseline;width:100%;
+  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.05em;color:var(--ink3)}
+</style></head><body><div class="stage"><div class="cardwrap"><div class="flipper"><div class="face front"><div class="tcg lab-freesystems"><div class="gold"><div class="inner cover"><div class="wordmark">FREE<br>SYSTEMS</div><div class="rule"></div><div class="kicker">MODEL CARDS</div><div class="art"><div class="art-win"><img src="art/hero.png" alt=""></div></div><div class="sparkrow"><span class="e"></span><span class="e"></span><span class="e"></span></div><div class="setline">SET 01 · 55 CARDS</div><div class="site">modelcards.net</div></div></div></div></div><div class="face back"><div class="tcg lab-freesystems"><div class="gold"><div class="inner cover coverback"><div class="wordmark">FREE SYSTEMS</div><div class="rule"></div><div class="kicker">SET 01 · 55 CARDS</div><div class="setlist"><div><span class="n">001</span> Claude 2</div><div><span class="n">002</span> Claude 3 Haiku</div><div><span class="n">003</span> Claude 3 Sonnet</div><div><span class="n">004</span> Claude 3 Opus</div><div><span class="n">005</span> Claude 3.5 Sonnet</div><div><span class="n">006</span> Claude 3.5 Haiku</div><div><span class="n">007</span> Claude 3.7 Sonnet</div><div><span class="n">008</span> Claude 4 Sonnet</div><div><span class="n">009</span> Claude 4 Opus</div><div><span class="n">010</span> Claude 4.1</div><div><span class="n">011</span> Claude 4.5</div><div><span class="n">012</span> Claude 4.6</div><div><span class="n">013</span> Claude Sonnet 4.6</div><div><span class="n">014</span> Claude Opus 4.7</div><div><span class="n">015</span> Claude Opus 4.8</div><div><span class="n">016</span> Claude Mythos Preview</div><div><span class="n">017</span> GPT-4</div><div><span class="n">018</span> GPT-4o</div><div><span class="n">019</span> GPT-4.5</div><div><span class="n">020</span> o1</div><div><span class="n">021</span> o1-mini</div><div><span class="n">022</span> o3</div><div><span class="n">023</span> o3-mini</div><div><span class="n">024</span> GPT-5</div><div><span class="n">025</span> GPT-5.1</div><div><span class="n">026</span> GPT-5.2</div><div><span class="n">027</span> GPT-5.3</div><div><span class="n">028</span> Gemini 1.0 Pro</div><div><span class="n">029</span> Gemini 1.5 Pro</div><div><span class="n">030</span> Gemini 1.5 Flash</div><div><span class="n">031</span> Gemini 2.0 Flash</div><div><span class="n">032</span> Gemini 2.5 Pro</div><div><span class="n">033</span> Gemini 2.5 Deep Think</div><div><span class="n">034</span> Gemini 3 Flash</div><div><span class="n">035</span> Gemini 3 Pro</div><div><span class="n">036</span> Gemini 3.1 Pro</div><div><span class="n">037</span> Llama 2</div><div><span class="n">038</span> Llama 3</div><div><span class="n">039</span> Llama 3.1</div><div><span class="n">040</span> Llama 3.2</div><div><span class="n">041</span> Llama 3.3</div><div><span class="n">042</span> Llama 4</div><div><span class="n">043</span> Mistral 7B</div><div><span class="n">044</span> Mixtral 8×7B</div><div><span class="n">045</span> Mistral Large</div><div><span class="n">046</span> Mistral Large 2</div><div><span class="n">047</span> Mistral 3.1</div><div><span class="n">048</span> Claude Fable 5</div><div><span class="n">049</span> Claude Sonnet 5</div><div><span class="n">050</span> Claude Opus 5</div><div><span class="n">051</span> GPT-5.5</div><div><span class="n">052</span> GPT-5.6 Sol</div><div><span class="n">053</span> Inkling</div><div><span class="n">054</span> Inkling-Small</div><div><span class="n">055</span> Kimi K3</div></div><div class="finding">Documentation across this set spans 89×. The shortest card here runs 745 words, the longest 66,211. Every figure printed here is measured from the published document, not reported by the lab.</div><div class="sigil"><span class="e"></span><span class="e"></span><span class="e"></span></div><div class="tagline">Every card in this set is a real disclosure record.<br>What a lab chose not to measure is printed too.</div><div class="credit"><span>FREE SYSTEMS LAB · STANFORD GSB</span><span>modelcards.net</span></div></div></div></div></div></div></div></div></body></html>

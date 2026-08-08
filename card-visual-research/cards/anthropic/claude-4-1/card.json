@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "010/052",
+  "num": "010/055",
   "tier": "rare",
   "name": "Claude 4.1",
   "capN": "82",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 4.1 \u00b7 Aug 2025",
+  "meta": "Anthropic · Claude 4.1 · Aug 2025",
   "tags": [
     "AGENTIC",
     "CODING",
     "REASONING"
   ],
   "animal": "owl",
-  "words": "168k",
+  "words": "5.3k",
   "evals": "17",
   "unique": "70%",
   "benches": [
@@ -76,17 +76,17 @@
     }
   ],
   "weak": {
-    "t": "Agentic Risk \u00d72",
+    "t": "Agentic Risk ×2",
     "d": "Increased autonomy requires expanded safety documentation."
   },
   "res": {
-    "t": "Terminal Use \u221212",
+    "t": "Terminal Use −12",
     "d": "First Anthropic model with Terminal-bench evaluation."
   },
   "lims": [
-    "<strong>Agentic risk</strong> \u2014 safety evaluation expanded to cover new agentic capabilities."
+    "<strong>Agentic risk</strong> — safety evaluation expanded to cover new agentic capabilities."
   ],
-  "blurb": "Interim release. Introduced Terminal-bench as a new eval \u2014 notable because it is a lab-unique benchmark with no cross-lab comparison available.",
+  "blurb": "Interim release. Introduced Terminal-bench as a new eval — notable because it is a lab-unique benchmark with no cross-lab comparison available.",
   "val": {
     "b": "Internal + METR evaluation, Aug 2025",
     "l": "modelcards.net/claude-4-1",
@@ -95,5 +95,9 @@
   "slug": "claude-4-1",
   "html": "claude-4-1.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Lab-Unique Eval",
+    "text": "Introduced Terminal-bench, which no other lab reports. 70% of its eval choices have no cross-lab comparison."
+  }
 }

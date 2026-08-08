@@ -1,18 +1,18 @@
 {
   "lab": "google",
-  "num": "033/052",
+  "num": "035/055",
   "tier": "holo",
   "name": "Gemini 3 Pro",
   "capN": "89",
   "capL": "CAP",
-  "meta": "Google DeepMind \u00b7 Gemini 3 \u00b7 2025",
+  "meta": "Google DeepMind · Gemini 3 · 2025",
   "tags": [
     "FRONTIER",
     "MULTIMODAL",
     "LONG CONTEXT"
   ],
   "animal": "eagle",
-  "words": "120k",
+  "words": "2.2k",
   "evals": "16",
   "unique": "52%",
   "benches": [
@@ -82,18 +82,18 @@
     }
   ],
   "weak": {
-    "t": "Multimodal Drift \u00d72",
+    "t": "Multimodal Drift ×2",
     "d": "Cross-modal tasks show higher hallucination rate than text-only."
   },
   "res": {
-    "t": "Context Length \u221212",
+    "t": "Context Length −12",
     "d": "2M token context with sub-linear degradation."
   },
   "lims": [
-    "<strong>Multimodal hallucination</strong> \u2014 higher rates on image+text tasks.",
-    "<strong>Benchmark ceiling</strong> \u2014 saturation on some key evals."
+    "<strong>Multimodal hallucination</strong> — higher rates on image+text tasks.",
+    "<strong>Benchmark ceiling</strong> — saturation on some key evals."
   ],
-  "blurb": "Current Google DeepMind flagship. Strongest multimodal coverage of any card in the set \u2014 ChartQA, DocVQA, and MathVista alongside standard reasoning evals.",
+  "blurb": "Current Google DeepMind flagship. Strongest multimodal coverage of any card in the set — ChartQA, DocVQA, and MathVista alongside standard reasoning evals.",
   "val": {
     "b": "Google internal + Frontier Safety Framework, 2025",
     "l": "modelcards.net/gemini-3-pro",
@@ -102,5 +102,9 @@
   "slug": "gemini-3-pro",
   "html": "gemini-3-pro.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Widest Multimodal",
+    "text": "Most multimodal coverage in the set, carrying ChartQA, DocVQA and MathVista alongside the standard reasoning suite."
+  }
 }

@@ -1,11 +1,11 @@
 {
   "lab": "openai",
-  "num": "019/052",
+  "num": "021/055",
   "tier": "common",
   "name": "o1-mini",
   "capN": "58",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 o-series \u00b7 Sep 2024",
+  "meta": "OpenAI · o-series · Sep 2024",
   "tags": [
     "REASONING",
     "FAST",
@@ -72,15 +72,15 @@
     }
   ],
   "weak": {
-    "t": "Knowledge Gap \u00d72",
+    "t": "Knowledge Gap ×2",
     "d": "Smaller knowledge base than o1 on non-STEM subjects."
   },
   "res": {
-    "t": "STEM Focus \u221210",
+    "t": "STEM Focus −10",
     "d": "Matched or exceeded o1 on STEM benchmarks at lower cost."
   },
   "lims": [
-    "<strong>Knowledge breadth</strong> \u2014 intentionally reduced for STEM focus."
+    "<strong>Knowledge breadth</strong> — intentionally reduced for STEM focus."
   ],
   "blurb": "Cost-optimised reasoning model. Near-matched o1 on STEM while being cheaper. First evidence that reasoning capability could be distilled into smaller models.",
   "val": {
@@ -91,5 +91,9 @@
   "slug": "o1-mini",
   "html": "o1-mini.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Distilled Reasoning",
+    "text": "First evidence that reasoning compresses into a smaller model, matching o1 on STEM at a fraction of the cost."
+  }
 }

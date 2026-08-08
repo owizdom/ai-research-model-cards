@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "002/052",
+  "num": "002/055",
   "tier": "rare",
   "name": "Claude 3 Haiku",
   "capN": "28",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 3 \u00b7 Mar 2024",
+  "meta": "Anthropic · Claude 3 · Mar 2024",
   "tags": [
     "FAST",
     "EFFICIENT",
     "SAFETY"
   ],
   "animal": "owl",
-  "words": "32k",
+  "words": "14.1k",
   "evals": "10",
   "unique": "48%",
   "benches": [
@@ -80,15 +80,15 @@
     }
   ],
   "weak": {
-    "t": "Capability Gap \u00d72",
+    "t": "Capability Gap ×2",
     "d": "Fastest but least capable of Claude 3 family."
   },
   "res": {
-    "t": "Latency \u221214",
-    "d": "Fastest Claude \u2014 ideal for high-frequency agentic tasks."
+    "t": "Latency −14",
+    "d": "Fastest Claude — ideal for high-frequency agentic tasks."
   },
   "lims": [
-    "<strong>Capability tradeoff</strong> \u2014 speed optimised at cost of reasoning depth."
+    "<strong>Capability tradeoff</strong> — speed optimised at cost of reasoning depth."
   ],
   "blurb": "Speed-optimised entry point of the Claude 3 family. Reports the same eval suite as Opus but lower scores throughout.",
   "val": {
@@ -99,5 +99,9 @@
   "slug": "claude-3-haiku",
   "html": "claude-3-haiku.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Latency Floor",
+    "text": "Fastest of the Claude 3 family, reporting the same ten-eval suite as Opus at a fraction of the capability."
+  }
 }

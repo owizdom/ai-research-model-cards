@@ -1,0 +1,96 @@
+{
+  "slug": "claude-opus-5",
+  "lab": "anthropic",
+  "name": "Claude Opus 5",
+  "num": "050/055",
+  "tier": "holo",
+  "stage": "STAGE 2",
+  "capL": "CAP",
+  "capN": "98",
+  "meta": "Anthropic · Opus 5 · Jul 2026",
+  "tags": [
+    "FRONTIER",
+    "AGENTIC",
+    "MULTIMODAL"
+  ],
+  "words": "48.7k",
+  "evals": "91",
+  "unique": "73%",
+  "benches": [
+    {
+      "n": "ARC-AGI",
+      "d": "Abstract reasoning",
+      "s": "100.0"
+    },
+    {
+      "n": "LEGAL AGENT BENCH",
+      "d": "Long-horizon legal work",
+      "s": "94.1"
+    },
+    {
+      "n": "MCP ATLAS",
+      "d": "Tool-use breadth",
+      "s": "89.1"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Fable 5",
+      "d": "Jun'26"
+    },
+    {
+      "v": "Sonnet 5",
+      "d": "Jun'26"
+    },
+    {
+      "v": "Opus 5",
+      "d": "Jul'26",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "ARC-AGI",
+      "s": "100.0",
+      "l": "2 labs"
+    },
+    {
+      "n": "Legal Agent Benchmark",
+      "s": "94.1",
+      "l": "1 lab"
+    },
+    {
+      "n": "MCP Atlas",
+      "s": "89.1",
+      "l": "1 lab"
+    }
+  ],
+  "weak": {
+    "t": "Bespoke Benchmarks ×2",
+    "d": "73% of its evaluations are lab-unique, including most of its agentic suite."
+  },
+  "res": {
+    "t": "Breadth −14",
+    "d": "91 disclosed evaluations, the widest record of any card in this set."
+  },
+  "lims": [
+    "<strong>73% lab-unique</strong> — the agentic suite has no cross-lab equivalent.",
+    "<strong>Novel scales</strong> — GDPval-AA and AA-Briefcase report on scales peers do not use.",
+    "<strong>Comparability</strong> — few scores can be placed against a competitor."
+  ],
+  "blurb": "91 disclosed evaluations, the widest record in the set, and 73% of them lab-unique. Breadth of disclosure and comparability of disclosure are not the same thing.",
+  "ability": {
+    "name": "Widest Record",
+    "text": "91 disclosed evaluations, more than any other card in this set, and 73% of them reported by no peer lab."
+  },
+  "val": {
+    "b": "Internal + METR + UK AISI, Jul 2026",
+    "l": "modelcards.net/claude-opus-5",
+    "h": true
+  },
+  "source": "corpus",
+  "animal": "",
+  "html": "claude-opus-5.html",
+  "art": "claude-opus-5.png",
+  "generated": true
+}

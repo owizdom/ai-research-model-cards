@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "003/052",
+  "num": "003/055",
   "tier": "rare",
   "name": "Claude 3 Sonnet",
   "capN": "34",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 3 \u00b7 Mar 2024",
+  "meta": "Anthropic · Claude 3 · Mar 2024",
   "tags": [
     "BALANCED",
     "REASONING",
     "SAFETY"
   ],
   "animal": "owl",
-  "words": "32k",
+  "words": "14.1k",
   "evals": "10",
   "unique": "48%",
   "benches": [
@@ -80,17 +80,17 @@
     }
   ],
   "weak": {
-    "t": "Benchmark Ceiling \u00d72",
+    "t": "Benchmark Ceiling ×2",
     "d": "Outperformed by Opus on reasoning tasks."
   },
   "res": {
-    "t": "Balance \u221210",
+    "t": "Balance −10",
     "d": "Best cost-performance ratio of the Claude 3 family."
   },
   "lims": [
-    "<strong>Middle tier</strong> \u2014 clearly below Opus, clearly above Haiku."
+    "<strong>Middle tier</strong> — clearly below Opus, clearly above Haiku."
   ],
-  "blurb": "The balanced middle of Claude 3. Positioned for most production workloads. Reports identical eval suite to Haiku and Opus \u2014 same card, different scores.",
+  "blurb": "The balanced middle of Claude 3. Positioned for most production workloads. Reports identical eval suite to Haiku and Opus — same card, different scores.",
   "val": {
     "b": "Shared Claude 3 red-team evaluation",
     "l": "modelcards.net/claude-3",
@@ -99,5 +99,9 @@
   "slug": "claude-3-sonnet",
   "html": "claude-3-sonnet.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Middle Path",
+    "text": "Best cost-performance of Claude 3, on a card indistinguishable from its siblings' apart from the numbers."
+  }
 }

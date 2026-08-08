@@ -84,16 +84,38 @@ those two faces; it never edits card content. Outputs land in three places:
 `cards/<lab>/<slug>/print_{front,back}.png`, `print/<slug>_{front,back}.jpg`,
 and `~/Desktop/docs/stanford/model-cards-deck/<NN Name>/{front,back}.jpg`.
 
-Deck folders are matched on card **name**, never on `card.json`'s `num`. The
-deck is numbered 01 to 47 over the cards that were actually exported, while
-`num` numbers a 52-card set that also counts the three xAI cards. The two
-sequences drift apart from 013 onward, so number-matching pairs GPT-5 (022) with
-the folder `22 o3` and silently overwrites 35 of the 47 folders.
+Order and numbering come from `cards/_roster.yaml`. Position in that file is the
+card number and the file's length is the set size, so `card.json`'s `num`, the
+number printed on the face, the deck folder and the cover count are all the same
+sequence by construction.
+
+Use `build_export.py`, not `build_print.py`, to write the deck. `build_print.py`
+only copies a card into a deck folder that already exists, which made the export
+a hand-maintained list: for a long time the three xAI cards sat in an `_extras`
+folder and every newly added card silently landed nowhere.
+
+```bash
+python3 sync_roster.py --check   # what would renumber
+python3 sync_roster.py           # renumber every card from the roster
+python3 build_export.py          # write both export targets and the zip
+```
+
+Renumbering rewrites the four places a card prints its number (dex strip, front
+footer, back head, back set-line) **by position, never by matching the old
+value** — the two legacy cards write theirs as `011 / 052` with spaces, which is
+why value-matching passes used to skip them.
 
 ## Known state
 
-- 50 cards exist in `cards/`. 47 are in the exported deck. The three xAI cards
-  (`grok-4`, `grok-4-1`, `grok-4-fast`) render to `print/` but have no deck
-  folder, so they are not in the 47-card print order.
+- **55 cards, numbered 001/055 to 055/055.** The eight cards added in Aug 2026
+  are 048–055.
+- **The three xAI cards are not in the set.** `grok-4`, `grok-4-fast` and
+  `grok-4-1` still exist under `cards/xai/` but are listed in `DROPPED` in
+  `sync_roster.py` and are absent from the roster, so they are off the deck, off
+  the cover and off the gallery. The old `_extras` folder is gone too. Adding
+  them back means adding three lines to the roster, nothing else.
+- The exported folder that ships is `~/Desktop/model-cards-print-FIXED/`: the
+  cover as `00 Free Systems Cover` plus all 55 numbered cards, 112 jpgs.
+  `~/Desktop/docs/stanford/model-cards-deck/` holds the same 55 without a cover.
 - `check_bleed.py` reads PNG only. The jpgs are converted from the same pngs by
   `sips` at quality 92 and are not re-checked.

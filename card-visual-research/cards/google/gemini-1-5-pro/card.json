@@ -1,18 +1,18 @@
 {
   "lab": "google",
-  "num": "027/052",
+  "num": "029/055",
   "tier": "rare",
   "name": "Gemini 1.5 Pro",
   "capN": "72",
   "capL": "CAP",
-  "meta": "Google DeepMind \u00b7 Gemini 1.5 \u00b7 Feb 2024",
+  "meta": "Google DeepMind · Gemini 1.5 · Feb 2024",
   "tags": [
     "LONG CONTEXT",
     "MULTIMODAL",
     "REASONING"
   ],
   "animal": "octopus",
-  "words": "55k",
+  "words": "64.6k",
   "evals": "12",
   "unique": "44%",
   "benches": [
@@ -76,16 +76,16 @@
     }
   ],
   "weak": {
-    "t": "Context Degradation \u00d72",
+    "t": "Context Degradation ×2",
     "d": "Performance degrades in very long context windows."
   },
   "res": {
-    "t": "1M Context \u221212",
+    "t": "1M Context −12",
     "d": "First model with 1M token context window publicly available."
   },
   "lims": [
-    "<strong>Context degradation</strong> \u2014 accuracy drops at extreme context lengths.",
-    "<strong>Cost</strong> \u2014 1M token context is expensive in production."
+    "<strong>Context degradation</strong> — accuracy drops at extreme context lengths.",
+    "<strong>Cost</strong> — 1M token context is expensive in production."
   ],
   "blurb": "Introduced 1M token context window. Changed what 'long context' meant for the industry. Card length grew to account for context-length-specific safety considerations.",
   "val": {
@@ -96,5 +96,9 @@
   "slug": "gemini-1-5-pro",
   "html": "gemini-1-5-pro.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Million Tokens",
+    "text": "First publicly available 1M-token context window, which reset what the industry meant by long context."
+  }
 }

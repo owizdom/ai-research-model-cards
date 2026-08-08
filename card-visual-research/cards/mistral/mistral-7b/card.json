@@ -1,18 +1,18 @@
 {
   "lab": "mistral",
-  "num": "044/052",
+  "num": "043/055",
   "tier": "common",
   "name": "Mistral 7B",
   "capN": "8",
   "capL": "CAP",
-  "meta": "Mistral AI \u00b7 Mistral 7B \u00b7 Sep 2023",
+  "meta": "Mistral AI · Mistral 7B · Sep 2023",
   "tags": [
     "OPEN WEIGHTS",
     "EFFICIENT",
     "FAST"
   ],
   "animal": "fox",
-  "words": "750",
+  "words": "745",
   "evals": "3",
   "unique": "8%",
   "benches": [
@@ -76,18 +76,18 @@
     }
   ],
   "weak": {
-    "t": "Scale Limit \u00d72",
+    "t": "Scale Limit ×2",
     "d": "7B parameters fundamentally limit complex reasoning tasks."
   },
   "res": {
-    "t": "Efficiency \u221212",
-    "d": "Outperforms models 2\u00d7 its size on MMLU; remarkable efficiency."
+    "t": "Efficiency −12",
+    "d": "Outperforms models 2× its size on MMLU; remarkable efficiency."
   },
   "lims": [
-    "<strong>Scale</strong> \u2014 7B parameters limits complex reasoning.",
-    "<strong>~750 words</strong> \u2014 shortest card in the set by far."
+    "<strong>Scale</strong> — 7B parameters limits complex reasoning.",
+    "<strong>~750 words</strong> — shortest card in the set by far."
   ],
-  "blurb": "~750 words. The shortest model card in the entire set. Mistral 7B's card is two orders of magnitude shorter than Claude Opus 4.8's. The disclosure gap is not just substantive \u2014 it is 100\u00d7 in surface area.",
+  "blurb": "745 words. The shortest model card in the corpus, 89 times shorter than the longest. The disclosure gap is a gap in surface area.",
   "val": {
     "b": "No independent validation disclosed.",
     "l": "modelcards.net/mistral-7b",
@@ -96,5 +96,9 @@
   "slug": "mistral-7b",
   "html": "mistral-7b.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Shortest Card",
+    "text": "745 words. The shortest model card in the entire corpus, 89 times shorter than the longest."
+  }
 }

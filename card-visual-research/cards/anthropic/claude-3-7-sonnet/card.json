@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "007/052",
+  "num": "007/055",
   "tier": "holo",
   "name": "Claude 3.7 Sonnet",
   "capN": "84",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 3.7 \u00b7 Feb 2025",
+  "meta": "Anthropic · Claude 3.7 · Feb 2025",
   "tags": [
     "EXTENDED THINKING",
     "HYBRID",
     "REASONING"
   ],
   "animal": "phoenix",
-  "words": "89k",
+  "words": "17.8k",
   "evals": "14",
   "unique": "61%",
   "benches": [
@@ -81,16 +81,16 @@
     }
   ],
   "weak": {
-    "t": "Context Fade \u00d72",
+    "t": "Context Fade ×2",
     "d": "Accuracy degrades in long contexts without extended thinking."
   },
   "res": {
-    "t": "Extended Thinking \u221212",
+    "t": "Extended Thinking −12",
     "d": "Visible reasoning chain before response; first Anthropic hybrid model."
   },
   "lims": [
-    "<strong>Thinking token cost</strong> \u2014 extended thinking expensive in production.",
-    "<strong>Chain faithfulness</strong> \u2014 thinking chain may not reflect true internal process."
+    "<strong>Thinking token cost</strong> — extended thinking expensive in production.",
+    "<strong>Chain faithfulness</strong> — thinking chain may not reflect true internal process."
   ],
   "blurb": "The inflection point. Claude 3.7 introduced extended thinking and the card length nearly doubled. SWE-bench jumped 13 points. The reasoning era began here.",
   "val": {
@@ -101,5 +101,9 @@
   "slug": "claude-3-7-sonnet",
   "html": "claude-3-7-sonnet.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Extended Thinking",
+    "text": "Introduced visible reasoning before the response, and SWE-bench jumped 13 points in a single generation."
+  }
 }

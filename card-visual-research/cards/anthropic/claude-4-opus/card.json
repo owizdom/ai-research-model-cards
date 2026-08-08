@@ -1,18 +1,18 @@
 {
   "lab": "anthropic",
-  "num": "009/052",
+  "num": "009/055",
   "tier": "holo",
   "name": "Claude 4 Opus",
   "capN": "88",
   "capL": "CAP",
-  "meta": "Anthropic \u00b7 Claude 4 \u00b7 May 2025",
+  "meta": "Anthropic · Claude 4 · May 2025",
   "tags": [
     "FRONTIER",
     "REASONING",
     "MULTIMODAL"
   ],
   "animal": "sphinx",
-  "words": "145k",
+  "words": "33.2k",
   "evals": "17",
   "unique": "68%",
   "benches": [
@@ -81,18 +81,18 @@
     }
   ],
   "weak": {
-    "t": "Cost \u00d72",
+    "t": "Cost ×2",
     "d": "Most capable but most expensive; limits production deployment."
   },
   "res": {
-    "t": "Frontier Reasoning \u221214",
+    "t": "Frontier Reasoning −14",
     "d": "Strongest reasoning of any model at time of release."
   },
   "lims": [
-    "<strong>Cost</strong> \u2014 highest inference cost of family.",
-    "<strong>Benchmark saturation</strong> \u2014 many evals approaching ceiling."
+    "<strong>Cost</strong> — highest inference cost of family.",
+    "<strong>Benchmark saturation</strong> — many evals approaching ceiling."
   ],
-  "blurb": "Frontier of the Claude 4 family. SWE-bench crossed 79%. Card length 145k words \u2014 the documentation now as substantial as many academic papers.",
+  "blurb": "Frontier of the Claude 4 family. SWE-bench crossed 79%. A single 33,237-word card documents both Opus 4 and Sonnet 4.",
   "val": {
     "b": "Internal + METR + UK AISI evaluation, May 2025",
     "l": "modelcards.net/claude-4-opus",
@@ -101,5 +101,9 @@
   "slug": "claude-4-opus",
   "html": "claude-4-opus.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Frontier Reasoning",
+    "text": "Strongest reasoning of any model at its release, and the first Claude to report AIME above 90."
+  }
 }

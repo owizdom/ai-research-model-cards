@@ -1,18 +1,18 @@
 {
   "lab": "openai",
-  "num": "021/052",
+  "num": "023/055",
   "tier": "rare",
   "name": "o3-mini",
   "capN": "72",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 o-series \u00b7 Apr 2025",
+  "meta": "OpenAI · o-series · Apr 2025",
   "tags": [
     "REASONING",
     "FAST",
     "EFFICIENT"
   ],
   "animal": "falcon",
-  "words": "65k",
+  "words": "12.1k",
   "evals": "7",
   "unique": "30%",
   "benches": [
@@ -72,15 +72,15 @@
     }
   ],
   "weak": {
-    "t": "Knowledge Breadth \u00d72",
+    "t": "Knowledge Breadth ×2",
     "d": "STEM-optimised at expense of general knowledge tasks."
   },
   "res": {
-    "t": "STEM Efficiency \u221212",
+    "t": "STEM Efficiency −12",
     "d": "89% AIME at fraction of o3 cost."
   },
   "lims": [
-    "<strong>STEM focus</strong> \u2014 intentionally narrowed scope vs o3."
+    "<strong>STEM focus</strong> — intentionally narrowed scope vs o3."
   ],
   "blurb": "Demonstrated that o3-level math reasoning could be delivered at much lower cost. Forced competitors to reconsider their pricing strategy.",
   "val": {
@@ -91,5 +91,9 @@
   "slug": "o3-mini",
   "html": "o3-mini.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Cheap Frontier",
+    "text": "89.2 on AIME at a fraction of o3's cost, forcing an industry-wide rethink of reasoning-model pricing."
+  }
 }

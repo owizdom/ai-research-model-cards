@@ -1,0 +1,63 @@
+# Model Cards -- SET 01 print order.
+#
+# Position in this list IS the card number; the length IS the set size.
+# Reorder, add or delete a line, then run:  python3 sync_roster.py
+#
+# 55 cards.
+
+cards:
+  - claude-2                # 001  Claude 2
+  - claude-3-haiku          # 002  Claude 3 Haiku
+  - claude-3-sonnet         # 003  Claude 3 Sonnet
+  - claude-3-opus           # 004  Claude 3 Opus
+  - claude-3-5-sonnet       # 005  Claude 3.5 Sonnet
+  - claude-3-5-haiku        # 006  Claude 3.5 Haiku
+  - claude-3-7-sonnet       # 007  Claude 3.7 Sonnet
+  - claude-4-sonnet         # 008  Claude 4 Sonnet
+  - claude-4-opus           # 009  Claude 4 Opus
+  - claude-4-1              # 010  Claude 4.1
+  - claude-4-5              # 011  Claude 4.5
+  - claude-4-6              # 012  Claude 4.6
+  - claude-sonnet-4-6       # 013  Claude Sonnet 4.6
+  - claude-opus-4-7         # 014  Claude Opus 4.7
+  - claude-opus-4-8         # 015  Claude Opus 4.8
+  - claude-mythos-preview   # 016  Claude Mythos Preview
+  - gpt-4                   # 017  GPT-4
+  - gpt-4o                  # 018  GPT-4o
+  - gpt-4-5                 # 019  GPT-4.5
+  - o1                      # 020  o1
+  - o1-mini                 # 021  o1-mini
+  - o3                      # 022  o3
+  - o3-mini                 # 023  o3-mini
+  - gpt-5                   # 024  GPT-5
+  - gpt-5-1                 # 025  GPT-5.1
+  - gpt-5-2                 # 026  GPT-5.2
+  - gpt-5-3                 # 027  GPT-5.3
+  - gemini-1-0-pro          # 028  Gemini 1.0 Pro
+  - gemini-1-5-pro          # 029  Gemini 1.5 Pro
+  - gemini-1-5-flash        # 030  Gemini 1.5 Flash
+  - gemini-2-0-flash        # 031  Gemini 2.0 Flash
+  - gemini-2-5-pro          # 032  Gemini 2.5 Pro
+  - gemini-2-5-deep-think   # 033  Gemini 2.5 Deep Think
+  - gemini-3-flash          # 034  Gemini 3 Flash
+  - gemini-3-pro            # 035  Gemini 3 Pro
+  - gemini-3-1-pro          # 036  Gemini 3.1 Pro
+  - llama-2                 # 037  Llama 2
+  - llama-3                 # 038  Llama 3
+  - llama-3-1               # 039  Llama 3.1
+  - llama-3-2               # 040  Llama 3.2
+  - llama-3-3               # 041  Llama 3.3
+  - llama-4                 # 042  Llama 4
+  - mistral-7b              # 043  Mistral 7B
+  - mixtral-8-7b            # 044  Mixtral 8×7B
+  - mistral-large           # 045  Mistral Large
+  - mistral-large-2         # 046  Mistral Large 2
+  - mistral-3-1             # 047  Mistral 3.1
+  - claude-fable-5          # 048  Claude Fable 5
+  - claude-sonnet-5         # 049  Claude Sonnet 5
+  - claude-opus-5           # 050  Claude Opus 5
+  - gpt-5-5                 # 051  GPT-5.5
+  - gpt-5-6-sol             # 052  GPT-5.6 Sol
+  - inkling                 # 053  Inkling
+  - inkling-small           # 054  Inkling-Small
+  - kimi-k3                 # 055  Kimi K3

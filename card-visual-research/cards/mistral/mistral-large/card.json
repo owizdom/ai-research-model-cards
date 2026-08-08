@@ -1,11 +1,11 @@
 {
   "lab": "mistral",
-  "num": "046/052",
+  "num": "045/055",
   "tier": "rare",
   "name": "Mistral Large",
   "capN": "45",
   "capL": "CAP",
-  "meta": "Mistral AI \u00b7 Mistral Large \u00b7 2024",
+  "meta": "Mistral AI · Mistral Large · 2024",
   "tags": [
     "REASONING",
     "CODING",
@@ -77,18 +77,18 @@
     }
   ],
   "weak": {
-    "t": "Closed Weights \u00d72",
-    "d": "First Mistral closed model \u2014 departure from open-weights ethos."
+    "t": "Closed Weights ×2",
+    "d": "First Mistral closed model — departure from open-weights ethos."
   },
   "res": {
-    "t": "Commercial API \u221210",
+    "t": "Commercial API −10",
     "d": "API access model; strong multilingual and reasoning performance."
   },
   "lims": [
-    "<strong>Closed weights</strong> \u2014 first Mistral model not fully open.",
-    "<strong>Disclosure still sparse</strong> \u2014 4k words vs frontier peers at 30k+."
+    "<strong>Closed weights</strong> — first Mistral model not fully open.",
+    "<strong>Disclosure still sparse</strong> — 4k words vs frontier peers at 30k+."
   ],
-  "blurb": "Mistral's first closed-weights model. A strategic shift. The card remained sparse despite moving to a commercial API model \u2014 disclosure practices did not follow capability tier.",
+  "blurb": "Mistral's first closed-weights model. A strategic shift. The card remained sparse despite moving to a commercial API model — disclosure practices did not follow capability tier.",
   "val": {
     "b": "No independent validation disclosed.",
     "l": "modelcards.net/mistral-large",
@@ -97,5 +97,9 @@
   "slug": "mistral-large",
   "html": "mistral-large.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Closed, Still Sparse",
+    "text": "Mistral's first closed-weights model. Going commercial changed the licence but not the disclosure practice."
+  }
 }

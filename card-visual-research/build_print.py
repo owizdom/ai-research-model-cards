@@ -267,7 +267,15 @@ def build_html(style, links, face, lab, art, guides: bool) -> str:
     )
 
 
-def chrome_shot(html_file: Path, out_png: Path, dump_dom: bool = False) -> str:
+def chrome_shot(html_file: Path, out_png: Path, dump_dom: bool = False, attempts: int = 3) -> str:
+    """Render one page, retrying a timeout rather than losing the whole batch.
+
+    Chrome competes with whatever else is on the machine. On a loaded box a
+    render that normally takes 30s can blow past the timeout, and a single
+    raised TimeoutExpired used to propagate out of the thread pool and abort a
+    50-card run four cards in. Retry with a longer leash, then give up on just
+    this card.
+    """
     cmd = [
         CHROME,
         "--headless",
@@ -281,10 +289,19 @@ def chrome_shot(html_file: Path, out_png: Path, dump_dom: bool = False) -> str:
     ]
     if dump_dom:
         cmd.insert(-1, "--dump-dom")
-    res = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
-    if not out_png.exists():
-        raise RuntimeError(f"chrome produced no screenshot for {html_file}\n{res.stderr[-800:]}")
-    return res.stdout
+
+    last = ""
+    for i in range(attempts):
+        try:
+            res = subprocess.run(cmd, capture_output=True, text=True, timeout=180 * (i + 1))
+            if out_png.exists():
+                return res.stdout
+            last = f"no screenshot produced; stderr: {res.stderr[-400:]}"
+        except subprocess.TimeoutExpired:
+            last = f"chrome timed out after {180 * (i + 1)}s"
+        if i + 1 < attempts:
+            print(f"    retry {i + 1}/{attempts - 1} for {html_file.parent.name}: {last}", flush=True)
+    raise RuntimeError(f"{html_file.parent.name}: {last}")
 
 
 def to_jpg(png: Path, jpg: Path):
@@ -303,10 +320,13 @@ def _norm(s: str) -> str:
 def deck_folder(card: dict) -> Path | None:
     """Map a card to its folder in the exported deck, if it has one.
 
-    Match on NAME, never on card.json's `num`. The deck is numbered 01-47 over
-    the cards that were actually exported; `num` numbers a 52-card set that also
-    counts the three xAI cards, so the two sequences drift apart from 013 on and
-    number-matching silently pairs e.g. GPT-5 (022) with the folder '22 o3'.
+    Match on NAME, never on card.json's `num`. This is a convenience copy only:
+    it can fill a folder that already exists but it cannot create one, so a card
+    added to the roster lands nowhere until build_export.py runs. build_export.py
+    writes the whole deck from cards/_roster.yaml and is the one to use.
+
+    (Historically num and the folder numbers were two different sequences that
+    drifted apart from 013 on. sync_roster.py made them the same sequence.)
     """
     if not DECK_DIR.exists():
         return None
@@ -399,12 +419,22 @@ def main(argv):
             print(f"  ok {slug}{' (proof)' if guides else ''}{tail}", flush=True)
 
     nonlocal_ok = [0]
+
+    def guarded(cj):
+        """One card blowing up must not take the rest of the batch with it."""
+        try:
+            render_card(cj)
+        except Exception as e:  # noqa: BLE001 - report and carry on
+            with lock:
+                failed.append((cj.parent.name, str(e)[:200]))
+                print(f"  FAILED {cj.parent.name}: {str(e)[:120]}", flush=True)
+
     if jobs > 1:
         with cf.ThreadPoolExecutor(max_workers=jobs) as pool:
-            list(pool.map(render_card, cards))
+            list(pool.map(guarded, cards))
     else:
         for cj in cards:
-            render_card(cj)
+            guarded(cj)
     ok = nonlocal_ok[0]
 
     print(f"\n{ok} card(s) rendered, {len(failed)} failed")
@@ -413,7 +443,7 @@ def main(argv):
     for w in warnings:
         print(f"  WARN {w}")
     if no_deck_folder:
-        print(f"  no deck folder (not in the 47-card export): {', '.join(no_deck_folder)}")
+        print(f"  no deck folder yet, run build_export.py: {', '.join(no_deck_folder)}")
 
 
 if __name__ == "__main__":

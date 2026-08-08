@@ -1,18 +1,18 @@
 {
   "lab": "google",
-  "num": "034/052",
+  "num": "036/055",
   "tier": "rare",
   "name": "Gemini 3.1 Pro",
   "capN": "91",
   "capL": "CAP",
-  "meta": "Google DeepMind \u00b7 Gemini 3.1 \u00b7 2025",
+  "meta": "Google DeepMind · Gemini 3.1 · 2025",
   "tags": [
     "FRONTIER",
     "REASONING",
     "AGENTIC"
   ],
   "animal": "octopus",
-  "words": "130k",
+  "words": "1.8k",
   "evals": "16",
   "unique": "53%",
   "benches": [
@@ -68,18 +68,18 @@
     }
   ],
   "weak": {
-    "t": "Agentic Risk \u00d72",
+    "t": "Agentic Risk ×2",
     "d": "Stronger agentic capability increases potential for unintended actions."
   },
   "res": {
-    "t": "Coding \u221212",
+    "t": "Coding −12",
     "d": "SWE-bench added for first time in Google's frontier lineup."
   },
   "lims": [
-    "<strong>Agentic risk</strong> \u2014 new safety documentation required for expanded capability.",
-    "<strong>SWE-bench debut</strong> \u2014 first Google model to report this benchmark."
+    "<strong>Agentic risk</strong> — new safety documentation required for expanded capability.",
+    "<strong>SWE-bench debut</strong> — first Google model to report this benchmark."
   ],
-  "blurb": "Google's latest. First Gemini model to report SWE-bench \u2014 notable because Google had not previously used this as a public evaluation. Follows Anthropic's lead in agentic coding benchmarks.",
+  "blurb": "Google's latest. First Gemini model to report SWE-bench — notable because Google had not previously used this as a public evaluation. Follows Anthropic's lead in agentic coding benchmarks.",
   "val": {
     "b": "Google internal + Frontier Safety Framework, 2025",
     "l": "modelcards.net/gemini-3-1-pro",
@@ -88,5 +88,9 @@
   "slug": "gemini-3-1-pro",
   "html": "gemini-3-1-pro.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Follows the Leader",
+    "text": "First Gemini to report SWE-bench, adopting the benchmark Anthropic had already made standard."
+  }
 }

@@ -1,38 +1,38 @@
 {
   "lab": "xai",
-  "num": "043/052",
+  "num": "050/058",
   "tier": "common",
   "name": "Grok 4.1",
-  "capN": "0",
+  "capN": "18",
   "capL": "EVALS",
-  "meta": "xAI \u00b7 Grok 4.1 \u00b7 2025",
+  "meta": "xAI · Grok 4.1 · 2025",
   "tags": [
     "FRONTIER",
     "REASONING"
   ],
   "animal": "crow",
-  "words": "<4k",
-  "evals": "0",
-  "unique": "0%",
+  "words": "2.2k",
+  "evals": "18",
+  "unique": "45%",
   "benches": [
     {
       "n": "MMLU",
       "d": "Not reported",
-      "s": "\u2014",
+      "s": "—",
       "c": "#3a2a5a",
       "na": true
     },
     {
       "n": "GPQA",
       "d": "Not reported",
-      "s": "\u2014",
+      "s": "—",
       "c": "#3a2a5a",
       "na": true
     },
     {
       "n": "AIME",
       "d": "Not reported",
-      "s": "\u2014",
+      "s": "—",
       "c": "#3a2a5a",
       "na": true
     }
@@ -55,30 +55,31 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "\u2014",
+      "s": "—",
       "l": "not reported",
       "na": true
     },
     {
       "n": "GPQA",
-      "s": "\u2014",
+      "s": "—",
       "l": "not reported",
       "na": true
     }
   ],
   "weak": {
-    "t": "Disclosure Gap \u00d72",
-    "d": "Latest xAI model \u2014 still zero public benchmark scores."
+    "t": "Disclosure Gap ×2",
+    "d": "Latest xAI model — still zero public benchmark scores."
   },
   "res": {
-    "t": "Undocumented \u22120",
+    "t": "Undocumented −0",
     "d": ""
   },
   "lims": [
-    "<strong>No public evals</strong> \u2014 zero benchmark scores.",
-    "<strong>Three xAI models tracked</strong> \u2014 none report a single benchmark."
+    "<strong>No capability evals</strong> — 18 scored rows, all safety.",
+    "<strong>Three xAI cards tracked</strong> — none report a capability benchmark.",
+    "<strong>45% lab-unique</strong> — the rest are shared safety suites."
   ],
-  "blurb": "The newest xAI model. Still zero public benchmark scores. Across three tracked models, xAI has reported not one benchmark result. The pattern is the finding.",
+  "blurb": "18 scored evaluations, all safety. Across 66 xAI rows and 21 distinct benchmarks, not a single capability result.",
   "val": {
     "b": "No independent validation disclosed.",
     "l": "modelcards.net/grok-4-1",
@@ -87,5 +88,9 @@
   "slug": "grok-4-1",
   "html": "grok-4-1.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Same Blind Spot",
+    "text": "18 scored evaluations, all safety. Across 66 xAI rows and 21 benchmarks, zero capability results."
+  }
 }

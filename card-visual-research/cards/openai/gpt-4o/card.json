@@ -1,18 +1,18 @@
 {
   "lab": "openai",
-  "num": "016/052",
+  "num": "018/055",
   "tier": "rare",
   "name": "GPT-4o",
   "capN": "62",
   "capL": "CAP",
-  "meta": "OpenAI \u00b7 GPT-4 \u00b7 May 2024",
+  "meta": "OpenAI · GPT-4 · May 2024",
   "tags": [
     "MULTIMODAL",
     "FAST",
     "REASONING"
   ],
   "animal": "falcon",
-  "words": "28k",
+  "words": "11.6k",
   "evals": "7",
   "unique": "28%",
   "benches": [
@@ -76,15 +76,15 @@
     }
   ],
   "weak": {
-    "t": "Multimodal Risk \u00d72",
+    "t": "Multimodal Risk ×2",
     "d": "Native audio/video modalities expand attack surface."
   },
   "res": {
-    "t": "Omni Speed \u221210",
+    "t": "Omni Speed −10",
     "d": "Fastest GPT-4 class model; native multimodal without adapter."
   },
   "lims": [
-    "<strong>Multimodal attack surface</strong> \u2014 audio/video inputs require additional red-teaming."
+    "<strong>Multimodal attack surface</strong> — audio/video inputs require additional red-teaming."
   ],
   "blurb": "GPT-4o collapsed text, image, and audio into a single model. Card length jumped from 8k to 28k. Native multimodality required new safety documentation.",
   "val": {
@@ -95,5 +95,9 @@
   "slug": "gpt-4o",
   "html": "gpt-4o.html",
   "art": null,
-  "source": "mockup"
+  "source": "mockup",
+  "ability": {
+    "name": "Omni",
+    "text": "Collapsed text, image and audio into a single model, and the safety surface had to grow to match."
+  }
 }
