@@ -38,8 +38,14 @@ above."""
 
 # ── Extraction pipeline ──────────────────────────────────────────────────────
 
-EXTRACTION_PROTOCOL_VERSION: int = 3
-"""Tracks the extractor's OUTPUT SCHEMA — not the model. Bump only when the
+EXTRACTION_PROTOCOL_VERSION: int = 4
+"""v4 (2026-08-08): source text is now pdftotext -layout, not pypdf, and
+benchmark tables are read by column via packages/table_extract. v3 rows carry
+the wrong model on every family report (all 22 rows of anthropic_model_card
+were tagged Claude 3 Opus) and mislabel Claude 3's Multilingual MMLU as MMLU,
+so v3 and v4 rows are not comparable.
+
+Tracks the extractor's OUTPUT SCHEMA — not the model. Bump only when the
 output shape changes in a way that makes old rows non-comparable; old rows
 stay and new rows insert under the new version so the UI can filter. v3
 (2026-05-29) added explicit `split` and `metric_path` fields read from prose

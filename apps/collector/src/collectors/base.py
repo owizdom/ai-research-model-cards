@@ -96,9 +96,40 @@ async def html_to_markdown(url: str, client: httpx.AsyncClient, selector: Option
 
 
 async def pdf_to_text(url: str, client: httpx.AsyncClient) -> str:
-    from pypdf import PdfReader
+    """Text with the column layout intact.
+
+    pypdf drops column geometry, and the benchmark tables are the whole point of
+    these documents. A Gemini 1.5 table came through as
+    "39.9% 0-shot 55.8% 0-shot 53.6% 0-shot" with the model names detached from
+    their numbers, and Claude 3's Table 1 lost the header saying which of
+    86.8 / 79.0 / 75.2 is Opus, Sonnet and Haiku. The extractor then attributed
+    all 22 rows of that report to Opus, so Sonnet and Haiku were published with
+    Opus's GPQA of 50.4 when they score 40.4 and 33.3.
+
+    `pdftotext -layout` preserves the x-positions, which is what
+    packages/table_extract.py needs to read a row by column. Falls back to pypdf
+    if poppler is not installed, so ingestion still works, but the tables will be
+    unreliable again.
+    """
+    import shutil
+    import subprocess
+    import tempfile
+
     r = await client.get(url, headers=DEFAULT_HEADERS, follow_redirects=True, timeout=HTTP_TIMEOUT_BULK_S)
     r.raise_for_status()
+
+    if shutil.which("pdftotext"):
+        with tempfile.NamedTemporaryFile(suffix=".pdf") as fh:
+            fh.write(r.content)
+            fh.flush()
+            out = subprocess.run(
+                ["pdftotext", "-layout", fh.name, "-"],
+                capture_output=True, timeout=180,
+            )
+            if out.returncode == 0 and out.stdout.strip():
+                return out.stdout.decode("utf-8", "replace")
+
+    from pypdf import PdfReader
     reader = PdfReader(BytesIO(r.content))
     return "\n\n".join(p.extract_text() for p in reader.pages if p.extract_text())
 

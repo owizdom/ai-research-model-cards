@@ -68,7 +68,8 @@ DB_URL = os.environ["DATABASE_URL"].replace("postgresql+asyncpg://", "postgresql
 
 CLAUDE_BIN = os.environ.get("CLAUDE_BIN", "claude")
 MODEL = os.environ.get("EXTRACTION_MODEL", "sonnet")
-EXTRACTION_PROTOCOL_VERSION = 3
+# imported, not redeclared: this copy silently stayed at 3
+from packages.pipeline_config import EXTRACTION_PROTOCOL_VERSION
 # 30k chars ~= 7.5k tokens. Matches the worker's WINDOW_SIZE_DEFAULT exactly
 # (60k was 2x slower than expected — sonnet took 13+ min on the GPT-5 card).
 # Worker historically extracted 207 hits from Llama with this window size in
