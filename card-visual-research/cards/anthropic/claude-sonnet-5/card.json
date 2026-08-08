@@ -19,18 +19,18 @@
   "benches": [
     {
       "n": "LONG-FORM VIROLOGY",
-      "d": "as reported",
-      "s": "0.79"
+      "d": "Wet-lab protocol tasks",
+      "s": "0.82"
     },
     {
       "n": "VCT",
-      "d": "as reported",
-      "s": "0.45"
+      "d": "Virology capabilities test",
+      "s": "0.56"
     },
     {
-      "n": "DNA SYNTHESIS",
-      "d": "as reported",
-      "s": "5"
+      "n": "DNA SCREENING",
+      "d": "Synthesis screening evasion",
+      "s": "5.0"
     }
   ],
   "lineage": [
@@ -50,18 +50,18 @@
   ],
   "btbl": [
     {
-      "n": "Long-form virology tasks",
-      "s": "0.79",
+      "n": "Long-form virology",
+      "s": "0.82",
       "l": "1 lab"
     },
     {
       "n": "VCT",
-      "s": "0.45",
+      "s": "0.56",
       "l": "2 labs"
     },
     {
       "n": "DNA Synthesis Screening",
-      "s": "5",
+      "s": "5.0",
       "l": "1 lab"
     }
   ],

@@ -13,23 +13,26 @@
   ],
   "animal": "owl",
   "words": "37.4k",
-  "evals": "29",
-  "unique": "69%",
+  "evals": "18",
+  "unique": "71%",
   "benches": [
     {
-      "n": "INTERNAL AI RESEARCH",
-      "d": "as reported",
-      "s": "5.5"
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "83.1",
+      "c": "#c8832a"
     },
     {
       "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "d": "Grad-level science",
+      "s": "84.8",
+      "c": "#a06820"
     },
     {
       "n": "MMMU",
-      "d": "not reported",
-      "s": "—"
+      "d": "Multimodal understanding",
+      "s": "78.4",
+      "c": "#805010"
     }
   ],
   "lineage": [
@@ -53,19 +56,19 @@
   ],
   "btbl": [
     {
-      "n": "Internal AI Research",
-      "s": "5.5",
-      "l": "1 lab"
+      "n": "SWE-bench",
+      "s": "83.1",
+      "l": "3 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "GPQA Diamond",
+      "s": "84.8",
+      "l": "4 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "MMMU",
+      "s": "78.4",
+      "l": "3 labs"
     }
   ],
   "weak": {

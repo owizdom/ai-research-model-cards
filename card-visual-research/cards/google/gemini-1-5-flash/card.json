@@ -13,23 +13,26 @@
   ],
   "animal": "octopus",
   "words": "64.6k",
-  "evals": "5",
-  "unique": "25%",
+  "evals": "11",
+  "unique": "40%",
   "benches": [
     {
-      "n": "GPQA",
-      "d": "pro",
-      "s": "27.9"
-    },
-    {
-      "n": "MGSM",
-      "d": "multilingual",
-      "s": "63.5"
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "78.9",
+      "c": "#4285f4"
     },
     {
       "n": "MATH",
-      "d": "pro, 0-shot",
-      "s": "55.8"
+      "d": "Competition math",
+      "s": "54.9",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "74.9",
+      "c": "#1a3e90"
     }
   ],
   "lineage": [
@@ -57,18 +60,18 @@
   ],
   "btbl": [
     {
-      "n": "GPQA",
-      "s": "27.9",
-      "l": "5 labs"
-    },
-    {
-      "n": "MGSM",
-      "s": "63.5",
-      "l": "3 labs"
+      "n": "MMLU",
+      "s": "78.9",
+      "l": "6 labs"
     },
     {
       "n": "MATH",
-      "s": "55.8",
+      "s": "54.9",
+      "l": "5 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "74.9",
       "l": "4 labs"
     }
   ],

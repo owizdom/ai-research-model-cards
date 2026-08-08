@@ -13,23 +13,26 @@
   ],
   "animal": "dragon",
   "words": "9.9k",
-  "evals": "33",
-  "unique": "86%",
+  "evals": "9",
+  "unique": "38%",
   "benches": [
     {
-      "n": "CHALLENGING REFUSAL",
-      "d": "as reported",
-      "s": "0.9"
+      "n": "AIME 2024",
+      "d": "Competition math",
+      "s": "96.7",
+      "c": "#10a37f"
     },
     {
-      "n": "HUMAN SOURCED",
-      "d": "as reported",
-      "s": "1"
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "87.7",
+      "c": "#0d8066"
     },
     {
-      "n": "SIMPLEQA",
-      "d": "as reported",
-      "s": "0.49"
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "71.7",
+      "c": "#0a604c"
     }
   ],
   "lineage": [
@@ -53,24 +56,24 @@
   ],
   "btbl": [
     {
-      "n": "Challenging Refusal",
-      "s": "0.9",
-      "l": "1 lab"
-    },
-    {
-      "n": "Human sourced jailbreaks",
-      "s": "1",
-      "l": "1 lab"
-    },
-    {
-      "n": "SimpleQA",
-      "s": "0.49",
+      "n": "AIME 2024",
+      "s": "96.7",
       "l": "2 labs"
     },
     {
-      "n": "PersonQA",
-      "s": "0.59",
-      "l": "1 lab"
+      "n": "GPQA Diamond",
+      "s": "87.7",
+      "l": "4 labs"
+    },
+    {
+      "n": "SWE-bench",
+      "s": "71.7",
+      "l": "3 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "92.3",
+      "l": "6 labs"
     }
   ],
   "weak": {

@@ -13,23 +13,26 @@
   ],
   "animal": "wolf",
   "words": "2.6k",
-  "evals": "41",
-  "unique": "9%",
+  "evals": "12",
+  "unique": "29%",
   "benches": [
     {
-      "n": "MMLU-PRO",
-      "d": "pro, cot",
-      "s": "48.3"
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "86.0",
+      "c": "#0082fb"
     },
     {
-      "n": "GPQA-DIAMOND",
-      "d": "diamond, cot",
-      "s": "31.8"
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "77.0",
+      "c": "#0060c0"
     },
     {
-      "n": "MBPP",
-      "d": "as reported",
-      "s": "72.8"
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "88.4",
+      "c": "#004090"
     }
   ],
   "lineage": [
@@ -49,19 +52,19 @@
   ],
   "btbl": [
     {
-      "n": "MMLU-Pro",
-      "s": "48.3",
+      "n": "MMLU",
+      "s": "86.0",
+      "l": "6 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "77.0",
       "l": "5 labs"
     },
     {
-      "n": "GPQA-Diamond",
-      "s": "31.8",
-      "l": "3 labs"
-    },
-    {
-      "n": "MBPP",
-      "s": "72.8",
-      "l": "3 labs"
+      "n": "HumanEval",
+      "s": "88.4",
+      "l": "4 labs"
     }
   ],
   "weak": {

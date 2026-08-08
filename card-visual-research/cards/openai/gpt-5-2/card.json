@@ -13,23 +13,26 @@
   ],
   "animal": "falcon",
   "words": "7.2k",
-  "evals": "30",
-  "unique": "71%",
+  "evals": "12",
+  "unique": "42%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "as reported",
-      "s": "0.901"
+      "d": "Academic reasoning",
+      "s": "91.2",
+      "c": "#10a37f"
     },
     {
-      "n": "FIRST-PERSON FAIRNESS",
-      "d": "as reported",
-      "s": "0.00997"
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "86.0",
+      "c": "#0d8066"
     },
     {
       "n": "SWE-BENCH",
-      "d": "not reported",
-      "s": "—"
+      "d": "Real GitHub issues",
+      "s": "75.0",
+      "c": "#0a604c"
     }
   ],
   "lineage": [
@@ -54,18 +57,18 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "0.901",
-      "l": "5 labs"
+      "s": "91.2",
+      "l": "6 labs"
     },
     {
-      "n": "First-Person Fairness",
-      "s": "0.00997",
-      "l": "1 lab"
+      "n": "GPQA",
+      "s": "86.0",
+      "l": "4 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "SWE-bench",
+      "s": "75.0",
+      "l": "3 labs"
     }
   ],
   "weak": {

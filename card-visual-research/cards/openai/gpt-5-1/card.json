@@ -13,23 +13,26 @@
   ],
   "animal": "falcon",
   "words": "1.3k",
-  "evals": "108",
-  "unique": "100%",
+  "evals": "11",
+  "unique": "40%",
   "benches": [
     {
-      "n": "PRODUCTION BENCHMARKS",
-      "d": "as reported",
-      "s": "0.865"
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "72.0",
+      "c": "#10a37f"
     },
     {
-      "n": "STRONGREJECT",
-      "d": "as reported",
-      "s": "0.974"
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "90.5",
+      "c": "#0d8066"
     },
     {
-      "n": "IMAGE INPUT",
-      "d": "as reported",
-      "s": "0.984"
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "85.0",
+      "c": "#0a604c"
     }
   ],
   "lineage": [
@@ -53,19 +56,19 @@
   ],
   "btbl": [
     {
-      "n": "Production Benchmarks",
-      "s": "0.865",
-      "l": "1 lab"
+      "n": "SWE-bench",
+      "s": "72.0",
+      "l": "3 labs"
     },
     {
-      "n": "StrongReject",
-      "s": "0.974",
-      "l": "1 lab"
+      "n": "MMLU",
+      "s": "90.5",
+      "l": "6 labs"
     },
     {
-      "n": "Image Input Evaluations",
-      "s": "0.984",
-      "l": "1 lab"
+      "n": "GPQA",
+      "s": "85.0",
+      "l": "4 labs"
     }
   ],
   "weak": {

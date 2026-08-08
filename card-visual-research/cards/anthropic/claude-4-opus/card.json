@@ -13,23 +13,26 @@
   ],
   "animal": "sphinx",
   "words": "33.2k",
-  "evals": "36",
-  "unique": "90%",
+  "evals": "17",
+  "unique": "68%",
   "benches": [
     {
-      "n": "BBQ",
-      "d": "as reported",
-      "s": "-0.60"
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "79.4",
+      "c": "#c8832a"
     },
     {
       "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "d": "Grad-level science",
+      "s": "83.1",
+      "c": "#a06820"
     },
     {
       "n": "AIME",
-      "d": "not reported",
-      "s": "—"
+      "d": "Competition math",
+      "s": "90.2",
+      "c": "#805010"
     }
   ],
   "lineage": [
@@ -57,24 +60,24 @@
   ],
   "btbl": [
     {
-      "n": "BBQ",
-      "s": "-0.60",
+      "n": "SWE-bench",
+      "s": "79.4",
+      "l": "3 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "83.1",
+      "l": "4 labs"
+    },
+    {
+      "n": "AIME",
+      "s": "90.2",
       "l": "2 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "MMLU",
+      "s": "89.2",
+      "l": "6 labs"
     }
   ],
   "weak": {

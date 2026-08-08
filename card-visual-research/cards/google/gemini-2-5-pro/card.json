@@ -13,23 +13,26 @@
   ],
   "animal": "eagle",
   "words": "7.2k",
-  "evals": "19",
-  "unique": "59%",
+  "evals": "15",
+  "unique": "50%",
   "benches": [
     {
-      "n": "HUMANITY'S LAST EXAM",
-      "d": "as reported",
-      "s": "21.6"
-    },
-    {
-      "n": "GPQA-DIAMOND",
-      "d": "diamond",
-      "s": "86.4"
-    },
-    {
       "n": "AIME",
-      "d": "as reported",
-      "s": "88"
+      "d": "Competition math",
+      "s": "86.7",
+      "c": "#4285f4"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "84.0",
+      "c": "#2a5ec8"
+    },
+    {
+      "n": "LIVECODE BENCH",
+      "d": "Live coding",
+      "s": "70.0",
+      "c": "#1a3e90"
     }
   ],
   "lineage": [
@@ -57,24 +60,24 @@
   ],
   "btbl": [
     {
-      "n": "Humanity's Last Exam",
-      "s": "21.6",
+      "n": "AIME",
+      "s": "86.7",
       "l": "2 labs"
     },
     {
-      "n": "GPQA-Diamond",
-      "s": "86.4",
-      "l": "3 labs"
+      "n": "GPQA Diamond",
+      "s": "84.0",
+      "l": "4 labs"
     },
     {
-      "n": "AIME",
-      "s": "88",
-      "l": "3 labs"
+      "n": "LiveCodeBench",
+      "s": "70.0",
+      "l": "2 labs"
     },
     {
-      "n": "Aider Polyglot",
-      "s": "82.2",
-      "l": "1 lab"
+      "n": "MMLU",
+      "s": "89.0",
+      "l": "6 labs"
     }
   ],
   "weak": {

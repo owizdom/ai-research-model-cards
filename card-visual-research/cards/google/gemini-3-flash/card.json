@@ -13,23 +13,26 @@
   ],
   "animal": "octopus",
   "words": "1.1k",
-  "evals": "6",
-  "unique": "80%",
+  "evals": "14",
+  "unique": "50%",
   "benches": [
     {
-      "n": "MULTILINGUAL SAFETY",
-      "d": "as reported",
-      "s": "0.1"
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "88.0",
+      "c": "#4285f4"
     },
     {
-      "n": "TEXT TO TEXT SAFETY",
-      "d": "as reported",
-      "s": "-3.1"
+      "n": "LIVECODE BENCH",
+      "d": "Live coding",
+      "s": "68.0",
+      "c": "#2a5ec8"
     },
     {
-      "n": "IMAGE TO TEXT SAFETY",
-      "d": "as reported",
-      "s": "-2.3"
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "88.5",
+      "c": "#1a3e90"
     }
   ],
   "lineage": [
@@ -53,19 +56,19 @@
   ],
   "btbl": [
     {
-      "n": "Multilingual Safety",
-      "s": "0.1",
-      "l": "1 lab"
+      "n": "AIME",
+      "s": "88.0",
+      "l": "2 labs"
     },
     {
-      "n": "Text to Text Safety",
-      "s": "-3.1",
-      "l": "1 lab"
+      "n": "LiveCodeBench",
+      "s": "68.0",
+      "l": "2 labs"
     },
     {
-      "n": "Image to Text Safety",
-      "s": "-2.3",
-      "l": "1 lab"
+      "n": "MMLU",
+      "s": "88.5",
+      "l": "6 labs"
     }
   ],
   "weak": {

@@ -18,19 +18,19 @@
   "unique": "82%",
   "benches": [
     {
-      "n": "PROMPT INJECTION",
-      "d": "pro",
-      "s": "0.963"
+      "n": "SANDBAGGING QA",
+      "d": "Strategic deception probe",
+      "s": "100.0"
     },
     {
-      "n": "HARD NEGATIVE PROTEIN",
-      "d": "pro",
-      "s": "0.4"
+      "n": "UK AISI CYBER",
+      "d": "Lower-difficulty cyber tasks",
+      "s": "100.0"
     },
     {
-      "n": "DNA SEQUENCE DESIGN",
-      "d": "pro",
-      "s": "13.82"
+      "n": "ATOMIC CHALLENGES",
+      "d": "Irregular task set",
+      "s": "100.0"
     }
   ],
   "lineage": [
@@ -50,18 +50,18 @@
   ],
   "btbl": [
     {
-      "n": "Prompt Injection Attacks",
-      "s": "0.963",
+      "n": "Sandbagging QA",
+      "s": "100.0",
       "l": "1 lab"
     },
     {
-      "n": "Hard Negative Protein",
-      "s": "0.4",
-      "l": "1 lab"
+      "n": "UK AISI Cyber Tasks",
+      "s": "100.0",
+      "l": "2 labs"
     },
     {
-      "n": "DNA Sequence Design for",
-      "s": "13.82",
+      "n": "Atomic Challenges",
+      "s": "100.0",
       "l": "1 lab"
     }
   ],

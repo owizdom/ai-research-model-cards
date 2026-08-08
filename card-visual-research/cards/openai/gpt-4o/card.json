@@ -13,23 +13,26 @@
   ],
   "animal": "falcon",
   "words": "11.6k",
-  "evals": "62",
-  "unique": "83%",
+  "evals": "7",
+  "unique": "28%",
   "benches": [
     {
-      "n": "VOICE OUTPUT",
-      "d": "as reported",
-      "s": "0.96"
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "88.7",
+      "c": "#10a37f"
     },
     {
-      "n": "OPENAI RESEARCH",
-      "d": "as reported",
-      "s": "95"
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "53.6",
+      "c": "#0d8066"
     },
     {
-      "n": "OPENAI INTERVIEW",
-      "d": "as reported",
-      "s": "61"
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "90.2",
+      "c": "#0a604c"
     }
   ],
   "lineage": [
@@ -57,19 +60,19 @@
   ],
   "btbl": [
     {
-      "n": "Voice Output Classifier",
-      "s": "0.96",
-      "l": "1 lab"
+      "n": "MMLU",
+      "s": "88.7",
+      "l": "6 labs"
     },
     {
-      "n": "OpenAI Research Coding",
-      "s": "95",
-      "l": "1 lab"
+      "n": "GPQA",
+      "s": "53.6",
+      "l": "4 labs"
     },
     {
-      "n": "OpenAI Interview Multiple",
-      "s": "61",
-      "l": "1 lab"
+      "n": "HumanEval",
+      "s": "90.2",
+      "l": "4 labs"
     }
   ],
   "weak": {

@@ -18,19 +18,19 @@
   "unique": "73%",
   "benches": [
     {
-      "n": "ARC-AGI-1",
-      "d": "max effort, semi-private",
-      "s": "97.50"
+      "n": "ARC-AGI",
+      "d": "Abstract reasoning",
+      "s": "100.0"
     },
     {
       "n": "LEGAL AGENT BENCH",
-      "d": "all-pass rate",
-      "s": "11.7"
+      "d": "Long-horizon legal work",
+      "s": "94.1"
     },
     {
       "n": "MCP ATLAS",
-      "d": "pass rate",
-      "s": "85.8"
+      "d": "Tool-use breadth",
+      "s": "89.1"
     }
   ],
   "lineage": [
@@ -50,19 +50,19 @@
   ],
   "btbl": [
     {
-      "n": "ARC-AGI-1",
-      "s": "97.50",
-      "l": "—"
+      "n": "ARC-AGI",
+      "s": "100.0",
+      "l": "2 labs"
     },
     {
-      "n": "LEGAL AGENT BENCH",
-      "s": "11.7",
-      "l": "—"
+      "n": "Legal Agent Benchmark",
+      "s": "94.1",
+      "l": "1 lab"
     },
     {
-      "n": "MCP ATLAS",
-      "s": "85.8",
-      "l": "—"
+      "n": "MCP Atlas",
+      "s": "89.1",
+      "l": "1 lab"
     }
   ],
   "weak": {

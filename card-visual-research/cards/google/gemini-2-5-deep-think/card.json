@@ -13,23 +13,26 @@
   ],
   "animal": "octopus",
   "words": "6.3k",
-  "evals": "36",
-  "unique": "78%",
+  "evals": "13",
+  "unique": "47%",
   "benches": [
     {
-      "n": "IMO 2025",
-      "d": "as reported",
-      "s": "60.7"
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "91.0",
+      "c": "#4285f4"
     },
     {
-      "n": "HUMANITY'S LAST EXAM",
-      "d": "as reported",
-      "s": "34.8"
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "86.2",
+      "c": "#2a5ec8"
     },
     {
-      "n": "IMO",
-      "d": "as reported",
-      "s": "60.7"
+      "n": "MATH",
+      "d": "Competition math",
+      "s": "97.0",
+      "c": "#1a3e90"
     }
   ],
   "lineage": [
@@ -53,19 +56,19 @@
   ],
   "btbl": [
     {
-      "n": "IMO 2025",
-      "s": "60.7",
-      "l": "1 lab"
-    },
-    {
-      "n": "Humanity's Last Exam",
-      "s": "34.8",
+      "n": "AIME",
+      "s": "91.0",
       "l": "2 labs"
     },
     {
-      "n": "IMO",
-      "s": "60.7",
-      "l": "1 lab"
+      "n": "GPQA Diamond",
+      "s": "86.2",
+      "l": "4 labs"
+    },
+    {
+      "n": "MATH",
+      "s": "97.0",
+      "l": "5 labs"
     }
   ],
   "weak": {

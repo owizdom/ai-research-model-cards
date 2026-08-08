@@ -13,23 +13,26 @@
   ],
   "animal": "owl",
   "words": "5.8k",
-  "evals": "34",
-  "unique": "50%",
+  "evals": "12",
+  "unique": "55%",
   "benches": [
     {
-      "n": "OSWORLD",
-      "d": "as reported",
-      "s": "14.9"
-    },
-    {
       "n": "SWE-BENCH",
-      "d": "as reported",
-      "s": "49"
+      "d": "Real GitHub issues",
+      "s": "40.6",
+      "c": "#c8832a"
     },
     {
-      "n": "MMMU",
-      "d": "as reported",
-      "s": "70.4"
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "87.2",
+      "c": "#a06820"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "88.1",
+      "c": "#805010"
     }
   ],
   "lineage": [
@@ -53,19 +56,19 @@
   ],
   "btbl": [
     {
-      "n": "OSWorld",
-      "s": "14.9",
-      "l": "1 lab"
-    },
-    {
       "n": "SWE-bench",
-      "s": "49",
+      "s": "40.6",
       "l": "3 labs"
     },
     {
-      "n": "MMMU",
-      "s": "70.4",
-      "l": "3 labs"
+      "n": "MMLU",
+      "s": "87.2",
+      "l": "6 labs"
+    },
+    {
+      "n": "HumanEval",
+      "s": "88.1",
+      "l": "4 labs"
     }
   ],
   "weak": {

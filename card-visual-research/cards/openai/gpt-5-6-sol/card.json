@@ -18,19 +18,19 @@
   "unique": "71%",
   "benches": [
     {
-      "n": "AAV_CAPSID_PACKAGING_P",
-      "d": "as reported",
-      "s": "0.529"
+      "n": "TACIT KNOWLEDGE",
+      "d": "Troubleshooting under uncertainty",
+      "s": "84.1"
     },
     {
-      "n": "HARD NEGATIVE PROTEIN",
-      "d": "pro",
-      "s": "3.5"
+      "n": "MM TROUBLESHOOTING",
+      "d": "Multimodal virology",
+      "s": "55.5"
     },
     {
-      "n": "DNA SEQUENCE DESIGN",
-      "d": "pro",
-      "s": "12.82"
+      "n": "PROTOCOLQA",
+      "d": "Wet-lab protocol QA",
+      "s": "43.5"
     }
   ],
   "lineage": [
@@ -50,19 +50,19 @@
   ],
   "btbl": [
     {
-      "n": "AAV_Capsid_Packaging_Predi",
-      "s": "0.529",
+      "n": "Tacit Knowledge",
+      "s": "84.1",
+      "l": "1 lab"
+    },
+    {
+      "n": "Multimodal Troubleshooting",
+      "s": "55.5",
+      "l": "1 lab"
+    },
+    {
+      "n": "ProtocolQA",
+      "s": "43.5",
       "l": "2 labs"
-    },
-    {
-      "n": "Hard Negative Protein",
-      "s": "3.5",
-      "l": "1 lab"
-    },
-    {
-      "n": "DNA Sequence Design for",
-      "s": "12.82",
-      "l": "1 lab"
     }
   ],
   "weak": {

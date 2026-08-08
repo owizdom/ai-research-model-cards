@@ -13,23 +13,26 @@
   ],
   "animal": "wolf",
   "words": "956",
-  "evals": "62",
-  "unique": "56%",
+  "evals": "8",
+  "unique": "22%",
   "benches": [
     {
-      "n": "COMMONSENSE REASONING",
-      "d": "as reported",
-      "s": "60.8"
+      "n": "MMLU",
+      "d": "Academic reasoning",
+      "s": "68.9",
+      "c": "#0082fb"
     },
     {
-      "n": "WORLD KNOWLEDGE",
-      "d": "as reported",
-      "s": "46.2"
+      "n": "TRUTHFULQA",
+      "d": "Factual accuracy",
+      "s": "50.2",
+      "c": "#0060c0"
     },
     {
-      "n": "READING COMPREHENSION",
-      "d": "as reported",
-      "s": "58.5"
+      "n": "BBQ",
+      "d": "Bias benchmark",
+      "s": "78.0",
+      "c": "#004090"
     }
   ],
   "lineage": [
@@ -57,19 +60,19 @@
   ],
   "btbl": [
     {
-      "n": "Commonsense Reasoning",
-      "s": "60.8",
-      "l": "1 lab"
+      "n": "MMLU",
+      "s": "68.9",
+      "l": "6 labs"
     },
     {
-      "n": "World Knowledge",
-      "s": "46.2",
-      "l": "1 lab"
+      "n": "TruthfulQA",
+      "s": "50.2",
+      "l": "4 labs"
     },
     {
-      "n": "Reading Comprehension",
-      "s": "58.5",
-      "l": "1 lab"
+      "n": "BBQ",
+      "s": "78.0",
+      "l": "2 labs"
     }
   ],
   "weak": {

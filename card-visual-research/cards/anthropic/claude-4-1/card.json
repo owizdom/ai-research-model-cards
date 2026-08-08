@@ -13,23 +13,26 @@
   ],
   "animal": "owl",
   "words": "5.3k",
-  "evals": "46",
-  "unique": "89%",
+  "evals": "17",
+  "unique": "70%",
   "benches": [
     {
-      "n": "PROTOCOLQA",
-      "d": "pro",
-      "s": "0.69"
-    },
-    {
-      "n": "LONG-FORM VIROLOGY",
-      "d": "as reported",
-      "s": "0.67"
-    },
-    {
       "n": "SWE-BENCH",
-      "d": "hard subset",
-      "s": "18.4"
+      "d": "Real GitHub issues",
+      "s": "80.2",
+      "c": "#c8832a"
+    },
+    {
+      "n": "TERMINAL-BENCH",
+      "d": "Terminal tasks",
+      "s": "68.5",
+      "c": "#a06820"
+    },
+    {
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "84.0",
+      "c": "#805010"
     }
   ],
   "lineage": [
@@ -57,19 +60,19 @@
   ],
   "btbl": [
     {
-      "n": "ProtocolQA",
-      "s": "0.69",
-      "l": "2 labs"
+      "n": "SWE-bench",
+      "s": "80.2",
+      "l": "3 labs"
     },
     {
-      "n": "Long-Form Virology Task 2",
-      "s": "0.67",
+      "n": "Terminal-bench",
+      "s": "68.5",
       "l": "1 lab"
     },
     {
-      "n": "SWE-bench",
-      "s": "18.4",
-      "l": "3 labs"
+      "n": "GPQA Diamond",
+      "s": "84.0",
+      "l": "4 labs"
     }
   ],
   "weak": {

@@ -13,23 +13,26 @@
   ],
   "animal": "phoenix",
   "words": "17.8k",
-  "evals": "3",
-  "unique": "0%",
+  "evals": "14",
+  "unique": "61%",
   "benches": [
     {
       "n": "SWE-BENCH",
-      "d": "not reported",
-      "s": "—"
+      "d": "Real GitHub issues",
+      "s": "62.0",
+      "c": "#c8832a"
     },
     {
       "n": "GPQA",
-      "d": "not reported",
-      "s": "—"
+      "d": "Grad-level science",
+      "s": "78.2",
+      "c": "#a06820"
     },
     {
       "n": "MMLU",
-      "d": "not reported",
-      "s": "—"
+      "d": "Academic reasoning",
+      "s": "87.1",
+      "c": "#805010"
     }
   ],
   "lineage": [
@@ -57,24 +60,24 @@
   ],
   "btbl": [
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "SWE-bench",
+      "s": "62.0",
+      "l": "4 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "GPQA Diamond",
+      "s": "78.2",
+      "l": "4 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "MMLU",
+      "s": "87.1",
+      "l": "6 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "MATH",
+      "s": "96.2",
+      "l": "5 labs"
     }
   ],
   "weak": {

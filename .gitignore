@@ -58,3 +58,8 @@ audit_chunks
 card-visual-research/cards/**/print_front.*
 card-visual-research/cards/**/print_back.*
 card-visual-research/print/
+
+# Layout-extracted source text, rebuilt with:
+#   curl -sL <source_url> -o x.pdf && pdftotext -layout x.pdf x.md
+# Derived from the published PDFs; 7.5MB and reproducible, so not tracked.
+charts/data/article data/_card_text_cache/

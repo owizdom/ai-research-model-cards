@@ -13,23 +13,26 @@
   ],
   "animal": "bear",
   "words": "3.2k",
-  "evals": "68",
-  "unique": "24%",
+  "evals": "11",
+  "unique": "29%",
   "benches": [
     {
       "n": "MMLU",
-      "d": "as reported",
-      "s": "79.3"
-    },
-    {
-      "n": "MMLU-PRO",
-      "d": "pro",
-      "s": "53.8"
+      "d": "Academic reasoning",
+      "s": "85.5",
+      "c": "#0082fb"
     },
     {
       "n": "MATH",
-      "d": "as reported",
-      "s": "41.6"
+      "d": "Competition math",
+      "s": "88.5",
+      "c": "#0060c0"
+    },
+    {
+      "n": "CHARTQA",
+      "d": "Chart understanding",
+      "s": "90.3",
+      "c": "#004090"
     }
   ],
   "lineage": [
@@ -46,23 +49,23 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "79.3",
-      "l": "5 labs"
-    },
-    {
-      "n": "MMLU-Pro",
-      "s": "53.8",
-      "l": "5 labs"
+      "s": "85.5",
+      "l": "6 labs"
     },
     {
       "n": "MATH",
-      "s": "41.6",
-      "l": "4 labs"
+      "s": "88.5",
+      "l": "5 labs"
     },
     {
-      "n": "MBPP",
-      "s": "66.4",
-      "l": "3 labs"
+      "n": "ChartQA",
+      "s": "90.3",
+      "l": "2 labs"
+    },
+    {
+      "n": "DocVQA",
+      "s": "92.8",
+      "l": "2 labs"
     }
   ],
   "weak": {
