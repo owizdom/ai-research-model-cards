@@ -490,7 +490,7 @@ async def main(doc_id: int | None, do_all: bool, apply: bool, workers: int, limi
     await asyncio.gather(*(run_and_report(d) for d in docs))
     elapsed = time.time() - start
     print(flush=True)
-    print(f"=== {len(docs) - len(failures)}/{len(docs)} succeeded, {total_inserted} v3 rows inserted, {elapsed:.1f}s ===", flush=True)
+    print(f"=== {len(docs) - len(failures)}/{len(docs)} succeeded, {total_inserted} v{EXTRACTION_PROTOCOL_VERSION} rows inserted, {elapsed:.1f}s ===", flush=True)
     if failures:
         print(f"failed:", flush=True)
         for f in failures: print(f"  {f}", flush=True)
