@@ -138,7 +138,7 @@ def extract_tables(text: str, min_cols: int = 2) -> list[Table]:
             if len(nc) >= min_cols:
                 label = _tokens(lines[i])[0][0] if _tokens(lines[i]) else ""
                 if as_number(label) is None:
-                    rows_raw.append((label, nc))
+                    rows_raw.append((label, nc, i))
                 blanks = 0
             elif not lines[i].strip():
                 blanks += 1
@@ -146,7 +146,7 @@ def extract_tables(text: str, min_cols: int = 2) -> list[Table]:
         if not rows_raw:
             continue
 
-        offsets = sorted({off for _, nc in rows_raw for _, off in nc})
+        offsets = sorted({off for _, nc, _ln in rows_raw for _, off in nc})
         merged: list[int] = []
         for o in offsets:
             if merged and o - merged[-1] <= 3:
@@ -174,6 +174,46 @@ def extract_tables(text: str, min_cols: int = 2) -> list[Table]:
                 k = min(range(len(merged)), key=lambda x: abs(merged[x] - off))
                 if abs(merged[k] - off) <= 12:
                     names[k] = (txt + " " + names[k]).strip()
+
+        # A benchmark row wraps: the label sits on one line and the scores for
+        # the subject models on the next, which begins with the shot spec.
+        #
+        #   GPQA (Diamond)                         35.7%   28.1%
+        #          0-shot CoT   50.4%  40.4%  33.3%
+        #   Graduate level Q&A                   (from [1])
+        #
+        # Read line by line that files Claude's 50.4 / 40.4 / 33.3 under the
+        # benchmark "0-shot CoT". A row whose label is only a shot spec or a
+        # metric belongs to the last real benchmark named above it.
+        merged_rows, last_named = [], None
+        for label, nc, ln in rows_raw:
+            if _SHOTS.match(label) or _norm(label) in {"accuracy", "passat1", "mean"}:
+                # Walk back for the nearest text-only line: the benchmark name
+                # sits alone above its numbers and carries none of its own, so
+                # the row collector never saw it.
+                name = None
+                for back in (1, 2):
+                    if ln - back < 0:
+                        break
+                    prev = cells(lines[ln - back])
+                    if prev and any(as_number(c) for c in prev):
+                        break          # a data row above: use last_named instead
+                    if prev and len(prev[0]) > 2:
+                        name = prev[0]
+                        break
+                # The label line may itself carry numbers -- "GPQA (Diamond)"
+                # sits beside 35.7 and 28.1 for the other models while Claude's
+                # 50.4 / 40.4 / 33.3 are on the line below. So fall back to the
+                # last row that had a real benchmark name.
+                if not name:
+                    name = last_named
+                if name:
+                    merged_rows.append((name, nc))
+                    continue
+            else:
+                last_named = label
+            merged_rows.append((label, nc))
+        rows_raw = merged_rows
 
         rows: dict[str, list[str | None]] = {}
         for label, nc in rows_raw:
