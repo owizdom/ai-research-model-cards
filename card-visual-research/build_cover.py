@@ -140,9 +140,14 @@ def build(n_cards: int | None = None) -> Path:
         '<div class="rule"></div>'
         f'<div class="kicker">SET 01 · {len(entries)} CARDS</div>'
         f'<div class="setlist">{items}</div>'
+        # The old line claimed every figure was "measured from the published
+        # document, not reported by the lab". Word counts are measured. Every
+        # benchmark score in the corpus is is_self_reported=True, so the second
+        # half was false for most of the deck.
         f'<div class="finding">Documentation across this set spans {spread}×. The shortest '
-        f'card here runs {lo:,} words, the longest {hi:,}. Every figure printed here is '
-        'measured from the published document, not reported by the lab.</div>'
+        f'card here runs {lo:,} words, the longest {hi:,}. Word counts are measured from '
+        "the published document. Benchmark scores are the lab's own, printed with the "
+        'variant named.</div>'
         '<div class="sigil"><span class="e"></span><span class="e"></span><span class="e"></span></div>'
         '<div class="tagline">Every card in this set is a real disclosure record.<br>'
         'What a lab chose not to measure is printed too.</div>'
