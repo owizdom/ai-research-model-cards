@@ -86,6 +86,13 @@ COVER_CSS = """
 .coverback .credit{margin-top:auto;padding-top:9px;border-top:1.5px solid var(--gold2);
   display:flex;justify-content:space-between;align-items:baseline;width:100%;
   font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.05em;color:var(--ink3)}
+
+/* Its back is the contents panel and carries less than the cover back, so the
+   list can be set at a readable size. 23 names fit two columns without the
+   ellipsis that three columns forced. */
+.tuckback .setlist{columns:2;column-gap:20px;margin-top:20px}
+.tuckback .setlist div{font-size:11.4px;line-height:2.12}
+.tuckback .finding{margin-top:22px;padding-top:14px;font-size:12.5px;line-height:1.5}
 """
 
 
@@ -266,10 +273,31 @@ def build_tuckbox() -> Path:
         '<div class="site">freesystems.net</div>'
         "</div></div></div></div>"
     )
+    # The box back is the contents panel. It used to be a copy of the front,
+    # which printed the same artwork on both sides of the box.
+    lo, hi, spread = spread_figures()
+    items = "".join(
+        f'<div><span class="n">{num}</span> {html_escape(name)}</div>'
+        for num, name in set_list())
+    back = (
+        '<div class="face back"><div class="tcg lab-freesystems"><div class="gold">'
+        '<div class="inner cover coverback tuckback">'
+        '<div class="wordmark">FREE SYSTEMS</div>'
+        '<div class="rule"></div>'
+        f'<div class="kicker">SET 01 · {len(slugs)} CARDS</div>'
+        f'<div class="setlist">{items}</div>'
+        f'<div class="finding">One card per model, every figure read out of the '
+        f'lab\'s own published document. The longest runs {hi:,} words and the '
+        f'shortest {lo:,}. What a lab chose not to measure is printed here too.</div>'
+        '<div class="sigil"><span class="e"></span><span class="e"></span><span class="e"></span></div>'
+        '<div class="credit"><span>FREE SYSTEMS LAB · STANFORD GSB</span>'
+        '<span>freesystems.net</span></div>'
+        "</div></div></div></div>"
+    )
     doc = ('<!DOCTYPE html><html><head><meta charset="UTF-8">' + links
            + "<style>" + style + COVER_CSS + "</style></head><body>"
            + '<div class="stage"><div class="cardwrap"><div class="flipper">'
-           + face + face.replace('face front', 'face back') + "</div></div></div></body></html>")
+           + face + back + "</div></div></div></body></html>")
     out = dest / "free-systems-tuckbox.html"
     out.write_text(doc)
     (dest / "card.json").write_text(json.dumps({
