@@ -1,0 +1,98 @@
+{
+  "lab": "meta",
+  "num": "021/023",
+  "tier": "common",
+  "name": "Muse Glimmer",
+  "capN": "45",
+  "capL": "CAP",
+  "meta": "Meta Superintelligence Labs · Muse Glimmer 30B · 2026",
+  "tags": [
+    "OPEN WEIGHT",
+    "LOCAL",
+    "DISTILLED"
+  ],
+  "animal": "wolf",
+  "words": "0 (no PDF — Hugging Face model card only)",
+  "evals": "14",
+  "benches": [
+    {
+      "n": "AIME 2026",
+      "d": "Competition-level math",
+      "s": "94.7"
+    },
+    {
+      "n": "GPQA DIAMOND",
+      "d": "Graduate-level science",
+      "s": "83.5"
+    },
+    {
+      "n": "SWE-BENCH VERIFIED",
+      "d": "Human-validated coding tasks",
+      "s": "76.0"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Spark 1.2",
+      "d": "Aug'26"
+    },
+    {
+      "v": "Glimmer",
+      "d": "Aug'26",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "AIME 2026",
+      "d": "Competition-level math",
+      "s": "94.7"
+    },
+    {
+      "n": "GPQA Diamond",
+      "d": "Graduate-level science",
+      "s": "83.5"
+    },
+    {
+      "n": "SWE-bench Verified",
+      "d": "Human-validated coding tasks",
+      "s": "76.0"
+    },
+    {
+      "n": "SWE-bench Pro",
+      "d": "Harder real-world coding tasks",
+      "s": "51.2"
+    },
+    {
+      "n": "MCP Atlas",
+      "d": "Agentic tool-use evaluation",
+      "s": "75.5"
+    }
+  ],
+  "weak": {
+    "t": "Encyclopedic Knowledge",
+    "d": "Humanity's Last Exam (22.0) — modest on pure-knowledge recall, consistent with agentic optimization over encyclopedic tasks."
+  },
+  "res": {
+    "t": "Competition Math",
+    "d": "AIME 2026 (94.7) — beats models 2-3x its parameter count; strongest reported figure on this card."
+  },
+  "lims": [
+    "<strong>Preparedness</strong> — resolves to \"Moderate or lower risk\" across Chem/Bio, Cyber, and Loss of Control without publishing red-team specifics.",
+    "<strong>Omits Llama entirely</strong> — Meta benchmarks against Gemma4 and Qwen3.6, not its own prior open-weight family."
+  ],
+  "blurb": "Distilled from Muse Spark 1.2 and compressed to run on a single 24GB consumer GPU — Meta's first open-weight release since Llama 4, and a Meta card with a full, conventional benchmark table.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "freesystems.net/muse-glimmer",
+    "h": false
+  },
+  "slug": "muse-glimmer",
+  "html": "muse-glimmer.html",
+  "art": null,
+  "source": "mockup",
+  "ability": {
+    "name": "Pocket Frontier",
+    "text": "A 30B dense model distilled from Muse Spark, compressed to run on a single 24GB consumer GPU — Meta's first open release since Llama 4."
+  }
+}

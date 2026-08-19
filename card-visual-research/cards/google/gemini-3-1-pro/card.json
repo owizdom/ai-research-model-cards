@@ -1,6 +1,6 @@
 {
   "lab": "google",
-  "num": "036/055",
+  "num": "009/023",
   "tier": "rare",
   "name": "Gemini 3.1 Pro",
   "capN": "91",
@@ -74,7 +74,8 @@
   },
   "lims": [
     "<strong>Agentic risk</strong> — new safety documentation required for expanded capability.",
-    "<strong>SWE-bench debut</strong> — first Google model to report this benchmark."
+    "<strong>SWE-bench debut</strong> — first Google model to report this benchmark.",
+    "<strong>Benchmarks are chart-images only</strong> — no numeric results extractable as text from this card, same as other Gemini 3.x cards."
   ],
   "blurb": "Google's latest. First Gemini model to report SWE-bench — notable because Google had not previously used this as a public evaluation. Follows Anthropic's lead in agentic coding benchmarks.",
   "val": {

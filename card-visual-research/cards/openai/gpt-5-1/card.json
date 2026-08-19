@@ -1,15 +1,15 @@
 {
   "lab": "openai",
-  "num": "025/055",
+  "num": "006/023",
   "tier": "rare",
   "name": "GPT-5.1",
   "capN": "88",
   "capL": "CAP",
   "meta": "OpenAI · GPT-5 · 2025",
   "tags": [
-    "FRONTIER",
-    "CODING",
-    "AGENTIC"
+    "ADDENDUM",
+    "THIN CARD",
+    "SAFETY ONLY"
   ],
   "animal": "falcon",
   "words": "1.3k",
@@ -45,10 +45,6 @@
     {
       "v": "5.2",
       "d": "2025"
-    },
-    {
-      "v": "5.3",
-      "d": "2025"
     }
   ],
   "btbl": [
@@ -69,17 +65,19 @@
     }
   ],
   "weak": {
-    "t": "Agentic Risk ×2",
-    "d": "Stronger agentic capability increases potential for unintended actions."
+    "t": "No Capability Table",
+    "d": "Zero benchmark rows of any kind — shortest disclosure in the deck."
   },
   "res": {
-    "t": "Coding Accuracy −12",
-    "d": "Strong improvement on SWE-bench vs GPT-5."
+    "t": "5 Pages",
+    "d": "Confirmed shortest card in the entire 24-card set, real or new."
   },
   "lims": [
-    "<strong>Agentic risk</strong> — expanded capability requires new safety documentation."
+    "<strong>Just an addendum</strong> — 5 pages total, states mitigations are \"largely the same\" as the GPT-5 System Card.",
+    "<strong>No capability benchmarks anywhere</strong> — only updated safety metrics for Instant and Thinking variants.",
+    "<strong>Shortest card in the set</strong> — thinner than even Mistral 3.1, previously the deck's shortest."
   ],
-  "blurb": "Iterative improvement on GPT-5 focusing on coding and agentic capability. Narrowed the SWE-bench gap with Anthropic.",
+  "blurb": "A 5-page safety addendum, not a new system card. States mitigations are largely unchanged from GPT-5 and reports zero capability benchmarks.",
   "val": {
     "b": "Internal evaluation, 2025",
     "l": "modelcards.net/gpt-5-1",
@@ -90,7 +88,7 @@
   "art": null,
   "source": "mockup",
   "ability": {
-    "name": "Chasing SWE-bench",
-    "text": "Narrowed the agentic-coding gap with Anthropic on the one benchmark OpenAI had never led."
+    "name": "Just an Addendum",
+    "text": "Five pages total. States its safety mitigations are \"largely the same\" as GPT-5's and reports no capability benchmarks at all."
   }
 }

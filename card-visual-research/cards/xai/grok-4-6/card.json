@@ -1,0 +1,98 @@
+{
+  "lab": "xai",
+  "num": "018/023",
+  "tier": "holo",
+  "name": "Grok 4.6",
+  "capN": "83",
+  "capL": "CAP",
+  "meta": "SpaceXAI · Grok 4.6 · 2026",
+  "tags": [
+    "FRONTIER",
+    "AGENTIC",
+    "EFFICIENCY"
+  ],
+  "animal": "shark",
+  "words": "7.8k",
+  "evals": "27",
+  "benches": [
+    {
+      "n": "CURSORBENCH 3.2",
+      "d": "Cursor-specific coding tasks",
+      "s": "70.8"
+    },
+    {
+      "n": "DEEPSWE 1.1",
+      "d": "Deep agentic software engineering",
+      "s": "65.9"
+    },
+    {
+      "n": "APEX-AGENTS",
+      "d": "Multi-app agentic orchestration",
+      "s": "57.5"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "4.5",
+      "d": "2025"
+    },
+    {
+      "v": "4.6",
+      "d": "Aug'26",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "CursorBench 3.2",
+      "d": "Cursor-specific coding tasks",
+      "s": "70.8"
+    },
+    {
+      "n": "APEX-SWE",
+      "d": "Integration & observability coding",
+      "s": "56.4"
+    },
+    {
+      "n": "DeepSWE 1.1",
+      "d": "Deep agentic software engineering",
+      "s": "65.9"
+    },
+    {
+      "n": "SWE-Marathon",
+      "d": "Long-horizon coding endurance",
+      "s": "31.9"
+    },
+    {
+      "n": "Terminal-Bench 3.0",
+      "d": "Command-line task completion",
+      "s": "26.0"
+    }
+  ],
+  "weak": {
+    "t": "Long-Running Tasks",
+    "d": "Terminal-Bench 3.0 (26.0) and SWE-Marathon (31.9) — the card's two weakest reported figures, both endurance-style tasks."
+  },
+  "res": {
+    "t": "IDE-Native Coding",
+    "d": "CursorBench 3.2 (70.8) — strongest reported figure on this card."
+  },
+  "lims": [
+    "<strong>No dedicated limitations section</strong> — card is capability/benchmark-forward; safety folded into refusal-rate figures rather than a named block.",
+    "<strong>Coding and knowledge-work focus, for now</strong> — deployment channels emphasize agentic coding (Cursor, Grok Build) and enterprise knowledge work (Office add-ins) rather than consumer chat surfaces."
+  ],
+  "blurb": "One of the first Grok system cards published in full — 42 pages and 27 evaluations, a marked step up in disclosure for a lab whose prior card reported no capability benchmarks at all. Reaches results with fewer steps and fewer output tokens than other frontier models.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "freesystems.net/grok-4-6",
+    "h": false
+  },
+  "slug": "grok-4-6",
+  "html": "grok-4-6.html",
+  "art": null,
+  "source": "mockup",
+  "ability": {
+    "name": "Score vs. Cost",
+    "text": "Reaches results with fewer steps and fewer output tokens than other frontier models."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "lab": "freesystems",
+  "name": "Free Systems Tuck Box",
+  "slug": "free-systems-tuckbox",
+  "html": "free-systems-tuckbox.html",
+  "num": null,
+  "tier": "cover",
+  "source": "pack-tuckbox",
+  "in_deck": false
+}

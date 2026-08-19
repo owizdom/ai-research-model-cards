@@ -1,0 +1,101 @@
+{
+  "lab": "meta",
+  "num": "020/023",
+  "tier": "rare",
+  "name": "Muse Spark 1.2",
+  "capN": "70",
+  "capL": "CAP",
+  "meta": "Meta Superintelligence Labs · Muse Spark 1.2 · 2026",
+  "tags": [
+    "CODING",
+    "CLOSED WEIGHT",
+    "NO SYSTEM CARD"
+  ],
+  "animal": "fox",
+  "words": "0 (no system card — blog only)",
+  "benches": [
+    {
+      "n": "TERMINAL-BENCH 2.1",
+      "d": "Command-line task completion (89 tasks)",
+      "s": "82.9"
+    },
+    {
+      "n": "DEEPSWE 1.1",
+      "d": "Deep agentic software engineering",
+      "s": "59.3"
+    },
+    {
+      "n": "AA INTELLIGENCE INDEX",
+      "d": "Composite of 9 evals, agents/coding/general/science",
+      "s": "54"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Spark",
+      "d": "Apr'26"
+    },
+    {
+      "v": "1.1",
+      "d": "Jul'26"
+    },
+    {
+      "v": "1.2",
+      "d": "Aug'26",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "Terminal-Bench 2.1",
+      "d": "Command-line task completion (89 tasks)",
+      "s": "82.9"
+    },
+    {
+      "n": "DeepSWE 1.1",
+      "d": "Deep agentic software engineering",
+      "s": "59.3"
+    },
+    {
+      "n": "AA Intelligence Index",
+      "d": "Composite of 9 evals, agents/coding/general/science",
+      "s": "54"
+    },
+    {
+      "n": "Arena Elo (Text)",
+      "d": "Human head-to-head preference rating",
+      "s": "1498"
+    },
+    {
+      "n": "Arena Elo (Code)",
+      "d": "Human head-to-head preference rating, coding",
+      "s": "1544"
+    }
+  ],
+  "weak": {
+    "t": "Coding Depth",
+    "d": "DeepSWE 1.1 (59.3) — second-best on Meta's own comparison table, behind Opus 5."
+  },
+  "res": {
+    "t": "CLI Proficiency",
+    "d": "Terminal-Bench 2.1 (82.9) — strongest reported figure on this card."
+  },
+  "lims": [
+    "<strong>No system card exists</strong> — unlike OpenAI, Anthropic, Google, or xAI, Meta published only launch blog posts and a developer page.",
+    "<strong>Self-selected comparison table</strong> — Meta chose the benchmark set, ran its own harness, published charts without a methodology write-up."
+  ],
+  "blurb": "Co-trained directly with Muse Code, its own terminal coding agent — training and harness built together rather than a general model bolted onto a separate tool.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "freesystems.net/muse-spark-1-2",
+    "h": false
+  },
+  "slug": "muse-spark-1-2",
+  "html": "muse-spark-1-2.html",
+  "art": null,
+  "source": "mockup",
+  "ability": {
+    "name": "Co-Trained Coder",
+    "text": "Co-trained directly with Muse Code, its own terminal coding agent, rather than a general model bolted onto a separate tool."
+  }
+}

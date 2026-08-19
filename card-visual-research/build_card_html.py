@@ -48,12 +48,21 @@ def dex_text(c: dict) -> str:
     num = (c.get("num") or "").split("/")[0]
     if c.get("source") == "manual-cardread":
         return f"NO. {num} · hand-read card · not yet in the corpus"
-    return (f"NO. {num} · {c.get('words')} words · "
-            f"{c.get('evals')} evals · {c.get('unique')} lab-unique")
+    parts = [f"NO. {num}"]
+    if c.get("words"):
+        parts.append(f"{c['words']} words")
+    if c.get("evals"):
+        parts.append(f"{c['evals']} evals")
+    if c.get("unique"):
+        parts.append(f"{c['unique']} lab-unique")
+    return " · ".join(parts)
 
 
 def front(c: dict) -> str:
     art = c.get("art") or f"{c['slug']}.png"
+    art_path = ROOT / "cards" / c["lab"] / c["slug"] / "art" / art
+    art_html = (f'<img src="art/{e(art)}" alt="">' if art_path.exists()
+                else '<div class="art-ph">ART GOES HERE</div>')
     tags = "·".join(f"<span>{e(t)}</span>" for t in c.get("tags", []))
     atks = ""
     for i, b in enumerate(c.get("benches", [])):
@@ -79,16 +88,15 @@ def front(c: dict) -> str:
         f'<div class="name">{e(c.get("name"))}</div></div>'
         f'<div class="hp"><span class="lbl">{e(c.get("capL", "CAP"))}</span>'
         f'<span class="val">{e(c.get("capN"))}</span><span class="e"></span></div></div>'
-        f'<div class="art"><div class="art-win"><img src="art/{e(art)}" alt="">'
+        f'<div class="art"><div class="art-win">{art_html}'
         f'<div class="art-tags">{tags}</div></div></div>'
         f'<div class="dex">{e(dex_text(c))}</div>'
         f"{ability}{atks}"
         f'<div class="wrr"><div class="col"><div class="l">weakness</div>'
         f'<div class="v"><span class="e warn sm"></span>{e(weak.get("t"))}</div></div>'
-        f'<div class="col"><div class="l">resistance</div>'
+        f'<div class="col"><div class="l">standout</div>'
         f'<div class="v">{e(res.get("t"))}</div></div></div>'
-        f'<div class="flavor">{e(c.get("blurb"))}</div>'
-        f'<div class="foot"><span>modelcards.net · Free Systems Lab</span>'
+        f'<div class="foot"><span>freesystems.net · Free Systems Lab</span>'
         f'<span class="no">{e(c.get("num"))} <span class="holo">{e((c.get("tier") or "").upper())}</span></span></div>'
         "</div></div></div></div>"
     )
@@ -101,7 +109,8 @@ def back(c: dict) -> str:
         nodes += (f'<div class="node{on}"><div class="dot"></div>'
                   f'<div class="v">{e(g.get("v"))}</div><div class="d">{e(g.get("d"))}</div></div>')
     rows = "".join(
-        f'<div class="brow"><span class="bn">{e(b.get("n"))}</span>'
+        f'<div class="brow"><div style="flex:1;min-width:0"><span class="bn" style="display:block">{e(b.get("n"))}</span>'
+        f'<span style="display:block;font-size:10px;color:var(--ink3);margin-top:1px">{e(b.get("d"))}</span></div>'
         f'<span class="bs">{e(b.get("s"))}</span><span class="bl">{e(b.get("l"))}</span></div>'
         for b in c.get("btbl", [])
     )
@@ -114,15 +123,10 @@ def back(c: dict) -> str:
         f'<div class="bk-sec"><div class="bk-lbl">Generation Lineage</div>'
         f'<div class="line">{nodes}</div></div>'
         f'<div class="bk-sec"><div class="bk-lbl">Benchmark Record</div>{rows}</div>'
-        f'<div class="bk-sec"><div class="bk-lbl">Weakness / Resistance</div><div class="wr2">'
-        f'<div class="box"><div class="h">⚠ Weakness</div><div class="n">{e(weak.get("t"))}</div>'
-        f'<div class="x">{e(weak.get("d"))}</div></div>'
-        f'<div class="box"><div class="h">↺ Resistance</div><div class="n">{e(res.get("t"))}</div>'
-        f'<div class="x">{e(res.get("d"))}</div></div></div></div>'
-        f'<div class="bk-sec"><div class="bk-lbl">Acknowledged Limitations</div>'
-        f'<ul class="lims">{lims}</ul></div>'
         f'<div class="bk-sec"><div class="bk-lbl">Performance Summary</div>'
         f'<div class="bk-flavor">{e(c.get("blurb"))}</div></div>'
+        f'<div class="bk-sec"><div class="bk-lbl">Acknowledged Limitations</div>'
+        f'<ul class="lims">{lims}</ul></div>'
         f'<div class="bk-val"><div><div class="vt">INDEPENDENT VALIDATION</div>'
         f'<div class="vx">{e(val.get("b"))}</div></div>'
         f'<div class="vr"><div>SET 01</div><div>{e(c.get("num"))}</div></div></div>'

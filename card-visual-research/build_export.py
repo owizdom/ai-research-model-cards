@@ -29,7 +29,8 @@ PRINT_DIR = ROOT / "print"
 DECK_DIR = Path.home() / "Desktop/docs/stanford/model-cards-deck"
 SEND_DIR = Path.home() / "Desktop/model-cards-print-FIXED"
 ZIP = Path.home() / "Desktop/model-cards-print-FIXED.zip"
-COVER = "free-systems-cover"
+COVER = "free-systems-cover"      # the About / card-list card, pack position 00
+TUCKBOX = "free-systems-tuckbox"  # the outer box, printed separately from the deck
 
 
 def entries() -> list[tuple[int, str, str]]:
@@ -87,6 +88,7 @@ def main(argv: list[str]) -> int:
         if missing:
             print(f"  ! no render yet: {', '.join(missing)}")
         print(f"  cover: {'ok' if jpgs(COVER) else 'MISSING'}")
+        print(f"  tuckbox: {'ok' if jpgs(TUCKBOX) else 'MISSING'}")
         print(f"\nwould write {DECK_DIR}")
         print(f"would write {SEND_DIR}  (cover + {total} cards)")
         return 0
@@ -108,9 +110,10 @@ def main(argv: list[str]) -> int:
     # 2. the folder that goes out: cover first, then the same numbered cards
     SEND_DIR.mkdir(parents=True, exist_ok=True)
     fill(SEND_DIR / "00 Free Systems Cover", COVER, missing)
+    fill(SEND_DIR / "_tuckbox", TUCKBOX, missing)
     for i, slug, name in rows:
         fill(SEND_DIR / f"{i:02d} {name}", slug, missing)
-    gone += prune(SEND_DIR, keep | {"00 Free Systems Cover"})
+    gone += prune(SEND_DIR, keep | {"00 Free Systems Cover", "_tuckbox"})
     shutil.copy2(DECK_DIR / "deck-list.txt", SEND_DIR / "deck-list.txt")
 
     junk = strip_junk(SEND_DIR) + strip_junk(DECK_DIR)

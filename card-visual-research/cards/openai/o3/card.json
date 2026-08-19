@@ -1,6 +1,6 @@
 {
   "lab": "openai",
-  "num": "022/055",
+  "num": "004/023",
   "tier": "holo",
   "name": "o3",
   "capN": "88",
@@ -83,9 +83,10 @@
   },
   "lims": [
     "<strong>Cost</strong> — reasoning steps significantly increase inference cost.",
-    "<strong>Overthinking</strong> — sometimes applies heavy compute to trivial tasks."
+    "<strong>Overthinking</strong> — sometimes applies heavy compute to trivial tasks.",
+    "<strong>First card under Preparedness Framework v2</strong> — the baseline every later OpenAI card is measured against."
   ],
-  "blurb": "The model that reset benchmark expectations. Near-perfect AIME. The industry recalibrated what 'frontier' meant. Dangerous capability evaluations became industry standard after o3's release.",
+  "blurb": "First launch and system card released under OpenAI's updated Preparedness Framework. Tools — browsing, Python, image analysis — are used inside the chain of thought itself, not bolted on afterward.",
   "val": {
     "b": "OpenAI safety evals · METR dangerous capabilities, Apr 2025",
     "l": "modelcards.net/o3",

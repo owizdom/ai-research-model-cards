@@ -42,7 +42,18 @@ TAIL = [
 # On disk but deliberately not in the set. --init will not place these, and
 # leaving them out of the roster is what keeps them off the deck, the cover and
 # the gallery. The card folders stay in cards/ so the work is not lost.
-DROPPED = {"grok-4", "grok-4-fast", "grok-4-1"}
+DROPPED = {
+    "claude-2", "claude-3-5-haiku", "claude-3-5-sonnet", "claude-3-7-sonnet",
+    "claude-3-haiku", "claude-3-opus", "claude-3-sonnet", "claude-4-1",
+    "claude-4-5", "claude-4-6", "claude-4-opus", "claude-4-sonnet",
+    "claude-sonnet-4-6", "gemini-1-0-pro", "gemini-1-5-flash", "gemini-1-5-pro",
+    "gemini-2-0-flash", "gemini-2-5-deep-think", "gemini-2-5-pro", "gemini-3-flash",
+    "gemini-3-pro", "gpt-4", "gpt-4-5", "gpt-4o",
+    "llama-2", "llama-3", "llama-3-1", "llama-3-2",
+    "llama-3-3", "llama-4", "mistral-3-1", "mistral-7b",
+    "mistral-large", "mistral-large-2", "mixtral-8-7b", "o1",
+    "o1-mini", "o3-mini",
+}
 
 
 def norm(s: str) -> str:

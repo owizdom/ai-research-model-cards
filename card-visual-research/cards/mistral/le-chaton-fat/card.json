@@ -1,0 +1,91 @@
+{
+  "lab": "mistral",
+  "num": "023/023",
+  "tier": "holo",
+  "name": "Le Chaton Fat",
+  "capN": "∞",
+  "capL": "CAP",
+  "meta": "Mistral AI · Le Chaton Fat · Jun'26 (parody)",
+  "tags": [
+    "SATIRE",
+    "MEME",
+    "NOT REAL"
+  ],
+  "animal": "cat",
+  "words": "0 (does not exist)",
+  "evals": "0",
+  "benches": [
+    {
+      "n": "VOLTAIREBENCH",
+      "d": "Measures optimism in the face of absurdly bad outcomes",
+      "s": "142.7"
+    },
+    {
+      "n": "CONTEXT WINDOW",
+      "d": "Measured in croissants",
+      "s": "99"
+    },
+    {
+      "n": "SAFETY PROFILE",
+      "d": "Self-reported",
+      "s": "très bon"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Le Chat",
+      "d": "2024"
+    },
+    {
+      "v": "Vibe",
+      "d": "Jun'26 (rebrand)"
+    },
+    {
+      "v": "Le Chaton Fat",
+      "d": "Jun'26 (meme)",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "VoltaireBench",
+      "d": "Measures optimism in the face of absurdly bad outcomes",
+      "s": "142.7"
+    },
+    {
+      "n": "Context Window",
+      "d": "Measured in croissants",
+      "s": "99"
+    },
+    {
+      "n": "Safety Profile",
+      "d": "Self-reported",
+      "s": "très bon"
+    }
+  ],
+  "weak": {
+    "t": "Availability",
+    "d": "\"Furious they couldn't access it because of EU export controls\" — it was never real."
+  },
+  "res": {
+    "t": "Vibes",
+    "d": "Immaculate."
+  },
+  "lims": [
+    "<strong>Benchmark is fictional</strong> — VoltaireBench is not a real evaluation."
+  ],
+  "blurb": "A viral parody of Mistral's Le Chat-to-Vibe rebrand, June 2026. Mistral's own CEO played along; no weights, API, or benchmark ever existed.",
+  "val": {
+    "b": "The internet, briefly and unanimously, June 2026.",
+    "l": "freesystems.net/le-chaton-fat",
+    "h": true
+  },
+  "slug": "le-chaton-fat",
+  "html": "le-chaton-fat.html",
+  "art": null,
+  "source": "mockup",
+  "ability": {
+    "name": "Le Gros Chaton",
+    "text": "Mistral posted, then deleted, a satirical announcement. Arthur Mensch corrected the name himself. The internet did the rest."
+  }
+}

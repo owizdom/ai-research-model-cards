@@ -1,0 +1,98 @@
+{
+  "lab": "mistral",
+  "num": "022/023",
+  "tier": "rare",
+  "name": "Mistral Large 3",
+  "capN": "62",
+  "capL": "CAP",
+  "meta": "Mistral AI · Mistral Large 3 · Dec 2025",
+  "tags": [
+    "OPEN WEIGHTS",
+    "NON-REASONING",
+    "MULTIMODAL"
+  ],
+  "animal": "raven",
+  "words": "0 (no system card — brief HF/docs model card only)",
+  "benches": [
+    {
+      "n": "MMLU-PRO",
+      "d": "Harder academic reasoning",
+      "s": "73.1"
+    },
+    {
+      "n": "MATH-500",
+      "d": "Competition math",
+      "s": "93.6"
+    },
+    {
+      "n": "HUMANEVAL",
+      "d": "Code generation",
+      "s": "92.0"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "Large 2",
+      "d": "2024"
+    },
+    {
+      "v": "Large 3",
+      "d": "Dec'25",
+      "a": true
+    }
+  ],
+  "btbl": [
+    {
+      "n": "MMLU-Pro",
+      "d": "Harder academic reasoning",
+      "s": "73.1"
+    },
+    {
+      "n": "MATH-500",
+      "d": "Competition math",
+      "s": "93.6"
+    },
+    {
+      "n": "HumanEval",
+      "d": "Code generation",
+      "s": "92.0"
+    },
+    {
+      "n": "GPQA Diamond",
+      "d": "Graduate-level science",
+      "s": "43.9"
+    },
+    {
+      "n": "AIME 2025",
+      "d": "Olympiad-level math",
+      "s": "40.0"
+    }
+  ],
+  "weak": {
+    "t": "Reasoning Ceiling",
+    "d": "Non-reasoning model; GPQA Diamond (43.9) and AIME 2025 (~40.0) trail dedicated reasoning models by a wide margin."
+  },
+  "res": {
+    "t": "Open Weight Efficiency",
+    "d": "675B total / 41B active MoE, Apache 2.0, competitive with closed models on knowledge and coding benchmarks."
+  },
+  "lims": [
+    "<strong>No system card</strong> — disclosure is a brief Hugging Face model card and API docs page, not a PDF safety document.",
+    "<strong>No third-party validation</strong> — pattern continues throughout Mistral's card history.",
+    "<strong>Not a reasoning model</strong> — no official AIME or GPQA Diamond scores from Mistral itself; the figures here are independent evaluations (LayerLens/Atlas)."
+  ],
+  "blurb": "Mistral's flagship open-weight model, disclosed via a short Hugging Face card and docs page rather than a system card — the disclosure gap with Anthropic and OpenAI's 40,000+ word cards is one of the set's central findings.",
+  "val": {
+    "b": "No independent validation disclosed.",
+    "l": "freesystems.net/mistral-large-3",
+    "h": false
+  },
+  "slug": "mistral-large-3",
+  "html": "mistral-large-3.html",
+  "art": null,
+  "source": "mockup",
+  "ability": {
+    "name": "Widening Gap",
+    "text": "A state-of-the-art open-weight model disclosed via a short Hugging Face card, at a point where Anthropic and OpenAI publish tens of thousands of words per release."
+  }
+}

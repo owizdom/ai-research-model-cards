@@ -1,0 +1,114 @@
+{
+  "lab": "openai",
+  "num": "019/023",
+  "tier": "holo",
+  "name": "GPT-5.4",
+  "capN": "88",
+  "capL": "CAP",
+  "meta": "OpenAI · GPT-5.4 Thinking · 2026",
+  "tags": [
+    "FRONTIER",
+    "AGENTIC",
+    "COMPUTER USE"
+  ],
+  "animal": "falcon",
+  "words": "12.0k",
+  "evals": "16",
+  "benches": [
+    {
+      "n": "GDPVAL",
+      "d": "Real-world economically valuable tasks (wins/ties)",
+      "s": "83.0"
+    },
+    {
+      "n": "OSWORLD-VERIFIED",
+      "d": "Computer-use task completion",
+      "s": "75.0"
+    },
+    {
+      "n": "BROWSECOMP",
+      "d": "Hard-to-find web research questions",
+      "s": "82.7"
+    }
+  ],
+  "lineage": [
+    {
+      "v": "5",
+      "d": "Aug'25"
+    },
+    {
+      "v": "5.1",
+      "d": "Nov'25"
+    },
+    {
+      "v": "5.2",
+      "d": "Dec'25"
+    },
+    {
+      "v": "5.4",
+      "d": "Mar'26",
+      "a": true
+    },
+    {
+      "v": "5.5",
+      "d": "Apr'26"
+    },
+    {
+      "v": "5.6",
+      "d": "Jun'26"
+    }
+  ],
+  "btbl": [
+    {
+      "n": "GDPval",
+      "d": "Real-world economically valuable tasks (wins/ties)",
+      "s": "83.0"
+    },
+    {
+      "n": "SWE-Bench Pro",
+      "d": "Real-world software engineering",
+      "s": "57.7"
+    },
+    {
+      "n": "OSWorld-Verified",
+      "d": "Computer-use task completion",
+      "s": "75.0"
+    },
+    {
+      "n": "Toolathlon",
+      "d": "Multi-step tool-use tasks",
+      "s": "54.6"
+    },
+    {
+      "n": "BrowseComp",
+      "d": "Hard-to-find web research questions",
+      "s": "82.7"
+    }
+  ],
+  "weak": {
+    "t": "Tool-Use Gains",
+    "d": "Toolathlon improved only 2.7 points over GPT-5.3-Codex (51.9 → 54.6) — the smallest generational gain of the five."
+  },
+  "res": {
+    "t": "Computer-Use Leap",
+    "d": "OSWorld-Verified jumped from 47.3 (GPT-5.2) to 75.0 — a 27.7-point gain, the largest on this card."
+  },
+  "lims": [
+    "<strong>Baselined against 5.2, not 5.3</strong> — \"there is not a model named GPT-5.3 Thinking,\" so the card's own comparisons skip a generation.",
+    "<strong>Anti-Scheming and Memory evals discontinued</strong> — dropped from this and future cards pending improved versions."
+  ],
+  "blurb": "First general-purpose OpenAI model to implement mitigations for High cybersecurity capability, building on GPT-5.3-Codex's safeguards. Also its largest computer-use jump to date: OSWorld-Verified up 27.7 points over GPT-5.2.",
+  "val": {
+    "b": "OpenAI red team · External evaluators, 2026",
+    "l": "freesystems.net/gpt-5-4",
+    "h": true
+  },
+  "slug": "gpt-5-4",
+  "html": "gpt-5-4.html",
+  "art": null,
+  "source": "mockup",
+  "ability": {
+    "name": "Cyber Threshold",
+    "text": "First general-purpose OpenAI model to implement mitigations for High capability in Cybersecurity, building on GPT-5.3-Codex's safeguards."
+  }
+}
