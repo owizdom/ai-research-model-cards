@@ -18,19 +18,22 @@
   "unique": "—",
   "benches": [
     {
-      "n": "SWEBENCH VERIFIED",
-      "d": "Inkling itself: 77.6",
-      "s": "80.2"
+      "n": "SWE-BENCH VERIFIED",
+      "d": "Real GitHub issues",
+      "s": "80.2",
+      "cost": 3
     },
     {
       "n": "GPQA DIAMOND",
-      "d": "Inkling itself: 87.2",
-      "s": "89.5"
+      "d": "Graduate-level science",
+      "s": "89.5",
+      "cost": 2
     },
     {
       "n": "SIMPLEQA VERIFIED",
-      "d": "Inkling itself: 43.9",
-      "s": "20.6"
+      "d": "Factual recall",
+      "s": "20.6",
+      "cost": 1
     }
   ],
   "lineage": [

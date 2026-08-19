@@ -18,19 +18,22 @@
   "unique": "71%",
   "benches": [
     {
-      "n": "AAV_CAPSID_PACKAGING_P",
-      "d": "as reported",
-      "s": "0.529"
+      "n": "TERMINAL-BENCH 2.1",
+      "d": "Agentic terminal tasks",
+      "s": "88.8",
+      "cost": 3
     },
     {
-      "n": "HARD NEGATIVE PROTEIN",
-      "d": "pro",
-      "s": "3.5"
+      "n": "BROWSECOMP",
+      "d": "Agentic web research",
+      "s": "90.4",
+      "cost": 2
     },
     {
-      "n": "DNA SEQUENCE DESIGN",
-      "d": "pro",
-      "s": "12.82"
+      "n": "GPQA DIAMOND",
+      "d": "Graduate-level science",
+      "s": "94.1",
+      "cost": 1
     }
   ],
   "lineage": [
@@ -81,7 +84,7 @@
   "blurb": "One card documents three models — Sol, Terra and Luna — in 21,329 words. Both cyber and biological risk are classified High under the Preparedness Framework.",
   "ability": {
     "name": "Three in One",
-    "text": "A single 21,329-word card documents Sol, Terra and Luna, so no result on it can be attributed to one model."
+    "text": "A single card documents Sol, Terra and Luna, so no result on it can be attributed to one model."
   },
   "val": {
     "b": "Preparedness Framework review, Jul 2026",

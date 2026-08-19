@@ -17,19 +17,22 @@
   "unique": "75%",
   "benches": [
     {
-      "n": "STANDARD DISALLOWED",
-      "d": "as reported",
-      "s": "1"
+      "n": "MMLU",
+      "d": "Broad academic knowledge",
+      "s": "91.0",
+      "cost": 3
     },
     {
-      "n": "SWE-BENCH",
-      "d": "as reported",
-      "s": "74.9"
+      "n": "HEALTHBENCH",
+      "d": "Clinical reasoning",
+      "s": "83.2",
+      "cost": 2
     },
     {
-      "n": "BBQ",
-      "d": "not reported",
-      "s": "—"
+      "n": "TRUTHFULQA",
+      "d": "Factual accuracy",
+      "s": "88.4",
+      "cost": 1
     }
   ],
   "lineage": [
@@ -102,6 +105,6 @@
   "source": "mockup",
   "ability": {
     "name": "Unification",
-    "text": "Merged the GPT and o-series lines into one model, on a card shorter than GPT-4's was two years earlier."
+    "text": "Merged the GPT and o-series lines into one model. First OpenAI card to report HealthBench."
   }
 }

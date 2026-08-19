@@ -18,17 +18,17 @@
   "benches": [
     {
       "n": "MMLU",
-      "d": "as reported",
+      "d": "Academic reasoning",
       "s": "0.901"
     },
     {
       "n": "FIRST-PERSON FAIRNESS",
-      "d": "as reported",
+      "d": "Demographic bias",
       "s": "0.00997"
     },
     {
       "n": "SWE-BENCH",
-      "d": "not reported",
+      "d": "Not reported",
       "s": "—"
     }
   ],
@@ -88,6 +88,6 @@
   "source": "mockup",
   "ability": {
     "name": "Cadence",
-    "text": "An incremental release whose real signal was the speed of iteration rather than any single score."
+    "text": "An incremental release across the GPT-5 line, iterated within weeks of its predecessor."
   }
 }

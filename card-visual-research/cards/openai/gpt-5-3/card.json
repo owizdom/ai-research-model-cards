@@ -18,17 +18,17 @@
   "benches": [
     {
       "n": "SABOTAGE SUITE",
-      "d": "as reported",
+      "d": "Covert-sabotage probes",
       "s": "0.88"
     },
     {
       "n": "CVE-BENCH",
-      "d": "as reported",
+      "d": "Real-world exploits",
       "s": "90"
     },
     {
       "n": "BROWSECOMP",
-      "d": "not reported",
+      "d": "Not reported",
       "s": "—"
     }
   ],
@@ -92,6 +92,6 @@
   "source": "mockup",
   "ability": {
     "name": "BrowseComp",
-    "text": "Introduced a browsing benchmark no other lab reports. Scores 71.0, with nothing to compare it against."
+    "text": "Introduced a new browsing benchmark to measure the ability of AI agents to locate hard-to-find information."
   }
 }

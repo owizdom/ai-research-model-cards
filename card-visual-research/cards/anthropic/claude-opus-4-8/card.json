@@ -17,19 +17,22 @@
   "unique": "64%",
   "benches": [
     {
-      "n": "SWE-BENCH",
-      "d": "verified, pro",
-      "s": "88.6"
+      "n": "SWE-BENCH VER.",
+      "d": "Real GitHub issues",
+      "s": "88.6",
+      "cost": 3
     },
     {
       "n": "BROWSECOMP",
-      "d": "as reported",
-      "s": "84.3"
+      "d": "Agentic web research",
+      "s": "84.3",
+      "cost": 2
     },
     {
-      "n": "HUMANITY'S LAST EXAM",
-      "d": "as reported",
-      "s": "49.8"
+      "n": "USAMO 2026",
+      "d": "Olympiad mathematics",
+      "s": "96.7",
+      "cost": 1
     }
   ],
   "lineage": [
@@ -98,7 +101,7 @@
   "art": "art/opus-4-8-wizard.png",
   "source": "mockup",
   "ability": {
-    "name": "Disclosure Ceiling",
-    "text": "The far end of the spread: 61,922 words against Mistral 7B's 745 in the very same set."
+    "name": "Agent Autonomy",
+    "text": "BrowseComp at 84.3, autonomous web browsing foregrounded as a headline capability."
   }
 }

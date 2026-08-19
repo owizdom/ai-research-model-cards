@@ -17,19 +17,22 @@
   "secret": true,
   "benches": [
     {
-      "n": "SWE-BENCH",
-      "d": "verified",
-      "s": "93.9"
+      "n": "REDACTED",
+      "d": "",
+      "s": "██",
+      "cost": 3
     },
     {
-      "n": "TERMINAL-BENCH 2.0",
-      "d": "as reported",
-      "s": "82"
+      "n": "REDACTED",
+      "d": "",
+      "s": "██",
+      "cost": 2
     },
     {
-      "n": "GPQA-DIAMOND",
-      "d": "diamond",
-      "s": "94.5"
+      "n": "REDACTED",
+      "d": "",
+      "s": "██",
+      "cost": 1
     }
   ],
   "lineage": [
@@ -92,6 +95,6 @@
   "source": "mockup",
   "ability": {
     "name": "Project Glasswing",
-    "text": "65,849 words of documentation, second longest in the corpus, and every benchmark row on it redacted."
+    "text": "Every benchmark row on the card redacted. Restricted to a small number of trusted organizations."
   }
 }

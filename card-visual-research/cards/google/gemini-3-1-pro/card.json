@@ -17,19 +17,22 @@
   "unique": "93%",
   "benches": [
     {
-      "n": "TEXT TO TEXT SAFETY",
-      "d": "as reported",
-      "s": "0.10"
+      "n": "AIME",
+      "d": "Competition math",
+      "s": "93.5",
+      "cost": 3
     },
     {
-      "n": "MULTILINGUAL SAFETY",
-      "d": "as reported",
-      "s": "0.11"
+      "n": "GPQA",
+      "d": "Grad-level science",
+      "s": "85.5",
+      "cost": 2
     },
     {
-      "n": "IMAGE TO TEXT SAFETY",
-      "d": "as reported",
-      "s": "-0.33"
+      "n": "SWE-BENCH",
+      "d": "Real GitHub issues",
+      "s": "68.0",
+      "cost": 1
     }
   ],
   "lineage": [
@@ -88,7 +91,7 @@
   "art": null,
   "source": "mockup",
   "ability": {
-    "name": "Follows the Leader",
-    "text": "First Gemini to report SWE-bench, adopting the benchmark Anthropic had already made standard."
+    "name": "Follow the Reader",
+    "text": "First Gemini to report SWE-bench, adopting the benchmark as it sought to keep pace on coding capabilities."
   }
 }
