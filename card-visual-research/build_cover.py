@@ -95,13 +95,6 @@ COVER_CSS = """
   background:linear-gradient(0deg,rgba(7,4,2,.99) 0%,rgba(7,4,2,.96) 26%,
     rgba(7,4,2,.78) 52%,rgba(7,4,2,.34) 76%,rgba(7,4,2,0) 100%)}
 
-/* the angled burst, the "3 BOOSTER PACKS INCLUDED!" role */
-.boxfront .burst{position:absolute;left:10px;top:40px;transform:rotate(-7deg);
-  background:linear-gradient(180deg,#f6dd9c,var(--gold2) 55%,#a87a1e);
-  border-top:2px solid #fff6d8;border-bottom:2px solid #7d5810;
-  padding:9px 30px;box-shadow:0 5px 14px rgba(0,0,0,.5);z-index:60}
-.boxfront .burst span{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:600;
-  letter-spacing:.13em;color:#3a2408}
 
 .boxfront .lock{position:absolute;left:26px;right:26px;bottom:30px;text-align:center;z-index:60}
 .boxfront .wm{font-family:'Cinzel',serif;font-size:64px;font-weight:700;letter-spacing:.09em;
@@ -307,6 +300,30 @@ def _sips(src: Path, dest: Path, px: int) -> None:
                        check=True, capture_output=True)
 
 
+def card_art(d: Path, slug: str) -> Path | None:
+    """The art file a card actually renders, not the one card.json claims.
+
+    Two hand-authored cards had card.json out of step with their own HTML: one
+    stored the path with an "art/" prefix the loader does not expect, the other
+    named opus-4-7-dragon.png, which does not exist. Both dropped silently out
+    of the box front. The HTML is what renders, so read that first.
+    """
+    for html in sorted(d.glob("*.html")):
+        if html.name.startswith("print_"):
+            continue
+        m = re.search(r'<div class="art-win">\s*<img[^>]*src="art/([^"]+)"', html.read_text())
+        if m and (d / "art" / m.group(1)).exists():
+            return d / "art" / m.group(1)
+    c = json.loads((d / "card.json").read_text())
+    for cand in (c.get("art"), f"{slug}.png"):
+        if not cand:
+            continue
+        p = d / "art" / cand.split("/")[-1]
+        if p.exists():
+            return p
+    return None
+
+
 def make_thumbs(slugs: list[str], dest: Path) -> list[tuple[str, str]]:
     """Downscale each rendered card FRONT for the box back.
 
@@ -408,9 +425,8 @@ def make_mosaic(slugs: list[str], dest: Path) -> list[tuple[str, str]]:
     dirs = sync_roster.card_dirs()
     rows, missing = [], []
     for slug in slugs:
-        c = json.loads((dirs[slug] / "card.json").read_text())
-        art = dirs[slug] / "art" / (c.get("art") or f"{slug}.png")
-        if not art.exists():
+        art = card_art(dirs[slug], slug)
+        if art is None:
             missing.append(slug)
             continue
         _sips(art, mdir / f"{slug}.jpg", 420)
@@ -473,7 +489,6 @@ def build_tuckbox() -> Path:
         '<div class="bar"><span class="lab">FREE SYSTEMS LAB</span>'
         '<span class="ed">FIRST EDITION</span></div>'
         f'<div class="frame">{CORNERS}<div class="well">{tiles}<div class="veil"></div>'
-        f'<div class="burst"><span>ALL {len(slugs)} CARDS INSIDE</span></div>'
         '<div class="lock"><div class="wm">FREE SYSTEMS</div>'
         '<div class="hair"></div><div class="kick">MODEL CARDS</div></div>'
         '</div></div>'
@@ -492,17 +507,20 @@ def build_tuckbox() -> Path:
         '<div class="face back"><div class="boxpanel boxback"><div class="pad">'
         '<div class="bar"><span class="lab">FREE SYSTEMS LAB</span></div>'
         f'<div class="frame">{CORNERS}<div class="well2">'
-        '<div class="blurb">Every model here ships with a document<br>'
-        'its own lab wrote about it.<br>These are those documents, read.</div>'
+        # Three blocks, three jobs: the hook, the finding, the small print.
+        # They used to say "the lab's own document" three different ways, which
+        # read as padding.
+        '<div class="blurb">Every frontier model ships with a document<br>'
+        'its own lab wrote about it.<br>Almost nobody reads them.</div>'
         f'<div class="grid">{cards_html}</div>'
-        f'<div class="note">One card per model, every figure read out of the lab\'s own '
-        f'published document. The longest runs {hi:,} words and the shortest {lo:,}. '
-        'What a lab chose not to measure is printed here too.</div>'
+        f'<div class="note">So we read all {len(slugs)}. They span {spread}\u00d7 in length, '
+        f'the shortest {lo:,} words and the longest {hi:,}. '
+        'What a lab chose not to measure is printed too.</div>'
         '</div></div>'
         '<div class="legal"><div class="bc">BARCODE / EAN-13</div>'
-        f'<div class="lgl"><b>SET 01 \u00b7 {len(slugs)} CARDS \u00b7 {len(labs)} LABS</b>'
-        'Free Systems Lab \u00b7 Stanford GSB. Figures are each lab\'s own, printed with the '
-        'variant named. Not affiliated with any lab listed.<br>freesystems.net</div></div>'
+        f'<div class="lgl"><b>{len(slugs)} CARDS \u00b7 {len(labs)} LABS</b>'
+        'Free Systems Lab \u00b7 Stanford GSB. Scores are self-reported and printed with '
+        'the variant named. Not affiliated with any lab listed.<br>freesystems.net</div></div>'
         '</div><div class="grain"></div></div></div>'
     )
 

@@ -232,7 +232,7 @@ def build_html(g: Geometry, front: Path, back: Path, guides: bool) -> str:
     body.append(panel_div(g, front, g.x_front, g.y_top, bleed_top=True, bleed_bottom=True))
 
     # spines: same copy on both, so the box reads whichever way it is shelved
-    spine = "FREE SYSTEMS &middot; MODEL CARDS &middot; SET 01 &middot; %d CARDS" % g.cards
+    spine = "FREE SYSTEMS &middot; MODEL CARDS &middot; %d CARDS" % g.cards
     fs = max(16, min(30, px(g.D) * 0.26))
     for x in (g.x_side1, g.x_side2):
         body.append(rect("spine", g, x, g.y_top, g.D, g.H,

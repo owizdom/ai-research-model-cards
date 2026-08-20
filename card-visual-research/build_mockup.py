@@ -63,8 +63,47 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          'family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">')
 
 
+def hires_panels(scale: int = 2) -> tuple[Path, Path]:
+    """Re-render the box panels at `scale` device pixels for use as textures.
+
+    The print files are 816x1110 JPEGs, which is exactly right for print and too
+    small and too compressed to skin a box with. This drives build_print's own
+    full-bleed HTML through Chrome at a higher device scale factor, so the
+    texture is the same artwork at 2x and lossless.
+    """
+    import build_print as BP
+    src = ROOT / "cards" / "_pack" / "free-systems-tuckbox"
+    html_src = src / "free-systems-tuckbox.html"
+    style, links, faces, art = BP.parse_card(html_src)
+    out = {}
+    for side in ("front", "back"):
+        # The panel references its art and card thumbnails by relative path, so
+        # the page has to sit in the card's own directory or every image 404s.
+        # build_print.py writes its print_*.html there for the same reason.
+        hf = src / f"_tex-{side}.html"
+        hf.write_text(BP.build_html(style, links, faces[side], "freesystems",
+                                    art, False, full_bleed=True))
+        png = OUT / f"_tex-{side}.png"
+        subprocess.run([CHROME, "--headless", "--disable-gpu", "--hide-scrollbars",
+                        f"--force-device-scale-factor={scale}",
+                        "--allow-file-access-from-files",
+                        f"--window-size={BP.BLEED_W},{BP.BLEED_H}",
+                        "--virtual-time-budget=14000",
+                        f"--screenshot={png}", hf.as_uri()],
+                       capture_output=True, text=True, timeout=300)
+        hf.unlink(missing_ok=True)
+        if not png.exists():
+            sys.exit(f"chrome produced no {png.name}")
+        out[side] = png
+    return out["front"], out["back"]
+
+
 def face_img(img: Path, w: float, h: float) -> str:
-    """A panel placed so its TRIM fills the face, the bleed cropped away."""
+    """A panel placed so its TRIM fills the face, the bleed cropped away.
+
+    Scale is computed against the 816x1110 authored grid, not the file's pixel
+    size, so a 2x texture drops in without changing any of the arithmetic.
+    """
     sx, sy = w / TRIM_W, h / TRIM_H
     return (f'<img src="{img.as_uri()}" style="left:{-OFF_X * sx:.2f}px;'
             f'top:{-OFF_Y * sy:.2f}px;width:{D.PANEL_W_PX * sx:.2f}px;'
@@ -75,7 +114,7 @@ def box_html(g: D.Geometry, front: Path, back: Path, s: float,
              ry: float, caption: str) -> str:
     """One box at scale s px/mm, yawed ry degrees."""
     W, H, Dp = g.W * s, g.H * s, g.D * s
-    spine_txt = f"FREE SYSTEMS &middot; MODEL CARDS &middot; SET 01 &middot; {g.cards} CARDS"
+    spine_txt = f"FREE SYSTEMS &middot; MODEL CARDS &middot; {g.cards} CARDS"
     fs = max(9, min(19, Dp * 0.24))
 
     def f(cls, w, h, tf, inner="", extra=""):
@@ -143,7 +182,8 @@ def main(argv: list[str]) -> int:
     import sync_roster
 
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--scale", type=float, default=11.0, help="px per mm")
+    ap.add_argument("--scale", type=float, default=16.0, help="px per mm")
+    ap.add_argument("--tex", type=int, default=2, help="texture supersample")
     ap.add_argument("--stock-mm", type=float, default=0.33)
     ap.add_argument("--slack-mm", type=float, default=1.5)
     a = ap.parse_args(argv)
@@ -151,13 +191,8 @@ def main(argv: list[str]) -> int:
     cards = len(sync_roster.read_roster())
     g = D.Geometry(cards, a.stock_mm, a.slack_mm, 1.0, 12.0, 3.0)
 
-    front = ROOT / "print" / "free-systems-tuckbox_front.jpg"
-    back = ROOT / "print" / "free-systems-tuckbox_back.jpg"
-    for f in (front, back):
-        if not f.exists():
-            sys.exit(f"missing {f.name} — run build_print.py free-systems-tuckbox first")
-
     OUT.mkdir(parents=True, exist_ok=True)
+    front, back = hires_panels(a.tex)
     s = a.scale
     W, H, tab = g.W * s, g.H * s, g.HANG * s
 
@@ -177,7 +212,8 @@ def main(argv: list[str]) -> int:
             sys.exit(f"chrome produced no {out.name}")
         written.append(out)
 
-    print(f"box  : {g.W} x {g.H} x {g.D} mm, hang tab {g.HANG} mm, at {s:g} px/mm")
+    print(f"box  : {g.W} x {g.H} x {g.D} mm, hang tab {g.HANG} mm, "
+          f"at {s:g} px/mm, textures at {a.tex}x")
     for f in written:
         print(f"  wrote {f.relative_to(ROOT)}  ({f.stat().st_size / 1e6:.2f} MB)")
     return 0
