@@ -19,7 +19,7 @@
     {
       "n": "SABOTAGE SUITE",
       "d": "Covert-sabotage probes",
-      "s": "0.88"
+      "s": "88.0"
     },
     {
       "n": "CVE-BENCH",
@@ -91,7 +91,7 @@
   "art": null,
   "source": "mockup",
   "ability": {
-    "name": "BrowseComp",
-    "text": "Introduced a new browsing benchmark to measure the ability of AI agents to locate hard-to-find information."
+    "name": "Codex Only",
+    "text": "A Codex-line release rather than a general model, and its card reports no capability score to compare against the rest of the set."
   }
 }

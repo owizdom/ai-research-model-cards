@@ -19,12 +19,12 @@
     {
       "n": "PRODUCTION BENCHMARKS",
       "d": "Internal production suite",
-      "s": "0.865"
+      "s": "86.5"
     },
     {
       "n": "STRONGREJECT",
       "d": "Jailbreak resistance",
-      "s": "0.974"
+      "s": "97.4"
     },
     {
       "n": "GPQA",
@@ -88,7 +88,7 @@
   "art": null,
   "source": "mockup",
   "ability": {
-    "name": "Closing the Gap",
-    "text": "Narrowed the agentic-coding gap with Anthropic on SWE-bench, which OpenAI had never led."
+    "name": "Just an Addendum",
+    "text": "Five pages total. States its safety mitigations are \"largely the same\" as GPT-5's and reports no capability benchmarks at all."
   }
 }
