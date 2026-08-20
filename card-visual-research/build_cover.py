@@ -49,11 +49,20 @@ COVER_CSS = """
 
 /* ---- the tuck box ------------------------------------------------------- */
 .tuck .wordmark{font-size:34px}
-.tuck .art{margin-top:12px;width:100%;flex:1 1 auto;display:flex}
+/* The hero is square, the window prints 598x503 (1.19:1), so `cover` discards
+   95px, 15.9% of the image height. Measured on the art itself the composition
+   sits in rows 75-932 of 1024, leaving 75px of dead backdrop above and 91px
+   below: 166px of margin against a 163px crop. It fits, but only if the crop
+   is anchored rather than centred. Centring spends 81px each way and takes
+   6px off the eagle's wingtips and the serpent heads. 45% spends 73px above
+   and 90px below, both inside the dead margin, with ~1.5px of slack either
+   end. The faintest outer sparkles (rows 68-74 and 933-945) are 17px wider
+   than the window can physically show at this ratio and do get trimmed.
+   `contain` was the other way to keep it whole and it letterboxed the window
+   with black bars, which is what this replaces. */
+.tuck .art{margin-top:12px;width:100%;flex:1 1 auto;display:flex;min-height:0}
 .tuck .art-win{flex:1 1 auto;height:auto;min-height:300px}
-.tuck .art-win img{object-fit:contain;object-position:50% 50%;background:#0b0805}
-/* the crest is a designed composition, so show it whole rather than cropping
-   the eagle's wingtips and the serpent heads out of frame */
+.tuck .art-win img{object-fit:cover;object-position:50% 45%}
 .tuck .labs{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:8.6px;
   font-weight:600;letter-spacing:.13em;color:var(--ink2);line-height:1.85;text-align:center;
   max-width:92%}
