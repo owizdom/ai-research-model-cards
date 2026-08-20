@@ -20,19 +20,22 @@
       "n": "REDACTED",
       "d": "",
       "s": "██",
-      "cost": 3
+      "c": "#222",
+      "na": true
     },
     {
       "n": "REDACTED",
       "d": "",
       "s": "██",
-      "cost": 2
+      "c": "#222",
+      "na": true
     },
     {
       "n": "REDACTED",
       "d": "",
       "s": "██",
-      "cost": 1
+      "c": "#222",
+      "na": true
     }
   ],
   "lineage": [
@@ -56,19 +59,16 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench",
-      "s": "93.9",
-      "l": "3 labs"
+      "n": "REDACTED",
+      "s": "██",
+      "l": "classified",
+      "na": true
     },
     {
-      "n": "Terminal-bench 2.0",
-      "s": "82",
-      "l": "1 lab"
-    },
-    {
-      "n": "GPQA-Diamond",
-      "s": "94.5",
-      "l": "3 labs"
+      "n": "REDACTED",
+      "s": "██",
+      "l": "classified",
+      "na": true
     }
   ],
   "weak": {
@@ -95,6 +95,6 @@
   "source": "mockup",
   "ability": {
     "name": "Project Glasswing",
-    "text": "Every benchmark row on the card redacted. Restricted to a small number of trusted organizations."
+    "text": "65,849 words of documentation, second longest in the corpus, and every benchmark row on it redacted."
   }
 }

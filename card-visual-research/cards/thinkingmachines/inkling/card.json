@@ -18,22 +18,19 @@
   "unique": "—",
   "benches": [
     {
-      "n": "AIME 2026",
-      "d": "Competition math",
-      "s": "97.1",
-      "cost": 3
+      "n": "TEXT + IMAGE + AUDIO",
+      "d": "Native multimodal input",
+      "s": "—"
     },
     {
-      "n": "SWE-BENCH VERIFIED",
-      "d": "Real GitHub issues",
-      "s": "77.6",
-      "cost": 2
+      "n": "975B / 41B ACTIVE",
+      "d": "Sparse mixture of experts",
+      "s": "—"
     },
     {
-      "n": "MCP ATLAS",
-      "d": "Tool-use coverage",
-      "s": "74.1",
-      "cost": 1
+      "n": "OPEN WEIGHTS",
+      "d": "Downloadable by anyone",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -84,7 +81,7 @@
   "blurb": "Thinking Machines' first model. 975B parameters with 41B active, multimodal across text, image and audio, released with open weights on 2026-07-15.",
   "ability": {
     "name": "First and Open",
-    "text": "Thinking Machines' first model, released with open weights: 975B parameters, 41B active, multimodal across text, image and audio."
+    "text": "A lab's first model released with open weights: 975B parameters, 41B active, multimodal across text, image and audio."
   },
   "val": {
     "b": "Hand-read from the published model card",

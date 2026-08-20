@@ -20,19 +20,19 @@
       "n": "AIME",
       "d": "Competition math",
       "s": "93.5",
-      "cost": 3
+      "c": "#4285f4"
     },
     {
       "n": "GPQA",
       "d": "Grad-level science",
       "s": "85.5",
-      "cost": 2
+      "c": "#2a5ec8"
     },
     {
       "n": "SWE-BENCH",
       "d": "Real GitHub issues",
       "s": "68.0",
-      "cost": 1
+      "c": "#1a3e90"
     }
   ],
   "lineage": [
@@ -52,19 +52,19 @@
   ],
   "btbl": [
     {
-      "n": "Text to Text Safety",
-      "s": "0.10",
-      "l": "1 lab"
+      "n": "AIME",
+      "s": "93.5",
+      "l": "2 labs"
     },
     {
-      "n": "Multilingual Safety",
-      "s": "0.11",
-      "l": "1 lab"
+      "n": "GPQA",
+      "s": "85.5",
+      "l": "4 labs"
     },
     {
-      "n": "Image to Text Safety",
-      "s": "-0.33",
-      "l": "1 lab"
+      "n": "SWE-bench",
+      "s": "68.0",
+      "l": "3 labs"
     }
   ],
   "weak": {
@@ -91,7 +91,7 @@
   "art": null,
   "source": "mockup",
   "ability": {
-    "name": "Follow the Reader",
-    "text": "First Gemini to report SWE-bench, adopting the benchmark as it sought to keep pace on coding capabilities."
+    "name": "Follows the Leader",
+    "text": "First Gemini to report SWE-bench, adopting the benchmark Anthropic had already made standard."
   }
 }

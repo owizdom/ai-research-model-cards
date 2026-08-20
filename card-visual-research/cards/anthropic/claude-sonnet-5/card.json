@@ -18,22 +18,19 @@
   "unique": "80%",
   "benches": [
     {
-      "n": "SWE-BENCH PRO",
-      "d": "Harder variation of SWE-bench Verified",
-      "s": "63.2",
-      "cost": 3
+      "n": "LONG-FORM VIROLOGY",
+      "d": "Wet-lab protocol tasks",
+      "s": "0.82"
     },
     {
-      "n": "TERMINAL-BENCH 2.1",
-      "d": "Agentic terminal tasks",
-      "s": "80.4",
-      "cost": 2
+      "n": "VCT",
+      "d": "Virology capabilities test",
+      "s": "0.56"
     },
     {
-      "n": "OSWORLD-VERIFIED",
-      "d": "Computer use",
-      "s": "81.2",
-      "cost": 1
+      "n": "DNA SCREENING",
+      "d": "Synthesis screening evasion",
+      "s": "5.0"
     }
   ],
   "lineage": [
@@ -53,18 +50,18 @@
   ],
   "btbl": [
     {
-      "n": "Long-form virology tasks",
-      "s": "0.79",
+      "n": "Long-form virology",
+      "s": "0.82",
       "l": "1 lab"
     },
     {
       "n": "VCT",
-      "s": "0.45",
+      "s": "0.56",
       "l": "2 labs"
     },
     {
       "n": "DNA Synthesis Screening",
-      "s": "5",
+      "s": "5.0",
       "l": "1 lab"
     }
   ],
@@ -83,8 +80,8 @@
   ],
   "blurb": "58 disclosed evaluations, 80% of them run by no other lab. The published suite leans heavily toward biosecurity rather than the capability benchmarks peers report.",
   "ability": {
-    "name": "Above Its Tier",
-    "text": "Beats Opus 4.8 on Terminal-bench 2.1 at roughly half the price, the first Sonnet to outperform the concurrent flagship on agentic coding."
+    "name": "Alone at Eighty",
+    "text": "58 disclosed evaluations and 80% of them appear on no other lab's card — the highest single-lab share of any Claude card."
   },
   "val": {
     "b": "Internal + UK AISI, Jun 2026",

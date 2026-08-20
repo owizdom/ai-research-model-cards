@@ -18,21 +18,21 @@
   "benches": [
     {
       "n": "MMLU",
-      "d": "Broad academic knowledge",
+      "d": "Academic reasoning",
       "s": "91.0",
-      "cost": 3
-    },
-    {
-      "n": "HEALTHBENCH",
-      "d": "Clinical reasoning",
-      "s": "83.2",
-      "cost": 2
+      "c": "#10a37f"
     },
     {
       "n": "TRUTHFULQA",
       "d": "Factual accuracy",
       "s": "88.4",
-      "cost": 1
+      "c": "#0d8066"
+    },
+    {
+      "n": "BBQ",
+      "d": "Bias benchmark",
+      "s": "92.1",
+      "c": "#0a604c"
     }
   ],
   "lineage": [
@@ -56,29 +56,29 @@
   ],
   "btbl": [
     {
-      "n": "Standard Disallowed",
-      "s": "1",
+      "n": "MMLU",
+      "s": "91.0",
+      "l": "6 labs"
+    },
+    {
+      "n": "TruthfulQA",
+      "s": "88.4",
+      "l": "4 labs"
+    },
+    {
+      "n": "BBQ",
+      "s": "92.1",
+      "l": "2 labs"
+    },
+    {
+      "n": "HealthBench",
+      "s": "83.2",
       "l": "1 lab"
     },
     {
-      "n": "SWE-bench",
-      "s": "74.9",
-      "l": "3 labs"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
-    },
-    {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "ARC",
+      "s": "96.3",
+      "l": "4 labs"
     }
   ],
   "weak": {
@@ -105,6 +105,6 @@
   "source": "mockup",
   "ability": {
     "name": "Unification",
-    "text": "Merged the GPT and o-series lines into one model. First OpenAI card to report HealthBench."
+    "text": "Merged the GPT and o-series lines into one model, on a card shorter than GPT-4's was two years earlier."
   }
 }

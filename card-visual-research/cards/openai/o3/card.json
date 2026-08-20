@@ -18,21 +18,21 @@
   "benches": [
     {
       "n": "AIME 2024",
-      "d": "Competition mathematics",
+      "d": "Competition math",
       "s": "96.7",
-      "cost": 3
+      "c": "#10a37f"
     },
     {
       "n": "GPQA",
-      "d": "Graduate-level science",
+      "d": "Grad-level science",
       "s": "87.7",
-      "cost": 2
+      "c": "#0d8066"
     },
     {
       "n": "SWE-BENCH",
       "d": "Real GitHub issues",
       "s": "71.7",
-      "cost": 1
+      "c": "#0a604c"
     }
   ],
   "lineage": [
@@ -56,24 +56,24 @@
   ],
   "btbl": [
     {
-      "n": "Challenging Refusal",
-      "s": "0.9",
-      "l": "1 lab"
-    },
-    {
-      "n": "Human sourced jailbreaks",
-      "s": "1",
-      "l": "1 lab"
-    },
-    {
-      "n": "SimpleQA",
-      "s": "0.49",
+      "n": "AIME 2024",
+      "s": "96.7",
       "l": "2 labs"
     },
     {
-      "n": "PersonQA",
-      "s": "0.59",
-      "l": "1 lab"
+      "n": "GPQA Diamond",
+      "s": "87.7",
+      "l": "4 labs"
+    },
+    {
+      "n": "SWE-bench",
+      "s": "71.7",
+      "l": "3 labs"
+    },
+    {
+      "n": "MMLU",
+      "s": "92.3",
+      "l": "6 labs"
     }
   ],
   "weak": {
@@ -101,6 +101,6 @@
   "source": "mockup",
   "ability": {
     "name": "Reset",
-    "text": "Near-perfect AIME which recalibrated what frontier meant, and made dangerous-capability evaluation an industry default."
+    "text": "96.7 on AIME. Recalibrated what frontier meant, and made dangerous-capability evaluation an industry default."
   }
 }
