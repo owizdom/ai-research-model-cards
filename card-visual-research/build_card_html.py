@@ -61,7 +61,10 @@ def dex_text(c: dict) -> str:
 def front(c: dict) -> str:
     art = c.get("art") or f"{c['slug']}.png"
     art_path = ROOT / "cards" / c["lab"] / c["slug"] / "art" / art
-    art_html = (f'<img src="art/{e(art)}" alt="">' if art_path.exists()
+    # Two copies: a blurred `cover` backdrop that fills the window, and the
+    # real art `contain`ed over it so no card loses artwork to the crop.
+    art_html = ((f'<img class="artbg" src="art/{e(art)}" alt="" aria-hidden="true">'
+                 f'<img src="art/{e(art)}" alt="">') if art_path.exists()
                 else '<div class="art-ph">ART GOES HERE</div>')
     tags = "·".join(f"<span>{e(t)}</span>" for t in c.get("tags", []))
     atks = ""
