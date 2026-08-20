@@ -45,17 +45,13 @@ def dex_text(c: dict) -> str:
     Hand-read cards have no corpus figures, and printing "— words · — evals"
     reads as broken rather than as honest. Say what is actually true of them.
     """
-    num = (c.get("num") or "").split("/")[0]
-    if c.get("source") == "manual-cardread":
-        return f"NO. {num} · hand-read card · not yet in the corpus"
-    parts = [f"NO. {num}"]
-    if c.get("words"):
-        parts.append(f"{c['words']} words")
-    if c.get("evals"):
-        parts.append(f"{c['evals']} evals")
-    if c.get("unique"):
-        parts.append(f"{c['unique']} lab-unique")
-    return " · ".join(parts)
+    # Just the number. The strip used to carry word count, eval count and
+    # lab-unique share, which meant cards with no corpus row printed an apology
+    # in their place ("hand-read card · not yet in the corpus", or a count of
+    # "0 (no system card — blog only)") and the set never read consistently.
+    # Those figures still print on the card, in the ability text and the back
+    # table; the strip under the art is an index line.
+    return f"NO. {(c.get('num') or '').split('/')[0]}"
 
 
 def front(c: dict) -> str:
