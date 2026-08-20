@@ -20,12 +20,12 @@
     {
       "n": "LONG-FORM VIROLOGY",
       "d": "Wet-lab protocol tasks",
-      "s": "0.82"
+      "s": "82.0"
     },
     {
       "n": "VCT",
       "d": "Virology capabilities test",
-      "s": "0.56"
+      "s": "56.0"
     },
     {
       "n": "DNA SCREENING",
@@ -51,12 +51,12 @@
   "btbl": [
     {
       "n": "Long-form virology",
-      "s": "0.82",
+      "s": "82.0",
       "l": "1 lab"
     },
     {
       "n": "VCT",
-      "s": "0.56",
+      "s": "56.0",
       "l": "2 labs"
     },
     {
