@@ -48,84 +48,89 @@ COVER_CSS = """
   letter-spacing:.14em;color:var(--ink3);margin-top:5px}
 .cover .sparkrow{display:flex;gap:7px;justify-content:center;margin-top:11px}
 
-/* ---- tuck box panels: full bleed, no card frame -------------------------
-   The box is not a card. It carried the card composition, which nests four
-   rectangles (parchment sheet, blurred bleed band, gold frame, cream panel,
-   art window) and left the artwork holding 33% of the face. Real packs give
-   art the whole face and set type on top of it, so these panels do that.
+/* ---- tuck box panels: parchment and gold, like the cards ----------------
+   The box was near-black (#0b0805), darker than any colour in the deck: card
+   faces are cream, frames gold, and the only dark is the art window's #1a1005.
+   A shelf of these cards reads cream and gold, so a black box read as a
+   different product. Solid dark also cracks white along a crease when folded
+   board is scored, and a tuck box has six creases, plus it shows every scuff
+   on something people handle.
 
-   Authored at 816x1110, the print file size, shown at .588 in the gallery
-   where .cardwrap is 480px wide. build_print.py's full-bleed mode sets zoom:1.
+   Authored at 816x1110, the print file size, shown at .588 in the gallery.
+   build_print.py's full-bleed mode sets zoom:1. These px ARE print px at
+   300dpi where 1pt = 4.167px, so fine print is 16-20px, not the card CSS's
+   8-11px, which only works because .pframe scales it by 1.581.
 
-   These px ARE print px at 300dpi, where 1pt = 4.167px. The fine print here is
-   17-20px because that is 4-5pt, what packs actually set credits at. Sizing it
-   off the card CSS (8-11px) would print at 2 to 2.6pt and be unreadable: the
-   cards get away with it only because .pframe scales them by 1.581. */
-.boxpanel{position:relative;width:816px;height:1110px;overflow:hidden;
-  background:#0b0805;color:var(--cream);font-family:'Jost',sans-serif;zoom:.588}
-.boxpanel .hero{position:absolute;top:0;left:0;width:816px;height:auto;display:block}
-/* The hero is square, the panel is 816 wide, so it lands 816x816 with nothing
-   cropped at all. The old window discarded 95px of it. Below 816 the panel's
-   own black carries on; the seam starts under the lowest ink (row 932 of 1024
-   = y 743 here) so it feathers backdrop into backdrop and cannot be seen. */
-.boxpanel .seam{position:absolute;left:0;right:0;top:731px;height:180px;
-  background:linear-gradient(180deg,rgba(11,8,5,0),#0b0805 68%)}
-.boxpanel .scrim{position:absolute;left:0;right:0;top:0;height:210px;
-  background:linear-gradient(180deg,rgba(6,4,2,.80),rgba(6,4,2,.32) 54%,rgba(6,4,2,0))}
+   No outer keyline: on the dieline the panel edge IS a crease, and a hairline
+   running parallel to one advertises every millimetre of die-cut drift. Gold
+   appears on the art panel, the wordmark and the rules instead. */
+.boxpanel{position:relative;width:816px;height:1110px;overflow:hidden;color:var(--ink);
+  background:linear-gradient(158deg,var(--cream) 0%,var(--cream2) 54%,var(--cream3) 100%);
+  font-family:'Jost',sans-serif;zoom:.588}
+.boxpanel .pad{position:absolute;inset:0;padding:74px 70px 66px;display:flex;flex-direction:column}
+.boxpanel .grain{position:absolute;inset:0;opacity:.05;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* Ink density measured over the hero on an 8x8 grid: row 0 is 0-18% across the
-   whole width, so the mark and the badge sit on backdrop. Columns 5-6 at rows
-   1-2 run 44-64% (the dragon), which is why the badge stays in the corner. */
-.boxfront .mark{position:absolute;top:74px;left:74px;font-family:'JetBrains Mono',monospace;
-  font-size:19px;font-weight:600;letter-spacing:.24em;color:var(--gold)}
-.boxfront .badge{position:absolute;top:66px;right:70px;width:150px;height:150px;
-  border-radius:50%;border:2px solid var(--gold2);
-  background:radial-gradient(circle at 50% 32%,rgba(28,19,7,.93),rgba(9,6,3,.97));
-  box-shadow:0 0 0 5px rgba(9,6,3,.5),0 6px 20px rgba(0,0,0,.55);
+.boxfront .top{display:flex;justify-content:space-between;align-items:flex-start}
+.boxfront .mark{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:600;
+  letter-spacing:.24em;color:var(--t3);padding-top:16px}
+.boxfront .badge{width:112px;height:112px;border-radius:50%;border:2.5px solid var(--gold2);
+  background:radial-gradient(circle at 50% 32%,#fff8e2,var(--cream2));
+  box-shadow:0 3px 11px rgba(90,61,28,.22);flex:0 0 auto;
   display:flex;flex-direction:column;align-items:center;justify-content:center}
-.boxfront .badge .n{font-family:'Cinzel',serif;font-size:60px;font-weight:700;line-height:1;
-  color:var(--gold);text-shadow:0 2px 6px rgba(0,0,0,.75)}
-.boxfront .badge .w{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;
-  letter-spacing:.22em;color:var(--cream2);margin-top:8px}
+.boxfront .badge .n{font-family:'Cinzel',serif;font-size:44px;font-weight:700;
+  line-height:1;color:var(--ink)}
+.boxfront .badge .w{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;
+  letter-spacing:.2em;color:var(--ink3);margin-top:4px}
 
-.boxfront .lockup{position:absolute;left:74px;right:74px;bottom:205px;text-align:center}
-.boxfront .wm{font-family:'Cinzel',serif;font-size:72px;font-weight:700;letter-spacing:.10em;
+/* The mosaic is the set's REAL artwork. The old hero was generated from a text
+   description of the creatures, so its eagle, whale and cat were repaints that
+   appear on no card. These are the actual files: 21 arts, a 6x4 grid with one
+   featured 2x2, which is 20 singles + 4 cells = exactly 24. */
+.boxfront .art{margin-top:24px;padding:5px;border-radius:7px;
+  background:linear-gradient(150deg,#e8c878,#b8902e,#8a6420);
+  box-shadow:0 4px 15px rgba(90,61,28,.30),inset 0 1px 2px rgba(255,255,255,.45)}
+.boxfront .mosaic{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-flow:dense;
+  gap:2px;border-radius:4px;overflow:hidden;background:#1a1005}
+.boxfront .mosaic img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.boxfront .mosaic img.feat{grid-column:3/span 2;grid-row:2/span 2}
+
+.boxfront .lockup{margin-top:30px;text-align:center}
+.boxfront .wm{font-family:'Cinzel',serif;font-size:70px;font-weight:700;letter-spacing:.10em;
   line-height:1.05;
-  background:linear-gradient(178deg,#fff4d0 0%,var(--gold) 34%,#c9962f 68%,#8a6414 100%);
+  background:linear-gradient(178deg,#f6dd9c 0%,var(--gold2) 30%,#a87a1e 66%,#6d4d0e 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.boxfront .hair{width:56%;height:2px;margin:17px auto 14px;
+.boxfront .hair{width:54%;height:2px;margin:15px auto 13px;
   background:linear-gradient(90deg,transparent,var(--gold2),transparent)}
-.boxfront .kick{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;
-  letter-spacing:.36em;text-indent:.36em;color:var(--cream2)}
-.boxfront .labs{position:absolute;left:70px;right:70px;bottom:118px;text-align:center;
-  font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;letter-spacing:.09em;
-  line-height:1.78;color:rgba(226,210,168,.80)}
-.boxfront .url{position:absolute;left:70px;right:70px;bottom:72px;text-align:center;
-  font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:.16em;
-  color:rgba(226,210,168,.58)}
+.boxfront .kick{font-family:'JetBrains Mono',monospace;font-size:23px;font-weight:600;
+  letter-spacing:.36em;text-indent:.36em;color:var(--ink2)}
+.boxfront .labs{margin-top:auto;text-align:center;font-family:'JetBrains Mono',monospace;
+  font-size:16px;font-weight:600;letter-spacing:.09em;line-height:1.8;color:var(--ink3)}
+.boxfront .url{margin-top:12px;padding-top:12px;border-top:1px solid var(--cream3);
+  text-align:center;font-family:'JetBrains Mono',monospace;font-size:17px;
+  letter-spacing:.16em;color:var(--ink3)}
 
-/* ---- box back: the cards themselves ------------------------------------
-   The numbered set list used to print here AND on the About card back, from
-   the same set_list() call. The About card keeps it; this panel shows what is
-   actually in the box, which is what the reference packs put on their reverse. */
-.boxback .bg{position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 6%,rgba(184,122,46,.17),transparent 60%)}
-.boxback .pad{position:absolute;inset:0;padding:70px 48px 66px;display:flex;flex-direction:column}
-.boxback .wm2{margin-left:22px;margin-right:22px;font-family:'Cinzel',serif;font-size:40px;font-weight:700;letter-spacing:.10em;
+/* ---- box back: the cards themselves, on a display board -----------------
+   The numbered set list used to print here AND on the About card back from the
+   same set_list() call. The About card keeps it; this shows what is inside. */
+.boxback .wm2{font-family:'Cinzel',serif;font-size:40px;font-weight:700;letter-spacing:.10em;
   text-align:center;line-height:1.05;
-  background:linear-gradient(178deg,#fff4d0 0%,var(--gold) 34%,#c9962f 68%,#8a6414 100%);
+  background:linear-gradient(178deg,#f6dd9c 0%,var(--gold2) 30%,#a87a1e 66%,#6d4d0e 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.boxback .kick2{margin-left:22px;margin-right:22px;font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;
-  letter-spacing:.30em;text-indent:.30em;text-align:center;margin-top:13px;color:var(--gold)}
-.boxback .grid{margin-top:30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-.boxback .grid img{width:111px;height:151px;object-fit:cover;border-radius:4px;
-  box-shadow:0 2px 7px rgba(0,0,0,.6)}
-.boxback .finding{margin-top:auto;margin-left:22px;margin-right:22px;padding-top:24px;text-align:center;
-  font-size:20px;line-height:1.52;color:rgba(236,224,192,.86)}
-.boxback .fine{margin:20px 22px 0;padding-top:15px;border-top:1px solid rgba(220,171,68,.34);
+.boxback .kick2{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:600;
+  letter-spacing:.30em;text-indent:.30em;text-align:center;margin-top:12px;color:var(--ink2)}
+.boxback .board{margin-top:24px;padding:14px 12px;border-radius:7px;
+  background:linear-gradient(150deg,#e8c878,#b8902e,#8a6420);
+  box-shadow:0 4px 15px rgba(90,61,28,.30),inset 0 1px 2px rgba(255,255,255,.45)}
+.boxback .grid{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;
+  padding:12px 10px;border-radius:4px;background:#1a1005}
+.boxback .grid img{width:96px;height:131px;object-fit:cover;border-radius:3px;
+  box-shadow:0 2px 6px rgba(0,0,0,.55)}
+.boxback .finding{margin-top:auto;padding-top:22px;text-align:center;
+  font-size:19px;line-height:1.52;color:var(--ink2)}
+.boxback .fine{margin-top:16px;padding-top:13px;border-top:1.5px solid var(--gold2);
   display:flex;justify-content:space-between;align-items:baseline;
-  font-family:'JetBrains Mono',monospace;font-size:17px;letter-spacing:.07em;
-  color:rgba(226,210,168,.62)}
+  font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:.07em;color:var(--ink3)}
 
 /* ---- cover front: the about card ---------------------------------------- */
 .cover .wordmark.sm{font-size:26px}
@@ -282,15 +287,18 @@ def build(n_cards: int | None = None) -> Path:
     return out
 
 
+def _sips(src: Path, dest: Path, px: int) -> None:
+    if not dest.exists() or dest.stat().st_mtime < src.stat().st_mtime:
+        subprocess.run(["sips", "-Z", str(px), str(src), "--out", str(dest)],
+                       check=True, capture_output=True)
+
+
 def make_thumbs(slugs: list[str], dest: Path) -> list[tuple[str, str]]:
-    """Downscale each rendered card front for the box back.
+    """Downscale each rendered card FRONT for the box back.
 
-    Uses sips, which ships with macOS, same as build_print.py already assumes a
-    macOS Chrome path. Written at 2x the display size so the grid stays crisp at
-    300dpi. Output is build artefact, gitignored alongside print/.
-
-    The cards must already be rendered: this reads print/<slug>_front.jpg, so
-    the box has to be built after the deck, not with it.
+    Reads print/<slug>_front.jpg, so the box has to be built after the deck.
+    sips ships with macOS, same as build_print.py already assumes a macOS
+    Chrome. Output is build artefact, gitignored alongside print/.
     """
     tdir = dest / "thumbs"
     tdir.mkdir(parents=True, exist_ok=True)
@@ -300,22 +308,49 @@ def make_thumbs(slugs: list[str], dest: Path) -> list[tuple[str, str]]:
         if not src.exists():
             missing.append(slug)
             continue
-        out = tdir / f"{slug}.jpg"
-        if not out.exists() or out.stat().st_mtime < src.stat().st_mtime:
-            subprocess.run(["sips", "-Z", "220", str(src), "--out", str(out)],
-                           check=True, capture_output=True)
+        _sips(src, tdir / f"{slug}.jpg", 220)
         got.append((slug, f"thumbs/{slug}.jpg"))
     if missing:
         print(f"  ! no render yet, missing from the box back: {', '.join(missing)}")
     return got
 
 
-def build_tuckbox() -> Path:
-    """The pack's outer box, as two full-bleed panels.
+FEATURE = "le-chaton-fat"   # the 2x2 tile; James asked for the fat cat
 
-    Front: the hero fills the face and the type sits on it, which is what the
-    reference packs do. Back: the actual cards, because the numbered list
-    already prints on the About card back and did not need printing twice.
+
+def make_mosaic(slugs: list[str], dest: Path) -> list[tuple[str, str]]:
+    """The REAL card artwork for the box front.
+
+    Not a render and not a repaint: the actual art/*.png each card points at.
+    The old hero was generated from a text description of the creatures, so the
+    eagle, whale and cat on the box were images that appear on no card.
+
+    Returns (slug, relpath) with the feature first so the grid can place it.
+    """
+    import sync_roster
+    mdir = dest / "mosaic"
+    mdir.mkdir(parents=True, exist_ok=True)
+    dirs = sync_roster.card_dirs()
+    rows, missing = [], []
+    for slug in slugs:
+        c = json.loads((dirs[slug] / "card.json").read_text())
+        art = dirs[slug] / "art" / (c.get("art") or f"{slug}.png")
+        if not art.exists():
+            missing.append(slug)
+            continue
+        _sips(art, mdir / f"{slug}.jpg", 320)
+        rows.append((slug, f"mosaic/{slug}.jpg"))
+    if missing:
+        print(f"  ! no art file, not on the box front: {', '.join(missing)}")
+    rows.sort(key=lambda r: r[0] != FEATURE)     # feature first
+    return rows
+
+
+def build_tuckbox() -> Path:
+    """The pack's outer box, as two full-bleed panels on parchment.
+
+    Front: the set's real artwork in a mosaic, on the same cream and gold the
+    cards use. Back: the actual card fronts on a display board.
 
     Both are 816x1110 so they still ride build_print.py and check_bleed.py, and
     build_dieline.py places them into the folded box.
@@ -324,10 +359,7 @@ def build_tuckbox() -> Path:
     from build_card_html import LAB_NAME
 
     dest = CARDS / "_pack" / "free-systems-tuckbox"
-    (dest / "art").mkdir(parents=True, exist_ok=True)
-    src = CARDS / "_pack" / "free-systems-cover" / "art" / "tuckbox-hero.png"
-    if src.exists():
-        (dest / "art" / "hero.png").write_bytes(src.read_bytes())
+    dest.mkdir(parents=True, exist_ok=True)
 
     dirs = sync_roster.card_dirs()
     slugs = sync_roster.read_roster()
@@ -336,50 +368,48 @@ def build_tuckbox() -> Path:
         lab = json.loads((dirs[s_] / "card.json").read_text())["lab"]
         if lab not in seen:
             seen.add(lab)
-            # non-breaking space: the strip wraps to two lines and
-            # "THINKING MACHINES" was splitting across them
             labs.append(LAB_NAME.get(lab, lab).upper().replace(" ", "\u00a0"))
     labline = " \u00b7 ".join(labs)
-    # Split at the midpoint rather than letting it wrap: with the names made
-    # unbreakable, greedy wrapping put MISTRAL AI alone on a third line.
     _h = (len(labs) + 1) // 2
     labs_html = (html_escape(" \u00b7 ".join(labs[:_h])) + " \u00b7<br>"
                  + html_escape(" \u00b7 ".join(labs[_h:])))
 
     style = re.search(r"<style>(.*?)</style>", STYLE_SRC.read_text(), re.S).group(1)
     links = "".join(re.findall(r'<link[^>]+href="https://fonts[^"]+"[^>]*>', STYLE_SRC.read_text()))
-    art = dest / "art" / "hero.png"
-    hero = ('<img class="hero" src="art/hero.png" alt="">' if art.exists()
-            else '<div class="art-ph">HERO ART PENDING</div>')
+
+    mosaic = make_mosaic(slugs, dest)
+    tiles = "".join(
+        f'<img class="feat" src="{rel}" alt="">' if slug == FEATURE
+        else f'<img src="{rel}" alt="">'
+        for slug, rel in mosaic)
 
     face = (
-        '<div class="face front"><div class="boxpanel boxfront">'
-        + hero
-        + '<div class="seam"></div><div class="scrim"></div>'
-        '<div class="mark">FREE SYSTEMS LAB</div>'
-        f'<div class="badge"><span class="n">{len(slugs)}</span><span class="w">CARDS</span></div>'
+        '<div class="face front"><div class="boxpanel boxfront"><div class="pad">'
+        '<div class="top"><div class="mark">FREE SYSTEMS LAB</div>'
+        f'<div class="badge"><span class="n">{len(slugs)}</span>'
+        '<span class="w">CARDS</span></div></div>'
+        f'<div class="art"><div class="mosaic">{tiles}</div></div>'
         '<div class="lockup"><div class="wm">FREE SYSTEMS</div>'
         '<div class="hair"></div><div class="kick">MODEL CARDS</div></div>'
         f'<div class="labs">{labs_html}</div>'
         '<div class="url">SET 01 \u00b7 freesystems.net</div>'
-        "</div></div>"
+        '</div><div class="grain"></div></div></div>'
     )
 
     lo, hi, spread = spread_figures()
     thumbs = make_thumbs(slugs, dest)
-    tiles = "".join(f'<img src="{rel}" alt="">' for _, rel in thumbs)
+    cards_html = "".join(f'<img src="{rel}" alt="">' for _, rel in thumbs)
     back = (
-        '<div class="face back"><div class="boxpanel boxback">'
-        '<div class="bg"></div><div class="pad">'
+        '<div class="face back"><div class="boxpanel boxback"><div class="pad">'
         '<div class="wm2">FREE SYSTEMS</div>'
         f'<div class="kick2">SET 01 \u00b7 {len(slugs)} CARDS</div>'
-        f'<div class="grid">{tiles}</div>'
+        f'<div class="board"><div class="grid">{cards_html}</div></div>'
         f'<div class="finding">One card per model, every figure read out of the '
         f'lab\'s own published document. The longest runs {hi:,} words and the '
         f'shortest {lo:,}. What a lab chose not to measure is printed here too.</div>'
         '<div class="fine"><span>FREE SYSTEMS LAB \u00b7 STANFORD GSB</span>'
         '<span>freesystems.net</span></div>'
-        "</div></div></div>"
+        '</div><div class="grain"></div></div></div>'
     )
 
     doc = ('<!DOCTYPE html><html><head><meta charset="UTF-8">' + links
@@ -395,6 +425,7 @@ def build_tuckbox() -> Path:
     }, indent=2) + "\n")
     print(f"  wrote {out}")
     print(f"  labs: {labline}")
+    print(f"  box front mosaic: {len(mosaic)} real artworks, feature = {FEATURE}")
     print(f"  box back shows {len(thumbs)}/{len(slugs)} card fronts")
     return out
 

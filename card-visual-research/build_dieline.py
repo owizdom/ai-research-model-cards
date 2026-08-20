@@ -110,19 +110,23 @@ class Geometry:
 
 
 CSS = """
-html,body{margin:0;padding:0;background:#0b0805}
-.sheet{position:relative;overflow:hidden;background:#0b0805}
+/* Parchment, not black: the panels match the cards now, so the spines, flaps
+   and tab have to as well. Light board also does not crack white along the six
+   creases the way a solid dark box does. */
+html,body{margin:0;padding:0;background:#efe4c8}
+.sheet{position:relative;overflow:hidden;
+  background:linear-gradient(158deg,#f5edd8 0%,#ece0c0 54%,#e2d2a8 100%)}
 .panel{position:absolute;overflow:hidden}
 .panel img{position:absolute;display:block}
-.flat{position:absolute;background:#0b0805}
+.flat{position:absolute;background:linear-gradient(158deg,#f2e8cf,#e6d9b6)}
 .spine{position:absolute;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(90deg,#080502,#140d05 50%,#080502)}
+  background:linear-gradient(90deg,#e4d5ae,#f3ebd6 50%,#e4d5ae)}
 .spine span{white-space:nowrap;font-family:'JetBrains Mono',monospace;font-weight:600;
-  color:#e8c87a;transform:rotate(90deg)}
+  color:#5a3d1c;transform:rotate(90deg)}
 .tuck{position:absolute;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(180deg,#160d04,#0b0805)}
-.tuck span{font-family:'Cinzel',serif;font-weight:700;color:#dcab44;white-space:nowrap}
-.tuck.bottom{background:linear-gradient(0deg,#160d04,#0b0805)}
+  background:linear-gradient(180deg,#f3ebd6,#e6d9b6)}
+.tuck span{font-family:'Cinzel',serif;font-weight:700;color:#8a6414;white-space:nowrap}
+.tuck.bottom{background:linear-gradient(0deg,#f3ebd6,#e6d9b6)}
 .tuck.bottom span{font-family:'JetBrains Mono',monospace;font-weight:600;color:#8a6836}
 svg.guides{position:absolute;left:0;top:0;pointer-events:none}
 """
