@@ -149,7 +149,9 @@ body{
 .tuck .wordmark{font-size:34px}
 .tuck .art{margin-top:12px;width:100%;flex:1 1 auto;display:flex}
 .tuck .art-win{flex:1 1 auto;height:auto;min-height:300px}
-.tuck .art-win img{object-position:50% 50%}
+.tuck .art-win img{object-fit:contain;object-position:50% 50%;background:#0b0805}
+/* the crest is a designed composition, so show it whole rather than cropping
+   the eagle's wingtips and the serpent heads out of frame */
 .tuck .labs{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:8.6px;
   font-weight:600;letter-spacing:.13em;color:var(--ink2);line-height:1.85;text-align:center;
   max-width:92%}
