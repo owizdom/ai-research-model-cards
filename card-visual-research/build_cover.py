@@ -258,7 +258,7 @@ def build(n_cards: int | None = None) -> Path:
         '<div class="inner cover coverback">'
         '<div class="wordmark">FREE SYSTEMS</div>'
         '<div class="rule"></div>'
-        f'<div class="kicker">SET 01 · {len(entries)} CARDS</div>'
+        f'<div class="kicker">{len(entries)} CARDS</div>'
         f'<div class="setlist">{items}</div>'
         # The old line claimed every figure was "measured from the published
         # document, not reported by the lab". Word counts are measured. Every

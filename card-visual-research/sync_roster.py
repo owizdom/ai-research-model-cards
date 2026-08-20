@@ -139,7 +139,8 @@ def patch_html(path: Path, num: str) -> bool:
     s = re.sub(r'(<div class="dex">NO\.\s*)\d+', rf"\g<1>{n3}", s)
     s = re.sub(r'(<span class="no">)\s*\d+\s*/\s*\d+', rf"\g<1>{num}", s)
     s = re.sub(r'(<span class="s">)\s*\d+\s*/\s*\d+', rf"\g<1>{num}", s)
-    s = re.sub(r'(SET 01</div><div>)\s*\d+\s*/\s*\d+', rf"\g<1>{num}", s)
+    # anchored on the words "SET 01" until those were removed from the backs
+    s = re.sub(r'(<div class="vr"><div>)\s*\d+\s*/\s*\d+', rf"\g<1>{num}", s)
     if s != orig:
         path.write_text(s)
         return True

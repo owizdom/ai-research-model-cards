@@ -129,7 +129,7 @@ def back(c: dict) -> str:
         f'<ul class="lims">{lims}</ul></div>'
         f'<div class="bk-val"><div><div class="vt">INDEPENDENT VALIDATION</div>'
         f'<div class="vx">{e(val.get("b"))}</div></div>'
-        f'<div class="vr"><div>SET 01</div><div>{e(c.get("num"))}</div></div></div>'
+        f'<div class="vr"><div>{e(c.get("num"))}</div></div></div>'
         "</div></div></div></div>"
     )
 
