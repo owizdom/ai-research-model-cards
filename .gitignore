@@ -63,4 +63,3 @@ card-visual-research/print/
 #   curl -sL <source_url> -o x.pdf && pdftotext -layout x.pdf x.md
 # Derived from the published PDFs; 7.5MB and reproducible, so not tracked.
 charts/data/article data/_card_text_cache/
-card-visual-research/cards/_pack/*/thumbs/

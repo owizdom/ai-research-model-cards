@@ -122,24 +122,6 @@ body{{width:{BLEED_W}px;height:{BLEED_H}px;overflow:hidden;display:block;padding
   right:{(BLEED_W - SAFE_W) // 2}px;bottom:{(BLEED_H - SAFE_H) // 2}px;border-color:#39ff66}}
 """
 
-# ---- full-bleed mode ------------------------------------------------------
-# A tuck box panel is not a card. It has no floating frame, no parchment margin
-# and no blurred bleed band: the artwork is the whole file, edge to edge, and
-# type sits on it. Cards never take this branch; it is gated on card.json's
-# "full_bleed" flag.
-#
-# Note there is no `zoom` here. .pframe scales authored px by ZOOM=1.581, so
-# card CSS is authored small. Full-bleed px ARE print px, and at 300dpi
-# 1pt = 4.167px, so fine print wants 21-25px, not the 8-11px the cards use.
-FULLBLEED_CSS = f"""
-.pfull{{position:absolute;inset:0;z-index:2;}}
-.pfull .face{{position:static!important;top:auto!important;left:auto!important;
-  transform:none!important;width:{BLEED_W}px!important;height:{BLEED_H}px!important;
-  -webkit-backface-visibility:visible!important;backface-visibility:visible!important;}}
-.pfull .boxpanel{{zoom:1!important;}}
-"""
-
-
 # Floating the frame inside the cut line costs 108px of height, which is enough
 # to push the densest backs (GPT-5 carries five benchmark rows) past the bottom
 # of the card, clipping the validation footer. Tighten the vertical rhythm in
@@ -214,7 +196,7 @@ window.addEventListener('load',function(){
   afterFonts(function(){
     fitCard();
     var lo=1e9,to=1e9,ro=-1e9,bo=-1e9,n=0;
-    document.querySelectorAll('%(root)s *').forEach(function(el){
+    document.querySelectorAll('.pframe *').forEach(function(el){
       if(el.children.length) return;
       var t=(el.textContent||'').trim();
       if(!t) return;
@@ -223,7 +205,7 @@ window.addEventListener('load',function(){
       lo=Math.min(lo,r.left);to=Math.min(to,r.top);
       ro=Math.max(ro,r.right);bo=Math.max(bo,r.bottom);n++;
     });
-    var inner=document.querySelector('%(inner)s');
+    var inner=document.querySelector('.pframe .inner');
     var over=inner?Math.max(0,inner.scrollHeight-inner.clientHeight):-1;
     document.title='TEXTBOX '+[Math.round(lo),Math.round(to),Math.round(ro),Math.round(bo),n,
       window.__fitLevel,over].join(',');
@@ -260,38 +242,26 @@ def parse_card(html_path: Path):
     return style.group(1), "".join(head_links), faces, (art.group(1) if art else None)
 
 
-def build_html(style, links, face, lab, art, guides: bool, full_bleed: bool = False) -> str:
+def build_html(style, links, face, lab, art, guides: bool) -> str:
     is_front = 'class="face front"' in face
+    bleed = ""
+    if is_front:
+        inner = f'<img src="{art}" alt="">' if art else ""
+        bleed = f'<div class="pbleed">{inner}</div>'
     overlay = '<div class="pguides"><i class="trim"></i><i class="safe"></i></div>' if guides else ""
-
-    if full_bleed:
-        # No frame to float and no band to blur behind it: the panel is the file.
-        bleed, extra = "", FULLBLEED_CSS
-        body = f'<div class="pfull">{face}</div>'
-        fit = '<script>window.__fitLevel=0;function fitCard(){}</script>'
-        run = RUN_SCRIPT % {"root": ".pfull", "inner": ".pfull .boxpanel"}
-    else:
-        bleed, extra = "", ""
-        if is_front:
-            inner = f'<img src="{art}" alt="">' if art else ""
-            bleed = f'<div class="pbleed">{inner}</div>'
-        body = f'<div class="pframe">{face}</div>'
-        fit = FIT_SCRIPT % (json.dumps(FIT_LEVELS), ZOOM, FACE_W, FACE_H)
-        run = RUN_SCRIPT % {"root": ".pframe", "inner": ".pframe .inner"}
-
+    fit = FIT_SCRIPT % (json.dumps(FIT_LEVELS), ZOOM, FACE_W, FACE_H)
     return (
         '<!DOCTYPE html><html><head><meta charset="UTF-8">'
         + links
         + "<style>"
         + style
         + PRINT_CSS
-        + extra
         + "</style><style id=\"fitstyle\"></style>"
         + fit
-        + run
+        + RUN_SCRIPT
         + f'</head><body><div class="pcard lab-{lab}">'
         + bleed
-        + body
+        + f'<div class="pframe">{face}</div>'
         + overlay
         + "</div></body></html>"
     )
@@ -415,8 +385,7 @@ def main(argv):
             suffix = "_proof" if guides else ""
             hf = d / f"print_{side}{suffix}.html"
             pf = d / f"print_{side}{suffix}.png"
-            hf.write_text(build_html(style, links, faces[side], lab, art, guides,
-                                     full_bleed=bool(card.get("full_bleed"))))
+            hf.write_text(build_html(style, links, faces[side], lab, art, guides))
             dom = chrome_shot(hf, pf, dump_dom=True)
             m = re.search(r"TEXTBOX ([\d,.,-]+)", dom)
             if m:

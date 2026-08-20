@@ -111,18 +111,6 @@ def main(argv: list[str]) -> int:
     SEND_DIR.mkdir(parents=True, exist_ok=True)
     fill(SEND_DIR / "00 Free Systems Cover", COVER, missing)
     fill(SEND_DIR / "_tuckbox", TUCKBOX, missing)
-    # The panels are the artwork; the dieline is what a printer can actually
-    # cut and fold. Ship both, plus the spec sheet that states the stock the
-    # depth was computed from.
-    die_src = PRINT_DIR / "dieline"
-    if die_src.is_dir():
-        die_dst = SEND_DIR / "_tuckbox" / "dieline"
-        die_dst.mkdir(parents=True, exist_ok=True)
-        for f in sorted(die_src.iterdir()):
-            if f.is_file() and not f.name.startswith("_"):
-                shutil.copy2(f, die_dst / f.name)
-    else:
-        missing.append("dieline (run build_dieline.py)")
     for i, slug, name in rows:
         fill(SEND_DIR / f"{i:02d} {name}", slug, missing)
     gone += prune(SEND_DIR, keep | {"00 Free Systems Cover", "_tuckbox"})
