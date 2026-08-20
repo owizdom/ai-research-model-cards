@@ -123,6 +123,16 @@ def main(argv: list[str]) -> int:
                 shutil.copy2(f, die_dst / f.name)
     else:
         missing.append("dieline (run build_dieline.py)")
+
+    # The 3D renders: what the box looks like assembled. Not for print, but it
+    # is the only artefact anyone can judge the design from.
+    mock_src = PRINT_DIR / "mockup"
+    if mock_src.is_dir():
+        mock_dst = SEND_DIR / "_tuckbox" / "mockup"
+        mock_dst.mkdir(parents=True, exist_ok=True)
+        for f in sorted(mock_src.iterdir()):
+            if f.is_file() and not f.name.startswith("_"):
+                shutil.copy2(f, mock_dst / f.name)
     for i, slug, name in rows:
         fill(SEND_DIR / f"{i:02d} {name}", slug, missing)
     gone += prune(SEND_DIR, keep | {"00 Free Systems Cover", "_tuckbox"})

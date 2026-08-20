@@ -59,6 +59,14 @@ body{
 .art{ margin-top:8px; border-radius:5px; padding:3px; background:linear-gradient(150deg,#e8c878,#b8902e,#8a6420); box-shadow:inset 0 1px 2px rgba(255,255,255,.4); }
 .art-win{ position:relative; height:236px; border-radius:3px; overflow:hidden; background:#1a1005; }
 .art-win img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 20%; }
+/* This card only. The art is 860x860 and the window is 601x491, so 157px
+   of height is discarded. Measured on the file, the ear tips start at row
+   10 and the cushion runs to row 839: 830 rows of content into a 703 row
+   window, so ears and cushion cannot both survive. The default 20% anchor
+   showed rows 31-734 and lost both. 3% shows rows 5-708, which keeps the
+   ears with 5px to spare and costs 27 rows just above the cushion, which
+   was already outside the window. */
+.art-win img{ object-position:50% 3%; }
 .art-tags{ position:absolute; left:0; right:0; bottom:0; display:flex; gap:6px; justify-content:center; padding:5px; background:linear-gradient(0deg, rgba(20,10,0,.72), transparent); }
 .art-tags span{ font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:600; letter-spacing:.1em; color:#f6e6c0; }
 .dex{ font-family:'JetBrains Mono',monospace; font-size:8.5px; color:var(--ink3); letter-spacing:.02em; text-align:center; padding:5px 0 6px; border-bottom:1px solid var(--cream3); }

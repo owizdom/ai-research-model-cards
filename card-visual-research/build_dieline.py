@@ -65,6 +65,11 @@ class Geometry:
         self.TAB = tab_mm
         self.TUCK = round(self.D + 3, 1)                 # tuck flap + nose
         self.DUST = round(self.D - 2, 1)                 # dust flaps sit shorter
+        # Euro hang tab: an extension of the top tuck flap, creased at its base,
+        # so it stands above the closed box on a peg. Every reference pack has
+        # one. Narrower than the panel so it clears the box mouth.
+        self.HANG = 16.0
+        self.TAB_W = round(self.W * 0.96, 1)
         self.B = bleed_mm
 
         # x edges of the five panels
@@ -74,9 +79,10 @@ class Geometry:
         self.x_side2 = self.W + self.D + self.W
         self.x_tab = self.W + self.D + self.W + self.D
         self.strip_w = self.x_tab + self.TAB
-        self.strip_h = self.TUCK + self.H + self.TUCK
-        self.y_top = self.TUCK               # top crease
-        self.y_bot = self.TUCK + self.H      # bottom crease
+        self.strip_h = self.HANG + self.TUCK + self.H + self.TUCK
+        self.y_hinge = self.HANG                        # tab folds here
+        self.y_top = self.HANG + self.TUCK              # top crease
+        self.y_bot = self.HANG + self.TUCK + self.H     # bottom crease
 
         self.canvas_w = self.strip_w + 2 * self.B
         self.canvas_h = self.strip_h + 2 * self.B
@@ -88,9 +94,13 @@ class Geometry:
         dust_t, dust_b = yt - self.DUST, yb + self.DUST
         x1, x2, x3, x4 = self.x_side1, self.x_front, self.x_side2, self.x_tab
         c = 3.0                      # chamfer on the free corners
-        ti = 1.5                     # tab sits shorter than the panel
+        ti = 1.5                     # glue tab sits shorter than the panel
+        tl = (W - self.TAB_W) / 2    # hang tab, centred on the back panel
+        tr = W - tl
         return [
-            (0, yt), (1, yt), (1, c), (1 + c, 0), (W - 1 - c, 0), (W - 1, c), (W - 1, yt),
+            (0, yt), (1, yt), (1, self.HANG),
+            (tl, self.HANG), (tl, c), (tl + c, 0), (tr - c, 0), (tr, c), (tr, self.HANG),
+            (W - 1, self.HANG), (W - 1, yt),
             (x1, yt), (x1, dust_t), (x2, dust_t), (x2, yt),
             (x3, yt), (x3, dust_t), (x4, dust_t), (x4, yt),
             (x4, yt + ti), (self.strip_w - c, yt + ti),
@@ -105,7 +115,9 @@ class Geometry:
     def creases(self) -> list[tuple[float, float, float, float]]:
         yt, yb = self.y_top, self.y_bot
         v = [(x, yt, x, yb) for x in (self.x_side1, self.x_front, self.x_side2, self.x_tab)]
-        h = [(1, yt, self.x_tab, yt), (1, yb, self.x_tab, yb)]
+        h = [(1, yt, self.x_tab, yt), (1, yb, self.x_tab, yb),
+             ((self.W - self.TAB_W) / 2, self.HANG,
+              (self.W + self.TAB_W) / 2, self.HANG)]
         return v + h
 
 
@@ -191,9 +203,15 @@ def guides_svg(g: Geometry) -> str:
         labels += (f'<text x="{o + px(cxm):.1f}" y="{o + px(cym):.1f}"{rot} '
                    f'fill="#2b6cff" font-family="monospace" font-size="{size}" '
                    f'text-anchor="middle" opacity=".30">{name}</text>')
+    # the euro hole, punched in the hang tab
+    hw, hh = g.W * 0.30, 5.0
+    hx, hy = g.W / 2 - hw / 2, g.HANG * 0.30
+    hole = (f'<rect x="{o + px(hx):.1f}" y="{o + px(hy):.1f}" '
+            f'width="{px(hw):.1f}" height="{px(hh):.1f}" rx="{px(hh / 2):.1f}" '
+            f'fill="none" stroke="#ff2d2d" stroke-width="2.5"/>')
     return (f'<svg class="guides" width="{px(g.canvas_w):.0f}" height="{px(g.canvas_h):.0f}">'
             f'<polygon points="{pts}" fill="none" stroke="#ff2d2d" stroke-width="2.5"/>'
-            f"{creases}{labels}</svg>")
+            f"{creases}{hole}{labels}</svg>")
 
 
 def build_html(g: Geometry, front: Path, back: Path, guides: bool) -> str:
@@ -201,7 +219,8 @@ def build_html(g: Geometry, front: Path, back: Path, guides: bool) -> str:
             f'height:{px(g.canvas_h):.2f}px">']
 
     # flaps and tab first, so panel artwork sits over them at the creases
-    body.append(rect("flat", g, 1, 0, g.W - 2, g.TUCK))
+    body.append(rect("flat", g, (g.W - g.TAB_W) / 2, 0, g.TAB_W, g.HANG))
+    body.append(rect("flat", g, 1, g.y_hinge, g.W - 2, g.TUCK))
     body.append(rect("flat", g, 1, g.y_bot, g.W - 2, g.TUCK))
     for x in (g.x_side1, g.x_side2):
         body.append(rect("flat", g, x, g.y_top - g.DUST, g.D, g.DUST))
@@ -220,7 +239,7 @@ def build_html(g: Geometry, front: Path, back: Path, guides: bool) -> str:
                          f'<span style="font-size:{fs:.1f}px;letter-spacing:.14em">{spine}</span>'))
 
     # the top tuck is the visible top face once the box is closed
-    body.append(rect("tuck", g, 1, 0, g.W - 2, g.TUCK,
+    body.append(rect("tuck", g, 1, g.y_hinge, g.W - 2, g.TUCK,
                      f'<span style="font-size:{px(g.TUCK) * 0.30:.1f}px;'
                      f'letter-spacing:.12em">FREE SYSTEMS</span>'))
     body.append(rect("tuck bottom", g, 1, g.y_bot, g.W - 2, g.TUCK,
@@ -266,6 +285,8 @@ PANEL W x H      {g.W} x {g.H} mm      (card trim + {g.W - g.card_w:.1f}mm fit)
 DEPTH            {g.D} mm              ({g.cards} x {g.stock_mm}mm stock + {g.slack_mm}mm slack)
 GLUE TAB         {g.TAB} mm
 TUCK FLAP        {g.TUCK} mm           (depth + 3mm nose)
+HANG TAB         {g.HANG} mm x {g.TAB_W} mm  (euro hole, creased at its base off
+                 the top tuck flap, so it stands above the closed box)
 DUST FLAP        {g.DUST} mm           (depth - 2mm)
 
 FLAT STRIP       {g.strip_w} x {g.strip_h} mm
