@@ -17,22 +17,19 @@
   "unique": "75%",
   "benches": [
     {
-      "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "91.0",
-      "c": "#10a37f"
+      "n": "STANDARD DISALLOWED",
+      "d": "as reported",
+      "s": "1"
     },
     {
-      "n": "TRUTHFULQA",
-      "d": "Factual accuracy",
-      "s": "88.4",
-      "c": "#0d8066"
+      "n": "SWE-BENCH",
+      "d": "as reported",
+      "s": "74.9"
     },
     {
       "n": "BBQ",
-      "d": "Bias benchmark",
-      "s": "92.1",
-      "c": "#0a604c"
+      "d": "not reported",
+      "s": "—"
     }
   ],
   "lineage": [
@@ -56,29 +53,31 @@
   ],
   "btbl": [
     {
-      "n": "MMLU",
-      "s": "91.0",
-      "l": "6 labs"
+      "n": "Standard Disallowed",
+      "s": "1",
+      "l": "1 lab",
+      "d": "as reported"
     },
     {
-      "n": "TruthfulQA",
-      "s": "88.4",
-      "l": "4 labs"
+      "n": "SWE-bench",
+      "s": "74.9",
+      "l": "3 labs",
+      "d": "as reported"
     },
     {
-      "n": "BBQ",
-      "s": "92.1",
-      "l": "2 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "HealthBench",
-      "s": "83.2",
-      "l": "1 lab"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     },
     {
-      "n": "ARC",
-      "s": "96.3",
-      "l": "4 labs"
+      "n": "Not reported",
+      "s": "—",
+      "l": "—"
     }
   ],
   "weak": {

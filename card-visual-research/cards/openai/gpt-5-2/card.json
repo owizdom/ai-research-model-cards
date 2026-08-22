@@ -18,17 +18,17 @@
   "benches": [
     {
       "n": "MMLU",
-      "d": "Academic reasoning",
-      "s": "90.1"
+      "d": "as reported",
+      "s": "0.901"
     },
     {
       "n": "FIRST-PERSON FAIRNESS",
-      "d": "Demographic bias",
-      "s": "1.0"
+      "d": "as reported",
+      "s": "0.00997"
     },
     {
       "n": "SWE-BENCH",
-      "d": "Not reported",
+      "d": "not reported",
       "s": "—"
     }
   ],
@@ -50,13 +50,15 @@
   "btbl": [
     {
       "n": "MMLU",
-      "s": "90.1",
-      "l": "5 labs"
+      "s": "0.901",
+      "l": "5 labs",
+      "d": "as reported"
     },
     {
       "n": "First-Person Fairness",
-      "s": "1.0",
-      "l": "1 lab"
+      "s": "0.00997",
+      "l": "1 lab",
+      "d": "as reported"
     },
     {
       "n": "Not reported",

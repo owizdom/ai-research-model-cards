@@ -5,8 +5,8 @@
   "num": "013/023",
   "tier": "rare",
   "stage": "STAGE 2",
-  "capL": "CAP",
-  "capN": "86",
+  "capL": "EVALS",
+  "capN": "77",
   "meta": "OpenAI · GPT-5.5 · Apr 2026",
   "tags": [
     "FRONTIER",
@@ -18,19 +18,22 @@
   "unique": "82%",
   "benches": [
     {
-      "n": "SANDBAGGING QA",
-      "d": "Strategic deception probe",
-      "s": "100.0"
+      "n": "GPQA DIAMOND",
+      "d": "Graduate-level science",
+      "s": "93.6",
+      "cost": 3
     },
     {
-      "n": "UK AISI CYBER",
-      "d": "Lower-difficulty cyber tasks",
-      "s": "100.0"
+      "n": "SWE-BENCH PRO",
+      "d": "Contamination-resistant",
+      "s": "58.6",
+      "cost": 2
     },
     {
-      "n": "ATOMIC CHALLENGES",
-      "d": "Irregular task set",
-      "s": "100.0"
+      "n": "TERMINAL-BENCH 2.0",
+      "d": "Agentic terminal tasks",
+      "s": "82.7",
+      "cost": 1
     }
   ],
   "lineage": [
@@ -50,19 +53,22 @@
   ],
   "btbl": [
     {
-      "n": "Sandbagging QA",
-      "s": "100.0",
-      "l": "1 lab"
+      "n": "Hard Negative Protein",
+      "s": "0.4",
+      "l": "1 lab",
+      "d": "protein binding prediction"
     },
     {
-      "n": "UK AISI Cyber Tasks",
-      "s": "100.0",
-      "l": "2 labs"
+      "n": "DNA Sequence Design",
+      "s": "13.82",
+      "l": "1 lab",
+      "d": "transcription factor binding"
     },
     {
-      "n": "Atomic Challenges",
-      "s": "100.0",
-      "l": "1 lab"
+      "n": "Impossible Coding Task",
+      "s": "29",
+      "l": "1 lab",
+      "d": "unsolvable-task honesty"
     }
   ],
   "weak": {
@@ -80,8 +86,8 @@
   ],
   "blurb": "77 disclosed evaluations on 14,496 words, and 82% of them appear on no other lab's card — the highest single-lab share anywhere in this set.",
   "ability": {
-    "name": "Eighty-Two Alone",
-    "text": "82% of its 77 evaluations are reported by no other lab, the highest single-lab share of any card in this set."
+    "name": "Built for Agents",
+    "text": "Its largest gains sit in agentic coding and long-horizon knowledge work rather than raw reasoning."
   },
   "val": {
     "b": "Apollo Research + UK AISI, Apr 2026",

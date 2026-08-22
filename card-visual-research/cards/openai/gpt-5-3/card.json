@@ -19,7 +19,7 @@
     {
       "n": "SABOTAGE SUITE",
       "d": "Covert-sabotage probes",
-      "s": "88.0"
+      "s": "0.88"
     },
     {
       "n": "CVE-BENCH",
@@ -54,13 +54,15 @@
   "btbl": [
     {
       "n": "Sabotage Suite",
-      "s": "88.0",
-      "l": "1 lab"
+      "s": "0.88",
+      "l": "1 lab",
+      "d": "Covert-sabotage probes"
     },
     {
       "n": "CVE-Bench",
       "s": "90",
-      "l": "1 lab"
+      "l": "1 lab",
+      "d": "Real-world exploits"
     },
     {
       "n": "Not reported",
@@ -91,7 +93,7 @@
   "art": null,
   "source": "mockup",
   "ability": {
-    "name": "Codex Only",
-    "text": "A Codex-line release rather than a general model, and its card reports no capability score to compare against the rest of the set."
+    "name": "BrowseComp",
+    "text": "Introduced a new browsing benchmark to measure the ability of AI agents to locate hard-to-find information."
   }
 }

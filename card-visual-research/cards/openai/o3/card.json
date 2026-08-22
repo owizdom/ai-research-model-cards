@@ -17,22 +17,19 @@
   "unique": "86%",
   "benches": [
     {
-      "n": "AIME 2024",
-      "d": "Competition math",
-      "s": "96.7",
-      "c": "#10a37f"
+      "n": "CHALLENGING REFUSAL",
+      "d": "as reported",
+      "s": "0.9"
     },
     {
-      "n": "GPQA",
-      "d": "Grad-level science",
-      "s": "87.7",
-      "c": "#0d8066"
+      "n": "HUMAN SOURCED",
+      "d": "as reported",
+      "s": "1"
     },
     {
-      "n": "SWE-BENCH",
-      "d": "Real GitHub issues",
-      "s": "71.7",
-      "c": "#0a604c"
+      "n": "SIMPLEQA",
+      "d": "as reported",
+      "s": "0.49"
     }
   ],
   "lineage": [
@@ -56,24 +53,28 @@
   ],
   "btbl": [
     {
-      "n": "AIME 2024",
-      "s": "96.7",
-      "l": "2 labs"
+      "n": "Challenging Refusal",
+      "s": "0.9",
+      "l": "1 lab",
+      "d": "as reported"
     },
     {
-      "n": "GPQA Diamond",
-      "s": "87.7",
-      "l": "4 labs"
+      "n": "Human sourced jailbreaks",
+      "s": "1",
+      "l": "1 lab",
+      "d": "human red-team prompts"
     },
     {
-      "n": "SWE-bench",
-      "s": "71.7",
-      "l": "3 labs"
+      "n": "SimpleQA",
+      "s": "0.49",
+      "l": "2 labs",
+      "d": "as reported"
     },
     {
-      "n": "MMLU",
-      "s": "92.3",
-      "l": "6 labs"
+      "n": "PersonQA",
+      "s": "0.59",
+      "l": "1 lab",
+      "d": "factual recall on people"
     }
   ],
   "weak": {

@@ -18,17 +18,17 @@
   "benches": [
     {
       "n": "PRODUCTION BENCHMARKS",
-      "d": "Internal production suite",
-      "s": "86.5"
+      "d": "as reported",
+      "s": "0.865"
     },
     {
       "n": "STRONGREJECT",
-      "d": "Jailbreak resistance",
-      "s": "97.4"
+      "d": "as reported",
+      "s": "0.974"
     },
     {
       "n": "GPQA",
-      "d": "Not reported",
+      "d": "not reported",
       "s": "—"
     }
   ],
@@ -50,13 +50,15 @@
   "btbl": [
     {
       "n": "Production Benchmarks",
-      "s": "86.5",
-      "l": "1 lab"
+      "s": "0.865",
+      "l": "1 lab",
+      "d": "as reported"
     },
     {
       "n": "StrongReject",
-      "s": "97.4",
-      "l": "1 lab"
+      "s": "0.974",
+      "l": "1 lab",
+      "d": "as reported"
     },
     {
       "n": "Not reported",

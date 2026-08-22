@@ -6,7 +6,7 @@
   "status": "built",
   "creature": "dragon",
   "html": "opus-4-7.html",
-  "art": "opus-4-7-wizard.png",
+  "art": "art/opus-4-7-dragon.png",
   "word_count": 62813,
   "n_scored": 32,
   "cap": 92,
@@ -70,7 +70,7 @@
   "num": "001/023",
   "ability": {
     "name": "Deep Disclosure",
-    "text": "A 423,000-character system card. The most exhaustively documented model of its generation."
+    "text": "Terminal-bench reported alongside GPQA and SWE-bench, the point harness scores became comparable across labs."
   },
   "evals": "89",
   "unique": "76%",
@@ -96,19 +96,22 @@
   ],
   "btbl": [
     {
-      "n": "CharXiv Reasoning (No",
+      "n": "CharXiv Reasoning (No Tools)",
       "s": "82.1",
-      "l": "1 lab"
+      "l": "1 lab",
+      "d": "chart reasoning, no tools"
     },
     {
       "n": "OSWorld",
       "s": "78.0",
-      "l": "1 lab"
+      "l": "1 lab",
+      "d": "desktop computer use"
     },
     {
       "n": "ScreenSpot-Pro (No Tools)",
       "s": "79.5",
-      "l": "1 lab"
+      "l": "1 lab",
+      "d": "GUI element grounding"
     }
   ],
   "words": "62.8k"

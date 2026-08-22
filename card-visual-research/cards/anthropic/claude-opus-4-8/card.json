@@ -20,19 +20,19 @@
       "n": "SWE-BENCH VER.",
       "d": "Real GitHub issues",
       "s": "88.6",
-      "c": "#c8832a"
+      "cost": 3
+    },
+    {
+      "n": "BROWSECOMP",
+      "d": "Agentic web research",
+      "s": "84.3",
+      "cost": 2
     },
     {
       "n": "USAMO 2026",
-      "d": "Competition math",
+      "d": "Olympiad mathematics",
       "s": "96.7",
-      "c": "#a06820"
-    },
-    {
-      "n": "TERMINAL-BENCH",
-      "d": "Agentic terminal tasks",
-      "s": "74.6",
-      "c": "#805010"
+      "cost": 1
     }
   ],
   "lineage": [
@@ -52,29 +52,34 @@
   ],
   "btbl": [
     {
-      "n": "USAMO 2026",
-      "s": "96.7",
-      "l": "2 labs"
-    },
-    {
-      "n": "GPQA Diamond",
-      "s": "86.1",
-      "l": "4 labs"
-    },
-    {
-      "n": "SWE-bench Ver.",
+      "n": "SWE-bench",
       "s": "88.6",
-      "l": "3 labs"
+      "l": "3 labs",
+      "d": "real GitHub issues"
     },
     {
-      "n": "Terminal-bench",
-      "s": "74.6",
-      "l": "1 lab"
+      "n": "BrowseComp",
+      "s": "84.3",
+      "l": "1 lab",
+      "d": "Agentic web research"
     },
     {
-      "n": "HLE",
-      "s": "38.2",
-      "l": "1 lab"
+      "n": "Humanity's Last Exam",
+      "s": "49.8",
+      "l": "2 labs",
+      "d": "expert-written exam"
+    },
+    {
+      "n": "ChartQA",
+      "s": "69.4",
+      "l": "2 labs",
+      "d": "chart question answering"
+    },
+    {
+      "n": "OSWorld",
+      "s": "83.4",
+      "l": "1 lab",
+      "d": "desktop computer use"
     }
   ],
   "weak": {
@@ -98,10 +103,10 @@
   },
   "slug": "claude-opus-4-8",
   "html": "claude-opus-4-8.html",
-  "art": "opus-4-8-wizard.png",
+  "art": "art/opus-4-8-wizard.png",
   "source": "mockup",
   "ability": {
-    "name": "Disclosure Ceiling",
-    "text": "The far end of the spread: 61,922 words against Mistral 7B's 745 in the very same set."
+    "name": "Agent Autonomy",
+    "text": "BrowseComp at 84.3, autonomous web browsing foregrounded as a headline capability."
   }
 }

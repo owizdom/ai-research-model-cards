@@ -20,17 +20,20 @@
     {
       "n": "SWE-BENCH VERIFIED",
       "d": "Real GitHub issues",
-      "s": "95.5"
+      "s": "95.0",
+      "cost": 3
     },
     {
-      "n": "SWE-BENCH ML",
-      "d": "Multilingual code repair",
-      "s": "92.2"
+      "n": "SWE-BENCH PRO",
+      "d": "Harder variation of SWE-bench Verified",
+      "s": "80.0",
+      "cost": 2
     },
     {
-      "n": "TERMINAL-BENCH 2.1",
-      "d": "Agentic terminal tasks",
-      "s": "88.0"
+      "n": "OSWORLD-VERIFIED",
+      "d": "Computer use",
+      "s": "85.0",
+      "cost": 1
     }
   ],
   "lineage": [
@@ -50,19 +53,22 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench Verified",
-      "s": "95.5",
-      "l": "3 labs"
+      "n": "SWE-BENCH VERIFIED",
+      "s": "95",
+      "l": "—",
+      "d": "Real GitHub issues"
     },
     {
-      "n": "SWE-bench Multilingual",
-      "s": "92.2",
-      "l": "1 lab"
+      "n": "SWE-BENCH PRO",
+      "s": "80",
+      "l": "—",
+      "d": "Harder variation of SWE-bench Verified"
     },
     {
-      "n": "Terminal-bench 2.1",
-      "s": "88.0",
-      "l": "1 lab"
+      "n": "TERMINAL-BENCH 2.1",
+      "s": "84.3",
+      "l": "—",
+      "d": "agentic terminal tasks"
     }
   ],
   "weak": {
@@ -80,8 +86,8 @@
   ],
   "blurb": "66,211 words, the longest model card in the corpus. Reports SWE-bench Verified at 95, and more than half its eval choices appear on no other lab's card.",
   "ability": {
-    "name": "Longest Card",
-    "text": "66,211 words, the longest model card in the corpus, with 57% of its eval choices echoed by no other lab."
+    "name": "Step Change",
+    "text": "Near-ceiling on SWE-bench Verified and the strongest computer-use scores in the set, a clear step up rather than an increment."
   },
   "val": {
     "b": "Internal + external red team, Jun 2026",
