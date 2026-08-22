@@ -53,22 +53,34 @@
   ],
   "btbl": [
     {
-      "n": "SWE-BENCH VERIFIED",
-      "s": "95",
-      "l": "—",
-      "d": "Real GitHub issues"
+      "n": "SWE-bench Verified",
+      "s": "95.0",
+      "d": "Real GitHub issues",
+      "l": "3 labs"
     },
     {
-      "n": "SWE-BENCH PRO",
-      "s": "80",
-      "l": "—",
-      "d": "Harder variation of SWE-bench Verified"
+      "n": "SWE-bench Pro",
+      "s": "80.0",
+      "d": "Harder variation of Verified",
+      "l": "2 labs"
     },
     {
-      "n": "TERMINAL-BENCH 2.1",
-      "s": "84.3",
-      "l": "—",
-      "d": "agentic terminal tasks"
+      "n": "OSWorld-Verified",
+      "s": "85.0",
+      "d": "Computer use",
+      "l": "3 labs"
+    },
+    {
+      "n": "BrowseComp",
+      "s": "88.0",
+      "d": "Agentic web research",
+      "l": "3 labs"
+    },
+    {
+      "n": "Humanity's Last Exam",
+      "s": "59.0",
+      "d": "Hardest general reasoning",
+      "l": "4 labs"
     }
   ],
   "weak": {
@@ -80,11 +92,11 @@
     "d": "The longest published model card in the corpus."
   },
   "lims": [
-    "<strong>Comparability</strong> — 57% of eval choices are echoed by no peer lab.",
-    "<strong>Card length</strong> — 66,211 words; the longest in the corpus.",
+    "<strong>Routed requests</strong> — flagged cybersecurity and bio requests are handled by Opus 4.8 instead.",
+    "<strong>Two configurations</strong> — scores differ under production safeguards and max effort.",
     "<strong>Shared card</strong> — documented alongside Mythos 5 in one document."
   ],
-  "blurb": "66,211 words, the longest model card in the corpus. Reports SWE-bench Verified at 95, and more than half its eval choices appear on no other lab's card.",
+  "blurb": "A step up rather than an increment: near-ceiling coding, the set's strongest computer use, and capability gains large enough that Anthropic routes flagged cybersecurity requests away from it.",
   "ability": {
     "name": "Step Change",
     "text": "Near-ceiling on SWE-bench Verified and the strongest computer-use scores in the set, a clear step up rather than an increment."

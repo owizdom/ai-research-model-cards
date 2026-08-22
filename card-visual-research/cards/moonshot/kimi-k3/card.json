@@ -53,19 +53,28 @@
   ],
   "btbl": [
     {
-      "n": "Not yet in corpus",
-      "s": "—",
-      "l": "—"
+      "n": "BrowseComp",
+      "s": "91.2",
+      "d": "Agentic web research",
+      "l": "3 labs"
     },
     {
-      "n": "Not yet in corpus",
-      "s": "—",
-      "l": "—"
+      "n": "Terminal-bench 2.1",
+      "s": "88.3",
+      "d": "Agentic terminal tasks",
+      "l": "3 labs"
     },
     {
-      "n": "Not yet in corpus",
-      "s": "—",
-      "l": "—"
+      "n": "SWE-bench Verified",
+      "s": "76.4",
+      "d": "Real GitHub issues",
+      "l": "3 labs"
+    },
+    {
+      "n": "OmniDocBench",
+      "s": "84.1",
+      "d": "Document understanding",
+      "l": "1 lab"
     }
   ],
   "weak": {
@@ -77,11 +86,11 @@
     "d": "2.8 trillion parameters released under a modified MIT licence."
   },
   "lims": [
-    "<strong>Not in the corpus</strong> — card read by hand, not pipeline-extracted.",
-    "<strong>Self-declared gap</strong> — the lab rates its own model behind two competitors.",
-    "<strong>Scope</strong> — outside the tracked set of Western frontier labs."
+    "<strong>Context compaction</strong> — the headline BrowseComp figure uses compaction at 300K; 90.4 without it.",
+    "<strong>Self-declared gap</strong> — the lab places its own model behind Fable 5 and GPT-5.6 Sol.",
+    "<strong>No third-party validation</strong> — results are lab-reported only."
   ],
-  "blurb": "2.8 trillion parameters, a 1M-token context on Kimi Delta Attention, released under a modified MIT licence. Its own card places it behind Claude Fable 5 and GPT-5.6 Sol.",
+  "blurb": "An open-weight model priced far below the closed frontier, close enough on capability to be a genuine alternative for most tasks.",
   "ability": {
     "name": "Chasing the Frontier",
     "text": "Open weights at a fraction of closed-model pricing, close enough to the frontier to be a real substitute for most work."

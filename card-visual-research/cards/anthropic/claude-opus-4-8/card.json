@@ -52,34 +52,34 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench",
+      "n": "USAMO 2026",
+      "s": "96.7",
+      "d": "Olympiad mathematics",
+      "l": "2 labs"
+    },
+    {
+      "n": "GPQA Diamond",
+      "s": "86.1",
+      "d": "Graduate-level science",
+      "l": "4 labs"
+    },
+    {
+      "n": "SWE-bench Ver.",
       "s": "88.6",
-      "l": "3 labs",
-      "d": "real GitHub issues"
+      "d": "Real GitHub issues",
+      "l": "3 labs"
     },
     {
-      "n": "BrowseComp",
-      "s": "84.3",
-      "l": "1 lab",
-      "d": "Agentic web research"
+      "n": "Terminal-bench",
+      "s": "74.6",
+      "d": "Agentic terminal tasks",
+      "l": "1 lab"
     },
     {
-      "n": "Humanity's Last Exam",
-      "s": "49.8",
-      "l": "2 labs",
-      "d": "expert-written exam"
-    },
-    {
-      "n": "ChartQA",
-      "s": "69.4",
-      "l": "2 labs",
-      "d": "chart question answering"
-    },
-    {
-      "n": "OSWorld",
-      "s": "83.4",
-      "l": "1 lab",
-      "d": "desktop computer use"
+      "n": "HLE",
+      "s": "38.2",
+      "d": "Hardest general reasoning",
+      "l": "1 lab"
     }
   ],
   "weak": {
@@ -95,7 +95,7 @@
     "<strong>Reward hacking</strong> — emergent in long-horizon agentic settings.",
     "<strong>Benchmark saturation</strong> — many evaluations near ceiling."
   ],
-  "blurb": "61,922 words, independently validated by UK AISI, METR and Apollo. 73% of its benchmark choices are echoed by no peer lab.",
+  "blurb": "Held the frontier into mid-2026 while Fable 5's release was interrupted. 64% of its benchmark choices are echoed by no peer lab.",
   "val": {
     "b": "UK AISI · METR · Apollo — pre-deployment, May 2026",
     "l": "modelcards.net/opus-4-8",

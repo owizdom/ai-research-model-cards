@@ -53,21 +53,34 @@
   ],
   "btbl": [
     {
-      "n": "Sabotage Suite",
-      "s": "0.88",
-      "l": "1 lab",
-      "d": "Covert-sabotage probes"
+      "n": "MMLU",
+      "s": "91.5",
+      "d": "Broad academic knowledge",
+      "l": "5 labs"
     },
     {
-      "n": "CVE-Bench",
-      "s": "90",
-      "l": "1 lab",
-      "d": "Real-world exploits"
+      "n": "GPQA",
+      "s": "86.5",
+      "d": "Graduate-level science",
+      "l": "4 labs"
     },
     {
-      "n": "Not reported",
-      "s": "—",
-      "l": "—"
+      "n": "BrowseComp",
+      "s": "71.0",
+      "d": "Agentic web research",
+      "l": "1 lab"
+    },
+    {
+      "n": "SWE-bench",
+      "s": "76.3",
+      "d": "Real GitHub issues",
+      "l": "3 labs"
+    },
+    {
+      "n": "AIME 2025",
+      "s": "99.2",
+      "d": "Competition mathematics",
+      "l": "2 labs"
     }
   ],
   "weak": {
@@ -79,10 +92,11 @@
     "d": "First GPT-5 model with BrowseComp evaluation."
   },
   "lims": [
-    "<strong>Web browsing</strong> — new capability introduces new attack surface.",
-    "<strong>Rapid iteration</strong> — fast release cadence limits evaluation depth per model."
+    "<strong>Lab-unique eval</strong> — BrowseComp has no cross-lab comparison.",
+    "<strong>Two models, one number</strong> — a separate Codex variant shipped in the same cycle.",
+    "<strong>No third-party validation</strong> — results are lab-reported only."
   ],
-  "blurb": "Current OpenAI flagship. Introduced BrowseComp as a new eval — lab-unique, no cross-lab comparison. The rapid GPT-5 iteration cadence contrasts sharply with Anthropic's longer cycles.",
+  "blurb": "Introduced BrowseComp, a new measure of how well an agent can track down information that is deliberately hard to find.",
   "val": {
     "b": "Internal evaluation, 2025",
     "l": "modelcards.net/gpt-5-3",

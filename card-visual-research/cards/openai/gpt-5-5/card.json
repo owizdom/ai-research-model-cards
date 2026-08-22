@@ -53,22 +53,34 @@
   ],
   "btbl": [
     {
-      "n": "Hard Negative Protein",
-      "s": "0.4",
-      "l": "1 lab",
-      "d": "protein binding prediction"
+      "n": "GPQA Diamond",
+      "s": "93.6",
+      "d": "Graduate-level science",
+      "l": "4 labs"
     },
     {
-      "n": "DNA Sequence Design",
-      "s": "13.82",
-      "l": "1 lab",
-      "d": "transcription factor binding"
+      "n": "SWE-bench Pro",
+      "s": "58.6",
+      "d": "Contamination-resistant coding",
+      "l": "2 labs"
     },
     {
-      "n": "Impossible Coding Task",
-      "s": "29",
-      "l": "1 lab",
-      "d": "unsolvable-task honesty"
+      "n": "Terminal-bench 2.0",
+      "s": "82.7",
+      "d": "Agentic terminal tasks",
+      "l": "2 labs"
+    },
+    {
+      "n": "OSWorld-Verified",
+      "s": "78.7",
+      "d": "Computer use",
+      "l": "3 labs"
+    },
+    {
+      "n": "Humanity's Last Exam",
+      "s": "41.4",
+      "d": "Hardest general reasoning",
+      "l": "4 labs"
     }
   ],
   "weak": {
@@ -80,11 +92,11 @@
     "d": "Apollo and UK AISI evaluations disclosed alongside internal results."
   },
   "lims": [
-    "<strong>82% lab-unique</strong> — the highest single-lab share of any card in this set.",
-    "<strong>Ceiling scores</strong> — several suites are reported at 100, limiting headroom.",
-    "<strong>Short card</strong> — 14,496 words for a frontier release."
+    "<strong>Ceiling scores</strong> — several suites are reported at or near 100, leaving no headroom to measure.",
+    "<strong>Harness sensitivity</strong> — agentic results shift with the scaffold used to run them.",
+    "<strong>No third-party validation</strong> — results are lab-reported only."
   ],
-  "blurb": "77 disclosed evaluations on 14,496 words, and 82% of them appear on no other lab's card — the highest single-lab share anywhere in this set.",
+  "blurb": "Positioned for agentic work rather than benchmark headlines, with its biggest gains in long-horizon tasks.",
   "ability": {
     "name": "Built for Agents",
     "text": "Its largest gains sit in agentic coding and long-horizon knowledge work rather than raw reasoning."

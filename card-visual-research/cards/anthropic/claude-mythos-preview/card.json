@@ -56,22 +56,34 @@
   ],
   "btbl": [
     {
-      "n": "SWE-bench",
-      "s": "93.9",
-      "l": "3 labs",
-      "d": "real GitHub issues"
+      "n": "REDACTED",
+      "s": "██",
+      "d": "Withheld from the card",
+      "l": "classified"
     },
     {
-      "n": "Terminal-bench 2.0",
-      "s": "82",
-      "l": "1 lab",
-      "d": "agentic terminal tasks"
+      "n": "REDACTED",
+      "s": "██",
+      "d": "Withheld from the card",
+      "l": "classified"
     },
     {
-      "n": "GPQA-Diamond",
-      "s": "94.5",
-      "l": "3 labs",
-      "d": "grad-level science"
+      "n": "REDACTED",
+      "s": "██",
+      "d": "Withheld from the card",
+      "l": "classified"
+    },
+    {
+      "n": "REDACTED",
+      "s": "██",
+      "d": "Withheld from the card",
+      "l": "classified"
+    },
+    {
+      "n": "REDACTED",
+      "s": "██",
+      "d": "Withheld from the card",
+      "l": "classified"
     }
   ],
   "weak": {
@@ -83,8 +95,8 @@
     "d": "███████████████████████"
   },
   "lims": [
-    "<strong>REDACTED</strong> — ██████████████████████",
-    "<strong>REDACTED</strong> — ██████████████████████"
+    "<strong>Every benchmark redacted</strong> — no capability figure is disclosed on the card.",
+    "<strong>Restricted access</strong> — available only to Project Glasswing participants."
   ],
   "blurb": "Not available to the public due to cybersecurity concerns. Currently used by a small number of trusted organizations as part of Project Glasswing.",
   "val": {

@@ -53,22 +53,34 @@
   ],
   "btbl": [
     {
-      "n": "AAV Capsid Packaging",
-      "s": "0.529",
-      "l": "2 labs",
-      "d": "viral vector design"
+      "n": "Terminal-bench 2.1",
+      "s": "88.8",
+      "d": "Agentic terminal tasks",
+      "l": "3 labs"
     },
     {
-      "n": "Hard Negative Protein",
-      "s": "3.5",
-      "l": "1 lab",
-      "d": "protein binding prediction"
+      "n": "BrowseComp",
+      "s": "90.4",
+      "d": "Agentic web research",
+      "l": "3 labs"
     },
     {
-      "n": "DNA Sequence Design",
-      "s": "12.82",
-      "l": "1 lab",
-      "d": "transcription factor binding"
+      "n": "GPQA Diamond",
+      "s": "94.1",
+      "d": "Graduate-level science",
+      "l": "4 labs"
+    },
+    {
+      "n": "SWE-bench Pro",
+      "s": "64.6",
+      "d": "Contamination-resistant coding",
+      "l": "2 labs"
+    },
+    {
+      "n": "OSWorld 2.0",
+      "s": "62.6",
+      "d": "Computer use, harder set",
+      "l": "2 labs"
     }
   ],
   "weak": {
@@ -80,11 +92,11 @@
     "d": "Treated as High capability in both cybersecurity and biological risk."
   },
   "lims": [
-    "<strong>Shared card</strong> — Sol, Terra and Luna documented as one release.",
-    "<strong>71% lab-unique</strong> — most of the suite has no peer comparison.",
-    "<strong>High-risk classification</strong> — High in cyber and bio under the Preparedness Framework."
+    "<strong>Shared card</strong> — Sol, Terra and Luna documented as a single release.",
+    "<strong>High-risk classification</strong> — rated High in both cyber and bio under the Preparedness Framework.",
+    "<strong>No third-party validation</strong> — results are lab-reported only."
   ],
-  "blurb": "One card documents three models — Sol, Terra and Luna — in 21,329 words. Both cyber and biological risk are classified High under the Preparedness Framework.",
+  "blurb": "Handles text, image and audio in one model, and reasons across them rather than routing each to a separate system.",
   "ability": {
     "name": "Three in One",
     "text": "A single card documents Sol, Terra and Luna, so no result on it can be attributed to one model."

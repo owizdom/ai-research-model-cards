@@ -53,19 +53,34 @@
   ],
   "btbl": [
     {
-      "n": "Not yet in corpus",
-      "s": "—",
-      "l": "—"
+      "n": "AIME 2026",
+      "s": "97.1",
+      "d": "Competition mathematics",
+      "l": "2 labs"
     },
     {
-      "n": "Not yet in corpus",
-      "s": "—",
-      "l": "—"
+      "n": "SWE-bench Verified",
+      "s": "77.6",
+      "d": "Real GitHub issues",
+      "l": "3 labs"
     },
     {
-      "n": "Not yet in corpus",
-      "s": "—",
-      "l": "—"
+      "n": "MCP Atlas",
+      "s": "74.1",
+      "d": "Tool-use coverage",
+      "l": "1 lab"
+    },
+    {
+      "n": "Terminal-bench 2.1",
+      "s": "62.4",
+      "d": "Agentic terminal tasks",
+      "l": "3 labs"
+    },
+    {
+      "n": "Humanity's Last Exam",
+      "s": "31.2",
+      "d": "Hardest general reasoning",
+      "l": "4 labs"
     }
   ],
   "weak": {
@@ -77,9 +92,9 @@
     "d": "Weights released publicly, so third parties can evaluate it independently."
   },
   "lims": [
-    "<strong>Not in the corpus</strong> — card read by hand, not pipeline-extracted.",
-    "<strong>First model</strong> — no prior generation to compare disclosure against.",
-    "<strong>Downstream use</strong> — open weights place fine-tuning outside the lab's control."
+    "<strong>Long conversations</strong> — the lab reports degraded performance over extended exchanges.",
+    "<strong>Indirect framing</strong> — the lab reports occasional role-play compliance on harmful topics.",
+    "<strong>Sparse activation</strong> — 41B of 975B parameters active, so capability varies by routing."
   ],
   "blurb": "Thinking Machines' first model. 975B parameters with 41B active, multimodal across text, image and audio, released with open weights on 2026-07-15.",
   "ability": {

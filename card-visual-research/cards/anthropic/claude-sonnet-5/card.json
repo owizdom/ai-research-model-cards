@@ -53,22 +53,34 @@
   ],
   "btbl": [
     {
-      "n": "Long-form virology tasks",
-      "s": "0.79",
-      "l": "1 lab",
-      "d": "wet-lab protocol tasks"
+      "n": "SWE-bench Pro",
+      "s": "63.2",
+      "d": "Contamination-resistant coding",
+      "l": "2 labs"
     },
     {
-      "n": "VCT",
-      "s": "0.45",
-      "l": "2 labs",
-      "d": "virology capabilities test"
+      "n": "SWE-bench Verified",
+      "s": "85.2",
+      "d": "Real GitHub issues",
+      "l": "3 labs"
     },
     {
-      "n": "DNA Synthesis Screening",
-      "s": "5",
-      "l": "1 lab",
-      "d": "synthesis screening evasion"
+      "n": "Terminal-bench 2.1",
+      "s": "80.4",
+      "d": "Agentic terminal tasks",
+      "l": "3 labs"
+    },
+    {
+      "n": "BrowseComp",
+      "s": "84.7",
+      "d": "Agentic web research",
+      "l": "3 labs"
+    },
+    {
+      "n": "Humanity's Last Exam",
+      "s": "57.4",
+      "d": "Hardest general reasoning",
+      "l": "4 labs"
     }
   ],
   "weak": {
@@ -80,11 +92,11 @@
     "d": "58 disclosed evaluations, weighted heavily toward biosecurity."
   },
   "lims": [
-    "<strong>80% lab-unique</strong> — almost nothing on this card is cross-comparable.",
-    "<strong>Biosecurity weighting</strong> — the disclosed suite is dominated by virology and synthesis screening.",
-    "<strong>Capability tables</strong> — not machine-extractable from the published PDF."
+    "<strong>Harness sensitivity</strong> — agentic scores shift with the scaffold used to run them.",
+    "<strong>Variant mismatch</strong> — SWE-bench Pro and Verified are not comparable figures.",
+    "<strong>Benchmark saturation</strong> — several evaluations sit near ceiling."
   ],
-  "blurb": "58 disclosed evaluations, 80% of them run by no other lab. The published suite leans heavily toward biosecurity rather than the capability benchmarks peers report.",
+  "blurb": "A mid-tier model that outperforms the flagship above it on agentic coding, at roughly half the cost per token.",
   "ability": {
     "name": "Above Its Tier",
     "text": "Beats Opus 4.8 on Terminal-bench 2.1 at roughly half the price, the first Sonnet to outperform the concurrent flagship on agentic coding."

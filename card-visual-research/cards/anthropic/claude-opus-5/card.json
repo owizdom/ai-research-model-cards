@@ -54,21 +54,33 @@
   "btbl": [
     {
       "n": "ARC-AGI-1",
-      "s": "97.50",
-      "l": "—",
-      "d": "Novel pattern reasoning"
+      "s": "97.5",
+      "d": "Novel pattern reasoning",
+      "l": "2 labs"
     },
     {
-      "n": "LEGAL AGENT BENCH",
-      "s": "11.7",
-      "l": "—",
-      "d": "long-horizon legal work"
+      "n": "ARC-AGI-2",
+      "s": "90.4",
+      "d": "Harder pattern set",
+      "l": "2 labs"
     },
     {
-      "n": "MCP ATLAS",
-      "s": "85.8",
-      "l": "—",
-      "d": "Tool-use coverage"
+      "n": "MCP Atlas",
+      "s": "89.1",
+      "d": "Tool-use coverage",
+      "l": "1 lab"
+    },
+    {
+      "n": "HealthBench",
+      "s": "73.4",
+      "d": "Clinical reasoning",
+      "l": "3 labs"
+    },
+    {
+      "n": "AutomationBench",
+      "s": "26.0",
+      "d": "Business workflow automation",
+      "l": "2 labs"
     }
   ],
   "weak": {
@@ -80,11 +92,11 @@
     "d": "91 disclosed evaluations, the widest record of any card in this set."
   },
   "lims": [
-    "<strong>73% lab-unique</strong> — the agentic suite has no cross-lab equivalent.",
-    "<strong>Novel scales</strong> — GDPval-AA and AA-Briefcase report on scales peers do not use.",
-    "<strong>Comparability</strong> — few scores can be placed against a competitor."
+    "<strong>Novel scales</strong> — several agentic results report on scales unique to this lab.",
+    "<strong>Chain-of-thought faithfulness</strong> — traces may diverge from internal computation.",
+    "<strong>Benchmark saturation</strong> — several evaluations sit at or near ceiling."
   ],
-  "blurb": "91 disclosed evaluations, the widest record in the set, and 73% of them lab-unique. Breadth of disclosure and comparability of disclosure are not the same thing.",
+  "blurb": "Strongest in the set at novel abstraction rather than recall: near-ceiling on ARC-AGI-1, and well clear of the field on the harder ARC-AGI-2.",
   "ability": {
     "name": "Abstraction",
     "text": "Near-ceiling on ARC-AGI-1 and clear of the field on ARC-AGI-2, strongest at problems it has not seen a template for."

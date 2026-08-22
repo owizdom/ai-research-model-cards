@@ -96,23 +96,44 @@
   ],
   "btbl": [
     {
-      "n": "CharXiv Reasoning (No Tools)",
-      "s": "82.1",
-      "l": "1 lab",
-      "d": "chart reasoning, no tools"
+      "n": "GPQA-Diamond",
+      "s": "94.2",
+      "d": "Graduate-level science",
+      "l": "3 labs"
     },
     {
-      "n": "OSWorld",
-      "s": "78.0",
-      "l": "1 lab",
-      "d": "desktop computer use"
+      "n": "ARC-AGI-1",
+      "s": "92.0",
+      "d": "Novel pattern reasoning",
+      "l": "1 lab"
     },
     {
-      "n": "ScreenSpot-Pro (No Tools)",
-      "s": "79.5",
-      "l": "1 lab",
-      "d": "GUI element grounding"
+      "n": "SWE-bench Verified",
+      "s": "87.6",
+      "d": "Real GitHub issues",
+      "l": "2 labs"
+    },
+    {
+      "n": "USAMO 2026",
+      "s": "69.3",
+      "d": "Olympiad mathematics",
+      "l": "1 lab"
+    },
+    {
+      "n": "Humanity's Last Exam",
+      "s": "46.9",
+      "d": "Hardest general reasoning",
+      "l": "2 labs"
     }
   ],
-  "words": "62.8k"
+  "words": "62.8k",
+  "blurb": "A 62,813-word system card — the longest Anthropic had published at the time.",
+  "lims": [
+    "<strong>Chain-of-thought faithfulness</strong> — traces may diverge from internal computation.",
+    "<strong>Reward hacking</strong> — emergent in long-horizon agentic settings.",
+    "<strong>Benchmark saturation</strong> — many evaluations near ceiling."
+  ],
+  "val": {
+    "b": "UK AISI · METR · Apollo — pre-deployment, Apr 2026"
+  }
 }

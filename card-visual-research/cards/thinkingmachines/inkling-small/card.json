@@ -53,22 +53,34 @@
   ],
   "btbl": [
     {
-      "n": "AIME 2026",
-      "s": "95.5",
-      "l": "—",
-      "d": "olympiad mathematics"
+      "n": "SWE-bench Verified",
+      "s": "80.2",
+      "d": "Real GitHub issues",
+      "l": "3 labs"
     },
     {
-      "n": "SWEBench Verified",
-      "s": "80.2",
-      "l": "—",
-      "d": "Real GitHub issues"
+      "n": "GPQA Diamond",
+      "s": "89.5",
+      "d": "Graduate-level science",
+      "l": "4 labs"
     },
     {
       "n": "SimpleQA Verified",
       "s": "20.6",
-      "l": "—",
-      "d": "Factual recall"
+      "d": "Factual recall",
+      "l": "1 lab"
+    },
+    {
+      "n": "AIME 2026",
+      "s": "94.2",
+      "d": "Competition mathematics",
+      "l": "2 labs"
+    },
+    {
+      "n": "Terminal-bench 2.1",
+      "s": "58.9",
+      "d": "Agentic terminal tasks",
+      "l": "3 labs"
     }
   ],
   "weak": {
@@ -80,9 +92,9 @@
     "d": "Weights released publicly, so third parties can evaluate it independently."
   },
   "lims": [
-    "<strong>Not in the corpus</strong> — card read by hand, not pipeline-extracted.",
-    "<strong>Long conversations</strong> — the lab reports degraded performance over long exchanges.",
-    "<strong>Indirect framing</strong> — the lab reports occasional role-play compliance on harmful topics."
+    "<strong>Long conversations</strong> — the lab reports degraded performance over extended exchanges.",
+    "<strong>Indirect framing</strong> — the lab reports occasional role-play compliance on harmful topics.",
+    "<strong>Factual recall</strong> — SimpleQA Verified at 20.6, low against its reasoning scores."
   ],
   "blurb": "Thinking Machines' second model: 276B parameters, 12B active, Apache 2.0. It beats the larger Inkling on code and science while knowing measurably less.",
   "ability": {
