@@ -18,17 +18,17 @@
   "benches": [
     {
       "n": "TEXT TO TEXT SAFETY",
-      "d": "as reported",
+      "d": "Text safety violations",
       "s": "0.10"
     },
     {
       "n": "MULTILINGUAL SAFETY",
-      "d": "as reported",
+      "d": "Safety across languages",
       "s": "0.11"
     },
     {
       "n": "IMAGE TO TEXT SAFETY",
-      "d": "as reported",
+      "d": "Image safety violations",
       "s": "-0.33"
     }
   ],
@@ -52,19 +52,19 @@
       "n": "Text to Text Safety",
       "s": "0.10",
       "l": "1 lab",
-      "d": "as reported"
+      "d": "Text safety violations"
     },
     {
       "n": "Multilingual Safety",
       "s": "0.11",
       "l": "1 lab",
-      "d": "as reported"
+      "d": "Safety across languages"
     },
     {
       "n": "Image to Text Safety",
       "s": "-0.33",
       "l": "1 lab",
-      "d": "as reported"
+      "d": "Image safety violations"
     }
   ],
   "weak": {

@@ -18,12 +18,12 @@
   "benches": [
     {
       "n": "PRODUCTION BENCHMARKS",
-      "d": "as reported",
+      "d": "Internal production suite",
       "s": "0.865"
     },
     {
       "n": "STRONGREJECT",
-      "d": "as reported",
+      "d": "Jailbreak resistance",
       "s": "0.974"
     },
     {
@@ -52,13 +52,13 @@
       "n": "Production Benchmarks",
       "s": "0.865",
       "l": "1 lab",
-      "d": "as reported"
+      "d": "Internal production suite"
     },
     {
       "n": "StrongReject",
       "s": "0.974",
       "l": "1 lab",
-      "d": "as reported"
+      "d": "Jailbreak resistance"
     },
     {
       "n": "Not reported",

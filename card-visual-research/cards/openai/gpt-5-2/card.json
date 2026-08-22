@@ -18,12 +18,12 @@
   "benches": [
     {
       "n": "MMLU",
-      "d": "as reported",
+      "d": "Academic reasoning",
       "s": "0.901"
     },
     {
       "n": "FIRST-PERSON FAIRNESS",
-      "d": "as reported",
+      "d": "Demographic bias",
       "s": "0.00997"
     },
     {
@@ -52,13 +52,13 @@
       "n": "MMLU",
       "s": "0.901",
       "l": "5 labs",
-      "d": "as reported"
+      "d": "Academic reasoning"
     },
     {
       "n": "First-Person Fairness",
       "s": "0.00997",
       "l": "1 lab",
-      "d": "as reported"
+      "d": "Demographic bias"
     },
     {
       "n": "Not reported",

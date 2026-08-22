@@ -18,12 +18,12 @@
   "benches": [
     {
       "n": "STANDARD DISALLOWED",
-      "d": "as reported",
+      "d": "Disallowed content refusals",
       "s": "1"
     },
     {
       "n": "SWE-BENCH",
-      "d": "as reported",
+      "d": "Real GitHub issues",
       "s": "74.9"
     },
     {
@@ -56,13 +56,13 @@
       "n": "Standard Disallowed",
       "s": "1",
       "l": "1 lab",
-      "d": "as reported"
+      "d": "Disallowed content refusals"
     },
     {
       "n": "SWE-bench",
       "s": "74.9",
       "l": "3 labs",
-      "d": "as reported"
+      "d": "Real GitHub issues"
     },
     {
       "n": "Not reported",

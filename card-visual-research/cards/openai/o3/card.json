@@ -18,17 +18,17 @@
   "benches": [
     {
       "n": "CHALLENGING REFUSAL",
-      "d": "as reported",
+      "d": "Hard refusal cases",
       "s": "0.9"
     },
     {
       "n": "HUMAN SOURCED",
-      "d": "as reported",
+      "d": "Human red-team prompts",
       "s": "1"
     },
     {
       "n": "SIMPLEQA",
-      "d": "as reported",
+      "d": "Short factual questions",
       "s": "0.49"
     }
   ],
@@ -56,25 +56,25 @@
       "n": "Challenging Refusal",
       "s": "0.9",
       "l": "1 lab",
-      "d": "as reported"
+      "d": "Hard refusal cases"
     },
     {
       "n": "Human sourced jailbreaks",
       "s": "1",
       "l": "1 lab",
-      "d": "human red-team prompts"
+      "d": "Human red-team prompts"
     },
     {
       "n": "SimpleQA",
       "s": "0.49",
       "l": "2 labs",
-      "d": "as reported"
+      "d": "Short factual questions"
     },
     {
       "n": "PersonQA",
       "s": "0.59",
       "l": "1 lab",
-      "d": "factual recall on people"
+      "d": "Factual recall on people"
     }
   ],
   "weak": {
