@@ -136,5 +136,11 @@
   ],
   "val": {
     "b": "UK AISI · METR · Apollo — pre-deployment, Apr 2026"
+  },
+  "weak": {
+    "t": "Personality Drift ×2"
+  },
+  "res": {
+    "t": "Extended Thinking"
   }
 }

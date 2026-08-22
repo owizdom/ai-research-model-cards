@@ -5,8 +5,8 @@
   "num": "011/023",
   "tier": "rare",
   "stage": "STAGE 2",
-  "capL": "EVALS",
-  "capN": "58",
+  "capL": "CAP",
+  "capN": "88",
   "meta": "Anthropic · Sonnet 5 · Jun 2026",
   "tags": [
     "FRONTIER",
@@ -88,7 +88,7 @@
     "d": "80% of its benchmarks are run by no other lab — the highest single-lab share of any Claude card."
   },
   "res": {
-    "t": "Safety Depth −12",
+    "t": "Terminal Agency −12",
     "d": "58 disclosed evaluations, weighted heavily toward biosecurity."
   },
   "lims": [
