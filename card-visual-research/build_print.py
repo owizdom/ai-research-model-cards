@@ -45,7 +45,7 @@ SAFE_W, SAFE_H = 684, 981
 # is at 36px and MPC drift runs about +/-1mm (12px @300DPI), so 54px keeps the
 # frame 1.5mm inside the blade even when it drifts *inward* — the direction
 # that would otherwise shave the frame instead of just widening the margin.
-FRAME_INSET = 54
+FRAME_INSET = 0
 
 # Kept at the previous value on purpose: the card is authored in CSS px and
 # scaled by this, so holding it fixed keeps every type size at the physical
@@ -55,7 +55,7 @@ ZOOM = 1.581
 FACE_W = round((BLEED_W - 2 * FRAME_INSET) / ZOOM, 2)
 FACE_H = round((BLEED_H - 2 * FRAME_INSET) / ZOOM, 2)
 
-TCG_PAD = 12  # authored px; was 20 — trimmed to buy back content width
+TCG_PAD = 28  # authored px; was 20 — trimmed to buy back content width
 GOLD_PAD = 5  # authored px; was 7
 INNER_PAD = "14px 15px"
 
@@ -90,7 +90,7 @@ body{{width:{BLEED_W}px;height:{BLEED_H}px;overflow:hidden;display:block;padding
 .pframe .face{{position:static!important;top:auto!important;left:auto!important;
   transform:none!important;-webkit-backface-visibility:visible!important;backface-visibility:visible!important;
   width:{FACE_W}px!important;zoom:{ZOOM};}}
-.pframe .tcg{{height:{FACE_H}px!important;border-radius:16px!important;padding:{TCG_PAD}px!important;
+.pframe .tcg{{height:{FACE_H}px!important;border-radius:0!important;padding:{TCG_PAD}px!important;
   display:flex!important;flex-direction:column!important;
   box-shadow:0 10px 26px rgba(30,14,0,.45),inset 0 2px 0 rgba(255,235,180,.4),inset 0 -3px 6px rgba(0,0,0,.3)!important;}}
 /* the old renders left a dead band of frame at the bottom because .gold/.inner

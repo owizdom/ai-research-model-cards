@@ -174,6 +174,19 @@ def main(argv: list[str]) -> int:
             seen.setdefault(norm(b["n"]), set()).add(b["d"].strip().lower())
     drift = {k: sorted(v) for k, v in sorted(seen.items()) if len(v) > 1}
 
+    # structural consistency: an element present on some cards and not others
+    # reads as a mistake on whichever side is the minority. The front flavour
+    # block sat on 4 of 23 and on one card duplicated the back summary verbatim.
+    ELEMENTS = ["flavor", "wrr", "ability", "bk-val", "art-win", "dex"]
+    for el in ELEMENTS:
+        have = [s for s in roster
+                if f'class="{el}"' in card_files(s)[1].read_text()]
+        if have and len(have) != total:
+            missing = [s for s in roster if s not in have]
+            side = have if len(have) < len(missing) else missing
+            fail("structure", "(deck)",
+                 f'.{el} on {len(have)}/{total} cards; odd ones out: {side[:6]}')
+
     if drift:
         # not a failure: his gallery and his handoff zip word the same benchmark
         # differently, and both are his. Surfaced so he can pick one.
